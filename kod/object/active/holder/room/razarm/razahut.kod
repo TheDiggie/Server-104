@@ -1,0 +1,102 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+//////////////////////////////////////////////////////////////////////////////////
+RazaHut is RazaRoom
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include razahut.lkod
+
+   room_name_razahut = "The Home of Roderic D'Stane"
+   room_razahut = razahut.roo
+   razahut_music = login.ogg
+
+   razahut_signname = "Communication"
+   razahut_sign = \
+      "Being able to communicate is an important part of Meridian, whether "
+      "you're solving a quest or you're plotting with your allies. The most "
+      "common way to communicate is with the SAY command. For example, if "
+      "you type SAY HELLO, the elder in this hut will respond.\n\n"
+      "Any other player who happens to be in the same map area as you "
+      "can hear what you say.  However, most shopkeepers and elders "
+      "are hard of hearing; you need to get close for them to hear you.\n\n"
+      "Another communication option is BROADCAST.  If you type BROADCAST HELLO, "
+      "you will then be saying hello to everyone online.  The broadcast "
+      "channel is a great place for asking questions about the game and how "
+      "to find things, and for meeting up with fellow players.\n\n"
+      "-------------------------\n\n"
+      "Say QUEST to Roderic D'Stane to see what you should do next."
+
+classvars:
+
+   vrName = room_name_razahut
+   vrSign = razahut_sign
+
+   viTeleport_row = 2
+   viTeleport_col = 2
+
+   viPermanent_flags = ROOM_NO_COMBAT
+   viTerrain_type = TERRAIN_CITY | TERRAIN_RESIDENCE
+
+properties:
+
+   prRoom = room_razahut
+   piRoom_num = RID_RAZA_ELDER
+
+   piBaseLight = LIGHT_NICE
+   piOutside_factor = OUTDOORS_SOME
+
+   prMusic = razahut_music
+
+messages:
+
+   CreateStandardExits()
+   {
+      plExits = $;
+
+      plExits = Cons([ 5, 4, RID_RAZA, 6, 17, ROTATE_NONE ],plExits);
+      plExits = Cons([ 5, 3, RID_RAZA, 6, 17, ROTATE_NONE ],plExits);
+
+      propagate;
+   }
+
+   CreateStandardObjects()
+   {
+      local oSign;
+
+      Send(self,@NewHold,#what=Create(&RazaElder),#new_row=1,#new_col=3,
+            #fine_row=48,#fine_col=16,#new_angle=ANGLE_WEST);
+
+      oSign = Create(&Sign,#desc=vrSign,#newbie=TRUE,#name=razahut_signname);
+      Send(self,@NewHold,#what=oSign,#new_row=3,#new_col=4,
+            #fine_row=32,#fine_col=48);
+
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_JUG),
+           #new_row=4,#new_col=2,#fine_row=48,#fine_col=16,#angle=ANGLE_EAST);
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_URN),
+           #new_row=2,#new_col=2,#fine_row=48,#fine_col=16,#angle=ANGLE_EAST);
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_SKULL7),
+           #new_row=2,#new_col=4,#fine_row=32,#fine_col=0,#angle=ANGLE_NORTH);
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_FIXINS),
+           #new_row=2,#new_col=5,#fine_row=32,#fine_col=0,#angle=ANGLE_NORTH);
+
+      // Lighting
+      Send(self,@NewHold,#what=Create(&DynamicLight,#iColor=LIGHT_FIRE,
+            #iIntensity=30),#new_row=5,#new_col=3,#fine_row=35,#fine_col=21);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,114 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+WeapAttVamper is WeaponAttribute
+
+///////////////////////////////////////////////////////////////////////
+//
+//   This weapon steals life away from the target, bit by bit.
+//
+//   Form is:
+//
+//      [ WA_Vamper]
+//
+///////////////////////////////////////////////////////////////////////
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include wavamper.lkod
+
+   weapattVamper_desc = \
+      "  An unholy glow seems to suck all life from the air around the weapon."
+   Vamper_dm = "Vamper"
+   Vamper_fail_use = "You are not ready to use %s%s."
+   Vamper_fail_use_karma = \
+      "You are not unholy enough to wield this despotic thing."
+   vamper_worked = "%s%s shudders as %s life is sucked away!"
+   vamper_worked_target = \
+      "%s%s seems enervated as the metal of %s weapon touches your flesh!"
+   vamper_info_desc = "10%% chance to gain up to 8 health on hit\n"
+
+classvars:
+
+   vrDesc = weapattVamper_desc
+   vrInfoDesc = vamper_info_desc
+   viItem_Att_Num = WA_VAMPER
+
+   viDifficulty = 10
+   vrDM_trigger = Vamper_dm
+
+properties:
+
+   piValue_modifier = 200   /// modify the object's price by 100//
+   piValue_power_modifier = 10
+   piEffect_percent = 10
+
+   piMinHealthGain = 1
+   piMaxHealthGain = 8
+
+messages:
+
+////////////////////////////////////////////////
+///
+///  Effect Functions
+///
+////////////////////////////////////////////////
+
+   ModifyDamage(damage=0,target=$,wielder=$,lData=$)
+   "Wielder has a 10% chance of stealing life from target with any hit."
+   {
+      local oSpell;
+      
+      if target = $
+         OR wielder = $
+      {
+         return damage;
+      }
+
+      if Random(1,100) <= piEffect_percent
+      {
+         Send(wielder,@GainHealth,
+               #amount=Bound(damage,piMinHealthGain,piMaxHealthGain));
+         Send(wielder,@MsgSendUser,#message_rsc=vamper_worked,
+               #parm1=send(target,@GetCapDef),#parm2=Send(target,@GetName),
+               #parm3=send(target,@GetHisHer));
+         Send(target,@MsgSendUser,#message_rsc=vamper_worked_target,
+               #parm1=Send(wielder,@GetCapDef),#parm2=Send(wielder,@GetName),
+               #parm3=Send(wielder,@GetHisHer));
+      }
+
+      return damage;
+   }
+
+   ItemReqUse(oItem=$,oPlayer=$)
+   {
+      // Need 50// weapon proficiency to use this weapon attribute.
+      if Send(oItem,@GetProf,#who=oPlayer) < 50
+      {
+         Send(oPlayer,@MsgSendUser,#message_rsc=Vamper_fail_use,
+               #parm1=Send(oItem,@GetDef),#parm2=Send(oItem,@GetName));
+
+         return FALSE;
+      }
+
+      return TRUE;
+   }
+
+   IsMagicalEffect()
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

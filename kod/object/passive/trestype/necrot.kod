@@ -1,0 +1,43 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+NecroTreasure is TreasureType
+
+constants:
+
+   include blakston.khd
+
+classvars:
+
+   viTreasure_num = TID_NECRO
+
+properties:
+
+
+   piDiff_seed = 9
+   piItem_att_chance = 9
+
+messages:
+
+   Constructed()
+   {
+      plTreasure = [ [ &PurpleMushroom, 35 ],
+		             [ &DarkAngelFeather, 36],
+                     [ &Scimitar, 20],
+                     [ &VampireWand, 2],
+                     [ &HoldWand, 1],
+		             [ &DaemonHelm, 5] 
+                   ];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

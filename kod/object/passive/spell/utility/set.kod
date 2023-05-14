@@ -1,0 +1,123 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Set is UtilitySpell
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include set.lkod
+
+   set_cast = "You register your inventory preferences."
+
+   set_name_rsc = "set"
+   set_icon_rsc = imend.bgf
+   set_desc_rsc = \
+      "Registers your personal battle gear preferences with Frular's office.  "
+      "Requires nothing but a will to fight."
+
+classvars:
+
+   vrName = set_name_rsc
+   vrIcon = set_icon_rsc
+   vrDesc = set_desc_rsc
+
+   viCast_time = 0
+
+   viSpell_num = SID_SET
+   viSpell_level = 1
+   viSchool = SS_KRAANAN
+   viMana = 0
+   viSpellExertion = 0
+   viChance_To_Increase = 5
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+
+      return;
+   }
+
+   CanPayCosts(who=$)
+   {
+      if (who = $
+         OR NOT IsClass(who,&User))
+      {
+         return FALSE;
+      }
+
+      // Player can't use if no-pvp flagged.
+      if (Send(who,@CheckPlayerFlag,#flag=PFLAG_PERMA_NO_PVP))
+      {
+         Send(who,@MsgSendUser,#message_rsc=spell_no_pvp_flag);
+
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+   CastSpell(who = $, lTargets = $)
+   {
+      local cClass, oItem, lLocal_list;
+
+      if (who = $)
+      {
+         return;
+      }
+
+      foreach oItem in Send(who,@GetHolderPassive)
+      {
+         cClass = GetClass(oItem);
+
+         // Ignore scrolls of set and money.
+         if (cClass = &SetScroll
+            OR cClass = &Money)
+         {
+            continue;
+         }
+
+         // It's important to get disciple robes of the correct school.
+         if IsClass(oItem,&DiscipleRobe)
+         {
+            lLocal_list = Cons([GetClass(oItem),Send(oItem,@GetSchool)],
+                                 lLocal_list);
+         }
+         else if IsClass(oItem,&SpellItem)
+         {
+            lLocal_list = Cons([GetClass(oItem),Send(oItem,@GetHits)],
+                                 lLocal_list);
+         }
+         else if IsClass(oItem,&NumberItem)
+         {
+            lLocal_list = Cons([GetClass(oItem),Send(oItem,@GetNumber)],
+                                 lLocal_list);
+         }
+         else
+         {
+            lLocal_list = Cons([GetClass(oItem),-1],lLocal_list);
+         }
+      }
+
+      Send(who,@SetLoadoutList,#set_list=lLocal_list);
+      Send(who,@MsgSendUser,#message_rsc=Set_cast);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,12 @@
+room_name_razahall = de "Gemeinschaftshalle von Raza"
+
+news_raza_hall = de "Generelle Informationen"
+news_raza_hall_desc = de "Lese die neusten Nachrichten rund um Meridian 59!"
+
+razahall_signname = de "Nachrichtenkugel"
+razahall_sign = de \
+   "Dieses Objekt auf der Plattform neben dem Schild ist ein Nachrichtenkugel. "
+   "Die Nachrichtenkugel findest du in Gemeinschaftshallen in jeder Stadt Meridians, "
+   "während die Nachrichtenkugel der Administratoren in den Kneipen zu finden sind. "
+   "\n\nHier könntest du deine Fragen an andere Spieler veröffentlichen, eine Gilde "
+   "suchen oder dich einfach nur vorstellen! "

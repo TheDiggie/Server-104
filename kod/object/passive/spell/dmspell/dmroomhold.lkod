@@ -1,0 +1,7 @@
+dmroomhold_name_rsc = de "Massenlähmung"
+dmroomhold_desc_rsc = de \
+   "Lähmt alle Spieler und Monster in der Karte für 10 Minuten. Wende diesen "
+   "Zauber erneut an um ihn aufzuheben oder zaubere Superlähmung auf ein Ziel "
+   "um es wieder zu befreien."
+dmroomhold_casted_msg = de \
+   "%s%s hebt %s Hände, und alle Bewegung im Raum erlischt."

@@ -1,0 +1,99 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+NeruditeShield is Shield
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   neruditeshield_name_rsc = "nerudite shield"
+   neruditeshield_icon_rsc = nerushld.bgf
+   neruditeshield_desc_rsc = \
+      "Forged from mighty Nerudite, this shield is lighter "
+      "and more durable than other shields.  There seems to  "
+      "be a shimmering barrier surrounding this shield which "
+      "reduce the power of elemental attacks."
+
+   neruditeshield_window_overlay_rsc = povshldi.bgf
+
+classvars:
+
+   vrName = neruditeshield_name_rsc
+   vrIcon = neruditeshield_icon_rsc
+   vrDesc = neruditeshield_desc_rsc
+
+   viHits_init_min = 800
+   viHits_init_max = 1100
+
+   viValue_average = 1200
+   viWeight = 200
+   viBulk = 125
+
+
+   vrShield_window_overlay = neruditeshield_window_overlay_rsc
+   vrShield_overlay = neruditeshield_icon_rsc
+
+   viGround_group = 3
+   viInventory_group = 1
+
+   viDefense_base = 10
+   viDamage_base = 1
+
+properties:
+
+messages:
+
+   GetResistanceModifiers()
+   {
+      return [ [-ATCK_SPELL_FIRE,10],
+               [-ATCK_SPELL_SHOCK,10],
+               [-ATCK_SPELL_COLD,10],
+               [-ATCK_SPELL_ACID,10],
+               [-ATCK_SPELL_QUAKE,-10],
+	           [ATCK_WEAP_PIERCE,15], 
+	           [ATCK_WEAP_SLASH,5], 
+	           [ATCK_WEAP_BLUDGEON,5],
+	           [ATCK_WEAP_THRUST,5]
+             ];
+   }
+
+   GetHeatDamage()
+   {
+      return 2;
+   }
+
+   DoShatter()
+    {
+      Send(self,@ShatterToShards);
+
+      propagate;
+   }
+
+   ShatterToShards()
+   {
+      if poOwner <> $ AND isClass(poOwner,&User)
+      {
+         if send(poOwner,@AssessDamage,#what=self,#damage=random(10,25),
+            #report=FALSE,#atype=ATCK_WEAP_NERUDITE) = $
+         {
+            Send(Send(poOwner,@GetOwner),@SomethingKilled,#what=self,#victim=poOwner);
+            Send(poOwner,@Killed,#what=self);
+         }
+      }
+
+      return;
+   }
+
+
+end
+////////////////////////////////////////////////////////////////////////////////

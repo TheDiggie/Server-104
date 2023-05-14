@@ -1,0 +1,23 @@
+// Quest description.
+rebelloyalty_name_rsc = de "Rebellen Loyalitäts Quest"
+rebelloyalty_desc_rsc = de \
+   "Jonas D'Accors Truppen benötigen Ausrüstung, und Du sollst sie besorgen."
+
+rebelloyalty_deliver_rsc = de \
+   "Jonas D'Accors Truppen benötigen Ausrüstung und hat dich beauftragt ihm %s%s zu bringen, um ihm einen Gefallen zu tun.."
+
+rebelloyalty_completed = de \
+   "Du hast das Rebellen Loyalitäts Quest abgeschlossen. Jonas ist dir dankbar... für eine Weile."
+
+// Quest resources.
+rebel_standard2_assign = de \
+   "Ah, %NAME, mein Freiheitskämpfer. Meine Truppen benötigen mehr Ausrüstung.Dieser "
+   "Krieg kostet eine Menge und ich habe nicht das Geld für eine große Truhe, "
+   "so wie die Anderen haben. Bringe mir %INDEF_CARGO%CARGO und ich werde "
+   "Deine Loyalität nicht vergessen."
+rebel_standard2_success = de \
+   "Ah, wunderbar.  Ich werde dies auf jeden Fall für einen guten Zweck benutzen."
+rebel_standard2_failure = de \
+   "Betreff: Du bist kein wahrer Rebell\nDu hast versagt, als ich Dich gebraucht "
+   "habe.  Geh und verzieh Dich zu den Anderen, ich habe keinen Nutzen mehr "
+   "an Dir."

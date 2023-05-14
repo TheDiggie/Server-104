@@ -1,0 +1,42 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CircleMask is FaceMask
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   CircleMask_name_rsc = "worker mask"
+   CircleMask_icon_male_rsc = squidc.bgf
+   CircleMask_icon_female_rsc = squidc.bgf
+   CircleMask_desc_rsc = \
+      "This mask is used by workers of the Squid Games."
+      "Do not let them find out who you are."
+
+classvars:
+
+   vrName = CircleMask_name_rsc
+   vrDesc = CircleMask_desc_rsc
+   vrIcon = CircleMask_icon_male_rsc
+
+   vrMaleIcon = CircleMask_icon_male_rsc
+   vrFemaleIcon = CircleMask_icon_female_rsc
+
+properties:
+
+
+messages:
+
+
+end
+////////////////////////////////////////////////////////////////////////////////

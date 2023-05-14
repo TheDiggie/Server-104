@@ -1,0 +1,720 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+NoMoveOn is Holder
+
+constants:
+
+   include blakston.khd
+
+classvars:
+
+   viMoveOn_type = MOVEON_NO
+
+properties:
+
+   // keep our row and col for speed and angle
+   piRow
+   piCol
+   piFine_row = 0
+   piFine_col = 0
+
+   // List of enchantments applied by radius spells.
+   // Each element is [timer, spell object, state, spellpower]
+   plRadiusEnchantments = $
+
+messages:
+
+   NewOwner(what = $)
+   {
+      local lPos;
+
+      if what <> $
+      {
+         lPos = Send(what,@GetRoomPos,#what=self);
+         piRow = First(lPos);
+         piCol = Nth(lPos,2);
+
+         piFine_row = Nth(lPos,3);
+         piFine_col = Nth(lPos,4);
+      }
+
+      propagate;
+   }
+
+   GetRow()
+   {
+      return piRow;
+   }
+
+   GetCol()
+   {
+      return piCol;
+   }
+
+   GetFineRow()
+   {
+      return piFine_row;
+   }
+
+   GetFineCol()
+   {
+      return piFine_col;
+   }
+
+   ChangeCoords(new_row = $,new_col = $,fine_row = $,fine_col = $)
+   {
+      /// posted so we know it happens last, and that new_row is going to be
+      /// the pre-coords, and piRow is going to be the post.  This was crucial
+      /// to making the spam protection on the walls work.
+
+      piRow = new_row;
+      piCol = new_col;
+      piFine_row = fine_row;
+      piFine_col = fine_col;
+
+      return;
+   }
+
+   ReqSomethingMoved(what = $,new_row = $,new_col = $,new_finerow = $,
+                     new_finecol = $)
+   {
+      propagate;
+   }
+
+   SomethingMoved(what = $,new_row = $,new_col = $,fine_row = $,fine_col = $)
+   {
+      if what = self
+      {
+         /// posted so we know it happens last, and that new_row is going to be
+         /// the pre-coords, and piRow is going to be the post.  This was crucial
+         /// to making the spam protection on the walls work.
+
+         Post(self,@ChangeCoords,#new_row=new_row,#new_col=new_col,
+               #fine_row=fine_row,#fine_col = fine_col);
+
+         Send(self,@NoMoveOnRadiusEnchCheckAll);
+      }
+
+      propagate;
+   }
+
+   SomethingEntered(what=$)
+   {
+      if (what <> self)
+      {
+         Send(self,@NoMoveOnRadiusEnchCheckOne,#who=what);
+      }
+
+      propagate;
+   }
+
+   SomethingLeft(what=$)
+   {
+      local i, each_obj, oSource, state;
+
+      if (what <> self)
+      {
+         if (IsClass(what,&NoMoveOn))
+         {
+            foreach i in plRadiusEnchantments
+            {
+               each_obj = Nth(i,2);
+               state = Nth(i,3);
+               oSource = Send(each_obj,@GetSource,#state=state);
+               if (oSource = what)
+               {
+                  Send(self,@RemoveRadiusEnchantment,#what=each_obj,#state=state);
+               }
+               else if (oSource = self)
+               {
+                  Send(what,@RemoveRadiusEnchantment,#what=each_obj,#state=state);
+               }
+            }
+         }
+      }
+
+      propagate;
+   }
+
+   SomethingPhasedIn(what=$)
+   {
+      if (what <> self)
+      {
+         Send(self,@NoMoveOnRadiusEnchCheckOne,#who=what);
+      }
+
+      propagate;
+   }
+
+   SomethingPhasedOut(what=$)
+   "Cancel our radius enchantments."
+   {
+      if (what = self)
+      {
+         Send(self,@RemoveAllRadiusEnchantments);
+      }
+
+      propagate;
+   }
+
+   SomethingSpectatedIn(what=$)
+   {
+      if (what <> self)
+      {
+         Send(self,@NoMoveOnRadiusEnchCheckOne,#who=what);
+      }
+
+      propagate;
+   }
+
+   SomethingSpectatedOut(what=$)
+   "Cancel our radius enchantments."
+   {
+      if (what = self)
+      {
+         Send(self,@RemoveAllRadiusEnchantments);
+      }
+
+      propagate;
+   }
+
+   #region Radius Enchantments
+   NoMoveOnRadiusEnchCheckAll()
+   "Checks whether any active object in our room should be affected "
+   "by any radius enchantments for which we are the source."
+   {
+      local i, j, each_obj, lState, oSpell, lActive, iSpellPower;
+
+      lActive = Send(poOwner,@GetHolderActive);
+
+      foreach i in plRadiusEnchantments
+      {
+         oSpell = Nth(i,2);
+         lState = Nth(i,3);
+         iSpellPower = Nth(i,4);
+         if (Send(oSpell,@GetSource,#state=lState) = self)
+         {
+            foreach j in lActive
+            {
+               each_obj = First(j);
+               if (each_obj <> self)
+               {
+                  Send(oSpell,@CheckRadiusEnchantment,#who=each_obj,
+                        #state=lState,#iRow=piRow,#iCol=piCol,
+                        #iFineRow=piFine_row,#iFineCol=piFine_col,
+                        #iSpellPower=iSpellPower);
+               }
+            }
+         }
+      }
+
+      return;
+   }
+
+   NoMoveOnRadiusEnchCheckOne(who=$)
+   "Checks whether 'who' should be affected by radius enchantments "
+   "for which we are the source."
+   {
+      local i, lState, oSpell;
+
+      if (who = $)
+      {
+         Debug("Bad param sent to NoMoveOnRadiusEnchCheckOne");
+
+         return;
+      }
+
+      if (who = self)
+      {
+         return;
+      }
+
+      foreach i in plRadiusEnchantments
+      {
+         oSpell = Nth(i,2);
+         lState = Nth(i,3);
+         if (Send(oSpell,@GetSource,#state=lState) = self)
+         {
+            Send(oSpell,@CheckRadiusEnchantment,#who=who,#state=lState,
+                  #iRow=piRow,#iCol=piCol,#iFineRow=piFine_row,
+                  #iFineCol=piFine_col,#iSpellPower=Nth(i,4));
+         }
+      }
+
+      return;
+   }
+
+   IsEnchantedRadius(what = $, state = $)
+   {
+      local i, lState;
+
+      if (what = $)
+      {
+         return FALSE;
+      }
+
+      if (state = $)
+      {
+         return GetListNode(plRadiusEnchantments,2,what) <> $;
+      }
+
+      foreach i in plRadiusEnchantments
+      {
+         if (what = Nth(i,2))
+         {
+            lState = Nth(i,3);
+            if (First(state) = First(lState)
+               AND Nth(state,2) = Nth(lState,2))
+            {
+               return TRUE;
+            }
+         }
+      }
+
+      return FALSE;
+   }
+
+   RemoveRadiusEnchantment(what=$,state=$,report=TRUE,recheck=FALSE)
+   "Handles all non-players."
+   {
+      local i, lState;
+
+      foreach i in plRadiusEnchantments
+      {
+         if (what = Nth(i,2))
+         {
+            lState = Nth(i,3);
+            if (First(state) = First(lState)
+               AND Nth(state,2) = Nth(lState,2))
+            {
+               if First(i) <> $
+               {
+                  if IsTimer(First(i))
+                  {
+                     DeleteTimer(First(i));
+                  }
+                  SetFirst(i,$);
+               }
+
+               plRadiusEnchantments = DelListElem(plRadiusEnchantments,i);
+
+               Send(what,@RemoveEnchantmentEffects,#who=self,#state=state,
+                     #report=report,#recheck=recheck);
+
+            }
+         }
+      }
+
+      // If logged on, see if we should get enchanted by another radius
+      // enchantment.
+      if (recheck AND poOwner <> $)
+      {
+         SendListByClass(Send(poOwner,@GetHolderActive),1,&NoMoveOn,
+               @NoMoveOnRadiusEnchCheckOne,#who=self);
+      }
+
+      return;
+   }
+
+   RemoveAllRadiusEnchantments(report=TRUE)
+   {
+      local i;
+
+      foreach i in plRadiusEnchantments
+      {
+         Send(self,@RemoveRadiusEnchantment,#what=Nth(i,2),#state=Nth(i,3),
+               #report=report);
+      }
+
+      return;
+   }
+
+   IsAffectedByRadiusEnchantment(what=$,caster=$,byClass=&RadiusEnchantment)
+   "Returns whether or not currently enchanted by <what> radius enchantment."
+   {
+      local i;
+
+      if plRadiusEnchantments = $
+      {
+         return FALSE;
+      }
+
+      if what = $
+      {
+         foreach i in plRadiusEnchantments
+         {
+            if IsClass(Nth(i,2),byClass)
+               AND (caster = $ OR First(Nth(i,3)) = caster)
+            {
+               return TRUE;
+            }
+         }
+      }
+      else
+      {
+         foreach i in plRadiusEnchantments
+         {
+            if Nth(i,2) = what
+               AND (caster = $ OR First(Nth(i,3)) = caster)
+            {
+               return TRUE;
+            }
+         }
+      }
+
+      return FALSE;
+   }
+
+   GetRECastPower(what=$)
+   "Returns the spellpower a given radius enchantment was cast at."
+   {
+      local lEnch;
+
+      if (what = $)
+      {
+         Debug("GetRECastPower called with $ spell!");
+
+         return 0;
+      }
+
+      lEnch = GetListNode(plRadiusEnchantments,2,what);
+      if (lEnch <> $)
+      {
+         return Nth(lEnch,4);
+      }
+
+      return 0;
+   }
+
+   GetRadiusEnchantmentState(what=$,byClass=&RadiusEnchantment)
+   "Assumes only one enchantment of each type is allowed.  Enforced "
+   "by RadiusEnchantment class."
+   {
+      local i;
+
+      if what = $
+      {
+         foreach i in plRadiusEnchantments
+         {
+            if IsClass(Nth(i,2),byClass)
+            {
+               return Nth(i,3);
+            }
+         }
+      }
+      else
+      {
+         foreach i in plRadiusEnchantments
+         {
+            if Nth(i,2) = what
+            {
+               return Nth(i,3);
+            }
+         }
+      }
+
+      return $;
+   }
+
+   PeriodicEnchantmentTimer(timer = $)
+   "Handles all non-players."
+   {
+      local i;
+
+      foreach i in plRadiusEnchantments
+      {
+         if First(i) = timer
+         {
+            plRadiusEnchantments = DelListElem(plRadiusEnchantments,i);
+
+            Send(Nth(i,2),@StartPeriodicEnchantment,#who=self,#state=Nth(i,3));
+
+            return;
+         }
+      }
+
+      Debug("Enchantment timer went off with no enchantment",timer);
+
+      return;
+   }
+
+   EnchantmentTimer(timer = $)
+   "Monster propagates here to handle radius enchantments, player does not."
+   {
+      local i;
+
+      foreach i in plRadiusEnchantments
+      {
+         if First(i) = timer
+         {
+            Send(Nth(i,2),@EndEnchantment,#who=self,#state=Nth(i,3));
+
+            plRadiusEnchantments = DelListElem(plRadiusEnchantments,i);
+
+            return;
+         }
+      }
+
+      Debug("Enchantment timer went off with no enchantment",timer);
+
+      return;
+   }
+
+   GetRadiusEnchantments()
+   {
+      return plRadiusEnchantments;
+   }
+
+   GetSpellAbility()
+   "Stub to handle calls on monsters from radius enchantment code."
+   {
+      return 0;
+   }
+   #endregion Radius Enchantments
+
+   SendLightingInformation()
+   {
+      local i, oLightObject, iColor, iIntensity;
+
+      iIntensity = 0;
+      iColor = 0;
+
+      foreach i in plRadiusEnchantments
+      {
+         oLightObject = Nth(i,2);
+         if (Send(oLightObject,@GetSource,#state=Nth(i,3)) = self
+            AND Send(oLightObject,@GetLightIntensity) >= iIntensity)
+         {
+            iIntensity = Send(oLightObject,@GetLightIntensity);
+            iColor = Send(oLightObject,@GetLightColor);
+         }
+      }
+
+      if iIntensity > 0
+      {
+         AddPacket(2,(LIGHT_FLAG_ON | LIGHT_FLAG_DYNAMIC),
+                   1,iIntensity, 2,iColor);
+
+         return;
+      }
+
+      propagate;
+   }
+
+   IsInSameRoom(what = $)
+   {
+      local oOwner;
+      
+      oOwner = Send(what,@GetOwner);
+
+      if poOwner <> $
+         AND IsClass(poOwner,&Room)
+         AND oOwner <> $
+         AND IsClass(oOwner,&Room)
+         AND poOwner = oOwner
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   PossessesA(class = $)
+   "Override from Holder, optimised for NoMoveOn."
+   {
+      return GetListElemByClass(plPassive,class) <> $;
+   }
+
+   SquaredDistanceTo(what = $)
+   "Computes squared distance to <what>. Returns $ for any object that is "
+   "not within a room."
+   {
+      local iRow, iCol;
+      
+      if NOT Send(self,@IsInSameRoom,#what=what)
+      {
+         return $;
+      }
+
+      iRow = Send(what,@GetRow);
+      iCol = Send(what,@GetCol);
+
+      // Sanity checking
+      if iRow = $ OR iCol = $
+         OR piRow = $ OR piCol = $
+      {
+         return $;
+      }
+
+      return Send(self,@SquaredDistanceToLocation,#row=iRow,#col=iCol);
+   }
+
+   SquaredDistanceToLocation(row = $, col = $)
+   "Computes squared distance to (row,col)"
+   {
+      local iRow_diff, iCol_diff;
+
+      iRow_diff = piRow - row;
+      iCol_diff = piCol - col;
+
+      return  (iRow_diff * iRow_diff + iCol_diff * iCol_diff);
+   }
+
+   SquaredFineDistanceTo(what = $)
+   "Computes squared distance to <what> in fine-units. Returns $ for any "
+   "object that is not within a room."
+   {
+      local iRow, iCol, iFineRow, iFineCol;
+      
+      if NOT Send(self,@IsInSameRoom,#what=what)
+      {
+         return $;
+      }
+
+      iRow = Send(what,@GetRow);
+      iCol = Send(what,@GetCol);
+      iFineRow = Send(what,@GetFineRow);
+      iFineCol = Send(what,@GetFineCol);
+
+      return Send(self,@SquaredFineDistanceToLocation,#row=iRow,#col=iCol,
+                  #fine_row=iFineRow,#fine_col=iFineCol);
+   }
+
+   SquaredFineDistanceToLocation(row = $,col = $,fine_row = FINENESS_HALF,
+                                 fine_col = FINENESS_HALF)
+   "Computes squared distance to (row,col)"
+   {
+      local iRow, iCol, iRow_diff, iCol_diff, iResult;
+
+      // Sanity check, big row/col can be $.
+      if row = $ OR col = $ OR piRow = $ OR piCol = $
+      {
+         return $;
+      }
+
+      // Scale to fine
+      iRow = (piRow * FINENESS) + piFine_row;
+      iCol = (piCol * FINENESS) + piFine_col;
+      row = (row * FINENESS) + fine_row;
+      col = (col * FINENESS) + fine_col;
+
+      // Deltas
+      iRow_diff = iRow - row;
+      iCol_diff = iCol - col;
+
+      iResult = (iRow_diff * iRow_diff + iCol_diff * iCol_diff);
+      if iResult < 0
+      {
+         iResult = MAX_INT;
+      }
+
+      return iResult;
+   }
+
+   SqFineDistToVision(what = $)
+   "Computes squared distance to <what> in fine-units. Optimised for "
+   "monster vision check. Returns squared fine units, divide by "
+   "FINENESS_SQUARED to compare to squared row/col units."
+   {
+      local iRow, iCol, iWhatRow, iWhatCol, iRow_diff, iCol_diff, iResult;
+
+      // Scale to fine.
+      iRow = piRow * FINENESS + piFine_row;
+      iCol = piCol * FINENESS + piFine_col;
+      iWhatRow = Send(what,@GetRow) * FINENESS + Send(what,@GetFineRow);
+      iWhatCol = Send(what,@GetCol) * FINENESS + Send(what,@GetFineCol);
+
+      // Deltas.
+      iRow_diff = iRow - iWhatRow;
+      iCol_diff = iCol - iWhatCol;
+
+      iResult = iRow_diff * iRow_diff + iCol_diff * iCol_diff;
+      if iResult < 0
+      {
+         iResult = MAX_INT;
+      }
+
+      return iResult;
+   }
+
+   SquaredFineDistanceTo3D(what=$)
+   {
+      local iRow, iCol, iWhatRow, iWhatCol, iRow_diff, iCol_diff, iHeight_diff,
+      iResult;
+
+      // Scale to fine.
+      iRow = piRow * FINENESS + piFine_row;
+      iCol = piCol * FINENESS + piFine_col;
+      iWhatRow = Send(what,@GetRow) * FINENESS + Send(what,@GetFineRow);
+      iWhatCol = Send(what,@GetCol) * FINENESS + Send(what,@GetFineCol);
+
+      // Deltas.
+      iRow_diff = iRow - iWhatRow;
+      iCol_diff = iCol - iWhatCol;
+      iHeight_diff = Send(self,@GetHeightFloorAtObjectBSP)
+                          - Send(what,@GetHeightFloorAtObjectBSP);
+
+      iResult = iRow_diff * iRow_diff + iCol_diff * iCol_diff
+                  + iHeight_diff * iHeight_diff;
+      if iResult < 0
+      {
+         iResult = MAX_INT;
+      }
+
+      return iResult;
+   }
+
+   SquaredFineDistanceToLocation3D(row = $,col = $,fine_row = FINENESS_HALF,
+                                 fine_col = FINENESS_HALF)
+   {
+      local iRow, iCol, iWhatRow, iWhatCol, iRow_diff, iCol_diff, iHeight_diff,
+            iResult, iQflags, iRflags, iHeightF, iHeightFWD, iHeightC, iServerID;
+
+      // Scale to fine
+      iRow = piRow * FINENESS + piFine_row;
+      iCol = piCol * FINENESS + piFine_col;
+      iWhatRow = (row * FINENESS) + fine_row;
+      iWhatCol = (col * FINENESS) + fine_col;
+
+      // set query-flags, here we're only interested in the sectorinfo
+      iQflags = LIQ_GET_SECTORINFO;
+
+      // query data from bsp in c-function
+      if NOT GetLocationInfoBSP(
+                      Send(poOwner,@GetRoomData), iQflags, 
+                      Send(self,@GetRow), Send(self,@GetCol),
+                      Send(self,@GetFineRow), Send(self,@GetFineCol),
+                      *iRflags, *iHeightF, *iHeightFWD, *iHeightC, *iServerID)
+      {
+         debug("Failed to get location info in ", Send(poOwner,@GetRoomData));
+         iHeight_diff = 0;
+      }
+      else
+      {
+         iHeight_diff = Send(self,@GetHeightFloorAtObjectBSP) - iHeightFWD;
+      }
+
+      // Deltas.
+      iRow_diff = iRow - iWhatRow;
+      iCol_diff = iCol - iWhatCol;
+
+      iResult = iRow_diff * iRow_diff + iCol_diff * iCol_diff
+                  + iHeight_diff * iHeight_diff;
+      if iResult < 0
+      {
+         iResult = MAX_INT;
+      }
+
+      return iResult;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

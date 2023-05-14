@@ -1,0 +1,22 @@
+DeathRift_name_rsc = de "Todesriss"
+DeathRift_desc_rsc = de \
+   "Es wird ein Pakt mit dem meist gefürchtetsten der dunklen Mächte eingegangen, und die erfahrensten "
+   "Anhänger Qors können die feurigen Wege der Unterwelt umgehen, während Sie immernoch am Leben sind. "
+   "Diese überdimensionalen Wege führt Qors Anhänger zu vielen Orten, eingeschlossen ein bestimmtes Ziel "
+   "Ihrer Wahl. Benötigt vier Federn eines schwarzen Engels."
+DeathRift_no_angeled = de \
+   "Du kannst nicht einen so dunklen Pakt eingehen, wenn Dein Schutzengel noch über Dich wacht."
+DeathRift_bind = de \
+   "Du hinterlässt einen blutigen Fleck direkt neben Deinen Füßen auf dem Boden. Dies bindet "
+   "einen kleinen Teil deiner Seele an diesen Ort."
+DeathRift_travel = de \
+   "Ein Riss aus Flammen öffnet sich, und Du findest Dich in der Unterwelt wieder."   
+DeathRift_travel_notify = de \
+   "Ein Riss aus Flammen erscheint für eine kurze Zeit, und schleppt %s in die Unterwelt!"
+DeathRift_travel_notify_dest = de \
+   "Für eine kurze Zeit entsteht ein Portal aus Flammen, und schleppt %s durch die Unterwelt zu der Karte \"%s\"!"
+DeathRift_generic_fail = de \
+   "Der Pakt mit dem Teufel schlägt fehlt. Irgendetwas scheint zu fehlen."
+DeathRift_warning = de \
+   "~BDu spürst eine nahegelegende Verbindung zwischen den Dimensionen!"
+deathrift_bound_desc = de "\n\nDeine Seele ist an den folgenden Ort gebunden: %s."

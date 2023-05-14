@@ -1,0 +1,163 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+QorBow is Bow
+
+constants:
+
+   include blakston.khd
+   
+   // minimum karma to hold this bow
+   QOR_BOW_KARMA_MIN = -60
+   
+   // duration of poison when the bow explodes
+   POISON_DURATION = 30000
+   
+   // in health points * 10^-4 / second
+   POISON_LOSSRATE = 2500
+   
+resources:
+
+	QorBow_name_rsc = "qor bow"
+	QorBow_desc_rsc = \
+	   "A foul stinch emits from a bloody handprint which can "
+	   "only be described as the remnants of Queen Venya'cyr. "
+	   "Enscribed are the words ''from death shall I rise again''."
+	QorBow_not_evil_enough = \
+	   "You feel Queen Venya'cyr feeding off your soul "
+	   "as you attempt to weild this powerful bow."
+	QorBow_explodes = \
+	   "The qor bow explodes into a splash of acid!"
+	QorBow_evil_obtained = \
+	   "Your veigns fill with the blood of Queen Venya'cyr."
+	   
+classvars:
+
+   vrName = QorBow_name_rsc
+   vrDesc = QorBow_desc_rsc
+
+   vrWeaponBroke = QorBow_explodes
+
+   viValue_average = 25000
+   viBulk = 70
+   viWeight = 70
+
+   viXLAT_BLUETOBLACK =  XLAT_BLUETOBLACK
+
+   viWeaponDamage = 2
+   viRange = 75 * FINENESS
+   viHit_roll_modifier = 100
+
+   viSpell_modifier = 0
+   
+   viHits_init_min = 470
+   viHits_init_max = 750   
+   
+properties:
+   
+   piSchool = SS_QOR
+   
+   piAttack_Type = ATCK_WEAP_MAGIC + ATCK_WEAP_PIERCE
+   piAttack_spell = ATCK_SPELL_UNHOLY
+
+messages:
+
+   Constructor()
+   {
+      Send(self,@UpdateColor);
+
+      propagate;
+   }
+
+   GetBaseSpellModifier(oSpell=$)
+   {
+      if Send(oSpell,@GetSchool) = piSchool
+      {
+         return 10;
+      }
+
+      return 0;
+   }
+
+   ReqUse()
+   {
+      if Send(poOwner,@GetKarma) > QOR_BOW_KARMA_MIN
+      {
+		Send(poOwner,@MsgSendUser,#message_rsc=QorBow_not_evil_enough);
+			
+			// Trying to use such a powerful weapon without having proper karma may kill you.
+			if Send(poOwner,@AssessDamage,#what=self,#damage=Random(1,15),
+				#report=FALSE,#atype=ATCK_SPELL_ACID) = $
+			{
+				Send(Send(poOwner,@GetOwner),@SomethingKilled,#what=self,#victim=poOwner);
+				Send(poOwner,@Killed,#what=self);
+			}
+			
+			return FALSE;
+		}
+		else
+		{
+			Send(poOwner,@MsgSendUser,#message_rsc=QorBow_evil_obtained);
+		}
+      propagate;
+   }
+   
+   DoShatter()
+   {
+      Send(self,@WeaponBroke);
+
+      propagate;
+   }
+
+   ExplodesToAcid()
+   {
+      local oSpell;
+	  
+	  oSpell = Send(SYS,@FindSpellByNum,#num=SID_POISON);
+	  Send(oSpell,@MakePoisoned,#who=self,#lossrate=POISON_LOSSRATE,
+	     #duration=POISON_DURATION);
+
+	  if Send(poOwner,@AssessDamage,#what=self,#damage=Random(55,65),
+                  #report=FALSE,#atype=ATCK_WEAP_NERUDITE) = $
+      {
+         Send(Send(poOwner,@GetOwner),@SomethingKilled,#what=self,#victim=poOwner);
+         Send(poOwner,@Killed,#what=self);
+      }
+      
+      return;
+   }
+
+   WeaponBroke()
+   {
+      Send(self,@ExplodesToAcid);
+
+      propagate;
+   }
+
+   UpdateColor()
+   {
+      Send(self,@SetXLATTranslation,#translation=viXLAT_BLUETOBLACK);
+
+      return;
+   }
+
+   SetXLATTranslation(translation=$)
+   {
+      local skin_color, XLAT;
+
+      XLAT = Send(SYS,@EncodeTwoColorXLAT,#color1=translation,#color2=skin_color);
+      Send(self,@SetPaletteTranslation,#translation=XLAT);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

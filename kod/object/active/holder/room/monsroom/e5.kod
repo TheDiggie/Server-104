@@ -1,0 +1,518 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+OutdoorsE5 is MonsterRoom
+
+constants:
+
+   include blakston.khd
+
+   A = 6
+   B = 7
+   C = 8
+   D = 9
+   EEE = 10  ///E and F were taken.
+   FFF = 11
+   G = 12
+
+   AA = 7
+   BB = 8
+   CC = 9
+   DD = 10
+   EE = 11
+   FF = 12
+   GG = 13
+
+   EAST = 1
+   WEST = -1
+
+resources:
+
+   include e5.lkod
+
+   room_OutdoorsE5 = e5.roo
+   room_name_OutdoorsE5 ="The Forest Shrine"
+   OutdoorsE5_music = walk5.ogg
+
+   e5_second_runner = "A mysterious force prevents you from entering the gas field."
+
+   e5_death = "The acid steam melts the flesh from your bones."
+
+classvars:
+
+   vrName = room_name_OutdoorsE5
+
+   viTeleport_row = 9
+   viTeleport_col = 3
+
+   viTerrain_type = TERRAIN_FOREST | TERRAIN_FIELDS
+
+   viWeatherZone = WEATHER_ZONE_JASPER
+
+properties:
+
+   prRoom = room_OutdoorsE5
+   prMusic = OutdoorsE5_music
+   piRoom_num = RID_E5
+
+   piBaseLight = LIGHT_NICE
+   piOutside_factor = 8
+   piGen_time = 100000
+   piGen_percent = 80
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+   piInit_count_min = 1
+   piInit_count_max = 3
+
+   piMonster_count_max = 3
+
+   plColNums = $
+   plRowNums = $
+   poShrine = $
+   poRunner = $
+   poSnitch = $
+
+   piPenatration = 0    ///The row currently occupied by the runner, zero is the default used to detect advancement into first col.
+   piNorthEndRow = $    ///The northern most safe row in piPenatration.
+   piSouthEndRow = $    ///The southern most safe row in piPenatration. 
+                        ///(All rows in piPenatration between these points are safe)
+   piDirection = $      ///The dirrection in which the maze is being run.  EAST = 1 WEST = -1
+                        ///So that piPenatration + piDirection = the next row
+   piNextSafeRow = $    ///The row of the next safe spot in (piPenatration + piDirection)
+   pbInMaze = FALSE     ///Set to true while the runner is in the maze.
+
+   ptCheckAllPositionsTimer = $
+
+messages:
+
+   Constructed()
+   {
+      plRowNums = [G,FFF,EEE,D,C,B,A];
+      plColNums = [GG,FF,EE,DD,CC,BB,AA];
+      poSnitch = create(&LadyPheonix);
+      Send(self,@NewHold,#what=poSnitch,#new_row=9,#new_col=3,#fine_col=16);
+      poShrine = create(&shrine,#shrine_num=SHRINE_FOREST);
+      Send(self,@newhold,#what=poShrine,#new_row=9,#new_col=16,#fine_col=16);
+      Send(self,@InitPuzzle);
+      propagate;
+   }
+
+   CreateStandardObjects()
+   ///Place fog elems 
+   {
+      local iCount,iCount2,oFog;
+
+      foreach iCount in plColNums
+      {
+         foreach iCount2 in plRowNums
+         {
+            oFog = create(&ShrineFog);
+            Send(self,@NewHold,#what=oFog,#new_row=iCount2,#new_col=iCount);
+         }
+      }
+
+      propagate;
+   }
+
+   CreateStandardExits()
+   {
+
+      plEdge_Exits = $;
+      plEdge_Exits = Cons([LEAVE_WEST, RID_D6E6, 5, 100, ROTATE_NONE], plEdge_exits);
+
+      propagate;
+   }
+
+   NewHold(what=$)
+   {
+      if IsClass(what,&Item)
+      {
+         Post(self,@PostShrineCheckItem,#what=what);  
+         ///Have to post this to handle numberitems and SYS can't handle posts.
+      }
+      propagate;
+   }
+
+   PostShrineCheckItem(what=$)
+   {
+      Send(SYS,@ShrineCheckItem,#ShrineObj=poShrine,#what=what,#Radius=1);
+      return;
+   }
+
+   InitPuzzle()
+   ///Sets the safe row, but leaves piPenatration undefined so that 
+   ///the puzzle can be entered from either side.  Penatration and direction are
+   ///set when we get a runner.
+   {
+
+      local iRandRow;
+
+      //Debug("Init puzzle");
+
+      poRunner = $;
+      pbInMaze = FALSE;
+      piPenatration = 0;
+      piNorthEndRow = $;
+      piSouthEndRow = $;
+      piDirection = $;
+      if ptCheckAllPositionsTimer <> $
+      {
+         DeleteTimer(ptCheckAllPositionsTimer);
+         ptCheckAllPositionsTimer = $;
+      }
+
+      iRandRow = Random(A,G);
+
+      piNorthEndRow = iRandRow;
+      piSouthEndRow = iRandRow;
+      piNextSafeRow = iRandRow;
+      Send(poSnitch,@StartRow,#row=iRandRow);
+
+      return;
+   }
+
+   ReqSetRunner(who=$)
+   ///Called by LadyP when a user requests protection to run the maze.
+   ///Checks if they can become the runner.
+   {
+      if (poRunner <> $) and (poRunner <> who)
+      {
+         if Send(poRunner,@IsLoggedon) AND (Send(poRunner,@GetOwner) = self)
+         {
+            Send(who,@MsgSendUser,#message_rsc=e5_second_runner);
+            return FALSE;
+         }
+         else
+         {
+            Send(self,@InitPuzzle);
+            Send(self,@SetRunner,#who=who);
+            return TRUE;
+         }
+      }
+      else
+      {
+         Send(self,@SetRunner,#who=who);
+         return TRUE;
+      }
+      return FALSE;
+   }
+
+   SetRunner(who=$)
+   {
+      poRunner=who;
+      piDirection=$;
+      if Send(who,@GetCol) < AA
+      {piDirection=EAST;}
+      if Send(who,@GetCol) < GG
+      {piDirection = WEST;}
+      if piDirection = $
+      ///who is in the maze
+      {
+         //Debug("Calling PP #1");
+         Send(self,@PunishPlayer,#who=poRunner);
+      }
+      ptCheckAllPositionsTimer = CreateTimer(self,@CheckAllPositionsTimer,(2 * 1000));
+      return;
+   }
+
+   SomethingMoved(what = $,new_row = $, new_col = $)
+   ///Catches player moves and tests them.  (Must post to get proper position info later on.)
+   {
+      if IsClass(what,&User)
+      {
+         //Debug("Something moved.  iRow and iCol = ", new_row, new_col);
+         Post(self,@CheckPlayerPosition,#who=what,#iRow=new_row,#iCol=new_col);
+      }
+      propagate;
+   }
+
+   ReqSomethingMoved(what = $,new_row = $, new_col = $)
+   {
+      if IsClass(what,&monster)
+      {
+         if new_col < AA
+         {
+            return FALSE;
+         }
+      }
+      return TRUE;
+   }
+
+   CheckAllPositionsTimer()
+   {
+      ptCheckAllPositionsTimer = $;
+      ptCheckAllPositionsTimer = CreateTimer(self,@CheckAllPositionsTimer,(2 * 1000));
+      Send(self,@CheckAllPositions);
+      return;
+   }
+
+   CheckAllPositions()
+   ///Checks everyone in the room.
+   {
+      local iCntr,oWho,iCol,iRow;
+
+      iCntr = 0;
+
+      foreach iCntr in plActive
+      {
+         oWho = First(iCntr);
+         if IsClass(oWho,&User)
+         {
+            iCol = Send(oWho,@GetCol);
+            iRow = Send(oWho,@GetRow);
+            //Debug("CheckAllPositions. iRow and iCol = ", iRow, iCol);
+            Send(self,@CheckPlayerPosition,#who=oWho,#iCol=iCol,#iRow=iRow);
+         }
+      }
+      return;
+   }
+
+   CheckPlayerPosition(who=$,iRow=$,iCol=$)
+   ///Checks who's position.  Punishes who if they are in a bad spot.  Calls RunnerAdvanced(), and RunnerExits() when appropriate.
+   {
+      if who = poRunner
+      {
+         if pbInMaze
+         {
+            if (iCol > GG) OR (iCol < AA)
+            {
+               //Debug("piPenatration = ", piPenatration); 
+               if piPenatration = GG or piPenatration = AA
+               {
+                  Send(self,@RunnerExits);
+                  return;
+               }
+               else
+               ///Can't leave nice except from GG or AA so...
+               {
+                  //Debug("Calling PP #6");
+                  Send(self,@punishplayer,#who=who);
+                  return;
+               }
+            }
+
+            if (iCol = piPenatration)
+            ///Stayed in current row or not yet in puzzle, did we stay in safe strip?
+            {
+               if ((iRow <= piSouthEndRow) AND (iRow >= piNorthEndRow)) OR (iCol < AA)
+               ///Still Safe and we haven't advanced, so do nothing
+               {
+                  return;
+               }
+               else
+               ///Left safe area
+               {
+                  //Debug("Calling PP #7");
+                  Send(self,@PunishPlayer,#who=who);
+                  return;
+               }
+            }
+            else
+            ///Left current row, did we step into the next safe spot?
+            {
+               if (iCol = (piPenatration + piDirection)) AND  iRow = piNextSafeRow
+               ///Hit the right spot.
+               {
+                  //Debug("runneradvanced 4");
+                  Send(self,@RunnerAdvanced);
+                  return;
+               }
+               else
+               ///Missed it.
+               {
+                  //Debug("Calling PP #8");
+                  Send(self,@PunishPlayer,#who=who);
+                  return;
+               }
+            }
+         }
+         else
+         ///Runner not in maze
+         {
+            if (iCol > AA) AND (iCol < GG)
+            ///Went too far.
+            {
+               //Debug("Calling PP #9"); 
+               Send(self,@PunishPlayer,#who=who); 
+            }
+
+            if (iCol = AA)
+            ///Enter maze for first time.
+            {
+               piDirection = EAST;
+               pbInMaze = TRUE;
+               piPenatration = AA - 1; 
+               //Debug("runneradvanced 5"); 
+               Send(self,@RunnerAdvanced);
+               return;
+            }
+            if (iCol = GG)
+            ///Enter maze for first time.
+            {
+               piDirection = WEST;
+               pbInMaze = TRUE;
+               piPenatration = GG + 1;
+               //Debug("runneradvanced 6");
+               Send(self,@RunnerAdvanced);
+               return;
+            }
+         }
+      }
+      else
+      ///Not the runner, so we can't go in the maze at all.
+      {
+         if (iCol >= AA) AND (iCol <= GG)
+         {
+            //Debug("Calling PP #10");
+            Send(self,@PunishPlayer,#who=who);
+         }
+      }
+      return;
+   }
+
+   RunnerAdvanced()
+   ///Runner moved from one row to the next, reset safety properties.
+   ///Tell the snitch.
+   {
+
+      local iCurrentRow,iNextSafeRow;
+
+      //Debug("runneradvanced");
+
+      iNextSafeRow = Random(A,G);  ///The row number of the next safe spot.  Different from piNextSafeRow.
+      iCurrentRow = piNextSafeRow;
+      piPenatration = piPenatration + piDirection;
+
+
+      ///Check for screw ups
+      
+      if piPenatration <> Send(poRunner,@GetCol)
+      ///Something screwed up.  If this never turns up in test, remove it.
+      {
+         //Debug("piPenatration <> Runner's col where piPenatration and runner's col are ", pipenatration, Send(poRunner,@GetCol));
+         //Send(self,@PunishPlayer,#who=poRunner);
+         //return;
+      }
+      if piNextSafeRow <> Send(poRunner,@GetRow)
+      ///Something screwed up.  If this never turns up in test, remove it.
+      {
+         //Debug("piNextSafeRow <> Runner's row where piNextSafeRow and runner's row are ", piNextSafeRow, Send(poRunner,@GetRow));
+         //Send(self,@PunishPlayer,#who=poRunner);
+         //return;
+      }
+
+      if (piPenatration = GG AND piDirection = EAST) OR (piPenatration = AA AND piDirection = WEST)
+      ///Made it to the last row.
+      {
+         piNorthEndRow = iCurrentRow;
+         piSouthEndRow = iCurrentRow;
+      }
+
+      ///Got good data, Use current row possition as one or both end points.  iNextSafeRow is the next safe row.
+
+      if iNextSafeRow = iCurrentRow
+      ///Then it is both endpoints
+      {
+         piNorthEndRow = iCurrentRow;
+         piSouthEndRow = iCurrentRow;
+      }
+      else
+      {
+         ///Set one endpoint to current position and the other to iNextSafeRow
+         if iNextSafeRow > iCurrentRow
+         {
+            piNorthEndRow = iCurrentRow;
+            piSouthEndRow = iNextSafeRow;
+         }
+         if iNextSafeRow < iCurrentRow
+         {
+            piSouthEndRow = iCurrentRow;
+            piNorthEndRow = iNextSafeRow;
+         }
+      }
+      //Debug("Told snitch runnerrow and saferow ", iCurrentRow,iNextSafeRow);
+      Send(poSnitch,@NewSafeSpot,#RunnerRow=iCurrentRow,#SafeRow=iNextSafeRow);
+      piNextSafeRow = iNextSafeRow;
+
+      return;
+   }
+
+   RunnerExits()
+   ///Called whenever the runner leaves the puzzle.  resets puzzle.
+   {
+      Send(self,@InitPuzzle);
+      return;
+   }
+
+   PunishPlayer(who=$)
+   {
+      local iDamage;
+
+      if who = $
+      { Debug("PunishPlayer called with no who"); Return; }
+      if NOT IsClass(who,&DM)
+      {
+         iDamage = Send(who,@GetBaseMaxHealth) / 3;
+         if Send(who,@AssessDamage,#damage=iDamage,#what=self,
+            #aspell=ATCK_SPELL_ACID,#report = FALSE, #report_resistance = FALSE) = $
+         {
+            Send(who,@killed);
+            Send(self,@InitPuzzle);
+            Post(who,@MsgSendUser,#message_rsc=e5_death);
+            return;
+         }
+      }
+
+      Send(SYS,@UtilGoNearSquare,#what=who, #where=self, #new_row=9,#new_col=3);
+      Send(self,@InitPuzzle);
+
+      return;
+   }
+
+   UserEntered(who=$)
+   {
+      if who = poRunner
+      {
+         Send(SYS,@UtilGoNearSquare,#what=poRunner, #where=RID_E5,
+               #new_row=9,#new_col=3,#max_distance=0,#do_move=False);
+         Send(self,@InitPuzzle);
+         ///message from ladyP
+      }
+      if (poRunner <> $)
+      {
+         if Send(poRunner,@IsLoggedon) AND (Send(poRunner,@GetOwner) = self)
+         {
+            propagate;
+         }
+         else
+         {
+            Send(self,@InitPuzzle);
+         }
+      }
+      propagate;
+   }
+
+   SomeoneSaidRoom(what=$,string=$,type=$)
+   {
+      Post(poSnitch,@SomeoneSaidLadyP,#what=what,#string=string,#type=type);
+      propagate;
+   }
+
+   Delete()
+   {
+      if ptCheckAllPositionsTimer <> $
+      { DeleteTimer(ptCheckAllPositionsTimer); }
+
+      propagate;
+   }
+   
+end
+////////////////////////////////////////////////////////////////////////////////

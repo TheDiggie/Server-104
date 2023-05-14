@@ -1,0 +1,183 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+WeaponWand is Weapon
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   weapwand_name_rsc = "apprentice wand"
+   weapwand_icon_rsc = wand.bgf
+   weapwand_desc_rsc = \
+      "Made with the magical wood of living trees, this wand has been tuned "
+      "to the school of %s due to the nature of the crystal affixed to its "
+      "end."
+
+   weapwand_window_overlay_rsc = povwand.bgf
+   weapwand_player_overlay = wandov.bgf
+
+classvars:
+   vrName = weapwand_name_rsc
+   vrIcon = weapwand_icon_rsc
+   vrDesc = weapwand_desc_rsc
+
+   viWeaponQuality = WEAPON_QUALITY_LOW
+   viProficiency_needed = SKID_KICK
+   viWeaponType = WEAPON_TYPE_SLASH
+
+   viValue_average = 250
+   viWeight = 20
+   viBulk = 20
+
+   viGround_group = 1
+   viInventory_group = 3
+   viBroken_group = 2
+
+   vrWeapon_window_overlay = weapwand_window_overlay_rsc
+   vrWeapon_overlay = weapwand_player_overlay
+
+   viRange = 1 * FINENESS
+   viHits_init_min = 450
+   viHits_init_max = 500
+
+   viDamage_min = 1
+   viDamage_max = 2
+
+properties:
+
+   viPT_qor_master = PT_GRAY_TO_BLACK
+   viPT_shalille_master = PT_GRAY_TO_PLATBLOND
+   viPT_faren_master = PT_GRAY_TO_LRED
+   viPT_kraanan_master = PT_GRAY_TO_LBBLUE
+   viPT_riija_master = PT_GRAY_TO_LPURPLE
+   piSchool = SS_RIIJA
+
+messages:
+
+   Constructor(school = -1)
+   {
+      if school = -1
+      {
+         school = Random(1,5);
+      }
+
+      Send(self,@SetSchool,#school=school);
+      Send(self,@ResetColors);
+
+      propagate;
+   }
+
+   GetBaseSpellModifier(oSpell=$)
+   {
+      if Send(oSpell,@GetSchool) = piSchool
+      {
+         return 20;
+      }
+
+      return 0;
+    }
+
+   ResetColors()
+   {
+         if piSchool = SS_FAREN
+         {
+            Send(self,@SetPaletteTranslation,#translation=viPT_faren_master);
+         }
+         else if piSchool = SS_KRAANAN
+         {
+            Send(self,@SetPaletteTranslation,#translation=viPT_kraanan_master);
+         }
+         else if piSchool = SS_SHALILLE
+         {
+            Send(self,@SetPaletteTranslation,#translation=viPT_shalille_master);
+         }
+         else if piSchool = SS_QOR
+         {
+            Send(self,@SetPaletteTranslation,#translation=viPT_qor_master);
+         }
+         else if piSchool = SS_RIIJA
+         {
+            Send(self,@SetPaletteTranslation,#translation=viPT_riija_master);
+         }
+
+      return;
+   }
+
+   SetSchool(school=SS_RIIJA,bRefresh=FALSE)
+   {
+      if bRefresh
+      {
+         School = piSchool;
+      }
+      else
+      {
+         piSchool = School;
+      }
+
+      return;
+   }
+
+   DoBaseDesc()
+   {
+      local oSpell;
+
+      // Find a spell, any spell, so we can get the string out of it
+      // for which school we are.
+      oSpell = Send(SYS,@FindSpellByNum,#num=SID_BLINK);
+      AddPacket(4,vrDesc,4,Send(oSpell,@GetSchoolStr,#iSchool=piSchool));
+
+      return;
+   }
+
+   GetSchool()
+   {
+      return piSchool;
+   }
+
+   GetHitBonus()
+   {
+      return 0;
+   }
+
+   GetBaseDamage()
+   {
+      return 0;
+   }
+
+   GetMinDamage()
+   {
+      return viDamage_min;
+   }
+
+   GetMaxDamage()
+   {
+      return viDamage_max;
+   }
+
+   GetMinDamageWithOwnerStats()
+   {
+      return 0;
+   }
+
+   GetMaxDamageWithOwnerStats()
+   {
+      return 0;
+   }
+
+   GetDamage()
+   {
+      return 0;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

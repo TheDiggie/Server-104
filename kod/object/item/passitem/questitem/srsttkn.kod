@@ -1,0 +1,192 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+StatsResetToken is QuestItem
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include srsttkn.lkod
+
+   StatsResetToken_name_rsc = "ancient trinket"
+   StatsResetToken_icon_rsc = srtoken.bgf
+   StatsResetToken_desc_rsc = \
+      "This is a Trinket of the Elders, said to be handed to them by the Gods. "
+      "Legend holds that these Ancient Trinkets contain the power to change "
+      "the very structure of a Mortal.  Surely the Elders would greatly "
+      "reward anyone who returns this Trinket to them.\n\nTake this ancient "
+      "trinket to Ran er'Hoth in Marion, Afiera D'xor in Jasper, Rodric "
+      "d'Stane in Raza or the Bone Priestess in Ko'catan and they will assist "
+      "you in changing your statistics."
+   StatsResetToken_desc_append = \
+      "\n\nThis trinket will expire in %i days.%s"
+   StatsResetToken_desc_noTrade = \
+      "\n\nThis trinket cannot be traded or dropped."
+
+classvars:
+
+   vrName = StatsResetToken_name_rsc
+   vrIcon = StatsResetToken_icon_rsc
+   vrDesc = StatsResetToken_desc_rsc
+   viIndefinite = ARTICLE_AN
+   viValue_average = 0
+   viWeight = 0
+   viBulk = 0
+
+properties:
+
+   pbTemporary
+   // Real-life days.
+   piDaysRemaining
+   pbTradeable
+
+messages:
+
+   Constructor(temporary=TRUE,lifetime=-1,tradeable=FALSE)
+   {
+      pbTradeable = tradeable;
+      pbTemporary = temporary;
+
+      // Just assign 2 years if not temporary, it won't decrease anyway.
+      if NOT pbTemporary
+      {
+         piDaysRemaining = 40;
+
+         propagate;
+      }
+
+      if lifetime <> -1
+      {
+         piDaysRemaining = lifetime;
+      }
+      else
+      {
+         piDaysRemaining = Send(SETTINGS_OBJECT,@GetStatResetTokenLife);
+      }
+
+      propagate;
+   }
+
+   ReqNewOwner(what = $)
+   {
+      if IsClass(poOwner,&Room)
+      {
+         return TRUE;
+      }
+
+      if IsClass(what,&MarionElder)
+         OR IsClass(what,&JasperElder)
+         OR IsClass(what,&RazaElder)
+         OR IsClass(what,&KocatanBonePriestess)
+      {
+         return TRUE;
+      }
+
+      return pbTradeable;
+   }
+
+   CanWeaken()
+   {
+      return FALSE;
+   }
+
+   CanSwap()
+   {
+      return FALSE;
+   }
+
+   CanShatter()
+   {
+      return FALSE;
+   }
+
+   CanEnchant()
+   {
+      return FALSE;
+   }
+
+   CanBeStoredInVault()
+   {
+      return TRUE;
+   }
+
+   DropOnDeath()
+   {
+      return FALSE;
+   }
+
+   NewDay()
+   {
+      if pbTemporary
+      {
+         --piDaysRemaining;
+
+         if piDaysRemaining <= 0
+         {
+            Send(self,@Delete);
+         }
+      }
+
+      return;
+   }
+
+   AppendDesc()
+   {
+      if pbTemporary
+      {
+         if pbTradeable
+         {
+            AddPacket(4,StatsResetToken_desc_append,4,piDaysRemaining,
+                      4,system_blank_resource);
+
+            return;
+         }
+         else
+         {
+            AddPacket(4,StatsResetToken_desc_append,4,piDaysRemaining,
+                      4,StatsResetToken_desc_noTrade);
+
+            return;
+         }
+      }
+
+      if pbTradeable
+      {
+         AddPacket(4,system_blank_resource);
+      }
+      else
+      {
+         AddPacket(4,StatsResetToken_desc_noTrade);
+      }
+
+      return;
+   }
+
+   GetMinimapDotFlags()
+   {
+      // Special item, add minimap dot.
+      return MM_RARE_ITEM;
+   }
+
+   FixToken()
+   {
+      if (piDaysRemaining = $)
+      {
+         piDaysRemaining = 40;
+      }
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

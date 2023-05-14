@@ -1,0 +1,118 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+RazaBartender is RazaTown
+
+// Has a "wipe sequence", which means that every few wipes we just make a long
+// delay.
+
+constants:
+
+   include blakston.khd
+
+
+resources:
+
+   include razabart.lkod
+
+   Raza_Bartender_name_rsc = "Eric d'Jorn"
+   Raza_Bartender_icon_rsc = tsinnk.bgf
+   Raza_Bartender_desc_rsc = \
+      "Despite his professional demeanor and fashionable barkeeping attire, "
+      "Eric's spirits truly soar when it comes to his true passion: cooking.  "
+      "He is especially renowned for his delicious soup and always on the "
+      "lookout for fresh ingredients."
+   RazaBar_entry_welcome = \
+      "Care for a nice stiff drink?  The house special will knock you "
+      "on your arse!"
+   RazaBart_enough = \
+      "Mmmh! Tasty hand-picked mushrooms - fanTAStic!  Here, "
+      "let me reward you..."
+   RazaBart_not_enough = \
+      "I need some edible mushrooms, but they're useless to me unless you "
+      "can get me enough to make a nice soup - say, at LEAST ten.  If you "
+      "get more, come back and I'll reward you!"
+
+classvars:
+
+   vrName = Raza_Bartender_name_rsc
+   vrIcon = Raza_Bartender_icon_rsc
+   vrDesc = Raza_Bartender_desc_rsc
+   viMerchant_markup = MERCHANT_NORMAL
+   viAttributes = \
+      MOB_NOFIGHT | MOB_SELLER | MOB_RANDOM | MOB_LISTEN \
+      | MOB_NOMOVE | MOB_RECEIVE | MOB_NOQUEST
+   viOccupation = MOB_ROLE_BARTENDER
+
+properties:
+
+messages:
+
+   SetForSale()
+   {
+      plFor_sale = [
+         [ 
+            Create(&MeatPie,#number=4),
+            Create(&Soup,#number=1),
+            Create(&Bread,#number=4),
+            Create(&Apple,#number=2),
+            Create(&Mug,#number=1),
+            Create(&BeerMug)
+         ],
+      $,$,$];
+
+      return;
+   }
+
+   Constructed()
+   {
+      plWantedItems = [ &Snack ];
+
+      propagate;
+   }
+
+   UserEntered(who=$)
+   {
+      Post(who,@SomeoneSaid,#what=self,#string=RazaBar_entry_welcome,
+            #type=SAY_RESOURCE);
+
+      propagate;
+   }
+
+   GotWantedItem(obj=$,who=$)
+   {
+      local oShield;
+
+      if NOT IsClass(obj,&Snack)
+      {
+         propagate;
+      }
+
+      // Item must have been an edible mushroom.  See if there are
+      // enough, and take it away.
+      if Send(obj,@GetNumber) > 9
+      {
+         Send(self,@SayToOne,#target=who,#message_rsc=RazaBart_enough);
+         Send(who,@RemoveNumberItemFromPossession,#ToBeRemoved=obj);
+         oShield=Create(&KnightShield);
+         Send(who,@NewHold,#what=oShield);
+         Send(obj,@delete);
+
+         return;
+      }
+
+      // There aren't enough.  Tell him to get more.
+      Send(self,@SayToOne,#target=who,#message_rsc=RazaBart_not_enough);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

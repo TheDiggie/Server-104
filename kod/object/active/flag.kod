@@ -1,0 +1,1017 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Flagpole is ActiveObject
+
+constants:
+
+   include blakston.khd
+
+   HS_FLAG = 1
+
+   FRAME_START = 1
+   FRAME_END = 6
+
+resources:
+
+   include flag.lkod
+
+   flag_name_rsc = "flagpole"
+   flag_desc_rsc = \
+      "This flagpole lies empty, unclaimed in the struggle between "
+      "the factions for territorial rights.  %r"
+   flag_duke_desc_rsc = \
+      "This flagpole flies the royal colors of Duke Akardius, "
+      "protector of Tos.  %r"
+   flag_princess_desc_rsc = \
+      "This flagpole flies the royal colors of Princess Kateriina, "
+      "sovereign of Barloque.  %r"
+   flag_rebel_desc_rsc = \
+      "This flagpole flies the colors of the rebel forces based "
+      "in Jasper.  %r"
+   flag_append_desc = \
+      "%s%s is currently attempting to stake a claim to this "
+      "territory in the name of %s."
+
+   flag_append_desc_empty = ""
+
+   flag_icon_rsc = flagpole.bgf
+   flag_duke_icon_rsc = flagduke.bgf
+   flag_princess_icon_rsc = flagprnc.bgf
+   flag_rebel_icon_rsc = flagjspr.bgf
+
+   flag_claim_attempt = \
+      "~I%s%s has bravely staked a claim to %s%s in the name of %s!"
+   flag_claim_plugin_duke = "Duke Akardius"
+   flag_claim_plugin_princess = "Princess Kateriina"
+   flag_claim_plugin_rebel = "the rebel forces"
+   flag_claim_plugin_unfactioned = "the unfactioned"
+   flag_claim_attempt_succeeded = \
+      "~IAll hail %s%s, who has successfully claimed %s%s in the name of %s!"
+   flag_claim_attempt_failed_flee = \
+      "~I%s%s has fled the battlefield, abandoning the claim to %s%s in "
+      "the name of %s!"
+   flag_claim_attempt_failed_killed = \
+      "~I%s%s has valiantly defended %s%s against %s%s's attempt to claim "
+      "it in the name of %s!"
+   flag_claim_attempt_failed_dropped_flag = \
+      "~I%s%s has surrendered the claim to %s%s in the name of %s!"
+   flag_claim_attempt_failed_generic = \
+      "~I%s%s has failed to claim %s%s in the name of %s!"
+   flag_claim_attempt_failed_happyland = \
+      "~I%s%s's attempt to claim %s%s in the name of %s has been "
+      "lost due to a lack of political support in the area!"
+
+   flag_failed_yours = \
+      "This territory has already been claimed in the name of your faction."
+   flag_failed_not_soldier = \
+      "By the laws of the Council, you must be a recognized "
+      "soldier of your faction."
+   flag_failed_angel = \
+      "Your guardian angel prevents you from interfering here."
+   flag_failed_in_progress = \
+      "A claim to this territory staked by %s%s is already in progress."
+   flag_failed_too_recent = \
+      "By the laws of the Council, this territory has been in dispute too "
+      "recently to stake another claim."
+   flag_failed_not_enough_users = \
+      "By the laws of the Council, there are not enough citizens awake "
+      "to stake a legitimate claim to any territory."
+   flag_failed_no_flag = \
+      "You do not possess a flag of your colors to raise up the pole!"
+   flag_failed_not_enough_allies = \
+      "By the laws of the Council, you do not have enough political "
+      "supporters in the area to lay a legitimate claim."
+   flag_failed_no_adjacent = \
+      "By the laws of the Council, a faction member may only stake a claim "
+      "to a territory which is adjacent to a territory which has already "
+      "been claimed for that faction."
+
+classvars:
+
+   vrName = flag_name_rsc
+   vrIcon = flag_icon_rsc
+   vrDesc = flag_desc_rsc
+
+   viObject_flags = OF_ACTIVATABLE
+
+properties:
+
+   piFaction = FACTION_NEUTRAL
+   pbClaimable = TRUE
+
+   poClaimer = $
+   ptClaimAttempt = $
+   ptNextAllowedAttempt = $
+
+   piGen_time = 20000
+   ptGenerateTroops = $
+   piTroopCap = 4
+
+   piFlagHotspot = HS_FLAG
+   ptHalfStaffOff = $
+
+messages:
+
+   Constructor()
+   {
+      piGen_time = 1000;
+      piTroopCap = 500;
+
+      if (Send(SYS,@GetTerritoryGame) <> $)
+      {
+         piGen_time = Send(Send(SYS,@GetTerritoryGame),@GetNonclaimTroopGenTime);
+         piTroopCap = Send(Send(SYS,@GetTerritoryGame),@GetNonclaimTroopCap);
+      }
+
+      propagate;
+   }
+
+   TryActivate(who=$)
+   "Return False only if you want user.kod to send its own "
+   "error message to user."
+   {
+      local i, oTerritoryGame;
+
+      if NOT pbClaimable
+      {
+         Debug(Send(who,@GetName),"somehow used flag in",
+               Send(poOwner,@GetName),"when it wasn't claimable!");
+
+         return TRUE;
+      }
+
+      if NOT Send(self,@CheckClaimConditions,#who=who)
+      {
+         // CheckClaimConditions gives failure messages
+         return TRUE;
+      }
+
+      oTerritoryGame = Send(SYS,@GetTerritoryGame);
+      poClaimer = who;
+      ptClaimAttempt = CreateTimer(self,@ClaimAttempt,
+                           Send(oTerritoryGame,@GetClaimWait)*60000);
+      ptNextAllowedAttempt = CreateTimer(self,@NextAllowedAttempt,
+                                 Send(oTerritoryGame,@GetClaimRetry)*60000);
+
+      // System message:  Aphasia stakes a claim to The Twisted Woods in the name of the rebels!
+      foreach i in Send(SYS,@GetUsersLoggedOn)
+      {
+         if (NOT Send(i,@PlayerIsIntriguing))
+         {
+            continue;
+         }
+
+         Send(i,@MsgSendUser,#message_rsc=flag_claim_attempt,
+               #parm1=Send(who,@GetCapIndef),#parm2=Send(who,@GetName),
+               #parm3=Send(poOwner,@GetDef),#parm4=Send(poOwner,@GetName),
+               #parm5=Send(self,@GetFactionNamePlugin,#who=who));
+      }
+
+      // Bump up generation of faction troops.
+      piGen_time = Send(oTerritoryGame,@GetClaimTroopGenTime);
+      piTroopCap = Send(oTerritoryGame,@GetClaimTroopCap);
+
+      // Make the existing troops hate the claimer.
+      foreach i in Send(poOwner,@GetHolderActive)
+      {
+         if IsClass(First(i),&FactionTroop)
+            AND (Send(First(i),@GetFaction) <> Send(poClaimer,@GetFaction))
+         {
+            if Random(0,3) <> 0
+            {
+               Send(First(i),@TargetSwitch,#what=poClaimer,#iHatred=30);
+               Send(First(i),@EnterStateChase,#target=poClaimer,#actnow=TRUE);
+            }
+         }
+      }
+
+      return TRUE;
+   }
+
+   NextAllowedAttempt()
+   {
+      ptNextAllowedAttempt = $;
+
+      return;
+   }
+
+   CheckClaimConditions(who = $)
+   {
+      local iClaimerFaction, i, iCountFactionAllies, bHaveAdjacent,
+            oFlagpole, oTerritoryGame;
+
+      oTerritoryGame = Send(SYS,@GetTerritoryGame);
+
+      // Gotta be a player.
+      if NOT IsClass(who,&Player)
+      {
+         return FALSE;
+      }
+
+      // No DMs.
+      if NOT Send(who,@CanAdvance)
+      {
+         Send(who,@DontInterfere);
+
+         return FALSE;
+      }
+
+      // Gotta be "intriguing"
+      if Send(who,@FindUsing,#class=&SoldierShield) = $
+      {
+         // Message: not yet qualified to participate.
+         Send(who,@MsgSendUser,#message_rsc=flag_failed_not_soldier);
+
+         return FALSE;
+      }
+
+      // No re-claiming a flag already claimed for your faction
+      if piFaction = Send(who,@GetFaction)
+      {
+         // Message: already claimed for your faction
+         Send(who,@MsgSendUser,#message_rsc=flag_failed_yours);
+
+         return FALSE;
+      }
+
+      if NOT Send(who,@CanPlayerPVP)
+      {
+         // Message: angel prevents flagpole interference.
+         Send(who,@MsgSendUser,#message_rsc=flag_failed_angel);
+
+         return FALSE;
+      }
+
+      if (ptClaimAttempt <> $) and (poClaimer <> $)
+      {
+         // Message: another attempt in progress.
+         Send(who,@MsgSendUser,#message_rsc=flag_failed_in_progress,
+               #parm1=Send(poClaimer,@GetIndef),
+               #parm2=Send(poClaimer,@GetName));
+
+         return FALSE;
+      }
+      
+      bHaveAdjacent = FALSE;
+
+      iClaimerFaction = Send(who,@GetFaction);
+
+      // Must be adjacent to either a hometown or a claimed flag.
+      // Neutral factions can tear down flags anywhere.
+      if Send(oTerritoryGame,@IsHometownFlag,#RID=Send(poOwner,@GetRoomNum),
+               #faction=iClaimerFaction)
+         OR iClaimerFaction = FACTION_NEUTRAL
+      {
+         bHaveAdjacent = TRUE;
+      }
+      else
+      {
+         foreach i in Send(poOwner,@GetYellZone)
+         {
+            oFlagpole = Send(Send(SYS,@FindRoomByNum,#num=i),
+                              @FindHoldingActive,#class=&Flagpole);
+            
+            if (oFlagpole <> $)
+               AND (Send(oFlagpole,@GetFaction)=iClaimerFaction)
+            {
+               bHaveAdjacent = TRUE;
+
+               break;
+            }
+         }
+      }
+
+      if NOT bHaveAdjacent
+      {
+         // Message: need adjacent territory.
+         Send(who,@MsgSendUser,#message_rsc=flag_failed_no_adjacent);
+
+         return FALSE;
+      }
+
+      if ptNextAllowedAttempt <> $
+      {
+         // Message: last attempt was too recent.
+         Send(who,@MsgSendUser,#message_rsc=flag_failed_too_recent);
+
+         return FALSE;
+      }
+
+      if Length(Send(SYS,@GetUsersLoggedOn)) < Send(oTerritoryGame,@GetMinUsers)
+      {
+         // Message: not enough users logged on.
+         Send(who,@MsgSendUser,#message_rsc=flag_failed_not_enough_users);
+
+         return FALSE;
+      }
+
+      if NOT Send(self,@ClaimerHasFlag,#who=who)
+      {
+         // Message:  not holding a flag of your faction
+         Send(who,@MsgSendUser,#message_rsc=flag_failed_no_flag);
+
+         return FALSE;
+      }
+
+      iCountFactionAllies = 0;
+      foreach i in Send(poOwner,@GetHolderActive)
+      {
+         if IsClass(First(i),&User)
+            AND (Send(First(i),@GetFaction)=iClaimerFaction)
+         {
+            iCountFactionAllies = iCountFactionAllies + 1;
+         }
+      }
+
+      if iCountFactionAllies < Send(oTerritoryGame,@GetMinAllies)
+      {
+         // Message: not enough player allies in room.
+         Send(who,@MsgSendUser,#message_rsc=flag_failed_not_enough_allies);
+
+         return FALSE;
+      }
+
+      return TRUE;
+   }
+
+   ClaimerHasFlag(who=$)
+   {
+      local iClaimerFaction;
+
+      if who = $
+      {
+         return FALSE;
+      }
+
+      iClaimerFaction = Send(who,@GetFaction);
+      if ((iClaimerFaction = FACTION_DUKE) AND NOT Send(who,@PossessesA,#class=&DukeFlag))
+         OR ((iClaimerFaction = FACTION_PRINCESS) AND NOT Send(who,@PossessesA,#class=&PrincessFlag))
+         OR ((iClaimerFaction = FACTION_REBEL) AND NOT Send(who,@PossessesA,#class=&RebelFlag))
+      {
+         return FALSE;
+      }
+
+      return TRUE;
+   }
+
+   CheckClaimerFlag()
+   {
+      if poClaimer <> $
+      {
+         if NOT Send(self,@ClaimerHasFlag,#who=poClaimer)
+         {
+            Send(self,@ClaimFailed);
+         }
+      }
+
+      return;
+   }
+
+   ClaimAttempt()
+   {
+      local i, oClaimingFlag, iClaimerFaction, iClaimerVotes, iDefenderVotes;
+
+      ptClaimAttempt = $;
+
+      if Send(poClaimer,@GetOwner) <> Send(self,@GetOwner)
+      {
+         Debug("Didn't catch departure of flag claimer",
+               Send(poClaimer,@GetName),"in",Send(poOwner,@GetName));
+         Send(self,@ClaimFailed);
+
+         return;
+      }
+
+      if NOT Send(self,@ClaimerHasFlag,#who=poClaimer)
+      {
+         Debug("Didn't catch claimer",Send(poClaimer,@GetName),
+               "'s loss of flag in",Send(poOwner,@getName));
+         Send(self,@ClaimFailed);
+
+         return;
+      }
+
+      // Special Happyland victory condition:  must have majority in
+      // room (total HP, including troops).
+      if NOT Send(SYS,@IsPKAllowed)
+      {
+         iClaimerVotes = Send(self,@CountHappylandVotes,
+                              #faction=Send(poClaimer,@GetFaction));
+         iDefenderVotes = Send(self,@CountHappylandVotes,#faction=piFaction);
+
+         if iClaimerVotes <= iDefenderVotes
+         {
+            Send(self,@ClaimFailed);
+
+            return;
+         }
+      }
+
+      // System message: Aphasia successfully claims The Twisted Woods in the name of the rebels!
+      foreach i in Send(SYS,@GetUsersLoggedOn)
+      {
+         if NOT Send(i,@PlayerIsIntriguing)
+         {
+            continue;
+         }
+
+         Send(i,@MsgSendUser,#message_rsc=flag_claim_attempt_succeeded,
+               #parm1=Send(poClaimer,@GetIndef),#parm2=Send(poClaimer,@GetName),
+               #parm3=Send(poOwner,@GetDef),#parm4=Send(poOwner,@GetName),
+               #parm5=Send(self,@GetFactionNamePlugin,#who=poClaimer));
+      }
+
+      piFaction = Send(poClaimer,@GetFaction);
+      Send(poOwner,@SomethingChanged,#what=self);
+
+      // Delete the flag.
+      iClaimerFaction = Send(poClaimer,@GetFaction);
+
+      if iClaimerFaction = FACTION_DUKE
+      {
+         oClaimingFlag = Send(poClaimer,@FindHolding,#class=&DukeFlag);
+      }
+
+      if iClaimerFaction = FACTION_PRINCESS
+      {
+         oClaimingFlag = Send(poClaimer,@FindHolding,#class=&PrincessFlag);
+      }
+
+      if iClaimerFaction = FACTION_REBEL
+      {
+         oClaimingFlag = Send(poClaimer,@FindHolding,#class=&RebelFlag);
+      }
+
+      if oClaimingFlag <> $
+      {
+         Send(oClaimingFlag,@Delete);
+      }
+
+      poClaimer = $;
+
+      // Slow down troop generation again.
+      piGen_time = Send(Send(SYS,@GetTerritoryGame),@GetNonclaimTroopGenTime);
+      piTroopCap = Send(Send(SYS,@GetTerritoryGame),@GetNonclaimTroopCap);
+      Send(self,@CleanupExtraTroops);
+      Send(Send(SYS,@GetTerritoryGame),@FlagClaimed,#flag=self);
+
+      return;
+   }
+
+   CountHappylandVotes(faction=FACTION_NEUTRAL)
+   {
+      local i, oVoter, iCount;
+
+      iCount = 0;
+      foreach i in Send(poOwner,@GetHolderActive)
+      {
+         oVoter = First(i);
+         if IsClass(oVoter,&Player)
+            AND Send(oVoter,@PlayerIsIntriguing)
+            AND (Send(oVoter,@GetFaction) = faction)
+         {
+            iCount = iCount + bound(40,150, Send(oVoter,@GetMaxHealth));
+         }
+
+         if IsClass(oVoter,&FactionTroop)
+            AND (Send(oVoter,@GetFaction)=faction)
+         {
+            iCount = iCount + bound(0,150, Send(oVoter,@GetLevel));
+         }
+      }
+
+      return iCount;
+   }
+
+   SomethingLeft(what=$)
+   {
+      if (what <> $) AND (what = poClaimer)
+      {
+         Send(self,@ClaimFailed);
+      }
+
+      propagate;
+   }
+
+   SomethingKilled(what=$,victim=$)
+   {
+      if (victim = poClaimer) AND IsClass(what,&Battler)
+      {
+         Send(self,@ClaimFailed,#defender=what);
+      }
+
+      propagate;
+   }
+
+   ClaimFailed(defender = $)
+   {
+      local i, j, rFailMessage, bClaimerInRoom;
+
+      ///////////////////////////////
+      // Can get here by:
+      //     claimer leaving room alive
+      //     claimer dropping flag
+      //     claimer losing faction
+      //     claimer being killed
+      //     happyland vote loss
+      ///////////////////////////////
+
+      if ptClaimAttempt <> $
+      {
+         DeleteTimer(ptClaimAttempt);
+         ptClaimAttempt = $;
+      }
+
+      // Send system message: Old Bean has valiantly defended the Twisted Woods against Aphasia's
+      //                      attempt to claim it in the name of sliced cheese!
+      if defender = $
+      {
+         rFailMessage = flag_claim_attempt_failed_generic;
+         bClaimerInRoom = FALSE;
+         foreach j in Send(poOwner,@GetHolderActive)
+         {
+            if First(j) = poClaimer
+            {
+               bClaimerInRoom = TRUE;
+
+               break;
+            }
+         }
+
+         if bClaimerInRoom
+         {
+            if Send(self,@ClaimerHasFlag,#who=poClaimer)
+            {
+               rFailMessage = flag_claim_attempt_failed_generic;
+            }
+            else
+            {
+               rFailMessage = flag_claim_attempt_failed_dropped_flag;
+            }
+         }
+         else
+         {
+            rFailMessage = flag_claim_attempt_failed_flee;
+         }
+
+         foreach i in Send(SYS,@GetUsersLoggedOn)
+         {
+            if NOT Send(i,@PlayerIsIntriguing)
+            {
+               continue;
+            }
+
+            Send(i,@MsgSendUser,#message_rsc=rFailMessage,
+                  #parm1=Send(poClaimer,@GetCapIndef),
+                  #parm2=Send(poClaimer,@GetName),
+                  #parm3=Send(poOwner,@GetDef),#parm4=Send(poOwner,@GetName),
+                  #parm5=Send(self,@GetFactionNamePlugin,#who=poClaimer));
+         }
+      }
+      else
+      {
+         foreach i in Send(SYS,@GetUsersLoggedOn)
+         {
+            if NOT Send(i,@PlayerIsIntriguing)
+            {
+               continue;
+            }
+
+            Send(i,@MsgSendUser,#message_rsc=flag_claim_attempt_failed_killed,
+                  #parm1=Send(defender,@GetCapIndef),
+                  #parm2=Send(defender,@GetName),
+                  #parm3=Send(poOwner,@GetDef),
+                  #parm4=Send(poOwner,@GetName),
+                  #parm5=Send(poClaimer,@GetIndef),
+                  #parm6=Send(poClaimer,@GetName),
+                  #parm7=Send(self,@GetFactionNamePlugin,#who=poClaimer));
+         }
+      }
+
+      poClaimer = $;
+
+      // Slow down troop generation again.
+      piGen_time = Send(Send(SYS,@GetTerritoryGame),@GetNonclaimTroopGenTime);
+      piTroopCap = Send(Send(SYS,@GetTerritoryGame),@GetNonclaimTroopCap);
+      Send(self,@CleanupExtraTroops);
+
+      return;
+   }
+
+   SendOverlays()
+   {
+      if (piFaction <= FACTION_NEUTRAL)
+         OR (piFaction > FACTION_REBEL)
+      {
+         // Flagpole is bare for Neutral or invalid faction values.
+         propagate;
+      }
+
+      AddPacket(1,1);      // One overlay.
+
+      if piFaction = FACTION_DUKE
+      {
+         AddPacket(4,flag_duke_icon_rsc);
+      }
+
+      if piFaction = FACTION_PRINCESS
+      {
+         AddPacket(4,flag_princess_icon_rsc);
+      }
+
+      if piFaction = FACTION_REBEL
+      {
+         AddPacket(4,flag_rebel_icon_rsc);
+      }
+
+      //AddPacket(1,HS_FLAG);
+      AddPacket(1,piFlagHotSpot);
+      AddPacket(1,ANIMATE_CYCLE,4,100,2,FRAME_START,2,FRAME_END);
+
+      return;
+   }
+
+   ShowDesc()
+   {
+      if piFaction = FACTION_DUKE
+      {
+         AddPacket(4,flag_duke_desc_rsc);
+      }
+      else if piFaction = FACTION_PRINCESS
+      {
+         AddPacket(4,flag_princess_desc_rsc);
+      }
+      else if piFaction = FACTION_REBEL
+      {
+         AddPacket(4,flag_rebel_desc_rsc);
+      }
+      else
+      {
+         AddPacket(4,flag_desc_rsc);
+      }
+
+      if (poClaimer <> $)
+         AND (ptClaimAttempt <> $)
+         AND IsClass(poClaimer,&Player)
+      {
+         AddPacket(4,flag_append_desc, 4,Send(poClaimer,@GetCapIndef),
+                   4,Send(poClaimer,@GetName),
+                   4,Send(self,@GetFactionNamePlugin,#who=poClaimer));
+      }
+      else
+      {
+         AddPacket(4,flag_append_desc_empty);
+      }
+
+      return;
+   }
+
+   GetFactionNamePlugin(who=$)
+   {
+      local iFaction;
+
+      if who <> $
+      {
+         iFaction = Send(who,@GetFaction);
+         if iFaction <> $
+         {
+            if iFaction = FACTION_DUKE
+            {
+               return flag_claim_plugin_duke;
+            }
+            else if iFaction = FACTION_PRINCESS
+            {
+               return flag_claim_plugin_princess;
+            }
+            else if iFaction = FACTION_REBEL
+            {
+               return flag_claim_plugin_rebel;
+            }
+         }
+      }
+
+      return flag_claim_plugin_unfactioned;
+   }
+
+   GetFaction()
+   {
+      return piFaction;
+   }
+
+   IsClaimAttemptInProgress()
+   {
+      if ptClaimAttempt <> $
+      {
+         if poClaimer <> $
+         {
+            return TRUE;
+         }
+
+         Debug("ptClaimAttempt<>$ but poClaimer=$!");
+         Send(self,@ClaimFailed);
+      }
+
+      return FALSE;
+   }
+
+   GetClaimer()
+   {
+      return poClaimer;
+   }
+   
+   SystemSetFaction(faction=FACTION_NEUTRAL)
+   "For when the pole needs to simply be set to a state directly. "
+   "Used during recreates."
+   {
+      piFaction = faction;
+      if poOwner <> $
+      {
+         Send(poOwner,@SomethingChanged,#what=self);
+      }
+
+      return;
+   }
+
+   SetFaction(faction=FACTION_NEUTRAL)
+   "for admin use."
+   {
+      piFaction = faction;
+      if poOwner <> $
+      {
+         Send(poOwner,@SomethingChanged,#what=self);
+         if piFaction <> FACTION_NEUTRAL
+            AND ptGenerateTroops = $
+            AND IsClass(poOwner,&MonsterRoom)
+         {
+            ptGenerateTroops = CreateTimer(self,@GenerateTroops,piGen_time);
+         }
+      }
+
+      if (Send(SYS,@GetTerritoryGame) <> $)
+      {
+         Send(Send(SYS,@GetTerritoryGame),@FlagClaimed,#flag=self);
+      }
+
+      return;
+   }
+
+   SetClaimable(claimable=TRUE)
+   {
+      pbClaimable=claimable;
+      if poOwner <> $
+      {
+         Send(poOwner,@SomethingChanged,#what=self);
+      }
+
+      return;
+   }
+
+   GetObjectFlags()
+   {
+      if pbClaimable
+      {
+         return (viObject_flags | OF_ACTIVATABLE);
+      }
+
+      return (viObject_flags & ~OF_ACTIVATABLE);
+   }
+
+   NewOwner(what=$)
+   {
+      if NOT IsClass(what,&MonsterRoom)
+      {
+         // Make sure the claimable flag is off.
+         pbClaimable = FALSE;
+      }
+
+      propagate;
+   }
+
+   FirstUserEntered()
+   "Always have a soldier present to defend the flagpole when a player "
+   "enters the room. If none are present, call GenerateTroops immediately "
+   "otherwise just set the timer."
+   {
+      local i, each_obj;
+
+      if (poOwner = $
+         OR NOT IsClass(poOwner,&MonsterRoom))
+      {
+         propagate;
+      }
+
+      if (ptGenerateTroops = $)
+      {
+         foreach i in Send(poOwner,@GetHolderActive)
+         {
+            each_obj = First(i);
+
+            if (IsClass(each_obj,&FactionTroop)
+               AND Send(each_obj,@GetFaction) = piFaction)
+            {
+               // We have at least one here already, so just set the timer.
+               ptGenerateTroops = CreateTimer(self,@GenerateTroops,piGen_time);
+
+               propagate;
+            }
+         }
+
+         // None found, spawn one.
+         Send(self,@GenerateTroops);
+      }
+
+      propagate;
+   }
+
+   GenerateTroops()
+   {
+      local each_obj, i, iCount, iGenRow, iGenCol, oTroop;
+
+      ptGenerateTroops = $;
+
+      if poOwner = $
+         OR NOT IsClass(poOwner,&MonsterRoom)
+         OR piFaction = FACTION_NEUTRAL
+         OR NOT Send(poOwner,@IsUserInRoom)
+      {
+         return;
+      }
+
+      ptGenerateTroops = CreateTimer(self,@GenerateTroops,piGen_time);
+
+      oTroop = $;
+
+      if piFaction = FACTION_DUKE
+      {
+         if Random(0,8) = 1
+         {
+            oTroop = &DukeMage;
+         }
+         else
+         {
+            oTroop = &DukeTroop;
+         }
+      }
+      else if piFaction = FACTION_PRINCESS
+      {
+         if Random(0,8) = 1
+         {
+            oTroop = &PrincessMage;
+         }
+         else
+         {
+            oTroop = &PrincessTroop;
+         }
+      }
+      else if piFaction = FACTION_REBEL
+      {
+         oTroop = &RebelTroop;
+      }
+
+      if oTroop = $
+      {
+         return;
+      }
+
+      iCount = 0;
+
+      foreach i in Send(poOwner,@GetHolderActive)
+      {
+         each_obj = First(i);
+         if (IsClass(each_obj,&FactionTroop)
+            AND Send(each_obj,@GetFaction) = piFaction)
+         {
+            ++iCount;
+         }
+      }
+
+      if iCount >= piTroopCap
+      {
+         return;
+      }
+
+      oTroop = Create(oTroop);
+
+      iGenRow = (Send(self,@GetRow) + Random(-1,1));
+      iGenCol = (Send(self,@GetCol) + Random(-1,1));
+
+      if Send(poOwner,@ReqNewHold,#what=oTroop,
+               #new_row=iGenRow,#new_col=iGenCol)
+         AND Send(poOwner,@ReqSomethingMoved,#what=oTroop,
+                  #new_row=iGenRow,#new_col=iGenCol)
+      {
+         Send(poOwner,@NewHold,#what=oTroop,#new_row=iGenRow,#new_col=iGenCol);
+         if (ptClaimAttempt <> $) AND (poClaimer <> $)
+         {
+            if Send(oTroop,@GetFaction) = Send(poClaimer,@GetFaction)
+            {
+               Debug("GenerateTroops:: made a troop of the same faction as the claimer!");
+            }
+
+            if Random(1,2) = 1
+            {
+               Send(oTroop,@TargetSwitch,#what=poClaimer,#iHatred=30);
+               Send(oTroop,@EnterStateChase,#target=poClaimer,#actnow=TRUE);
+            }
+         }
+      }
+      else
+      {
+         Send(oTroop,@Delete);
+      }
+
+      return;
+   }
+
+   CleanupExtraTroops()
+   {
+      local iDelete;
+
+      iDelete = Send(poOwner,@CountHoldingHowMany,#class=&FactionTroop) - piTroopCap;
+      while iDelete > 0
+      {
+         iDelete = iDelete - 1;
+         Send(Send(poOwner,@FindHoldingActive,#class=&FactionTroop),@Delete);
+      }
+
+      return;
+   }
+
+   HalfStaff(duration=86400000)
+   "for mourning purposes, in game or not default duratio is 1 day 86400000"
+   "Max duration is Kod Max int 134217728(A little more than 37 hours)"
+   {
+      if (ptHalfStaffOff <> $)
+      {
+         DeleteTimer(ptHalfStaffOff);
+      }
+
+      piFlagHotSpot = 4;
+      if (poOwner <> $) 
+      { 
+         Send(poOwner,@SomethingChanged,#what=self);
+      }
+      ptHalfStaffOff = CreateTimer(self,@HalfStaffTimer,duration);
+
+      return;
+   }
+
+   HalfStaffTimer(timer=$)
+   {
+      if (timer = $)
+         AND (ptHalfStaffOff <> $)
+      {
+         DeleteTimer(ptHalfStaffOff);
+      }
+
+      ptHalfStaffOff = $;
+      piFlagHotSpot = 1;
+      if (poOwner <> $) 
+      { 
+         Send(poOwner,@SomethingChanged,#what=self);
+      }
+
+      return;
+   }
+
+   Delete()
+   {
+      poClaimer = $;
+
+      if ptClaimAttempt <> $
+      {
+         DeleteTimer(ptClaimAttempt);
+         ptClaimAttempt = $;
+      }
+
+      if ptNextAllowedAttempt <> $
+      {
+         DeleteTimer(ptNextAllowedAttempt);
+         ptNextAllowedAttempt = $;
+      }
+
+      if ptGenerateTroops <> $
+      {
+         DeleteTimer(ptGenerateTroops);
+         ptGenerateTroops = $;
+      }
+
+      if ptHalfStaffOff <> $
+      {
+         DeleteTimer(ptHalfStaffOff);
+         ptHalfStaffOff = $;
+      }
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,194 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Transference is UtilitySpell
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Transference_name_rsc = "transference"
+   Transference_icon_rsc = iconveyance.bgf
+   Transference_desc_rsc = \
+      "Sends any item to your guild hall chest.  "
+      "Requires only a moment of your precious time."
+   Transference_cant = "You cannot convey %s%s to your guild hall chest."
+   Transference_chest_full = "Your guild chest can't hold anymore items."
+   Transference_not_holding = \
+      "The item must be in your inventory first."
+   Transference_cast = \
+      "Delivered %s%s to your guild hall chest."
+
+   Transference_not_guilded = "You must be guilded to cast this spell."
+   Transference_rank_too_low = "You are not high enough rank to access your guild hall chest."
+   Transference_no_hall = "Your guild does not own a hall. Perhaps you should complain to your guild master."
+	  
+classvars:
+
+   vrName = Transference_name_rsc
+   vrIcon = Transference_icon_rsc
+   vrDesc = Transference_desc_rsc
+
+   viCast_time = 0
+
+   viSpell_num = SID_TRANSFERENCE
+   viSpell_level = 1
+   viSchool = SS_KRAANAN
+   viMana = 0
+   viSpellExertion = 0
+   viChance_To_Increase = 15
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+
+      return;
+   }
+
+   GetNumSpellTargets()
+   {
+      return 1;
+   }
+
+   CanPayCosts(who = $)
+   {
+      local oGuild;
+
+      if (who = $
+         OR NOT IsClass(who,&User))
+      {
+         return FALSE;
+      }
+
+      if (Send(who,@CheckPlayerFlag,#flag=PFLAG_PERMA_NO_PVP))
+      {
+         Send(who,@MsgSendUser,#message_rsc=spell_no_pvp_flag);
+
+         return FALSE;
+      }
+
+      oGuild = Send(who,@GetGuild);
+
+      if oGuild = $
+      {
+         Send(who,@MsgSendUser,#message_rsc=Transference_not_guilded);
+
+         return FALSE;
+      }
+
+      if Send(oGuild,@GetRank,#who=who) = RANK_APPRENTICE
+      {
+         Send(who,@MsgSendUser,#message_rsc=Transference_rank_too_low);
+
+         return FALSE;
+      }
+
+      if Send(oGuild,@GetGuildHall) = $
+      {
+         Send(who,@MsgSendUser,#message_rsc=Transference_no_hall);
+
+         return FALSE;
+      }
+
+      propagate;
+   }
+   
+   CastSpell(who = $, lTargets = $)
+   {
+      local i, oTarget, oGuild, oGuildHall, oBox, bSuccess;
+
+      if (lTargets = $)
+      {
+         return;
+      }
+
+      oTarget = First(lTargets);
+
+      if (oTarget = $)
+      {
+         return;
+      }
+
+      if NOT Send(oTarget,@CanBeStoredInVault)
+         OR IsClass(oTarget,&Money)
+      {
+         Send(who,@MsgSendUser,#message_rsc=Transference_cant,
+               #parm1=Send(oTarget,@GetDef),#parm2=Send(oTarget,@GetName));
+
+         return;
+      }
+
+      if NOT Send(who,@IsHolding,#what=oTarget)
+      {
+         Send(who,@MsgSendUser,#message_rsc=Transference_not_holding);
+
+         return;
+      }
+
+	  // Get the player's guild
+      oGuild = Send(who,@GetGuild);
+	  
+	  // Get the player's hall
+	  oGuildHall = Send(oGuild,@GetGuildHall);
+	  
+	  // Whether or not the conveyance was successful...
+	  bSuccess = FALSE;
+	  
+	  foreach i in Send(oGuildHall,@GetHolderActive)
+      {
+         oBox = First(i);
+		 
+         if oBox <> $ AND IsClass(oBox,&StorageBox)
+         {
+			if Send(oBox,@ReqNewHold,#what=oTarget,#who=who,#IsConveyance=TRUE)
+			{
+				Send(oBox,@NewHold,#what=oTarget);
+				
+				bSuccess = TRUE;
+				
+				break;
+			}
+			else
+			{
+				// Box can't hold anymore items...
+				Send(who,@MsgSendUser,#message_rsc=Transference_chest_full);
+
+				break;
+			}
+		 }
+	  }
+
+	  if bSuccess 
+	  {
+		Send(who,@MsgSendUser,#message_rsc=Transference_cast,
+		   #parm1=Send(oTarget,@GetDef),#parm2=Send(oTarget,@GetName));
+	  }
+	  else
+	  {
+         Send(who,@MsgSendUser,#message_rsc=Transference_cant,
+               #parm1=Send(oTarget,@GetDef),#parm2=Send(oTarget,@GetName));		  
+	  }
+      propagate;
+   }
+
+   SuccessChance(who=$)
+   "Starter spell will always work."
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

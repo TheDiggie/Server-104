@@ -1,0 +1,19 @@
+Umbrella_name_rsc = de "Schirm"
+Umbrella_desc_rsc = de \
+   "Ruft eine Kuppel aus magischer Energie hervor, die alle Spieler im Umkreis "
+   "des Zaubernden für mehrere Minuten beschützt. Der Zauberspruch verliert "
+   "an Wirkung, wenn der Zaubernde durch Laufen oder Kämpfen in seiner Konzentration "
+   "gestört wird. Der Zauber benötigt zwei Smaragde."
+Umbrella_cast = de \
+   "Eine mystische, schimmernde Lichtkuppel strömt aus Deinen Fingerspitzen."
+Umbrella_starts = de \
+   "Eine Kuppel voller mystischem, schimmerndem Licht kommt von %s%ss Fingerspitzen."
+Umbrella_ends = de "Die Kuppel voller magischer Energie, von %s%s verschwindet."
+Umbrella_caster_ends = de "Die Kuppel voller magischer Energie verschwindet."
+Umbrella_caster_enter = de \
+   "Du fühlst, dass dich die Energie des Schirmes schützt."
+Umbrella_enter = de \
+   "Du wirst umfasst von einer Kuppel voller magischer Energie, gezaubert "
+   "von %s%s."
+Umbrella_leave = de "Du bist außerhalb der magischen Kuppel von %s%s."
+Umbrella_deflected = de "%s%ss Schirm, dämpft die Kraft des Angriffs."

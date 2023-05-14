@@ -1,0 +1,112 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+WeapAttBlinder is WeaponAttribute
+
+///////////////////////////////////////////////////////////////////////
+//
+//  This weapon has a chance to blind the opponent every time it does
+//     damage.
+//
+//  Form is:
+//
+//      [ WA_BLINDER]
+//
+///////////////////////////////////////////////////////////////////////
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include wablindr.lkod
+
+   weapattblinder_desc = \
+      " Q's insignia is emblazoned on the metal of the weapon."
+   blinder_fail_use = "You are not yet ready to use %s%s."
+   blinder_worked = "%s%s stumbles away, screaming and clutching %s eyes!"
+   blinder_dm = "blinder"
+   blinder_info_desc = "15%% chance to cast Blind on hit\n"
+
+classvars:
+
+   vrDesc = weapattblinder_desc
+   vrInfoDesc = blinder_info_desc
+   viItem_Att_Num = WA_BLINDER
+
+   viDifficulty = 9
+   vrDM_trigger = blinder_dm
+   vbAllowSpecialAttributes = FALSE
+
+properties:
+
+   piValue_modifier = 200   /// modify the object's price by 100//
+   piValue_power_modifier = 10
+   piEffect_percent = 15
+
+messages:
+
+   ItemReqUse(oItem=$,oPlayer=$)
+   {
+      /// This person needs 50// in the weapon's proficiency to use
+      if Send(oItem,@GetProf,#who=oPlayer) < 50
+      {
+         Send(oPlayer,@MsgSendUser,#message_rsc=blinder_fail_use,
+               #parm1=Send(oItem,@GetDef),#parm2=Send(oItem,@GetName));
+
+         return FALSE;
+      }
+
+      return TRUE;
+   }
+
+////////////////////////////////////////////////
+///
+///  Effect Functions
+///
+////////////////////////////////////////////////
+
+   ModifyDamage(damage=0,target=$,wielder=$,lData=$)
+   "Wielder has a 1% chance of blinding target with any hit."
+   {
+      local oSpell;
+
+      if target = $
+         OR wielder = $
+      {
+         return damage;
+      }
+
+      if Random(1,100) < piEffect_percent
+      {
+         oSpell = Send(SYS,@FindSpellByNum,#num=SID_blind);
+
+         /// No duplicates
+         if NOT Send(target,@IsEnchanted,#what=oSpell)
+         {
+            Send(oSpell,@CastSpell,#who=self,#ltargets=[target],
+                  #iSpellPower=50,#bItemCast=TRUE);
+            Send(wielder,@MsgSendUser,#message_rsc=blinder_worked,
+                 #parm1=Send(target,@GetCapDef),#parm2=Send(target,@GetName),
+                 #parm3=Send(target,@GetHisher));
+         }
+      }
+
+      return Damage;
+   }
+
+   IsMagicalEffect()
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

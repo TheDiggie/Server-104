@@ -1,0 +1,184 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+ArenaSign2 is PassiveObject
+
+constants:
+
+   include blakston.khd
+   include protocol.khd
+
+resources:
+
+   include sign-ar2.lkod
+
+   newarenasign_name_rsc = "Kraanan's Pride"
+   newarenasign_icon1_rsc = artrop01.bgf
+   newarenasign_icon2_rsc = artrop02.bgf
+   newarenasign_icon3_rsc = artrop03.bgf
+   newarenasign_icon4_rsc = artrop04.bgf
+
+   newarenasign_desc_rsc = "Longest winning streaks (%s):\n %s %s %s %s %s" 
+   newarenasign_dummy_line =  "    %s  (%i %s)\n"
+   newarenasign_line = "    %q  (%i %s)\n"
+   newarenasign_blank_rsc = " "
+   newarenasign_win = "win"
+   newarenasign_wins = "wins"
+
+   newarenasign_dummy_name = "Noimad Trebuhcs"
+
+classvars:
+
+properties:
+
+   vrName = newarenasign_name_rsc
+   vrIcon = newarenasign_icon1_rsc
+   vrDesc = newarenasign_desc_rsc
+
+   piStyle = STYLE_ONE_ON_ONE
+
+   // The room ID for the arena this sign is associated with.
+   piRID = RID_TOS_ARENA
+
+messages:
+
+   Constructor(name=$, style = $, icon = $, RID = RID_TOS_ARENA)
+   {
+      if name <> $
+      {
+         vrName = name;
+      }
+
+      if style <> $
+      {
+         piStyle = style;
+      }
+
+      if piStyle = STYLE_ONE_ON_ONE
+      {
+         vrIcon = newarenasign_icon1_rsc;
+      }
+      else if piStyle = STYLE_LAST_MAN_STANDING
+      {
+         vrIcon = newarenasign_icon2_rsc;
+      }
+      else if piStyle = STYLE_GUILD_VS_GUILD
+      {
+         vrIcon = newarenasign_icon3_rsc;
+      }
+      else if piStyle = STYLE_LAST_GUILD_STANDING
+      {
+         vrIcon = newarenasign_icon4_rsc;
+      }
+
+      piRID = RID;
+
+      Post(self,@ArenaSignCheckRoom);
+
+      propagate;
+   }
+
+   ArenaSignCheckRoom()
+   {
+      local oRoom;
+
+      // Double-check RID - RID must be for an arena.
+
+      oRoom = Send(SYS,@FindRoomByNum,#num=piRID);
+      if (oRoom = $
+         OR NOT Send(oRoom,@IsArena))
+      {
+         Debug("Arena sign ",self," created in non-arena room ",piRID);
+         piRID = RID_TOS_ARENA;
+      }
+
+      return;
+   }
+
+   ShowDesc()
+   "Shows a message w/ the most number of kills ever on it."
+   {
+      local oWatcher, lChamplist, iCount, i, oArena;
+
+      oArena = Send(SYS,@FindRoomByNum,#num=piRID);
+
+      if (oArena = $)
+      {
+         Debug("Arena sign referencing invalid RID ",piRID);
+
+         return;
+      }
+
+      oWatcher = Send(oArena,@GetWatcher);
+      if oWatcher = $
+      {
+         Debug("Arena sign in Arena without watcher!");
+
+         return;
+      }
+
+      lChampList = Send(Send(SYS,@GetLore),@GetChampionsList,#style=piStyle,
+                        #iWatcherID=Send(oWatcher,@GetWatcherID));
+
+      AddPacket(4,newarenasign_desc_rsc, 4,Send(oWatcher,@GetCombatName,#style=piStyle));
+
+      iCount = 0;
+      foreach i in lChampList
+      {
+         if First(i) = $
+         {
+            if iCount = 0
+            {
+               AddPacket(4,newarenasign_dummy_line, 4,newarenasign_blank_rsc,
+                         4,newarenasign_blank_rsc, 4,newarenasign_blank_rsc,
+                         4,newarenasign_blank_rsc, 4,newarenasign_dummy_name,
+                         4,1, 4,newarenasign_wins);
+
+               return;
+            }
+            else
+            {
+               AddPacket(4,newarenasign_blank_rsc);
+            }
+         }
+         else
+         {
+            AddPacket(4,newarenasign_line);
+         }
+         ++iCount;
+      }
+
+      foreach i in lChampList
+      {
+         if First(i) <> $
+         {
+            AddPacket(STRING_RESOURCE,Send(First(i),@GetTrueName));
+            AddPacket(4,Nth(i,2));
+            if Nth(i,2) > 1
+            {
+               AddPacket(4,newarenasign_wins);
+            }
+            else
+            {
+               AddPacket(4,newarenasign_win);
+            }
+         }
+      }
+
+      return;
+   }
+
+   ReqNewOwner(what = $)
+   {
+      return FALSE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

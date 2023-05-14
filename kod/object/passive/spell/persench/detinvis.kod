@@ -1,0 +1,108 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DetectInvisible is PersonalEnchantment
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include detinvis.lkod
+
+   DetectInvisible_name_rsc = "detect invisible"
+   DetectInvisible_icon_rsc = idetinvi.bgf
+   DetectInvisible_desc_rsc = \
+      "Allows you to see those whom others cannot.  "
+      "Requires two vials of solagh."
+   DetectInvisible_on_rsc = "You can feel your eyes tingle."
+   DetectInvisible_off_rsc = "Your eyesight returns to its former mundanity."
+   DetectInvisible_already_enchanted_rsc = \
+      "You can already see the invisible."
+   DetectInvisible_Success_rsc = "%s%s eyes pulse briefly."
+
+classvars:
+
+   vrName = DetectInvisible_name_rsc
+   vrIcon = DetectInvisible_icon_rsc
+   vrDesc = DetectInvisible_desc_rsc
+
+   vrAlreadyEnchanted = DetectInvisible_already_enchanted_rsc
+   vrEnchantment_On = DetectInvisible_On_rsc
+   vrEnchantment_Off = DetectInvisible_Off_rsc
+   vrSuccess = DetectInvisible_Success_rsc
+
+   viSpell_num = SID_DETECT_INVISIBLE
+   viSchool = SS_KRAANAN
+   viSpell_level = 3
+   viMana = 15
+   viSpellExertion = 3
+
+   viChance_To_Increase = 15
+   viMeditate_ratio = 20
+
+properties:
+
+   // The effectiveness of purge on the target spell as a percentage.
+   // 100 will cause purge to remove its entire spellpower, 0 will
+   // prevent purge from removing this spell.
+   viPurgeFactor = 30
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = [ [&Solagh, 2] ];
+
+      return;
+   }
+
+   GetStateValue(iSpellpower=$,target=$)
+   {
+      // Post this so it's after the flag being applied.
+      Post(target,@ToCliRoomContents);
+
+      return iSpellpower;
+   }
+
+   SetSpellPlayerFlag(who=$)
+   {
+      Send(who,@SetPlayerFlag,#flag=PFLAG2_DETECT_INVIS,#flagset=2,#value=True);
+
+      return;
+   }
+
+   GetDuration(iSpellpower=0)
+   {
+      local iDuration;
+      iDuration = 2400 * (100 + iSpellPower);   // 4 - 8 minutes max,
+
+      return iDuration;
+   }
+
+   EndEnchantment(who=$,report=TRUE,state=0)
+   {
+      if Send(who,@IsLoggedOn)
+      {
+         /// Must post this so it's after the flag being removed.
+         Post(who,@ToCliRoomContents);
+      }
+
+      propagate;
+   }
+
+   GetPotionClass()
+   {
+      return &DetectInvisibilityPotion;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

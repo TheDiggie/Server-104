@@ -1,0 +1,179 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+FreeAction is PersonalEnchantment
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include freeact.lkod
+
+   FreeAction_name_rsc = "free action"
+   FreeAction_icon_rsc = ifreeact.bgf
+   FreeAction_desc_rsc = \
+      "Kraanan's love of battle helps repel magic which might hinder "
+      "your movements, and thus the liberal dispensation of lusty blows.  "
+      "Requires one red mushroom and one purple mushroom to cast."
+   freeaction_enchantment_rsc = \
+      "\n\nYour current %s enchantment will completely resist an attempt to "
+      "paralyze you %i%% of the time.  Successful attempts to paralyze you "
+      "will be reduced by %i%%."
+   FreeAction_on_rsc = \
+      "You feel a rush of energy and fluid motion throughout your body."
+   FreeAction_off_rsc= "Your strange feeling of freedom subsides."
+   FreeAction_already_enchanted_rsc = "You already have free action."
+   FreeAction_succeed_rsc = "You grant free action to %s%s."
+
+   FreeAction_resist = "You can feel Kraanan's magic working to free you."
+   FreeAction_evade = "You evade an attempt to restrict your movement."
+   FreeAction_resist_caster = \
+      "You sense a force struggling to break free of your magic."
+   FreeAction_evade_caster = \
+      "Kraanan's magic prevents you from hindering the free flow of battle."
+
+   FreeAction_sound = kfreeact.ogg
+
+classvars:
+
+   vrName = FreeAction_name_rsc
+   vrIcon = FreeAction_icon_rsc
+   vrDesc = FreeAction_desc_rsc
+   vrSucceed_wav = FreeAction_sound
+
+   vrAlreadyEnchanted = FreeAction_already_enchanted_rsc
+   vrEnchantment_On = FreeAction_On_rsc
+   vrEnchantment_Off = FreeAction_Off_rsc
+   vrSucceed = FreeAction_succeed_rsc
+
+   viSpell_num = SID_FREE_ACTION
+   viSchool = SS_KRAANAN
+   viSpell_level = 3
+   viMana = 10
+   viSpellExertion = 3
+
+   viChance_To_Increase = 15
+   viMeditate_ratio = 30
+
+properties:
+
+   // This controls how effective FA is at reducing CC duration.
+   // Higher value makes EE less effective.
+   // 100 = 50// reduction, 150 = 33// reduction.
+   piReductionFactor = 150 // Recommended value 150.
+
+   // What percent of spellpower should we take in order to
+   // give the player a chance to completely resist hold?
+   piResistPercent = 15
+
+   // The effectiveness of purge on the target spell as a percentage.
+   // 100 will cause purge to remove its entire spellpower, 0 will
+   // prevent purge from removing this spell.
+   viPurgeFactor = 40
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&RedMushroom,1],plReagents);
+      plReagents = Cons([&PurpleMushroom,1],plReagents);
+
+      return;
+   }
+
+   GetStateValue(iSpellpower=$)
+   {
+      local iFactor;
+
+      iFactor = Bound(iSpellPower / 2 + 5,10,50);
+
+      return iFactor;
+   }
+
+   GetDuration(iSpellpower=0)
+   {
+      local iDuration;
+
+      // 3 - 8 minutes max, converted to ms.
+      iDuration = 180 + (3 * iSpellPower);
+      iDuration = iDuration * 1000;
+
+      return iDuration;
+   }
+
+   DoFreeAction(oHoldCaster=$,oTarget=$,iDuration=0)
+   "Calculates adjustment if hold duration.  Returns $ if resisted completely."
+   {
+      local i, iNewDuration, oFreeActionStrength;
+
+      oFreeActionStrength = Send(oTarget,@GetEnchantedState,#what=self);
+
+      // Give players a decent chance to improve the spell!
+      foreach i in Send(oTarget,@GetPassiveImprovementList)
+      {
+         if First(i) = self
+            AND Random(1,3) = 3
+         {
+            Post(First(i),@ImproveAbility,#who=oTarget);
+         }
+      }
+
+      // Check if they repel hold outright 1 - 15// chance.
+      if Random(0,100) <= ((oFreeActionStrength * piResistPercent) / 100)
+      {
+         Send(oTarget,@MsgSendUser,#message_rsc=FreeAction_evade);
+         if IsClass(oHoldCaster,&Player)
+         {
+            Send(oHoldCaster,@MsgSendUser,#message_rsc=FreeAction_evade_caster);
+         }
+
+         return $;
+      }
+
+      iNewDuration = iDuration - (iDuration * oFreeActionStrength) / piReductionFactor;
+      Post(oTarget,@MsgSendUser,#message_rsc=FreeAction_resist);
+
+      if IsClass(oHoldCaster,&Player)
+      {
+         Post(oHoldCaster,@MsgSendUser,#message_rsc=FreeAction_resist_caster);
+      }
+
+      return iNewDuration;
+   }
+
+   OfferToNewCharacters()
+   {
+      // It's a PK-types spell.  Don't offer to newbies.
+      return FALSE;
+   }
+
+   GetPotionClass()
+   {
+      return &FreeActionPotion;
+   }
+
+   EffectDesc(who=$)
+   {
+      local iState;
+
+      iState = Send(who,@GetEnchantedState,#what=self);
+
+      AddPacket(4,freeaction_enchantment_rsc, 4,Send(self,@GetName),
+                4,iState * piResistPercent / 100,
+                4,100 * iState / piReductionFactor);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

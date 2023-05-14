@@ -1,0 +1,113 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+KnightA is Monster
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   knight_name_rsc = "knight"
+   knight_icon_rsc = Knight.bgf
+   knight_desc_rsc = \
+      "A well armored knight of a long forgotten legion. "
+
+   knight_dead_icon_rsc = KnightX.bgf
+   knight_dead_name_rsc = "dead knight"
+
+   knight_sound_miss = skl_atkm.ogg
+   knight_sound_death = skl_dth.ogg
+   knight_sound_aware = skl_awr.ogg
+
+classvars:
+
+   vrName = knight_name_rsc
+   vrIcon = knight_icon_rsc
+   vrDesc = knight_desc_rsc
+   vrDead_icon = knight_dead_icon_rsc
+   vrDead_name = knight_dead_name_rsc
+
+   viTreasure_type = TID_KNIGHT
+   viAttack_type = ATCK_WEAP_THRUST
+   viSpeed = 8
+   viAttributes = 0
+   viLevel = 125
+   viDifficulty = 9
+   viVisionDistance = 18
+   // Attack range of 192, or 3 row/col.
+   viAttackRange = 192
+   viKarma = 0
+   viDefault_behavior = AI_FIGHT_AGGRESSIVE | AI_FIGHT_WIZARD_KILLER
+   viCashmin = 500
+   viCashmax = 1200
+   vrSound_miss = knight_sound_miss
+   vrSound_aware = knight_sound_aware
+   vrSound_death = knight_sound_death
+
+properties:
+
+   piAnimation = ANIM_NONE
+
+messages:
+
+   Constructed()
+   {
+      plResistances = [ [-ATCK_SPELL_COLD, -15],
+                        [-ATCK_SPELL_SHOCK, -15],
+                        [-ATCK_SPELL_ACID, 10 ],
+                        [-ATCK_SPELL_FIRE, -15 ],
+                        [ATCK_WEAP_SLASH, 50 ],
+                        [ATCK_WEAP_NERUDITE, 30 ],
+                        [ATCK_WEAP_PIERCE, 70 ],
+                        [ATCK_WEAP_THRUST, 70 ],
+                        [ATCK_WEAP_BLUDGEON, 30 ]];
+
+      propagate;
+   }
+
+   MonsterAttack(what=$)
+   {
+      piAnimation = ANIM_ATTACK;
+      Send(poOwner,@SomethingChanged,#what=self);
+      piAnimation = ANIM_NONE;
+
+      return;
+   }
+
+   SendMoveAnimation()
+   {
+      AddPacket(1,ANIMATE_CYCLE,4,280,2,5,2,10);
+
+      return;
+   }
+
+   SendLookAnimation()
+   {
+      AddPacket(1,ANIMATE_CYCLE,4,200,2,1,2,1);
+
+      return;
+   }
+
+   SendAnimation()
+   {
+      if piAnimation = ANIM_ATTACK
+      {
+         AddPacket(1,ANIMATE_ONCE,4,150,2,2,2,4,2,1);
+
+         return;
+      }
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

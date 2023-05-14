@@ -1,0 +1,173 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+//////////////////////////S///////////////////////////////////////////////////////
+ManaBomb is Spell
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include manabomb.lkod
+
+   manabomb_name_rsc = "mana bomb"
+   manabomb_icon_rsc = imanabom.bgf
+   manabomb_desc_rsc = \
+      "Initiates a white hot explosion which burns all of the "
+      "caster's mana and consumes half of that amount from all "
+      "others in the room.  "
+      "Requires two sapphires to cast."
+
+   manabomb_cast = "%s%s's mana violently detonates!"
+   manabomb_hit_some = \
+      "You feel your spirit being ripped from your body, burning "
+      "~b~B%i~B~n mana in a magical chain reaction."
+   manabomb_hit_all = \
+      "All of your mana burns away in a magical chain reaction!"
+   manabomb_took_some = \
+      "%s%s cries out as your mana bomb burns %s spirit, removing "
+      "~b~B%i~B~n mana!"
+   manabomb_took_all = \
+      "%s%s cries out as your mana bomb sears %s spirit, "
+      "leaving %s bereft of mana!"
+
+   manabomb_sound = kmbomb.ogg
+
+classvars:
+
+   vrName = manabomb_name_rsc
+   vrIcon = manabomb_icon_rsc
+   vrDesc = manabomb_desc_rsc
+
+   viSpell_num = SID_MANA_BOMB
+   viMana = 0
+   viSchool = SS_KRAANAN
+   viSpell_level = 4
+
+   viHarmful = TRUE
+   viOutlaw = TRUE
+   viNoNewbieOffense = TRUE
+   viMeditate_ratio = 30
+
+   vrSucceed_wav = manabomb_sound
+
+   vbIsAreaEffect = TRUE
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&Sapphire,2],plReagents);
+
+      return;
+   }
+
+   GetNumSpellTargets()
+   {
+      return 0;
+   }
+
+   GetTargets(who=$,lTargets=$)
+   "This returns a list of valid targets in range."
+   {
+      local oRoom, i, each_obj, lFinalTargets, iSpellPower;
+
+      lFinalTargets = $;
+      iSpellPower = Send(self,@GetSpellPower,#who=who);
+
+      oRoom = Send(who,@GetOwner);
+      lFinalTargets = Send(oRoom,@EnchantAllInRange,#what=self,
+                           #range=(6+(iSpellpower+1)/20),#center=who,
+                           #monsters=TRUE);
+
+      return lFinalTargets;
+   }
+
+   CanPayCosts(who = $, lTargets = $)
+   {
+      /// We need to do our own check rather than use the one in spell.kod.
+      if IsClass(who,&Player) AND Send(who,@GetMana) < 12
+      {
+         Send(who,@WaveSendUser,#wave_rsc=spell_fail_wav);
+         Send(who,@MsgSendUser,#message_rsc=spell_insufficient_magic,
+               #parm1=vrName);
+
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+   CastSpell(who = $, lTargets = $, iSpellpower = 0)
+   {
+      local oRoom, lEnchanted, iMana, i, iManaLost;
+
+      // Take mana from caster.
+      iMana = Send(who,@GetMana);
+      Send(who,@LoseMana,#amount=iMana);
+
+      // Send message to all in room.
+      oRoom = Send(who,@GetOwner);
+      Send(oRoom,@SomeoneSaid,#type=SAY_MESSAGE,#string=manabomb_cast,
+           #what=who,#parm1=Send(who,@GetCapDef),#parm2=Send(who,@GetName));
+
+      // Half the loss comes from caster mana, half from caster spellpower.
+      iMana = iMana / 2;
+      iMana = iMana + (iMana * iSpellPower)/100;
+
+      foreach i in lTargets
+      {
+         // Mana loss.
+         iManaLost = Send(i,@LoseMana,#amount=iMana);
+
+         // Spell effect messages.
+         if Send(i,@GetMana) = 0
+         {
+            if IsClass(i,&Player)
+            {
+               Send(i,@MsgSendUser,#message_rsc=manabomb_hit_all);
+               Send(i,@BadSpellFlashEffect);
+            }
+
+            Send(who,@MsgSendUser,#message_rsc=manabomb_took_all,
+                  #parm1=Send(i,@GetCapDef),#parm2=Send(i,@GetName),
+                  #parm3=Send(i,@GetHisHer),#parm4=Send(i,@GetHimHer));
+         }
+         else
+         {
+            if IsClass(i,&Player)
+            {
+               Send(i,@MsgSendUser,#message_rsc=manabomb_hit_some,
+                     #parm1=iManaLost);
+               Send(i,@BadSpellFlashEffect);
+            }
+
+            Send(who,@MsgSendUser,#message_rsc=manabomb_took_some,
+                  #parm1=Send(i,@GetCapDef),#parm2=Send(i,@GetName),
+                  #parm3=Send(i,@GetHisHer),#parm4=iManaLost);
+         }
+      }
+
+      propagate;
+   }
+
+   // We just needed a list of players in range, so we don't do anything here.
+   StartEnchantment(who = $)
+   "Starts enchantment effect on one player"
+   {
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

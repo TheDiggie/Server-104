@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "fa63a56d-3c89-447c-9409-676477e93ae9": {
+      "ProjectGuid": "fa63a56d-3c89-447c-9409-676477e93ae9",
+      "DisplayName": "blakserv",
+      "ColorIndex": 0
+    },
+    "4e237a90-c6f7-4c12-9e2e-4b852e859e70": {
+      "ProjectGuid": "4e237a90-c6f7-4c12-9e2e-4b852e859e70",
+      "DisplayName": "clientd3d",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 2
+}

@@ -1,0 +1,710 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+ItemAttribute is PassiveObject
+////////////////////////////////////////////////////////////////////////////////
+//   Item Attributes, added 5 March 97 by Damion Schubert
+//
+//   A list of item attributes is stored in system.kod, which are referenced
+//   by an constant with the IA_ preface (as defined in blakston.khd).  
+//   An ItemAtt's object number should never be stored as a property 
+//   anywhere but system.kod
+//
+//   See item.kod for notes on implementation and structure used for ItemAtts
+//   on a per item basis.
+////////////////////////////////////////////////////////////////////////////////
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include itematt.lkod
+
+   attribute_desc_default = "  This item appears enchanted in some way."
+   attribute_name_default = "special %s"
+
+   itematt_made_rsc = "  Enchanted by %q, %s %s."
+   itematt_novice_rsc = "Novice"
+   itematt_apprentice_rsc = "Apprentice"
+   itematt_journeyman_rsc = "Journeyman"
+   itematt_master_rsc = "Master"
+
+classvars:
+
+   viIndefinite = ARTICLE_NONE
+   viDefinite = ARTICLE_NONE
+
+   viItem_Att_Num = IA_DEFAULT
+
+   vrDesc = attribute_desc_default
+   vrName = attribute_name_default
+   vrInfoDesc = system_blank_resource
+
+   viDifficulty = 4   /// number from 1 to 10
+         /// this determines the types of monsters you'll have to 
+         /// kill to find this item.  It also helps determine name 
+         /// priority.
+
+   vrDM_Trigger = $
+   vbAppears_in_Happyland = TRUE
+
+   // Whether users can add special attributes (e.g. via blood inheritance)
+   // if this attribute is present.
+   vbAllowSpecialAttributes = TRUE
+
+properties:
+
+   plItems_to_Attribute = $
+   piValue_modifier = 100   /// modify the object's price by 100%
+   piValue_power_modifier = 0
+
+messages:
+
+   Constructor()
+   {
+      Send(self,@SetItemsToAttribute);
+      Send(self,@AddToTreasureTable);
+
+      return;
+   }
+
+   CheckItemAttForValidity(iServer=SERVER_NORMAL)
+   {
+      if iServer = SERVER_NO_MURDER
+         AND NOT vbAppears_in_happyland
+      {
+         Send(self,@Delete);
+
+         return FALSE;
+      }
+
+      return TRUE;
+   }
+
+   SetItemsToAttribute()
+   {
+      /// This is used by the weapon attribute when trestype decides
+      /// to apply this weapatt to a weapon.  The number given is a 
+      /// very approximate percentage of the chance that that particular
+      /// weapon will be the one created.  This will be modified by 
+      /// other factors, so that higher level characters are more likely
+      /// to get better stuff.
+
+      plItems_to_attribute = \
+             [ [ &Mace, 20],
+               [ &MetalShield, 15],
+               [ &ShortSword, 15],
+               [ &LeatherArmor, 10],
+               [ &GoldShield, 9],
+               [ &Hammer, 8],
+               [ &ChainArmor, 6],
+               [ &Axe, 6],
+               [ &Longsword, 4],
+               [ &ScaleArmor, 3],
+               [ &KnightShield, 2],
+               [ &Scimitar, 1],
+               [ &PlateArmor, 1]
+             ];
+
+      return;
+   }
+
+   GenerateItemWithAttribute(who=$,diff_seed=1)
+   {
+      local i, index, jindex, random_x, oItem;
+
+      index = 0;
+
+      foreach i in plItems_to_Attribute
+      {
+         index += Nth(i,2);
+      }
+
+      jindex = Bound(Send(who,@GetBaseMaxhealth) / 10,2,30);
+      if index < jindex + 1
+      {
+         index = jindex + 1;
+      }
+
+      random_x = Random(jindex + 1,index);
+
+      /// Okay, now we have a random number, see what it corresponds to.
+      foreach i in plItems_to_Attribute
+      {
+         random_x -= Nth(i,2);
+         if random_x < 1         /// we have a winner!
+         {
+            oItem = Create(First(i));
+            // Don't need to check the return value here, assume it worked.
+            // Only collision is Kran dedication on mystic swords, which
+            // makes a mystic that can later be dedicated to Shal/Qor.
+            Send(self,@AddSelfToRandomItem,#oItem=oItem,#who=who,
+                  #diff_seed=diff_seed);
+
+            break;
+         }
+      }
+
+      return oItem;
+   }
+
+   GetDMTrigger()
+   {
+      return vrDM_Trigger;
+   }
+
+   DMCreateItemAtt(who=$,string=$,oWeapon=$)
+   {
+      if who = $ OR string = $ OR oWeapon = $
+      {
+         Debug("BAD data sent to DMCreateItemAtt!");
+
+         return FALSE;
+      }
+
+      // Some itematts are for internal use only, such as corpsepointer.
+      // So we only give 'creation' triggers to those that do exist.
+      if vrDM_trigger = $
+         OR NOT StringContain(string,vrDM_Trigger)
+      {
+         return FALSE;
+      }
+
+      // Okay, they've chosen our itematt.  Most of the time, let's just
+      // apply ourselves using the 'random' thing we use to make treasure.
+      return Send(self,@AddSelfToRandomItem,#oItem=oWeapon,#who=who);
+   }
+
+   AddSelfToRandomItem(oItem=$,who=$,diff_seed=1)
+   {
+      if oItem = $
+      {
+         return FALSE;
+      }
+
+      if Send(self,@ReqAddToItem,#oItem=oItem)
+      {
+         Send(self,@AddToItem,#oItem=oItem,#diff_seed=diff_seed);
+
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+////////////////////////////////////////////////
+///
+///  Effect Functions
+///
+///////////////////////////////////////////////
+
+   ItemDropOnDeath()
+   {
+      return TRUE;   /// transcendant items return false.
+   }
+
+   ItemReqUse()
+   {
+      return TRUE;   /// see punisher weapatt for example
+   }         /// of this in action
+
+   ItemUsed(oItem=$,oPlayer=$)
+   {
+      return;           /// When item is used.  See glowing weapatt.
+   }
+
+   ItemReqUnuse()
+   {
+      return TRUE;      /// for cursed items.  See weapattcursed   
+   }                    /// for an explanation of this item.
+
+   ItemUnused(oItem=$,oPlayer=$)
+   {
+      return;           /// When item is unused.  See glowing weapatt.
+   }
+
+   ItemReqLeaveOwner()
+   {
+      return TRUE;      /// can the item be dropped?
+   }                    /// see weapattcursed.
+
+   ItemIsCursed()
+   {
+      return FALSE;     /// is the item cursed as a result of          
+   }                    /// this att?  See weapattcursed.
+
+   ItemCanMend()
+   {
+      return TRUE;
+   }
+
+   ItemCanWeaken()
+   {
+      return TRUE;
+   }
+
+   ItemCanEnchant()
+   {
+      return TRUE;
+   }
+
+   ItemCanSwap()
+   {
+      return TRUE;
+   }
+
+   ItemCanShatter()
+   {
+      return TRUE;
+   }
+
+   ItemCanIdentify()
+   {
+      return TRUE;
+   }
+
+   ItemCanAddSpecialAttributes()
+   {
+      return vbAllowSpecialAttributes;
+   }
+
+   ItemGetSpellModifier(oCaster=$,oItem=$)
+   {
+      /// this returns the amount added to an item's spell usage percentage.
+      /// for most itematts, this is 0.
+      return 0;
+   }
+
+////////////////////////////////////////////////////
+///
+///  Infrastructure
+///  (Adding and removing a ItemAtt from an item.)
+///
+////////////////////////////////////////////////////
+
+   ReqAddToItem(oItem=$)
+   {
+      if oItem = $
+      {
+         Debug("Can't add with insufficient data!");
+
+         return FALSE;
+      }
+
+      if IsClass(oItem,&Item)
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   AddToItem(oItem = $, state1 = $, state2 = $, state3 = $, timer_duration = $,
+             random_gen = TRUE, iPower = $, diff_seed = 1)
+   {
+      local lData, iValue;
+
+      /// may not duplicate ItemAtts.
+      if Send(oItem,@HasAttribute,#ItemAtt = viItem_Att_num)
+      {
+         return;
+      }
+
+      lData = $;
+
+      /// build the node from rear to front, 3rd state to first
+      /// state3 is TRUE for itematts which are created by a player cast spell.
+      iValue = Send(self,@SetTertiaryState,#state3=state3);
+      if iValue <> $
+      {
+         lData = Cons(iValue,lData);
+      }
+
+      iValue = Send(self,@SetSecondaryState,#state2=state2);
+      if (iValue <> $) OR (lData <> $)
+      {
+         lData = Cons(iValue,lData);
+      }
+
+      iValue = Send(self,@SetPrimaryState,#state1=state1);
+      if (iValue <> $) OR (lData <> $)
+      {
+         lData = Cons(iValue,lData);
+      }
+
+      iValue = Send(oItem,@SetTimer,#timer_duration=timer_duration);
+      if (iValue <> $) OR (lData <> $)
+      {
+         lData = Cons(iValue,lData);
+      }
+
+      iValue = Send(self,@SetCompound,#random_gen=random_gen,#oItem=oItem,
+                     #iPower=iPower,#diff_seed=diff_seed);
+      lData = Cons(iValue,lData);
+
+      Send(self,@AddEffects,#oItem=oItem,#lData=lData,#state1=state1);
+      Send(oItem,@AddAttributeSpecifics,#lItemAtt=lData);
+
+      /// Add magic item flag for item attributes that add an effect
+      if Send(self,@IsMagicalEffect)
+      {
+         Send(oItem,@AddMagicFlag);
+      }
+
+      return;
+   }
+
+   RemoveFromItem(oItem=$)
+   "This must be called. In fact, this is what all attribute "
+   "removing things should call."
+   {
+      local iValue, lData;
+
+      lData = Send(oItem,@GetAttributeData,#ItemAtt=viItem_Att_Num);
+
+      Send(self,@RemoveEffects,#oItem=oItem,#lData=lData);
+      Send(oItem,@RemoveAttributeSpecifics,#oItemAtt=self,#ItemAtt=viItem_Att_num);
+
+      /// Remove magic item flag for item attributes that add an effect
+      if Send(self,@IsMagicalEffect)
+      {
+         Post(oItem,@RemoveMagicFlag);
+      }
+
+      return;
+   }
+
+   AddEffects(oItem=$,lData=$)
+   "AddEffects, in general, does anything that is triggered upon creation, "
+   "including changing the stats of the Item's wielder/wearer, or changing "
+   "some part of the item's stats.\n"   
+   "This should be tailored for each Attribute."
+   {
+      return;
+   }
+
+   RemoveEffects(oItem=$,lData=$)
+   "This simply undoes whatever AddEffects does."
+   {
+      return;
+   }
+
+   SetCompound(random_gen = TRUE, oItem = $, iPower = $, diff_seed = 1)
+   "The compound is a three part variable.  The first variable is a bitflag, "
+   "which currently contains 1 option (whether or not the attribute has been "
+   "ID'd yet).  The second bit is the 'power' bit, which is usually a number "
+   "from 1 to 3.  In the Hundreds/thousands column, we store the WA or IA of "
+   "the attribute, identifying it."
+   {
+      local bIdent, iCompound;
+
+      iCompound = 0;
+      /// ones digit = bitflag.  For now, just 0 if unidentified,
+      /// 1 if identified.
+      bIdent = Send(self,@InitiallyIdentified,#random_Gen=random_gen);
+      iCompound = iCompound + bIdent;
+
+      if iPower = $
+      {
+         /// tens digit = power.  Number from 1 to 9?
+         iPower = Send(self,@InitialPower,#oItem=oItem,#diff_seed=diff_seed);
+      }
+
+      iCompound = iCompound + (10 * Bound(iPower,0,9));
+
+      /// hundreds, thousands digit = ID constant
+      /// starting in WA_ or IA_
+      iCompound = iCompound + (100 * viItem_Att_num);
+
+      return iCompound;
+   }
+
+   InitiallyIdentified(random_Gen=TRUE)
+   {
+      return (NOT random_Gen);
+   }
+
+   InitialPower()
+   {
+      /// power means different things for different enchantments.  However,
+      /// it always contains a value from 0 to 9, which is interpreted by
+      /// different things in different ways.      
+      return 0;
+   }
+
+   SetPrimaryState(state1=$)
+   "Defined for each individual enchantment."
+   {
+       return $;
+   }
+
+   SetSecondaryState(state2=$)
+   "Defined for each individual enchantment."
+   {
+      return $;
+   }
+
+   SetTertiaryState(state3=$)
+   "NOT Defined for each individual enchantment."
+   "Since state3 is used for labling info it is best to do it in the "
+   "superclass so that all enchantments can use it."
+   {
+      return state3;
+   }
+
+   TimerExpired()
+   {
+      Debug("TimerExpired() called, but itematt has no function defined!");
+
+      return;
+   }
+
+   HasTimer(lData=$)
+   "This must return true for any attribute that has a timer!"
+   "Theoretically, some atts could have or not have a timer, "
+   "depending on certain factors, so lData is the ItemAtt structure,"
+   "which can be examined for length to see if the timer exists."
+   {
+      return FALSE;   /// most attributes don't have timers.
+   }
+
+   CanGetAffectedItem(lData=$,who=$)
+   {
+      return TRUE;
+   }
+
+   TranslatePowerFromCompound(iCompound=0)
+   {
+      local iPower;
+
+      if iCompound = 0
+      {
+         Debug("BAD!  No compound value!");
+
+         return 0;
+      }
+
+      /// power is the tens column.
+
+      iPower = iCompound / 10;
+      iPower %= 10;
+
+      return iPower;
+   }
+
+////////////////////////////////////////////////
+///
+///  Maintenance Functions
+///
+////////////////////////////////////////////////
+
+   GetItemAttNumber()
+   {
+      return viItem_Att_num;
+   }
+
+   Delete()
+   {
+      Send(SYS,@DeleteItemAttribute,#oItemAtt=self);
+
+      propagate;
+   }
+
+   AppendDesc(oItem=$,lData=$)
+   "This is for the initial part of the description, joined to the item's "
+   "description."
+   {
+      local sMakerInfo;
+
+      if lData = $ OR NOT IsList(lData)
+      {
+         AddPacket(4,vrDesc);
+
+         return;
+      }
+
+      if Length(lData) <> 5
+      {
+         AddPacket(4,vrDesc);
+
+         return;
+      }
+
+      sMakerInfo = Nth(lData,5);
+
+      if sMakerInfo <> $
+      {
+         // Add information about the maker to the desc.
+         AddPacket(4,system_rsc_template_2, 4,vrDesc,
+                   4,itematt_made_rsc, 6,Send(First(sMakerInfo),@GetName),
+                   4,Send(self,@GetTitle,#iAbility=Nth(sMakerInfo,3)),
+                   4,Send(Nth(sMakerInfo,2),@GetEnchantmentType));
+      }
+      else
+      {
+         AddPacket(4,vrDesc);
+      }
+
+      return;
+   }
+
+   AppendDescInfo(oItem = $,compound = $)
+   "This adds the attribute's info to the informational part of an item's "
+   "description, i.e. what the attribute does."
+   {
+      if (Send(oItem,@GetIDStatusFromCompound,#compound=compound))
+      {
+         AddPacket(4,vrInfoDesc);
+      }
+      else
+      {
+         // Not identified, add nothing (blank resource).
+         AddPacket(4,system_blank_resource);
+      }
+
+      return;
+   }
+
+   GetInfoDesc()
+   {
+      return vrInfoDesc;
+   }
+
+   GetTitle(iAbility=0)
+   {
+      iAbility = Bound(iAbility,1,4);
+
+      if iAbility = 2
+      {
+         return itematt_apprentice_rsc;
+      }
+
+      if iAbility = 3
+      {
+         return itematt_journeyman_rsc;
+      }
+
+      if iAbility = 4
+      {
+         return itematt_master_rsc;
+      }
+
+      return itematt_novice_rsc;
+   }
+
+/////////////////////////////////////////////////
+///
+///   Treasure Functions
+///
+/////////////////////////////////////////////////
+
+   AddToTreasureTable()
+   {
+      /// for most Item Atts, take the difficulty value, and add
+      /// an 50// chance at the base level, and a 10// before and after.
+   
+      Send(SYS,@AddToItemAttTreasureTable,#diff=viDifficulty,
+            #percent = 50,#iItemAtt = viItem_Att_Num);
+
+      if viDifficulty < 10
+      {
+         Send(SYS,@AddToItemAttTreasureTable,#diff=viDifficulty+1,
+               #percent=10,#iItemAtt=viItem_Att_Num);
+      }
+      
+      if viDifficulty > 1
+      {
+         Send(SYS,@AddToItemAttTreasureTable,#diff=viDifficulty-1,
+               #percent=10,#iItemAtt=viItem_Att_Num);
+      }
+
+      return;
+   }
+
+   CanBeSpoofed()
+   {
+      return TRUE;
+   }
+
+   FakeAttData()
+   {
+      return $;
+   }
+
+/////////////////////////////////////////////////
+///
+///  Value Functions
+///
+/////////////////////////////////////////////////
+
+   AdjustPrice(value=-1,iCompound=0)
+   {
+      local iPower, iPower_mod;
+
+      if value = -1
+      {
+         Debug("This was called without a value! Impossible!");
+
+         return 0;
+      }
+
+      /// Basic rule of thumb: an Item Att can increase the price of an item by
+      /// 150%, 200%, or 250%.  Choose these values so that all items tend to 
+      /// have similiar prices, so you can't tell an item's value from them.
+      /// Curses drop an item's price by 50%.
+
+      /// piValue_modifier is in the form of a percentage (100, 150, 200, 250).  
+      /// Note that, to drop a price, you lower this value below 100.
+      /// Attributes a player can generate should never raise the price.
+
+      /// piValue_power_modifier makes further modifications TO THE PERCENTAGE
+      /// based on the power of the attribute.  Keep this value at 1,2,5, or 10
+      /// if the value is high, put Value_modifier low to compensate.
+
+      /// don't make these too high.  Multiple item atts can knock an item value
+      /// sky high.
+
+      iPower = Send(self,@TranslatePowerFromCompound,#iCompound=iCompound);
+      iPower_mod = piValue_power_modifier * iPower;
+
+      return (value * (piValue_Modifier + iPower_mod) / 100);
+   }
+
+/////////////////////////////////////////////////
+///
+///  Name Functions
+///
+/////////////////////////////////////////////////
+
+   GetNamePriority()
+   {
+      /// Most items will have their rank order determined by their difficulty.
+      ///   Exceptions are cursed weapons.
+
+      return viDifficulty;
+   }
+
+   ItemBuildDescName(oItem=$)
+   {
+      AddPacket(4,vrName);
+      AddPacket(4,Send(oItem,@GetName));
+
+      return;
+   }
+
+   IsMagicalEffect()
+   {
+      return FALSE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

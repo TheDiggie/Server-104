@@ -1,0 +1,5 @@
+public_survival_started = de \
+   "%s hat eine öffentliche Überlebens-Arena gestartet! Du kannst diese "
+   "nun innerhalb von 5 Minuten mitbestreiten."
+public_ended = de \
+   "Die öffentliche Überlebens-Arena wurde bei Level %i beendet."

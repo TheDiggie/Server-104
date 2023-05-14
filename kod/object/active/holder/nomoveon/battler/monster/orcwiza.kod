@@ -1,0 +1,220 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+OrcWizard is Monster
+
+constants:
+
+   include blakston.khd
+
+   ANIM_CASTARMS = 2
+   ANIM_CASTSTAFF = 3
+
+   FRAME_STAND = 1
+   FRAME_WALK_START = 2
+   FRAME_WALK_END = 6
+   FRAME_ATTACK_START = 7
+   FRAME_ATTACK_END = 11
+   FRAME_CASTARMS_START = 12
+   FRAME_CASTARMS_END = 16
+   FRAME_CASTSTAFF_START = 17
+   FRAME_CASTSTAFF_END = 19
+
+resources:
+
+   include orcwiza.lkod
+
+   OrcWizard_koc_name_rsc = "utomya"
+   OrcWizard_name_rsc = "orc wizard"
+   OrcWizard_icon_rsc = orcwiza.bgf
+   OrcWizard_desc_rsc = \
+      "Harnessing dark powers from deep underground, the Orc Wizards "
+      "enforce the mandates of their chieftain, such as extermination "
+      "of the enemy shadow beasts.  How the orcs came upon the powers of "
+      "magic is unknown, but the thought of man's greatest enemy armed "
+      "with arcane power is enough to make any warrior queasy."
+
+   OrcWizard_dead_icon_rsc = orcwizaX.bgf
+   OrcWizard_dead_name_rsc = "dead orc"
+
+   OrcWizard_sound_hit = orc_atkh.ogg
+   OrcWizard_sound_miss = orc_atkm.ogg
+   OrcWizard_sound_death = wor_dth.ogg
+   OrcWizard_sound_aware = wor_awr.ogg
+
+classvars:
+
+   viIndefinite = ARTICLE_AN
+   vrKocName = OrcWizard_koc_name_rsc
+   vrName = OrcWizard_name_rsc
+   vrIcon = OrcWizard_icon_rsc
+   vrDesc = OrcWizard_desc_rsc
+   vrDead_icon = OrcWizard_dead_icon_rsc
+   vrDead_name = OrcWizard_dead_name_rsc
+
+   viTreasure_type = TID_ORC_WIZARD
+
+   viSpeed = SPEED_AVERAGE
+   viAttack_type = ATCK_WEAP_BLUDGEON
+   viAttributes = 0
+   viLevel = 80
+   viDifficulty = 7
+   viVisionDistance = 20
+   // Attack range of 192, or 3 row/col.
+   viAttackRange = 192
+   viKarma = -60
+   viDefault_behavior = \
+      AI_FIGHT_AGGRESSIVE | AI_FIGHT_HYPERAGGRESSIVE | AI_MOVE_FLEE_FRIGHTENERS
+   viCashmin = -800
+   viCashmax = 800
+   viWimpy = 3
+
+   vrSound_hit = orc_sound_hit
+   vrSound_miss = orc_sound_miss
+   vrSound_aware = orc_sound_aware
+   vrSound_death = orc_sound_death
+
+properties:
+
+   piAnimation = ANIM_NONE
+
+   piSpellPower = 75
+
+   piReputationGroup = REP_ORC
+   
+messages:
+
+   Constructed()
+   {
+      plResistances = [ [-ATCK_SPELL_UNHOLY, 40 ],
+                        [ATCK_WEAP_PIERCE, 40 ],
+                        [ATCK_WEAP_SLASH, 40 ],
+                        [-ATCK_SPELL_HOLY, -25 ] ];
+
+      plSpellBook = [ [SID_SLITHERBOLT,5,40], [SID_KILLING_FIELDS,8,50],
+                      [SID_PURGE,4,85], [SID_MANA_BOMB,6,90],
+                      [SID_FORGET,4,100] ];
+
+      plReputationEnemies = [REP_PSAVAR, REP_KKAVAR, REP_CTAVAR];
+
+      propagate;
+   }
+
+   MonsterAttack(what = $)
+   {
+      Send(self,@DoSlash);
+
+      return;
+   }
+
+   DoSlash()
+   {
+      piAnimation = ANIM_ATTACK;
+      Send(poOwner,@SomethingChanged,#what=self);
+      piAnimation = ANIM_NONE;
+
+      return;
+   }
+
+   SendLookAnimation()
+   {
+      AddPacket(1,ANIMATE_CYCLE);
+      AddPacket(4,125,2,FRAME_CASTSTAFF_START,2,FRAME_CASTSTAFF_END);
+
+      return;
+   }
+
+   SendMoveAnimation()
+   {
+      // Make it look like orc is walking
+      // Cycle through "walking" bitmaps (groups 2-6) at 125 ms per frame
+      AddPacket(1,ANIMATE_CYCLE,4,125,2,FRAME_WALK_START,2,FRAME_WALK_END);
+
+      return;
+   }
+
+   SendAnimation()
+   {
+      if piAnimation = ANIM_ATTACK
+      {
+         AddPacket(1,ANIMATE_ONCE,4,125,2,FRAME_ATTACK_START,2,
+                   FRAME_ATTACK_END,2,FRAME_STAND);
+
+         return;
+      }
+
+      if piAnimation = ANIM_CASTARMS
+      {
+         AddPacket(1,ANIMATE_ONCE,4,125,2,FRAME_CASTARMS_START,2,
+                   FRAME_CASTARMS_END,2,FRAME_STAND);
+
+         return;
+      }
+
+      if piAnimation = ANIM_CASTSTAFF
+      {
+         AddPacket(1,ANIMATE_ONCE,4,125,2,FRAME_CASTSTAFF_START,2,
+                   FRAME_CASTSTAFF_END,2,FRAME_STAND);
+
+         return;
+      }
+
+      propagate;
+   }
+
+   MonsterCastAnimation(iSpellNum=$)
+   "If a monster has a special cast animation, call this."
+   {
+      if iSpellNum = SID_KILLING_FIELDS
+         OR iSpellNum = SID_MANA_BOMB
+      {
+         piAnimation = ANIM_CASTARMS;
+      }
+      else
+      {
+         piAnimation = ANIM_CASTSTAFF;
+      }
+
+      Send(poOwner,@SomethingChanged,#what=self);
+      piAnimation = ANIM_NONE;
+
+      return;
+   }
+
+   IsWizard()
+   {
+      return TRUE;
+   }
+
+   IsAlly(target = $)
+   {
+      if target = $
+      {
+         return FALSE;
+      }
+
+      if IsClass(target,&Orc)
+         OR IsClass(target,&CaveOrc)
+         OR IsClass(target,&OrcPitBoss)
+         OR IsClass(target,&OrcWizard)
+      {
+         return TRUE;
+      }
+
+      propagate;
+   }
+
+   IsFrightenedOf(target=$)
+   {
+      return IsClass(target,&ShadowBeast);
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

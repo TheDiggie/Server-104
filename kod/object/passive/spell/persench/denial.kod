@@ -1,0 +1,155 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+denial is PersonalEnchantment
+
+constants:
+   include blakston.khd
+
+resources:
+
+   include denial.lkod
+
+   denial_name_rsc = "denial"
+   denial_icon_rsc = idenial.bgf
+   denial_desc_rsc = \
+      "Causes the caster to unrealize their wounds, but beware when "
+      "you realize its a hoax, because the wounds are still just as deep!  "
+      "Requires two firesand and a vial of solagh to cast."
+
+   denial_on_rsc = "Your wounds suspiciously disappear."
+   denial_failed_rsc = \
+      "Hmmm, you can't seem to convince yourself of perfect health."
+   denial_already_enchanted_rsc = \
+      "You can't fool yourself twice about something like this, at "
+      "least not at the same time."
+
+   denial_off_rsc = "Ouch - you are reminded of your previous weariness."
+   denial_sound = rdenial.ogg
+
+classvars:
+
+   vrName = denial_name_rsc
+   vrIcon = denial_icon_rsc
+   vrDesc = denial_desc_rsc
+
+   vrAlreadyEnchanted = Denial_already_enchanted_rsc
+   vrEnchantment_On = Denial_On_rsc
+   vrEnchantment_Off = Denial_Off_rsc
+
+   viSpell_num = SID_DENIAL
+   viSchool = SS_RIIJA
+   viSpell_level = 4
+   viMana = 15
+
+   viSpellExertion = 5
+   viCast_time = 1000
+   viMeditate_ratio = 20
+
+   vbCanCastOnOthers = FALSE
+
+   vrSucceed_wav = denial_sound
+
+properties:
+
+   // The effectiveness of purge on the target spell as a percentage.
+   // 100 will cause purge to remove its entire spellpower, 0 will
+   // prevent purge from removing this spell.
+   viPurgeFactor = 5
+
+messages:
+
+   CanPayCosts(who=$,lTargets=$,bItemCast=FALSE)
+   {
+      // If they are already boosted above max health, then return FALSE
+      if Send(who,@GetHealth) >= Send(who,@GetMaxHealth)
+      {
+         if NOT bItemCast
+         {
+            Send(who,@MsgSendUser,#message_rsc=denial_failed_rsc);
+         }
+
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&FireSand,2], plReagents);
+      plReagents = Cons([&Solagh,1],plReagents);
+
+      return;
+   }
+
+   GetDuration(iSpellPower=0)
+   {
+      local iDuration;
+
+      // 10 - 20 plus 1 second per spellpower
+      iDuration = Random(10000,20000) + (iSpellPower * 1000);
+      iDuration=Bound(iDuration,20000,120000);
+
+      return iDuration;
+   }
+
+
+   GetStateValue(who=$,Target=$,iSpellPower=1)
+   {
+      local iHPGain, iSpellpowerBonus;
+
+      iHPGain = Send(who,@GetMaxHealth)*100 - Send(who,@GetExactHealth);
+
+      // 0 - 20, this is the percent of damage you don't
+      // get back when the enchantment fails.
+      iSpellpowerBonus = (iSpellpower + 1) / 5;
+      iHPGain = Send(who,@GainHealthNormal,#amount=iHPGain,#precision=TRUE);
+
+      return iHPGain - (iSpellpowerBonus * iHPGain)/ 100 ;
+   }
+
+
+   EndEnchantment(who=$,state=$,report=TRUE)
+   {
+      Post(self,@EndEnchantmentEffects,#who=who,#state=state);
+
+      propagate;
+   }
+
+   EndEnchantmentEffects(who=$,state=$)
+   {
+      if state
+      {
+         Send(who,@LoseHealth,#amount=state,#precision=TRUE);
+
+         if Send(who,@GetExactHealth) < 1
+         {
+            // Don't die: too harsh; makes spell unusable.
+            Send(who,@SetExactHealth,#amount=1);
+         }
+      }
+
+      return;
+   }
+
+   GetPotionClass()
+   {
+      return &DenialPotion;
+   }
+
+   SpellBannedInArena()
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

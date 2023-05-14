@@ -1,0 +1,53 @@
+// Quest description.
+shalquest_name_rsc = de "Shal'ill Schüler Quest"
+shalquest_desc_rsc = de \
+   "Priesterin Xiana hat dich beauftragt zu %s zu gehen und folgende Worte zu sprechen"
+   ":\"Ihr und Euresgleichen, empfanget die Reinheit welches uns leitet in unserer "
+   "Not und unserer Trauer. Ich verzeihe euch und euren Jüngern. Euer Leben "
+   "ist dem Krieg gewidmet doch niemand anderes als die Gütige selbst wird "
+   "euch nach eurem Tode richten.\".  Kehre zurück, wenn Du den Auftrag erledigt hast."
+
+shalquest_node_three_rsc = de \
+   "Kehre zurück zu Priesterin Xiana und teile ihr mit, dass der Auftrag erledigt ist"
+
+shalquest_completed = de \
+   "Du hast das Shal'ill Schüler Quest abgeschlossen.  Du bist nun Schüler Shal'ills, und "
+   "die Priesterin wird Dir nun weitere Zauber beibringen. "
+
+// Quest resources.
+shalilledisciple_trigger = de \
+   "Ihr und Euresgleichen, empfanget die Reinheit welches uns leitet in unserer "
+   "Not und unserer Trauer. Ich verzeihe euch und euren Jüngern. Euer Leben "
+   "ist dem Krieg gewidmet doch niemand anderes als die Gütige selbst wird "
+   "euch nach eurem Tode richten."
+shalilledisciple_assign = de \
+   "~bDu möchtest mehr lernen über das sanfte, heilende Wesen unserer guten "
+   "Herrin. Du musst den Machenschaften von %NPC trotzen und Deine Absicht "
+   "verkünden, jenen die Erbarmungslosigkeit und Brutalität zu vergeben. "
+   "Heile sie, wenn Du kannst. Sage: \"%CARGO\"Kehre danach zu mir zurück und "
+   "berichte, dass Du getan hast worum ich Dich gebeten habe."
+shalilledisciple_success = de \
+   "`bGesegnet soll der Tag sein. Heute ist die Geburt einer weiteren Seele "
+   "gefüllt mit dem Licht von Shal'ill.  Suche mich wieder auf, wenn Du bereit "
+   "bist mehr Wissen von der Gottesmutter zu lernen.Du bist es wert."
+shalilledisciple_failure = de \
+   "Betreff: Behalte Dein Herz, Kind von Shal'ill\nDas Scheitern ist Teil "
+   "des Lebens. Suche in Deinem Herzen und finde den Makel. Bitte komm zu "
+   "mir zurück und wir werden unsere Reise auf dem Weg zur Harmonie von Neuem "
+   "beginnen."
+
+// NPC responses.
+shaldisc_qorpr_resp = de \
+   "~kPriesterin Zuxana sagt, \"~r~IJa, ich vermute, für Qor ist die Zeit gekommen, Erlösung zu "
+   "suchen. Du bist der Schlüssel für ihre Rettung. Schließe dich unserer Gemeinde an, und "
+   "wir werden uns gemeinsam auf den Weg zum Malumnea machen.~I~k\""
+shaldisc_farenpr_resp = de \
+   "~kPriesterin Tenuv'vyal sagt, \"~B~gWie kannst Du es wagen, von Lord Faren Vergebung zu erwarten "
+   "Geh!!~B~k\""
+shaldisc_kranpr_resp = de \
+   "~kPriesterin Qertina sagt, \"~B~bUnsere kleine Xiana möchte einen neuen Schüler ausbilden."
+   "  Sehr gut, Du hast die Nachricht abgeliefert. Du kannst jetzt zu ihr zurückkehren.~B~k\""
+shaldisc_duke_resp = de \
+   "~kHerzog Akardius lacht und sagt, \"~B~bSicherlich meinst Du das nicht ernst?  "
+   "Ich brauche keine Vergebung.  Krieche zurück in Deinen Templel, Dein Tod ist Dir "
+   "sicher.~B~k\""

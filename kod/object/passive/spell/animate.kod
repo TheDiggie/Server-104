@@ -1,0 +1,245 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Animate is Spell
+
+constants:
+
+   include blakston.khd
+
+   MAX_RISEN_CONTROL_SECS = 1200  // 20 minutes
+
+resources:
+
+   include animate.lkod
+
+   Animate_name_rsc = "animate"
+   Animate_icon_rsc = ianimate.bgf
+   Animate_desc_rsc = \
+      "Animates the corpse of a monster or player, that it may do your "
+      "bidding.  Requires the blood of a shaman to cast."
+
+   Animate_bad_target = "You can't cast animate on %s%s!"
+   Animate_human_cast_rsc ="%s's corpse pulls itself up off the ground."
+   Animate_human_failed_rsc ="%s's corpse remains inanimate on the ground."
+   Animate_mob_failed_rsc = \
+      "The %s's remains still lay lifeless and inanimate."
+   Animate_mob_cast_rsc = \
+      "The %s's remains come alive and rise up from the ground."
+   Animate_failed_rsc = "The remains are unable to be animated."
+   Animate_too_many_rsc = "You are unable to control another minion."
+   Animate_failed_full_rsc = \
+      "There are too many monsters here to raise another."
+
+   Animate_sound = qanimate.ogg
+
+classvars:
+
+   vrName = Animate_name_rsc
+   vrIcon = Animate_icon_rsc
+   vrDesc = Animate_desc_rsc
+
+   viSpell_num = SID_ANIMATE
+   viSchool = SS_QOR
+   viSpell_level = 4
+   viMana = 20
+
+   viSpellExertion = 3
+   viCast_time = 10000
+   viChance_To_Increase = 20
+   viMeditate_ratio = 40
+
+   vrSucceed_wav = Animate_sound
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&ShamanBlood,1], plReagents);
+
+      return;
+   }
+
+   GetNumSpellTargets()
+   {
+      return 1;
+   }
+
+   CanPayCosts(who=$,lTargets=$)
+   {
+      local oOwner, oRoom, oTarget;
+
+      oRoom = Send(who,@GetOwner);
+      oTarget = First(lTargets);
+
+      if oTarget = $
+         OR NOT IsClass(oTarget,&DeadBody)
+      {
+         Send(who,@MsgSendUser,#message_rsc=Animate_bad_target,
+               #parm1=Send(oTarget,@GetDef),
+               #parm2=Send(oTarget,@GetName));
+
+         return FALSE;
+      }
+
+      oOwner = Send(oTarget,@GetOwner);
+
+      if oOwner = $
+         OR Send(oOwner,@SafePlayerAttack)
+      {
+         Send(who,@MsgSendUser,#message_rsc=Animate_failed_rsc);
+
+         return FALSE;
+      }
+
+      if (Send(oRoom,@CountHoldingHowMany,#class=&monster) > 25)
+         AND NOT IsClass(oRoom,&SurvivalRoom)
+      {
+         Send(who,@MsgSendUser,#message_rsc=Animate_failed_full_rsc);
+
+         return FALSE;
+      }
+
+      if IsClass(who,&Player)
+      {
+         if Send(who,@CheckBattlerMinionCount)
+               >= Send(SETTINGS_OBJECT,@GetPlayerMinionLimit)
+         {
+            Send(who,@MsgSendUser,#message_rsc=Animate_too_many_rsc);
+
+            return FALSE;
+         }
+      }
+      else
+      {
+         if Send(who,@CheckBattlerMinionCount)
+            >= Send(SETTINGS_OBJECT,@GetMonsterMinionLimit)
+         {
+            return FALSE;
+         }
+      }
+
+      propagate;
+   }
+
+   DoubleCheckAfterTrance(who=$,lTargets=$)
+   {
+      local oRoom, oTarget;
+
+      oRoom = Send(who,@GetOwner);
+      oTarget = First(lTargets);
+      if oRoom <> Send(oTarget,@GetOwner)
+      {
+         if IsClass(who,&User)
+         {
+            Send(who,@MsgSendUser,#message_rsc=spell_trance_break,
+                  #parm1=vrName);
+            Send(who,@WaveSendUser,#wave_rsc=spell_trance_break_sound);
+         }
+
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+   CastSpell(who=$,lTargets=$,iSpellPower=1)
+   {
+      local oRisen, oRoom, oTarget, iNum;
+
+      oRoom = Send(who,@GetOwner);
+      oTarget = First(lTargets);
+
+
+      if (oTarget = $
+         OR oRoom <> Send(oTarget,@GetOwner))
+      {
+         if IsClass(who,&User)
+         {
+            Send(who,@MsgSendUser,#message_rsc=spell_trance_break,
+                  #parm1=vrName);
+            Send(who,@WaveSendUser,#wave_rsc=spell_trance_break_sound);
+         }
+
+         return;
+      }
+
+      iNum = Random(iSpellPower / 3 * 2,iSpellPower);
+
+      if iNum < 20
+      {
+         oRisen = Create(&Mummy);
+      }
+      else if iNum < 40
+      {
+         oRisen = Create(&SpectralMummy);
+      }
+      else if iNum < 60
+      {
+         oRisen = Create(&BatteredSkeleton);
+      }
+      else if iNum < 75
+      {
+         oRisen = Create(&Skeleton);
+      }
+      else if iNum < 90
+      {
+         oRisen = Create(&TuskedSkeleton);
+      }
+      else
+      {
+         oRisen = Create(&DaemonSkeleton);
+      }
+
+      Send(oRisen,@SetIllusion,#value=FALSE);
+
+      // Place the minion
+      Send(oRoom,@NewHold,#what=oRisen,#new_row=Send(oTarget,@GetRow),
+            #new_col=Send(oTarget,@GetCol),
+            #fine_row=Send(oTarget,@GetFineRow),
+            #fine_col=Send(oTarget,@GetFineCol));
+
+      Send(oRisen,@SetMaster,#oMaster=who);
+
+      // Set initial minion behavior
+      Send(self,@ModifyMonsterBehavior,#mob=oRisen);
+
+      if Send(oTarget,@WasPlayer)
+      {
+         Send(who,@MsgSendUser,#message_rsc=Animate_human_cast_rsc,
+               #parm1=Send(oTarget,@GetCorpseName));
+      }
+      else
+      {
+         Send(who,@MsgSendUser,#message_rsc=Animate_mob_cast_rsc,
+               #parm1=Send(oTarget,@GetName));
+      }
+
+      // Delete the corpse
+      Post(oTarget,@Delete);
+
+      propagate;
+   }
+
+   ModifyMonsterBehavior(mob=$)
+   {
+      Send(mob,@SetBehaviorFlag,#flag=AI_MOVE_FOLLOW_MASTER,#value=TRUE);
+      Send(mob,@SetBehaviorFlag,#flag=AI_FIGHT_AGGRESSIVE,#value=FALSE);
+      Send(mob,@SetBehaviorFlag,#flag=AI_FIGHT_NEWBIESAFE);
+      Send(mob,@SetBehaviorFlag,#flag=AI_FIGHT_MONSTERS);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

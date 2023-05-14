@@ -1,0 +1,53 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Skeleton4Treasure is TreasureType
+
+////Replaced SporeburstScroll with IdentifyWand due to bug with scroll////
+////AGM 7-26-99////
+
+constants:
+
+   include blakston.khd
+
+classvars:
+
+   viTreasure_num = TID_SKELETON4
+
+properties:
+
+   piItem_att_chance = 3
+   piDIff_seed = 9
+
+messages:
+
+   Constructed()
+   {
+      plTreasure = [ [ &Scimitar, 4 ],
+                     [ &BlueDragonScale, 35 ],
+                     [ &SilverArrow, 5 ],
+                     [ &DarkAngelFeather, 32 ],
+                     [ &Circlet, 3 ],
+                     [ &Gauntlet, 2 ],
+                     [ &SimpleHelm, 2 ],
+                     [ &InkyCap, 11 ],
+                     [ &IdentifyWand, 1 ],
+                     [ &WindScroll, 1 ],
+                     [ &KillingFieldScroll, 1 ],
+                     [ &DementWand, 1 ],
+		             [ &DiscordScroll, 1 ],
+		             [ &FireArrow, 1 ]
+                  ];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

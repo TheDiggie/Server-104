@@ -1,0 +1,109 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Lute is Instrument
+
+// This is the superclass for all lute-type instruments.
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include lute.lkod
+
+   lute_name_rsc = "lute"
+   lute_icon_rsc = music.bgf
+   lute_overlay_rsc = luteov.bgf
+   lute_desc_rsc = \
+      "The simple lute is the instrument of choice among the meridian bards.  "
+     "Its rosewood construction offers a rich tone in the hands of an expert."
+   lute_used_wav_rsc = lute_equip.ogg
+
+classvars:
+
+   viInstrument_strength = 20
+   vrName = lute_name_rsc
+   vrDesc = lute_desc_rsc
+
+   vrIcon = lute_icon_rsc
+   vrInstrument_overlay = lute_overlay_rsc
+
+   viValue_average = 800
+   viWeight = 75
+   viBulk = 150
+
+properties:
+
+messages:
+
+   ReqUseSomething(what = $)
+   {
+      if (IsClass(what,&Shield)
+         AND NOT IsClass(what,&SoldierShield))
+         OR IsClass(what,&Weapon)
+         OR IsClass(what,&Lute)
+         OR IsClass(what,&JewelOfFroz)
+         OR IsClass(what,&Book)
+      {
+         if Send(poOwner,@TryUnuseItem,#what=self)
+         {
+            propagate;
+         }
+         else
+         {
+            return FALSE;
+         }
+      }
+
+      propagate;
+   }
+
+   NewUsed()
+   {
+      local oItemAtt, oRoom;
+
+      // Play a sound
+      oRoom = Send(poOwner, @GetOwner);
+      if oRoom <> $
+      {
+         Send(oRoom, @SomethingWaveRoom, #what = poOwner,
+               #wave_rsc = lute_used_wav_rsc);
+      }
+
+      // This alerts Item attributes when item is used.
+      // Currently special checks for "glowing" weapon attribute.
+      if Send(self,@HasAttribute,#ItemAtt=WA_GLOWING)
+      {
+         oItemAtt = Send(SYS,@FindItemAttByNum,#num=WA_GLOWING);
+         Send(oItemAtt,@ItemUsed,#oItem=self,#oPlayer=poOwner);
+      }
+
+      propagate;
+   }
+
+   NewUnused()
+   {
+      local oItemAtt;
+
+      // This alerts Item attributes when item is unusedused.
+      // Currently special checks for "glowing" weapon attribute.
+      if Send(self,@HasAttribute,#ItemAtt=WA_GLOWING)
+      {
+         oItemAtt = Send(SYS,@FindItemAttByNum,#num=WA_GLOWING);
+         Send(oItemAtt,@ItemUnused,#oItem=self,#oPlayer=poOwner);
+      }
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

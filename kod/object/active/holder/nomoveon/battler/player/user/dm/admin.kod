@@ -1,0 +1,409 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Admin is DM
+
+constants:
+
+   include blakston.khd
+   include protocol.khd
+
+resources:
+
+   include admin.lkod
+
+   admin_login = "Welcome to the game, Administrator %s."
+   admin_admin_module = admin.dll
+
+   admin_morphed = "You are not in your plain human form."
+
+   admin_anonymous = "You are now anonymous."
+   admin_anonymous_hint = "(Repeat the command to restore your name.)"
+   admin_not_anonymous = "You are again known as %s."
+   admin_black = "You are now shadowform."
+
+   admin_create_itematt_command = "create itematt"
+   admin_anonymous_command = "anonymous"
+   admin_shadow_command = "shadow"
+   admin_relic_command = "relic"
+   admin_start_tour_command = "start tour"
+   admin_end_tour_command = "end tour"
+   admin_logoffghost_on_command = "logoffghost on"
+   admin_logoffghost_off_command = "logoffghost off"
+   admin_logoffghost_temp_off_command = "logoffghost temp off"
+
+   admin_no_longer = "This command no longer exists; try the DM command form."
+
+   // not for admin use, but to let creator work
+   admin_icon_priestess = priestes.bgf 
+   admin_cant_create_itematt = \
+      "You cannot create an item attributed weapon with that name."
+   admin_need_weapon = \
+      "You need to equip the weapon you wish to give an attribute to (this "
+      "command only works on weapons, for the time being)."
+
+   admin_made_itematt = "%s raises %s%s, glowing briefly with a mystical light!"
+
+   admin_logoffghost_on = "Logoff penalties are now active."
+   admin_logoffghost_off = "Logoff penalties are now inactive."
+   admin_logoffghost_temp_off = "Logoff penalties are now temporarily inactive."
+
+classvars:
+
+properties:
+
+   pbCapableAdmin = TRUE
+   piDMFlags = DMFLAG_SET_ADMIN
+
+   piTour_delay
+   ptTour
+   piTour_count
+
+messages:
+
+   UserLogonHook()
+   {
+      if pbCapableAdmin
+      {
+         Send(self,@MsgSendUser,#message_rsc=admin_login,
+               #parm1=Send(self,@GetTrueName));
+         Send(self,@UserLoadModule,#module=admin_admin_module);
+      }
+
+      if (piDMFlags & DMFLAG_ANONYMOUS)
+      {
+         Send(self,@MsgSendUser,#message_rsc=admin_anonymous);
+      }
+
+      if pbMorph
+      {
+         Send(self,@MsgSendUser,#message_rsc=admin_morphed);
+      }
+
+      propagate;
+   }
+
+   AllowBattlerAttack(victim=$,stroke_obj=$,use_weapon=$,report=TRUE)
+   {
+      if IsClass(victim,&Player)
+         AND Send(victim,@IsInCannotInteractMode)
+      {
+         return FALSE;
+      }
+
+      if Send(self,@PlayerIsImmortal)
+      {
+         return TRUE;
+      }
+
+      propagate;
+   }
+
+   ComputeMaxMana()
+   {
+      // Don't change the max mana if the player is immortal
+      if Send(self,@PlayerIsImmortal)
+      {
+         return;
+      }
+
+      propagate;
+   }
+
+   UserSay(string=$,type=$)
+   {
+      local oWeapon, i, lObjects, oObject, rRoom, iRow, iCol, iFineRow, iFineCol;
+
+      if type <> SAY_DM
+      {
+         propagate;
+      }
+
+      if StringContain(string,admin_create_itematt_command)
+      {
+         // Log the DM command in god.txt, and print it to the debug log.
+         GodLog("Admin ",Send(self,@GetTrueName)," used the DM command dm ",string);
+
+         /// Only works on weapons for now.
+         oWeapon = Send(self,@LookupPlayerWeapon);
+
+         if oWeapon= $
+         {
+            Send(self,@MsgSendUser,#message_rsc=admin_need_weapon);
+
+            return;
+         }
+
+         foreach i in Send(SYS,@GetItemAtts)
+         {
+            if Send(i,@DMCreateItemAtt,#who=self,#string=string,
+                    #oWeapon=oWeapon)
+            {
+               if NOT pbStealth
+               {
+                  Send(poOwner,@SomeoneSaid,#what=self,#type=SAY_MESSAGE,
+                       #string=admin_made_itematt,
+                       #parm1=Send(self,@GetName),
+                       #parm2=Send(oWeapon,@GetDef),
+                       #parm3=Send(oWeapon,@GetName));
+               }
+
+               return;
+            }
+         }
+         Send(self,@MsgSendUser,#message_rsc=admin_cant_create_itematt);
+
+         return;
+      }
+
+      if (StringContain(string,admin_relic_command))
+      {
+         // Log to god log.
+         GodLog("Admin ",Send(self,@GetTrueName)," used the DM command dm ",string);
+
+         if (StringContain(string,"1") OR StringContain(string,"heirloom"))
+         {
+            Send(self,@NewHold,#what=Send(SYS,@GetTotem,#num=1));
+
+            return;
+         }
+
+         if (StringContain(string,"2") OR StringContain(string,"trophy"))
+         {
+            Send(self,@NewHold,#what=Send(SYS,@GetTotem,#num=2));
+
+            return;
+         }
+
+         if (StringContain(string,"3") OR StringContain(string,"vase"))
+         {
+            Send(self,@NewHold,#what=Send(SYS,@GetTotem,#num=3));
+
+            return;
+         }
+
+         if (StringContain(string,"4") OR StringContain(string,"shield"))
+         {
+            Send(self,@NewHold,#what=Send(SYS,@GetTotem,#num=4));
+
+            return;
+         }
+
+         if (StringContain(string,"5") OR StringContain(string,"chalice"))
+         {
+            Send(self,@NewHold,#what=Send(SYS,@GetTotem,#num=5));
+
+            return;
+         }
+      }
+
+      if StringEqual(string,admin_anonymous_command)
+      {
+         // Log to god log.
+         GodLog("Admin ",Send(self,@GetTrueName)," used the DM command dm ",string);
+
+         if NOT (piFlags & PFLAG_ANONYMOUS)
+         {
+            Send(self,@SetPlayerFlag,#flag=PFLAG_ANONYMOUS,#value=TRUE);
+            piDMFlags = piDMFlags | DMFLAG_ANONYMOUS;
+
+            Send(self,@MsgSendUser,#message_rsc=admin_anonymous);
+            Send(self,@MsgSendUser,#message_rsc=admin_anonymous_hint);
+         }
+         else
+         {
+            oObject = Send(SYS,@FindSpellByNum,#num=SID_ANONYMITY);
+            if Send(self,@IsEnchanted,#what=oObject)
+            {
+               Send(self,@RemoveEnchantment,#what=oObject);
+            }
+            else
+            {
+               Send(self,@SetPlayerFlag,#flag=PFLAG_ANONYMOUS,#value=FALSE);
+               piDMFlags = piDMFlags & ~DMFLAG_ANONYMOUS;
+               
+               Send(self,@MsgSendUser,#message_rsc=admin_not_anonymous,
+                    #parm1=Send(self,@GetTrueName));
+            }
+         }
+         Send(self,@ResetPlayerFlagList);
+
+         return;
+      }
+
+      if StringEqual(string,admin_shadow_command)
+      {
+         // Log to god log.
+         GodLog("Admin ",Send(self,@GetTrueName)," used the DM command dm ",string);
+
+         Send(self,@MsgSendUser,#message_rsc=admin_black);
+         Send(self,@SetPlayerDrawfx,#drawfx=DRAWFX_BLACK);
+         piDMFlags = piDMFlags | DMFLAG_SHADOW;
+         Send(self,@ResetPlayerFlagList);
+
+         return;
+      }
+
+      if StringEqual(string,admin_start_tour_command)
+      {
+         Send(self,@StartTour);
+
+         return;
+      }
+
+      if StringEqual(string,admin_end_tour_command)
+      {
+         Send(self,@EndTour);
+
+         return;
+      }
+
+      if StringEqual(string,admin_logoffghost_on_command)
+      {
+         // Log to god log.
+         GodLog("Admin ",Send(self,@GetTrueName)," used the DM command dm ",string);
+
+         Send(self,@MsgSendUser,#message_rsc=admin_logoffghost_on);
+         Send(SYS,@SetLogoffPenaltyEnable,#enable=TRUE);
+
+         return;
+      }
+
+      if StringEqual(string,admin_logoffghost_off_command)
+      {
+         // Log to god log.
+         GodLog("Admin ",Send(self,@GetTrueName)," used the DM command dm ",string);
+
+         Send(self,@MsgSendUser,#message_rsc=admin_logoffghost_off);
+         Send(SYS,@SetLogoffPenaltyEnable,#enable=FALSE);
+
+         return;
+      }
+
+      if StringEqual(string,admin_logoffghost_temp_off_command)
+      {
+         // Log to god log.
+         GodLog("Admin ",Send(self,@GetTrueName)," used the DM command dm ",string);
+
+         Send(self,@MsgSendUser,#message_rsc=admin_logoffghost_temp_off);
+         Send(SYS,@TempDisableLogoffPenalties);
+
+         return;
+      }
+
+      propagate;
+   }
+
+   SpawnTestMobs(class = &OrcWizard, num = 1)
+   {
+      local i, oMob;
+
+      if poOwner = $
+      {
+         return;
+      }
+
+      i = 0;
+
+      // Don't make too many at once.
+      num = Bound(num,1,200);
+
+      while i++ < num
+      {
+         oMob = Create(class);
+         Send(poOwner,@NewHold,#what=oMob,#new_row=piRow,#new_col=piCol,
+               #fine_row=piFine_row,#fine_col=piFine_col);
+      }
+
+      return;
+   }
+
+   //// Room tours
+
+   StartTour(delay=2000)
+   {
+      local i;
+
+      piTour_delay = delay;
+      piTour_count = 1;
+      Send(self,@TourTimer);
+
+      return;
+   }
+
+   TourTimer()
+   {
+      ptTour = $;
+
+      if piTour_count > Length(Send(SYS,@GetRooms))
+      {
+         return;
+      }
+
+      Send(Nth(Send(SYS,@GetRooms),piTour_count),@Teleport,#what=self);
+      ptTour = CreateTimer(self,@TourTimer,piTour_delay);
+      piTour_count = piTour_count + 1;
+
+      return;
+   }
+
+   EndTour()
+   {
+      if ptTour <> $
+      {
+         DeleteTimer(ptTour);
+         ptTour = $;
+      }
+
+      return;
+   }
+
+   SomeoneLogon(what=$,bTrue=TRUE)
+   "We aren't tricked by admins only going hidden."
+   {
+      if NOT bTrue
+      {
+         return;
+      }
+
+      propagate;
+   }
+
+   SomeoneLogoff(what=$,bTrue=TRUE)
+   "Don't be tricked by admins only going hidden."
+   {
+      if NOT bTrue
+      {
+         return;
+      }
+
+      propagate;
+   }
+
+   UserLogoffHook()
+   {
+      Send(self,@EndTour);
+
+      propagate;
+   }
+
+   AddDefaultSpells()
+   "Admins start with no spells, they can add their own."
+   {
+      return;
+   }
+
+   GetPriestessIconRsc()
+   {
+      return admin_icon_priestess;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,108 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CorpsePortal is Portal
+
+constants:
+
+   include blakston.khd
+
+   CORPSEPORTAL_RANGE = 3
+
+resources:
+
+   include corpport.lkod
+
+   corpseportal_name_rsc = "rip in space"
+   corpseportal_icon_rsc = teleport.bgf
+   corpseportal_desc_rsc = \
+      "This rip in space leads back to someone's body.  The rip will only "
+      "work for the former inhabitant of that body."
+
+classvars:
+
+   vrName = corpseportal_name_rsc
+   viMoveOn_type = MOVEON_TELEPORTER
+   viAnimationSpeed = 400
+
+properties:
+
+   vrDesc = corpseportal_desc_rsc
+   vrIcon = corpseportal_icon_rsc
+
+   ptExpire = $
+   poCorpse = $
+   piDrawFx = DRAWFX_TRANSLUCENT_75
+
+messages:
+
+   Constructor(Corpse = $, SpellPower = 20)
+   {
+      local iDuration;
+
+      if Corpse = $
+      {
+         Post(Self,@Delete);
+      }
+      else
+      {
+         poCorpse = Corpse;
+      }
+
+      iDuration = (10 + (SpellPower / 2)) * 1000;
+
+      ptExpire = CreateTimer(self,@Expire,iDuration);
+
+      propagate;
+   }
+
+   Expire()
+   {
+      ptExpire = $;
+
+      Send(self,@Delete);
+
+      return;
+   }
+
+   Delete()
+   {
+      if ptExpire <> $
+      {
+         DeleteTimer(ptExpire);
+         ptExpire = $;
+      }
+
+      propagate;
+   }
+
+   TeleportSomething(what = $)
+   {
+      if (Send(what,@GetName) = Send(poCorpse,@GetCorpseName))
+      {
+         Send(poOwner,@ZapToCorpse,#who=what);
+         Send(self,@Delete);
+      }
+
+      return;
+   }
+
+   ReqNewOwner(what = $)
+   {
+      if what <> Send(SYS,@FindRoomByNum,#num=RID_UNDERWORLD)
+      {
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

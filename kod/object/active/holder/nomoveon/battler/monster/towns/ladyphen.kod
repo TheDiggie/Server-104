@@ -1,0 +1,561 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+ladypheonix is PassiveObject
+
+///////////////////////////////////////////////////////
+///This is a memorial statue of a meridian player    ///
+///who died.  Don't remove it, unless you want the   ///
+///players to get really, really pissed.             ///
+///////////////////////////////////////////////////////
+
+constants:
+
+   include blakston.khd
+   include protocol.khd
+
+   NORTH = 1
+   SOUTH = 2
+   POSE_PUNCH = 1
+   POSE_NONE = 2
+   POSE_CAST = 3   
+   POSE_WEAPON_ATTACK = 4
+   POSE_BOW_ATTACK = 5
+
+   COLOR_BLUE = 1
+   COLOR_GREEN = 2
+   COLOR_YELLOW = 3
+
+
+resources:
+
+   include ladyphen.lkod
+ 
+   ladypheonix_name_rsc = "LadyPhoenix"
+   ladypheonix_desc_rsc = \
+      "A strange feeling comes over you as you perceive that there is a "
+      "force deep inside this statue.  A soft, singing voice fills your "
+      "senses. Her eyes seem to follow you, taking careful notice of your "
+      "actions.   A feeling of well being and protection washes over you, "
+      "and you know that you can trust in her guidance."
+
+   ladyph_dir_step_rsc = \
+      "`kLadyPhoenix whispers, \"Now take %s %s %s, then take a "
+      "step forward.\""
+   ladyph_dir_nostep_rsc = \
+      "`kLadyPhoenix whispers, \"Now take a step forward.\""
+   ladypheonix_not_in_range = \
+      "`kLadyPhoenix whispers something, but you are too far away to hear it."
+   ladypheonix_whisper_start = \
+      "~kLadyPhoenix whispers, \"The %s will not harm you, but go no further "
+      "without my guidance.\""
+
+   ladypheonix_row_6 = "northernmost cloud"
+   ladypheonix_row_7 = "second cloud from the north"
+   ladypheonix_row_8 = "third cloud from the north"
+   ladypheonix_row_9 = "center cloud"
+   ladypheonix_row_10 = "third cloud from the south"
+   ladypheonix_row_11 = "second cloud from the south"
+   ladypheonix_row_12 = "southernmost cloud"
+   ladypheonix_step = "step"
+   ladypheonix_steps = "steps"
+   ladypheonix_south = "south"
+   ladypheonix_north = "north"
+   ladypheonix_protect_command = "protect"
+   ladypheonix_wlll_protect = "~kLadyPhoenix whispers,\"I will protect you.\""
+   ladypheonix_already_protecting = \
+      "~kLadyPhoenix whispers,\"I am already protecting another.\""
+
+   ladyphoenix_leatherarmor_female_icon_rsc = bth.bgf
+   ladyphoenix_barearm_rightarm_gauntlet_female =brj.bgf
+   ladyphoenix_barearm_leftarm_gauntlet_female = blj.bgf
+   ladyphoenix_pantsA_female_player_rsc = bfb.bgf
+
+classvars:
+
+properties:
+
+   piDrawFX = DRAWFX_SECONDTRANS
+
+   vrDesc = ladypheonix_desc_rsc
+   vrName = ladypheonix_name_rsc
+   vrIcon = ladyphoenix_leatherarmor_female_icon_rsc
+
+   ptRepeatTimer =$
+
+   poOriginal = $
+   piPose = POSE_NONE
+   piExpression = 1
+   prToupee = charinfo_hair_dc_icon
+   prEyes = charinfo_eyes_lx_icon
+   prMouth = charinfo_mouth_lx_icon
+   prNose = charinfo_nose_kx_icon
+   prHead = charinfo_head_kx_icon
+   prRight_arm = ladyphoenix_barearm_rightarm_gauntlet_female
+   prLeft_arm = ladyphoenix_barearm_leftarm_gauntlet_female
+   prLegs = ladyphoenix_pantsA_female_player_rsc
+
+   prWeapon = $
+   prShield = $
+   prBowTop = $
+
+   piIcon_frame = 1
+   piLegs_frame = 1
+   piLeft_frame = 1
+   piRight_frame = 1
+   piShield_frame = 1
+   piWeapon_frame = 1
+
+   piIcon_translation = 0
+   piLegs_translation = 0
+   piArms_translation = 0
+   piWeapon_translation = 0
+   piShield_translation = 0
+   piSkin_translation = 3
+   piHair_translation = PT_GRAY_TO_BGREEN
+
+   piOverlays = 8
+   piColor = 0
+   piStartRow = $
+
+messages:
+
+   ReqNewOwner(what=$)
+   {
+      return IsClass(what,&room);
+   }
+
+   StartRow(row=$)
+   "Sets the initial safe row."
+   {
+      piStartRow = row;
+
+      return;
+   }
+   
+   NewSafeSpot(RunnerRow=$,SafeRow=$)
+   "Tells the snitch where the runner should go."
+   {
+      local iSteps,iDirection; 
+
+      iSteps = Send(self,@GetSteps,#from=RunnerRow,#to=SafeRow);
+
+      if Abs(iSteps) > iSteps
+      {
+         iDirection = SOUTH;
+      }
+      else
+      {
+         iDirection = NORTH;
+      }
+
+      Send(self,@GiveDirections,#iSteps=Abs(iSteps),#iDirection=iDirection);
+
+      return;
+   }
+
+   GetSteps(from=$,to=$)
+   "Calculate the number of steps for the runner.  If it's neg. "
+   "we're going SOUTH, pos = NORTH"
+   {
+      local iSteps;
+
+      iSteps = from - to;
+
+      return iSteps;
+   }
+
+   BuildInitDirections(who=$)
+   "Builds the direction for the first step into the maze."
+   {
+      local rDirection;
+
+      if who = $
+      {
+         return;
+      }
+
+      switch(piStartRow)
+      {
+         case 6:
+            rDirection = ladypheonix_row_6;
+            break;
+         case 7:
+            rDirection = ladypheonix_row_7;
+            break;
+         case 8:
+            rDirection = ladypheonix_row_8;
+            break;
+         case 9:
+            rDirection = ladypheonix_row_9;
+            break;
+         case 10:
+            rDirection = ladypheonix_row_10;
+            break;
+         case 11:
+            rDirection = ladypheonix_row_11;
+            break;
+         default:
+            rDirection = ladypheonix_row_12;
+            break;
+      }
+
+      Send(who,@MsgSendUser,#message_rsc=ladypheonix_whisper_start,
+            #parm1=rDirection);
+
+      return;
+   }
+
+   GiveDirections(iSteps=0,iDirection=0)
+   {
+      local i, lActive, oObject, oRoom, rNumSteps, rStepPlural, rDir;
+
+      if poOwner = $
+      {
+         return FALSE;
+      }
+
+      oRoom = Send(self,@GetOwner);
+      lActive = Send(oRoom,@GetplActive);
+
+      rStepPlural = ladypheonix_steps;
+
+      switch(iSteps)
+      {
+         case 1:
+            rNumSteps = system_cardinal_1;
+            rStepPlural = ladypheonix_step;
+            break;
+         case 2:
+            rNumSteps = system_cardinal_2;
+            break;
+         case 3:
+            rNumSteps = system_cardinal_3;
+            break;
+         case 4:
+            rNumSteps = system_cardinal_4;
+            break;
+         case 5:
+            rNumSteps = system_cardinal_5;
+            break;
+         case 6:
+            rNumSteps = system_cardinal_6;
+            break;
+         case 7:
+            rNumSteps = system_cardinal_7;
+            break;
+         default:
+            rNumSteps = system_cardinal_0;
+            break;
+      }
+
+      if iDirection = SOUTH
+      {
+         rDir = ladypheonix_south;
+      }
+      else
+      {
+         rDir = ladypheonix_north;
+      }
+
+      foreach i in lActive
+      {
+         oObject = Send(oRoom,@HolderExtractObject,#data=i);
+         if IsClass(oObject,&User)
+         {
+            if (Abs((Send(oObject,@GetRow) - Send(self,@GetRow))) > 2
+               OR Abs((Send(oObject,@GetCol) - Send(self,@GetCol))) > 2)
+            {
+               Send(oObject,@MsgSendUser,#message_rsc=ladypheonix_not_in_range);
+            }
+            else if iSteps = 0
+            {
+               Send(oObject,@MsgSendUser,#message_rsc=ladyph_dir_nostep_rsc);
+            }
+            else
+            {
+               Send(oObject,@MsgSendUser,#message_rsc=ladyph_dir_step_rsc,
+                     #parm1=rNumSteps,#parm2=rStepPlural,#parm3=rDir);
+            }
+         }
+      }
+
+      return;
+   }
+
+   SomeoneSaidLadyP(what=$,type=$,string=$)
+   {
+      if StringContain(string,ladypheonix_protect_command)
+            AND StringContain(string,"LadyPhoenix")
+      {
+         if Send(poOwner,@ReqSetRunner,#who=what)
+         {
+            Send(what,@MsgSendUser,#message_rsc=ladypheonix_wlll_protect);
+            Send(self,@BuildInitDirections,#who=what);
+         }
+         else
+         {
+            Send(what,@MsgSendUser,#message_rsc=ladypheonix_already_protecting);
+         }
+      }
+
+      return;
+   }
+
+   ///////////////////////////////////
+   ///Stuff from statue for drawing ///
+   ///////////////////////////////////
+   ///Straight cut and paste, could prolly be simplified at some point.
+
+   ResetFrames(pose = $)
+   {
+      if Pose = POSE_PUNCH
+      {
+         piIcon_frame = 4;
+         piLeft_frame = 6;
+         piRight_frame = 14;
+         piLegs_frame = 6; 
+         piOverlays = 8;
+         if prShield <> $
+         {
+            piShield_frame = 2;
+            piOverlays = piOverlays + 1;
+         }
+      }
+
+      if piPose = POSE_CAST
+      {
+         piIcon_frame = 1;
+         piLeft_frame = 8;
+         piRight_frame = 11;
+         piLegs_frame = 1;
+         piOverlays = 8;
+      }
+
+      if piPose = POSE_NONE
+      {
+         piIcon_frame = 1;
+         piLeft_frame = 1;
+         piRight_frame = 1;
+         piLegs_frame = 1;
+         piOverlays = 8;
+
+         if prShield <> $
+         {
+            piShield_frame = 2;
+            piLeft_frame = 7;
+            piOverlays = piOverlays + 1;
+         }
+
+         if prWeapon <> $
+         {
+            piWeapon_frame = 4;
+
+            if prBowTop <> $
+            {
+               piWeapon_frame = 2;
+               piLeft_frame = 7;
+            }
+            else
+            {
+               piRight_frame = 17;
+            }
+
+            piOverlays = piOverlays + 1;
+         }
+      }
+
+      if piPose = POSE_WEAPON_ATTACK
+      {
+         piIcon_frame = 3;
+         piLeft_frame = 5;
+         piRight_frame = 5;
+         piLegs_frame = 6;
+         piOverlays = 9;
+         if prShield <> $
+         {
+            piShield_frame = 2;
+            piOverlays = piOverlays + 1;
+         }
+
+         piWeapon_frame = 2;
+      }
+
+      if piPose = POSE_BOW_ATTACK
+      {
+         piIcon_frame = 5;
+         piLeft_frame = 9;
+         piRight_frame = 16;
+         piLegs_frame = 7;
+         piOverlays = 10;
+         piWeapon_frame = 1;
+      }
+
+      return;
+   }
+
+   SendAnimation()
+   {
+      if (piIcon_translation) <> 0
+      {
+         AddPacket(1,ANIMATE_TRANSLATION,1,piIcon_translation);
+      }
+
+      AddPacket(1,ANIMATE_NONE,2,piIcon_frame);
+
+      return;
+   }
+
+   SendOverlays()
+   {
+      local i,iOverlays,hotspot,iLeft_group,iRight_group,
+            iSkin_xlat, iArms_xlat;
+
+      // Send overlay bitmap info to user.
+
+      // Player has 8 standard overlays: right arm, left arm, legs, head, eyes, 
+      // mouth, nose, hair
+
+      /// number of overlays
+      AddPacket(1, piOverlays);
+
+      // Left hand.
+      AddPacket(4,prLeft_arm,1,HS_LEFT_HAND);
+      if piArms_translation <> 0
+      {
+         AddPacket(1,ANIMATE_TRANSLATION,1,piArms_translation);
+      }
+      AddPacket(1,ANIMATE_NONE,2,piLeft_frame);
+
+      // Right hand.
+      AddPacket(4,prRight_arm,1,HS_RIGHT_HAND);
+      if piArms_translation <> 0
+      {
+         AddPacket(1,ANIMATE_TRANSLATION,1,piArms_translation);
+      }
+      AddPacket(1,ANIMATE_NONE,2,piRight_frame);
+
+      // Legs.
+      AddPacket(4,prLegs,1,HS_LEGS);
+      if piLegs_translation <> 0
+      {
+         AddPacket(1,ANIMATE_TRANSLATION,1,piLegs_translation);
+      }
+      AddPacket(1,ANIMATE_NONE,2,piLegs_frame);
+
+      // Face.
+      iSkin_xlat = piSkin_translation;
+      AddPacket(4,prHead,1,HS_HEAD,1,ANIMATE_TRANSLATION,1,iSkin_xlat,
+            1,ANIMATE_NONE,2,1);
+      AddPacket(4,prMouth,1,HS_MOUTH,1,ANIMATE_TRANSLATION,1,iSkin_xlat,
+            1,ANIMATE_NONE,2,piExpression);
+      AddPacket(4,prEyes,1,HS_EYES,1,ANIMATE_TRANSLATION,1,iSkin_xlat,
+            1,ANIMATE_NONE,2,piExpression);
+      AddPacket(4,prNose,1,HS_NOSE,1,ANIMATE_TRANSLATION,1,iSkin_xlat,
+            1,ANIMATE_NONE,2,1);
+      AddPacket(4,prToupee,1,HS_TOUPEE,1,ANIMATE_TRANSLATION,1,
+            piHair_translation);
+      AddPacket(1,ANIMATE_NONE,2,1);
+
+      if prShield <> $ and piPose <> POSE_CAST
+      {
+         AddPacket(4,prShield,1,HS_LEFT_WEAPON);
+         if piShield_translation <> 0
+         {
+            AddPacket(1,ANIMATE_TRANSLATION,1,piShield_translation);
+         }
+         AddPacket(1,ANIMATE_NONE,2,piShield_frame);
+      }
+
+      if prWeapon <> $ AND (piPose <> POSE_CAST AND piPose <> POSE_PUNCH)
+      {
+         if piPose=POSE_BOW_ATTACK
+         {
+            AddPacket(4,prWeapon,1,HS_BOTTOM_BOW);
+            if piWeapon_translation <> 0
+            {
+               AddPacket(1,ANIMATE_TRANSLATION,1,piWeapon_translation);
+            }
+            AddPacket(1,ANIMATE_NONE,2,piWeapon_frame);
+            AddPacket(4,prBowTop,1,HS_TOP_BOW);
+            if piWeapon_translation <> 0
+            {
+               AddPacket(1,ANIMATE_TRANSLATION,1,piWeapon_translation);
+            }
+            AddPacket(1,ANIMATE_NONE,2,PiWeapon_frame);
+         }
+         else
+         {
+            AddPacket(4,prWeapon);
+            if prBowTop <> $
+            {
+               AddPacket(1,HS_BOTTOM_BOW);
+            }
+            else
+            {
+               AddPacket(1,HS_RIGHT_WEAPON);
+            }
+
+            if piWeapon_translation <> 0
+            {
+               AddPacket(1,ANIMATE_TRANSLATION,1,piWeapon_translation);
+            }
+
+            AddPacket(1,ANIMATE_NONE,2,piWeapon_frame);
+         }
+      }
+
+      return;
+   }
+
+   GetObjectFlags()
+   {
+      local iFlags;
+
+      iFlags = viObject_flags | piDrawEffectFlag;
+
+      if piColor = COLOR_BLUE
+      {
+         iFlags = iFlags | OF_DISPLAY_NAME;
+      }
+
+      return iFlags;
+   }
+
+   GetPlayerNameColor()
+   {
+      local iFlags;
+
+      iFlags = 0;
+
+      if piColor = COLOR_BLUE
+      {
+         iFlags = iFlags | NC_DM;
+      }
+
+      return iFlags;
+   }
+
+   GetClientObjectType()
+   {
+      local iFlags;
+
+      iFlags = 0;
+
+      if piColor = COLOR_BLUE
+      {
+         iFlags = iFlags | OT_DM;
+      }
+
+      return iFlags;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,238 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Hold is Debuff
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include hold.lkod
+
+   hold_name_rsc = "hold"
+   hold_icon_rsc = ihold.bgf
+   hold_desc_rsc = \
+      "Surrounds the target with magical energy, causing paralysis for "
+      "several seconds.  Requires two purple mushrooms to cast."
+   hold_already_enchanted = "%s%s is already held."
+   hold_caster = "%s%s is now held in place by a magical force."
+   hold_on = \
+      "A magical tingling pulses through your body.  You are unable to move."
+   hold_off = "The magical hold lifts and you are able to move once more."
+
+classvars:
+
+   vrName = hold_name_rsc
+   vrIcon = hold_icon_rsc
+   vrDesc = hold_desc_rsc
+
+   vrAlreadyEnchanted = hold_already_enchanted
+   vrEnchantment_On = hold_on
+   vrEnchantment_Off = hold_off
+   vrSuccess = hold_caster
+
+   viSpell_num = SID_HOLD
+   viSchool = SS_QOR
+   viSpell_level = 4
+
+   viSpellExertion = 2
+   viMana = 15
+
+   viChance_To_Increase = 15
+   viMeditate_ratio = 50
+
+   viFlash = FLASH_BAD
+
+   // In seconds, since it works off GetTime()
+   viPostCast_time = 1 // 103 value 2.
+
+   viCast_time = 0
+   
+properties:
+
+   piBaseDuration = 2000 // 103 value 2000.
+   piSpellPowerModifier = 30 // 103 value 40.
+   piDeviation = 10 // 103 value 50//.
+   viCast_time = 600 // 103 value 0 (milliseconds).
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&PurpleMushroom,2],plReagents);
+
+      return;
+   }
+
+   CastSpell(who=$,lTargets=$,iSpellpower=0,report=TRUE)
+   {
+      local oTarget;
+
+      oTarget = First(lTargets);
+
+      // Spell effects.
+      Send(self,@DoSpell,#what=who,#oTarget=oTarget,#report=report,
+            #iDuration=Send(self,@GetDuration,#iSpellPower=iSpellPower));
+
+      propagate;
+   }
+
+   DoSpell(what=$,oTarget=$,iDuration=$,report=TRUE,bAllowFreeAction=TRUE)
+   "Holds target for duration seconds."
+   {
+      local i, oSpell, oHelm;
+
+      if oTarget = $
+      {
+         return FALSE;
+      }
+
+      // Check for enchantment already applied
+      if Send(oTarget,@IsEnchanted,#what=self)
+      {
+         return FALSE;
+      }
+
+      // Check for spell called with $ iDuration, apply default time if so.
+      if iDuration = $
+      {
+         iDuration = 5000;
+      }
+
+      // Check if the target has free action, unless not allowed.
+      if bAllowFreeAction
+      {
+         oSpell = Send(SYS,@FindSpellByNum,#num=SID_FREE_ACTION);
+         if Send(oTarget,@IsEnchanted,#what=oSpell)
+         {
+            iDuration = Send(oSpell,@DoFreeAction,#oHoldCaster=what,
+                              #oTarget=oTarget,#iDuration=iDuration);
+            if iDuration = $
+            {
+               // Resisted completely
+               return FALSE;
+            }
+
+            iDuration = Bound(iDuration,500,10000);
+         }
+      }
+      
+      if IsClass(oTarget,&User)
+      {
+         oHelm = Send(oTarget,@FindUsing,#class=&Helm);
+         if oHelm <> $
+         {
+            iDuration = Bound((iDuration * (100-Send(oHelm,@GetBlindReductionPercentage)))/100,1,$);
+         }
+      }
+
+      Send(oTarget,@StartEnchantment,#what=self,#time=iDuration,#report=report,
+            #state=report);
+
+      if IsClass(oTarget,&User)
+      {
+         if report
+         {
+            Send(oTarget,@MsgSendUser,#message_rsc=vrEnchantment_On);
+         }
+
+         // Do not paralyze DMs.
+         if NOT (IsClass(oTarget,&DM)
+            AND Send(oTarget,@PlayerIsImmortal))
+         {
+            Send(oTarget,@EffectSendUser,#what=self,#effect=EFFECT_PARALYZE_ON);
+         }
+      }
+      else
+      {
+         Send(oTarget,@ResetBehaviorFlags);
+      }
+
+      if report
+      {
+         Send(what,@MsgSendUser,#message_rsc=vrSuccess,
+               #parm1=Send(oTarget,@GetCapDef),#parm2=Send(oTarget,@GetName));
+      }
+
+      propagate;
+   }
+
+   GetDuration(iSpellPower=0)
+   {
+      local iDuration;
+
+      // All duration calculations now use class properties, modifiable in game
+      // By default, base duration 2000ms, total time 2000-6000ms using 40x
+      // spellpower multiplier, with the final duration 50-100// max
+      iDuration = piBaseDuration + iSpellPower * piSpellPowerModifier;
+      iDuration = Random(iDuration * (100 - piDeviation) / 100,iDuration);
+
+      return iDuration;
+   }
+
+   EndEnchantment(who=$,report=TRUE,state=$)
+   {
+      if IsClass(who,&User)
+      {
+         // Don't override phasing hold.
+         if NOT Send(who,@CheckPlayerFlag,#flag=PFLAG_PHASED)
+         {
+            Send(who,@EffectSendUser,#what=self,#effect=EFFECT_PARALYZE_OFF);
+         }
+
+         Send(who,@EffectSendUser,#what=self,#effect=EFFECT_PARALYZE_OFF);
+         if state
+         {
+            Send(who,@MsgSendUser,#message_rsc=vrEnchantment_Off);
+         }
+      }
+      else  // class is &Monster
+      {
+         // This has to be done AFTER the enchantment is gone from the
+         // monster's ench list - Post it
+         Post(who,@ResetBehaviorFlags);
+      }
+
+      return;
+   }
+
+   RestartEnchantmentEffect(who=$,state=$)
+   {
+      Send(who,@MsgSendUser,#message_rsc=vrEnchantment_On);
+      Send(who,@EffectSendUser,#what=self,#effect=EFFECT_PARALYZE_ON);
+
+      return;
+   }
+
+   ModifyMonsterBehavior(mob=$)
+   {
+      Send(mob,@SetBehaviorFlag,#flag=AI_NOMOVE,#value=TRUE);
+      Send(mob,@SetBehaviorFlag,#flag=AI_NOFIGHT,#value=TRUE);
+
+      return;
+   }
+
+   SetSpellPlayerFlag(who=$)
+   {
+      if NOT (IsClass(who,&DM) AND Send(who,@PlayerIsImmortal))
+      {
+         Send(who,@SetPlayerFlag,#flag=PFLAG_NO_MOVE,#value=TRUE);
+         Send(who,@SetPlayerFlag,#flag=PFLAG_NO_FIGHT,#value=TRUE);
+         Send(who,@SetPlayerFlag,#flag=PFLAG_NO_MAGIC,#value=TRUE);
+      }
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

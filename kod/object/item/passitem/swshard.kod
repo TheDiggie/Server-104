@@ -1,0 +1,205 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+SwordShard is PassiveItem
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include swshard.lkod
+   swordshard_name_rsc = "shard of a sword"
+   swordshard_desc_rsc = \
+      "This is one piece of a very elaborate looking sword.  "
+   swordshard_possessive = \
+      "%q's name is written in subtle, glowing eldritch script on the metal "
+      "of the shard."
+   SwordShard_bind = \
+      "You watch in amazement as the shards of the sword bind themselves "
+      "into a new whole."
+   swordshard_try_bind = \
+      "Your sword shards attempt to bind themselves together, but fail, "
+      "and collapse into a pile of junk."
+
+classvars:
+
+   vrName = SwordShard_name_rsc
+   vrDesc = SwordShard_desc_rsc
+   viValue_average = 150
+   viWeight = 25
+   viBulk = 25
+   viInventory_group = 3
+
+properties:
+
+   poQuester = $
+
+messages:
+
+   Constructor(quester = $)
+   {
+      if (quester <> $)
+      {
+         poQuester = quester;
+      }
+
+      propagate;
+   }
+
+   NewOwner()
+   {
+      Post(self,@CheckForAllPieces);
+
+      propagate;
+   }
+
+   CheckForAllPieces()
+   {
+      local i, ShardA, ShardB, ShardC, ShardD, oOwner,
+               bShardA, bShardb, bShardC, bShardD;
+
+      if poQuester = $
+      {
+         return;
+      }
+
+      if poOwner = $ OR NOT IsClass(poOwner,&user)
+      {
+         return;
+      }
+
+      ShardA = $;
+      ShardB = $;
+      ShardC = $;
+      ShardD = $;
+      bShardA = FALSE;
+      bShardB = FALSE;
+      bShardC = FALSE;
+      bShardD = FALSE;
+
+      foreach i in Send(poOwner,@GetHolderPassive)
+      {
+         if IsClass(i,&SwordShardA)
+         {
+            if (Send(i,@GetQuester) = poQuester)
+            {
+               ShardA = i;
+               bShardA = TRUE;
+            }
+            else
+            {
+               bShardA = TRUE;
+            }
+         }
+         else if IsClass(i,&SwordShardB)
+         {
+            if (Send(i,@GetQuester) = poQuester)
+            {
+               ShardB = i;
+               bShardB = TRUE;
+            }
+            else
+            {
+               bShardB = TRUE;
+            }
+         }
+         else if IsClass(i,&SwordShardC)
+         {
+            if (Send(i,@GetQuester) = poQuester)
+            {
+               ShardC = i;
+               bShardC = TRUE;
+            }
+            else
+            {
+               bShardC = TRUE;
+            }
+         }
+         else if IsClass(i,&SwordShardD)
+         {
+            if (Send(i,@GetQuester) = poQuester)
+            {
+               ShardD = i;
+               bShardD = TRUE;
+            }
+            else
+            {
+               bShardD = TRUE;
+            }
+         }
+      }
+      
+      /// Okay, see if all four parts are there.
+      if (ShardA <> $) AND (ShardB <> $)
+         AND (ShardC <> $) AND (ShardD <> $)
+      {
+         /// They have all the parts.  Delete 'em and give
+         /// the owner a sword.
+         oOwner = Send(self,@GetOwner);
+         Send(oOwner,@msgsenduser,#message_rsc= swordshard_bind);
+         Send(oOwner,@NewHold,#what=Create(&RiijaSword,#quester=poQuester));
+         Send(shardA,@Delete);
+         Send(shardB,@Delete);
+         Send(ShardC,@Delete);
+         Send(shardD,@delete);
+      }
+      else
+      {
+         if (bShardA <> FALSE) AND (bShardB <> FALSE)
+            AND (bShardC <> FALSE) AND (bShardD <> FALSE)
+         {
+            Send(poOwner,@MsgSendUser,#message_rsc=swordshard_try_bind);
+         }
+      }
+
+      return;
+   }
+
+   GetQuester()
+   {
+      return poQuester;
+   }
+
+   AppendDesc()
+   {
+      if poQuester <> $
+      {
+         AddPacket(4,swordshard_possessive,6,Send(poQuester,@GetName));
+      }
+      else
+      {
+         AddPacket(4,system_blank_resource);
+      }
+
+      return;
+   }
+
+   ForgetQuester(quester=$)
+   "Sent to all shards when someone suicides."
+   {
+      if poQuester = quester
+      {
+         poQuester = $;
+      }
+
+      return;
+   }
+
+   Delete()
+   {
+      poQuester = $;
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

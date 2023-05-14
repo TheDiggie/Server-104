@@ -1,0 +1,252 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+RazaElder is RazaTown
+
+constants:
+
+   include blakston.khd
+
+   ANIM_WAVE = 1
+
+resources:
+
+   include razaelder.lkod
+
+   RazaElder_name_rsc = "Rodric d'Stane"
+   RazaElder_icon_rsc = mrelder.bgf
+   RazaElder_desc_rsc = \
+      "The old man looks back at you with eyes that have seen beyond forever. "
+      "He is famous for his knowledge of various magicks and seems quite "
+      "willing to teach some of them to aspiring adventurers. You may also "
+      "ask him about a school of magic if you need help with freeing your "
+      "mind from its teachings, so that you may be more successful in "
+      "learning others."
+
+   RazaEl_entry_welcome = \
+      "Welcome, my son. Have you come to learn some magicks?"
+   Elder_potion_faren = \
+      "I can sell you %s%s, so that you may forget all you might know about "
+      "the teachings of Faren. Don't you worry about side effects, this is "
+      "perfectly safe! So, would you like to buy one?"
+   Elder_potion_kraanan = \
+      "I can sell you %s%s, so that you may forget all you might know about "
+      "the teachings of Kraanan. Don't you worry about side effects, this is "
+      "perfectly safe! So, would you like to buy one?"
+   Elder_potion_qor = \
+      "I can sell you %s%s, so that you may forget all you might know about "
+      "the teachings of Qor. Don't you worry about side effects, this is "
+      "perfectly safe! So, would you like to buy one?"
+   Elder_potion_shalille = \
+      "I can sell you %s%s, so that you may forget all you might know about "
+      "the teachings of Shal'iile. Don't you worry about side effects, this "
+      "is perfectly safe! So, would you like to buy one?"
+
+   potion_faren = "Faren"
+   potion_kraanan = "Kraanan"
+   potion_qor = "Qor"
+   potion_shalille = "Shal'ille"
+
+   RazaEl_stat_window_trigger = "change stats"
+
+   Raza_elder_teach_rsc = \
+      "I teach %s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s"
+      "%s%s%s%s%s%s%s%s%s%s%s%s at that level."
+
+classvars:
+
+   viDefinite = ARTICLE_NONE
+   viIndefinite = ARTICLE_NONE
+   vrName = RazaElder_name_rsc
+   vrIcon = RazaElder_icon_rsc
+   vrDesc = RazaElder_desc_rsc
+   viAttributes = \
+      MOB_RANDOM | MOB_LISTEN | MOB_RECEIVE | MOB_NOFIGHT \
+      | MOB_NOMOVE | MOB_NOQUEST | MOB_TEACHER | MOB_COND_SELLER
+   viOccupation = MOB_ROLE_ELDER
+
+   vrTeach_message = Raza_elder_teach_rsc
+
+messages:
+
+   Constructor()
+   {
+      plWantedItems = [&StatsResetToken];
+   
+      propagate;
+   }
+
+   UserEntered(who=$)
+   {
+      Post(who,@SomeoneSaid,#what=self,#string=RazaEl_entry_welcome,
+            #type=SAY_RESOURCE);
+
+      propagate;
+   }
+
+   SomeoneSaid(what = $,type = $,string = $,parm1 = $,parm2 = $,parm3 = $,
+               parm4 = $, parm5 = $,parm6 = $,parm7 = $,parm8 = $)
+   {
+      if StringEqual(string,RazaEl_stat_window_trigger)
+      {
+         Send(what,@SendStatChange);
+      }
+
+      propagate;
+   }
+
+   InitCondSale()
+   {
+      local oObj, oObj2, oObj3, oObj4;
+
+      oObj=Create(&ForgetPotionFaren);
+      Send(Send(SYS,@GetLibrary),@AddToMobLib,#mob=self,
+            #triggers=[potion_faren],
+            #action=[LIBACT_CONDITIONAL,oObj,1000,Elder_potion_faren]);
+
+      oObj2 = Create(&ForgetPotionKraanan);
+      Send(Send(SYS,@GetLibrary),@AddToMobLib,#mob=self,
+            #triggers=[potion_kraanan],
+            #action=[LIBACT_CONDITIONAL,oObj2,1000,Elder_potion_kraanan]);
+
+      oObj3 = Create(&ForgetPotionQor);
+      Send(Send(SYS,@GetLibrary),@AddToMobLib,#mob=self,
+            #triggers=[potion_qor],
+            #action=[LIBACT_CONDITIONAL,oObj3,1000,Elder_potion_qor]);
+
+      oObj4 = Create(&ForgetPotionShalille);
+      Send(Send(SYS,@GetLibrary),@AddToMobLib,#mob=self,
+            #triggers=[potion_shalille],
+            #action=[LIBACT_CONDITIONAL,oObj4,1000,Elder_potion_shalille]);
+
+      return;
+   }
+
+   SetForSale()
+   {
+      plFor_sale = [
+         $,$,
+         [ 
+            SID_RESIST_FIRE,
+            SID_RESIST_COLD,
+            SID_TOUCH_OF_FLAME,
+            SID_ICY_FINGERS,
+            SID_ZAP, SID_SWEEP,
+            SID_MYSTIC_TOUCH,
+            SID_LIGHT,
+            SID_FOG,
+            SID_SUPERSTRENGTH,
+            SID_RESIST_POISON,
+            SID_HASTE, 
+            SID_ENCHANT_WEAPON,
+            SID_BLESS,
+            SID_RELAY,
+            SID_GLOW,
+            SID_CREATE_WEAPON,
+            SID_CREATE_FOOD,
+            SID_UNHOLY_WEAPON,
+            SID_KARAHOLS_CURSE,
+            SID_ACID_TOUCH, 
+            SID_DETECT_GOOD,
+            SID_DARKNESS,
+            SID_CLOAK,
+            SID_RESIST_ACID,
+            SID_REMOVE_CURSE,
+            SID_HOLY_WEAPON,
+            SID_HOLY_TOUCH,
+            SID_CURE_POISON,
+            SID_SEANCE,
+            SID_HOLY_SYMBOL,
+            SID_MINOR_HEAL,
+            SID_DETECT_EVIL,
+            SID_BREATH_OF_LIFE,
+            SID_UNHOLY_TOUCH
+         ],
+      $];
+
+      return;
+   }
+
+   CanAcceptOffer()
+   {
+      return TRUE;
+   }
+
+   CheckWhyWanted(obj=$,who=$)
+   {
+      if IsClass(obj,&StatsResetToken)
+      {
+         Send(who,@SendStatChange);
+
+         // We don't destroy the item, so return FALSE.
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+   SendReportLevel(parm1=$)
+   {
+      local i, iNumAbilities, iNumRsc, iCounter;
+
+      AddPacket(4,self, 4,Send(self,@GetName),1,5, 4,monster_said_resource_str,
+                4,Send(self,@GetCapDef), 4,Send(self,@GetName));
+                
+      if parm1 = $
+      {
+         AddPacket(4, vrTeach_nothing);
+
+         return;
+      }
+
+      // Add master rsc.
+      AddPacket(4,vrTeach_message);
+
+      iCounter = 0;
+      iNumRsc = 0;
+
+      iNumAbilities = Length(parm1);
+
+      foreach i in parm1
+      {
+         iCounter++;
+
+         if iNumAbilities > 1
+         {
+            if iCounter = iNumAbilities
+            {
+               iNumRsc = iNumRsc + 2;
+               AddPacket(4,monster_teach_and, 4,Send(i,@GetName));
+            }
+            else
+            {
+               iNumRsc = iNumRsc + 2;
+               AddPacket(4,Send(i,@GetName), 4,monster_teach_comma);
+            }
+         }
+         else
+         {
+            iNumRsc++;
+            AddPacket(4,Send(i,@GetName));
+         }
+      }
+
+      // If we didn't add enough location resources, make up for it
+      // with blank ones. This teacher sells a lot of spells.
+      while iNumRsc++ < 42
+      {
+         AddPacket(4,monster_teach_blank);
+      }
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,135 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+MagicShield is PersonalEnchantment
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include mshield.lkod
+
+   magicshield_name_rsc = "magic shield"
+   magicshield_icon_rsc = armorico.bgf
+   magicshield_desc_rsc = \
+      "Summons a shield of powerful magical energy that will "
+      "deflect some of the blows aimed at you for several minutes.  "
+      "Requires two mushrooms and one red mushroom to cast."
+   mshield_enchantment_rsc = \
+      "\n\nYour current %s enchantment adds %i defense."
+   magicshield_already_enchanted_rsc = "You already have magic shield."
+   magicshield_on_rsc = \
+      "A protective shield of magical energy forms around you."
+   magicshield_off_rsc = "The magical shield dissipates."
+   magicshield_success_rsc = \
+      "A protective shield of magical energy forms around %s%s."
+
+classvars:
+
+   viPersonal_ench = TRUE
+
+   vrName = magicshield_name_rsc
+   vrIcon = magicshield_icon_rsc
+   vrDesc = magicshield_desc_rsc
+
+   vrAlreadyEnchanted = magicshield_already_enchanted_rsc
+   vrEnchantment_On = magicshield_On_rsc
+   vrEnchantment_Off = magicshield_Off_rsc
+   vrSuccess = magicshield_Success_rsc
+
+   viSpell_num = SID_MAGIC_SHIELD
+   viSchool = SS_KRAANAN
+   viSpell_level = 3
+   viMana = 9
+   viChance_To_Increase = 35
+   viMeditate_ratio = 20
+
+   viFlash = FLASH_GOOD_SELF
+
+   viDefensive = TRUE
+
+properties:
+
+   // The effectiveness of purge on the target spell as a percentage.
+   // 100 will cause purge to remove its entire spellpower, 0 will
+   // prevent purge from removing this spell.
+   viPurgeFactor = 50
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&Mushroom,2],plReagents);
+      plReagents = Cons([&RedMushroom,1],plReagents);
+
+      return;
+   }
+
+   GetDuration(iSpellPower=$)
+   {
+      local iDuration;
+
+      iDuration = 1 + ((iSpellPower + 5)/10);
+
+      // Convert to ms.
+      iDuration = iDuration * 60 * 1000;
+
+      return iDuration;
+   }
+
+   GetStateValue(iSpellpower=$,target=$)
+   {
+      Send(target,@AddDefenseModifier,#what=self);
+
+      return iSpellpower;
+   }
+
+   EndEnchantment(who=$,report=TRUE,state=0)
+   {
+      Send(who,@RemoveDefenseModifier,#what=self);
+
+      propagate;
+   }
+
+   GetPotionClass()
+   {
+      return &MagicShieldPotion;
+   }
+
+   // Stuff we handle to be a defense modifier.
+
+   ModifyDefensePower(who=$,what=$,defense_power=0,state=$)
+   {
+      return (defense_power + 50 + (2 * Send(who,@GetEnchantedState,#what=self)));
+   }
+
+   ModifyDefenseDamage(who=$,what=$,damage=$)
+   {
+      return damage;
+   }
+
+   DefendingHit(who=$,what=$)
+   {
+      return;
+   }
+
+   EffectDesc(who=$)
+   {
+      AddPacket(4,mshield_enchantment_rsc, 4,Send(self,@GetName),
+                4,50 + 2 * Send(who,@GetEnchantedState,#what=self));
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

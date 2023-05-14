@@ -1,0 +1,253 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+WeapAttSpellCaster is WeaponAttribute
+
+///////////////////////////////////////////////////////////////////////
+//
+//  This weapon enacts a particular spell effect on its target.
+//
+//  Form is:
+//
+//      [ WA_SPELLCASTER, Spell, spellpower ]
+//
+///////////////////////////////////////////////////////////////////////
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include waspell.lkod
+
+   WeapAttSpellCaster_desc = "  Mystical energy flits about this weapon."
+   WeapAttSpellCaster_desc_target = \
+      "  Mystical energy flits about this weapon.  This weapon will cast "
+      "the %s spell on your target."
+   WeapAttSpellCaster_desc_self = \
+      "  Mystical energy flits about this weapon. This weapon will cast "
+      "the %s spell on the wielder."
+   WeapAttSpellCaster_dm = "spellcaster"
+
+classvars:
+
+   vrDesc = WeapAttSpellCaster_desc
+   vrDesc2 = WeapAttSpellCaster_desc_target
+   vrDesc3 = WeapAttSpellCaster_desc_self
+
+   viItem_Att_Num = WA_SPELLCASTER
+
+   viDifficulty = 9
+   vrDM_trigger = WeapAttSpellCaster_dm
+
+properties:
+
+   piValue_modifier = 150   /// modify the object's price by 100//
+   piValue_power_modifier = 10
+   piEffect_percent = 15
+
+   plSpells = $
+
+messages:
+
+   Constructor()
+   {
+      // Used to have swap here.
+      plSpells = [ [SID_DEMENT, 14], [SID_ENFEEBLE, 14],
+                   [SID_VERTIGO, 14], [SID_FORGET, 15],
+                   [SID_EVIL_TWIN, 14], [SID_MARK_OF_DISHONOR, 15],
+                   [SID_INVISIBILITY, 14]
+                 ];
+
+      propagate;
+   }
+
+////////////////////////////////////////////////
+///
+///  Effect Functions
+///
+////////////////////////////////////////////////
+
+   ModifyDamage(damage=0,target=$,wielder=$,lData=$)
+   "Wielder has a chance of affecting the target with the given spell."
+   {
+      local oSpell;
+
+      if target = $
+         OR wielder = $
+      {
+         return damage;
+      }
+
+      if Random(1,100) <= piEffect_percent
+      {
+         oSpell = Send(SYS,@FindSpellByNum,#num=Nth(lData,2));
+
+         // Handle self-target spells separately.
+         if Nth(lData,2) = SID_INVISIBILITY
+         {
+            if Send(oSpell,@CanPayCosts,#who=self,#lTargets=[wielder],
+                  #ispellpower=Nth(lData,3))
+            {
+               Send(oSpell,@CastSpell,#who=wielder,#lTargets=$,
+                     #ispellpower=Nth(lData,3),#bItemCast=TRUE);
+            }
+         }
+         else
+         {
+            if Send(oSpell,@CanPayCosts,#who=self,#lTargets=[target],
+                  #ispellpower=Nth(lData,3))
+            {
+               Send(oSpell,@CastSpell,#who=wielder,#lTargets=[target],
+                     #ispellpower=Nth(lData,3),#bItemCast=TRUE);
+            }
+         }
+      }
+
+      return Damage;
+   }
+
+////////////////////////////////////////////////////
+///
+///  Infrastructure
+///  (Adding and removing a ItemAtt from an item.)
+///
+////////////////////////////////////////////////////
+
+   DMCreateItemAtt(who=$,string=$,oWeapon=$)
+   {
+      local iSpell, i;
+
+      if who = $ OR string= $ OR oWeapon = $
+      {
+         Debug("BAD data sent to DMCreateItemAtt!");
+
+         return FALSE;
+      }
+
+      if NOT StringContain(string,WeapAttSpellCaster_dm)
+      {
+         return FALSE;
+      }
+
+      iSpell = 0;
+      foreach i in plSpells
+      {
+         if StringContain(string,Send(Send(SYS,@FindSpellByNum,#num=First(i)),@GetName))
+         {
+            iSpell = First(i);
+         }
+      }
+
+      if iSpell = 0
+      {
+         return FALSE;
+      }
+
+      if Send(self,@ReqAddToItem,#state1=iSpell,#oItem=oWeapon)
+      {
+         Debug("Adding to item");
+
+         Send(self,@AddToItem,#oItem=oWeapon,#spellNum=iSpell,#random_gen=TRUE);
+
+         return TRUE;
+      }
+
+      Debug("Failed to add");
+
+      return FALSE;
+   }
+
+   AddToItem(oItem=$,spellNum=$,oPlayer=$,identified=FALSE)
+   {
+      local lData, iValue, i;
+
+      lData = $;
+
+      // Spellpower.
+      lData = Cons(Random(30,60),lData);
+
+      // Spell.
+      if spellNum = $
+      {
+         iValue = Random(1,100);
+         spellNum = First(First(plSpells));
+
+         foreach i in plSpells
+         {
+            if iValue <= Nth(i,2)
+            {
+               spellNum = Nth(i,1);
+
+               break;
+            }
+            else
+            {
+               iValue = iValue - Nth(i,2);
+            }
+         }
+      }
+
+      // Use SID for this, spell object might change. Specifically, RecreateAll
+      // makes new spell objects (this itematt keeps the old ones hanging around).
+      lData = Cons(spellNum,lData);
+
+      iValue = Send(self,@SetCompound,#oItem=oItem,#iPower=0);
+      lData = Cons(iValue,lData);
+
+      if identified
+      {
+         Send(self,@AddEffects,#oItem=oItem,#lData=lData,#oPlayer=oPlayer);
+      }
+
+      Send(oItem,@AddAttributeSpecifics,#lItemAtt=lData);
+
+      // Add the magic flag to the item (colored name in lists).
+      Send(oItem,@AddMagicFlag);
+
+      return;
+   }
+
+   // Add the spell name to the description.
+   AppendDesc(oItem=$,lData=$)
+   {
+      // Check if we have a valid lData list. If we don't, don't try to
+      // append the spell name to the description. This happens with
+      // artificed items.
+      if lData = $
+      {
+         AddPacket(4,vrDesc);
+
+         return;
+      }
+
+      // Special case for spell cast on self.
+      if Nth(lData,2) = SID_INVISIBILITY
+      {
+         AddPacket(4,vrDesc3, 4,Send(Send(SYS,@FindSpellByNum,
+                                    #num=Nth(lData,2)),@GetName));
+      }
+      else
+      {
+         AddPacket(4,vrDesc2, 4,Send(Send(SYS,@FindSpellByNum,
+                                    #num=Nth(lData,2)),@GetName));
+      }
+
+      return;
+   }
+
+   IsMagicalEffect()
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

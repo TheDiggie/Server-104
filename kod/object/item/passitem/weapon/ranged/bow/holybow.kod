@@ -1,0 +1,88 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+HolyBow is Bow
+
+constants:
+
+   include blakston.khd
+   
+   // minimum karma to hold this bow
+   HOLY_BOW_KARMA_MIN = 60
+
+resources:
+
+	HolyBow_name_rsc = "holy bow"
+	HolyBow_desc_rsc = \
+	   "This bow glows with the spirit of battle. "
+	   "Once owned by Priestess Xiana to battle Qor in a great siege."
+	   "This holy bow has been blessed by Shal'ille."
+	HolyBow_not_good_enough = \
+	   "You are not worthy of this divine weapon."
+	HolyBow_good_obtained = \
+	   "Your soul fills with light and courage as you prepare for battle."
+	   
+classvars:
+
+   vrName = HolyBow_name_rsc
+   vrDesc = HolyBow_desc_rsc
+
+   viValue_average = 25000
+   viBulk = 70
+   viWeight = 70
+
+   viBaseXLAT = PT_BLUE_TO_ASHEN
+
+   viWeaponDamage = 2
+   viRange = 75 * FINENESS
+   viHit_roll_modifier = 100
+   
+   viSpell_modifier = 0
+   
+   viHits_init_min = 470
+   viHits_init_max = 750   
+
+properties:
+
+   piSchool = SS_SHALILLE
+   
+   piAttack_Type = ATCK_WEAP_MAGIC + ATCK_WEAP_PIERCE
+   piAttack_spell = ATCK_SPELL_HOLY
+
+messages:
+
+   GetBaseSpellModifier(oSpell=$)
+   {
+      if Send(oSpell,@GetSchool) = piSchool
+      {
+         return 10;
+      }
+
+      return 0;
+   }
+
+   ReqUse()
+   {
+      if Send(poOwner,@GetKarma) < HOLY_BOW_KARMA_MIN
+      {
+			Send(poOwner,@MsgSendUser,#message_rsc=HolyBow_not_good_enough);
+			
+			return FALSE;
+		}
+		else
+		{
+			Send(poOwner,@MsgSendUser,#message_rsc=HolyBow_good_obtained);
+		}
+      propagate;
+   }
+   
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,142 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+AssassinSign is PassiveObject
+
+constants:
+
+   include blakston.khd
+   include protocol.khd
+
+resources:
+
+   include asssign.lkod
+
+   AssassinSign_name_rsc = "the Assassin's Circle"
+   Assassinsign_icon_rsc = newbsign.bgf
+   
+   asssign_insession = \
+      "An Assassin's Circle is currently in session.  There "
+      "are %i combatants remaining.\n\n%s"
+   asssign_accepting = \
+      "An Assassin's Circle will be starting in relatively short "
+      "order.  I am currently accepting would-be assassins.\n\n%s"
+   asssign_not_accepting = \
+      "It will be some time before a new Assassin's Circle is underway.\n\n%s"
+   asssign_lastwinner = "Reigning champion: %q||\n--%s"
+   asssign_darkblade = \
+      "Reigning champion: %q \nDarkest blade, with %i kills: %q\n"
+   asssign_darkblades = \
+      "Reigning champion: %q \nDarkest blades, with %i kills: \n%s"
+   asssign_darkblade_format = "%q\n%s"
+   asssign_last_darkblade_format = "%q\n"
+   asssign_blank_winner = "Mocker"
+
+   asssign_noone = ""
+
+classvars:
+
+   vrName = Assassinsign_name_rsc
+   vrIcon = Assassinsign_icon_rsc
+
+properties:
+
+messages:
+
+   ReqNewOwner(what = $)
+   {
+      return FALSE;
+   }
+
+   ShowDesc()
+   {
+      local oGame, bInSession, bAccepting, oWinner, lDarkblade, i, count;
+
+      oGame = Send(SYS,@GetAssassinGame);
+      bInSession = Send(oGame,@InSession);
+      bAccepting = Send(oGame,@InAcceptMode);
+
+      // Tell if a match is underway and, if so, how many people are left.
+      if bInSession
+      {
+         AddPacket(4, asssign_insession, 4, Send(oGame,@GetNumCombatants));
+      }
+      else if bAccepting
+      {
+         AddPacket(4, asssign_accepting);
+      }
+      else
+      {
+         AddPacket(4, asssign_not_accepting);
+      }
+
+      // Tell who won the last match.
+      oWinner = Send(oGame,@GetLastWinner);
+      lDarkBlade = Send(oGame,@GetMostKills);
+
+      if lDarkBlade = $
+      {
+         AddPacket(4,asssign_noone);
+
+         return;
+      }
+
+      count = Length(lDarkBlade);
+      if count = 1
+      {
+         AddPacket(4,asssign_darkblade);
+
+         if oWinner <> $
+         {
+            AddPacket(STRING_RESOURCE, Send(oWinner,@GetTrueName));
+         }
+         else
+         {
+            AddPacket(4,asssign_blank_winner);
+         }
+
+         AddPacket(4, Send(oGame,@GetNumKills),
+                   STRING_RESOURCE, Send(First(lDarkBlade),@GetTrueName));
+      }
+      else
+      {
+         AddPacket(4, asssign_darkblades);
+
+         if oWinner <> $
+         {
+            AddPacket(STRING_RESOURCE, Send(oWinner,@GetTrueName));
+         }
+         else
+         {
+            AddPacket(4,asssign_blank_winner);
+         }
+
+         AddPacket(4, Send(oGame,@GetNumKills));
+
+         foreach i in lDarkBlade
+         {
+            if count-- > 1
+            {
+               AddPacket(4,asssign_darkblade_format,
+                         STRING_RESOURCE, Send(i,@GetTrueName));
+            }
+            else
+            {
+               AddPacket(4,asssign_last_darkblade_format,
+                         STRING_RESOURCE, Send(i,@GetTrueName));
+            }
+         }
+      }
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

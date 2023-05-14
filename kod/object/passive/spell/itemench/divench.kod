@@ -1,0 +1,255 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DivineEnchantment is ItemEnchantment
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include divench.lkod
+
+   divench_name_rsc = "divine enchantment"
+   divench_icon_rsc = ienchant.bgf
+   divench_desc_rsc = \
+      "Enchants an item with any available item attribute.  Cast this spell "
+      "and target an item, then say the name of the attribute during the focus "
+      "time. Available item attributes for the targeted item will be "
+      "displayed at the start of the focus time."
+
+   divench_list_header = \
+      "~fAvailable item attributes for this item:~n%s%s%s"
+   divench_list_all = \
+      "\n\"~bshrouded~n\": brittle has no effect\n"
+      "\"~btranscendant~n\": bonded to player"
+   divench_list_wearable = \
+      "\n\"~badventuring~n\": bonus XP on kill\n"
+      "\"~bdurable~n\": extra durable item"
+   divench_list_weapon = \
+      "\n\"~bacid/cold/fire/holy/shock/unholy~n\": elemental damage\n"
+      "\"~bblinder~n\": casts blind on target\n"
+      "\"~bbonker~n\": cast bonk on target\n"
+      "\"~bceremonial~n\": bonus damage in arena\n"
+      "\"~bcursed~n\": cursed item\n"
+      "\"~bduke/princess/rebel/necromancer~n\": bonus damage if faction "
+      "matches\n"
+      "\"~benchanted~n\": adds a Kraanan enchantment"
+      "\"~bexpert~n\": Colhorr weapon (more damage)\n"
+      "\"~bglowing~n\": weapon or lute gives off light\n"
+      "\"~bguild hall defender~n\": bonus damage if wielder owns the hall\n"
+      "\"~bparalyzer~n\": casts hold on target\n"
+      "\"~bpunisher~n\": bonus damage against orange/reds\n"
+      "\"~bpurger~n\": casts purge on target\n"
+      "\"~bsiphon~n\": drains mana from target\n"
+      "\"~bspellcaster spellname~n\": casts debuff on target, or buff on "
+      "wielder.  Available spells are ~bdement~n, ~benfeeble~n, ~bvertigo~n, "
+      "~bforget~n, ~bevil twin~n, ~bmark of dishonor~n and ~binvisibility\n"
+      "\"~btwister~n\": spins target around\n"
+      "\"~bvamper~n\": casts vampiric drain on target"
+   divench_cant_enchant = "You can't add an attribute to %s%s."
+   divench_no_message = \
+      "With no attribute specified, the spell fizzles into nothing."
+
+   divench_apply = "You enchant %s%s with the %q attribute."
+   divench_cant_apply = "Couldn't add %q attribute to %s%s."
+   divench_notfound = "No attribute found for attribute string %q."
+   divench_no_permission = \
+      "You do not have the required permissions to cast this spell."
+
+classvars:
+
+   vrName = divench_name_rsc
+   vrIcon = divench_icon_rsc
+   vrDesc = divench_desc_rsc
+
+   viSpell_num = SID_DM_ITEMATT
+   viSpell_level = 100
+   viSchool = SS_DM_COMMAND
+   viMana = 0
+   viSpellExertion = 0
+   viCast_time = 30000
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+
+      return;
+   }
+
+   GetNumSpellTargets()
+   {
+      // Tell client how many targets this spell needs
+      return 1;
+   }
+
+   IsTargetInRange(who = $,target = $)
+   {
+      return who = Send(target,@GetOwner)
+         OR Send(who,@GetOwner) = Send(target,@GetOwner);
+   }
+
+   CanPayCosts(who = $, lTargets = $)
+   {
+      local oTarget;
+
+      if (who = $)
+      {
+         return FALSE;
+      }
+
+      if (NOT Send(who,@CheckDMFlag,#flag=DMFLAG_ALLOW_MODIFY_ITEMS))
+      {
+         Send(who,@MsgSendUser,#message_rsc=divench_no_permission);
+
+         return FALSE;
+      }
+
+      oTarget = First(lTargets);
+
+      // Only castable on items.
+      if NOT IsClass(oTarget,&Item)
+      {
+         return FALSE;
+      }
+
+      if IsClass(oTarget,&NumberItem)
+      {
+         Send(who,@MsgSendUser,#message_rsc=divench_cant_enchant,
+               #parm1=Send(oTarget,@GetDef),#parm2=Send(oTarget,@GetName));
+
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+   CastSpell(who = $)
+   {
+      Send(who,@MsgSendUser,#message_rsc=divench_no_message);
+
+      return FALSE;
+   }
+
+   DoPreTranceEffects(who=$, lTargets=$)
+   "Give the caster a list of valid itematts for this item."
+   {
+      local oTarget;
+
+      if (who = $
+         OR lTargets = $)
+      {
+         propagate;
+      }
+
+      oTarget = First(lTargets);
+
+      // 3 general classes of stuff: weapons, wearable, other. Weapons are
+      // wearables. Post these so they display after the focus message.
+      if (IsClass(oTarget,&Weapon))
+      {
+         Post(who,@MsgSendUser,#message_rsc=divench_list_header,
+               #parm1=divench_list_all,#parm2=divench_list_wearable,
+               #parm3=divench_list_weapon);
+      }
+      else if (IsClass(oTarget,&Necklace)
+         OR IsClass(oTarget,&DefenseModifier)
+         OR IsClass(oTarget,&AttackModifier))
+      {
+         // Should really be a better way to check for 'equippable'.
+         Post(who,@MsgSendUser,#message_rsc=divench_list_header,
+               #parm1=divench_list_all,#parm2=divench_list_wearable,
+               #parm3=system_blank_resource);
+      }
+      else
+      {
+         Post(who,@MsgSendUser,#message_rsc=divench_list_header,
+               #parm1=divench_list_all,#parm2=system_blank_resource,
+               #parm3=system_blank_resource);
+      }
+
+      propagate;
+   }
+
+   GetTranceTime(iSpellpower=0,who=$)
+   {
+      // Since this spell uses the trance, don't scale it down depending on iSpellpower
+      return viCast_time;
+   }
+
+   PerformItemAtt(who = $,oItem = $, sMessage = $)
+   "Realistically, this will usually be called by SomethingSaidDuringTrance."
+   {
+      local i, oItemAtt, sTrigger;
+
+      // Try match the name first so we can distinguish an incorrect itematt
+      // name versus being unable to apply it to the item for other reasons.
+      foreach i in Send(SYS,@GetItemAtts)
+      {
+         sTrigger = Send(i,@GetDMTrigger);
+         if (sTrigger <> $
+            AND StringContain(sMessage,sTrigger))
+         {
+            oItemAtt = i;
+
+            break;
+         }
+      }
+
+      // No matching itematt found.
+      if (oItemAtt = $)
+      {
+         Send(who,@MsgSendUser,#message_rsc=divench_notfound,#parm1=sMessage);
+
+         return FALSE;
+      }
+
+      if Send(oItemAtt,@DMCreateItemAtt,#who=self,#string=sMessage,#oWeapon=oItem)
+      {
+         Send(who,@MsgSendUser,#message_rsc=divench_apply,
+               #parm1=Send(oItem,@GetDef),#parm2=Send(oItem,@GetName),
+               #parm3=sMessage);
+
+         return TRUE;
+      }
+
+      // Found itematt but couldn't apply it.
+      Send(who,@MsgSendUser,#message_rsc=divench_cant_apply,#parm1=sMessage,
+            #parm2=Send(oItem,@GetDef),#parm3=Send(oItem,@GetName));
+
+      return FALSE;
+   }
+
+   SomethingSaidDuringTrance(who=$,string=$,lTargets = $)
+   {
+      // Don't print fizzle message.
+      if (Send(self,@PerformItemAtt,#who=who,#oItem=First(lTargets),
+            #sMessage=string))
+      {
+         GodLog(Send(who,@GetTrueName)," added ",string," attribute to ",
+               Send(First(lTargets),@GetName));
+         Send(who,@BreakTrance,#event=EVENT_STEER);
+      }
+
+      return;
+   }
+
+   TranceBlocksSay()
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

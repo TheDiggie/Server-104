@@ -1,0 +1,86 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+WeapAttBonker is WeaponAttribute
+
+///////////////////////////////////////////////////////////////////////
+//
+//  This weapon just bonks the opponent.  It's nothing more than silly.
+//
+//  Form is:
+//
+//       [ WA_BONK ]
+//	
+///////////////////////////////////////////////////////////////////////
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include wabonker.lkod
+
+   weapattbonker_desc = \
+      " Mocker's signature flamboyantly emblazons the pommel."
+   bonker_dm = "bonker"
+   bonker_info_desc = "8%% chance to cast Bonk on hit\n"
+
+classvars:
+
+   vrDesc = weapattbonker_desc
+   vrInfoDesc = bonker_info_desc
+   viItem_Att_Num = WA_BONKER
+
+   viDifficulty = 9
+   vrDM_trigger = bonker_dm
+
+properties:
+
+   piValue_modifier = 150   /// modify the object's price by 100//
+   piValue_power_modifier = 10
+   piEffect_Percent = 8
+
+messages:
+
+////////////////////////////////////////////////
+///
+///  Effect Functions
+///
+////////////////////////////////////////////////
+
+   ModifyDamage(damage=0,target=$,wielder=$,lData=$)
+   "Wielder has a 1% chance of blinding target with any hit."
+   {
+      local oSpell;
+
+      if target = $
+         OR wielder = $
+      {
+         return damage;
+      }
+
+      if Random(1,100) <= piEffect_percent
+      {
+         oSpell = Send(SYS,@FindSpellByNum,#num=SID_BONK);
+         Send(oSpell,@CastSpell,#who=wielder,#lTargets=[target],
+               #iSpellPower=50,#bItemCast=TRUE);
+      }
+
+      return Damage;
+   }
+
+   IsMagicalEffect()
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

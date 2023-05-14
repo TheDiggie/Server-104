@@ -1,0 +1,81 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+RazaApothecary is RazaTown
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include razaapoth.lkod
+
+   RazaApothecary_name_rsc = "Ravi"
+   RazaApothecary_icon_rsc = kcshopk.bgf
+   RazaApothecary_desc_rsc = \
+      "A strange man of unknown origin, Ravi is always willing to buy "
+      "reagents and gems for his inventory-poor shop."
+
+   RazaAp_entry_welcome = \
+      "Have you anything to sell me?  I'm willing to buy almost anything."
+
+classvars:
+
+   vrName = RazaApothecary_name_rsc
+   vrIcon = RazaApothecary_icon_rsc
+   vrDesc = RazaApothecary_desc_rsc
+   viAttributes = \
+      MOB_NOFIGHT | MOB_SELLER | MOB_NOMOVE | MOB_RANDOM \
+      | MOB_LISTEN | MOB_BUYER | MOB_NOQUEST
+   viOccupation = MOB_ROLE_APOTHECARY
+   viMerchant_markup = MERCHANT_BARGAIN
+
+properties:
+
+messages:
+
+   SetForSale()
+   {
+      plFor_sale = [
+         [ 
+            Create(&Robe,#color=XLAT_TO_SKIN1),
+            Create(&BlueMushroom,#number=4),
+            Create(&RedMushroom,#number=4),
+            Create(&Mushroom,#number=5),
+            Create(&Elderberry,#number=4),
+            Create(&Herbs,#number=5)
+         ],
+      $,$,$];
+
+      return;
+   }
+
+   ObjectDesired(what=$)
+   {
+      if Send(Self,@IsObjectReagent,#what=what)
+         OR Send(self,@IsObjectGem,#what=what)
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   UserEntered(who=$)
+   {
+      Post(who,@SomeoneSaid,#what=self,#string=RazaAp_entry_welcome,
+            #type=SAY_RESOURCE);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

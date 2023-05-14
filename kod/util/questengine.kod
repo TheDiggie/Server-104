@@ -1,0 +1,2295 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+// This class is the base for the Quest engine. It serves to keep all the shared
+// data (quest templates and quest node templates) in a central place.
+////////////////////////////////////////////////////////////////////////////////
+QuestEngine is UtilityFunctions
+
+constants:
+
+   include blakston.khd
+   include protocol.khd
+
+// All quest constants are now in blakston.khd.
+
+//   QUEST_MAX_NUM_PLAYERS = 5
+//   QUEST_MAX_MAX_ACTIVE = 100
+
+// Field names for a QuestTemplate
+//   QT_QST_ID            = 1
+//   QT_QUEST_OBJECT      = 2
+//   QT_NUM_PLAYERS       = 3
+//   QT_QUEST_TYPE        = 4
+//   QT_PLAYER_RESTRICT   = 5
+//   QT_QUEST_NODES       = 6
+//   QT_MAX_NUM_ACTIVE    = 7
+//   QT_ACTIVE_QUESTS     = 8
+//   QT_SCHEDULE_CHANCE   = 9
+//   QT_PLAYER_RESTRICT2  = 10
+
+// Field names for a QuestNodeTemplate
+//   QNT_QNT_ID        = 1
+//   QNT_NPC_LIST      = 2
+//   QNT_NPC_MODIFIER  = 3
+//   QNT_TYPE          = 4
+//   QNT_CARGO_LIST    = 5
+//   QNT_MONSTER_LIST  = 6
+//   QNT_PRIZE_LIST    = 7
+//   QNT_PENALTY_LIST  = 8
+//   QNT_ASSIGN_HINT   = 9
+//   QNT_SUCCESS_HINT  = 10
+//   QNT_FAILURE_HINT  = 11
+//   QNT_TIME_LIMIT    = 12
+
+resources:
+
+   include questengine.lkod
+
+   // Chess piece names
+   pawn = "Knave"
+   pawn1 = "Queen's Keep's Knave"
+   pawn2 = "Queen's Steed's Knave"
+   pawn3 = "Queen's Priestess' Knave"
+   pawn4 = "Queen's Knave"
+   pawn5 = "King's Keep's Knave"
+   pawn6 = "King's Steed's Knave"
+   pawn7 = "King's Priestess' Knave"
+   pawn8 = "King's Knave"
+   rook = "Keep"
+   rook1 = "King's Keep"
+   rook2 = "Queen's Keep"
+   knight = "Steed"
+   knight1 = "King's Steed"
+   knight2 = "Queen's Steed"
+   bishop = "Priestess"
+   bishop1 = "King's Priestess"
+   bishop2 = "Queen's Priestess"
+   queen = "Queen"
+   king = "King"
+
+   chess_move = "%q to %q %q"
+   chess_capture = "%q captures %q"
+   chess_substring = "%q"
+
+   two = "two"
+   three = "three"
+   four = "four"
+   five = "five"
+   six = "six"
+   seven = "seven"
+
+   // Default quest messages
+   default_message = "Red Sky begins before the next full moon."
+   default_assign_hint = "You have been assigned a new questnode."
+   temp_assign_hint_bring_me_item = \
+      "Excuse me.  I was just doing some minor experimentation with the "
+      "fringes of the known magics.  I need %INDEF_CARGO %CARGO to continue "
+      "my research.  Could you be so kind as to bring that to me?"
+
+   temp_assign_hint_bring_message = \
+      "Please deliver this message for me to %NPC: %CARGO"
+   temp_success_hint_bring_message = \
+      "Thanks, but I already knew that."
+   temp_assign_hint_reward_message = \
+      "You can tell %NPC this for me, though: %CARGO"
+   temp_success_hint_reward_message = \
+      "For stating the obvious, your reward is %INDEF_PRIZE %PRIZE."
+
+   default_success_hint = "You have successfully completed this questnode."
+   first_success_hint = "Ah, just the person I was looking for."
+   temp_success_hint_bring_me_item = \
+      "Thanks for bringing me %DEF_CARGO %CARGO.  I don't have much, but let "
+      "me give you %INDEF_PRIZE %PRIZE for your trouble."
+   default_failure_hint = \
+      "You have failed to accomplish my request in a timely fashion.  I am "
+      "very disappointed in you."
+   never_again_failure_hint = \
+      "Hmmph.  You have failed me.  I will not impose on you in the future "
+      "with requests of this sort."
+
+   temp_assign_hint_chess1 = \
+      "I'm playing a chess game with %NPC.  I've been thinking about it, and "
+      "I'm ready to send %HIMHER_NPC my next move.  Would you please tell "
+      "%HIMHER_NPC that my move is %CARGO?"
+   temp_success_hint_chess1 = "A brilliant move, but easily blocked."
+   temp_assign_hint_chess2 = "Please tell %NPC %CARGO."
+   temp_success_hint_chess2 = "That peacock told you that, eh?"
+   temp_assign_hint_chess3 = \
+      "Well, tell %HIMHER_NPC %CARGO.  And while you're there, tell "
+      "%HIMHER_NPC 'checkmate'."
+   temp_success_hint_chess3 = \
+      "A cunning move.  I must be sure to congratulate %NPC.  Take this "
+      "%PRIZE as a token of my appreciation for being our courier."
+
+   temp_assign_hint_monster = \
+      "Beware %DEF_MONSTER %MONSTER, my beamish boy.  The jaws that bite, the "
+      "claws that catch.  Willst thou slay him for me?"
+   temp_success_hint_monster = \
+      "Oh, calloo, callay, frabjous day!  Thoust hast slain "
+      "%DEF_MONSTER %MONSTER."
+
+   temp_assign_hint_monster_item = \
+      "I need you to go forth and kill %INDEF_MONSTER %MONSTER, and bring "
+      "me %DEF_CARGO %CARGO fresh from his steaming carcass.  I will "
+      "reward you suitably."
+   temp_success_hint_monster_item = \
+      "Ah, that's just what I needed.  Here is your compensation, "
+      "%INDEF_PRIZE %PRIZE."
+
+   temp_assign_hint_food_item = \
+      "I'm a little hungry, and I've been having a craving for %INDEF_CARGO "
+      "%CARGO.  Would you be so kind as to bring one to me, right away?"
+   temp_success_hint_food_item = \
+      "Oh, yummy!  Thank you, and here's %INDEF_PRIZE %PRIZE."
+
+   temp_assign_hint_E3_message = \
+      "Can you help me?  I am in terrible trouble.  When I was outside the "
+      "walls picking mushrooms, a vicious band of Avar attacked me.  Although "
+      "I escaped, I dropped Tepal's Book of Scavengermancy.  He will hate me "
+      "if I don't get it back for him.  Could you go find it and bring it to "
+      "him?  Please.  If you do I'll cast a hex to make you stronger for a "
+      "few days."
+   temp_success_hint_E3_message = \
+      "There's my book!  Well, orc-be-damned, I thought it was gone forever."
+   temp_failure_hint_E3_message = \
+      "Didn't Zala mention something to you about getting back my book?  "
+      "Well, you can forget about that.  I don't want it anymore.  And "
+      "I'll tell you something, it will be a long time before I lend her "
+      "anything again."
+   temp_E3_trigger = "hello"
+
+   // QuestEngine status report mail strings.
+   questEngine_report_sender = "Quest Engine"
+   questEngine_report_1 = \
+      "Subject: Report: Quest %q\n"
+      "Quest %q has %q active instances, %q of which are unassigned, and %q "
+      "of which have been assigned to:\n%q"
+   questEngine_report_2 = ",\n"
+
+classvars:
+
+properties:
+
+   // Used to check if deadlines met and schedule new quests.
+   piQuestTimerDelay = 5 * 60 * 1000
+   // Goes off once a minute.
+   piQuestDeadlineTimerDelay = 60 * 1000
+
+   // Set to TRUE to output quest debug information.
+   piDebug = FALSE
+   // Set to FALSE to suspend scheduling of new quests.
+   piActive = TRUE
+
+   ptQuestTimer = $
+   ptQuestDeadlineTimer = $
+   plChessPiecesCaptured = $
+   plChessPieces = $
+   plChessPiecesFiles = $
+   plChessPiecesRanks = $
+
+   piDefaultNumPlayers = 1
+   // Not used for single-player quests
+   piDefaultQuestType = Q_TYPE_COMPETITIVE
+   // Not tried this quest for piQuestHistoryRecentTime logged in time.
+   piDefaultPlayerRestrict = Q_PLAYER_NOTTRIED_RECENTLY
+   plDefaultQuestNodes = $
+   // Allow only 1 active at a time.
+   piDefaultMaxNumberActive = 1
+   // 50/50 chance of scheduling a new quest each time timer fires.
+   piDefaultRescheduleChance = 50
+   // Special restrictions, e.g. number of spells, guild membership.
+   plDefaultPlayerRestrict2 = $
+
+   plQuestTemplates = $
+
+   plDefaultNPCList = $
+   piDefaultNPCModifier = $
+   piDefaultQuestNodeType = $
+   plDefaultCargoList = $
+   plDefaultMonsterList = $
+   plDefaultPrizeList = $
+   plDefaultPenaltyList = $
+   // Ten minutes.
+   piDefaultTimeLimit = 600
+
+   plQuestNodeTemplates = $
+   plQuestNodesAwaitingMonsterDeath = $
+
+   piCensusTallyDeleted = 0
+   piCensusTallyActive = 0
+   piCensusTallyActiveOrphaned = 0
+   piCensusTallyActiveDuplicate = 0
+
+   // Quests active when recreateall run. They are saved and given back to
+   // the players after recreate finishes. Stored in a list with each element
+   // consisting of [ quester obj ID, quest ID, quest node ID, info bitfield ].
+   // Info bitfield contains extra info on the quest if necessary (e.g. if a
+   // monster has already been killed for a 'kill mob' quest node.
+   plRecreateActiveQuests = $
+
+messages:
+
+   Constructor()
+   {
+      Send(self,@Recreate);
+
+      return;
+   }
+
+   Jumpstart()
+   "A quick and dirty way to get things running again."
+   {
+      Send(self,@Recreate);
+      Send(self,@RecreateQuestNodes);
+
+      return;
+   }
+
+#region Delete/Disable
+
+  /**
+   * Suspends the QuestEngine.
+   *
+   * Sets piActive to 0 or 1 based on parameter.
+   *
+   * @param resume The state QuestEngine will be put into
+   *   (TRUE = active, FALSE = suspended).
+   *
+   * @return Returns $.
+   */
+   Suspend(resume=0)
+   "Suspends scheduling of quests and processing of deadlines.  "
+   "Call with resume <> 0 to resume scheduling."
+   {
+      if resume = 0
+      {
+         Debug("Quest scheduling suspended.");
+         piActive = 0;
+      }
+      else
+      {
+         Debug("Quest scheduling resumed.");
+         piActive = 1;
+      }
+
+      return;
+   }
+
+  /**
+   * Deletes active quests.
+   *
+   * DeleteActiveQuests puts QuestEngine into 'suspend' mode, then
+   * cancels all active quests followed by reactivating QuestEngine.
+   *
+   * @return Returns $.
+   */
+   DeleteActiveQuests()
+   "Deletes all active quests."
+   {
+      local iQT, oQuest, iStatus, lOcc, oNPC;
+
+      iStatus = piActive;
+      if iStatus
+      {
+         Send(self,@Suspend);
+      }
+
+      foreach iQT in plQuestTemplates
+      {
+         foreach oQuest in Nth(iQT,QT_ACTIVE_QUESTS)
+         {
+            Send(oQuest,@Cancel,#bRecreate=TRUE);
+         }
+      }
+
+      if iStatus
+      {
+         Send(self,@Suspend,#resume=1);
+      }
+
+      return;
+   }
+
+   ClearAllQuests()
+   "This cancels all active quests, and strips the quest templates so NPC's "
+   "can be rebuilt. It is called by RecreateAll, prior to rebuilding the "
+   "templates with Recreate(#all=1)"
+   {
+      Send(self,@DeleteActiveQuests);
+      Send(self,@Suspend);
+
+      plQuestTemplates = $;
+      plDefaultNPCList = $;
+      plQuestNodeTemplates = $;
+      plQuestNodesAwaitingMonsterDeath = $;
+
+      return;
+   }
+
+   Delete()
+   {
+      if (ptQuestTimer <> $)
+      {
+         DeleteTimer(ptQuestTimer);
+         ptQuestTimer = $;
+      }
+      if (ptQuestDeadlineTimer <> $)
+      {
+         DeleteTimer(ptQuestDeadlineTimer);
+         ptQuestDeadlineTimer = $;
+      }
+
+      propagate;
+   }
+
+#endregion
+
+#region Recreate
+
+   Recreate()
+   "Does not start timer. After this call, call RecreateQuestNodes "
+   "to create questnodes and start timer."
+   {
+      plQuestTemplates = $;
+      plQuestNodeTemplates = $;
+
+      if ptQuestTimer <> $
+      {
+         DeleteTimer(ptQuestTimer);
+         ptQuestTimer = $;
+      }
+
+      if ptQuestDeadlineTimer <> $
+      {
+         DeleteTimer(ptQuestDeadlineTimer);
+         ptQuestDeadlineTimer = $;
+      }
+
+      // Lists of chess pieces for the chess quests.
+      plChessPiecesCaptured = [ pawn1, pawn2, pawn3, pawn4, pawn5, pawn6,
+                                pawn7, pawn8, rook1, rook2, knight1, knight2,
+                                bishop1, bishop2, queen ];
+      plChessPieces = [ pawn, rook, knight, bishop, queen, king ];
+      plChessPiecesFiles = [ rook1, rook2, knight1, knight2, bishop1,
+                             bishop2, queen, king ];
+      plChessPiecesRanks = [ two, three, four, five, six, seven ];
+
+      piDefaultNumPlayers = 1;
+      // Not used for single-player quests.
+      piDefaultQuestType = Q_TYPE_COMPETITIVE;
+      // Not tried this quest for piQuestHistoryRecentTime logged in time.
+      piDefaultPlayerRestrict = Q_PLAYER_NOTTRIED_RECENTLY;
+      // Only one node, the first.
+      plDefaultQuestNodes = [ 1 ];
+      // For testing, have 5 active at a time.
+      piDefaultMaxNumberActive = 5;
+      // 50/50 chance of scheduling a new quest each time timer fires.
+      piDefaultRescheduleChance = 50;
+      // Special restrictions, e.g. number of spells, guild membership.
+      plDefaultPlayerRestrict2 = $;
+
+      plDefaultNPCList = $;
+      piDefaultNPCModifier = QN_NPCMOD_NONE;
+      piDefaultQuestNodeType = QN_TYPE_SHOWUP;
+      plDefaultCargoList = [];
+      plDefaultMonsterList = [];
+      plDefaultPrizeList = [];
+      plDefaultPenaltyList = [];
+
+      Post(self,@RecreateQuestTemplates);
+
+      return;
+   }
+
+   RecreateQuestTemplates()
+   {
+      // Permanent quests, index is determined by constants from old quest setup
+      // Quest templates are now objects, they will send the appropriate data
+      // back to QuestEngine to set up their quest template. RecreateQuestNodes
+      // will ask the QuestTemplates in plQuestTemplates for their quest node
+      // data. Frequently called quests go first.
+
+      // QST_ID_PRINCESS_SERVICE
+      Create(&PrincessLoyaltyQuest);
+      // QST_ID_DUKE_SERVICE
+      Create(&DukeLoyaltyQuest);
+      // QST_ID_REBEL_SERVICE
+      Create(&RebelLoyaltyQuest);
+
+      // QST_ID_PRINCESS_JOIN
+      Create(&PrincessJoinQuest);
+      // QST_ID_DUKE_JOIN
+      Create(&DukeJoinQuest);
+      // QST_ID_REBEL_JOIN
+      Create(&RebelJoinQuest);
+      
+      // QST_ID_PRINCESS_SOLDIER
+      Create(&PrincessSoldierQuest);
+      // QST_ID_DUKE_SOLDIER
+      Create(&DukeSoldierQuest);
+      // QST_ID_REBEL_SOLDIER
+      Create(&RebelSoldierQuest);
+
+      // QST_ID_SHALILLE_DISCIPLE
+      Create(&ShalDiscQuest);
+      // QST_ID_QOR_DISCIPLE
+      Create(&QorDiscQuest);
+      // QST_ID_FAREN_DISCIPLE
+      Create(&FarenDiscQuest);
+      // QST_ID_KRAANAN_DISCIPLE
+      Create(&KranDiscQuest);
+
+      // QST_ID_GUILDSHIELD
+      Create(&GuildShieldQuest);
+      // QST_ID_GUILDSHIELD_INTRO
+      Create(&GuildShieldIntroQuest);
+
+      // QST_ID_JALA_NECKLACE
+      Create(&JalaNecklaceQuest);
+
+      // QST_ID_SCIMITAR_PROF
+      Create(&ScimProfQuest);
+      // QST_ID_DEMENTIA_SPELL
+      Create(&DementPupilQuest);
+      // QST_ID_FADE_SPELL
+      Create(&FadePupilQuest);
+      // QST_ID_SPOREBURST_LEARN
+      Create(&SporePupilQuest);
+
+      // QST_ID_LUTE
+      Create(&LuteQuest);
+      // QST_ID_TRUTH_SPELL
+      Create(&TruthSpellQuest);
+      // QST_ID_TRUTH_SPELL_ENDBRANCH
+      Create(&TruthEndBranchQuest);
+
+      // QST_ID_HYPOCHONDRIAC
+      Create(&HypochondriacQuest);
+
+      // QST_ID_BONE_PRIESTESS
+      Create(&BonePriestessQuest);
+      // QST_ID_MAD_SCIENTIST
+      Create(&MadScientistDflyQuest);
+      // QST_ID_TRADING_POST_GOOD
+      Create(&TradingPostGoodQuest);
+      // QST_ID_TRADING_POST_EVIL
+      Create(&TradingPostEvilQuest);
+      // QST_ID_BOW_MAKER_GOOD
+      Create(&BowmakerGoodQuest);
+      // QST_ID_BOW_MAKER_EVIL
+      Create(&BowmakerEvilQuest);
+
+      // QST_ID_QOR_OFFERING
+      Create(&QorOfferingQuest);
+      // QST_ID_SHALILLE_OFFERING
+      Create(&ShalOfferingQuest);
+      // QST_ID_FAREN_OFFERING
+      Create(&FarenOfferingQuest);
+      // QST_ID_KRAANAN_OFFERING
+      Create(&KranOfferingQuest);
+      // QST_ID_RIIJA_OFFERING
+      Create(&RiijaOfferingQuest);
+
+      // QST_ID_ABSTAIN_PVP
+      Create(&AbstainPvPQuest);
+
+      // QST_ID_CHICKEN_SOUP
+      Create(&ChickenSoupQuest);
+      // QST_ID_POLISH_SERAPHYM
+      Create(&SeraphymQuest);
+
+      // QST_ID_PRIESTESS_INSIGNIA
+      Create(&PriestessInsigniaQuest);
+      // QST_ID_MONK_INSIGNIA
+      Create(&MonkInsigniaQuest);
+      // QST_ID_FACTION_INSIGNIA
+      Create(&FactionInsigniaQuest);
+
+      // QST_ID_STUNTED_DWARF
+      Create(&StuntedDwarfQuest);
+
+      // QST_ID_MYSTERY_MONSTER
+      Create(&MysteryMonsterQuest);
+
+      // QST_ID_MOXAL_SCAM_1
+      Create(&MoxalScamOneQuest);
+      // QST_ID_MOXAL_SCAM_2
+      Create(&MoxalScamTwoQuest);
+
+      // QST_ID_COUNCIL_LETTER
+      Create(&CouncilLetterQuest);
+
+      // QST_ID_CHESS
+      Create(&ChessMoveQuest);
+      // QST_ID_CHESS_CHECKMATE
+      Create(&ChessMateQuest);
+
+      // QST_ID_LOVE_LETTER_1
+      Create(&LoveLetterOneQuest);
+      // QST_ID_LOVE_LETTER_2
+      Create(&LoveLetterTwoQuest);
+
+      // QST_ID_APHRODISIAC
+      Create(&AphrodisiacQuest);
+
+      // QST_ID_NECRO_WARNING
+      Create(&NecroWarnEvilQuest);
+      // QST_ID_NECRO_WARNING_2
+      Create(&NecroWarnGoodQuest);
+
+      // QST_ID_BAR_RESTOCK
+      Create(&BarRestockQuest);
+      // QST_ID_PARTY
+      Create(&CateringQuest);
+      // QST_ID_ORE
+      Create(&OreQuest);
+      // QST_ID_APOTHECARY
+      Create(&ApothecaryQuest);
+      // QST_ID_VAULT_TAX
+      Create(&VaultTaxQuest);
+      // QST_ID_MERCHANT_TAX
+      Create(&MerchantTaxQuest);
+      // QST_ID_LATE_TAX
+      Create(&LateTaxQuest);
+
+      // QST_ID_KOC_WEAPON_TRADE
+      Create(&KocWeaponQuest);
+      // QST_ID_KOC_ALE_TRADE
+      Create(&KocAleQuest);
+
+      // QST_ID_WARLETTER
+      Create(&WarLetterQuest);
+
+      // QST_ID_ESTABLISH_NECROGUILD
+      Create(&NecroGuildQuest);
+
+      // QST_ID_POTION_ID
+      Create(&IdentifyPotionQuest);
+      // QST_ID_WAND_ID
+      Create(&IdentifyWandQuest);
+
+      // QST_ID_MURDER_PRINCESS_1
+      Create(&CessMurderOneQuest);
+      // QST_ID_MURDER_PRINCESS_2
+      Create(&CessMurderTwoQuest);
+      // QST_ID_MURDER_PRINCESS_3
+      Create(&CessMurderThreeQuest);
+
+      // QST_ID_MURDER_DUKE_1
+      Create(&DukeMurderOneQuest);
+      // QST_ID_MURDER_DUKE_2
+      Create(&DukeMurderTwoQuest);
+      // QST_ID_MURDER_DUKE_3
+      Create(&DukeMurderThreeQuest);
+
+      // QST_ID_MURDER_JONAS_1
+      Create(&JonasMurderOneQuest);
+      // QST_ID_MURDER_JONAS_2
+      Create(&JonasMurderTwoQuest);
+      // QST_ID_MURDER_JONAS_3
+      Create(&JonasMurderThreeQuest);
+
+      // Now we fix up the faction service quests, since they need to have as
+      // many scheduled as members. This worked well enough for low numbers of
+      // factioned players, however with large numbers the amount of quests
+      // might get a little bulky. Since we don't *need* to have a quest
+      // available for every member, lets try this out at 30 scheduled quests
+      // and go from there. Old scheduling code commented out here for now.
+      //foreach i in Send(Send(SYS,@GetParliament),@GetFactionList)
+      //{
+      //   if Nth(i,1) = FACTION_PRINCESS
+      //   {
+      //      Send(self,@SetQuestMaxActive,#index=QST_ID_PRINCESS_SERVICE,
+      //           #new_max =(1+Length(Nth(i,2))));
+      //   }
+      //   if Nth(i,1) = FACTION_DUKE
+      //   {
+      //      Send(self,@SetQuestMaxActive,#index=QST_ID_DUKE_SERVICE,
+      //           #new_max =(1+Length(Nth(i,2))));
+      //   }
+      //   if Nth(i,1) = FACTION_REBEL
+      //   {
+      //      Send(self,@SetQuestMaxActive,#index=QST_ID_REBEL_SERVICE,
+      //           #new_max=(1+Length(Nth(i,2))));
+      //   }
+      //}
+      // New scheduling code here:
+
+      Send(self,@SetQuestMaxActive,#index=QST_ID_PRINCESS_SERVICE,#new_max=30);
+      Send(self,@SetQuestMaxActive,#index=QST_ID_DUKE_SERVICE,#new_max=30);
+      Send(self,@SetQuestMaxActive,#index=QST_ID_REBEL_SERVICE,#new_max=30);
+
+      return;
+   }
+
+   RecreateQuestNodes()
+   "Triggers QuestTemplates to send their quest node template data, and "
+   "starts the Quest timer."
+   {
+      local i, iMax, bOK, lNPCs, oNPC, lCargo, lCargo2, oLib, oQE, oQT;
+
+      oLib = Send(SYS,@GetLibrary);
+      // Use old quest engine to select a few random NPCs for default list.
+      plDefaultNPCList = [ Send(oLib,@SelectRandomNPC),
+                           Send(oLib,@SelectRandomNPC),
+                           Send(oLib,@SelectRandomNPC),
+                           Send(oLib,@SelectRandomNPC),
+                           Send(oLib,@SelectRandomNPC) ];
+
+      piDefaultNPCModifier = QN_NPCMOD_NONE;
+      // Default quest node type is to activate just by showing up.
+      piDefaultQuestNodeType = QN_TYPE_SHOWUP;
+      // Default cargo list is a default resource text.
+      plDefaultCargoList = [ default_message ];
+      plDefaultMonsterList = [ &SpiderBaby, &Centipede, &Ant, &FungusBeast,
+                               &Scorpion, &Slime, &Spider, &Troll, &Orc ];
+      plDefaultPrizeList = [[[ QN_PRIZETYPE_ITEMCLASS, &Money, 10 ],\
+            [ QN_PRIZETYPE_ITEMCLASS, &Money, 500 ],\
+            [ QN_PRIZETYPE_ITEMCLASS, &Emerald, 5 ],\
+            [ QN_PRIZETYPE_ITEMCLASS, &Ruby, 5 ],\
+            [ QN_PRIZETYPE_ITEMCLASS, &Diamond, 5 ],\
+            [ QN_PRIZETYPE_ITEMCLASS, &Sapphire, 5 ],\
+            [ QN_PRIZETYPE_ITEMCLASS, &EntrootBerry, 5 ],\
+            [ QN_PRIZETYPE_ITEMCLASS, &OrcTooth, 5 ],\
+            [ QN_PRIZETYPE_BOON, QN_PRIZE_BOON_VIGOR, 10, 1 ],\
+            [ QN_PRIZETYPE_BOON, QN_PRIZE_BOON_INTELLECT, 10, 1 ],\
+            [ QN_PRIZETYPE_BOON, QN_PRIZE_BOON_AIM, 10, 1 ],\
+            [ QN_PRIZETYPE_BOON, QN_PRIZE_BOON_STAMINA, 10, 1 ],\
+            [ QN_PRIZETYPE_BOON, QN_PRIZE_BOON_AGILITY, 10, 1 ],\
+            [ QN_PRIZETYPE_BOON, QN_PRIZE_BOON_MYSTICISM, 10, 1 ],\
+            [ QN_PRIZETYPE_BOON, QN_PRIZE_BOON_STRENGTH, 10, 1 ]//,\
+            //[ QN_PRIZETYPE_BOON, QN_PRIZE_BOON_HITPOINTS, 10, 1 ],\
+            //[ QN_PRIZETYPE_BOON, QN_PRIZE_BOON_MANA, 10, 1 ]
+            ] ];
+      plDefaultPenaltyList = [];   // none
+
+      oQT = $;
+      // Let all the quests know to send their quest node templates.
+      foreach i in plQuestTemplates
+      {
+         oQT = Nth(i,QT_QUEST_OBJECT);
+         if oQT <> $
+            AND IsClass(oQT,&QuestTemplate)
+         {
+            Send(oQT,@SendQuestNodeTemplates);
+         }
+      }
+
+      // Resume quest scheduling if suspended.
+      Send(self,@Suspend,#resume=1);
+
+      // Start timer
+      ptQuestTimer = CreateTimer(self,@OnQuestTimer,2000);
+      // Send(self, @OnQuestTimer);
+
+      // Schedule faction loyalty quests up to max
+      i = 0;
+      iMax = Nth(Send(self,@GetQuestTemplate,#index=QST_ID_PRINCESS_SERVICE),
+               QT_MAX_NUM_ACTIVE);
+      while i < iMax
+      {
+         i = i + 1;
+         Send(self,@ScheduleQuest,#index=QST_ID_PRINCESS_SERVICE,#override=TRUE);
+      }
+
+      i = 0;
+      iMax = Nth(Send(self,@GetQuestTemplate,#index=QST_ID_DUKE_SERVICE),
+               QT_MAX_NUM_ACTIVE);
+      while i < iMax
+      {
+         i = i + 1;
+         Send(self,@ScheduleQuest,#index=QST_ID_DUKE_SERVICE,#override=TRUE);
+      }
+
+      i = 0;
+      iMax = Nth(Send(self,@GetQuestTemplate,#index=QST_ID_REBEL_SERVICE),
+               QT_MAX_NUM_ACTIVE);
+      while i < iMax
+      {
+         i = i + 1;
+         Send(self,@ScheduleQuest,#index=QST_ID_REBEL_SERVICE,#override=TRUE);
+      }
+
+      // If we have a saved quest list, reassign them.
+      Send(self,@ReassignSavedQuests);
+
+      return;
+   }
+
+   RecreateClearQuests()
+   "Called by System during RecreateAll. Saves questnodes in play and clears "
+   "quests. Note this currently only supports single-player quests, however "
+   "all quests are of this type for now."
+   {
+      local lQT, oQuest, oQuester, iQT, iQNT, oQN, iInfo, iNodeType;
+
+      // Save all active quest nodes so we can reassign them later.
+      foreach lQT in plQuestTemplates
+      {
+         // Quest template index.
+         iQT = Nth(lQT,QT_QST_ID);
+
+         foreach oQuest in Nth(lQT,QT_ACTIVE_QUESTS)
+         {
+            // Quest node for this quest. Might be $.
+            oQN = Send(oQuest,@GetActiveQuestNode);
+            if (oQN = $)
+            {
+               continue;
+            }
+
+            // Reset info field.
+            iInfo = 0;
+
+            // Quest node index.
+            iQNT = Send(oQN,@GetQuestNodeTemplateIndex);
+            
+            // Quest node type
+            iNodeType = Send(self,@GetQuestNodeType,#index=iQNT);
+
+            // Monster quests need to fill out the info field.
+            if (iNodeType = QN_TYPE_MONSTER)
+            {
+               if (Send(oQN,@GetQuestMonster) = $)
+               {
+                  iInfo |= QSTA_MOB_KILLED;
+               }
+               else
+               {
+                  iInfo |= QSTA_MOB_NOTKILLED;
+               }
+            }
+
+            foreach oQuester in Send(oQuest,@GetQuesters)
+            {
+               // Add quester, indexes and info to list.
+               plRecreateActiveQuests = Cons([oQuester, iQT, iQNT, iInfo],
+                                          plRecreateActiveQuests);
+            }
+         }
+      }
+
+      Send(self,@ClearAllQuests);
+
+      return;
+   }
+
+   ReassignSavedQuests()
+   "Create and assign quests saved during RecreateAll. Also advances the quest "
+   "to the specific quest node the player was up to."
+   {
+      local i, iCount, oQuest, oQuestNode, oQuester, lQT, iQTIndex, iQNTIndex;
+
+      foreach i in plRecreateActiveQuests
+      {
+         // Quest template index.
+         iQTIndex = Nth(i,2);
+         // Quest template for this index.
+         lQT = Send(self,@GetQuestTemplate,#index=iQTIndex);
+
+         // Quest template must exist.
+         if (lQT = $)
+         {
+            Debug("Quest template ",iQTIndex," not found when recreating quests!");
+
+            continue;
+         }
+
+         // Quest node template index.
+         iQNTIndex = Nth(i,3);
+         // Quest node index must be part of this quest template.
+         if (FindListElem(Nth(lQT,QT_QUEST_NODES),iQNTIndex) = 0)
+         {
+            Debug("Quest node index ",iQNTIndex," not part of quest ",iQTIndex);
+
+            continue;
+         }
+
+         // Creates a quest of the required type.
+         // Bypasses max num active checks.
+         oQuest = Send(self,@CreateQuest,#quest_template=iQTIndex);
+         if (oQuest = $)
+         {
+            Debug("Could not create quest for quest template ",iQTIndex);
+
+            continue;
+         }
+
+         // Add the quester.
+         oQuester = First(i);
+         Send(oQuest,@SetQuesters,#questers=[oQuester]);
+
+         // Have to advance the quest to the correct quest node, without
+         // any speech or prize awarding. Quester needs to receive any cargo
+         // for the appropriate quest node.
+         iCount = Length(Nth(lQT,QT_QUEST_NODES));
+         while (Send(oQuest,@GetQuestNodeTemplateIndex) <> iQNTIndex
+            AND iCount-- > 0)
+         {
+            Send(oQuest,@SkipCurrentQuestNode);
+         }
+
+         // Record the activation.
+         Debug("Reactivating quest ",iQTIndex, " node ", iQNTIndex,
+            " for player ", Send(oQuester,@GetTrueName));
+
+         // Handle quest nodes with multiple parts (e.g. mob kill quest).
+         if (Nth(i,4) & QSTA_MOB_KILLED)
+         {
+            // Emulate a mob kill using the quester and quest node's mob
+            oQuestNode = Send(oQuest,@GetActiveQuestNode);
+
+            Send(oQuestNode,@MonsterKilled,#killing_player=oQuester,
+                  #dead_monster=Send(oQuestNode,@GetQuestMonster));
+         }
+      }
+
+      plRecreateActiveQuests = $;
+
+      return;
+   }
+
+#endregion Recreate
+
+#region QuestNodeTemplate
+
+   AddQuestNodeTemplate(NPC_modifier = $, questnode_type = $, cargolist = $,
+                        monsterlist = $, prizelist = $, penaltylist = $,
+                        timelimit = $, quest_node_index = $, bDuplicate = FALSE)
+   "Adds a new questnode template to plQuestNodeTemplates.  Returns index "
+   "number of new questnode template if successful, 0 otherwise.  bDuplicate "
+   "indicates more than one QuestTemplate will be sending the same quest node."
+   "Creates new permanent strings, if successful."
+   {
+      local NPC, lQNT, lQNTemplate, iThisQNTIndex;
+
+     // Validity checks. This message now requires the quest_node_index
+     // be sent.
+      if quest_node_index = $
+         OR quest_node_index < 1
+      {
+         return 0;
+      }
+
+      // NPC modifier must be valid
+      if NPC_modifier = $
+      {
+         NPC_modifier = piDefaultNPCModifier;
+      }
+      if NPC_modifier < QN_NPCMOD_NONE
+         OR NPC_modifier > QN_NPCMOD_DIFFERENT
+      {
+         return 0;
+      }
+
+      // Questnode type must be valid
+      if questnode_type = $
+      {
+         questnode_type = piDefaultQuestNodeType;
+      }
+      if questnode_type < QN_TYPE_MESSAGE
+         OR questnode_type > QN_TYPE_MONSTER_ITEMCLASS
+      {
+         return 0;
+      }
+
+      // Cargolist must be valid
+      if cargolist = $
+      {
+         cargolist = [];
+      }
+
+      // Monsterlist must be valid
+      if monsterlist = $
+      {
+         monsterlist = [];
+      }
+
+      // Prizelist must be valid
+      if prizelist = $
+      {
+         prizelist = [];
+      }
+
+      // Time limit must be valid
+      if timelimit = $
+      {
+         timelimit = piDefaultTimeLimit;
+      }
+      else if timelimit < 0
+      {
+         timelimit = 0;
+      }
+
+      // Penaltylist must be valid
+      if penaltylist = $
+      {
+         penaltylist = [];
+      }
+
+      // Don't add duplicate quest nodes.
+      if GetListNode(plQuestNodeTemplates, QT_QST_ID, quest_node_index)
+      {
+         // Some quest nodes are used by more than one quest, so allow
+         // those and don't log the error in the quest template.
+         if bDuplicate
+         {
+            return quest_node_index;
+         }
+         else
+         {
+            Debug("AddQuestNodeTemplate trying to add duplicate quest node ",
+                  quest_node_index);
+
+            return 0;
+         }
+      }
+
+      lQNTemplate = [ quest_node_index, plDefaultNPCList, NPC_modifier, \
+                      questnode_type, cargolist, monsterlist, prizelist, \
+                      penaltylist, CreateString(),CreateString(), \
+                      CreateString(), timelimit ];
+
+      // Quest nodes no longer need to be in order.
+      plQuestNodeTemplates = Cons(lQNTemplate, plQuestNodeTemplates);
+
+
+      Send(self,@SetQuestNodeNPCList,#index=quest_node_index);
+      Send(self,@SetQuestNodeAssignHint,#index=quest_node_index);
+      Send(self,@SetQuestNodeSuccessHint,#index=quest_node_index);
+      Send(self,@SetQuestNodeFailureHint,#index=quest_node_index);
+
+      return quest_node_index;
+   }
+
+   GetQuestNodeNPCModifier( index = $)
+   "Return the NPC modifier from a quest node template."
+   {
+      return Nth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_NPC_MODIFIER);
+   }
+
+   GetQuestNodeType(index = 0)
+   "Retrieves a questnode type by index number."
+   "Returns type if successful, $ otherwise."
+   {
+      return Nth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_TYPE);
+   }
+
+   GetQuestNodeAssignHint(index = 0)
+   {
+      return Nth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_ASSIGN_HINT);
+   }
+
+   GetQuestNodeSuccessHint(index = 0)
+   {
+      return Nth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_SUCCESS_HINT);
+   }
+
+   GetQuestNodeFailureHint(index = 0)
+   {
+      return Nth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_FAILURE_HINT);
+   }
+
+   GetQuestNodeTemplate(index = 0)
+   "Retrieves quest node template by index number.  Returns $ if unsuccessful."
+   {
+      local lQNT;
+
+      if index < 1
+      {
+         return $;
+      }
+
+      lQNT = GetListNode(plQuestNodeTemplates, QNT_QNT_ID, index);
+
+      if lQNT = $
+      {
+         Debug("QuestEngine couldn't find quest node template ",index);
+
+         return $;
+      }
+
+      return lQNT;
+   }
+
+   IsValidQuestNodeTemplate(index = 0)
+   "Returns 1 if index refers to a valid quest node template, 0 otherwise"
+   {
+      if index < 1
+      {
+         return FALSE;
+      }
+
+      return GetListNode(plQuestNodeTemplates, QNT_QNT_ID, index) <> $;
+   }
+
+   GetRandomNPCFromQuestNodeTemplate(index = 0, not_NPC = $)
+   "Retrieves a random NPC from the list in questnode template #index."
+   "Does not check NPC modifier -- check it before deciding to call this."
+   "Returns NPC if successful, $ otherwise."
+   {
+      local lNPCList, oNPC;
+
+      lNPCList = Nth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_NPC_LIST);
+
+      if lNPCList = $
+      {
+         Debug("Nil NPC list, QN:",index);
+
+         return $;
+      }
+
+      oNPC = Nth(lNPCList, Random(1,Length(lNPCList)));
+      if not_NPC = $
+      {
+         return oNPC;
+      }
+
+      if (oNPC = not_NPC)
+      {
+         lNPCList = ListCopy(lNPCList);
+      }
+
+      while ((oNPC = not_NPC)
+         AND (lNPCList <> $))
+      {
+         lNPCList = DelListElem(lNPCList, oNPC);
+         if Length(lNPCList) = 0
+         {
+            Debug("Disallowed all NPCs listed, so no NPC to choose!  QN:",index);
+
+            return $;
+         }
+
+         oNPC = Nth(lNPCList, Random(1,Length(lNPCList)));
+      }
+
+      if lNPCList <> $
+      {
+         return oNPC;
+      }
+
+      return $;
+   }
+
+   GetRandomCargoFromQuestNodeTemplate(index = 0)
+   "Retrieves a random cargo from the list in questnode template #index."
+   "Returns cargo if successful, $ otherwise."
+   {
+      local lCargoList;
+
+      lCargoList = Nth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_CARGO_LIST);
+      if lCargoList = $
+      {
+         return $;
+      }
+
+      return Nth(lCargoList, Random(1,Length(lCargoList)));
+   }
+
+   GetRandomPrizeFromQuestNodeTemplate(index = 0)
+   "Retrieves a random prize from the list in questnode template #index."
+   "Returns prize if successful, $ otherwise."
+   {
+      local lPrizeList, i, prize, retVal;
+
+      lPrizeList = Nth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_PRIZE_LIST);
+      if lPrizeList = $
+      {
+         return $;
+      }
+
+      retVal = $;
+
+      i = Length(lPrizelist);
+      while i > 0
+      {
+         prize = Nth(lPrizelist, i);
+         if IsList(First(prize))
+         {
+            // If the prize is actually a list of prizes, pick one randomly.
+            retVal = Cons(Nth(prize,Random(1,Length(prize))),retVal);
+         }
+         else
+         {
+            retVal = Cons(prize,retVal);
+         }
+         i = i - 1;
+      }
+
+      return retVal;
+   }
+
+   GetRandomPenaltyFromQuestNodeTemplate(index = 0)
+   "Retrieves a random penalty from the list in questnode template #index."
+   "Returns penalty if successful, $ otherwise."
+   {
+      local lPenaltyList, i, penalty, retVal;
+
+      lPenaltyList = Nth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_PENALTY_LIST);
+      if lPenaltyList = $
+      {
+         return $;
+      }
+
+      retVal = $;
+
+      i = Length(lPenaltyList);
+      while i > 0
+      {
+         penalty = Nth(lPenaltyList, i);
+         if isList(First(penalty))
+         {
+            // If the prize is actually a list of prizes, pick one randomly.
+            retVal = Cons(Nth(penalty,Random(1,Length(penalty))),retVal);
+         }
+         else
+         {
+            retVal = Cons(penalty,retVal);
+         }
+         i = i - 1;
+      }
+
+      return retVal;
+   }
+
+   GetRandomMonsterFromQuestNodeTemplate(index = 0)
+   "Retrieves a random monster class from the list in questnode template #index."
+   "Returns monster class if successful, $ otherwise."
+   {
+      local lQNTemplate, lMonsterList;
+
+      lQNTemplate = Send(self,@GetQuestNodeTemplate,#index=index);
+
+      lMonsterList = Nth(lQNTemplate, QNT_MONSTER_LIST);
+      if lMonsterList = $
+      {
+         return $;
+      }
+
+      return Nth(lMonsterList,Random(1,Length(lMonsterList)));
+   }
+
+   GetQuestNodeTimeLimit(index = 0)
+   {
+      return Nth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_TIME_LIMIT);
+   }
+
+   SetQuestNodeNPCList( index = 0, new_NPC_list = $)
+   "Set the NPC_list of QNT #index to new_NPC_list."
+   "Resets NPC_list to plDefaultNPCList if new_NPC_list is nil."
+   "Returns 1 if successful, 0 otherwise."
+   {
+      local oNPC;
+
+      if Send(self,@IsValidQuestNodeTemplate,#index=index) = FALSE
+      {
+         return 0;
+      }
+
+      // NPC's must be listeners and receivers and not quest prohibited
+      foreach oNPC in new_NPC_list
+      {
+         if (((Send(oNPC,@GetAttributes) & (MOB_RECEIVE | MOB_LISTEN)) = 0)
+            OR (Send(oNPC,@GetAttributes) & MOB_NOQUEST))
+         {
+            // Debug("SetQuestNodeNPCList #",index);
+            // Debug("Invalid NPC - ignored",oNPC);
+            new_NPC_list = DelListElem(new_NPC_list, oNPC);
+         }
+      }
+
+      SetNth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_NPC_LIST, new_NPC_list);
+
+      return 1;
+   }
+
+   SetQuestNodeNPCModifier(index = 0, new_mod = $)
+   "Set the NPCModifier of QNT #index to the new_mod."
+   "Resets NPCModifier to default if new_mod is nil."
+   "Returns 1 if successful, 0 otherwise."
+   {
+      if Send(self,@IsValidQuestNodeTemplate,#index=index) = FALSE
+      {
+         return 0;
+      }
+
+      if new_mod < QN_NPCMOD_NONE
+         OR new_mod > QN_NPCMOD_DIFFERENT
+      {
+         return 0;
+      }
+
+      if new_mod = $
+      {
+         new_mod = piDefaultNPCModifier;
+      }
+
+      SetNth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_NPC_MODIFIER, new_mod);
+
+      return 1;
+   }
+
+   SetQuestNodeType(index = 0, new_type = $)
+   "Set the Type of QNT #index to the new_type."
+   "Resets Type to default if new_type is nil."
+   "Returns 1 if successful, 0 otherwise."
+   {
+      if Send(self,@IsValidQuestNodeTemplate,#index=index) = FALSE
+      {
+         return 0;
+      }
+      if new_type < QN_TYPE_MESSAGE
+         OR new_type > QN_TYPE_MONSTER_ITEMCLASS
+      {
+         return 0;
+      }
+      if new_type = $
+      {
+         new_type = piDefaultQuestNodeType;
+      }
+
+      SetNth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_TYPE, new_type);
+
+      return 1;
+   }
+
+   SetQuestNodeCargoList( index = 0, new_cargo_list = $)
+   "Set the CargoList of QNT #index to new_cargo_list."
+   "No checking of list is done!"
+   "Returns 1 if successful, 0 otherwise."
+   {
+      local oNPC;
+
+      if Send(self,@IsValidQuestNodeTemplate,#index=index) = FALSE
+      {
+         return 0;
+      }
+
+      // No checking of list!
+      if new_cargo_list = $
+      {
+         new_cargo_list = [];
+      }
+
+      SetNth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_CARGO_LIST, new_cargo_list);
+
+      return 1;
+   }
+
+   SetQuestNodeMonsterList( index = 0, new_monster_list = $)
+   "Set the MonsterList of QNT #index to new_monster_list."
+   "No checking of list is done!"
+   "Returns 1 if successful, 0 otherwise."
+   {
+      local oNPC;
+
+      if Send(self,@IsValidQuestNodeTemplate,#index=index) = FALSE
+      {
+         return 0;
+      }
+
+      // No checking of list!
+      if new_monster_list = $
+      {
+         new_monster_list = [];
+      }
+
+      SetNth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_MONSTER_LIST, new_monster_list);
+
+      return 1;
+   }
+
+   SetQuestNodePrizeList(index = 0, new_prize_list = $)
+   "Set the PrizeList of QNT #index to new_prize_list."
+   "No checking of list is done!"
+   "Returns 1 if successful, 0 otherwise."
+   {
+      local oNPC;
+
+      if Send(self,@IsValidQuestNodeTemplate,#index=index) = FALSE
+      {
+         return 0;
+      }
+
+      // No checking of list!
+      if new_prize_list = $
+      {
+         new_prize_list = [];
+      }
+
+      SetNth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_PRIZE_LIST, new_prize_list);
+
+      return 1;
+   }
+
+   SetQuestNodePenaltyList(index = 0, new_penalty_list = $)
+   "Set the PenaltyList of QNT #index to new_penalty_list."
+   "No checking of list is done!"
+   "Returns 1 if successful, 0 otherwise."
+   {
+      local oNPC;
+
+      if Send(self,@IsValidQuestNodeTemplate,#index=index) = FALSE
+      {
+         return 0;
+      }
+
+      // No checking of list!
+      if new_penalty_list = $
+      {
+         new_penalty_list = [];
+      }
+
+      SetNth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_PENALTY_LIST, new_penalty_list);
+
+      return 1;
+   }
+
+   SetQuestNodeAssignHint(index = 0, new_hint = $)
+   "Set the assign_hint of QNT #index to the string new_hint."
+   "Returns 1 if successful, 0 otherwise."
+   {
+      if Send(self,@IsValidQuestNodeTemplate,#index=index) = FALSE
+      {
+         return 0;
+      }
+
+      /////////////////////////////
+      // No checking of hint!
+      if new_hint = $
+      {
+          SetNth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_ASSIGN_HINT, $);
+
+          return 1;
+      }
+      if Send(self,@GetQuestNodeAssignHint,#index=index) = $
+      {
+         SetNth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_ASSIGN_HINT, CreateString());
+      }
+      SetString(Send(self,@GetQuestNodeAssignHint,#index=index), new_hint);
+
+      return 1;
+   }
+
+   SetQuestNodeSuccessHint(index = 0, new_hint = $)
+   "Set the success_hint of QNT #index to the string new_hint."
+   "Resets success_hint to default_success_hint if new_hint is nil."
+   "Returns 1 if successful, 0 otherwise."
+   {
+      if Send(self,@IsValidQuestNodeTemplate,#index=index) = FALSE
+      {
+         return 0;
+      }
+
+      /////////////////////////////
+      // No checking of hint!
+      if new_hint = $
+      {
+         SetNth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_SUCCESS_HINT, $);
+
+         return 1;
+      }
+
+      if Send(self,@GetQuestNodeSuccessHint,#index=index) = $
+      {
+         SetNth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_SUCCESS_HINT, CreateString());
+      }
+
+      SetString(Send(self,@GetQuestNodeSuccessHint,#index=index), new_hint);
+
+      return 1;
+   }
+
+   SetQuestNodeFailureHint(index = 0, new_hint = $)
+   "Set the failure_hint of QNT #index to the string new_hint."
+   "Resets failure_hint to default_failure_hint if new_hint is nil."
+   "Returns 1 if successful, 0 otherwise."
+   {
+      if Send(self,@IsValidQuestNodeTemplate,#index=index) = FALSE
+      {
+         return 0;
+      }
+
+      /////////////////////////////
+      // No checking of hint!
+      if new_hint = $
+      {
+         SetNth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_FAILURE_HINT, $);
+
+         return 1;
+      }
+      if Send(self,@GetQuestNodeFailureHint,#index=index) = $
+      {
+         SetNth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_FAILURE_HINT, CreateString());
+      }
+      SetString(Send(self,@GetQuestNodeFailureHint,#index=index), new_hint);
+
+      return 1;
+   }
+
+   SetQuestNodeTimeLimit(index = 0, new_limit = $)
+   "Set the TimeLimit of QNT #index to the new_limit."
+   "Resets TimeLimit to default if new_limit is nil."
+   "Returns 1 if successful, 0 otherwise."
+   {
+      local lQNT;
+
+      lQNT = Send(self,@GetQuestNodeTemplate,#index=index);
+      if lQNT = $
+      {
+         return 0;
+      }
+
+      if new_limit < 0
+      {
+         return 0;
+      }
+
+      if new_limit = $
+      {
+         new_limit = piDefaultTimeLimit;
+      }
+
+      SetNth(lQNT, QNT_TIME_LIMIT, new_limit);
+
+      return 1;
+   }
+
+#endregion QuestNodeTemplate
+
+#region QuestTemplate
+
+   AddQuestTemplate(num_players = $, quest_type = $, player_restrict = $,
+                    player_restrict2 = $, nodes = $, max_active = $, 
+                    schedule_pct = $, quest_index = $, quest_object = $)
+   "Adds a quest template to plQuestTemplates.  Called by the QuestTemplate "
+   "class Constructor to set up the quest."
+   {
+      local lQT, lQTemplate;
+
+      // Validity checks. This message now requires the quest_index (QST_ID),
+      // quest nodes and quest template object to be sent.
+      if quest_object = $
+      {
+         return 0;
+      }
+
+      if quest_index = $
+         OR quest_index < 1
+      {
+         return 0;
+      }
+
+      if nodes = $
+      {
+         return 0;
+      }
+
+      if num_players = $
+      {
+         num_players = piDefaultNumPlayers;
+      }
+      if num_players < 1
+         OR num_players > QUEST_MAX_NUM_PLAYERS
+      {
+         return 0;
+      }
+
+      if quest_type = $
+      {
+         quest_type = piDefaultQuestType;
+      }
+      if quest_type < Q_TYPE_COMPETITIVE
+         OR quest_type > Q_TYPE_COLLECTIVE
+      {
+         return 0;
+      }
+
+      if player_restrict = $
+      {
+         player_restrict = piDefaultPlayerRestrict;
+      }
+      if player_restrict < 0
+      {
+         return 0;
+      }
+
+      if max_active = $
+      {
+         max_active = piDefaultMaxNumberActive;
+      }
+
+      if schedule_pct = $
+      {
+         schedule_pct = piDefaultRescheduleChance;
+      }
+      if schedule_pct < 0 
+         OR schedule_pct > 100
+      {
+         return 0;
+      }
+
+      // Don't add duplicate quests.
+      if GetListNode(plQuestTemplates, QT_QST_ID, quest_index)
+      {
+         Debug("AddQuestTemplate trying to add duplicate quest ID ",
+               quest_index);
+
+         return 0;
+      }
+
+      lQTemplate = [ quest_index, quest_object, num_players, quest_type, \
+                     player_restrict, nodes, max_active, [], schedule_pct, \
+                     player_restrict2 ];
+
+      // Quest templates no longer need to be in order.
+      plQuestTemplates = Cons(lQTemplate, plQuestTemplates);
+
+      return quest_index;
+   }
+
+   IsValidQuestTemplate(index = 0)
+   "Returns 1 if index refers to a valid quest template, 0 otherwise"
+   {
+      if index < 1
+      {
+         return FALSE;
+      }
+
+      return GetListNode(plQuestTemplates, QT_QST_ID, index) <> $;
+   }
+
+   GetQuestTemplate(index = 0)
+   "Retrieves quest template by index number.  Returns $ if unsuccessful."
+   {
+      local lQT;
+
+      // If quests are turned off, return $.
+      if plQuestTemplates = $
+      {
+         return $;
+      }
+
+      if index < 1
+      {
+         return $;
+      }
+
+      lQT = GetListNode(plQuestTemplates, QT_QST_ID, index);
+
+      if lQT = $
+      {
+         Debug("QuestEngine couldn't find quest template ",index);
+
+         return $;
+      }
+
+      return lQT;
+   }
+
+   GetQuestTemplateObject(index=$)
+   "Returns the QuestTemplate object for the given quest template index."
+   {
+      local lQT;
+
+      lQT = GetListNode(plQuestTemplates, QT_QST_ID, index);
+      if lQT <> $
+      {
+         return Nth(lQT,QT_QUEST_OBJECT);
+      }
+
+      return $;
+   }
+
+   SetQuestNumPlayers(index = 0, new_num = $)
+   "Set the NumPlayers of QT #index to the new_num."
+   "Resets NumPlayers to default if new_num is nil."
+   "Returns 1 if successful, 0 otherwise."
+   {
+      local lQT;
+
+      lQT = Send(self,@GetQuestTemplate,#index=index);
+      if lQT = $
+      {
+         return 0;
+      }
+
+      if new_num = $
+      {
+         new_num = piDefaultNumPlayers;
+      }
+
+      if new_num < 1
+         OR new_num > QUEST_MAX_NUM_PLAYERS
+      {
+         return 0;
+      }
+
+      SetNth(lQT, QT_NUM_PLAYERS, new_num);
+
+      return 1;
+   }
+
+   SetQuestType(index = 0, new_type = $)
+   "Set the Type of QT #index to the new_type."
+   "Resets Type to default if new_type is nil."
+   "Returns 1 if successful, 0 otherwise."
+   {
+      local lQT;
+
+      lQT = Send(self,@GetQuestTemplate,#index=index);
+      if lQT = $
+      {
+         return 0;
+      }
+
+      if new_type = $
+      {
+         new_type = piDefaultQuestType;
+      }
+
+      if new_type < Q_TYPE_COMPETITIVE
+         OR new_type > Q_TYPE_COLLECTIVE
+      {
+         return 0;
+      }
+
+      SetNth(lQT, QT_QUEST_TYPE, new_type);
+
+      return 1;
+   }
+
+   SetQuestNodesList(index = 0, new_list = $)
+   "Set the NodesList of QT #index to the new_list."
+   "Resets NodesList to default if new_list is nil."
+   "Returns 1 if successful, 0 otherwise."
+   {
+      local iNodeIndex, lQT;
+
+      lQT = Send(self,@GetQuestTemplate,#index=index);
+      if lQT = $
+      {
+         return 0;
+      }
+
+      if new_list = $
+      {
+         new_list = plDefaultQuestNodes;
+      }
+
+      foreach iNodeIndex in new_list
+      {
+         if NOT Send(self,@IsValidQuestNodeTemplate,#index=iNodeIndex)
+         {
+            return 0;
+         }
+      }
+
+      SetNth(lQT, QT_QUEST_NODES, new_list);
+
+      return 1;
+   }
+
+   SetQuestMaxActive( index = 0, new_max = $)
+   "Set the MaxActive of QT #index to the new_max."
+   "Resets MaxActive to default if new_max is nil."
+   "Returns 1 if successful, 0 otherwise."
+   {
+      local lQT;
+
+      lQT = Send(self,@GetQuestTemplate,#index=index);
+      if lQT = $
+      {
+         return 0;
+      }
+
+      if new_max = $
+      {
+         new_max = piDefaultMaxNumberActive;
+      }
+
+      if new_max < 0
+         OR new_max > QUEST_MAX_MAX_ACTIVE
+      {
+         return 0;
+      }
+
+      SetNth(lQT, QT_MAX_NUM_ACTIVE, new_max);
+
+      return 1;
+   }
+
+   SetQuestScheduleChance(index = 0, new_pct = $)
+   "Set the ScheduleChance of QT #index to the new_pct."
+   "Resets ScheduleChance to default if new_pct is nil."
+   "Returns 1 if successful, 0 otherwise."
+   {
+      local lQT;
+
+      lQT = Send(self,@GetQuestTemplate,#index=index);
+      if lQT = $
+      {
+         return 0;
+      }
+
+      if new_pct = $
+      {
+         new_pct = piDefaultRescheduleChance;
+      }
+
+      if new_pct < 0 
+         OR new_pct > 100
+      {
+         return 0;
+      }
+
+      SetNth(lQT, QT_SCHEDULE_CHANCE, new_pct);
+
+      return 1;
+   }
+
+   CreateQuest(quest_template = 1)
+   {
+      // Needs error-checking!
+
+      local lQT, oQuest, oFirstNode;
+
+      lQT = Send(self,@GetQuestTemplate,#index=quest_template);
+      if lQT = $
+      {
+         return $;
+      }
+
+      // Create and initialize quest
+      oQuest = Create(&QuestX);
+      Send(oQuest,@Init,#template_index=quest_template,#report=piDebug);
+
+      // Add new quest to quest template's list of active quests
+      Send(self,@AddQuestToActiveList,#quest_template=quest_template,
+            #new_quest=oQuest);
+
+      return oQuest;
+   }
+
+   AddQuestToActiveList(quest_template = $, new_quest = $)
+   "Add new quest to quest template's list of active quests."
+   {
+      local lActiveQuests, lQT;
+
+      if new_quest = $
+      {
+         return;
+      }
+
+      lQT = Send(self,@GetQuestTemplate,#index=quest_template);
+
+      if lQT = $
+      {
+         Debug("RemoveQuestFromActiveList couldn't find quest template ",
+               quest_template);
+
+         return $;
+      }
+
+      lActiveQuests = Nth(lQT, QT_ACTIVE_QUESTS);
+      SetNth(lQT, QT_ACTIVE_QUESTS, Cons(new_quest, lActiveQuests));
+
+      return;
+   }
+
+   RemoveQuestFromActiveList( quest_template = $, done_quest = $)
+   "Remove finished quest from quest template's list of active quests."
+   {
+      local lActiveQuests, lQT;
+
+      if done_quest = $
+      {
+         return;
+      }
+
+      lQT = Send(self,@GetQuestTemplate,#index=quest_template);
+
+      if lQT = $
+      {
+         Debug("RemoveQuestFromActiveList couldn't find quest template ",
+               quest_template);
+
+         return $;
+      }
+
+      lActiveQuests = Nth(lQT, QT_ACTIVE_QUESTS);
+      if FindListElem(lActiveQuests, done_quest)
+      {
+         SetNth(lQT,QT_ACTIVE_QUESTS, DelListElem(lActiveQuests, done_quest));
+      }
+      else
+      {
+         Debug("Questengine::RemoveQuestFromActiveList:  Couldn't find quest in activelist of quest type ",
+               quest_template,"!");
+      }
+
+      return;
+   }
+
+   GetNextQuestNode(quest_template = $, counter = 1)
+   "Return the index of the next quest node in a quest's list."
+   {
+      local lQT;
+
+      lQT = Send(self,@GetQuestTemplate,#index=quest_template);
+
+      if lQT = $
+      {
+         Debug("GetNextQuestNode couldn't find quest template ",quest_template);
+
+         return $;
+      }
+
+      if Length(Nth(lQT, QT_QUEST_NODES)) < counter
+      {
+         return $;
+      }
+
+      return Nth(Nth(lQT, QT_QUEST_NODES), counter);
+   }
+
+   GetQuestPlayerRestrictions(index = $)
+   {
+      return Nth(Send(self,@GetQuestTemplate,#index=index), QT_PLAYER_RESTRICT);
+   }
+
+   GetQuestPlayerRestrictions2(index = $)
+   {
+      return Nth(Send(self,@GetQuestTemplate,#index=index), QT_PLAYER_RESTRICT2);
+   }
+
+#endregion QuestTemplate
+
+#region Quest monster/chess move
+
+   GetRandomChessMove()
+   "Return a string containing a random legal chess move."
+   {
+      local sChessMove;
+      sChessMove = CreateString();
+
+      // Arbitrary: equal chance of a move or capture (no castling)
+      if Random(1,2) = 1
+      {
+         // move
+         SetString(sChessMove, chess_move);
+         StringSubstitute(sChessMove, chess_substring,
+               Nth(plChessPieces, Random(1,Length(plChessPieces))));
+         StringSubstitute(sChessMove, chess_substring,
+               Nth(plChessPiecesFiles, Random(1,Length(plChessPiecesFiles))));
+         StringSubstitute(sChessMove, chess_substring,
+               Nth(plChessPiecesRanks, Random(1,Length(plChessPiecesRanks))));
+
+         return sChessMove;
+      }
+
+      // (else) capture
+      SetString( sChessMove, chess_capture);
+      StringSubstitute(sChessMove, chess_substring,
+            Nth(plChessPieces, Random(1,Length(plChessPieces))));
+      StringSubstitute(sChessMove, chess_substring,
+            Nth(plChessPiecesCaptured, Random(1,Length(plChessPiecesCaptured))));
+
+      return sChessMove;
+   }
+
+   AddQNToAwaitingMonsterDeathList( QN = $)
+   "Add the quest node to the list of those waiting for a "
+   "certain player to kill a certain type of monster."
+   {
+      if QN <> $
+      {
+         plQuestNodesAwaitingMonsterDeath = Cons(QN,plQuestNodesAwaitingMonsterDeath);
+      }
+
+      return;
+   }
+
+   RemoveQNFromAwaitingMonsterDeathList(QN = $)
+   "Remove the quest node from the list of those waiting "
+   "for a certain player to kill a certain type of monster."
+   {
+      if QN = $
+         OR plQuestNodesAwaitingMonsterDeath = $
+      {
+         return;
+      }
+
+      if FindListElem(plQuestNodesAwaitingMonsterDeath,QN)
+      {
+         plQuestNodesAwaitingMonsterDeath = DelListElem(plQuestNodesAwaitingMonsterDeath,QN);
+      }
+      ///  this actually gets called quite frequently, so leave out this debug for now.
+      //else
+      //{
+      //   Debug("QuestEngine::RemoveQNFromAwaitingMonsterDeathList: Node of type ",
+      //         Send(QN,@GetQuestNodeTemplateIndex)," not found in plQuestNodesAwaitingMonsterDeath.");
+      //}
+
+      return;
+   }
+
+   MonsterKilled(dead_monster = $, killing_player = $, corpse = $)
+   "A player has just killed a monster. Notify those quest nodes "
+   "waiting for a certain player to kill a certain type of monster."
+   {
+      local QN;
+
+      foreach QN in plQuestNodesAwaitingMonsterDeath
+      {
+         if QN <> $
+         {
+            if Send(QN,@MonsterKilled,#dead_monster=dead_monster,
+                     #killing_player=killing_player,#corpse=corpse)
+            {
+               // Found the questnode waiting for this player to kill this type of monster 
+               Send(self,@RemoveQNFromAwaitingMonsterDeathList,#QN=QN);
+
+               return;
+            }
+         }
+      }
+
+      return;
+   }
+
+#endregion
+
+#region Quest Timer
+
+   ManualSetoffQuestTimer()
+   {
+      DeleteTimer(ptQuestTimer);
+      Send(self,@OnQuestTimer);
+
+      return;
+   }
+
+   OnQuestTimer()
+   {
+      local i;
+
+      //   DeleteTimer( ptQuestTimer);      // try removing this line -- damian
+      ptQuestTimer = $;
+      ptQuestTimer = CreateTimer(self,@OnQuestTimer,piQuestTimerDelay);
+      if ptQuestDeadlineTimer = $
+      {
+         ptQuestDeadlineTimer = CreateTimer(self,@OnQuestDeadlineTimer,piQuestDeadlineTimerDelay);
+      }
+
+      if piActive = 0
+      {
+         return;
+      }
+
+      // Check each quest to see if its deadline has passed.
+      Send(self,@CheckQuestDeadlines);
+
+      // Check each quest template to see if another quest needs to be scheduled.
+      // TODO: quests should probably keep track of their own timers?
+      foreach i in plQuestTemplates
+      {
+         Send(self,@ScheduleQuest,#index=Nth(i,QT_QST_ID));
+      }
+
+      return;
+   }
+
+   ScheduleQuest(index=0, override=FALSE)
+   "Schedules a Quest if the cap hasn't been reached "
+   "Also does a QT_SCHEDULE_CHANCE die roll unless override=TRUE."
+   {
+      local QT, lActiveQuests, QTindex, iActive, iMaxActive;
+
+      QT = Send(self,@GetQuestTemplate,#index=index);
+      if QT = $
+      {
+         return;
+      }
+
+      lActiveQuests = Nth( QT, QT_ACTIVE_QUESTS);
+      iActive = Length( lActiveQuests);
+      iMaxActive = Nth( QT, QT_MAX_NUM_ACTIVE);
+   //      Debug("Active ", iActive);
+   //      Debug("Max ", iMaxActive);
+      if iActive < iMaxActive
+      {
+         // another one is allowed, so do the die roll
+         if override
+            OR Random(1,100) < Nth(QT, QT_SCHEDULE_CHANCE)
+         {
+            if piDebug
+            {
+               Debug("Scheduling quest of type ", index);
+            }
+            Send(self,@CreateQuest,#quest_template=index);
+         }
+      }
+
+      return;
+   }
+
+   GetNumScheduled(index = 0)
+   {
+      return Length(Nth(Send(self,@GetQuestTemplate,#index=index), QT_ACTIVE_QUESTS));
+   }
+
+   OnQuestDeadlineTimer()
+   {
+      ptQuestDeadlineTimer = $;
+      Send(self,@CheckQuestDeadlines);
+      ptQuestDeadlineTimer = CreateTimer(self,@OnQuestDeadlineTimer,
+                                 piQuestDeadlineTimerDelay);
+
+      return;
+   }
+
+   CheckQuestDeadlines()
+   {
+      local QT, Q, iTime;
+
+      iTime = GetTime();
+
+      foreach QT in plQuestTemplates
+      {
+         if QT = $
+         {
+            Debug("Nil quest template!");
+            plQuestTemplates = DelListElem(plQuestTemplates, QT);
+         }
+         else
+         {
+            foreach Q in Nth(QT, QT_ACTIVE_QUESTS)
+            {
+               if Q = $
+               {
+                  Debug("Nil quest!");   // should delete it here xxxAJM
+               }
+               else
+               {
+                  Send(Q,@CheckDeadline,#time=iTime);
+               }
+            }
+         }
+      }
+
+      return;
+   }
+
+#endregion Quest Timer
+
+#region Quest reports/debug
+
+   GetDebugStatus()
+   {
+      return piDebug;
+   }
+
+   GetNumActiveQuests(index=0)
+   {
+      local i, iCount, lQuest;
+
+      // No index, count all quests.
+      if (index = 0)
+      {
+         iCount = 0;
+         foreach i in plQuestTemplates
+         {
+            iCount += Length(Nth(i,QT_ACTIVE_QUESTS));
+         }
+      }
+      else
+      {
+         lQuest = Send(self,@GetQuestTemplate,#index=index);
+         iCount = Length(Nth(lQuest,QT_ACTIVE_QUESTS));
+      }
+
+      return iCount;
+   }
+
+   GetMaxNumActiveQuests(index=0)
+   {
+      local i, iCount, lQuest;
+
+      // No index, count all quests.
+      if (index = 0)
+      {
+         iCount = 0;
+         foreach i in plQuestTemplates
+         {
+            iCount += Nth(i,QT_MAX_NUM_ACTIVE);
+         }
+      }
+      else
+      {
+         lQuest = Send(self,@GetQuestTemplate,#index=index);
+         iCount = Nth(lQuest,QT_MAX_NUM_ACTIVE);
+      }
+
+      return iCount;
+   }
+
+   QuestReport(who = $)
+   "Mails a list of quests and their active players to 'who'."
+   {
+      local i, iQTIndex, oQ, sQuesters, bFirst, iAvailable,
+            iAssigned, iUnassigned;
+
+      if who = $
+      {
+         return;
+      }
+
+      foreach i in plQuestTemplates
+      {
+         iQTIndex = Nth(i,QT_QST_ID);
+
+         iAvailable = 0;
+         iUnassigned = 0;
+         iAssigned = 0;
+         ClearTempString();
+         bFirst = TRUE;
+
+         foreach oQ in Nth(i,QT_ACTIVE_QUESTS)
+         {
+            iAvailable = iAvailable + 1;
+            if Send(oQ,@GetQuesters) = $
+            {
+               iUnassigned = iUnassigned + 1;
+            }
+            else
+            {
+               iAssigned = iAssigned + 1;
+               if NOT bFirst
+               {
+                  AppendTempString(questEngine_report_2);
+               }
+               else
+               {
+                  bFirst = FALSE;
+               }
+               AppendTempString(Send(First(Send(oQ,@GetQuesters)),@GetName));
+            }
+         }
+         sQuesters = CreateString();
+         SetString(sQuesters,GetTempString());
+         Send(who,@ReceiveNestedMail,#from=questEngine_report_sender,
+               #dest_list=[who],
+               #nest_list=[4,questEngine_report_1,
+                           4,Send(SYS,@IntToString,#num=iQTIndex),
+                           4,Send(SYS,@IntToString,#num=iQTIndex),
+                           4,Send(SYS,@IntToString,#num=iAvailable),
+                           4,Send(SYS,@IntToString,#num=iUnassigned),
+                           4,Send(SYS,@IntToString,#num=iAssigned),
+                           4,sQuesters ]);
+         if piDebug
+         {
+            Debug("Quest ",iQTIndex,": ",iAvailable," available; ",iUnassigned,
+                  " unassigned and ",iAssigned," assigned.");
+         }
+         if piDebug > 1
+         {
+            foreach oQ in Nth(i,QT_ACTIVE_QUESTS)
+            {
+               if Send(oQ,@GetQuesters) <> $
+               {
+                  Debug("Quest of type ",iQTIndex," assigned to ",
+                        Send(First(Send(oQ,@GetQuesters)),@GetName));
+               }
+            }
+         }
+      }
+
+      return;
+   }
+
+   CensusReport()
+   "Prints summary information about quests to the debug log."
+   {
+      local iQTIndex, lQT;
+
+      foreach lQT in plQuestTemplates
+      {
+         iQTIndex = Nth(lQT,QT_QST_ID);
+
+         piCensusTallyDeleted = 0;
+         piCensusTallyActive = 0;
+         piCensusTallyActiveOrphaned = 0;
+         piCensusTallyActiveDuplicate = 0;
+
+         Send(&QuestX,@CensusRespond,#index=iQTIndex);
+
+         Debug("Quest Template ",iQTIndex," has ",piCensusTallyActive,
+               " active quests and ",piCensusTallyDeleted," deleted quests.");
+
+         if piCensusTallyActiveOrphaned <> 0
+         {
+            Debug("Quest Template ",iQTIndex," has ",piCensusTallyActiveOrphaned,
+                  "orphaned active quests!");
+         }
+
+         if piCensusTallyActiveDuplicate <> 0
+         {
+            Debug("Quest Template ",iQTIndex," has ",piCensusTallyActiveDuplicate,
+                  "duplicate active quests!");
+         }
+      }
+
+      return;
+   }
+
+   CensusCountDeleted()
+   {
+      piCensusTallyDeleted = piCensusTallyDeleted + 1;
+
+      return;
+   }
+
+   CensusCountActive(what=$)
+   {
+      local oQ, bFound;
+
+      bFound = FALSE;
+
+      foreach oQ in Nth(Send(self,@GetQuestTemplate,#index=Send(what,@GetQuestTemplateIndex)),QT_ACTIVE_QUESTS)
+      {
+         if oQ = what
+         {
+            if NOT bFound
+            {
+               piCensusTallyActive = piCensusTallyActive + 1;
+               bFound = TRUE;
+            }
+            else
+            {
+               piCensusTallyActiveDuplicate = piCensusTallyActiveDuplicate + 1;
+            }
+         }
+      }
+
+      if NOT bFound
+      {
+         piCensusTallyActiveOrphaned = piCensusTallyActiveOrphaned + 1;
+      }
+
+      return;
+   }
+
+#endregion
+
+end
+////////////////////////////////////////////////////////////////////////////////

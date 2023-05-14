@@ -1,0 +1,458 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+WeapAttSpellType is WeaponAttribute
+
+///////////////////////////////////////////////////////////////////////
+//
+//  This weapon attribute merely flags a weapon as having the spell
+//       attack type that corresponds with it.  It also has a timer,
+//       which, when it expires, flips the Attack type back.
+// 
+//  Form is:
+//
+//      [WA_ATTACKSPELLTYPE, timer, spell_attack_type ]
+//
+//       timer::the length of time, from 1 to 25 realtime hours,
+//       that the enchantment lasts (depending on spell factors).
+//       spell_attack_type : as defined in blakston.khd.
+//       examples: ATCK_SPELL_FIRE, ATCK_SPELL_UNHOLY, ATCK_SPELL_ACID
+//
+//  Note that if a weapon ends up permanently holy or unholy, then this
+//       attribute is no longer necessary, since the attack values flags
+//       in weapon stores this information.  This information is only
+//       stored here so that eventually, it may be forgotten.
+//
+///////////////////////////////////////////////////////////////////////
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include waspellt.lkod
+
+   iaSpelltype_gone = "Your %s suddenly seems a little more... ordinary."
+
+   iaSpelltype_holy = " The weapon glows with a pure, white light."
+   iaSpelltype_unholy = " The weapon seems to reek of malevolence."
+   iaSpelltype_fire = " The weapon is hot to the touch."
+   iaSpelltype_cold = " It is icy cold to the touch."
+   iaSpelltype_shock = " Nearly invisible currents run the length of the blade."
+   iaSpelltype_acid = " A thin coating of acid covers the length of the blade."
+
+   iaSpelltype_name_holy = "holy %s"
+   iaSpelltype_name_unholy = "unholy %s"
+   iaSpelltype_name_fire = "fiery %s"
+   iaSpelltype_name_cold = "icy %s"
+   iaSpelltype_name_shock = "%s of shock"
+   iaSpelltype_name_acid = "acid %s"
+
+   iaspelltype_fire_DM = "fire"
+   iaspelltype_cold_DM = "cold"
+   iaspelltype_shock_DM = "shock"
+   iaspelltype_holy_DM = "holy"
+   iaspelltype_unholy_DM = "unholy"
+   iaspelltype_acid_DM = "acid"
+
+classvars:
+
+   viItem_Att_Num = WA_ATTACKSPELLTYPE
+
+properties:
+
+messages:
+
+   //// Description functions
+
+   AppendDesc(oItem=$,iFakeData=$)
+   {
+      local rName, iData, lData, sMakerInfo;
+
+      if iFakeData = $
+      {
+         iData = Send(oItem,@GetAttackSpell);
+      }
+      else
+      {
+         iData = iFakeData;
+      }
+
+      if iData & ATCK_SPELL_HOLY
+      {
+         rName = iaSpelltype_holy;
+      }
+      else if iData & ATCK_SPELL_UNHOLY
+      {
+         rName = iaSpellType_unholy;
+      }
+      else if iData & ATCK_SPELL_FIRE
+      {
+         rName = iaSpellType_fire;
+      }
+      else if iData & ATCK_SPELL_COLD
+      {
+         rName = iaSpellType_cold;
+      }
+      else if iData & ATCK_SPELL_SHOCK
+      {
+         rName = iaSpellType_shock;
+      }
+      else if iData & ATCK_SPELL_ACID
+      {
+         rName = iaSpellType_acid;
+      }
+      else
+      {
+         rName = $;
+      }
+
+      if rName = $
+      {
+         Debug("Spellcaster weapon attribute got $ spell data.");
+         AddPacket(4,system_blank_resource);
+
+         return;
+      }
+
+      // If not faked, then add maker information if available.
+      if iFakeData = $
+      {
+         lData = Send(oItem,@GetAttributeData,#ItemAtt=viItem_Att_num);
+
+         if Length(lData) <> 5
+         {
+            AddPacket(4,rName);
+
+            return;
+         }
+
+         sMakerInfo = Nth(lData,5);
+
+         ///Then we add information about the maker to the desc.
+         if sMakerInfo <> $
+         {
+            AddPacket(4,system_rsc_template_2, 4,rName,
+                   4,itematt_made_rsc, 6,Send(First(sMakerInfo),@GetName),
+                   4,Send(self,@GetTitle,#iAbility=Nth(sMakerInfo,3)),
+                   4,Send(Nth(sMakerInfo,2),@GetEnchantmentType));
+
+            return;
+         }
+      }
+
+      AddPacket(4,rName);
+
+      return;
+   }
+
+   //// Effect Functions
+   
+   DMCreateItemAtt(who=$,string=$,oWeapon=$)
+   {
+      local iSpellType;
+
+
+      if who = $ OR string= $ OR oWeapon = $
+      {
+         Debug("BAD data sent to DMCreateItemAtt!");
+
+         return FALSE;
+      }
+
+      if StringContain(string,iaspelltype_fire_DM)
+      {
+         iSpelltype = ATCK_SPELL_FIRE;
+      }
+      else if StringContain(string,iaspelltype_cold_DM)
+      {
+         iSpelltype = ATCK_SPELL_COLD;
+      }
+      else if StringContain(string,iaspelltype_holy_DM)
+      {
+         iSpelltype = ATCK_SPELL_HOLY;
+      }
+      else if StringContain(string,iaspelltype_unholy_DM)
+      {
+         iSpelltype = ATCK_SPELL_UNHOLY;
+      }
+      else if StringContain(string,iaspelltype_acid_DM)
+      {
+         iSpelltype = ATCK_SPELL_ACID;
+      }
+      else if StringContain(string,iaspelltype_shock_DM)
+      {
+         iSpelltype = ATCK_SPELL_SHOCK;
+      }
+      else
+      {
+         iSpellType = 0;
+      }
+
+      if iSpellType = 0
+      {
+         return FALSE;
+      }
+
+      if Send(self,@ReqAddToItem,#state1=iSpellType,#oItem=oWeapon)
+      {
+         Send(self,@AddToItem,#oItem=oWeapon,#state1=iSpellType,
+              #timer_duration=Random(3600000,86400000),#random_gen=TRUE);
+
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   AddSelfToRandomItem(oItem=$,who=$)
+   {
+      local iSpellType, iKarma;
+
+      if oItem = $ OR who = $
+      {
+         return FALSE;
+      }
+
+      iSpellType = 0;
+
+      // 40% chance the weapon will choose to be karma allied with whoever found it.
+      if Random(1,100) > 40
+      {
+         iKarma = Send(who,@GetKarma);
+         if iKarma > 0
+         {
+            iSpellType = ATCK_SPELL_HOLY;
+         }
+         else if iKarma < 0
+         {
+            iSpellType = ATCK_SPELL_UNHOLY;
+         }
+      }
+
+      if iSpellType = 0
+      {
+         switch (Random(1,6))
+         {
+         case 1: iSpellType = ATCK_SPELL_FIRE; break;
+         case 2: iSpellType = ATCK_SPELL_SHOCK; break;
+         case 3: iSpellType = ATCK_SPELL_COLD; break;
+         case 4: iSpellType = ATCK_SPELL_HOLY; break;
+         case 5: iSpellType = ATCK_SPELL_UNHOLY; break;
+         case 6: iSpellType = ATCK_SPELL_ACID; break;
+         }
+      }
+
+      if Send(self,@ReqAddToItem,#state1=iSpellType,#oItem=oItem)
+      {
+         Send(self,@AddToItem,#oItem=oItem,#state1=iSpellType,
+              #timer_duration=random(3600000,86400000),#random_gen=TRUE);
+
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   ReqAddToItem(oItem=$)
+   "You currently cannot have two different spelltypes on a weapon at the same time."
+   {
+      // Can only add if no attack spell present.
+      return Send(oItem,@GetAttackSpell) = 0;
+   }
+
+   SetPrimaryState(state1=$)
+   "State1 contains the attack spell type being added to the weapon."
+   {
+      if state1 = $
+      {
+         Debug("SetPrimaryState called with nil state!");
+
+         return FALSE;
+      }
+
+      return state1;
+   }
+
+   HasTimer(lData=$)
+   "This must return true for any attribute that has a timer! "
+   "Theoretically, some atts could have or not have a timer, "
+   "depending on certain factors, so lData is the ItemAtt structure, "
+   "which can be examined for length to see if the timer exists."
+   {
+      return (Nth(lData,2) <> $);
+   }
+
+   TimerExpired(oItem=$,lData=$)
+   {
+      // Timer is gone, now remove reference.
+      SetNth(lData,2,$);
+      Send(self,@RemoveFromItem,#oItem=oItem,#lData=lData);
+
+      return;
+   }
+
+   AddEffects(oItem=$,lData=$)
+   {
+      local iSpellType;
+
+      if oItem = $ OR lData = $
+      {
+         Debug("AddEffects failed!");
+
+         return FALSE;
+      }
+
+      if Send(self,@HasTimer,#lData=lData)
+      {
+         iSpellType = Nth(lData,3);
+      }
+      else
+      {
+         iSpellType = Nth(lData,2);
+      }
+
+      if Send(oItem,@CheckSpellFlag,#flag=iSpellType)
+      {
+         Debug("This shouldn't have happened!  Adding effect already here!");
+
+         return FALSE;
+      }
+
+      Send(oItem,@SetSpellFlag,#flag=iSpellType,#value=TRUE);
+
+      return;
+   }
+
+   RemoveEffects(oItem=$,lData=$)
+   {
+      local iSpellType, oPlayer;
+
+      if oItem = $ OR lData = $
+      {
+         Debug("RemoveEffects failed!");
+
+         return FALSE;
+      }
+
+      iSpellType = Nth(lData,3);
+
+      if NOT Send(oItem,@CheckSpellFlag,#flag=iSpellType)
+      {
+         Debug("This shouldn't have happened!  Removing effect not here!");
+
+         return;
+      }
+
+      oPlayer = Send(oItem,@GetOwner);
+      if oPlayer <> $
+         AND IsClass(oPlayer,&User)
+      {
+         Send(oPlayer,@MsgSendUser,#message_rsc=iaspelltype_gone,
+               #parm1=Send(oItem,@GetName));
+      }
+
+      Send(oItem,@SetSpellFlag,#flag=iSpellType,#value=FALSE);
+
+      return;
+   }
+
+   InitiallyIdentified(random_gen=FALSE)
+   {
+      if random_gen
+      {
+         return FALSE;
+      }
+
+      return TRUE;
+   }
+
+   //// Artifice Spell Functions
+
+   FakeAttData()
+   {
+      local iSpellType;
+
+      switch (Random(1,6))
+      {
+      case 1: iSpellType = ATCK_SPELL_FIRE; break;
+      case 2: iSpellType = ATCK_SPELL_SHOCK; break;
+      case 3: iSpellType = ATCK_SPELL_COLD; break;
+      case 4: iSpellType = ATCK_SPELL_HOLY; break;
+      case 5: iSpellType = ATCK_SPELL_UNHOLY; break;
+      case 6: iSpellType = ATCK_SPELL_ACID; break;
+      }
+
+      return iSpellType;
+   }
+
+   //// Name Functions
+
+   ItemBuildDescName(oItem=$,iFakeData=$)
+   {
+      local lData, iData, rName;
+
+      if iFakeData = $
+      {
+         lData = Send(oItem,@GetAttributeData,#ItemAtt=viItem_Att_num);
+
+         if Send(self,@HasTimer,#lData=lData)
+         {
+            iData = Nth(lData,3);
+         }
+         else
+         {
+            iData = Nth(lData,2);
+         }
+      }
+      else
+      {
+         iData = iFakeData;
+      }
+
+      if iData & ATCK_SPELL_HOLY
+      {
+         rName = iaSpelltype_name_holy;
+      }
+      else if iData & ATCK_SPELL_UNHOLY
+      {
+         rName = iaSpelltype_name_unholy;
+      }
+      else if iData & ATCK_SPELL_FIRE
+      {
+         rName = iaSpelltype_name_fire;
+      }
+      else if iData & ATCK_SPELL_COLD
+      {
+         rName = iaSpelltype_name_cold;
+      }
+      else if iData & ATCK_SPELL_SHOCK
+      {
+         rName = iaSpelltype_name_shock;
+      }
+      else if iData & ATCK_SPELL_ACID
+      {
+         rName = iaSpelltype_name_acid;
+      }
+
+      AddPacket(4,rName);
+      Addpacket(4,Send(oItem,@GetName));
+
+      return;
+   }
+
+   IsMagicalEffect()
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

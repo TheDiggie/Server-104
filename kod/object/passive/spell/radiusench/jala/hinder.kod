@@ -1,0 +1,77 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+/////////////////////////////////////////////////////////////////////////////////
+HinderSpell is Jala
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include hinder.lkod
+
+   hinder_cast = "You begin playing a discordant tune."
+   hinder_starts = "%s%s begins playing a discordant tune!"
+   hinder_ends = "The discordant tune maintained by %s%s fades."
+   hinder_caster_ends = "Your discordant tune fades."
+   hinder_caster_enter = \
+      "You feel the words of your song weaving together to "
+      "interfere with specific other magics."
+   hinder_enter = "A discordant tune sung by %s%s fills your mind."
+   hinder_leave = "You can no longer hear the discordant tune sung by %s%s."
+
+classvars:
+
+   vrEnchantmentOn = hinder_cast
+   vrEnchantmentOnOther = hinder_starts
+   vrEnchantmentOff = hinder_caster_ends
+   vrEnchantmentOffOther = hinder_ends
+   vrEnterRadiusCaster = hinder_caster_enter
+   vrEnterRadius = hinder_enter
+   vrLeaveRadius = hinder_leave
+
+   viMana = 5          // Mana is amount used upon inititiation
+   viManaDrain = 3     // Drain is amount used every viDrainTime milliseconds
+   viDrainTime = 5000    // Drain some mana every viDrainTime milliseconds
+   viChance_To_Increase = 10
+   viMeditate_ratio = 40
+
+   viHinderedSchool = SS_JALA  // What school does this song hinder?
+
+   viHarmful = TRUE
+
+   viAffectsGuildmates = TRUE
+   viAffectsEnemies = TRUE
+
+properties:
+
+messages:
+
+   GetAlteredChance(chance = 0, what = $, lRadiusState = 0)
+   {
+      local iAltChance, iSongSpellpower;
+
+      if what = $
+         OR Send(what,@GetSchool) <> viHinderedSchool
+      {
+         return chance;
+      }
+
+      iSongSpellpower = Nth(lRadiusState,5);
+
+      iAltChance = chance - Random(iSongSpellpower/2,(iSongSpellpower*2)/3);
+
+      // Don't worry about bounding, that's done the level above us.
+      return iAltChance;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

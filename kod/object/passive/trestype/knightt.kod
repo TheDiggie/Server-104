@@ -1,0 +1,51 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+KnightTreasure is TreasureType
+
+constants:
+
+   include blakston.khd
+
+classvars:
+
+   viTreasure_num = TID_KNIGHT
+
+properties:
+
+   /// decent chance of getting an outstanding item
+   piItem_att_chance = 5
+   piDIff_seed = 8
+
+messages:
+
+   Constructed()
+   {
+      plTreasure = [ [ &InkyCap, 10],
+                     [ &PurpleMushroom, 10 ],
+                     [ &Sapphire, 9 ],
+                     [ &Diamond, 9 ],
+                     [ &Ruby, 7 ],
+                     [ &BlueDragonScale, 15],
+                     [ &DarkAngelFeather, 15],
+                     [ &HoldWand, 1],
+                     [ &BlindWand, 1 ],
+                     [ &MysticSword, 5 ],
+                     [ &SimpleHelm, 3 ],
+                     [ &LongSword, 5 ],
+                     [ &PlateArmor, 3 ],
+                     [ &EntrootBerry, 7 ]
+                   ];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

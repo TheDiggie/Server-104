@@ -1,0 +1,327 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+SkeletonInvasion is Invasion
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   SkeletonInvasion_start_msg = \
+      "~B~k[Event]~n ~B~v An army of skeletons have risen from the dead and are advancing on Tos."
+
+   SkeletonInvasion_end_msg = \
+      "~B~k[Event]~n ~B~v The skeletons have returned to the grave, Tos is safe again."
+
+   SkeletonInvasion_phase2_msg = \
+      "~B~k[Event]~n ~B~v Tusked Skeletons have risen from the dead in Tos."
+
+   SkeletonInvasion_phase3_msg = \
+      "~B~k[Event]~n ~B~v Daemon Skeletons have risen from the dead in Tos."
+
+   SkeletonInvasion_finalphase_msg = \
+      "~B~k[Event]~n ~B~v You have awakened an army of Giant Daemon Skeletons."
+
+classvars:
+
+   // It is a good idea to replace the default start and stop messsages with
+   // your own.  You can also turn off the event start and stop messages if you
+   // would like it to be a suprise. (set vbAnnounce to FALSE)
+   vrStartMessage = SkeletonInvasion_start_msg
+   vrEndMessage = SkeletonInvasion_end_msg
+
+   vbAnnounce = TRUE
+
+properties:
+
+   plEventRooms = $
+   piBatteredSkeletons = 25
+   piSkeletons = 25
+   piTuskedSkeletons = 25
+   piDaemonSkeletons = 25
+   piGiantDaemonSkeletons = 10
+   piActiveRoom = RID_TOS
+   piPhase = 0
+
+messages:
+
+   Constructor()
+   {
+      plEventRooms = [ RID_TOS, RID_BAR_NORTH ];
+      if piActiveRoom = RID_TOS
+      {
+         plSpawnRects = [ [[54,5],[61,13]], [[49,11],[62,27]],
+                          [[54,29],[59,40]], [[14,16],[49,21]] ];
+      }
+      else
+      {
+         if piActiveRoom = RID_BAR_NORTH
+         {
+            plSpawnRects = [ [[54,5],[61,13]], [[49,11],[62,27]],
+                             [[54,29],[59,40]], [[14,16],[49,21]] ];
+         }
+      }
+
+      propagate;
+   }
+
+   MonsterKilled(dead_monster=$,killing_player=$,corpse=$)
+   {
+      Send(self,@Update);
+	  
+      return;
+   }
+
+
+   // OPTIONAL, DO NOT CALL DIRECTLY!  The engine will call this after it ends
+   // your event
+   Delete()
+   {
+      propagate;
+   }
+
+   // OPTIONAL but a good idea to put cleanup stuff in here, the event engine
+   // calls this when ending an event, DO NOT CALL DIRECTLY!  If you want to end
+   // your event call Send(self,@NotifyEngineEndEvent)
+   EndEvent()
+   {
+      propagate;
+   }
+   
+   // REQUIRED for every game event.  The engine calls this when it is time to
+   // start your event.  DO NOT CALL DIRECTLY.  Launch events from the game event
+   // engine with Send(<engine object>,EventStart,#parm1=&<event type>) or using
+   // the event sceduling system
+   StartEvent()
+   {
+      Send(self,@PhaseOne);
+
+      propagate;
+   }
+
+   //// The rest is up to you!
+   
+   Update()
+   {
+      local oRoom;
+
+      oRoom = Send(SYS,@FindRoomByNum,#num=piActiveRoom);
+
+      if (oRoom = $)
+      {
+         propagate;
+      }
+
+      if piPhase = 1
+      {
+         if Send(oRoom,@CountMonsters,#class=&Skeleton) = 0
+         {
+            Send(self,@PhaseTwo);
+         }
+      }
+      else if piPhase = 2
+      {
+         if Send(oRoom,@CountMonsters,#class=&TuskedSkeleton) = 0
+            AND Send(oRoom,@CountMonsters,#class=&Skeleton) = 0
+         {
+            Send(self,@PhaseThree);
+         }
+      }
+      else if piPhase = 3
+      {
+         if Send(oRoom,@CountMonsters,#class=&DaemonSkeleton) = 0
+            AND Send(oRoom,@CountMonsters,#class=&TuskedSkeleton) = 0
+            AND Send(oRoom,@CountMonsters,#class=&Skeleton) = 0
+         {
+            Send(self,@FinalPhase);
+         }
+      }
+      else if piPhase = 4
+      {
+         if Send(oRoom,@CountMonsters,#class=&GiantDaemonSkeleton) = 0
+         {
+            // Call NotifyEngineEndEvent to handle ending the event properly. 
+            // This deletes the event from the GameEventEngine. It also calls
+            // EndEvent in this class, which handles your end of event cleanup
+            Send(self,@NotifyEngineEndEvent);
+         }
+      }
+
+      propagate;
+   }
+
+   PhaseOne()
+   {
+      local i,lSpawnPoint;
+
+      piPhase = 1;
+
+      i = piBatteredSkeletons;
+
+      while (i > 0)
+      {
+         lSpawnPoint = Send(self,@MakeSpawnPoint);
+         Send(Send(SYS,@FindRoomByNum,#num=piActiveRoom),
+               @NewHold,#what=Create(&BatteredSkeleton),
+               #new_row=Nth(lSpawnPoint,1),#new_col=Nth(lSpawnPoint,2));
+         i = i - 1;
+      }
+
+      i = piSkeletons;
+
+      while (i > 0)
+      {
+         lSpawnPoint = Send(self,@MakeSpawnPoint);
+         Send(Send(SYS,@FindRoomByNum,#num=piActiveRoom),
+               @NewHold,#what=Create(&Skeleton),
+               #new_row=Nth(lSpawnPoint,1),#new_col=Nth(lSpawnPoint,2));
+         i = i - 1;
+      }
+
+      return;
+   }
+
+   PhaseTwo()
+   {
+      local i,lSpawnPoint;
+
+      piPhase = 2;
+
+      if vbAnnounce
+      {
+         Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,
+               #string=SkeletonInvasion_phase2_msg);
+      }
+
+      i = piBatteredSkeletons;
+
+      while (i > 0)
+      {
+         lSpawnPoint = Send(self,@MakeSpawnPoint);
+         Send(Send(SYS,@FindRoomByNum,#num=piActiveRoom),
+               @NewHold,#what=Create(&BatteredSkeleton),
+               #new_row=Nth(lSpawnPoint,1),#new_col=Nth(lSpawnPoint,2));
+         i = i - 1;
+      }
+
+      i = piSkeletons;
+
+      while (i > 0)
+      {
+         lSpawnPoint = Send(self,@MakeSpawnPoint);
+         Send(Send(SYS,@FindRoomByNum,#num=piActiveRoom),
+               @NewHold,#what=Create(&Skeleton),
+               #new_row=Nth(lSpawnPoint,1),#new_col=Nth(lSpawnPoint,2));
+         i = i - 1;
+      }
+
+      i = piTuskedSkeletons;
+
+      while (i > 0)
+      {
+         lSpawnPoint = Send(self,@MakeSpawnPoint);
+         Send(Send(SYS,@FindRoomByNum,#num=piActiveRoom),
+               @NewHold,#what=Create(&TuskedSkeleton),
+               #new_row=Nth(lSpawnPoint,1),#new_col=Nth(lSpawnPoint,2));
+         i = i - 1;
+      }
+
+      return;
+   }
+
+   PhaseThree()
+   {
+      local i,lSpawnPoint;
+
+      piPhase = 3;
+
+      if vbAnnounce
+      {
+         Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,
+               #string=SkeletonInvasion_phase3_msg);
+      }
+
+      i = piBatteredSkeletons;
+
+      while (i > 0)
+      {
+         lSpawnPoint = Send(self,@MakeSpawnPoint);
+         Send(Send(SYS,@FindRoomByNum,#num=piActiveRoom),
+               @NewHold,#what=Create(&BatteredSkeleton),
+               #new_row=Nth(lSpawnPoint,1),#new_col=Nth(lSpawnPoint,2));
+         i = i - 1;
+      }
+
+      i = piSkeletons;
+
+      while (i > 0)
+      {
+         lSpawnPoint = Send(self,@MakeSpawnPoint);
+         Send(Send(SYS,@FindRoomByNum,#num=piActiveRoom),
+               @NewHold,#what=Create(&Skeleton),
+               #new_row=Nth(lSpawnPoint,1),#new_col=Nth(lSpawnPoint,2));
+         i = i - 1;
+      }
+
+      i = piTuskedSkeletons;
+
+      while (i > 0)
+      {
+         lSpawnPoint = Send(self,@MakeSpawnPoint);
+         Send(Send(SYS,@FindRoomByNum,#num=piActiveRoom),
+               @NewHold,#what=Create(&TuskedSkeleton),
+               #new_row=Nth(lSpawnPoint,1),#new_col=Nth(lSpawnPoint,2));
+         i = i - 1;
+      }
+
+      i = piDaemonSkeletons;
+      
+      while (i > 0)
+      {
+         lSpawnPoint = Send(self,@MakeSpawnPoint);
+         Send(Send(SYS,@FindRoomByNum,#num=piActiveRoom),
+               @NewHold,#what=Create(&DaemonSkeleton),
+               #new_row=Nth(lSpawnPoint,1),#new_col=Nth(lSpawnPoint,2));
+         i = i - 1;
+      }
+
+      return;
+   }
+
+   FinalPhase()
+   {
+      local i, lSpawnPoint;
+
+      piPhase = 4;
+
+      if vbAnnounce
+      {
+         Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,
+               #string=SkeletonInvasion_finalphase_msg);
+      }
+
+      i = piGiantDaemonSkeletons;
+      
+      while (i > 0)
+      {
+         lSpawnPoint = Send(self,@MakeSpawnPoint);
+         Send(Send(SYS,@FindRoomByNum,#num=piActiveRoom),
+               @NewHold,#what=Create(&GiantDaemonSkeleton),
+               #new_row=Nth(lSpawnPoint,1),#new_col=Nth(lSpawnPoint,2));
+         i = i - 1;
+      }
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

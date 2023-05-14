@@ -1,0 +1,139 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+GuildInvite is GuildCommand
+
+constants:
+
+   include blakston.khd
+   include protocol.khd
+
+resources:
+
+   include gcinvite.lkod
+
+   guildInvite_name_rsc = "Invite"
+   guildInvite_icon_rsc = light.bgf
+   guildinvite_desc_text_rsc = \
+      "Used to invite prospective members into the guild.  Invited person "
+      "has 1 minute to accept the invitation."
+   guildinvite_already_your_guild = "This person already belongs to your guild."
+   invite_cant_invite_self = "You cannot invite yourself to join your guild!"
+   invite_non_user = "%s%s respectfully declines your tempting offer."
+   guildinvitation_to_inductor = \
+      "~BYou extend to %s%q the opportunity to join %s%q."
+   guildinvitation_to_inductee = \
+      "~B%s%s extends to you an invitation to join %s%q!"
+   guildinvitation_guild_full = \
+      "%s%q's ranks are full, and may not take new members."
+   guildinvitation_cannot_rejoin = \
+      "~BThis player may not rejoin your guild's ranks at this time."
+   guildinvitation_necro_no_amulet = \
+      "~BOnly a necromancer may join the Order!  This player is only fit for "
+      "consumption."
+
+classvars:
+
+   vrName = guildinvite_name_rsc
+   vrIcon = guildinvite_icon_rsc
+   vrDesc = guildinvite_desc_text_rsc
+
+   viIndefinite = ARTICLE_NONE
+   viDefinite = ARTICLE_NONE
+
+   viGuildcommand_num = GCID_INVITE
+   viShow_enchantment_icon = ENCHANTMENT_SHOW_ALL
+   viRank_needed = RANK_LORD
+
+properties:
+
+messages:
+
+   GetNumSpellTargets()
+   {
+      return 1;
+   }
+
+   DoCommand(who=$, otarget = $)
+   "Create invitation and give it to the target."
+   {
+      local oGuild, newguild;
+
+      if NOT IsClass(oTarget,&Player)
+      {
+         Send(who,@MsgSendUser,#message_rsc=invite_non_user,
+               #parm1=Send(oTarget,@GetCapDef),#parm2=Send(oTarget,@GetName));
+
+         return FALSE;
+      }
+
+      if oTarget=who
+      {
+         Debug("player tried to invite self into guild!  Shouldn't have been an option!");
+         Send(who,@MsgSendUser,#message_rsc=invite_cant_invite_self);
+
+         return FALSE;
+      }
+
+      oGuild = Send(oTarget,@GetGuild);
+      newGuild = Send(who,@GetGuild);
+
+      if NOT Send(newguild,@CheckInvitationList,#inductor=who,#inductee=oTarget)
+      {
+         return FALSE;
+      }
+
+      if oGuild = newguild
+      {
+         Send(who,@MsgSendUser,#message_rsc=guildinvite_already_your_guild);
+
+         return FALSE;
+      }
+
+      if Length(Send(newGuild,@GetMemberList)) >= Send(newGuild,@getmaxmembers)
+      {
+         Send(who,@MsgSendUser,#message_rsc=guildinvitation_guild_full,
+               #parm1=Send(newGuild,@GetCapDef),#parm2=Send(newGuild,@GetName));
+
+         return FALSE;
+      }
+
+      if IsClass(newGuild,&NecromancerGuild)
+         AND NOT Send(otarget,@IsUsingA,#class=&NecromancerAmulet)
+      {
+         Send(who,@MsgSendUser,#message_rsc=guildinvitation_necro_no_amulet);
+
+         return FALSE;
+      }
+
+      if Send(newGuild,@CheckFormerMemberList,#who=oTarget)
+      {
+         Send(who,@MsgSendUser,#message_rsc=guildinvitation_cannot_rejoin);
+
+         return FALSE;
+      }
+
+      Send(who,@MsgSendUser,#message_rsc=guildinvitation_to_inductor,
+            #parm1=Send(otarget,@GetDef),#parm2=Send(otarget,@GetName),
+            #type2=STRING_RESOURCE,#parm3=Send(newguild,@GetDef),
+            #parm4=Send(newguild,@GetName));
+      Send(oTarget,@MsgSendUser,#message_rsc=guildinvitation_to_inductee,
+            #parm1=Send(who,@GetCapIndef),#parm2=Send(who,@GetName),
+            #parm3=Send(newguild,@GetDef),#parm4=Send(newguild,@GetName));
+
+      // Put invitation object in inductees inventory.
+      Send(oTarget,@NewHold,#what=Create(&Guildinvitation,#inductor=who,
+            #inductee=oTarget));
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

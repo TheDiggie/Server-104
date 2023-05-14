@@ -1,0 +1,91 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BeerMug is Shield
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   beer_mug_name_rsc = "mug of beer"
+   beer_mug_icon_rsc = mugo.bgf
+   beer_mug_desc_rsc = \
+      "To warriors of Kraanan, there is no higher calling than getting drunk "
+      "and waging glorious battle until the break of dawn. Those that can win "
+      "while actually holding a beer in hand are considered the greatest "
+      "brawlers of all."
+
+   beer_mug_overlay_rsc = povbeermug.bgf
+
+   beer_mug_condition_exc = " is full to the brim with glistening amber liquid."
+   beer_mug_condition_exc_mended = \
+      " is full of glistening amber liquid, but is a little flat."
+   beer_mug_condition_good = " has seen its share of sips, but is still decently full."
+   beer_mug_condition_med = " is either half full or half empty, depending."
+   beer_mug_condition_poor = \
+      " contains only dregs."
+   beer_mug_condition_broken = " is empty and is thus no longer of use to any sane adventurer."
+   beer_mug_broken = "Your //s is empty."
+
+classvars:
+
+   vbShow_condition = TRUE
+   vrCondition_exc = beer_mug_condition_exc 
+   vrCondition_exc_mended = beer_mug_condition_exc_mended 
+   vrCondition_good = beer_mug_condition_good 
+   vrCondition_med = beer_mug_condition_med 
+   vrCondition_poor = beer_mug_condition_poor 
+   vrCondition_broken = beer_mug_condition_broken
+
+   vrItem_broken = beer_mug_broken
+
+   vrName = beer_mug_name_rsc
+   vrIcon = beer_mug_icon_rsc
+   vrDesc = beer_mug_desc_rsc
+
+   viUse_type = ITEM_USE_HAND
+   viUse_amount = 1
+
+   viHits_init_min = 50
+   viHits_init_max = 50
+
+   vrShield_window_overlay = beer_mug_overlay_rsc
+   vrShield_overlay = beer_mug_icon_rsc
+
+   viBulk = 10
+   viWeight = 7
+
+   viValue_average = 500
+
+   viGround_group = 3
+   viInventory_group = 1
+   viBroken_group = 4
+
+   viDefense_base = 10
+   viDamage_base = 0
+
+properties:
+
+messages:
+
+   GetBaseSpellModifier(oSpell=$)
+   {
+      if oSpell <> $ AND Send(oSpell,@GetSchool) = SS_KRAANAN
+      {
+         return 5;
+      }
+
+      return 0;
+   }
+
+end
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

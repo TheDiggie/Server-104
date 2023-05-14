@@ -1,0 +1,24 @@
+radench_on_rsc = de "Ein magischer Kreis breitet sich vor dir aus."
+radench_on_other_rsc = de "Ein magischer Kreis breitet sich vor %s%s aus."
+radench_off_other_rsc = de \
+   "Ein magischer Kreis, gezaubert von %s%s kollabiert."
+radench_off_caster_rsc = de "Dein magischer Kreis kollabiert."
+radench_caster_enter = de \
+   "Du fühlst, dass dein magischer Kreis eine Wirkung erzielt."
+radench_enter = de \
+   "Du begibst dich in einem magischen Kreis, gezaubert von %s%s."
+radench_leave = de \
+   "Du verlässteinem magischen Kreis, gezaubert von %s%s."
+radench_no_newbie = de \
+   "Dein Schutzengel sagt dir, \"Du bist noch nicht in der Lage Zauber die "
+   "andere Spieler behindern, zu zaubern.\""
+radench_already_cast = de "Du zauberst bereits einen Kreiszauber."
+radench_need_instrument = de "Du benötigst ein Instrument!"
+radench_not_guilded = de \
+   "Du musst einer Gilde angehören, um diesen Zauber auszusprechen."
+radench_bad_target = de "Du kannst %s%s nicht verzaubern."
+radench_bad_location = de "Du kannst hier nicht auf andere Zaubern."
+radench_target_already_enchanted = de \
+   "%s%s hat versucht %s%s auf dich zu zaubern."
+radench_other_already_enchanted = de \
+   "%s%s ist bereits mit dem Zauber verzaubert."

@@ -1,0 +1,9 @@
+charm_name_rsc = de "Verführung"
+charm_desc_rsc = de \
+   "Mach jedes Monster zu deinem Freund! Verzauberte Monster werden Dir "
+   "folgen bis Du diesen Spruch erneut auf sie anwendest, Zuschauen auf Dich "
+   "selbst zauberst oder Ausstieg benutzt."
+charm_caster = de "%s%s wurde verzaubert."
+charm_target_off = de "%s%s ist nicht länger unter Deiner Kontrolle."
+charm_cast_self = de "Du kannst Dich nicht selbst verzaubern."
+charm_stolen = de "%s%s hat Dein %s verzaubert!"

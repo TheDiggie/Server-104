@@ -1,0 +1,99 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+QormasHelm is Helmet
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include qormashelm.lkod
+
+   qormas_helm_name_rsc = "qormas helm"
+   qormas_helm_icon_male_rsc   = qormashelma.bgf
+   qormas_helm_icon_female_rsc = qormashelmb.bgf
+   qormas_helm_desc_rsc = \
+      "Wearing this soft, plush helmet offers no protection, but "
+      "will keep you in the Qormas spirit."
+
+classvars:
+
+   vrName = qormas_helm_name_rsc
+   vrDesc = qormas_helm_desc_rsc
+   vrIcon = qormas_helm_icon_male_rsc
+
+   viValue_average = 1000
+   viWeight = 50
+   viBulk = 25
+
+   viUse_type = ITEM_USE_HEAD
+   viUse_amount = 1
+   viSpell_modifier = 0
+
+   viGround_group = 3
+   viInventory_group = 2
+   viBroken_group = 4
+
+   vbShow_condition = FALSE
+
+   // No defense/armor since it doesn't break.
+   viDefense_base = 0
+   viDamage_base = 0
+
+properties:
+
+messages:
+
+   NewUsed()
+   {
+      Send(poOwner,@RemoveHair,#what=self);
+
+      propagate;
+   }
+
+   NewUnused()
+   {
+      Send(poOwner,@ResetHair,#what=self);
+
+      propagate;
+   }
+
+   CanShatter()
+   {
+      return FALSE;
+   }
+
+   // Called by player, for normal 3rd-person overlays on user.
+   GetOverlay(animation = $)
+   {
+      if Send(poOwner,@GetGender) = GENDER_FEMALE
+      {
+         return qormas_helm_icon_female_rsc;
+      }
+
+      return qormas_helm_icon_male_rsc;
+   }
+
+   GetMinimapDotFlags()
+   {
+      // Special item, add minimap dot.
+      return MM_RARE_ITEM;
+   }
+
+   DefendingHit(who = $,what = $)
+   {
+      // Return here to avoid damage.
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

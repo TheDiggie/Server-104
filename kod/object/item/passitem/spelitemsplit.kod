@@ -1,0 +1,136 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+SpellItemSplitter is PassiveItem
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include spelitemsplit.lkod
+
+   SpellItemSplitter_name_rsc = "spell item splitter"
+   SpellItemSplitter_icon_rsc = potion01.bgf
+   SpellItemSplitter_desc_rsc = "This is a spell item splitter."
+
+   splitter_cant_use_on = "You can't acquire any charges from %s%s."
+   default_split_spell_item_rsc = \
+      "You combine half of the %s into your splitter, creating an item "
+      "that has %d charges that average %d spellpower."
+   cant_split = "There's not enough to split!"
+   item_no_split = "You cannot split this item!"
+
+classvars:
+
+   vrName = SpellItemSplitter_name_rsc
+   vrIcon = SpellItemSplitter_icon_rsc
+   vrDesc = SpellItemSplitter_desc_rsc
+
+   vrSplitMessage = default_split_spell_item_rsc
+
+   viBulk = 25
+   viWeight = 20
+   viValue_average = 60
+
+   viUse_type = ITEM_SINGLE_USE
+   viItem_type = ITEMTYPE_POTION | ITEMTYPE_SUNDRY
+
+   vcSplitClass = &Potion
+
+properties:
+
+   viObject_flags = OF_APPLYABLE | OF_GETTABLE
+
+messages:
+
+   ReqNewApply(what=$,apply_on=$)
+   {
+      if IsClass(apply_on,vcSplitClass)
+      {
+         return TRUE;
+      }
+
+      Send(what,@MsgSendUser,#message_rsc=splitter_cant_use_on,
+            #parm1=Send(apply_on,@GetIndef),#parm2=Send(apply_on,@GetName));
+
+      return FALSE;
+   }
+
+   NewApplied(what=$,apply_on=$)
+   {
+      if IsClass(apply_on,vcSplitClass)
+      {
+         Send(self,@SplitSpellItem,#who=what,#what=apply_on);
+      }
+
+      return;
+   }
+
+   SplitSpellItem(who=$,what=$)
+   {
+      local cSacrificeClass, iSacrificeHits, iSacrificeSpellPower,
+            oNewItem, iNewHits;
+
+      if what = $
+         OR who = $
+      {
+         return;
+      }
+
+      if NOT Send(what,@CanSplit)
+      {
+         Send(who,@MsgSendUser,#message_rsc=item_no_split);
+
+         return;
+      }
+
+      iSacrificeHits = Send(what,@GetHits);
+      if iSacrificeHits = $
+         OR iSacrificeHits < 2
+      {
+         Send(who,@MsgSendUser,#message_rsc=cant_split);
+
+         return;
+      }
+
+      iNewHits = (iSacrificeHits / 2);
+      oNewItem = Send(what,@Split,#number=iNewHits);
+
+      if Send(what,@GetOwner) = who
+      {
+         Send(who,@NewHold,#what=oNewItem,#check_combine=FALSE);
+      }
+      else
+      {
+         if Send(what,@GetOwner) <> $
+            AND IsClass(Send(what,@GetOwner),&Room)
+         {
+            Send(Send(what,@GetOwner),@NewHold,#what=oNewItem,
+                  #new_row=Send(what,@GetRow),#new_col=Send(what,@GetCol));
+         }
+         else
+         {
+            Send(oNewItem,@Delete);
+         }
+      }
+
+      Send(who,@MsgSendUser,#message_rsc=vrSplitMessage,
+            #parm1=Send(what,@GetName),
+            #parm2=iNewHits,#parm3=iSacrificeSpellPower);
+
+      Send(self,@Delete);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

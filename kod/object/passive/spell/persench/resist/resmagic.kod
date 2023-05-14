@@ -1,0 +1,97 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+ResistMagic is ResistanceEnchantment
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include resmagic.lkod
+
+   resistmagic_name_rsc = "resist magic"
+   resistmagic_icon_rsc = iresmagc.bgf
+   resistmagic_desc_rsc = \
+      "The war god fortifies you against magic attacks.  "
+      "Requires a blue dragon scale to cast."
+   
+   resistmagic_already_enchanted = "You are already resisting magic."
+   resistmagic_success = "Kraanan fortifies %s%s against magic attacks."
+   resistmagic_on = "Kraanan fortifies you against magic attacks."
+   resistmagic_off = "Kraanan's magic departs, leaving you vulnerable to magic attacks once more."
+
+classvars:
+
+   viPersonal_ench = TRUE
+
+   vrName = resistmagic_name_rsc
+   vrIcon = resistmagic_icon_rsc
+   vrDesc = resistmagic_desc_rsc
+
+   viSpell_num = SID_RESIST_MAGIC
+   viMana = 15
+   viSchool = SS_KRAANAN
+   viSpell_level = 5
+
+   viChance_To_Increase = 30
+   viMeditate_ratio = 50
+   viFlash = FLASH_GOOD_SELF
+
+   viResistanceType = -ATCK_SPELL_ALL
+   vrAlreadyEnchanted = resistmagic_already_enchanted
+   vrEnchantment_On = resistmagic_on
+   vrEnchantment_Off = resistmagic_off
+   vrSuccess  = resistmagic_success
+
+properties:
+
+   // The effectiveness of purge on the target spell as a percentage.
+   // 100 will cause purge to remove its entire spellpower, 0 will
+   // prevent purge from removing this spell.
+   viPurgeFactor = 30
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&BlueDragonScale,1],plReagents);
+
+      return;
+   }	 
+
+   GetResistanceStrength(iSpellpower = 0)
+   {
+      /// strength varies from 5 to 25
+      return (iSpellPower+1)/5 + 5;
+   }
+
+   GetDuration(iSpellPower = 0)
+   {
+      local iDuration;	   
+      
+      // .6 to 4 minutes
+      iDuration = 40 + (iSpellPower * 2); 
+      // translate to milliseconds
+      iDuration = iDuration * 1000;	  
+      
+      return iDuration;
+   }
+
+   GetPotionClass()
+   {
+      RETURN &ResistMagicPotion;
+   }
+
+
+end
+////////////////////////////////////////////////////////////////////////////////

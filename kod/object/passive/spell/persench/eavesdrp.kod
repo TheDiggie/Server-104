@@ -1,0 +1,230 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Eavesdrop is PersonalEnchantment
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include eavesdrp.lkod
+
+   Eavesdrop_name_rsc = "eavesdrop"
+   Eavesdrop_icon_rsc = ieavesdr.bgf
+   Eavesdrop_desc_rsc = \
+      "Riija grants the ability to hear distant conversations, allowing you "
+      "to spy on others.  Requires two dragonfly eyes."
+   
+   Eavesdrop_on_rsc = "The sounds of a nearby room fill your mind."
+   Eavesdrop_off_rsc = "The distant sounds become impossible to hear."
+   Eavesdrop_already_enchanted_rsc = \
+      "You are already listening to another room."
+   Eavesdrop_no_rooms = "There seem to be no nearby rooms you can listen to."
+   Eavesdrop_Success_rsc = "You grant %s%s the ability to eavesdrop."
+
+   Eavesdrop_sound = riija.ogg
+
+classvars:
+
+   vrName = Eavesdrop_name_rsc
+   vrIcon = Eavesdrop_icon_rsc
+   vrDesc = Eavesdrop_desc_rsc
+
+   vrAlreadyEnchanted = Eavesdrop_already_enchanted_rsc
+   vrEnchantment_On = Eavesdrop_On_rsc
+   vrEnchantment_Off = Eavesdrop_Off_rsc
+   vrSuccess = Eavesdrop_Success_rsc
+
+   viSpell_num = SID_EAVESDROP
+   viSchool = SS_RIIJA
+   viSpell_level = 2
+   viMana = 8
+   viSpellExertion = 1
+
+   viManaDrain = 1       // Drain is amount used every so often
+   
+   viChance_To_Increase = 20
+   viMeditate_ratio = 20
+   vrSucceed_wav = Eavesdrop_sound
+
+   vbCanCastOnOthers = FALSE
+
+properties:
+
+   // The effectiveness of purge on the target spell as a percentage.
+   // 100 will cause purge to remove its entire spellpower, 0 will
+   // prevent purge from removing this spell.
+   viPurgeFactor = 5
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&DragonflyEye,2],plReagents);
+
+      return;
+   }
+
+   CanPayCosts(who=$,lTargets=$,iSpellPower=0)
+   {
+      local lRooms;
+
+      lRooms = send(self,@GetYellList,#who=who);
+
+      if Length(lRooms) = 0
+      {
+         Send(who,@MsgSendUser,#message_rsc=Eavesdrop_no_rooms);
+
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+   StartPeriodicEnchantment(who=$,state=$,iSpellPower=0)
+   {
+      // If caster runs out of mana or loses trance, spell ends.
+      if Send(who,@GetMana) < viManaDrain * 2
+      {
+         Send(who,@StartEnchantment,#what=self,#time=First(state),
+               #state=state,#addicon=FALSE,#lastcall=TRUE,
+               #iSpellPower=iSpellPower);
+      }
+      else
+      {
+         Send(who,@StartEnchantment,#what=self,#time=First(state),
+               #state=state,#addicon=FALSE,#lastcall=TRUE,
+               #iSpellPower=iSpellPower);
+      }
+
+      Send(who,@LoseMana,#amount=viManaDrain);
+
+      return;
+   }
+   
+   EndEnchantment(who=$,state=0)
+   {
+      Send(Nth(state,2),@Delete);
+
+      propagate;
+   }
+
+   BreakTrance(who=$,state=$,event=$,what=$)
+   {
+      if event = EVENT_CAST AND what = self
+      {
+         propagate;
+      }
+
+      Send(Nth(state,2),@Delete);
+      Send(who,@RemoveEnchantment,#what=self,#state=state);
+
+      propagate;
+   }
+
+   SetSpellPlayerFlag(who=$,state=$)
+   {
+      Send(who,@SetTranceFlag);
+
+      return;
+   }
+
+   GetDuration(iSpellPower=0)
+   {
+      local iPower;
+
+      iPower = (iSpellPower / 10) * 100;
+
+      return 500 + iPower;
+   }
+
+   // State value is: list containing the drain time as the first element,
+   // and the listener object as the second element.
+   //   IE [ drain time (in ms), listener object ]
+
+   GetStateValue(iSpellPower=$,who=$)
+   // Create and place the listener.
+   {
+      local oRoom, lRooms, ilength, iRow, iCol, iDrainTime, oListener;
+
+      lRooms = Send(self,@GetYellList,#who=who);
+
+      iLength = Length(lRooms);
+      if iLength = 0
+      {
+         Send(who,@MsgSendUser,#message_rsc=Eavesdrop_no_rooms);
+      }
+
+      iLength = Random(1,iLength);
+      oRoom = Send(SYS,@FindRoomByNum,#num=Nth(lRooms,iLength));
+
+      // Use "safe" t'port coords.
+      iRow = Send(oRoom,@GetTeleportRow);
+      iCol = Send(oRoom,@GetTeleportCol);
+
+      oListener = Create(&Listener,#Enchanted=who,#iSpellpower=iSpellpower);
+      Send(oRoom,@NewHold,#what=oListener,#new_row=iRow,#new_col=iCol);
+
+      return [Send(self,@GetDuration,#iSpellpower=iSpellpower),oListener];
+   }
+
+   OfferToNewCharacters()
+   {
+      return FALSE;
+   }
+
+   GetLastCall()
+   // Overwrite to false for periodic enchantments.
+   {
+      return FALSE;
+   }
+
+   GetYellList(who=$)
+   "Returns a list of rooms in the yell zone of who's current location."
+   {
+      local iNum, oRoom, lRooms;
+
+      // Get yell list from current room and select a room to eavesdrop.
+      oRoom = Send(who,@GetOwner);
+
+      if (oRoom = $)
+      {
+         return $;
+      }
+
+      iNum = Send(oRoom,@GetRoomNum);
+      lRooms = Send(oRoom,@GetYellZone);
+
+      if (lRooms = $)
+      {
+         return [iNum];
+      }
+
+      // Eliminate the room we're in, unless there is no yell list.
+      if (FindListElem(lRooms,iNum))
+      {
+         if (Length(lRooms) < 2)
+         {
+            lRooms = [iNum];
+         }
+         else
+         {
+            lRooms = DelListElem(lRooms,iNum);
+         }
+      }
+
+      return lRooms;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

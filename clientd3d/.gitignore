@@ -1,0 +1,5 @@
+# Ignore generated files.
+pal.c
+trig.c
+trig.h
+login.c

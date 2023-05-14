@@ -1,0 +1,130 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+/////////////////////////////////////////////////////////////////////////////////
+RazaInn is RazaRoom
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include razainn.lkod
+
+   room_name_razainn = "The Inn of Raza"
+   room_razainn = razainn.roo
+   razainn_music = login.ogg
+
+   razainn_Back_Door = "The back door is locked."
+
+   razainn_Signname = "Welcome"
+   razainn_Sign = \
+      "Welcome to the game!  We hope that you come to enjoy this "
+      "unique online experience.\n\n"
+      "The first thing you need to learn is how to walk, using the W, A, S, and D keys "
+      "alone with the left and right arrows. "
+      "You can walk forward and back using the W and S keys, and turn "
+      "using the left and right arrows.  We will get more into movement "
+      "in a moment.\n\n"
+      "Also, you should note that you can right-click on many of the "
+      "things you see in the world. These signs are a good example, "
+      "as is Marcus, the innkeeper. You can even view yourself "
+      "by right-clicking on the head on the upper-right corner of the "
+      "screen.\n\n"
+      "If you wish to activate 'mouselook' you can do so at this time "
+      "by pressing the C key. If you wish to deactivate it, you can do "
+      "so by pressing the C key again.\n\n"
+      "Lastly, you can go through doors by pressing the space bar.\n\n"
+      "-------------------\n\n"
+      "When you're ready to proceed, walk to the exit door (forward and to your left), "
+      "hit the space bar, and then read the next sign which will be in plain sight."
+
+   razainn_god_name = "Designers' News"
+   razainn_god_desc = \
+      "Check here for information from the game administrators."
+
+classvars:
+
+   vrName = room_name_razainn
+
+   viTeleport_row = 3
+   viTeleport_col = 8
+   viTeleport_angle = ANGLE_WSW
+
+   viPermanent_flags = ROOM_NO_COMBAT | ROOM_SANCTUARY \
+               | ROOM_HOMETOWN | ROOM_SAFELOGOFF
+
+properties:
+
+   prRoom = room_razainn
+   piRoom_num = RID_RAZA_INN
+   viTerrain_type = TERRAIN_CITY | TERRAIN_SHOP
+
+   prMusic = razainn_music
+
+messages:
+
+   CreateStandardExits()
+   {
+      plExits = $;
+
+      plExits = Cons([ 9, 6, RID_RAZA, 8, 27, ROTATE_NONE ],plExits);
+      plExits = Cons([ 9, 7, RID_RAZA, 8, 27, ROTATE_NONE ],plExits);
+
+      plExits = Cons([ 1, 2, ROOM_LOCKED_DOOR, razainn_Back_Door ],plExits);
+      plExits = Cons([ 1, 3, ROOM_LOCKED_DOOR, razainn_Back_Door ],plExits);
+
+      propagate;
+   }
+
+   CreateStandardObjects()
+   {
+      local oObj;
+
+      oObj = Create(&NewsLink,#nid=NID_ANNOUNCEMENTS,
+                     #name=razainn_god_name,#desc=razainn_god_desc);
+      Send(self,@NewHold,#what=oObj,#new_row=5,#new_col=1,
+            #fine_row=47,#fine_col=32);
+
+      Send(self,@NewHold,#what=Create(&RazaInnkeeper),#new_row=7,#new_col=3,
+            #fine_row=24,#fine_col=56);
+
+      oObj = Create(&Sign,#desc=razainn_sign,#newbie=TRUE,#name=razainn_signname);
+      Send(self,@NewHold,#what=oObj,#new_row=4,#new_col=5,
+            #fine_row=24,#fine_col=40);
+
+      Send(self,@NewHold,#what=Create(&Table),
+           #new_row=7,#new_col=11,#fine_row=24,#fine_col=8,#angle=ANGLE_EAST);
+      Send(self,@NewHold,#what=Create(&Table),
+           #new_row=2,#new_col=9,#fine_row=24,#fine_col=40,#angle=ANGLE_EAST);
+      Send(self,@NewHold,#what=Create(&Table),
+           #new_row=3,#new_col=3,#fine_row=24,#fine_col=40,#angle=ANGLE_EAST);
+      Send(self,@NewHold,#what=Create(&BarStool),
+           #new_row=7,#new_col=9,#fine_row=24,#fine_col=40,#angle=ANGLE_EAST);
+      Send(self,@NewHold,#what=Create(&BarStool),
+           #new_row=5,#new_col=2,#fine_row=8,#fine_col=40,#angle=ANGLE_EAST);
+      Send(self,@NewHold,#what=Create(&BarStool),
+           #new_row=2,#new_col=10,#fine_row=24,#fine_col=40,#angle=ANGLE_EAST);
+
+      // Dynamic lights
+      Send(self,@NewHold,#what=Create(&DynamicLight,#iColor=LIGHT_FIRE,#iIntensity=30),
+           #new_row=1,#new_col=8,#fine_row=57,#fine_col=18);
+      Send(self,@NewHold,#what=Create(&DynamicLight,#iColor=LIGHT_FIRE,#iIntensity=30),
+           #new_row=8,#new_col=1,#fine_row=1,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&DynamicLight,#iColor=LIGHT_FIRE,#iIntensity=30),
+           #new_row=8,#new_col=8,#fine_row=54,#fine_col=57);
+      Send(self,@NewHold,#what=Create(&DynamicLight,#iColor=LIGHT_FIRE,#iIntensity=30),
+           #new_row=5,#new_col=10,#fine_row=8,#fine_col=14);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

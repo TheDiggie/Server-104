@@ -1,0 +1,45 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+MinotaurTreasure is TreasureType
+
+constants:
+
+   include blakston.khd
+
+classvars:
+
+   viTreasure_num = TID_MINOTAUR
+
+properties:
+
+   /// decent chance of getting an outstanding item
+   piItem_att_chance = 7
+   piDIff_seed = 9
+
+messages:
+
+   Constructed()
+   {
+      plTreasure = [ [ &YellowMushroom, 10],
+                     [ &GreenMushroom, 10],
+                     [ &PurpleMushroom, 20],
+                     [ &PolishedSeraphym, 20],
+                     [ &InkyCap, 10],
+                     [ &NeruditeShield, 5],
+                     [ &Axe, 14 ],
+                     [ &JewelofFroz, 10],
+                     [ &Weed, 1 ]
+                   ];
+      propagate;
+   }
+
+end
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,268 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+GameEvent is UtilityFunctions
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include gameevent.lkod
+
+   event_start_msg = "Event Started."
+   event_end_msg = "Event Ended"
+
+classvars:
+
+   vrStartMessage = event_start_msg
+   vrEndMessage = event_end_msg
+   vbAnnounce = FALSE
+   vbUnique = TRUE
+
+properties:
+
+   poGameEventEngine = $
+   plSpawnRects = $
+   poActiveRoom = $
+   plEventRooms = $
+   plRoomSaveState = $
+   pbClearRooms = FALSE
+
+messages:
+
+   Constructor(engine=$)
+   {
+      if (engine <> $)
+      {
+         poGameEventEngine = engine;
+      }
+
+      return;
+   }
+
+   Delete()
+   {
+      plSpawnRects = $;
+      poActiveRoom = $;
+      plEventRooms = $;
+      plRoomSaveState = $;
+
+      return;
+   }
+
+   Recreate()
+   {
+      return;
+   }
+
+   IsUnique()
+   {
+      return vbUnique;
+   }
+
+   Update()
+   {
+      return;
+   }
+
+   UserLogon(who=$)
+   {
+      return;
+   }
+
+   UserLogoff(who=$)
+   {
+      return;
+   }
+
+   MonsterKilled(dead_monster=$,killing_player=$,corpse=$)
+   {
+      return;
+   }
+
+   UserKilled(who=$,killer=$)
+   {
+      return;
+   }
+
+   NewMinute()
+   {
+      return;
+   }
+
+   NewHour()
+   {
+      return;
+   }
+
+   NewDay()
+   {
+      return;
+   }
+
+   NewMonth()
+   {
+      return;
+   }
+
+   NewYear()
+   {
+      return;
+   }
+
+   NewGameHour()
+   {
+      return;
+   }
+
+   NewGameDay()
+   {
+      return;
+   }
+
+   NewGameYear()
+   {
+      return;
+   }
+
+   StartEvent()
+   {
+      if vbAnnounce
+      {
+         Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,#string=vrStartMessage);
+      }
+
+      return;
+   }
+
+   NotifyEngineEndEvent()
+   {
+      Send(EVENTENGINE_OBJECT,@EventEnd,#parm1=self);
+
+      return;
+   }
+
+   EndEvent(parm1=$,parm2=$,parm3=$,parm4=$,parm5=$,parm6=$,parm7=$,parm8=$,
+            parm9=$,parm10=$,parm11=$,parm12=$,parm13=$,parm14=$,parm15=$)
+   {
+      if vbAnnounce
+      {
+         Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,#string=vrEndMessage);
+      }
+
+      return;
+   }
+
+   AdvanceEvent()
+   {
+      return;
+   }
+
+   PrepareRooms()
+   {
+      if pbClearRooms
+      {
+         Send(self,@ClearRooms);
+      }
+
+      return;
+   }
+
+   ClearRooms()
+   {
+      local i, j, lActive, oMob;
+
+      lActive = $;
+
+      if (pbClearRooms)
+         AND(plEventRooms <> $)
+      {
+         foreach i in plEventRooms
+         {
+            lActive = Send(i,@GetPlActive);
+            foreach j in lActive
+            {
+               oMob = First(j);
+               if ((IsClass(oMob,&Monster))
+                  AND NOT (Send(oMob,@IsOwnedByPlayer))
+                  AND NOT (Send(oMob,@GetBehavior) & AI_NPC))
+               {
+                  Send(oMob,@Delete);
+               }
+            }
+         }
+      }
+
+      return;
+   }
+
+   SaveRoomStates()
+   {
+      local i, lRoomProps;
+
+      foreach i in plEventRooms
+      {
+         lRoomProps = $;
+
+         if IsClass(i,&MonsterRoom)
+         {
+            lRoomProps = [i, Send(i,@CanMonsterGenerate), Send(i,@GetGenerators),
+                          Send(i,@GetGenTime), Send(i,@GetGenPercent),
+                          Send(i,@GetPatrolPaths) ];
+         }
+         else
+         {
+            lRoomProps = [i,$,$,$,$];
+         }
+
+         plRoomSaveState = AppendListElem(lRoomProps,plRoomSaveState);
+      }
+
+      return;
+   }
+
+   RestoreRoomStates()
+   {
+      local i, oRoom;
+
+      foreach i in plRoomSaveState
+      {
+         oRoom = First(i);
+
+         if (IsClass(oRoom, &MonsterRoom))
+         {
+            Send(oRoom,@SetMonsterGeneration,#bValue=Nth(i,2));
+            Send(oRoom,@SetGenerators,#generators=Nth(i,3));
+            Send(oRoom,@SetGenTime,#time=Nth(i,4));
+            Send(oRoom,@SetGenPercent,#percent=Nth(i,5));
+            Send(oRoom,@SetPatrolPaths,#patrolPaths=Nth(i,6));
+         }
+      }
+
+      return;
+   }
+
+   MakeSpawnPoint()
+   "Returns a spawn point inside a given rectangle."
+   {
+      local lCoords, spawnRect;
+
+      spawnRect = Nth(plSpawnRects,Random(1,Length(plSpawnRects)));
+
+      lCoords = [ Random(First(First(spawnRect)),First(Nth(spawnRect,2))),
+                  Random(Nth(First(spawnRect),2),Nth(Nth(spawnRect,2),2)) ];
+
+      return lCoords;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

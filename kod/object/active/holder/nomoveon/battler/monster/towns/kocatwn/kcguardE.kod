@@ -1,0 +1,162 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+KocatanCaptainEvil is KocatanTown
+
+constants:
+
+   include blakston.khd
+   BRIBE_AMOUNT= 1000
+
+resources:
+
+   include kcguardE.lkod
+
+   KocatanCaptainEvil_name_rsc = "Xacal ko'Ixca"
+   KocatanCaptainEvil_icon_rsc = kcguardE.bgf
+
+   KocatanCaptainEvil_desc_rsc = \
+      "As the one of the highest ranking officers in the Ko'catan Army, Xacal "
+      "ko'Ixca is a veteran of many campaigns.  His peacetime duties include "
+      "supervising the main gatehouse during the night hours against actions "
+      "by enemies unknown, and since this is a time of relative peace part of "
+      "Xacal ko'Ixca's duties consist of defining just who those enemies "
+      "are.  He is widely respected for his toughness and ability to get "
+      "results."
+
+   evilguard_Pass = "You're on your own."
+   evilguard_winknudge = \
+      "You know, funny how this money fell out of your purse into my hands."
+   evilguard_winknudge_action = "~kXacal winks and gives you a nudge."
+
+   evilguard_no_money = \
+      "When you approach the gate you need to be ready to deal.  "
+      "You're broke, and you're wasting my time."
+   EvilGuard_not_enough = "Not enough."
+
+classvars:
+
+   vrName = KocatanCaptainEvil_name_rsc
+   vrIcon = KocatanCaptainEvil_icon_rsc
+   vrDesc = KocatanCaptainEvil_desc_rsc
+
+   viMerchant_markup = MERCHANT_BARGAIN
+
+   viAttributes = \
+      MOB_NOFIGHT | MOB_RANDOM | MOB_LISTEN \
+     | MOB_RECEIVE | MOB_NOMOVE | MOB_FULL_TALK
+   viOccupation = MOB_ROLE_SERGEANT
+
+properties:
+
+   plBribes = $
+
+messages:
+
+   Constructor()
+   {
+      plWantedItems = [&Money];
+
+      propagate;
+   }
+
+   NewOwner()
+   {
+      plBribes = $;
+
+      propagate;
+   }
+
+   AllowContrabandToPass(What=$)
+   {
+      local i;
+
+      foreach i in plBribes
+      {
+         if i = what
+         {
+            Send(self,@SayToOne,#target=what,#message_rsc=evilguard_Pass);
+            plBribes = DelListElem(plBribes,i);
+
+            return TRUE;
+         }
+      }
+
+      return FALSE;
+   }
+
+   Delete()
+   {
+      plBribes = $;
+
+      propagate;
+   }
+
+   GotWantedItem(obj=$,who=$)
+   {
+      if Send(self,@CheckForBribe,#obj=obj,#who=who)
+      {
+         return;
+      }
+
+      propagate;
+
+   }
+
+   CheckForBribe(who=$,obj=0)
+   {
+      local oMoney, oBank, amount;
+
+      if NOT IsClass(obj,&Money)
+      {
+         return FALSE;
+      }
+
+      amount = Send(obj,@GetNumber);
+      if amount <= 0
+      {
+         return FALSE;
+      }
+
+      oMoney = Send(who,@GetMoneyObject);
+      if oMoney = $
+      {
+         Post(poOwner,@SomeoneSaid,#what=self,#string=Evilguard_no_money,
+               #type=SAY_RESOURCE);
+
+         return FALSE;
+      }
+
+      if Send(oMoney,@GetValue) < amount
+      {
+         Post(poOwner,@SomeoneSaid,#what=self,#string=EvilGuard_no_money,
+               #type=SAY_RESOURCE,#parm1=Send(oMoney,@GetValue));
+
+         return FALSE;
+      }
+
+      if amount < BRIBE_AMOUNT
+      {
+         Post(poOwner,@SomeoneSaid,#what=self,#string=EvilGuard_not_enough,
+               #type=SAY_RESOURCE,#parm1=Send(oMoney,@GetValue));
+
+         return TRUE;
+      }
+
+      Send(oMoney,@SubtractNumber,#number=amount);
+      plBribes = cons(who,plBribes);
+      Post(self,@SayToOne,#target=who,#message_rsc=evilguard_winknudge);
+      Post(who,@MsgSendUser,#message_rsc=evilguard_winknudge_action);
+
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

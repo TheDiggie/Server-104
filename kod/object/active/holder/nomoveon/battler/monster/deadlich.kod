@@ -1,0 +1,349 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeadLich is Monster
+
+constants:
+
+   include blakston.khd
+
+   LICH_ILLUSION_TIME = 2 * 60 * 1000  // 2 minutes
+
+resources:
+
+   include deadlich.lkod
+
+   DeadLich_name_rsc = "ghostly remains of Queen Venya'cyr"
+   DeadLich_icon_rsc = lichax.bgf
+   DeadLich_desc_rsc = \
+      "A ghostly pile of ornate formal clothing seems to be all that "
+      "remains of this once-mighty queen."
+
+   DeadLich_name2_rsc = "ghostly remains of Queen Venya'cyr"
+   DeadLich_icon2_rsc = lichbx.bgf
+   DeadLich_desc2_rsc = \
+      "A ghostly pile of ornate formal clothing seems to be all that remains "
+      "of this once-mighty queen.  When you look away, however, from the "
+      "corner of your eye you catch a glimpse of a thin, shimmering thread "
+      "of darkness that seems to be bound to her earthly remains, stretching "
+      "away infinitely in a direction which doesn't seem describable in "
+      "normal geometric terms."
+
+   deadlich_dispel = \
+      "The pile of ornate clothing mysteriously changes color!"
+   deadlich_respel = \
+      "The pile of ornate clothing changes back to its original color."
+
+classvars:
+   vrName = DeadLich_name_rsc
+   vrIcon = DeadLich_icon_rsc
+   vrDesc = DeadLich_desc_rsc
+   vrName2 = DeadLich_name2_rsc
+   vrIcon2 = DeadLich_icon2_rsc
+   vrDesc2 = DeadLich_desc2_rsc
+   viDefinite = ARTICLE_THE
+   viIndefinite = ARTICLE_THE
+   viGender = GENDER_NEUTER
+
+   viLevel = 200
+   viDifficulty = 9
+   viKarma = -100
+   viDefault_behavior = AI_NOMOVE| AI_NOFIGHT| AI_NPC
+   viAttributes = \
+      MOB_NOFIGHT | MOB_LISTEN | MOB_RANDOM | MOB_RECEIVE | MOB_TEACHER
+   viOccupation = MOB_ROLE_SCHOLAR
+
+properties:
+
+   poLich = $
+   plKilledBy = $
+   ptNoSteal = $
+
+   pbIllusioned = TRUE
+   ptGoIllusioned = $
+
+messages:
+
+   Constructor(Attackers=$)
+   {
+      poLich = Create(&Lich);
+      plKilledBy = Attackers;
+
+      // Only the killer can pick up things for the first 25 seconds.
+      ptNoSteal = CreateTimer(self,@NoStealTimer,25000);
+
+      propagate;
+   }
+
+   GetIcon()
+   {
+      if pbIllusioned
+      {
+         return vrIcon;
+      }
+
+      return vrIcon2;
+   }
+
+   GetName()
+   {
+      if pbIllusioned
+      {
+         return vrName;
+      }
+
+      return vrName2;
+   }
+
+   GetApparentName()
+   {
+      if pbIllusioned
+      {
+         return vrName;
+      }
+
+      return vrName2;
+   }
+
+   ShowDesc()
+   {
+      if pbIllusioned
+      {
+         AddPacket(4,vrDesc);
+
+         return;
+      }
+
+      AddPacket(4,vrDesc2);
+
+      return;
+   }
+
+   DispelIllusionEnchantments()
+   {
+      if NOT pbIllusioned
+      {
+         return;
+      }
+
+      Post(poOwner,@SomeoneSaid,#what=self,#string=deadlich_dispel,
+            #type=SAY_MESSAGE);
+
+      pbIllusioned = FALSE;
+      Send(poOwner,@SomethingChanged,#what=self);
+      if ptGoIllusioned <> $
+      {
+         DeleteTimer(ptGoIllusioned);
+         ptGoIllusioned = $;
+      }
+      ptGoIllusioned=CreateTimer(self,@ReplaceIllusions,LICH_ILLUSION_TIME);
+
+      return;
+   }
+
+   ReplaceIllusions()
+   {
+      ptGoIllusioned = $;
+
+      if pbIllusioned
+      {
+         return;
+      }
+
+      Post(poOwner,@SomeoneSaid,#what=self,#string=deadlich_respel,
+            #type=SAY_MESSAGE);
+
+      pbIllusioned = TRUE;
+      Send(poOwner,@SomethingChanged,#what=self);
+
+      return;
+   }
+
+   NoStealTimer()
+   {
+      ptNoSteal = $;
+
+      return;
+   }
+
+   CanGetMe(what=$)
+   {
+      if ptNoSteal = $
+      {
+         return TRUE;
+      }
+      
+      if plKilledBy <> $
+         AND FindListElem(plKilledBy,what) <> 0
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   SetForSale()
+   {
+      plFor_sale = [$,$,
+         [],
+        //[ SID_EVIL_TWIN, SID_POISON_FOG, SID_BLOOD_INHERITANCE ],
+       $ ];
+
+      return;
+   }
+
+   EstablishNecromancerGuild(master=$)
+   {
+      if master = $
+      {
+         return;
+      }
+
+      if Send(master,@GetGuild) <> $
+      {
+         Debug("Tried to establish necroguild with master already guilded.");
+
+         return;
+      }
+
+      Send(poOwner,@NewHold,#what=poLich,#new_row=piRow,#new_col=piCol,
+            #fine_row=piFine_Row,#fine_col=piFine_Col,#new_angle=ANGLE_WEST);
+      Send(Send(SYS,@GetNecromancerBalance),@EstablishNecromancerGuild,
+            #master=master);
+
+      Send(self,@Delete,#lichswapout=TRUE);
+
+      return;
+   }
+
+   Delete(lichswapout=FALSE)
+   {
+      local iQNTindex, oQE, oQ;
+
+      if lichswapout
+      {
+         oQE = Send(SYS,@GetQuestEngine);
+
+         // Swap the quest NPC to the new Lich, so that this dead Lich gets
+         // cleaned up by garbage collection. If the new Lich dies, the quest
+         // NPC is set back to the new dead Lich.
+         iQNTindex = First(Nth(Send(oQE,@GetQuestTemplate,
+                           #index=QST_ID_ESTABLISH_NECROGUILD),QT_QUEST_NODES));
+         Send(oQE,@SetQuestNodeNPCList,#index=iQNTindex,#new_NPC_list=[poLich]);
+      }
+      else
+      {
+         if poLich <> $
+         {
+            Send(poLich,@Delete);
+            poLich = $;
+         }
+      }
+
+      if ptNoSteal <> $
+      {
+         DeleteTimer(ptNoSteal);
+         ptNoSteal = $;
+      }
+      if ptGoIllusioned <> $
+      {
+         DeleteTimer(ptGoIllusioned);
+         ptGoIllusioned = $;
+      }
+
+      propagate;
+   }
+
+   GetNumAmulets()
+   {
+      if poLich = $
+      {
+         Debug("Dead lich points to no lich!");
+
+         return FALSE;
+      }
+
+      return Send(poLich,@GetNumAmulets);
+   }
+
+   CanMorphTo()
+   {
+      return FALSE;
+   }
+
+   DMCanArmageddon()
+   {
+      return FALSE;
+   }
+
+   GetLich()
+   {
+      return poLich;
+   }
+
+   NewOwner(what=$)
+   {
+      // This should never happen, but if it does...
+      if what <> $
+         AND NOT IsClass(what,&GuildHall15)
+      {
+         Debug("Bad Dead Lich!  Go to your room!");
+         Post(self,@GoBackToGuildhall);
+      }
+
+      propagate;
+   }
+
+   LastUserLeft(what = $)
+   {
+      Post(self,@GoBackToGuildhall);
+
+      propagate;
+   }
+
+   GoBackToGuildhall()
+   {
+      local oGuildh15;
+
+      if poOwner = $
+      {
+         return;
+      }
+
+      oGuildh15 = Send(SYS,@FindRoomByNum,#num=RID_GUILDH15);
+
+      if poOwner = oGuildh15
+      {
+         Send(SYS,@UtilGoNearSquare,#what=self,#where=poOwner,
+              #new_row=13,#new_col=49,#fine_row=16,#fine_col=00,
+              #new_angle=ANGLE_WEST);
+
+         return;
+      }
+
+      Send(oGuildh15,@NewHold,#what=self,#new_row=13,#new_col=49,
+            #fine_row=16,#fine_col=00,#new_angle=ANGLE_WEST);
+
+      if Send(oGuildh15,@CountHoldingHowMany,#class=&DeadLich) > 1
+      {
+         Debug("More than one dead lich in the guild hall!!");
+      }
+
+      if Send(oGuildh15,@CountHoldingHowMany,#class=&DeadLich) > 0
+         AND Send(oGuildh15,@CountHoldingHowMany,#class=&Lich) > 0
+      {
+         Debug("Both a lich and a dead lich in the guild hall!!");
+      }
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

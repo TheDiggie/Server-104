@@ -1,0 +1,122 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+ResistanceEnchantment is PersonalEnchantment
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include resist.lkod
+
+   resist_enchantment_rsc = \
+      "\n\nYour current %s enchantment adds %i%% %s."
+
+classvars:
+
+   viPersonal_ench = True
+   viFlash = FLASH_GOOD_SELF
+
+   viResistanceType = -ATCK_SPELL_ALL
+   viMeditate_ratio = 20
+
+   vrAlreadyEnchanted = $
+   vrEnchantment_On = $
+   vrEnchantment_Off = $
+   vrSuccess = $
+
+properties:
+
+   // The effectiveness of purge on the target spell as a percentage.
+   // 100 will cause purge to remove its entire spellpower, 0 will
+   // prevent purge from removing this spell.
+   viPurgeFactor = 40
+
+messages:
+
+   CanPayCosts(who=$,lTargets=$)
+   {
+
+      lTargets = [who];
+
+      if (vrAlreadyEnchanted = $)
+         OR (vrEnchantment_On = $)
+         OR (vrEnchantment_Off = $)
+         OR (vrSuccess = $)
+      {
+         Debug("Haven't set messages for this spell!  Aborting cast.");
+         
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+   GetStateValue(who=$,iSpellPower=0,target=$)
+   {
+      local iValue;
+
+      iValue = Send(self,@GetResistanceStrength,#iSpellPower=iSpellPower);
+
+      return iValue;
+   }
+
+   GetResistanceStrength(iSpellpower=0)
+   {
+      /// Strength varies from 1 to 50
+      return iSpellPower/2 + 1;
+   }
+
+   ModifyResistance(resistance_list=$,iState=0)
+   {
+      resistance_list = Send(SYS,@AddResistance,#what=viResistanceType,
+                              #value=iState,#resistance_list=resistance_list);
+      return resistance_list;
+   }
+
+   GetDuration(iSpellPower=0)
+   {
+      local iDuration;      //// 5 to 10 minutes
+
+      iDuration = 300 + iSpellPower * 3;
+      iDuration = iDuration * 1000;      /// translate to milliseconds
+
+      return iDuration;
+   }
+
+   EndEnchantment(who=$,report=TRUE,state=-1)
+   {
+      if state = -1
+      {
+         Debug("Bad data!");
+         state = 0;
+      }
+
+      propagate;
+   }
+
+   GetNumSpellTargets()
+   {
+      return 0;
+   }
+
+   EffectDesc(who=$)
+   {
+      AddPacket(4,resist_enchantment_rsc, 4,Send(self,@GetName),
+                4,Send(who,@GetEnchantedState,#what=self),
+                4,Send(SYS,@GetResistanceName,#type=viResistanceType));
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

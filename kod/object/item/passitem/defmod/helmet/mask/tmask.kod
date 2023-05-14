@@ -1,0 +1,42 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+TriangleMask is FaceMask
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   TriangleMask_name_rsc = "soldier mask"
+   TriangleMask_icon_male_rsc = squidt.bgf
+   TriangleMask_icon_female_rsc = squidt.bgf
+   TriangleMask_desc_rsc = \
+      "This mask is used by soldiers of the Squid Games."
+      "Do not let them find out who you are."
+
+classvars:
+
+   vrName = TriangleMask_name_rsc
+   vrDesc = TriangleMask_desc_rsc
+   vrIcon = TriangleMask_icon_male_rsc
+
+   vrMaleIcon = TriangleMask_icon_male_rsc
+   vrFemaleIcon = TriangleMask_icon_female_rsc
+
+properties:
+
+
+messages:
+
+
+end
+////////////////////////////////////////////////////////////////////////////////

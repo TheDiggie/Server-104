@@ -1,0 +1,53 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+OrcWizardTreasure is TreasureType
+
+constants:
+
+   include blakston.khd
+
+classvars:
+
+   viTreasure_num = TID_ORC_WIZARD
+
+properties:
+
+   piItem_att_chance = 8
+   piDiff_seed = 4
+
+messages:
+
+   Constructed()
+   {
+      plTreasure = [ [ &OrcTooth, 33 ],
+                     [ &UncutSeraphym, 5],
+                     [ &SlitherWand, 1],
+                     [ &DragonflyEye, 6 ],
+                     [ &Solagh, 6 ],
+                     [ &PurpleMushroom, 1 ],
+                     [ &Torch, 5 ],
+                     [ &DiscipleRobe, 25 ],
+                     [ &LightDiscipleRobe, 1 ],
+                     [ &Gauntlet, 2 ],
+                     [ &Flask, 1 ],
+                     [ &Lute, 3 ],
+                     [ &PolishedSeraphym, 2 ],
+                     [ &StaffOfJolting, 2 ],
+                     [ &DispellIllusionScroll, 2 ],
+					 [ &Key, 4 ],
+					 [ &WeaponWand, 1]
+                   ];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

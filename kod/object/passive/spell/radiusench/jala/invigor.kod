@@ -1,0 +1,96 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+/////////////////////////////////////////////////////////////////////////////////
+Invigorate is Jala
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include invigor.lkod
+
+   Invigorate_name_rsc = "invigorate"
+   Invigorate_icon_rsc = iinvigor.bgf
+   Invigorate_desc_rsc = \
+      "This song allows all listeners to regain vigor at an accelerated "
+      "rate.  Requires nothing but a strong voice."
+
+   Invigorate_song = song11.ogg
+
+   Invigorate_cast = "You begin to play an invigorating song."
+   Invigorate_starts = "%s%s begins to play an invigorating song."
+   Invigorate_ends = "The invigorating song played by %s%s fades away."
+   Invigorate_caster_ends = "Your invigorating song fades."
+   Invigorate_caster_enter = "You feel the tiredness of your muscles diminish."
+   Invigorate_enter = \
+      "%s%s's invigorating song eases the tiredness of your muscles."
+   Invigorate_leave = \
+      "You can no longer hear the invigorating notes of %s%s's song."
+
+classvars:
+
+   vrEnchantmentOn = Invigorate_cast
+   vrEnchantmentOnOther = Invigorate_starts
+   vrEnchantmentOff = Invigorate_caster_ends
+   vrEnchantmentOffOther = Invigorate_ends
+   vrEnterRadiusCaster = Invigorate_caster_enter
+   vrEnterRadius = Invigorate_enter
+   vrLeaveRadius = Invigorate_leave
+
+   vrName = Invigorate_name_rsc
+   vrIcon = Invigorate_icon_rsc
+   vrDesc = Invigorate_desc_rsc
+
+   viSpell_num = SID_INVIGORATE
+   viSchool = SS_JALA
+   viSpell_level = 1
+
+   viMana = 5           // Mana is amount used upon inititiation
+   viManaDrain = 0      // Drain is amount used every viDrainTime milliseconds
+   viDrainTime = 5000   // Drain some mana every viDrainTime milliseconds
+
+   viSpellExertion = 1
+   viChance_To_Increase = 20
+   viMeditate_ratio = 15
+
+   viAffectsEveryone = TRUE
+
+properties:
+
+   prMusic = Invigorate_song
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+
+      return;
+   }
+
+   GetDuration(iSpellPower=0)
+   {
+      return 100000 / (iSpellPower+1);
+   }
+
+   PeriodicEffect(who = $)
+   {
+      if who <> $ AND NOT IsClass(who, &Monster)
+      {
+         Send(who,@RestAddExertion,#amount=-10000);
+      }
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

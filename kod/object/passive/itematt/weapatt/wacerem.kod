@@ -1,0 +1,131 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+WeapAttCeremonial is WeaponAttribute
+
+///////////////////////////////////////////////////////////////////////
+//
+//   This Weapon Attribute offers a +Power bonus in the arena, but a -Power
+//   damage penalty anywhere else.  Power is determined using standard
+//   WeapAtt powers table.
+//
+//  Form is:
+//
+//       [ WA_CEREMONIAL ]
+//
+///////////////////////////////////////////////////////////////////////
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include wacerem.lkod
+
+   weapattcerem_desc = \
+      "  Beautiful and ornate, this weapon is obviously unsuitable for blood "
+      "combat, though it might provide %s edge in games and tourneys."
+   weapatt_ceremonial_name = "ceremonial %s"
+   ceremonial_dm = "ceremonial"
+
+classvars:
+
+   vrDesc = weapattcerem_desc
+   vbPowerDesc = TRUE
+   viItem_Att_Num = WA_CEREMONIAL
+   viDamage_bonus = 2
+   viDifficulty = 5
+   vrDM_Trigger = ceremonial_dm
+
+properties:
+
+   piValue_modifier = 150   /// modify the object's price by 100//
+   piValue_power_modifier = 5
+
+messages:
+
+////////////////////////////////////////////////
+///
+///  Initialization Functions
+///
+////////////////////////////////////////////////
+
+   InitialPower(oItem=$)
+   {
+      if oItem = $
+      {
+         Debug("This shouldn't have happened!");
+
+         return;
+      }
+
+      return Send(self,@InitialWeaponPower,#oItem=oItem);
+   }
+
+////////////////////////////////////////////////
+///
+///  Effect Functions
+///
+////////////////////////////////////////////////
+
+   ModifyHitRoll(hitroll=0,target=$,wielder=$,lData=$)
+   "Give a +power bonus in the arena, but -power everywhere else."
+   {
+      local oRoom, iPower;
+
+      if wielder = $
+      {
+         return hitroll;
+      }
+
+      iPower = Send(self,@TranslatePowerFromCompound,#iCompound=First(lData));
+      iPower = Send(self,@DecipherHitRollFromPower,#iPower=iPower);
+
+      oRoom = Send(wielder,@GetOwner);
+
+      if Send(oRoom,@CheckRoomFlag,#flag=ROOM_SAFE_DEATH)
+      {
+         return (hitroll + iPower);
+      }
+
+      return (hitroll - iPower);
+   }
+
+   ModifyDamage(damage=0,target=$,wielder=$,lData=$)
+   "Give a +power bonus in the arena, but -power everywhere else."
+   {
+      local oRoom, iPower;
+
+      if wielder = $
+      {
+         return damage;
+      }
+
+      iPower = Send(self,@TranslatePowerFromCompound,#iCompound=First(lData));
+      iPower = Send(self,@DecipherDamageFromPower,#iPower=iPower);
+
+      oRoom = Send(wielder,@GetOwner);
+
+      if Send(oRoom,@CheckRoomFlag,#flag=ROOM_SAFE_DEATH)
+      {
+         return (damage + iPower);
+      }
+
+      return (damage - iPower);
+   }
+
+   IsMagicalEffect()
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

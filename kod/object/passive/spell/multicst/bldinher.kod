@@ -1,0 +1,158 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+BloodInheritance is MultiCastSpell
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include bldinher.lkod
+
+
+   BloodInheritance_name_rsc = "blood inheritance"
+   BloodInheritance_icon_rsc = ibloodin.bgf
+   BloodInheritance_desc_rsc = \
+      "Infuses a weapon with the malevolent power of Qor.  It is impossible "
+      "to predict exactly what form this dark benediction will take, but it "
+      "will always be deadly.  Requires 16 shaman blood, 16 entroot berries, "
+      "and 16 orc teeth."
+
+   BloodInheritance_sound = qunbond.ogg
+
+   BloodInheritance_bad_target = \
+      "You must target this spell at a melee weapon."
+   BloodInheritance_bad_target2 = \
+      "You cannot give Qor's gift to a weapon which already has such "
+      "a strong enchantment."
+   BloodInheritance_succeeded = \
+      "The evil force of your spell lashes out at %s%s, infusing "
+      "it with Qor's power."
+
+classvars:
+
+   vrName = BloodInheritance_name_rsc
+   vrIcon = BloodInheritance_icon_rsc
+   vrDesc = BloodInheritance_desc_rsc
+
+   vrSucceed_wav = BloodInheritance_sound
+
+   viMana = 50
+
+   viSpell_num = SID_BLOOD_INHERITANCE
+   viSchool = SS_QOR
+   viSpell_level = 5
+
+   viSpellExertion = 50
+   viCast_time = 20000
+   viChance_To_Increase = 35
+
+   // Drain is amount used every viDrainTime milliseconds
+   viManaDrain = 1
+   // Drain some mana every viDrainTime milliseconds
+   viDrainTime = 1000
+
+   // 10 minutes for worst case, 2.3 mins for best case.
+   viMultiCast_Spellpower = 3000
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&ShamanBlood,16] ,plReagents);
+      plReagents = Cons([&EntrootBerry,16] ,plReagents);
+      plReagents = Cons([&OrcTooth,16] ,plReagents);
+
+      return;
+   }
+
+   CastSpell(who = $, lTargets = $, iSpellPower = 0)
+   {
+      local oTarget;
+
+      oTarget = First(lTargets);
+
+      // Gotta be a melee weapon. This spell will only create magical weapons that
+      // can normally be obtained, so don't allow ranged weapon to be given procs.
+      if oTarget = $
+         OR NOT IsClass(oTarget,&Weapon)
+         OR IsClass(oTarget,&RangedWeapon)
+      {
+         Send(who,@MsgSendUser,#message_rsc=BloodInheritance_bad_target);
+
+         return;
+      }
+
+      // Can't have any powerful enchantments.
+      if (NOT Send(oTarget,@CanUserAddSpecialAttributes))
+      {
+         Send(who,@MsgSendUser,#message_rsc=BloodInheritance_bad_target2);
+
+         return;
+      }
+
+      propagate;
+   }
+
+   PrismCast(spellpower = 0, lCasters=$, lTargets=$)
+   {
+      local oCaster, oTarget, ItemAtt, iCount;
+
+      oTarget = First(lTargets);
+
+      // Can't have any powerful enchantments.
+      if (NOT Send(oTarget,@CanUserAddSpecialAttributes))
+      {
+         foreach oCaster in lCasters
+         {
+            Send(oCaster,@MsgSendUser,#message_rsc=BloodInheritance_bad_target2);
+         }
+
+         return;
+      }
+
+      foreach oCaster in lCasters
+      {
+         Send(oCaster,@MsgSendUser,#message_rsc=BloodInheritance_succeeded,
+               #parm1=Send(oTarget,@GetDef),#parm2=Send(oTarget,@GetName));
+      }
+
+      // Try 10x to add an itematt not already present.
+      iCount = 0;
+      do
+      {
+         switch(Random(1,8))
+         {
+            case 1: ItemAtt = WA_VAMPER; break;
+            case 2: ItemAtt = WA_BLINDER; break;
+            case 3: ItemAtt = WA_PARALYZER; break;
+            case 4: ItemAtt = WA_SIPHON; break;
+            default: ItemAtt = WA_CURSED;
+         }
+      } while (Send(oTarget,@HasAttribute,#ItemAtt=ItemAtt)
+         AND ++iCount < 10);
+
+      Send(Send(SYS,@FindItemAttByNum,#Num=ItemAtt),@AddToItem,#oItem=oTarget);
+
+      return;
+   }
+
+   GetNumSpellTargets()
+   {
+      return 1;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

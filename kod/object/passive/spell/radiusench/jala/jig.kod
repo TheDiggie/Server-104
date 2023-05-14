@@ -1,0 +1,112 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+/////////////////////////////////////////////////////////////////////////////////
+Jig is Jala
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include jig.lkod
+
+   jig_name_rsc = "jig"
+   jig_icon_rsc = ijig.bgf
+   jig_desc_rsc = \
+      "This spell causes everyone in the room to break out into dance "
+      "and is lots of fun at parties.  Requires one diamond to cast."
+
+   jig_song = jala2.ogg
+
+   Jig_cast = "You begin playing an overwhelmingly addictive ditty!"
+   Jig_starts = "%s%s begins playing an overwhelmingly addictive ditty!"
+   Jig_ends = "The ditty played by %s%s ends with a final cheery high note."
+   Jig_caster_ends = "You stop playing your little jig."
+   Jig_caster_enter = "You feel compelled to dance to your own tune!"
+   Jig_enter = "As %s%s's song hits your ears, you feel compelled to dance!"
+   Jig_leave = \
+      "You have passed outside the range of %s%s's song, you lose your "
+      "compulsion to dance."
+
+   Jig_cannot_do_that = "You can't do that while you're dancing to %s%s's song!"
+
+classvars:
+
+   vrEnchantmentOn = Jig_cast
+   vrEnchantmentOnOther = Jig_starts
+   vrEnchantmentOff = Jig_caster_ends
+   vrEnchantmentOffOther = Jig_ends
+   vrEnterRadiusCaster = Jig_caster_enter
+   vrEnterRadius = Jig_enter
+   vrLeaveRadius = Jig_leave
+
+   vrName = jig_name_rsc
+   vrIcon = jig_icon_rsc
+   vrDesc = jig_desc_rsc
+
+   viMana = 10
+   viManaDrain = 10
+   viDrainTime = 5000
+   viSpell_num = SID_JIG
+   viSpellExertion = 3
+   viChance_To_Increase = 40
+   viMeditate_ratio = 50
+   viSpell_level = 4
+
+   viHarmful = TRUE
+
+   viAffectsGuildmates = TRUE
+   viAffectsEnemies = TRUE
+   viAffectsNewbies = TRUE
+   viAffectsAllies = TRUE
+
+properties:
+
+   prMusic = jig_song
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&Diamond,1],plReagents);
+
+      return;
+   }
+
+   AddEnchantmentEffects(who=$,state=$)
+   {
+      if IsClass(who,&User)
+      {
+	     Post(who,@FreeHands);
+         Post(who,@DoDance);
+      }
+
+      propagate;
+   }
+
+   RemoveEnchantmentEffects(who=$,state=$)
+   {
+      if IsClass(who,&User)
+      {
+         Post(who,@StopDancing);
+      }
+
+      propagate;
+   }
+
+   SpellBannedInArena()
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

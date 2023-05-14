@@ -1,0 +1,311 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Foresight is Spell
+
+constants:
+
+   include blakston.khd
+   include protocol.khd
+
+   MAX_PERCENT_KNOWS = 16
+   MAX_PERCENT_ADEQUATE = 32
+   MAX_PERCENT_MEDIOCRE = 48
+   MAX_PERCENT_GOOD = 64
+   MAX_PERCENT_PRACTITIONER = 80
+   MAX_PERCENT_GREAT = 90
+
+resources:
+
+   include forsight.lkod
+
+   Foresight_name_rsc = "foresight"
+   Foresight_icon_rsc = iforesig.bgf
+   Foresight_desc_rsc = \
+      "Reveals knowledge of the victim, informing you of their abilities.  "
+      "Requires two uncut seraphym to cast."
+
+   Foresight_caster = "You glare at %s%s read their thoughts."
+   Foresight_info = "%s%s %s"
+   Foresight_abil_name = "%s %s, %s"
+   Foresight_last_abil_name = "and %s %s."
+   Foresight_nothing = \
+      "%s%s's head seems to be so empty you could probably hear the sea if "
+      "you held it to your ear."
+   Foresight_one = "%s %s."
+   Foresight_notplayer = \
+      "Hmmm...you aren't sure WHAT to make of what %s%s is thinking."
+
+   Foresight_KnowsOf = "knows of"
+   Foresight_AdequateAt  = "is adequate at"
+   Foresight_MediocreAt  = "is mediocre at"
+   Foresight_GoodAt  = "is good at"
+   Foresight_PractitionerOf = "is a practitioner of"
+   Foresight_GreatAt = "is great at" 
+   Foresight_MasterOf = "is a master of" 
+
+classvars:
+
+   vrName = Foresight_name_rsc
+   vrIcon = Foresight_icon_rsc
+   vrDesc = Foresight_desc_rsc
+
+   viSpell_num = SID_Foresight
+   viSpell_level = 2
+   viSchool = SS_RIIJA
+   viMana = 5
+   viSpellExertion = 0
+   viCast_time = 0
+   viChance_to_increase = 10
+   viMeditate_ratio = 20
+
+   viFlash = FLASH_BAD
+
+properties:
+
+   viOutlaw = TRUE
+   viHarmful = TRUE
+
+messages:
+
+   Constructed()
+   {
+      // Allow the spell on Sacred Haven.
+      if NOT Send(SYS,@IsPKAllowed)
+      {
+         viOutlaw = FALSE;
+         viHarmful = FALSE;
+      }
+
+      propagate;
+   }
+
+   GetNumSpellTargets()
+   {
+      return 1;
+   }
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&UncutSeraphym,2],plReagents);
+
+      return;
+   }
+
+   CastSpell(who = $, lTargets=$, iSpellPower = 0)
+   {
+      local iToList, iListed, i, oTarget, lAbilities, iCompound, iAbilityNum,
+            oAbility, iAbilityLength, iMaxHopSize, iFrog, iCounter, iTemp,
+            iSkill;
+
+      oTarget = First(lTargets);
+      iToList = iSpellPower / 4;
+      iToList = Bound(iToList,1,10);
+      iListed = 0;
+      iFrog = 0;
+
+      if IsClass(oTarget,&Monster)
+      {
+         Send(self,@ForesightMonster,#who=who,#oTarget=oTarget,
+               #iSpellPower=iSpellPower);
+
+         propagate;
+      }
+
+      foreach i in Send(oTarget,@GetSpellList)
+      {
+         iAbilityNum = Send(oTarget,@DecodeSpellNum,#compound=i);
+         oAbility = Send(SYS,@FindSpellByNum,#num=iAbilityNum);
+         lAbilities = Cons([oAbility,i],lAbilities);
+      }
+
+      foreach i in Send(oTarget,@GetSkillList)
+      {
+         iAbilityNum = Send(oTarget,@DecodeSkillNum,#compound=i);
+         oAbility = Send(SYS,@FindSkillByNum,#num=iAbilityNum);
+         lAbilities = Cons([oAbility,i],lAbilities);
+      }
+
+      iCounter = 1;
+      iAbilityLength = Length(lAbilities) - 1;
+
+      while iCounter < (iAbilityLength / 2)
+      {
+         iTemp = Nth(lAbilities,iAbilityLength-iCounter);
+         SetNth(lAbilities,iAbilityLength-iCounter,Nth(lAbilities,iCounter));
+         SetNth(lAbilities,iCounter,iTemp);
+         iCounter = iCounter + 2;
+      }
+
+      iAbilityLength = Length(lAbilities);
+
+      if iAbilityLength < iToList
+      {
+         iToList = iAbilityLength;
+      }
+
+      if iToList = 0
+      {
+         AddPacket(1,BP_MESSAGE,4,Foresight_nothing);
+         AddPacket(4,Send(oTarget,@GetDef));
+         AddPacket(4,Send(oTarget,@GetName));
+         SendPacket(Send(who,@GetSession));
+
+         propagate;
+      }
+
+      iMaxHopSize = iAbilityLength / iToList;
+      iMaxHopSize = Bound(iMaxHopsize,1,$);
+
+      while iListed < iToList
+      {
+         oAbility = $;
+         iFrog = iFrog + Random(1,iMaxHopSize);
+         oAbility = First(Nth(lAbilities,iFrog));
+         iCompound = Nth(Nth(lAbilities,iFrog),2);
+
+         if iListed = 0
+         {
+            AddPacket(1,BP_MESSAGE,4,Foresight_info);
+            AddPacket(4,Send(oTarget,@GetDef));
+            AddPacket(4,Send(oTarget,@GetName));
+         }
+
+         ++iListed;
+
+         if oAbility <> $
+         {
+            if iToList = 1
+            {
+               AddPacket(4,Foresight_one);
+            }
+            else if iListed = iToList
+            {
+               AddPacket(4,Foresight_last_abil_name);
+            }
+            else
+            {
+               AddPacket(4,Foresight_abil_name);
+            }
+
+            if IsClass(oAbility,&Spell)
+            {
+               iSkill = Send(oTarget,@DecodeSpellAbility,#compound=iCompound);
+            }
+            else
+            {
+               iSkill = Send(oTarget,@DecodeSkillAbility,#compound=iCompound);
+            }
+
+            AddPacket(4,Send(self,@GetAbilityResource,#iAbility=iSkill));
+            AddPacket(4,Send(oAbility,@GetName));
+         }
+      }
+
+      SendPacket(Send(who,@GetSession));
+
+      propagate;
+   }
+
+   ForesightMonster(who = $, oTarget = $, iSpellPower = 0)
+   {
+      local i, iLength, oSpell, lSpellBook, rAbility;
+
+      if (who = $ OR oTarget = $)
+      {
+         return;
+      }
+
+      lSpellBook = Send(oTarget,@GetSpellBook);
+
+      if (lSpellBook = $)
+      {
+         AddPacket(1,BP_MESSAGE,4,Foresight_nothing);
+         AddPacket(4,Send(oTarget,@GetCapDef));
+         AddPacket(4,Send(oTarget,@GetName));
+         SendPacket(Send(who,@GetSession));
+
+         return;
+      }
+
+      AddPacket(1,BP_MESSAGE,4,Foresight_info);
+      AddPacket(4,Send(oTarget,@GetCapDef));
+      AddPacket(4,Send(oTarget,@GetName));
+
+      // Mobs have the same spellpower/// for all spells they cast from spellbook.
+      rAbility = Send(self,@GetAbilityResource,
+                        #iAbility=Send(oTarget,@GetBaseSpellPower));
+
+      iLength = Length(lSpellBook);
+      for (i = 1; i <= iLength; ++i)
+      {
+         if iLength = 1
+         {
+            AddPacket(4,Foresight_one);
+         }
+         else if iLength = i
+         {
+            AddPacket(4,Foresight_last_abil_name);
+         }
+         else
+         {
+            AddPacket(4,Foresight_abil_name);
+         }
+         AddPacket(4,rAbility);
+
+         oSpell = Send(SYS,@FindSpellByNum,#num=First(Nth(lSpellBook, i)));
+         AddPacket(4,Send(oSpell,@GetName));
+      }
+
+      SendPacket(Send(who,@GetSession));
+
+      return;
+   }
+
+   GetAbilityResource(iAbility = 0)
+   "Returns the resource matching the ability percent."
+   {
+      if iAbility < MAX_PERCENT_KNOWS
+      {
+        return Foresight_KnowsOf;
+      }
+      if iAbility < MAX_PERCENT_ADEQUATE
+      {
+         return Foresight_AdequateAt;
+      }
+      if iAbility < MAX_PERCENT_MEDIOCRE
+      {
+         return Foresight_MediocreAt;
+      }
+      if iAbility < MAX_PERCENT_GOOD
+      {
+         return Foresight_GoodAt;
+      }
+      if iAbility < MAX_PERCENT_PRACTITIONER
+      {
+         return Foresight_PractitionerOf;
+      }
+      if iAbility < MAX_PERCENT_GREAT
+      {
+         return Foresight_GreatAt;
+      }
+
+        return Foresight_MasterOf;
+   }
+
+   // This spell is not an illusion, unlike most other Riija spells.
+   IsIllusion()
+   {
+      return FALSE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

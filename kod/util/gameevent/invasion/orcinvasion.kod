@@ -1,0 +1,287 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+OrcInvasion is Invasion
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include orcinvasion.lkod
+
+   OrcInvasion_start_msg = \
+      "~B~k[Event]~n ~B~v The reign of the Pit Boss has begun."
+
+   OrcInvasion_end_msg = \
+      "~B~k[Event]~n ~B~v The reign of the Pit Boss has ended."
+
+   OrcInvasion_phase2_msg = \
+      "~B~k[Event]~n ~B~v A wave of cave orcs appear."
+
+   OrcInvasion_phase3_msg = \
+      "~B~k[Event]~n ~B~v A wave of orc wizards appear."
+
+   OrcInvasion_finalphase_msg = \
+      "~B~k[Event]~n ~B~v You have angered the Pit Boss."
+
+classvars:
+
+   // It is a good idea to replace the default start and stop messsages with
+   // your own.  You can also turn off the event start and stop messages if you
+   // would like it to be a suprise. (set vbAnnounce to FALSE)
+   vrStartMessage = OrcInvasion_start_msg
+   vrEndMessage = OrcInvasion_end_msg
+
+   vbAnnounce = TRUE
+
+properties:
+
+   plEventRooms = $
+   piOrcs = 25
+   piCaveOrcs = 20
+   piOrcWizards = 20
+   piOrcPitBosses = 10
+   piActiveRoom = RID_TOS
+   piPhase = 0
+
+messages:
+
+   Constructor()
+   {
+      plEventRooms = [ RID_TOS, RID_BAR_NORTH ];
+      if piActiveRoom = RID_TOS
+      {
+         plSpawnRects = [ [[54,5],[61,13]], [[49,11],[62,27]],
+                          [[54,29],[59,40]], [[14,16],[49,21]] ];
+      }
+      else
+      {
+         if piActiveRoom = RID_BAR_NORTH
+         {
+            plSpawnRects = [ [[54,5],[61,13]], [[49,11],[62,27]],
+                             [[54,29],[59,40]], [[14,16],[49,21]] ];
+         }
+      }
+
+      propagate;
+   }
+
+   // OPTIONAL, DO NOT CALL DIRECTLY!  The engine will call this after it ends
+   // your event
+   Delete()
+   {
+      propagate;
+   }
+
+   // OPTIONAL but a good idea to put cleanup stuff in here, the event engine
+   // calls this when ending an event, DO NOT CALL DIRECTLY!  If you want to end
+   // your event call Send(self,@NotifyEngineEndEvent)
+   EndEvent()
+   {
+      propagate;
+   }
+   
+   // REQUIRED for every game event.  The engine calls this when it is time to
+   // start your event.  DO NOT CALL DIRECTLY.  Launch events from the game event
+   // engine with Send(<engine object>,EventStart,#parm1=&<event type>) or using
+   // the event sceduling system
+   StartEvent()
+   {
+      Send(self,@PhaseOne);
+
+      propagate;
+   }
+
+   //// The rest is up to you!
+   
+   Update()
+   {
+      local oRoom;
+
+      oRoom = Send(SYS,@FindRoomByNum,#num=piActiveRoom);
+
+      if (oRoom = $)
+      {
+         propagate;
+      }
+
+      if piPhase = 1
+      {
+         if Send(oRoom,@CountMonsters,#class=&Orc) = 0
+         {
+            Send(self,@PhaseTwo);
+         }
+      }
+      else if piPhase = 2
+      {
+         if Send(oRoom,@CountMonsters,#class=&CaveOrc) = 0
+            AND Send(oRoom,@CountMonsters,#class=&Orc) = 0
+         {
+            Send(self,@PhaseThree);
+         }
+      }
+      else if piPhase = 3
+      {
+         if Send(oRoom,@CountMonsters,#class=&OrcWizard) = 0
+            AND Send(oRoom,@CountMonsters,#class=&CaveOrc) = 0
+            AND Send(oRoom,@CountMonsters,#class=&Orc) = 0
+         {
+            Send(self,@FinalPhase);
+         }
+      }
+      else if piPhase = 4
+      {
+         if Send(oRoom,@CountMonsters,#class=&OrcPitBoss) = 0
+         {
+            // Call NotifyEngineEndEvent to handle ending the event properly. 
+            // This deletes the event from the GameEventEngine. It also calls
+            // EndEvent in this class, which handles your end of event cleanup
+            Send(self,@NotifyEngineEndEvent);
+         }
+      }
+
+      propagate;
+   }
+
+   PhaseOne()
+   {
+      local i,lSpawnPoint;
+
+      piPhase = 1;
+
+      i = piOrcs;
+
+      while (i > 0)
+      {
+         lSpawnPoint = Send(self,@MakeSpawnPoint);
+         Send(Send(SYS,@FindRoomByNum,#num=piActiveRoom),
+               @NewHold,#what=Create(&Orc),
+               #new_row=Nth(lSpawnPoint,1),#new_col=Nth(lSpawnPoint,2));
+         i = i - 1;
+      }
+
+      return;
+   }
+
+   PhaseTwo()
+   {
+      local i,lSpawnPoint;
+
+      piPhase = 2;
+
+      if vbAnnounce
+      {
+         Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,
+               #string=OrcInvasion_phase2_msg);
+      }
+
+      i = piOrcs;
+
+      while (i > 0)
+      {
+         lSpawnPoint = Send(self,@MakeSpawnPoint);
+         Send(Send(SYS,@FindRoomByNum,#num=piActiveRoom),
+               @NewHold,#what=Create(&Orc),
+               #new_row=Nth(lSpawnPoint,1),#new_col=Nth(lSpawnPoint,2));
+         i = i - 1;
+      }
+
+      i = piCaveOrcs;
+
+      while (i > 0)
+      {
+         lSpawnPoint = Send(self,@MakeSpawnPoint);
+         Send(Send(SYS,@FindRoomByNum,#num=piActiveRoom),
+               @NewHold,#what=Create(&CaveOrc),
+               #new_row=Nth(lSpawnPoint,1),#new_col=Nth(lSpawnPoint,2));
+         i = i - 1;
+      }
+
+      return;
+   }
+
+   PhaseThree()
+   {
+      local i,lSpawnPoint;
+
+      piPhase = 3;
+
+      if vbAnnounce
+      {
+         Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,
+               #string=OrcInvasion_phase3_msg);
+      }
+
+      i = piOrcs;
+
+      while (i > 0)
+      {
+         lSpawnPoint = Send(self,@MakeSpawnPoint);
+         Send(Send(SYS,@FindRoomByNum,#num=piActiveRoom),
+               @NewHold,#what=Create(&Orc),
+               #new_row=Nth(lSpawnPoint,1),#new_col=Nth(lSpawnPoint,2));
+         i = i - 1;
+      }
+
+      i = piCaveOrcs;
+
+      while (i > 0)
+      {
+         lSpawnPoint = Send(self,@MakeSpawnPoint);
+         Send(Send(SYS,@FindRoomByNum,#num=piActiveRoom),
+               @NewHold,#what=Create(&CaveOrc),
+               #new_row=Nth(lSpawnPoint,1),#new_col=Nth(lSpawnPoint,2));
+         i = i - 1;
+      }
+
+      i = piOrcWizards;
+      
+      while (i > 0)
+      {
+         lSpawnPoint = Send(self,@MakeSpawnPoint);
+         Send(Send(SYS,@FindRoomByNum,#num=piActiveRoom),
+               @NewHold,#what=Create(&OrcWizard),
+               #new_row=Nth(lSpawnPoint,1),#new_col=Nth(lSpawnPoint,2));
+         i = i - 1;
+      }
+
+      return;
+   }
+
+   FinalPhase()
+   {
+      local oKing, i;
+
+      piPhase = 4;
+
+      if vbAnnounce
+      {
+         Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,
+               #string=OrcInvasion_finalphase_msg);
+      }
+
+      i = piOrcPitBosses;
+      
+      while (i > 0)
+      {
+		  oKing = Create(&OrcPitBoss);
+		  Send(Send(SYS,@FindRoomByNum,#num=piActiveRoom),
+				@NewHold,#what=oKing,#new_row=(51+i),#new_col=(18+i));
+         i = i - 1;
+      }
+
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

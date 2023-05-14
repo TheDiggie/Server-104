@@ -1,0 +1,164 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+GuildCommand is PassiveObject
+
+constants:
+
+   include blakston.khd
+   include protocol.khd
+
+resources:
+
+   include guildcmd.lkod
+
+   guildcommand_name_rsc = "guild command"
+   guildcommand_icon_rsc = light.bgf
+   guildcommand_desc_text_rsc = \
+      "This is a guild command, used to administer a guild."
+   guildcommand_out_of_range = "%s%q is out of range."
+   guildcommand_desc_rsc = "Guild Command    Rank needed: %s/%s\n\n%s"
+
+classvars:
+
+   vrName = guildcommand_name_rsc
+   vrIcon = guildcommand_icon_rsc
+   vrDesc = guildcommand_desc_text_rsc
+
+   viIndefinite = ARTICLE_NONE
+   viDefinite = ARTICLE_NONE
+
+   viGuildcommand_num = 0
+
+   viChance_To_Increase = 0
+
+   viRank_needed = RANK_MASTER
+
+   viNecro_enabled = TRUE
+
+properties:
+
+messages:
+
+   ShowDesc(who=$)
+   {
+      local rMale, rFemale, oGuild;
+
+      if who = $
+      {
+        return;
+      }
+
+      oGuild = Send(who,@GetGuild);
+      if oGuild = $
+      {
+         AddPacket(4,vrDesc);
+      }
+      else
+      {
+         rMale = Send(oGuild,@GetRankName,#rank=viRank_needed,#sex=GENDER_MALE);
+         rFemale = Send(oGuild,@GetRankName,#rank=viRank_needed,#sex=GENDER_FEMALE);
+         AddPacket(4,guildcommand_desc_rsc,4,rMale,4,rFemale,4,vrDesc);
+      }
+
+      return;
+   }
+
+   ResetCommand(who=$, rank=0, necro = FALSE)
+   {
+      /// I tried to make it so necros couldn't get offered commands they 
+      /// couldn't use.  Unfortunately, my attempt at this failed.
+
+      ///if necro and viNecro_enabled = FALSE
+      ///{                         /// player shouldn't have command
+      ///    Send(who,@RemoveGuildCommand,#command_num=viGuildCommand_num);
+      ///	  return;
+      ///}
+
+      if rank < viRank_needed
+      {
+         Send(who,@RemoveGuildCommand,#command_num=viGuildCommand_num);
+      }
+      else                        /// player should have command
+      {
+         Send(who,@AddGuildCommand,#command_num=viGuildCommand_num);
+      }
+
+      return;
+   }
+
+   Delete()
+   {
+      Send(SYS,@DeleteGuildCommand,#what=self);
+
+      propagate;
+   }
+
+   GetAbility(who=$)
+   {
+      return 99;
+   }
+
+   GetGuildCommandNum()
+   {
+      return viGuildCommand_Num;
+   }
+
+   GetNumSpellTargets()
+   {
+      // Tell client how many targets this spell needs// default is none
+      return 1;
+   }
+
+   InitialAbility(who=$)
+   {
+      return 99;
+   }
+
+   CanPayCosts(who = $, lTargets = $)
+   {
+      local oOwner, i, oGuild;
+
+      oGuild = Send(who,@GetGuild);
+      if oGuild = $
+      {
+         return FALSE;
+      }
+
+      if Send(oGuild,@GetRank,#who=who) < viRank_needed
+      {
+         return FALSE;
+      }
+
+      // Check that target(s) are in range
+      oOwner = Send(who,@GetOwner);
+      foreach i in lTargets
+      {
+         if oOwner <> Send(i,@GetOwner)
+         {
+            Send(who,@MsgSendUser,#message_rsc=guildcommand_out_of_range,
+                  #parm1=Send(i,@GetCapDef),#parm2=Send(i,@GetName),
+                  #type2=STRING_RESOURCE);
+
+            return FALSE;
+         }
+      }
+
+      return TRUE;
+   }
+
+   DoCommand(who = $, oTarget = $)
+   "Returns TRUE if the command succeeded, FALSE otherwise."
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

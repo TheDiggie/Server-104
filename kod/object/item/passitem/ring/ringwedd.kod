@@ -1,0 +1,149 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+RingWedding is Ring
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include ringwedd.lkod
+
+   ringwedding_name_rsc = "wedding ring"
+   ringwedding_icon_rsc = ring1.bgf
+   ringwedding_desc_rsc = \
+      "This is an elegant gold band demonstrating the bond between two people."
+
+   ringwedding_one = "  Inscribed with magic runes is the name %q."
+   ringwedding_two = "  Inscribed with magic runes are the names %q and %q."
+
+classvars:
+
+   vrRealName = ringwedding_name_rsc
+   vrIcon = ringwedding_icon_rsc
+   vrRealDesc = ringwedding_desc_rsc
+
+   viHits_init_min = 3
+   viHits_init_max = 7
+
+   viBulk = 2
+   viWeight = 3
+   
+   viValue_average = 100
+
+properties:
+
+   vrName = ringwedding_name_rsc
+   vrDesc = ringwedding_desc_rsc
+
+   poFirstHeld = $
+   poSecondHeld = $
+
+messages:
+
+   AppendDesc()
+   {
+      if poFirstHeld <> $
+      {
+         if poSecondHeld <> $
+         {
+            AddPacket(4,ringwedding_two,6,Send(poFirstHeld,@GetTrueName),
+                      6,Send(poSecondHeld,@GetTrueName));
+         }
+         else
+         {
+            AddPacket(4,ringwedding_one,6,Send(poFirstHeld,@GetTrueName));
+         }
+      }
+      else
+      {
+         AddPacket(4,system_blank_resource);
+      }
+
+      return;
+   }
+
+   NewUsed(what=$)
+   {
+      // First two unique players to use the ring get their name on it.
+
+      if what <> $ AND IsClass(what,&Player)
+      {
+         if poFirstHeld = $
+         {
+            poFirstHeld = what;
+
+            propagate;
+         }
+
+         if poSecondHeld = $
+         {
+            if what <> poFirstHeld
+            {
+               poSecondHeld = what;
+            }
+         }
+      }
+
+      propagate;
+   }
+
+   NewUnused(what = $)
+   {
+      propagate;
+   }
+
+   DefendingHit()
+   {
+      return;
+   }
+
+   DropOnDeath()
+   {
+      // Who was the stupid fuck that let these be dropped on death?
+      return FALSE;
+   }
+
+   // No taking the rings from people in rude ways.
+   CanSwap()
+   {
+      return FALSE;
+   }
+
+   CanShatter()
+   {
+      return FALSE;
+   }
+
+   ReqDMDelete()
+   "Will this item be deleted by a DM Clear Inventory command?"
+   {
+      return FALSE;
+   }
+
+   DestroyDisposable()
+   {
+      return FALSE;
+   }
+
+   ModifyDefensePower(who = $,what = $,defense_power = 0)
+   {
+      return defense_power;
+   }
+
+   ModifyDefenseDamage(who = $,what = $,damage = $,atype = 0,aspell = 0)
+   {
+      return damage;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

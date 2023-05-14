@@ -1,0 +1,319 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+////////////////////////////////////////////////////////////////////////////////
+DefModSockets is DefModObjectAttribute 
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include defmodsockets.lkod
+
+   not_while_equipped = \
+      "You can't attach the %s while you're wearing the %s."
+   not_enough_sockets = \
+      "The %s does not have enough open sockets to attach the %s."
+   gem_attach_successful = "You carefully attach the %s to the %s."
+   remove_no_gems = "The %s has no gems to remove!"
+   gem_remove_successful = "You cautiously pry each gem out of the %s."
+   defsockets_attribute_rsc = \
+      "\n\nThis %s has %i %s."
+   defmod_sockets_sing = "socket"
+   defmod_sockets_plur = "sockets"
+
+classvars:
+
+properties:
+
+   piSockets = 1
+   plSocketed = $
+
+messages:
+
+   Constructor(num_sockets = 1)
+   {
+      piSockets = num_sockets;
+
+      propagate;
+   }
+
+   GetSockets()
+   {
+      return piSockets;
+   }
+
+   GetNumberOfOpenSockets()
+   {
+      if plSocketed = $
+      {
+         return piSockets;
+      }
+
+      return piSockets - Length(plSocketed);
+   }
+
+   GetSocketed()
+   {
+      return plSocketed;
+   }
+
+   AttachGem(who=$, oGem=$)
+   {
+      local oUsing, oOwner;
+
+      if oGem <> $
+         AND Send(oGem,@ReqAttach,#socketed_object=self)
+      {
+         oOwner = Send(poHostObject,@GetOwner);
+         if oOwner <> $
+            AND IsClass(oOwner,&Player)
+         {
+            foreach oUsing in Send(oOwner,@GetPlayerUsing)
+            {
+               if poHostObject = oUsing
+               {
+                  Send(oOwner,@MsgSendUser,#message_rsc=not_while_equipped,
+                        #parm1=Send(oGem,@GetName),
+                        #parm2=Send(poHostObject,@GetName));
+
+                  return false;
+               }
+            }
+         }
+
+         if plSocketed <> $
+            AND Length(plSocketed) >= piSockets
+         {
+            if who <> $
+               AND IsClass(who,&User)
+            {
+               Send(who,@MsgSendUser,#message_rsc=not_enough_sockets,
+                     #parm1=Send(poHostObject,@GetName),
+                     #parm2=Send(oGem,@GetName));
+            }
+
+            return false;
+         }
+
+         if who <> $
+            AND IsClass(who,&User)
+         {
+            Send(who,@MsgSendUser,#message_rsc=gem_attach_successful,
+                  #parm1=Send(oGem,@GetName),
+                  #parm2=Send(poHostObject,@GetName));
+         }
+
+         Send(oGem,@NewOwner,#what=$);
+         Send(oGem,@SetSocketedObject,#socketed_object=self);
+         plSocketed = Cons(oGem,plSocketed);
+      }
+
+      return;
+   }
+
+   RemoveGems(who=$)
+   {
+      local oGem;
+
+      if who = $
+      {
+         return;
+      }
+
+      if plSocketed <> $
+      {
+         foreach oGem in plSocketed
+         {
+            Send(who,@NewHold,#what=oGem);
+            Send(oGem,@SetSocketedObject);
+            plSocketed = DelListElem(plSocketed,oGem);
+         }
+         Send(who,@MsgSendUser,#message_rsc=gem_remove_successful,
+               #parm1=Send(poHostObject,@GetName));
+      }
+      else
+      {
+         Send(who,@MsgSendUser,#message_rsc=remove_no_gems,
+               #parm1=Send(poHostObject,@GetName));
+      }
+
+      return;
+   }
+
+   DeleteGemFromSockets(oGem=$)
+   {
+      local i;
+
+      foreach i in plSocketed
+      {
+         if oGem = i
+         {
+            Send(i,@SetSocketedObject);
+            plSocketed = DelListElem(plSocketed,i);
+         }
+      }
+
+      return;
+   }
+
+   Delete()
+   {
+      local i;
+
+      foreach i in plSocketed
+      {
+         Send(i,@Delete);
+      }
+      plSocketed = $;
+
+      propagate;
+   }
+
+   AttributeDesc()
+   {
+      local oGem;
+
+      // Support for displaying up to 12 gems.
+      switch(Length(plSocketed))
+      {
+         case 1:
+            break;
+         case 2:
+            AddPacket(4,system_rsc_template_2);
+            break;
+         case 3:
+            AddPacket(4,system_rsc_template_3);
+            break;
+         case 4:
+            AddPacket(4,system_rsc_template_4);
+            break;
+         case 5:
+            AddPacket(4,system_rsc_template_5);
+            break;
+         case 6:
+            AddPacket(4,system_rsc_template_6);
+            break;
+         case 7:
+            AddPacket(4,system_rsc_template_7);
+            break;
+         case 8:
+            AddPacket(4,system_rsc_template_8);
+            break;
+         case 9:
+            AddPacket(4,system_rsc_template_9);
+            break;
+         case 10:
+            AddPacket(4,system_rsc_template_10);
+            break;
+         case 11:
+            AddPacket(4,system_rsc_template_11);
+            break;
+         case 12:
+            AddPacket(4,system_rsc_template_12);
+            break;
+      }
+
+      if piSockets = 1
+      {
+         AddPacket(4,defsockets_attribute_rsc, 4,Send(poHostObject,@GetName),
+                   4,piSockets, 4,defmod_sockets_sing);
+      }
+      else
+      {
+         AddPacket(4,defsockets_attribute_rsc, 4,Send(poHostObject,@GetName),
+                   4,piSockets, 4,defmod_sockets_plur);
+      }
+
+      foreach oGem in plSocketed
+      {
+         Send(oGem,@AttributeDesc);
+      }
+
+      return;
+   }
+
+   ModifyDamage(damage=$)
+   {
+      local i;
+
+      foreach i in plSocketed
+      {
+         damage = Send(i,@ModifyDamage,#damage=damage);
+      }
+
+      return damage;
+   }
+
+   ModifyHitRoll(hit_roll=$)
+   {
+      local i;
+
+      foreach i in plSocketed
+      {
+         hit_roll = Send(i,@ModifyHitRoll,#hit_roll=hit_roll);
+      }
+
+      return hit_roll;
+   }
+
+   ModifyDefenseDamage(damage=$)
+   {
+      local i;
+
+      foreach i in plSocketed
+      {
+         damage = Send(i,@ModifyDefenseDamage,#damage=damage);
+      }
+
+      return damage;
+   }
+
+   ModifyDefensePower(defense_power=$)
+   {
+      local i;
+
+      foreach i in plSocketed
+      {
+         defense_power = Send(i,@ModifyDefensePower,
+                              #defense_power=defense_power);
+      }
+
+      return defense_power;
+   }
+
+   ModifyResistance(resistance_list=$)
+   {
+      local i;
+
+      foreach i in plSocketed
+      {
+         resistance_list = Send(i,@ModifyResistance,
+                                 #resistance_list=resistance_list);
+      }
+
+      return resistance_list;
+   }
+
+   ModifySpellPower(iModifier=0,oSpell=$,oCaster=$)
+   {
+      local i;
+
+      foreach i in plSocketed
+      {
+         iModifier = Send(i,@ModifySpellPower,#iModifier=iModifier,
+                           #oSpell=oSpell,#oCaster=oCaster);
+      }
+
+      return iModifier;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

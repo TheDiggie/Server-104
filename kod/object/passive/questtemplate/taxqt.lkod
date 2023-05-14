@@ -1,0 +1,16 @@
+// Quest description.
+taxqt_deliver_rsc = de \
+   "%s%s hat dich beauftragt %i %s zu %s%s bringen. Behalte nichts für dich! Diebstahl wird bestraft."
+
+// Quest resources.
+vaulttax_assign_2_h = de \
+   "Ja, ich benötige einen Kurier.  %NPC bekommt einen bestimmten Prozentsatz "
+   "der Gewinne von meinem Geschäften.  Bitte nimm diese Zinsen von %INDEF_CARGO%CARGO "
+   "und überbringe sie schnell%HIMHER_NPC.  Ich bin zu beschäftigt um es selber "
+   "zu tun.  Sei gewarnt, jeglicher Diebstahl wird gemeldet, und ich hörte, "
+   "das %NPC auch Geschäfte mit einem Zauberer tätigt.  Ich habe eine Vereinbarung "
+   "mit %NPC getroffen, so dass er Deine Mühen bezahlen wird."
+vaulttax_failure_2_h = de \
+   "Betreff: Dieb!\nIch habe mit meinem befreundeten Zauberer gesprochen, "
+   "und er hat sich darum gekümmert das Du wegen Deiner Unehrlichkeit leiden "
+   "wirst."

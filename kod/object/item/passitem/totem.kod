@@ -1,0 +1,211 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Totem is DefenseModifier
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include totem.lkod
+
+   totem_name_rsc = "totem"
+   totem_icon_rsc = totem.bgf
+   totem_desc_rsc = \
+      "This feathered totem is oft the objective of quests set "
+      "upon mortals by the Bards of the world of Meridian. "
+      "\n\n"
+      "The totem must be held when in possession, and is dropped when "
+      "removed from use."
+
+   totem_cantuse_rsc = \
+      "You are unable to hold so many items in your hands, and %s%s slips to the ground."
+   totem_unuse_rsc = \
+      "You drop %s%s to the ground to free your hands."
+
+   totem_drops = "%s%s slips from your grasp and falls to the ground!"
+
+classvars:
+
+   vrName = totem_name_rsc
+   vrIcon = totem_icon_rsc
+   vrDesc = totem_desc_rsc
+   viUse_type = ITEM_USE_HAND
+   viUse_amount = 1
+
+   vrposs_article = object_article_cap_this_rsc
+
+   vrTotem_overlay = totem_icon_rsc
+
+   viBulk = 100
+   viWeight = 100
+
+properties:
+
+   viObject_flags = OF_GETTABLE | OF_NOEXAMINE
+
+messages:
+
+   DropSelf(what=$)
+   {
+      local oRoom, iRow, iCol;
+
+      if IsClass(poOwner,&Player)
+      {
+         oRoom = Send(what,@GetOwner);
+         iRow = Send(what,@GetRow);
+         iCol = Send(what,@GetCol);
+
+         Send(oRoom,@NewHold,#what=self,#new_col=iCol,#New_row=iRow);
+       }
+
+      return;
+   }
+
+   UserLogoff()
+   {
+      if IsClass(poOwner,&DM)
+      {
+         propagate;
+      }
+
+      Send(poOwner,@MsgSendUser,#message_rsc=totem_drops,
+           #parm1=Send(self,@GetCapDef),#parm2=vrName);
+
+      Send(self,@DropSelf,#what=poOwner);
+
+      propagate;
+   }
+
+   ReqUse()
+   {
+      return TRUE;
+   }
+
+   NewOwner(what=$)
+   {
+      if what <> $
+         AND IsClass(what,&Player)
+         AND NOT IsClass(what,&DM)
+      {
+         Send(what,@FreeHands);
+         Post(what,@TryUseItem,#what=self);
+      }
+
+      propagate;
+   }
+
+   ReqUseSomething(what=$)
+   {
+      if IsClass(what,&Weapon)
+         OR IsClass(what,&Bow)
+         OR IsClass(what,&Lute)
+         OR IsClass(what,&Token)
+         OR IsClass(what,&Totem)
+         {
+            return FALSE;
+         }
+
+      propagate;
+   }
+
+   NewUnused(what=$,death=FALSE)
+   "Called when the token is dropped or unused (same thing). The special"
+   "where flag is needed to handle guild hall enterings."
+   {
+      if NOT IsClass(poOwner,&DM)
+      {
+         Send(poOwner,@MsgSendUser,#message_rsc=totem_unuse_rsc,
+            #parm1=Send(self,@GetDef),#parm2=vrName);      
+         Post(self,@DropSelf,#what=poOwner);
+      }
+
+      propagate;
+   }
+
+   // these 5 called by player, for window overlays
+   // Totem subclasses--do NOT set a window overlay unless you either
+   // set vrTotem_window_overlay correctly or override all these message handlers
+//  GetWindowOverlay()
+//  {
+//     return $; //vrTotem_window_overlay;
+//  }
+
+//  GetWindowOverlayID()
+//  {
+//     return PWO_LEFT_HAND;
+//  }
+
+//  GetWindowOverlayHotspot()
+//  {
+//     return 0;  // turns off the window overlay
+//  }
+
+//  SendWindowOverlayAnimation()
+//  {
+//     return;      
+//  }
+
+//  SendWindowOverlayOverlays()
+//  {
+//     AddPacket(1,0); // no first person overlays on top of Totem 
+//
+//     return; 
+//  }
+
+   // these 3 called by player, for normal 3rd-person overlays on user.
+   // Totem subclasses--do NOT set an overlay unless you either
+   // set vrTotem_overlay correctly or override all these message handlers
+
+//  GetOverlay()
+//  {
+//     return vrTotem_overlay;
+//  }
+   
+//  GetOverlayHotspot()
+//  {
+//     return HS_LEFT_WEAPON;
+//  }
+
+//  SendOverlayAnimation()
+//  {
+//     if (piItem_flags & ITEM_PALETTE_MASK) <> 0
+//     {
+//        AddPacket(1,ANIMATE_TRANSLATION,1,piItem_flags & ITEM_PALETTE_MASK);
+//     }
+//     AddPacket(1,ANIMATE_NONE,2,5); // group 2 is the player-overlay group
+//     return;
+//  }
+
+   // Don't want these to be in vaults.
+   CanBeStoredInVault()
+   {
+      return FALSE;
+   }
+
+   DefendingHit(who=$,what=$)
+   {
+      return;
+   }
+
+   DestroyDisposable()
+   {
+      return FALSE;
+   }
+
+   CanSweep()
+   {
+      return FALSE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

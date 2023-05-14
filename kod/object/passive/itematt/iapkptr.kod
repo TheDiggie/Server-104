@@ -1,0 +1,169 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+ItemAttPKPointer is ItemAttribute
+
+///////////////////////////////////////////////////////////////////////
+//
+//   This item prevents anyone from picking up loot after a player kill,
+//   unless they are also killable.  
+//
+//   Form is:
+//
+//      [IA_PKPOINTER, tTimer]
+//
+//      tTimer :: When this expires, the attribute goes away.
+//
+//   A final word: this pointer will stick around for only 10 minutes
+//   after a kill, then it will delete itself, removing it from the
+//   item's plItem_attribute's list.
+//
+///////////////////////////////////////////////////////////////////////
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include iapkptr.lkod
+ 
+   PKpointer_no_loot = \
+      "You reach for %s%s, but you are mystically barred from grasping it."
+   PKPointer_no_offer_accept = \
+      "%s tries to offer you %s%s, but you are mystically barred from grasping it."
+   PKpointer_no_offer = "%s is unable to take %s%s off your hands."
+
+classvars:
+
+   viItem_Att_Num = IA_PKPOINTER
+   vrDesc = resource_blank
+
+properties:
+
+messages:
+
+////////////////////////////////////////////////
+///
+///  Effect Functions
+///
+////////////////////////////////////////////////
+
+   // A player can only pick up an item from a player if he is also killable.
+
+   CanGetAffectedItem(lData=$,Who=$,oItem=$,type=0)
+   {
+      local oCorpse, oRoom;
+
+      /// Is this the player that died?  He can always get his own stuff.
+      if who = Nth(lData,3)
+         OR NOT IsClass(who,&Player)
+      {
+         return TRUE;
+      }
+
+      if NOT Send(who,@CanPlayerPvP)
+      {
+         if type = 0
+         {
+            Send(who,@MsgSendUser,#message_rsc=PKpointer_no_loot,
+                 #parm1=Send(oItem,@GetDef),#parm2=Send(oItem,@GetName));
+
+            return FALSE;
+         }
+         else
+         {
+            Send(who,@MsgSendUser,#message_rsc=PKpointer_no_offer_accept,
+                  #parm1=Send(Send(oItem,@GetOwner),@GetName),
+                  #parm2=Send(oItem,@GetDef),#parm3=Send(oItem,@GetName));
+            Send(Send(oItem,@GetOwner),@MsgSendUser,#message_rsc=PKPointer_no_offer,
+                  #parm1=Send(who,@GetName),
+                  #parm2=Send(oItem,@GetDef),#parm3=Send(oItem,@GetName));
+
+            return FALSE;
+         }
+      }
+
+      oRoom = Send(who,@GetOwner);
+      if NOT Send(oRoom,@AllowGuildAttack,#what=who,#report=FALSE)
+      {
+         Send(who,@MsgSendUser,#message_rsc=PKpointer_no_loot,
+               #parm1=Send(oItem,@GetDef),#parm2=Send(oItem,@GetName));
+
+         return FALSE;
+      }
+
+      return TRUE;
+   }
+
+////////////////////////////////////////////////////
+///
+///  Odd ends
+///  (Adding and removing a ItemAtt from an item.)
+///
+////////////////////////////////////////////////////
+
+   TimerExpired(oItem=$,lData=$)
+   {
+      SetNth(lData,2,$);   /// timer is gone, now remove reference
+      Send(self,@RemoveFromItem,#oItem=oItem, #lData = lData);
+
+      return;
+   }
+
+   AddToTreasureTable()
+   {
+      /// do nothing
+      return FALSE;
+   }
+
+   HasTimer(lData=$)
+   {
+      return TRUE;
+   }
+
+   SetItemsToAttribute()
+   {
+      // plItems_to_attribute should never be used by this itematt
+      plItems_to_Attribute = $;
+
+      return;
+   }
+
+   InitiallyIdentified()
+   {
+      return TRUE;
+   }
+
+   CanBeSpoofed()
+   {
+      return FALSE;
+   }
+
+   GetNamePriority()
+   {
+      return -1;
+   }
+
+   SetPrimaryState(state1=$)
+   "State1 contains the attack spell type being added to the weapon."
+   {
+      if state1=$
+      {
+         Debug("ILLEGAL!  PKpointer called without someone to point to!");
+
+         return FALSE;
+      }
+
+      return state1;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

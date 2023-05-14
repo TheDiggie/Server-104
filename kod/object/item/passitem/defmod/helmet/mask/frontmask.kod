@@ -1,0 +1,42 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+FrontMask is FaceMask
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   FrontMask_name_rsc = "front man mask"
+   FrontMask_icon_male_rsc = frontman.bgf
+   FrontMask_icon_female_rsc = frontman.bgf
+   FrontMask_desc_rsc = \
+      "By wearing this mask you become, The Front Man.  Keep"
+      "the game fair, or you will be eliminated."
+
+classvars:
+
+   vrName = FrontMask_name_rsc
+   vrDesc = FrontMask_desc_rsc
+   vrIcon = FrontMask_icon_male_rsc
+
+   vrMaleIcon = FrontMask_icon_male_rsc
+   vrFemaleIcon = FrontMask_icon_female_rsc
+
+properties:
+
+   piSpecial = PFLAG_ANONYMOUS
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

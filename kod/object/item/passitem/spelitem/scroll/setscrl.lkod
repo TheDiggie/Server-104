@@ -1,0 +1,5 @@
+SetScroll_label_name_rsc = de "Schriftrolle des Inventars"
+SetScroll_desc_rsc = de \
+   "Diese Schriftrolle wird deine Vorlieben im Inventar registrieren, "
+   "und entsprechend in Frular's Büro hinterlegen. "
+   "So wird es dir ermöglicht, die Rolle des Ausladens zu benutzen."

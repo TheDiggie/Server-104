@@ -1,0 +1,5 @@
+waEnchant_gone = de \
+   " %s scheint plötzlich ein bisschen... normaler zu sein."
+waEnchanted = de " Diese Waffe ist Kraanans Ruhm geweiht."
+waEnchanted_name = de "verzauberter %s"
+enchanted_dm = de "Verzaubert"

@@ -1,0 +1,33 @@
+// Quest description.
+kranofferingqt_name_rsc = de "Kraanan Opfer Quest"
+kranofferingqt_desc_rsc = de \
+   "Priesterin Quertina Zuxana hat Dich eingeladen mit ihr zu singen, um die Herrin zu stärken."
+
+kranofferingqt_completed = de \
+   "Der Lord hat dir temporäre Kraft verlieren, im Gegenzug zu ein wenig deiner Lebenskraft. "
+   "Du hast ebenfalls einen mächtigen magischen Gegenstand erhalten. Wenn dieser an einem "
+   "der Schreine in der Welt platziert wird, wird er Kraanan geweiht und verleit den "
+   "Zaubern Kraanans mehr Kraft."
+
+// Quest resources.
+kraananoffering_assign_2 = de \
+   "`B`b%NAME, heldenhafter Champion der Faust. Gibst du Dich selber auf "
+   "dafür, dass unser Lord noch stärker sein wird?"
+kraananoffering_assign_3 = de \
+   "`B`bDann bete mit mir. Zusammen werden wir unsere eigene Lebenskraft "
+   "aufgeben, als Symbol für die Macht unseres Lords.  Selten stehen die "
+   "Sterne so günstig wie heute, um das alte Ritual auszuüben. Wir müssen "
+   "also schnell sprechen. Spreche diese Worte mit mir: %CARGO"
+kraananoffering_trigger_3 = de \
+   "Durch den Funken von Stahl gegen Stahl beschwöre ich Dich, Kraanan die "
+   "Faust."
+kraananoffering_failure_3 = de \
+   "Betreff: Du musst stärker werden!\nDas Zeitfenster ist vorüber und wir "
+   "werden beide leiden wegen Deiner Trödelei.  Das Ritual hat begonnen aber "
+   "dann wurde es nicht abgeschlossen und nun wurde uns ein Teil unserer "
+   "Macht genommen.  Du warst schwächer als ich gehofft habe; Verstärke Deinen "
+   "Geist und vielleicht wirst Du das Ritual eines Tages erfolgreich beenden."
+kraananoffering_assign_4 = de "`B`b%CARGO!"
+kraananoffering_success_5 = de \
+   "`B`bAh, dies ist ein großer Tag für Kraanan!  Geh nun und verbreite die "
+   "Macht  unseres Lords in der Welt!"

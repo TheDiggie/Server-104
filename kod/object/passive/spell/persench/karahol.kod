@@ -1,0 +1,166 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+//////////////////////////S///////////////////////////////////////////////////////
+KaraholsCurse is PersonalEnchantment
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include karahol.lkod
+
+   KaraholsCurse_name_rsc = "Kara'hol's curse"
+   KaraholsCurse_icon_rsc = ikarahol.bgf
+   KaraholsCurse_desc_rsc = \
+      "Your body is possessed by the spirit of the warrior "
+      "Kara'hol for a brief period, enhancing the ferocity of "
+      "your attacks.  When the spirit departs, your body "
+      "is temporarily paralyzed from shock.  "
+      "Requires the sacrifice of two entroot berries to cast."
+   karahol_enchantment_rsc = \
+      "\n\nYour current %s enchantment adds %i offense and 1-%i attack "
+      "damage.  When it expires, it will paralyze you for %i seconds."
+   KaraholsCurse_on = \
+      "The spirit of Kara'hol descends upon you making your "
+      "blood boil and your muscles twitch with newfound vigor."
+   KaraholsCurse_off = \
+      "Your body freezes as total exhaustion grips your limbs."
+   KaraholsCurse_already_enchanted_rsc = \
+      "Your blood already boils with Kara'hol's spirit!"
+
+   Karahols_spell_intro = "Qor Lv. 2: Temporarily gives you berserker combat "
+   "abilities, but with a price to pay later."
+
+   KaraholsCurse_sound = qkcurse.ogg
+
+classvars:
+
+   viPersonal_ench = TRUE
+
+   vrName = KaraholsCurse_name_rsc
+   vrIcon = KaraholsCurse_icon_rsc
+   vrDesc = KaraholsCurse_desc_rsc
+
+   viSpell_num = SID_KARAHOLS_CURSE
+   vrSpell_intro = karahols_spell_intro
+
+   viMana = 9
+
+   viSpell_level = 2
+   viSchool = SS_QOR
+
+   vrSucceed_wav = KaraholsCurse_sound
+   viChance_To_Increase = 45
+   viMeditate_ratio = 30
+
+   vrAlreadyEnchanted = KaraholsCurse_already_enchanted_rsc
+   vrEnchantment_On = KaraholsCurse_on
+   vrEnchantment_Off = KaraholsCurse_off
+
+   viFlash = FLASH_GOOD
+
+   // Cannot enchant others because of drawback.
+   vbCanCastOnOthers = FALSE
+
+   viOffensive = TRUE
+
+properties:
+
+   // The effectiveness of purge on the target spell as a percentage.
+   // 100 will cause purge to remove its entire spellpower, 0 will
+   // prevent purge from removing this spell.
+   viPurgeFactor = 20
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&EntrootBerry,2],plReagents);
+
+      return;
+   }
+
+   GetStateValue(iSpellpower=$,target=$)
+   {
+      Send(target,@AddAttackModifier,#what=self);
+
+      return iSpellpower;
+   }
+
+   GetDuration(iSpellPower=0)
+   {
+      local iDuration;
+
+      iDuration = (40 + iSpellPower / 2) * 1000;
+
+      return iDuration;
+   }
+
+   EndEnchantment(who=$,report=TRUE,state=0)
+   {
+      local oHoldSpell, iDuration;
+
+      Send(who,@RemoveAttackModifier,#what=self);
+
+      // If we aren't reporting to the player, we shouldn't hold them either.
+      if (NOT report)
+      {
+         propagate;
+      }
+
+      // Now, for the side effect.  Hold 'em!
+      oHoldSpell = Send(SYS,@FindSpellByNum,#num=SID_HOLD);
+      if Send(who,@IsEnchanted,#what=oHoldSpell)
+      {
+         Send(who,@RemoveEnchantment,#what=oHoldSpell,#report=FALSE);
+      }
+
+      // Hold effect lasts 8 sec at low spellpower, 2 sec at high sp.
+      iDuration = Bound(((100-state) * 100 + 2000),2000,8000);
+      Send(oHoldSpell,@DoSpell,#what=self,#oTarget=who,#iDuration=iDuration,
+            #report=TRUE,#bAllowFreeAction=FALSE);
+
+      propagate;
+   }
+
+   // Stuff we handle to be an attack modifier
+   ModifyHitRoll(who=$,what=$,hit_roll=$)
+   {
+      return hit_roll + 100 + (Send(who,@GetEnchantedState,#what=self) * 2);
+   }
+   
+   ModifyDamage(who=$,what=$,damage=$)
+   {
+      return (damage + 1 + Random(0,Send(who,@GetEnchantedState,#what=self) / 20));
+   }
+
+   GetPotionClass()
+   {
+      return &KaraholsCursePotion;
+   }
+
+   EffectDesc(who=$)
+   {
+      local iState;
+
+      iState = Send(who,@GetEnchantedState,#what=self);
+
+      AddPacket(4,karahol_enchantment_rsc, 4,Send(self,@GetName),
+                4,100 + iState * 2, 4,1 + iState / 20,
+                4,Bound((120 - iState) / 10,2,8));
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

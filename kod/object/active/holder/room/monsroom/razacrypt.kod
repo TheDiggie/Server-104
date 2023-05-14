@@ -1,0 +1,637 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+RazaCrypt is MonsterRoom
+
+constants:
+
+   include blakston.khd
+
+   SECTOR_DOOR = 3
+   SECTOR_NODE1 = 4
+   SECTOR_NODE2 = 5
+
+   SLAM_TIME = 2000
+   FIGHT_TIME = 10000
+
+   MIN_FINAL_ROW = 27
+   MIN_FINAL_COL = 1
+   MAX_FINAL_ROW = 40
+   MAX_FINAL_COL = 9
+
+   MIN_FINAL_ROW2 = 16
+   MIN_FINAL_COL2 = 1
+   MAX_FINAL_ROW2 = 28
+   MAX_FINAL_COL2 = 2
+   
+   HALL_EAST = 3
+   HALL_NORTH = 15
+
+
+   COUNT_PLAYERS = 1
+   COUNT_MONSTERS = 2
+
+resources:
+
+   include razacrypt.lkod
+
+   room_name_razacrypt = "Mausoleum"
+   room_razacrypt = razacrypt.roo
+   razacrypt_music = nec03.ogg
+
+   razacrypt_signname = "Looking around"
+   razacrypt_sign = \
+      "If a monster isn't chasing you, now's a good time "
+      "to learn another handy interface ability.  By pressing PAGEUP "
+       "and PAGEDOWN, you can have your character look up at the ceiling, "
+       "and down at the pit full of mummies.  Once you do so, you may feel "
+       "inclined to wave at the mummies. You can do that by typing WAVE. "
+       "They won't wave back, of course, being uncultured brutes, but at least "
+       "you get the satisfaction of being polite before going out and killing "
+       "more of their friends.\n\n"
+       "It's a good thing to keep in mind that PAGEDOWN is extremely useful when facing "
+       "a foe shorter than yourself - and most of your early Meridian foes will be "
+       "shorter than yourself.  However, for the time being, center your view "
+       "by pressing HOME, and head back into the fray."
+
+   razacrypt_signname2 = "Fighting"
+   razacrypt_sign2 = \
+      "Combat is essential in Meridian 59, but it's also "
+      "pretty easy.  If you push your 'E' key by default, you will swing at "
+      "the monster closest to you with whatever weapon you have armed.  If "
+      "you don't have a weapon armed, you should do so now, because "
+      "punching is not an effective way to kill much of anything.\n\n"
+      "However, if you are a mage and have learned one of the touch attack "
+      "spells (acid touch, icy fingers, holy touch, touch of flame, unholy "
+      "touch and zap), your unarmed attacks will be transformed into powerful "
+      "elemental assaults for the duration of the spell!  If you run out of "
+      "reagents to cast your spells, see Ravi - the town's apothecary - to "
+      "resupply yourself.\n\n"
+      "While fighting, be sure to keep an eye on your Health bar, marked "
+      "by a cross in the top-right corner of the screen.  If it gets too low, "
+      "don't hesitate to run away!  Then rest or eat some food to get your "
+      "strength up faster.  Keep in mind that you can neither fight nor "
+      "run while resting, so you want to be sure you find a safe place to "
+      "hide while you heal.\n\n"
+      "Monsters you kill will frequently drop treasure behind which can either "
+      "be sold or used. Be sure to get whatever they drop, by using the "
+      "GET command, or by pressing 'G'.\n\n"
+      "You have already learned that you can [USE] armor and weapons to equip "
+      "them, but it doesn't stop there!  For example, you may also encounter "
+      "magical potions, scrolls and wands on your journey.  Try using them!  "
+      "Remember that you can use the [Space] key to quickly use the item that "
+      "you have currently selected in your inventory.  Also, keep in mind "
+      "that wands require a target - be it one of your foes, your allies "
+      "or even yourself."
+
+   razacrypt_signname3 = "Targeting"
+   razacrypt_sign3 = \
+      "Now that you are familiar with fighting and spellcasting, you're "
+      "ready to try out the advanced targeting feature.\n\n"
+      "Press the '[' or ']' keys while facing a monster or player to activate "
+      "the targeting system.  You should see your target outlined in color "
+      "(you can set the color in your Preferences from the Game option in the "
+      "top menu bar).  As long as a target is outlined, the game will assume "
+      "that all attacks or spells are to be directed at that target.  Note "
+      "that this is true regardless of whether you can hit or even see your "
+      "target, so be careful about leaving inaccessible enemies targetted!\n\n"
+      "Pressing '[' or ']' will cycle through your available targets, and "
+      "pressing ESC will clear your current target and return you to the "
+      "default attack/spell mode.\n\n"
+      "With a little practise, you'll see how useful targeting can be, "
+      "especially when casting spells.  Just set up a hotkey to the spell "
+      "of your choice, highlight a target and fire away!"
+
+   razacrypt_signname4 = "Jumping"
+   razacrypt_sign4 = \
+      "Jumping in Meridian 59 is especially tricky as there is no jump key "
+      "or command.  Consider it more like falling at an angle.  There will "
+      "be many places in the world that will require you to leap from one "
+      "area to the next.  To cross these areas, like the one ahead, get a "
+      "running start then just aim where you are trying to land and run from "
+      "one ledge to the next.  If you fail the jump on your first try, you "
+      "can go around and try again."
+
+   razacrypt_signname5 = "Using objects"
+   razacrypt_sign5 = \
+      "The two levers you see before you will open the wooden gate if both "
+      "are pulled at the same time.  Other objects in this world, mainly "
+      "levers, guild hall switches and light sources, can be interacted with "
+      "to produce some effect.\n\nTo pull the lever, right-click it and click "
+      "\"use\", or type use into the chatbox while standing close to it.\n\n"
+      "You may find you are not quick enough to pull both levers in time to "
+      "open the door.  If so, you can use the \"broadcast\" chat command to "
+      "find another player to help you, or continue killing monsters in the "
+      "rest of the mausoleum (there are only a few behind the gate)."
+
+   razacrypt_door1_rsc = down2.ogg
+
+classvars:
+
+   vrName = room_name_razacrypt
+
+   viTeleport_row = 11
+   viTeleport_col = 23
+
+   viTerrain_type = TERRAIN_NECROPOLIS | TERRAIN_CAVES
+
+   viPit_monsters_max = 5   // Max # of monsters in the pit area
+   viPit_row = 11           // Pit generator location
+   viPit_col = 4
+
+properties:
+
+   prRoom = room_razacrypt
+   piRoom_num = RID_RAZA_MAUSOLEUM
+
+   piGenTime = 15000        // Need to regen faster since some monsters thrown out
+
+   piBaseLight = LIGHT_DARK
+   piOutside_factor = OUTDOORS_NONE
+
+   prMusic = razacrypt_music
+
+   piInit_count_min = 12
+   piInit_count_max = 15
+   piMonster_count_max = 35
+
+   piPit_Monsters = 0        // Number of monsters currently in the pit area
+
+   poLever1 = $
+   poLever2 = $
+
+   piSwitched = 0
+
+   ptDoor = $
+
+   pbColumn_down = FALSE
+
+messages:
+
+   Constructed()
+   {
+      plMonsters = [ [&Mummy, 50], [&MummyNoTreasure, 50] ];
+
+      plGenerators = [ [viPit_row, viPit_col], [5, 21], [5, 36], [9, 28],
+                       [17, 35], [21, 23], [25, 11], [29, 18], [37, 35], [38, 19]
+                     ];
+
+      propagate;
+   }
+
+   Delete()
+   {
+      if ptDoor <> $
+      {
+         DeleteTimer(ptDoor);
+         ptDoor = $;
+      }
+
+      propagate;
+   }
+
+   CreateStandardExits()
+   {
+      plExits = $;
+
+      plExits = Cons([ 11, 17, RID_RAZA, 28, 24, SET_ANGLE_EAST, DISTANCE_NORMAL ],plExits);
+
+      propagate;
+   }
+
+   CreateStandardObjects()
+   {
+      local oSign;
+
+      oSign = Create(&Sign,#desc=razacrypt_sign,#newbie=TRUE,#name=razacrypt_signname);
+      Send(self,@NewHold,#what=oSign,#new_row=11,#new_col=2,#fine_col=48);
+
+      oSign = Create(&Sign,#desc=razacrypt_sign2,#newbie=TRUE,#name=razacrypt_signname2);
+      Send(self,@NewHold,#what=oSign,#new_row=11,#new_col=14,#fine_row=32,#fine_col=48);
+
+      oSign = Create(&Sign,#desc=razacrypt_sign3,#newbie=TRUE,#name=razacrypt_signname3);
+      Send(self,@NewHold,#what=oSign,#new_row=11,#new_col=3,#fine_row=32,#fine_col=32);
+
+      oSign = Create(&Sign,#desc=razacrypt_sign4,#newbie=TRUE,#name=razacrypt_signname4);
+      Send(self,@NewHold,#what=oSign,#new_row=29,#new_col=30,#fine_row=0,#fine_col=32);
+
+      oSign = Create(&Sign,#desc=razacrypt_sign5,#newbie=TRUE,#name=razacrypt_signname5);
+      Send(self,@NewHold,#what=oSign,#new_row=24,#new_col=12,#fine_row=45,#fine_col=14);
+
+      oSign = Create(&Skull);
+      Send(self,@NewHold,#what=oSign,#new_row=11,#new_col=21,#fine_row=32,#fine_col=40);
+
+      // Piles of bones
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_BONES_RAZA),
+           #new_row=3,#new_col=18,#fine_row=0,#fine_col=8);
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_BONES_RAZA),
+           #new_row=3,#new_col=18,#fine_row=0,#fine_col=8);
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_BONES_RAZA),
+           #new_row=5,#new_col=14,#fine_row=32,#fine_col=40);
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_BONES_RAZA),
+           #new_row=19,#new_col=18,#fine_row=0,#fine_col=40);
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_BONES_RAZA),
+           #new_row=22,#new_col=11,#fine_row=24,#fine_col=56);
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_BONES_RAZA),
+           #new_row=23,#new_col=8,#fine_row=40,#fine_col=16);
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_BONES_RAZA),
+           #new_row=25,#new_col=14,#fine_row=0,#fine_col=40);
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_BONES_RAZA),
+           #new_row=32,#new_col=14,#fine_row=0,#fine_col=40);
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_BONES_RAZA),
+           #new_row=30,#new_col=40,#fine_row=0,#fine_col=24);
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_BONES_RAZA),
+           #new_row=27,#new_col=33,#fine_row=40,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_BONES_RAZA),
+           #new_row=19,#new_col=32,#fine_row=40,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_BONES_RAZA),
+           #new_row=17,#new_col=40,#fine_row=0,#fine_col=24);
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_BONES_RAZA),
+           #new_row=13,#new_col=40,#fine_row=0,#fine_col=24);
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_BONES_RAZA),
+           #new_row=9,#new_col=34,#fine_row=0,#fine_col=24);
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_BONES_RAZA),
+           #new_row=4,#new_col=28,#fine_row=40,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_BONES_RAZA),
+           #new_row=2,#new_col=26,#fine_row=0,#fine_col=40);
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_BONES_RAZA),
+           #new_row=2,#new_col=40,#fine_row=0,#fine_col=24);
+
+      Send(self,@NewHold,#what=Create(&Brazier),#new_row=9,#new_col=18,
+           #fine_row=0,#fine_col=48);
+      Send(self,@NewHold,#what=Create(&Brazier),#new_row=14,#new_col=18,
+           #fine_row=0,#fine_col=48);
+
+      Send(self,@CreateLevers);
+      Send(self,@SetupColumnDown);
+
+      // Lighting
+      Send(self,@NewHold,#what=Create(&DynamicLight,#iColor=LIGHT_FIRE,#iIntensity=45),
+           #new_row=11,#new_col=2,#fine_row=32,#fine_col=48);
+
+      propagate;
+   }
+
+   CreateLevers()
+   {
+      if poLever1 = $
+      {
+         poLever1 = Create(&GuestLever);
+         Send(self,@NewHold,#what=poLever1,#new_row=26,#new_col=4,
+               #fine_row=32,#fine_col=40);
+      }
+
+      if poLever2 = $
+      {
+         poLever2 = Create(&GuestLever);
+         Send(self,@NewHold,#what=poLever2,#new_row=26,#new_col=9,
+               #fine_row=32,#fine_col=40);
+      }
+
+      return;
+   }
+
+   ReqNewHold(what = $, new_row = $, new_col = $)
+   // Only allow a certain # of monsters in the pit
+   {
+      if IsClass(what,&MummyNoTreasure)
+         AND piPit_Monsters >= viPit_Monsters_max
+      {
+         return FALSE;
+      }
+
+      // Allow only wimpy mummies in the pit
+      if NOT IsClass(what, &MummyNoTreasure)
+         AND new_row = viPit_row
+         AND new_col = viPit_col
+      {
+         return FALSE;
+      }
+
+      // Wimpy mummies appear only in the pit
+      if IsClass(what, &MummyNoTreasure)
+      AND (new_row <> viPit_row OR new_col <> viPit_col)
+      {
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+   FirstUserEntered()
+   {
+      Post(self,@NewHold,#what=Create(&MummyNoTreasure),#new_row=viPit_row,#new_col=viPit_col);
+      Post(self,@ResetMonstersInFinal);
+
+      propagate;
+   }
+
+   NewHold(what = $, new_row = $, new_col = $)
+   {
+      if IsClass(what, &MummyNoTreasure)
+      {
+         piPit_Monsters = piPit_Monsters + 1;
+      }
+
+      propagate;
+   }
+
+   LeaveHold(what = $)
+   {
+      if IsClass(what, &MummyNoTreasure)
+      {
+         piPit_Monsters = piPit_Monsters - 1;
+      }
+
+      if what = poLever1
+      {
+         poLever1 = $;
+
+         propagate;
+      }
+
+      if what = poLever2
+      {
+         poLever2 = $;
+
+         propagate;
+      }
+
+      propagate;
+   }
+
+   SomethingKilled(what = $,victim = $)
+   {
+      if IsClass(victim,&Monster)
+      {
+         // gotta post because here it's not removed from room yet
+         Post(self,@CheckAllDeadMonsters);
+      }
+
+      propagate;
+   }
+
+   LeverChanged(what = $)
+   {
+      local iSwitched;
+
+      Send(self,@SomethingWaveRoom,#wave_rsc=razacrypt_door1_rsc,#what=what);
+
+      iSwitched = 0;
+      if Send(poLever1,@IsSwitched)
+      {
+         iSwitched = iSwitched + 1;
+      }
+
+      if Send(poLever2,@IsSwitched)
+      {
+         iSwitched = iSwitched + 1;
+      }
+
+      if ptDoor <> $
+      {
+         DeleteTimer(ptDoor);
+         ptDoor = $;
+      }
+
+      if iSwitched = 1
+      {
+         Send(self,@SetSector,#sector=SECTOR_DOOR,#animation=ANIMATE_CEILING_LIFT,
+              #height=128,#speed=16);
+         ptDoor = CreateTimer(self,@SlamTimer,SLAM_TIME);
+      }
+
+      if iSwitched = 2
+      {
+         Send(self,@SetSector,#sector=SECTOR_DOOR,#animation=ANIMATE_CEILING_LIFT,
+              #height=172,#speed=16);
+         ptDoor = CreateTimer(self,@FightTimer,FIGHT_TIME);
+      }
+
+      piSwitched = iSwitched;
+
+      return;
+   }
+
+   TestOpenDoor()
+   {
+      Send(poLever1,@SetSwitched,#switched=TRUE);
+      Send(poLever2,@SetSwitched,#switched=TRUE);
+
+      piSwitched = 2;
+
+      Send(self,@SetSector,#sector=SECTOR_DOOR,#animation=ANIMATE_CEILING_LIFT,
+           #height=172,#speed=16);
+      ptDoor = CreateTimer(self,@FightTimer,FIGHT_TIME);
+
+      return;
+   }
+
+   ResetPuzzle()
+   {
+      Send(self,@SlamTimer);
+
+      return;
+   }
+
+   SlamTimer()
+   {
+      ptDoor = $;
+
+      Send(self,@SomethingWaveRoom,#wave_rsc=razacrypt_door1_rsc,#what=poLever1);
+      Send(self,@SetSector,#sector=SECTOR_DOOR,#animation=ANIMATE_CEILING_LIFT,
+           #height=84,#speed=128);
+
+      Send(poLever1,@SetSwitched,#switched=FALSE);
+      Send(poLever2,@SetSwitched,#switched=FALSE);
+
+      return;
+   }
+
+   FightTimer()
+   {
+      ptDoor = $;
+
+      if Send(self,@CountInFinal,#count=COUNT_PLAYERS) = 0
+      {
+         Send(self,@ResetFinal);
+
+         return;
+      }
+
+      ptDoor = CreateTimer(self,@FightTimer,FIGHT_TIME);
+
+      return;
+   }
+
+   ResetFinal()
+   {
+      if ptDoor <> $
+      {
+         DeleteTimer(ptDoor);
+         ptDoor = $;
+      }
+
+      pbColumn_down = FALSE;
+      Send(self,@SetSector,#sector=SECTOR_NODE1,#animation=ANIMATE_FLOOR_LIFT,
+           #height=500,#speed=0);
+      Send(self,@SetSector,#sector=SECTOR_NODE2,#animation=ANIMATE_FLOOR_LIFT,
+           #height=519,#speed=0);
+
+      Send(poLever1,@SetSwitched,#switched=FALSE);
+      Send(poLever2,@SetSwitched,#switched=FALSE);
+
+      Send(self,@SomethingWaveRoom,#wave_rsc=razacrypt_door1_rsc,#what=poLever1);
+      Send(self,@SetSector,#sector=SECTOR_DOOR,#animation=ANIMATE_CEILING_LIFT,
+           #height=84,#speed=0);
+
+      Send(self,@ResetMonstersInFinal);
+
+      return;
+   }
+
+   CheckAllDeadMonsters()
+   {
+      //debug(Send(self,@CountInFinal,#count=COUNT_MONSTERS));
+
+      if pbColumn_down
+      {
+         return;
+      }
+
+      if Send(self,@CountInFinal,#count=COUNT_MONSTERS) = 0
+         AND Send(self,@CountInFinal,#count=COUNT_PLAYERS) <> 0
+      {
+         Send(self,@DoColumnDown);
+         pbColumn_down = TRUE;
+         Send(self,@SetSector,#sector=SECTOR_NODE1,#animation=ANIMATE_FLOOR_LIFT,
+              #height=105,#speed=32);
+         Send(self,@SetSector,#sector=SECTOR_NODE2,#animation=ANIMATE_FLOOR_LIFT,
+              #height=124,#speed=32);
+
+         Send(self,@SomethingWaveRoom,#wave_rsc=razacrypt_door1_rsc,#what=poLever1);
+         Send(self,@SetSector,#sector=SECTOR_DOOR,#animation=ANIMATE_CEILING_LIFT,
+              #height=84,#speed=0);
+
+         ptDoor = CreateTimer(self,@FightTimer,FIGHT_TIME);
+      }
+
+      return;
+   }
+
+   SetupColumnDown()
+   {
+      //Send(self,@NewHold,#what=Create(&ManaNode,#node_num=NODE_GUEST),
+      //     #new_row=35,#new_col=5,#fine_row=0,#fine_col=0);
+           
+      return;
+   }
+
+   // Possibly swap this for the node?
+   DoColumnDown()
+   {
+      local oMoney;
+
+      oMoney = Create(&Elderberry,#number=Random(5,10));
+      Send(self,@NewHold,#what=oMoney,#new_row=34,#new_col=4,
+            #fine_row=48,#fine_col=48);
+
+      oMoney = Create(&Herbs,#number=Random(10,15));
+      Send(self,@NewHold,#what=oMoney,#new_row=34,#new_col=5,
+            #fine_row=48,#fine_col=16);
+
+      oMoney = Create(&Mushroom,#number=Random(10,15));
+      Send(self,@NewHold,#what=oMoney,#new_row=35,#new_col=4,
+            #fine_row=16,#fine_col=48);
+
+      oMoney = Create(&Money,#number=(Random(45,55)*10));
+      Send(self,@NewHold,#what=oMoney,#new_row=35,#new_col=5,
+            #fine_row=16,#fine_col=16);
+
+      return;
+   }
+
+   CountInFinal(count = COUNT_PLAYERS)
+   "With count = COUNT_MONSTERS, count monsters in region.\n"
+   "With count = COUNT_PLAYERS, count players in region."
+   {
+      local i,each_obj,iCount,iRow,iCol;
+
+      iCount = 0;
+      foreach i in plActive
+      {
+         each_obj = First(i);
+         if count = COUNT_MONSTERS
+             AND IsClass(each_obj,&Monster) 
+            OR count = COUNT_PLAYERS
+             AND IsClass(each_obj,&User)
+         {
+            iRow = Send(each_obj,@GetRow);
+            
+            iCol = Send(each_obj,@GetCol);
+            if (iRow >= MIN_FINAL_ROW
+                AND iRow <= MAX_FINAL_ROW
+                AND iCol >= MIN_FINAL_COL
+                AND iCol <= MAX_FINAL_COL)
+               OR (iRow >= MIN_FINAL_ROW2
+                   AND iRow <= MAX_FINAL_ROW2
+                   AND iCol >= MIN_FINAL_COL2
+                   AND iCol <= MAX_FINAL_COL2)
+               OR (iCol < HALL_EAST
+                   AND iRow > HALL_NORTH)
+            {
+               iCount = iCount + 1;
+            }
+         }
+      }
+      
+      return iCount;
+   }
+
+   ResetMonstersInFinal()
+   {
+      local i,each_obj,iCount,iRow,iCol;
+
+      foreach i in plActive
+      {
+         each_obj = First(i);
+         if IsClass(each_obj,&Monster)
+         {
+            iRow = Send(each_obj,@GetRow);
+            iCol = Send(each_obj,@GetCol);
+            if (iRow >= MIN_FINAL_ROW
+                AND iRow <= MAX_FINAL_ROW
+                AND iCol >= MIN_FINAL_COL
+                AND iCol <= MAX_FINAL_COL)
+               OR (iCol < HALL_EAST
+                   AND iRow > HALL_NORTH)
+            {
+               Send(each_obj,@Delete);
+            }
+         }
+      }
+
+      Send(self,@NewHold,#what=Create(&Mummy),#new_row=29,#new_col=3,
+            #fine_row=32,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&Mummy),#new_row=30,#new_col=7,
+            #fine_row=32,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&Mummy),#new_row=34,#new_col=7,
+            #fine_row=32,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&Mummy),#new_row=35,#new_col=2,
+            #fine_row=32,#fine_col=32);
+      
+      Send(self,@NewHold,#what=Create(&BlackMummy),#new_row=37,#new_col=5,
+            #fine_row=0,#fine_col=0);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

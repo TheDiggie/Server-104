@@ -1,0 +1,136 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+HolySymbol is Spell
+
+constants:
+
+   include blakston.khd
+
+   // If we miss our roll by this much, we really pissed the monster off
+   HATE_MARGIN = 25
+
+resources:
+
+   include holysymb.lkod
+
+   HolySymbol_name_rsc = "holy symbol"
+   HolySymbol_icon_rsc = iholysym.bgf
+   HolySymbol_desc_rsc = \
+      "This spell involves weaving your hands in a holy tracery which "
+      "frightens nearby unholy beings.  Requires two elderberries to be "
+      "crushed onto the skin of your hands to ritually cleanse them."
+
+   HolySymbol_success = \
+      "Your hands weave through the air in a delicate tracery, speaking "
+      "through motion the purity of Shal'ille, a ward against the unholy."
+
+   HolySymbol_sound = sholysym.ogg
+
+   holysymbol_intro = \
+      "Shal'ille Lv. 1: Weaves a holy symbol in the air which repels any nearby undead."
+
+classvars:
+
+   vrName = HolySymbol_name_rsc
+   vrIcon = HolySymbol_icon_rsc
+   vrDesc = HolySymbol_desc_rsc
+
+   vrSpell_intro = holysymbol_intro
+
+   viSpell_num = SID_HOLY_SYMBOL
+   viSchool = SS_SHALILLE
+   viSpell_level = 1
+   viMana = 8
+   viSpellExertion = 1
+
+   viCast_time = 2000
+   viChance_To_Increase = 15
+   viMeditate_ratio = 20
+
+   vrSucceed_wav = HolySymbol_sound
+
+   vbIsAreaEffect = TRUE
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&Elderberry,2],plReagents);
+
+      return;
+   }
+
+   GetNumSpellTargets()
+   {
+      return 0;
+   }
+
+   CastSpell(who=$,iSpellPower=0)
+   {
+      local oRoom, oObject, oMonster, iChance, iRoll;
+
+      Send(who,@MsgSendUser,#message_rsc=HolySymbol_success);
+      oRoom = Send(who,@GetOwner);
+
+      foreach oObject in Send(oRoom,@GetHolderActive)
+      {
+         oMonster = Send(oRoom,@HolderExtractObject,#data=oObject);
+
+         if IsClass(oMonster,&Monster)
+            AND NOT (Send(oMonster,@GetBehavior) & AI_NPC)
+            AND (Send(oMonster,@IsUndead))
+         {
+            // Use the "detect" option for the monster's karma in case we're trying to turn an event monster.
+            iChance = (iSpellPower*3/4) + (Send(who,@GetBaseMaxHealth) - Send(oMonster,@GetLevel)/2)
+                                        + (Send(who,@GetKarma) + Send(oMonster,@GetKarma,#detect=TRUE));
+
+            if Send(oMonster, @GetTarget) <> $
+            {
+               // harder if monster already has a target
+               iChance = (iChance - 5);
+            }
+
+            iChance = Bound(iChance,2,98);
+            iRoll = Random(1,100);
+
+            if iRoll < iChance
+            {
+               // they're scared and will now run away
+               Send(oMonster,@TurnedBy,#who=who);
+               Send(oMonster,@TargetSwitch,#what=who,#iHatred=Send(who,@GetKarma));
+            }
+
+            if iRoll > (iChance + HATE_MARGIN)
+            {
+               // oops!  since you failed, now they really hate you!
+               Send(oMonster,@TargetSwitch,#what=who,#iHatred=Send(who,@GetKarma));
+               Send(oMonster,@EnterStateChase,#target=who,#actnow=TRUE);
+            }
+         }
+      }
+
+      propagate;
+   }
+
+   GetDuration(iSpellpower=$)
+   {
+      local iDuration;
+
+      iDuration = iSpellpower/10;  //seconds
+
+      return iDuration;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

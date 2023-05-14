@@ -1,0 +1,595 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+VaultLoadout is UtilitySpell
+
+constants:
+   include blakston.khd
+
+resources:
+
+   vault_loadout_not_safe = "You must be in a safe area to cast vault loadout."
+
+   vault_loadout_no_contents = "You don't have anything in your vault!"
+   vault_loadout_items_not_found = "Your vault did not contain any %s."
+   vault_loadout_items_not_enough = "Your vault did not contain enough %s."
+   vault_loadout_item_not_found = "Your vault did not contain %s%s."
+   vault_loadout_cant_carry_all = "You can't carry all the %s."
+   vault_loadout_cant_carry_one = "You can't carry %s%s."
+   vault_loadout_cant_carry_any = "You can't carry any %s."
+
+   vault_loadout_cast = "You activate your link with your vault storage."
+   vault_loadout_not_set = "You currently have no inventory preferences set."
+
+   vault_loadout_name_rsc = "vault loadout"
+   vault_loadout_icon_rsc = imend.bgf
+   vault_loadout_desc_rsc = \
+      "Attempts to translocate gear and reagents from your mainland vault "
+      "storage, according to preferences previously registered with "
+      "the spell 'set.'"
+
+classvars:
+
+   vrName = vault_loadout_name_rsc
+   vrIcon = vault_loadout_icon_rsc
+   vrDesc = vault_loadout_desc_rsc
+
+   viCast_time = 3000
+
+   viSpell_num = SID_VAULT_LOADOUT
+   viSpell_level = 1
+   viSchool = SS_KRAANAN
+   viMana = 0
+   viSpellExertion = 0
+   viChance_To_Increase = 5
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+
+      return;
+   }
+
+   CanPayCosts(who = $)
+   {
+      if (who = $
+         OR NOT IsClass(who,&User))
+      {
+         return FALSE;
+      }
+
+      if NOT Send(Send(who,@GetOwner),@CheckRoomFlag,#flag=ROOM_NO_COMBAT)
+      {
+         Send(who,@MsgSendUser,#message_rsc=vault_loadout_not_safe);
+
+         return FALSE;
+      }
+      
+      if Send(who,@GetLoadoutList) = $
+      {
+         Send(who,@MsgSendUser,#message_rsc=vault_loadout_not_set);
+
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+   CastSpell(who = $, lTargets = $)
+   {
+      local i, n, class, number, bFound, lvault_loadout_list, lInventory, school,
+            oItem, lDRobes, lLRobes, lSpellItems, oVault, oSafeBox;
+
+      Send(who,@MsgSendUser,#message_rsc=vault_loadout_cast);
+
+      oVault = Send(SYS,@FindVaultByNum,#num=VID_BARLOQUE);
+      oSafeBox = Send(oVault,@GetPlayerSafeBox,#who=who);
+
+      if oSafeBox = $
+      {
+         Send(who,@MsgSendUser,#message_rsc=vault_loadout_no_contents);
+
+         propagate;
+      }
+
+      lvault_loadout_list = Send(who,@GetLoadoutList);
+      // Copy inventory since we're going to modify the list.
+      lInventory = ListCopy(Send(who,@GetHolderPassive));
+
+      foreach i in lvault_loadout_list
+      {
+         class = First(i);
+
+         // Number can be -1 for single-stack items, school number for
+         // disciple robes, the number of charges in a spellitem or the
+         // number of a saved stackable item.
+         number = Nth(i,2);
+         bFound = FALSE;
+
+         // Disciple robes have school as the number, so are handled separately.
+         if (class = &LightDiscipleRobe)
+         {
+            lLRobes = Cons(number, lLRobes);
+
+            continue;
+         }
+         if (class = &DiscipleRobe)
+         {
+            lDRobes = Cons(number, lDRobes);
+
+            continue;
+         }
+
+         // See if the player has the item in inventory.
+         oItem = GetListElemByClass(lInventory,class);
+
+         // Non-stackables have number of -1.
+         if (number = -1)
+         {
+            if (oItem = $)
+            {
+               Send(self,@GetSingleItemFromVault,#who=who,#class=class,
+                     #oSafeBox=oSafeBox);
+            }
+            else
+            {
+               lInventory = DelListElem(lInventory,oItem);
+            }
+         }
+         else if (oItem = $)
+         {
+            // Need to determine whether we have a numberitem or spellitem.
+            oItem = Send(SYS,@FindTemplateItemByClass,#cClass=class);
+            if (oItem = $)
+            {
+               Debug("Loadout got $ template item for class ",class);
+
+               continue;
+            }
+
+            if (IsClass(oItem,&SpellItem))
+            {
+               Send(self,@GetSpellItemFromVault,#who=who,#class=class,
+                     #oSafeBox=oSafeBox,#number=number);
+            }
+            else
+            {
+               Send(self,@GetNumberItemFromVault,#who=who,#class=class,
+                     #oSafeBox=oSafeBox,#number=number);
+            }
+         }
+         else if (IsClass(oItem,&SpellItem))
+         {
+            // Handle these later.
+            lSpellItems = Send(SYS,@AddToSortedList,#what=class,
+                                 #lList=lSpellItems,#number=number,
+                                 #bIgnoreDuplicate=TRUE);
+         }
+         else
+         {
+            Send(self,@GetNumberItemFromVault,#who=who,#class=class,
+                  #oSafeBox=oSafeBox,#number=number-Send(oItem,@GetNumber));
+            // Remove this item from inventory.
+            lInventory = DelListElem(lInventory,oItem);
+         }
+      }
+
+      if (lSpellItems <> $)
+      {
+         Send(self,@LoadoutSpellItems,#who=who,#lList=lSpellItems,
+               #lInventory=lInventory,#oSafeBox=oSafeBox);
+      }
+
+      // Now deal with disciple robes. If lDRobes and lLRobes are both $,
+      // just propagate.
+      if (lDRobes = $ AND lLRobes = $)
+      {
+         propagate;
+      }
+
+      // For each robe the player currently has, remove it if present in
+      // the robe loadout lists.
+      foreach oItem in lInventory
+      {
+         if IsClass(oItem,&LightDiscipleRobe)
+         {
+            if lLRobes = $
+            {
+               continue;
+            }
+            school = Send(oItem,@GetSchool);
+            if FindListElem(lLRobes, school)
+            {
+               lLRobes = DelListElem(lLRobes, school);
+            }
+         }
+         else if IsClass(oItem,&DiscipleRobe)
+         {
+            if lDRobes = $
+            {
+               continue;
+            }
+            school = Send(oItem,@GetSchool);
+            if FindListElem(lDRobes, school)
+            {
+               lDRobes = DelListElem(lDRobes, school);
+            }
+         }
+      }
+
+      // lDRobes and lLRobes should now contain a list of robes we actually
+      // need, so try get them from the chest.
+      foreach school in lDRobes
+      {
+         Send(self,@GetDiscipleRobeFromVault,#who=who,#oSafeBox=oSafeBox,
+               #school=school);
+      }
+      foreach school in lLRobes
+      {
+         Send(self,@GetDiscipleRobeFromVault,#who=who,#oSafeBox=oSafeBox,
+               #school=school,#class=&LightDiscipleRobe);
+      }
+
+      propagate;
+   }
+
+   LoadoutSpellItems(who=$,lList=$,lInventory=$,oSafeBox=$)
+   {
+      local bFound, class, i, j, oItem, lInvSorted, number;
+
+      // First need a sorted list of what the player has.
+      foreach oItem in lInventory
+      {
+         if (IsClass(oItem,&SpellItem))
+         {
+            lInvSorted = Send(SYS,@AddToSortedList,#what=oItem,#lList=lInvSorted,
+                              #number=Send(oItem,@GetHits));
+         }
+      }
+
+      // Strategy: go through loadout list (lList), and either:
+      //   1. match it with an element in lInvSorted and add the items from
+      //      chest, then remove from lInvSorted;
+      //   2. if not found in lInvSorted, give it to the player directly.
+      foreach i in lList
+      {
+         class = First(i);
+         number = Nth(i,2);
+
+         bFound = FALSE;
+         foreach j in lInvSorted
+         {
+            if (IsClass(First(j),class))
+            {
+               if (number > Nth(j,2))
+               {
+                  Send(self,@GetSpellItemFromVault,#who=who,#class=class,
+                        #oSafeBox=oSafeBox,#oPlayerItem=First(j),
+                        #number=number - Nth(j,2));
+               }
+               lInvSorted = DelListElem(lInvSorted,j);
+               bFound = TRUE;
+
+               break;
+            }
+         }
+
+         if (NOT bFound)
+         {
+            Send(self,@GetSpellItemFromVault,#who=who,#class=class,
+                  #oSafeBox=oSafeBox,#number=number);
+         }
+      }
+
+      return;
+   }
+
+   GetDiscipleRobeFromVault(who=$,oSafeBox=$,school=SS_RIIJA,
+                                class=&DiscipleRobe)
+   {
+      local i, oBox, oItem, bFound;
+
+      bFound = FALSE;
+
+      foreach oItem in Send(oSafeBox,@GetHolderPassive)
+      {
+         if (GetClass(oItem) = class
+            AND Send(oItem,@GetSchool) = school)
+         {
+            bFound = TRUE;
+            if Send(who,@ReqNewHold,#what=oItem)
+            {
+               Send(who,@NewHold,#what=oItem);
+
+               return TRUE;
+            }
+            else
+            {
+               Send(who,@MsgSendUser,#message_rsc=vault_loadout_cant_carry_one,
+                     #parm1=Send(oItem,@GetIndef),
+                     #parm2=Send(oItem,@GetTrueName));
+
+               return FALSE;
+            }
+         }
+      }
+
+      if NOT bFound
+      {
+         // Get item template for message.
+         oItem = Send(SYS,@FindTemplateItemByClass,#cClass=class);
+         if (oItem <> $)
+         {
+            Send(who,@MsgSendUser,#message_rsc=vault_loadout_item_not_found,
+                  #parm1=Send(oItem,@GetIndef),
+                  #parm2=Send(oItem,@GetTrueName));
+         }
+      }
+
+      return FALSE;
+   }
+
+   GetSingleItemFromVault(who=$,oSafeBox=$,class=&Item)
+   {
+      local i, oItem, oBox, bFound;
+
+      bFound = FALSE;
+
+      oItem = GetListElemByClass(Send(oSafeBox,@GetHolderPassive),class);
+      if (oItem = $)
+      {
+         return FALSE;
+      }
+
+      bFound = TRUE;
+      if Send(who,@ReqNewHold,#what=oItem)
+      {
+         Send(who,@NewHold,#what=oItem);
+
+         return TRUE;
+      }
+      else
+      {
+         Send(who,@MsgSendUser,#message_rsc=vault_loadout_cant_carry_one,
+               #parm1=Send(oItem,@GetIndef),
+               #parm2=Send(oItem,@GetTrueName));
+
+         return FALSE;
+      }
+      if NOT bFound
+      {
+         // Get item template for message.
+         oItem = Send(SYS,@FindTemplateItemByClass,#cClass=class);
+         if (oItem <> $)
+         {
+            Send(who,@MsgSendUser,#message_rsc=vault_loadout_item_not_found,
+                  #parm1=Send(oItem,@GetIndef),
+                  #parm2=Send(oItem,@GetTrueName));
+         }
+      }
+
+      return FALSE;
+   }
+
+   GetNumberItemFromVault(who=$,oSafeBox=$,class=&Item,number=-1)
+   {
+      local i, oBox, oItem, bFound, iCanHold, iNumInChest, iGetNumber,
+            bSentErrorMsg;
+
+      if number < 1
+      {
+         return;
+      }
+
+      bFound = FALSE;
+      bSentErrorMsg = FALSE;
+
+      oItem = GetListElemByClass(Send(oSafeBox,@GetHolderPassive), class);
+      if (oItem = $)
+      {
+         return FALSE;
+      }
+
+      iCanHold = Send(who,@GetNumberCanHold,#what=oItem);
+      iNumInChest = Send(oItem,@GetNumber);
+      bFound = TRUE;
+
+      iGetNumber = number;
+
+      if iGetNumber > iNumInChest
+      {
+         iGetNumber = iNumInChest;
+      }
+
+      if iCanhold <> $
+         AND iGetNumber > iCanHold
+      {
+         if iCanHold > 0
+         {
+            if NOT bSentErrorMsg
+            {
+                Send(who,@MsgSendUser,#message_rsc=vault_loadout_cant_carry_all,
+                     #parm1=Send(oItem,@GetPluralName));
+               bSentErrorMsg = TRUE;
+            }
+         }
+         else
+         {
+            if NOT bSentErrorMsg
+            {
+               Send(who,@MsgSendUser,#message_rsc=vault_loadout_cant_carry_any,
+                     #parm1=Send(oItem,@GetPluralName));
+               bSentErrorMsg = TRUE;
+            }
+            return;
+         }
+         iGetNumber = iCanHold;
+      }
+
+      if iGetNumber > 0
+      {
+         if (iGetNumber <> iNumInChest)
+         {
+            oItem = Send(oItem,@Split,#number=iGetNumber);
+         }
+         Send(who,@NewHold,#what=oItem);
+         number = number - iGetNumber;
+         if number < 1
+         {
+            return;
+         }
+      }
+
+      if NOT bFound
+      {
+         // Get item template for message.
+         oItem = Send(SYS,@FindTemplateItemByClass,#cClass=class);
+         if (oItem <> $)
+         {
+            Send(who,@MsgSendUser,#message_rsc=vault_loadout_items_not_found,
+                  #parm1=Send(oItem,@GetPluralName));
+         }
+      }
+      else if number > 0
+      {
+         // Get item template for message.
+         oItem = Send(SYS,@FindTemplateItemByClass,#cClass=class);
+         if (oItem <> $)
+         {
+            Send(who,@MsgSendUser,#message_rsc=vault_loadout_items_not_enough,
+                  #parm2=Send(oItem,@GetPluralName));
+         }
+      }
+
+      return;
+   }
+
+   GetSpellItemFromVault(who=$,oSafeBox=$,class=&Item,number=-1,
+                             oPlayerItem=$)
+   {
+      local i, oBox, oItem, bFound, iCanHold, iNumHits, iGetNumber,
+            bSentErrorMsg;
+
+      if number < 1
+      {
+         return;
+      }
+
+      bFound = FALSE;
+      bSentErrorMsg = FALSE;
+
+      oItem = GetListElemByClass(Send(oSafeBox,@GetHolderPassive),class);
+
+      if oItem <> $
+      {
+         iGetNumber = number;
+         iCanHold = Send(who,@GetNumberCanHold,#what=oItem);
+         iNumHits = Send(oItem,@GetHits);
+         bFound = TRUE;
+
+         if iGetNumber > iNumHits
+         {
+            iGetNumber = iNumHits;
+         }
+
+         if iCanhold <> $
+            AND iGetNumber > iCanHold
+         {
+            if iCanHold > 0
+            {
+               if NOT bSentErrorMsg
+               {
+                  Send(who,@MsgSendUser,#message_rsc=vault_loadout_cant_carry_all,
+                        #parm1=Send(oItem,@GetTrueName));
+                  bSentErrorMsg = TRUE;
+               }
+            }
+            else
+            {
+               if NOT bSentErrorMsg
+               {
+                  Send(who,@MsgSendUser,#message_rsc=vault_loadout_cant_carry_any,
+                        #parm1=Send(oItem,@GetTrueName));
+                  bSentErrorMsg = TRUE;
+               }
+
+               return;
+            }
+            iGetNumber = iCanHold;
+         }
+
+         if iGetNumber > 0
+         {
+            if (iGetNumber <> iNumHits)
+            {
+               oItem = Send(oItem,@Split,#number=iGetNumber);
+            }
+
+            if (oPlayerItem <> $)
+            {
+               Send(oPlayerItem,@CombineSpellItems,#what=oItem);
+            }
+            else
+            {
+               Send(who,@NewHold,#what=oItem,#check_combine=FALSE);
+               oPlayerItem = oItem;
+            }
+            number = number - iGetNumber;
+            if (number < 1)
+            {
+               return;
+            }
+         }
+      }
+
+      if NOT bFound
+      {
+         if (oPlayerItem <> $)
+         {
+            oItem = oPlayerItem;
+         }
+         else
+         {
+            // Get item template for message.
+            oItem = Send(SYS,@FindTemplateItemByClass,#cClass=class);
+         }
+         if (oItem <> $)
+         {
+            Send(who,@MsgSendUser,#message_rsc=vault_loadout_items_not_found,
+                  #parm1=Send(oItem,@GetTrueName));
+         }
+      }
+      else if number > 0
+      {
+         if (oPlayerItem <> $)
+         {
+            oItem = oPlayerItem;
+         }
+         else
+         {
+            // Get item template for message.
+            oItem = Send(SYS,@FindTemplateItemByClass,#cClass=class);
+         }
+         if (oItem <> $)
+         {
+            Send(who,@MsgSendUser,#message_rsc=vault_loadout_items_not_enough,
+                  #parm2=Send(oItem,@GetTrueName));
+         }
+      }
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

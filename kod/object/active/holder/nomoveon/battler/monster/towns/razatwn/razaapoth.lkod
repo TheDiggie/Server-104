@@ -1,0 +1,7 @@
+RazaApothecary_name_rsc = de "Ravin"
+RazaApothecary_desc_rsc = de \
+   "Ein unheimlicher Mann von unbekannter Herkunft. Ravin ist ständig auf "
+   "der Suche nach Reagenzien und Edelsteinen."
+RazaAp_entry_welcome = de \
+   "Hast du mir irgendetwas zu verkaufen? Ich bin bereit nahezu alles zu "
+   "kaufen."

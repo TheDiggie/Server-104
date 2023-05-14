@@ -1,0 +1,207 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Discordance is Spell
+
+constants:
+
+   include blakston.khd
+
+   // What's percentage of the chance do we keep for trying to remove Jala spells?
+   JALA_PERCENT = 50
+
+resources:
+
+   include discord.lkod
+
+   discordance_name_rsc = "discordance"
+   discordance_icon_rsc = idiscord.bgf
+   discordance_desc_rsc = \
+      "Magical energy is unleashed which tries to destroy magical "
+      "enchantments on the room.  Requires two sapphires to cast."
+   discordance_on = \
+      "The fabric of space twists subtly, just enough to damage the "
+      "brittle mana field."
+
+   discordance_sound = kdiscord.ogg
+
+classvars:
+
+   vrName = discordance_name_rsc
+   vrIcon = discordance_icon_rsc
+   vrDesc = discordance_desc_rsc
+   vrSucceed_wav = discordance_sound
+
+   viSpell_num = SID_DISCORDANCE
+   viSchool = SS_KRAANAN
+   viMana = 8
+   viSpell_level = 4
+
+   viCast_time = 1000
+   viChance_To_Increase = 15
+   viMeditate_ratio = 50
+
+   vbIsAreaEffect = TRUE
+
+properties:
+
+   pbAllowEmptyCast = TRUE
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&Sapphire,2],plReagents);
+
+      return;
+   }
+
+   GetNumSpellTargets()
+   {
+      return 0;
+   }
+
+   CanPayCosts(who=$)
+   {
+      if NOT pbAllowEmptyCast
+         AND Send(Send(who,@GetOwner),@GetEnchantmentList) = $
+         AND Send(who,@GetRadiusEnchantments) = $
+      {
+         Send(who,@MsgSendUser,#message_rsc=spell_bad_location,#parm1=vrName);
+
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+   CastSpell(who = $,lTargets = $,iSpellPower = $)
+   {
+      local oRoom;
+
+      if IsClass(who,&Room)
+      {
+         /// this way a room can automatically discord.
+         oRoom = who;
+      }
+      else
+      {
+         oRoom = Send(who,@GetOwner);
+      }
+
+      // If cast by an immortal, let them clear everything.
+      if (IsClass(who,&DM)
+         AND Send(who,@PlayerIsImmortal))
+      {
+         iSpellPower = $;
+      }
+
+      Send(oRoom,@SomeoneSaid,#type=SAY_MESSAGE,#string=discordance_on,#what=self);
+      Send(self,@DoDiscordance,#who=who,#oRoom=oRoom,#iChance=iSpellPower);
+
+      if NOT IsClass(who,&Player)
+      {
+         return;
+      }
+
+      propagate;
+   }
+
+   DoDiscordance(who = $,oRoom = $,iChance = $)
+   "Remove enchantments in the room with a given chance to remove each one."
+   {
+      local lEnchantments, iModifiedChance, i, oSpell, bRemovedSomething,
+            oCaster, each_obj, state;
+
+      if oRoom = $
+      {
+         return FALSE;
+      }
+
+      // Chance of $ means that we want to remove it all.
+      //  Used by things like super-monsters (the Yeti)
+      if iChance = $ OR iChance >= 100
+      {
+         Send(oRoom,@RemoveAllEnchantments);
+
+         foreach i in Send(who,@GetRadiusEnchantments)
+         {
+            oSpell = Nth(i,2);
+            state = Nth(i,3);
+            // Remove at the source.
+            Send(Send(oSpell,@GetSource,#state=state),@RemoveRadiusEnchantment,
+                  #what=oSpell,#state=state,#recheck=TRUE);
+         }
+
+         return TRUE;
+      }
+
+      bRemovedSomething = FALSE;
+      lEnchantments = Send(oRoom,@GetEnchantmentList);
+
+      foreach i in lEnchantments
+      {
+         oSpell = Nth(i,2);
+         oCaster = Send(oSpell,@GetCaster,#state=Nth(i,3));
+         iModifiedChance = iChance;
+         if Send(oSpell,@GetSchool) = SS_JALA
+         {
+            // Only half chance to discord a Jala song
+            iModifiedChance = (iModifiedChance * JALA_PERCENT) / 100;
+         }
+
+         if iModifiedChance > Random(1,100)
+         {
+            if (NOT IsClass(who,&Battler)
+               OR NOT IsClass(oCaster,&Battler)
+               OR Send(who,@AllowBattlerAttack,#victim=oCaster,#stroke_obj=self,
+                        #oRoomOverride=oRoom))
+            {
+               Send(oRoom,@RemoveEnchantment,#what=oSpell);
+               bRemovedSomething = TRUE;
+            }
+         }
+      }
+
+      // Radius enchantments, only discord the ones we see.
+      foreach i in Send(who,@GetRadiusEnchantments)
+      {
+         oSpell = Nth(i,2);
+         state = Nth(i,3);
+         oCaster = Send(oSpell,@GetCaster,#state=state);
+         iModifiedChance = iChance;
+         if Send(oSpell,@GetSchool) = SS_JALA
+         {
+            // Only half chance to discord a Jala song
+            iModifiedChance = (iModifiedChance * JALA_PERCENT) / 100;
+         }
+
+         if iModifiedChance > Random(1,100)
+         {
+            // Check whether we can attack the caster.
+            if (NOT IsClass(who,&Battler)
+               OR NOT IsClass(oCaster,&Battler)
+               OR Send(who,@AllowBattlerAttack,#victim=oCaster,#stroke_obj=self,
+                        #oRoomOverride=oRoom))
+            {
+               // Remove at the source.
+               Send(Send(oSpell,@GetSource,#state=state),@RemoveRadiusEnchantment,
+                     #what=oSpell,#state=state,#recheck=TRUE);
+               bRemovedSomething = TRUE;
+            }
+         }
+      }
+
+      return bRemovedSomething;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

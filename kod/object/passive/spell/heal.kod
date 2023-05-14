@@ -1,0 +1,160 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Heal is Spell
+// Parent class for heal spells. The cast text here is for Minor Heal.
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include heal.lkod
+
+   heal_cast_rsc = \
+      "%s%s's spell heals some minor injuries, restoring ~g~B%i~B~n hitpoints."
+   heal_cast_self = \
+      "Shal'ille's holy magic heals some minor injuries, restoring "
+      "~g~B%i~B~n hitpoints."
+   heal_cast_on_other = "You heal %s%s for ~g~B%i~B~n hitpoints."
+   heal_unnecessary_rsc = "%s%s is perfectly healthy."
+
+classvars:
+
+   vrUnnecessary = heal_unnecessary_rsc
+   vrCastSelf = heal_cast_self
+   vrCastOther = heal_cast_rsc
+   vrSuccess = heal_cast_on_other
+
+   viFlash = FLASH_GOOD
+
+properties:
+
+messages:
+
+   GetNumSpellTargets()
+   {
+      return 1;
+   }
+
+   CanPayCosts(who = $, lTargets = $, bItemCast = FALSE)
+   {
+      local oTarget;
+
+      // Skip standard heal code if it's an area effect.
+      if vbIsAreaEffect
+      {
+         propagate;
+      }
+
+      // Can cast spell if the 1 target item is a user
+      if Length(lTargets) <> 1
+      {
+         return FALSE;
+      }
+
+      oTarget = First(lTargets);
+      if NOT IsClass(oTarget,&User)
+      {
+         if NOT bItemCast
+         {
+            Send(who,@MsgSendUser,#message_rsc=spell_bad_target,
+                  #parm1=vrName,#parm2=Send(oTarget,@GetDef),
+                  #parm3=Send(oTarget,@GetName));
+         }
+
+         return FALSE;
+      }
+
+      if Send(oTarget,@GetHealth) >= Send(oTarget,@GetMaxHealth)
+      {
+         if NOT bItemCast
+         {
+            Send(who,@MsgSendUser,#message_rsc=vrUnnecessary,
+                  #parm1=Send(oTarget,@GetCapDef),
+                  #parm2=Send(oTarget,@GetName));
+         }
+
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+   CastSpell(who = $, lTargets = $, iSpellPower = 0)
+   {
+      local iHeal, oTarget;
+
+      // Skip standard heal code if it's an area effect.
+      if vbIsAreaEffect
+      {
+         propagate;
+      }
+
+      oTarget = First(lTargets);
+
+      if (oTarget = $)
+      {
+         Debug(who," trying to cast ",Send(self,@GetName)," on $ target!");
+
+         return;
+      }
+
+      iHeal = Send(self,@GetHealAmount,#oTarget=oTarget,
+                     #iSpellPower=iSpellPower);
+
+      iHeal = Send(oTarget,@GainHealthNormal,#amount=iHeal,#precision=TRUE);
+
+      // A little boost for casting on newbies, even if you're the newbie!
+      if NOT Send(oTarget,@CheckPlayerFlag,#flag=PFLAG_PKILL_ENABLE)
+      {
+         iHeal = iHeal + Random(200,500);
+      }
+
+      if who <> oTarget
+      {
+         Send(who,@MsgSendUser,#message_rsc=vrSuccess,
+               #parm1=Send(oTarget,@GetDef),#parm2=Send(oTarget,@GetName),
+               #parm3=iHeal/100);
+
+         Send(oTarget,@MsgSendUser,#message_rsc=vrCastOther,
+               #parm1=Send(who,@GetCapDef),#parm2=Send(who,@GetName),
+               #parm3=iHeal/100);
+
+         // Give them a little boost if they help someone of higher Karma.
+         if Send(who,@GetKarma) < Send(oTarget,@GetKarma)
+         {
+            Send(who,@AddKarma,#amount=Send(who,@CalculateKarmaChangeFromAct,
+                  #karma_doer=Send(who,@GetKarma),
+                  #karma_act=Send(oTarget,@GetKarma),#Swing_factor=1));
+         }
+      }
+      else
+      {
+         Send(who,@MsgSendUser,#message_rsc=vrCastSelf,#parm1=iHeal/100);
+      }
+
+      propagate;
+   }
+
+   GetHealAmount(oTarget=$,iSpellPower=1)
+   "Heal spells override this to set the heal amount on a given target."
+   {
+      if (oTarget = $)
+      {
+         Debug("Trying to get heal amount for $ target!");
+      }
+
+      return 1;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

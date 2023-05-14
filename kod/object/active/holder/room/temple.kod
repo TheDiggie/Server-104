@@ -1,0 +1,167 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Temple is Room
+
+constants:
+
+   SECTOR_DOOR = 3
+   SECTOR_PILLAR = 4
+
+   include blakston.khd
+
+resources:
+
+   include temple.lkod
+
+   room_temple = temple.roo
+   room_name_temple = "The Temple of Shal'ille"
+   temple_nopvp_sign_name = "Abstaining from PvP"
+   temple_nopvp_sign_desc = \
+      "If you wish to opt-out of all player versus player combat, speak the "
+      "words \"abstain from violence\" to Priestess Xiana. Shal'ille will "
+      "place you under her protection permanently, preventing all combat "
+      "between other players and yourself.\n\nNote that this is a permanent "
+      "choice and cannot be undone, so be sure before you make the decision."
+      "\n\nAdventurers under Shal'ille's protection:\n"
+      "   - Can still interact with tokens, as token deaths carry no penalty.\n"
+      "   - Can still participate in Roq's Assassin's Game.\n"
+      "   - Can join guilds, but not enter guild halls or use the Set and "
+      "Loadout scrolls.\n"
+      "   - Cannot obtain faction shields, or interact with faction flagpoles.\n"
+      "   - Cannot vote in Justicar elections, or serve as Justicar.\n"
+      "   - Cannot pick up items dropped by PK victims.\n"
+   temple_open = "Open"
+   temple_close = "Close"
+
+   temple_music = temple.ogg
+
+classvars:
+
+   vrName = room_name_temple
+
+   viTeleport_row = 18
+   viTeleport_col = 7
+
+   viTerrain_type = TERRAIN_TEMPLE | TERRAIN_FOREST
+
+   viWeatherZone = WEATHER_ZONE_MARION
+
+properties:
+
+   prRoom = room_temple
+   piRoom_num = RID_TEMPLE
+
+   prMusic = temple_music
+
+   pbTemple_made_scepter = FALSE
+
+   piBaseLight = LIGHT_NICE
+   piOutside_factor = 3
+
+   pbSnowGroundTexture = TRUE
+
+messages:
+
+   CreateStandardExits()
+   {
+      plEdge_exits = $;
+      plEdge_Exits = Cons([ LEAVE_EAST, RID_C4, 20, 15, ANGLE_EAST ], plEdge_exits);
+      
+      return;
+   }
+   
+   NewHold(what=$,new_row=20,new_col=20)
+   {
+      if IsClass(what,&User)
+         AND pbTemple_Made_Scepter = FALSE
+      {
+         if new_row = 24 AND new_col = 8
+         {
+            pbTemple_Made_Scepter = TRUE;
+            Send(self,@NewHold,#what=Create(&Scepter),#new_row=23,#new_col=8);
+         }
+      }
+
+      propagate;
+   }
+
+   LeaveHold(what=$)
+   {
+      if IsClass(what,&Scepter)
+         AND Send(what,@GetRow) = 23
+         AND Send(what,@GetCol) = 8
+      {
+         Send(self,@SetSector,#sector=SECTOR_DOOR,#animation=ANIMATE_CEILING_LIFT,
+               #height=188,#speed=20);
+         Send(self,@SetSector,#sector=SECTOR_PILLAR,#animation=ANIMATE_FLOOR_LIFT,
+               #height=72,#speed=10);
+      }
+
+      propagate;
+   }
+
+   LastUserLeft()
+   {
+      local i, each_obj;
+
+      foreach i in plPassive
+      {
+         each_obj = Send(self,@HolderExtractObject,#data=i);
+
+         if IsClass(each_obj,&Scepter)
+         {
+            Send(each_obj,@Delete);
+         }
+      }
+
+      Send(self,@SetSector,#sector=SECTOR_DOOR,#animation=ANIMATE_CEILING_LIFT,
+            #height=64,#speed=20);
+      Send(self,@SetSector,#sector=SECTOR_PILLAR,#animation=ANIMATE_FLOOR_LIFT,
+            #height=96,#speed=10);
+      pbTemple_made_scepter = FALSE;
+
+      propagate;
+   }
+
+   CreateStandardObjects()
+   {
+      local oSign;
+
+      if (Send(SETTINGS_OBJECT,@PvPOptOutEnabled))
+      {
+         oSign = Create(&Sign,#desc=temple_nopvp_sign_desc,#newbie=TRUE,
+                        #name=temple_nopvp_sign_name);
+         Send(self,@NewHold,#what=oSign,#new_row=21,#new_col=3,
+               #fine_row=32,#fine_col=0);
+      }
+
+      Send(self,@NewHold,#what=Create(&ShalillePriestess),#new_angle=ANGLE_EAST,
+            #new_row=17,#new_col=2,#fine_row=24,#fine_col=24);
+
+      propagate;
+   }
+
+   ModifyChanceToImprove(who=$,oSpellSkill=$,chance=0)
+   "This takes a spell/skill that who is trying to advance and"
+   "modifies the improve_chance."
+   {
+      if IsClass(oSpellSkill,&Spell)
+         AND Send(oSpellSkill,@GetSchool) = SS_SHALILLE
+      {
+         // Give a 10// bonus.
+         return ((chance * 11)/10);
+      }
+
+      return chance;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

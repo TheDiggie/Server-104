@@ -1,0 +1,5 @@
+weapattcursed_desc = de " Leuchtet mit einer hellroten Aura."
+cursedweapon_fail_unuse = de "%s%s scheint an deiner Hand zu kleben!"
+weapattcursed_name = de "verfluchter %s"
+wacursed_gone = de "%s verliert seinen unheimlichen Glanz."
+cursed_dm = de "Verflucht"

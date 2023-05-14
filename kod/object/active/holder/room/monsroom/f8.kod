@@ -1,0 +1,321 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+OutdoorsF8 is MonsterRoom
+
+constants:
+
+   include blakston.khd
+
+   DOOR = 1
+   DOOR_OPEN  = 388
+   DOOR_CLOSED = 308
+
+   LIFT_DELAY = 12000   // 12 seconds
+
+resources:
+
+   include f8.lkod
+
+   room_name_OutdoorsF8 ="Lake of Jala's Song"
+   room_OutdoorsF8 = f8.roo
+   OutdoorsF8_music = walk7.ogg
+
+   waterfall_soundF8 = wfall2.ogg
+
+   OutdoorsF8_muffled = "You can barely hear the sound of someone talking in the distance."
+   OutdoorsF8_PasswordDoorUnlocked = "You hear a loud click as the door unlocks."
+   OutdoorsF8_PasswordDoorRelocked = "You hear a loud click as the door relocks."
+
+   OutdoorsF8_locked = \
+      "The door back into the guild hall is locked from the other side.  The guild "
+      "password is needed to enter."
+
+classvars:
+
+   vrName = room_name_OutdoorsF8
+
+   viTeleport_row = 18
+   viTeleport_col = 21
+
+   viTerrain_type = TERRAIN_FOREST | TERRAIN_LAKE | TERRAIN_WATERFALL
+
+   viFlag_row = 12
+   viFlag_col = 10
+
+   viWeatherZone = WEATHER_ZONE_JASPER
+
+properties:
+
+   prRoom = room_OutdoorsF8
+   prMusic = OutdoorsF8_music
+   piRoom_num = RID_F8
+
+   piBaseLight = LIGHT_NICE
+   piOutside_factor = 8
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+   pbSnowGroundTexture = TRUE
+
+   piGen_time = 20000
+   piGen_percent = 60
+
+   piInit_count_min = 1
+   piInit_count_max = 3
+
+   pbDoor_open = FALSE
+   ptDoor = $
+
+   pbPasswordDoorUnlocked = FALSE
+   ptPasswordDoorRelock = $
+
+messages:
+
+   Constructed()
+   {
+      plMonsters = [ [&SpiderBaby, 50], [&Centipede, 50] ];
+      plGenerators = [ [6, 11], [10, 22], [6, 36], [14, 42], [23, 39],
+                       [22, 19], [25, 10], [39, 12], [39, 26], [19, 28]
+                     ];
+
+      plLooping_sounds = cons([ waterfall_soundF8, 8, 43 ], plLooping_sounds );
+
+      propagate;
+   }
+
+   CreateStandardExits()
+   {
+      plExits = $;
+
+      plExits = Cons([ 6, 50, RID_GUILDH3, 5, 2, ROTATE_NONE ],plExits);
+      //  this exit is now password-protected, goes to guildhall.
+      plExits = Cons([ 26, 50, ROOM_LOCKED_DOOR, OutdoorsF8_locked ],plExits);
+ 
+      plEdge_exits = $;
+      plEdge_Exits = Cons([LEAVE_EAST, RID_G8, 36, 3, ROTATE_NONE], plEdge_exits);
+      plEdge_Exits = Cons([LEAVE_WEST, RID_JASPER, 18, 75, ANGLE_SOUTH_WEST], plEdge_exits);
+      plEdge_Exits = Cons([LEAVE_NORTH, RID_F7, 49, 15, ROTATE_NONE], plEdge_exits);
+
+      propagate;
+   }
+      
+   SomethingTryGo(what=$,row=$,col=$)
+   {
+      local oGuildHall;
+
+      oGuildHall = Send(SYS,@FindRoomByNum,#num=RID_GUILDH3);
+
+      if row = 6 AND col = 49 AND pbDoor_open = FALSE
+      {
+         Send(self,@OpenDoor);
+
+         return TRUE;
+      }
+     
+      // prevent newbies from getting trapped behind the door!
+      if row = 6 AND col = 50 AND (NOT pbDoor_open)
+         AND NOT Send(what,@checkplayerflag,#flag=PFLAG_PKILL_ENABLE)
+      {
+         Send(self,@OpenDoor);
+      }
+
+      if (pbPasswordDoorUnlocked OR (Send(oGuildHall,@GetGuildOwner) = $))
+         AND (row=26) AND (col=50)
+      {
+         Send(what,@WaveSendUser,#wave_rsc=Send(self,@GetDoorSound));
+         Send(SYS,@UtilGoNearSquare,#what=what,
+               #where=Send(SYS,@FindRoomByNum,#num=RID_GUILDH3),#new_row=25,#new_col=2);
+
+         return TRUE;
+      }
+
+      propagate;
+   }
+
+   OpenDoor()
+   {
+       pbDoor_open = TRUE;
+       Send(self,@SetSector,#sector=DOOR,#animation=ANIMATE_CEILING_LIFT,
+            #height=DOOR_OPEN,#speed=16);
+
+       ptDoor = CreateTimer(self,@CloseDoorTimer,LIFT_DELAY);
+
+       return;
+   }
+
+   CloseDoorTimer()
+   {
+      ptDoor = $;
+
+      Send(self,@CloseDoor);
+      return;
+   }
+
+   CloseDoor()
+   {
+       pbDoor_open = FALSE;
+       Send(self,@SetSector,#sector=DOOR,#animation=ANIMATE_CEILING_LIFT,
+            #height=DOOR_CLOSED,#speed=16);
+
+       return;
+   }
+
+   CreateStandardObjects()
+   {
+      Send(self,@NewHold,#what=Create(&Brazier),
+           #new_row=23,#new_col=48,#fine_row=32,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&Brazier),
+           #new_row=26,#new_col=48,#fine_row=32,#fine_col=32);
+
+      propagate;
+   }  
+
+   SomeoneSaid(what = $,type = $,string = $,parm1 = $,parm2 = $,parm3 = $,
+               parm4 = $, parm5 = $,parm6 = $,parm7 = $,parm8 = $)                       
+   "If someone is in the balcony while you are in the valley, do "
+   "not send them any conversation."
+   {
+      local i, each_obj, oGuildHall;
+
+      if what = $
+      {
+         DEBUG("SomeoneSaid::got what=$, string=",string);
+
+         propagate;
+      }
+
+      oGuildHall = Send(SYS,@FindRoomByNum,#num=RID_GUILDH3);
+      if type = SAY_YELL
+         OR NOT IsClass(what,&Player)
+      {
+         propagate;
+      }
+
+      foreach i in plActive
+      {
+         each_obj = Send(self,@HolderExtractObject,#data=i);
+
+         if Send(self,@SayRangeCheck,#talker=what,#hearer=each_obj)
+         {
+            if Send(self,@inBalcony,#who=what)=Send(self,@inBalcony,#who=each_obj)
+            {
+               Send(each_obj,@SomeoneSaid,#what=what,#type=type,#string=string,
+                     #parm1=parm1, #parm2=parm2,#parm3=parm3,#parm4=parm4,
+                     #parm5=parm5,#parm6=parm6,#parm7=parm7,#parm8=parm8);
+            }
+            else
+            {
+               Send(each_obj,@MsgSendUser,#message_rsc=OutdoorsF8_muffled);
+            }
+         }
+      }
+      if (Send(oGuildHall,@GetGuildOwner) <> $)
+            AND (Send(oGuildHall,@GetGuildOwner) = Send(what,@GetGuild))
+            AND StringEqual(string,Send(oGuildHall,@GetPassword))
+            AND Send(self,@inBalcony,#who=what) and (pbPasswordDoorUnlocked = FALSE)
+            AND type <> SAY_EMOTE
+      {
+         Send(self,@OpenSecretDoor);
+      }
+
+      return;
+   }
+
+   InBalcony(who=$)
+   {
+      local iRow, iCol, iHeight;
+
+      if who = $
+      {
+         return FALSE;
+      }
+
+      iRow = Send(who,@GetRow);
+      iCol = Send(who,@GetCol);
+
+      if iRow < 20 OR iRow > 27 OR iCol < 46 OR iCol > 50
+      {
+         return FALSE;
+      }
+
+      if iCol = 46
+         AND (iRow = 22 OR iRow = 21 OR iRow = 20)
+      {
+         iHeight = Send(who,@GetHeightFloorAtObjectBSP);
+
+         if iHeight < 560
+         {
+            return FALSE;
+         }
+      }
+
+      return TRUE;
+   }
+
+   OpenSecretDoor()
+   {
+      local each_obj, i;
+
+      pbPasswordDoorUnlocked = TRUE;
+
+      foreach i in plActive
+      {
+         each_obj = Send(self,@HolderExtractObject,#data=i);
+         if Send(self,@inBalcony,#who=each_obj)
+         {
+            Send(each_obj,@MsgSendUser,#message_rsc=OutdoorsF8_PasswordDoorUnlocked);
+         }
+      }
+
+      ptPasswordDoorRelock = createTimer(self,@RelockPasswordDoor,6*1000);
+
+      return;
+   }
+
+   RelockPasswordDoor()
+   {
+      local each_obj, i;
+
+      ptPasswordDoorRelock = $;
+      pbPasswordDoorUnlocked = FALSE;
+
+      foreach i in plActive
+      {
+         each_obj = Send(self,@HolderExtractObject,#data=i);
+         if Send(self,@InBalcony,#who=each_obj)
+         {
+            Send(each_obj,@MsgSendUser,#message_rsc=OutdoorsF8_PasswordDoorRelocked);
+         }
+      }
+
+      return;
+   }
+
+   Delete()
+   {
+      if ptDoor <> $
+      {
+         deleteTimer(ptDoor);
+         ptDoor = $;
+      }
+
+      if ptPasswordDoorRelock <> $
+      {
+         deleteTimer(ptPasswordDoorRelock);
+         ptPasswordDoorRelock = $;
+      }
+
+      propagate;
+   }
+
+
+end
+////////////////////////////////////////////////////////////////////////////////

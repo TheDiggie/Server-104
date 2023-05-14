@@ -1,0 +1,422 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Phase is UtilitySpell
+
+constants:
+   include blakston.khd
+   
+   // 112 to 121, growing in brightness
+   PHASE_OUT_XLAT = 116
+
+resources:
+
+   include phase.lkod
+
+   Phase_name_rsc = "phase"
+   Phase_icon_rsc = iphase.bgf
+   Phase_desc_rsc = \
+      "By phasing partially out of existence, one may become temporarily "
+      "immune to danger... but, adventurers be warned: staying out of phase "
+      "too long will result in physical and mental damage, as well as "
+      "potential loss of carried items. Time spent phased out is "
+      "cumulative until you reach a safe place in which to recover."
+
+   Phase_no_danger = "The protective magics here prevent phasing out."
+   
+   Phase_penned = \
+      "Your tenuous grip on reality snaps, and you are thrust violently along "
+      "the magical currents until you find a safe place to re-enter the world!"
+   Phase_penned_others = \
+      "%s's grip on reality snaps, hurling %s violently away "
+      "on magical currents!"
+   Phase_penned_others_item = \
+      "The violent currents seemed to have torn %s%s from %s's inventory."
+   
+   Phase_penned_wav_rsc = logoffghost_poof.ogg
+   
+   Phase_lost_one_item = \
+      "You lost %s skill points, %s spell points, and %s%s."
+   Phase_lost_two_items = \
+      "You lost %s skill points, %s spell points, %s%s, and %s%s."
+
+   penalties_inflicted_one_item = \
+      "The torturous experience has cost you %i XP, one item, %i spell "
+      "points, and %i skill points."
+   penalties_inflicted_plural = \
+      "The torturous experience has cost you %i XP, %i items, %i spell "
+      "points, and %i skill points."
+
+   no_phasing_in_safe_place_msg = \
+      "This place of safety is anchored and calm, and you cannot "
+      "phase out here."
+   no_phasing_in_guildhall_msg = \
+      "The magical defenses here keep you grounded in reality."
+   no_phasing_in_arena_msg = \
+      "The unique combat magics in play here prevent you from phasing out."
+   no_phasing_while_specator_msg = \
+      "If you tried to phase while you're already phased, you might explode!"
+
+   phase_time_low = "You feel your hold slipping..."
+   phase_time_gone = "You're losing your grip on reality!"
+
+   no_phasing_here_override_msg = \
+      "A mysterious force prevents you from phasing out here."
+
+   phase_time_header = \
+      "\n\nYou have %r%r%r%r%r%r%r of %s time remaining."
+
+classvars:
+
+   vrName = Phase_name_rsc
+   vrIcon = Phase_icon_rsc
+   vrDesc = Phase_desc_rsc
+
+   viCast_time = 0
+   viPostCast_time = 0
+
+   viSpell_num = SID_PHASE
+   viSpell_level = 1
+   viSchool = SS_RIIJA
+   viMana = 0
+   viSpellExertion = 0
+   viChance_To_Increase = 5
+
+properties:
+
+   piPhaseDelay = 1500
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+
+      return;
+   }
+
+   GetNumSpellTargets()
+   {
+      return 0;
+   }
+
+   CanPayCosts(who = $)
+   {
+      local oRoom;
+
+      if who = $
+      {
+         return FALSE;
+      }
+
+      oRoom = Send(who,@GetOwner);
+      if oRoom = $
+      {
+         return FALSE;
+      }
+
+      if Send(oRoom,@CheckRoomFlag,#flag=ROOM_NO_COMBAT)
+      {
+         Send(who,@MsgSendUser,#message_rsc=no_phasing_in_safe_place_msg);
+
+         return FALSE;
+      }
+
+      if IsClass(oRoom,&GuildHall)
+      {
+         Send(who,@MsgSendUser,#message_rsc=no_phasing_in_guildhall_msg);
+
+         return FALSE;
+      }
+
+      if Send(oRoom,@IsArena)
+      {
+         Send(who,@MsgSendUser,#message_rsc=no_phasing_in_arena_msg);
+
+         return FALSE;
+      }
+
+      if Send(oRoom,@OverridesDeathFunction)
+      {
+         Send(who,@MsgSendUser,#message_rsc=no_phasing_here_override_msg);
+
+         return FALSE;
+      }
+
+      if Send(who,@CheckPlayerFlag,#flag=PFLAG_SPECTATOR)
+      {
+         Send(who,@MsgSendUser,#message_rsc=no_phasing_while_specator_msg);
+
+         return FALSE;
+      }
+      
+      if NOT Send(who,@CanPhaseAgain,#time=piPhaseDelay)
+      {
+         return FALSE;
+      }
+
+      return TRUE;
+   }
+
+   AdjustVisualEffectBasedOnTimeRemaining(who = $)
+   {
+      local iTimeLeft, iBrightnessLevel;
+
+      iTimeLeft = Send(who,@GetRemainingPhaseTime) / 1000;
+      iBrightnessLevel = 0;
+
+      if iTimeLeft < 10
+      {
+         iBrightnessLevel = 5;
+         Send(who,@MsgSendUser,#message_rsc=phase_time_gone);
+      }
+      else if iTimeLeft < 25
+      {
+         iBrightnessLevel = 4;
+         Send(who,@MsgSendUser,#message_rsc=phase_time_low);
+      }
+      else if iTimeLeft < 35
+      {
+         iBrightnessLevel = 3;
+      }
+      else if iTimeLeft < 45
+      {
+         iBrightnessLevel = 2;
+      }
+      else if iTimeLeft < 60
+      {
+         iBrightnessLevel = 1;
+      }
+
+      Send(who,@EffectSendUserXlat,#xlat=(PHASE_OUT_XLAT + iBrightnessLevel));
+
+      return;
+   }
+
+   CastSpell(who=$,lTargets=$)
+   {
+      local oRoom;
+
+      if Send(who,@CheckPlayerFlag,#flag=PFLAG_PHASED)
+      {
+         Send(who,@RemoveEnchantment,#what=self);
+      }
+      else
+      {
+         Send(self,@AdjustVisualEffectBasedOnTimeRemaining,#who=who);
+         Send(who,@BreakTrance,#event=EVENT_STEER);
+         Send(who,@FreezeAllEnchantments);
+         Send(who,@SetPlayerFlag,#flag=PFLAG_PHASED,#value=TRUE);
+         oRoom = Send(who,@GetOwner);
+         if (oRoom <> $)
+         {
+            Send(oRoom,@SomethingPhasedOut,#what=who,
+                  #iHealth=Send(who,@GetHealth),
+                  #iMaxHealth=Send(who,@GetMaxHealth));
+         }
+         // Post this because FreezeAllEnchantments checks for phase applied
+         Post(who,@StartEnchantment,#what=self);
+         Post(who,@StartPhaseTimer);
+         Post(who,@EffectSendUser,#what=self,#effect=EFFECT_PARALYZE_ON);
+      }
+
+      propagate;
+   }
+
+   RestartEnchantmentEffect(who = $, state = $)
+   {
+      Send(who,@EffectSendUser,#what=self,#effect=EFFECT_PARALYZE_ON);
+      Send(who,@SetPlayerFlag,#flag=PFLAG_PHASED,#value=TRUE);
+
+      return;
+   }
+
+   SetSpellPlayerFlag(who = $)
+   {
+      Send(who,@SetPlayerFlag,#flag=PFLAG_NO_MOVE,#value=TRUE);
+      Send(who,@SetPlayerFlag,#flag=PFLAG_NO_FIGHT,#value=TRUE);
+      Send(who,@SetPlayerFlag,#flag=PFLAG_NO_MAGIC,#value=TRUE);
+      Send(who,@SetPlayerFlag,#flag=PFLAG_PHASED,#value=TRUE);
+
+      Send(who,@SetPlayerDrawFX,#drawfx=DRAWFX_DITHERINVIS);
+
+      return;
+   }
+
+   EndEnchantment(who = $,report = TRUE,state = $)
+   {
+      local oRoom;
+
+      Send(who,@EffectSendUserXlat,#xlat=0);
+      Send(who,@SetPlayerFlag,#flag=PFLAG_PHASED,#value=FALSE);
+      Send(who,@FreezePhaseTimer);
+
+      // Don't override Hold.
+      if NOT Send(who,@IsEnchanted,#byClass=&Hold)
+         AND NOT Send(who,@IsEnchanted,#byClass=&DMHold)
+      {
+         Send(who,@EffectSendUser,#what=self,#effect=EFFECT_PARALYZE_OFF);
+      }
+
+      // Reactivate enchantments before telling room we phased in.
+      Send(who,@ReactivateAllEnchantments);
+
+      // Note that if a player logs off while phased, phase is removed after
+      // the player leaves the room preventing a phase-in followed by log.
+      oRoom = Send(who,@GetOwner);
+      if (oRoom <> $)
+      {
+         // Post so it gets processed after enchantment is fully removed
+         // from the player.
+         Post(oRoom,@SomethingPhasedIn,#what=who);
+      }
+
+      Send(who,@LogonDelay);
+
+      return;
+   }
+
+   NotifyRoomPenalty(who=$)
+   {
+      local oRoom, i, each_obj;
+
+      if who = $
+      {
+         return;
+      }
+
+      oRoom = Send(who,@GetOwner);
+      if oRoom = $
+      {
+         return;
+      }
+
+      foreach i in Send(oRoom,@GetplActive)
+      {
+         each_obj = Send(oRoom,@HolderExtractObject,#data=i);
+         if IsClass(each_obj,&User)
+         {
+            if each_obj = who
+            {
+               Send(each_obj,@MsgSendUser,#message_rsc=Phase_penned);
+            }
+            else
+            {
+               Send(each_obj,@MsgSendUser,#message_rsc=Phase_penned_others,
+                     #parm1=Send(who,@GetName),#parm2=Send(who,@GetHimHer));
+            }
+         }
+      }
+
+      Send(oRoom,@SomethingWaveRoom,#what=who,#wave_rsc=Phase_penned_wav_rsc);
+
+      return;
+   }
+
+   InflictPenalties(who=$)
+   {
+      if who = $
+      {
+         return;
+      }
+
+      Send(self,@NotifyRoomPenalty,#who=who);
+
+      if IsClass(who,&Player)
+         AND (NOT Send(who,@CanPlayerPvP)
+            OR Send(who,@PlayerIsImmortal))
+      {
+         Send(who,@ResetLogoffPenaltyTime);
+
+         return;
+      }
+
+      // Phased player handles the penalties and calls the spell
+      // back with the penalty numbers to send the resource.
+      Send(who,@CalculatePenalties,#what=self);
+
+      return;
+   }
+
+   SendPenaltyInfo(who=$, iXPLost=0, iItemsLost=0, iSpellPtLost=0,
+                   iSkillPtLost=0)
+   {
+      if (who = $)
+      {
+         return;
+      }
+
+      if iItemsLost = 1
+      {
+         Send(who,@MsgSendUser,#message_rsc=penalties_inflicted_one_item,
+               #parm1=iXPLost,#parm2=iSpellPtLost,#parm3=iSkillPtLost);
+      }
+      else
+      {
+         Send(who,@MsgSendUser,#message_rsc=penalties_inflicted_plural,
+               #parm1=iXPLost,#parm2=iItemsLost,#parm3=iSpellPtLost,
+               #parm4=iSkillPtLost);
+      }
+
+      return;
+   }
+
+   SuccessChance()
+   {
+      return TRUE;
+   }
+
+   CanBeRemovedByPlayer()
+   {
+      return FALSE;
+   }
+
+   SendTimeDesc(who=$)
+   {
+      local iDuration;
+
+      if who = $
+         OR NOT IsClass(who,&User)
+      {
+         propagate;
+      }
+
+      // Always returns the remaining time as an integer.
+      iDuration = Send(who,@GetRemainingPhaseTime);
+      if iDuration = $
+      {
+         iDuration = 0;
+      }
+      else
+      {
+         iDuration = iDuration / 1000;
+      }
+
+      Send(self,@SendTimeRemaining,#iTime=iDuration);
+
+      return;
+   }
+
+   SendTimeRemainingHeader(parm1=$)
+   {
+      AddPacket(4,phase_time_header);
+
+      return;
+   }
+
+   SendTimeRemainingExtra()
+   {
+      AddPacket(4,Send(self,@GetName));
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

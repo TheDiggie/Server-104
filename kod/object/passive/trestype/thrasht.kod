@@ -1,0 +1,48 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+ThrasherTreasure is TreasureType
+
+constants:
+
+   include blakston.khd
+
+classvars:
+
+   viTreasure_num = TID_THRASHER
+
+properties:
+
+   piItem_att_chance = 6
+   piDiff_seed = 6
+
+messages:
+
+   Constructed()
+   {
+      plTreasure = [ [ &BlueDragonScale, 13],
+                     [ &DarkAngelFeather, 13],
+                     [ &PurpleMushroom, 13],
+                     [ &InkyCap, 13],
+                     [ &NightVisionPotion, 6],
+                     [ &FreeActionPotion, 6],
+                     [ &BerserkerRing, 6],
+                     [ &Emerald, 10],
+                     [ &RedMushroom, 10],
+                     [ &MysticSword, 8],
+                     [ &FireArrow, 1],
+                     [ &DaemonHelm, 1]
+                   ];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

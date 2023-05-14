@@ -1,0 +1,91 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CorNothUniversity is CorNothRoom
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include coruniv.lkod
+
+   room_coruniv = coruniv.roo
+   room_name_coruniv = "The University of Cor Noth"
+
+   coruniv_music = main.ogg
+
+classvars:
+
+   vrName = room_name_coruniv
+
+   viTeleport_row = 24
+   viTeleport_col = 7
+
+properties:
+
+   viPermanent_flags = ROOM_NO_COMBAT
+   viTerrain_Type = TERRAIN_CITY | TERRAIN_SHOP
+
+   prRoom = room_coruniv
+   piRoom_num = RID_COR_UNIV
+
+   piBaseLight = LIGHT_NICE
+   piOutside_factor = 3
+
+   prMusic = coruniv_music
+
+messages:
+
+   CreateStandardExits()
+   {
+      plExits = $;
+
+      /// TO TOWN
+      plExits = Cons([ 22, 14, RID_CORNOTH, 12, 13, ROTATE_NONE ],plExits);
+      plExits = Cons([ 23, 14, RID_CORNOTH, 12, 13, ROTATE_NONE ],plExits);
+      plExits = Cons([ 23, 13, RID_CORNOTH, 12, 13, ROTATE_NONE ],plExits);
+      plExits = Cons([ 24, 14, RID_CORNOTH, 12, 13, ROTATE_NONE ],plExits);
+      plExits = Cons([ 24, 13, RID_CORNOTH, 12, 13, ROTATE_NONE ],plExits);
+
+      plExits = Cons([ 24, 3, RID_CORNOTH, 16, 3, ROTATE_NONE ],plExits);
+      plExits = Cons([ 24, 4, RID_CORNOTH, 16, 3, ROTATE_NONE ],plExits);
+      plExits = Cons([ 25, 4, RID_CORNOTH, 16, 3, ROTATE_NONE ],plExits);
+      plExits = Cons([ 25, 5, RID_CORNOTH, 16, 3, ROTATE_NONE ],plExits);
+
+      propagate;
+   }
+
+   CreateStandardObjects()
+   {
+      // Lightning
+
+      Send(self,@NewHold,#what=Create(&DynamicLight,#iColor=LIGHT_FIRE,#iIntensity=30),
+            #new_row=24,#new_col=4,#fine_row=8,#fine_col=2);
+      Send(self,@NewHold,#what=Create(&DynamicLight,#iColor=LIGHT_FIRE,#iIntensity=30),
+            #new_row=24,#new_col=13,#fine_row=59,#fine_col=30);
+      Send(self,@NewHold,#what=Create(&DynamicLight,#iColor=LIGHT_FIRE,#iIntensity=30),
+            #new_row=22,#new_col=15,#fine_row=12,#fine_col=2);
+
+      // Decoration
+
+      Send(self,@NewHold,#what=Create(&Stool),
+            #new_row=16,#new_col=12,#fine_row=12,#fine_col=56);
+      Send(self,@NewHold,#what=Create(&QuillPen),
+           #new_row=16,#new_col=12,#fine_row=32,#fine_col=16);
+      Send(self,@NewHold,#what=Create(&Candelabra),
+            #new_row=22,#new_col=6,#fine_row=6,#fine_col=42);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

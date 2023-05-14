@@ -1,0 +1,48 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+AvarChieftainTreasure is TreasureType
+
+constants:
+
+   include blakston.khd
+
+classvars:
+
+   viTreasure_num = TID_AVAR_CHIEF
+
+properties:
+
+   piItem_att_chance = 6
+   piDiff_seed = 8
+
+messages:
+
+   Constructed()
+   {
+            plTreasure = [ [ &Longbow, 5 ],
+                           [ &BattleBow, 15 ],
+                           [ &CyanMushroom, 9],
+                           [ &PolishedSeraphym, 17],
+                           [ &FireSand, 17],
+                           [ &Yrxlsap, 10],
+                           [ &TeloFruit, 5],
+                           [ &NeruditeArmor, 4],
+                           [ &KillingFieldScroll, 4],
+		                   [ &ShadowFormPotion, 5 ],
+		                   [ &NeruditeArrow, 5 ],
+		                   [ &DetectInvisibilityPotion, 3],
+		                   [ &SeduceWand, 1 ]
+                   ];
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

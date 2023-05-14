@@ -1,0 +1,157 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Invisibility is PersonalEnchantment
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include invis.lkod
+
+   invisibility_name_rsc = "invisibility"
+   invisibility_icon_rsc = iinvisib.bgf
+   invisibility_desc_rsc = \
+     "Qor cloaks your body with a shimmering field leaving you "
+     "invisible for a brief period.  "
+     "Requires one dark angel feather to cast."
+   invis_enchantment_rsc = \
+      "\n\nYour current %s enchantment adds %i defense."
+   invisibility_already_enchanted_rsc = "You are already invisible."
+
+   invisibility_on = "A shimmering field cloaks your body."
+   invisibility_off = \
+      "The shimmering field around you dissolves, leaving you "
+      "visible once more."
+   invisibility_success_rsc = "%s%s disappears from view."
+
+   invisibility_sound = qinvis.ogg
+
+classvars:
+
+   viPersonal_ench = TRUE
+
+   vrName = invisibility_name_rsc
+   vrIcon = invisibility_icon_rsc
+   vrDesc = invisibility_desc_rsc
+
+   vrAlreadyEnchanted = invisibility_already_enchanted_rsc
+   vrEnchantment_On = invisibility_on
+   vrEnchantment_Off = invisibility_off
+   vrSuccess = invisibility_success_rsc
+
+   viSpell_num = SID_INVISIBILITY
+   viSchool = SS_QOR
+   viSpell_level = 5
+   viMana = 12
+   viSpellExertion = 3
+   viMeditate_ratio = 75
+
+   vrSucceed_wav = invisibility_sound
+
+   vbCanCastOnOthers = FALSE
+
+   viDefensive = TRUE
+
+properties:
+
+   // The effectiveness of purge on the target spell as a percentage.
+   // 100 will cause purge to remove its entire spellpower, 0 will
+   // prevent purge from removing this spell.
+   viPurgeFactor = 20
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&DarkAngelFeather,1],plReagents);
+
+      return;
+   }
+
+   CastSpell(who=$,iSpellPower=0,lTargets=$)
+   {
+      // If it's only self cast, spoof self as target for following code
+      if NOT vbCanCastonOthers
+      {
+         lTargets = Cons(who, lTargets);
+      }
+
+      propagate;
+   }
+
+   SetSpellPlayerFlag(who=$)
+   {
+      Send(who,@SetPlayerFlag,#flag=PFLAG_INVISIBLE,#value=TRUE);
+
+      return;
+   }
+
+   GetDuration(iSpellPower=0)
+   {
+      local iDuration;
+
+      // 20 - 218 seconds
+      iDuration = 20 + (iSpellPower*2);
+      iDuration = iDuration * 1000;
+
+      return iDuration;
+   }
+
+   GetStateValue(iSpellpower=$,target=$)
+   {
+      Send(target,@ResetPlayerFlagList);
+      Send(target,@AddDefenseModifier,#what=self);
+
+      return iSpellpower;
+   }
+
+   EndEnchantment(who=$,report=TRUE,state=0)
+   {
+      Send(who,@RemoveDefenseModifier,#what=self);
+
+      propagate;
+   }
+
+   // Stuff we handle to be a defense modifier.
+
+   ModifyDefensePower(who=$,what=$,defense_power=0,state=$)
+   {
+      return (defense_power + 25 + Send(who,@GetEnchantedState,#what=self));
+   }
+
+   ModifyDefenseDamage(who=$,what=$,damage=$)
+   {
+      return damage;
+   }
+
+   DefendingHit(who=$,what=$)
+   {
+      return;
+   }
+
+   IsIllusion()
+   {
+      return TRUE;
+   }
+
+   EffectDesc(who=$)
+   {
+      AddPacket(4,invis_enchantment_rsc, 4,Send(self,@GetName),
+                4,25 + Send(who,@GetEnchantedState,#what=self));
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,293 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+SpiderInvasion is Invasion
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   SpiderInvasion_start_msg = \
+      "~B~k[Event]~n ~B~v Baby Spiders have started to hatch in Tos."
+
+   SpiderInvasion_end_msg = \
+      "~B~k[Event]~n ~B~v Spiders have been driven away from Tos."
+
+   SpiderInvasion_phase2_msg = \
+      "~B~k[Event]~n ~B~v Spiders are taking over Tos."
+
+   SpiderInvasion_phase3_msg = \
+      "~B~k[Event]~n ~B~v Black Spiders are taking over Tos."
+
+   SpiderInvasion_finalphase_msg = \
+      "~B~k[Event]~n ~B~v You have upset the Mother Spider."
+
+classvars:
+
+   // It is a good idea to replace the default start and stop messsages with
+   // your own.  You can also turn off the event start and stop messages if you
+   // would like it to be a suprise. (set vbAnnounce to FALSE)
+   vrStartMessage = SpiderInvasion_start_msg
+   vrEndMessage = SpiderInvasion_end_msg
+
+   vbAnnounce = TRUE
+
+properties:
+
+   plEventRooms = $
+   piBabySpiders = 50
+   piSpiders = 50
+   piBlackSpiders = 50
+   piMotherSpiders = 10
+   piActiveRoom = RID_TOS
+   piPhase = 0
+
+messages:
+
+   Constructor()
+   {
+      plEventRooms = [ RID_TOS, RID_BAR_NORTH ];
+      if piActiveRoom = RID_TOS
+      {
+         plSpawnRects = [ [[54,5],[61,13]], [[49,11],[62,27]],
+                          [[54,29],[59,40]], [[14,16],[49,21]] ];
+      }
+      else
+      {
+         if piActiveRoom = RID_BAR_NORTH
+         {
+            plSpawnRects = [ [[54,5],[61,13]], [[49,11],[62,27]],
+                             [[54,29],[59,40]], [[14,16],[49,21]] ];
+         }
+      }
+
+      propagate;
+   }
+
+   MonsterKilled(dead_monster=$,killing_player=$,corpse=$)
+   {
+      Send(self,@Update);
+	  
+      return;
+   }
+
+
+   // OPTIONAL, DO NOT CALL DIRECTLY!  The engine will call this after it ends
+   // your event
+   Delete()
+   {
+      propagate;
+   }
+
+   // OPTIONAL but a good idea to put cleanup stuff in here, the event engine
+   // calls this when ending an event, DO NOT CALL DIRECTLY!  If you want to end
+   // your event call Send(self,@NotifyEngineEndEvent)
+   EndEvent()
+   {
+      propagate;
+   }
+   
+   // REQUIRED for every game event.  The engine calls this when it is time to
+   // start your event.  DO NOT CALL DIRECTLY.  Launch events from the game event
+   // engine with Send(<engine object>,EventStart,#parm1=&<event type>) or using
+   // the event sceduling system
+   StartEvent()
+   {
+      Send(self,@PhaseOne);
+
+      propagate;
+   }
+
+   //// The rest is up to you!
+   
+   Update()
+   {
+      local oRoom;
+
+      oRoom = Send(SYS,@FindRoomByNum,#num=piActiveRoom);
+
+      if (oRoom = $)
+      {
+         propagate;
+      }
+
+      if piPhase = 1
+      {
+         if Send(oRoom,@CountMonsters,#class=&SpiderBaby) = 0
+         {
+            Send(self,@PhaseTwo);
+         }
+      }
+      else if piPhase = 2
+      {
+         if Send(oRoom,@CountMonsters,#class=&Spider) = 0
+            AND Send(oRoom,@CountMonsters,#class=&SpiderBaby) = 0
+         {
+            Send(self,@PhaseThree);
+         }
+      }
+      else if piPhase = 3
+      {
+         if Send(oRoom,@CountMonsters,#class=&DeathSpider) = 0
+            AND Send(oRoom,@CountMonsters,#class=&Spider) = 0
+            AND Send(oRoom,@CountMonsters,#class=&SpiderBaby) = 0
+         {
+            Send(self,@FinalPhase);
+         }
+      }
+      else if piPhase = 4
+      {
+         if Send(oRoom,@CountMonsters,#class=&SpiderQueen) = 0
+         {
+            // Call NotifyEngineEndEvent to handle ending the event properly. 
+            // This deletes the event from the GameEventEngine. It also calls
+            // EndEvent in this class, which handles your end of event cleanup
+            Send(self,@NotifyEngineEndEvent);
+         }
+      }
+
+      propagate;
+   }
+
+   PhaseOne()
+   {
+      local i,lSpawnPoint;
+
+      piPhase = 1;
+
+      i = piBabySpiders;
+
+      while (i > 0)
+      {
+         lSpawnPoint = Send(self,@MakeSpawnPoint);
+         Send(Send(SYS,@FindRoomByNum,#num=piActiveRoom),
+               @NewHold,#what=Create(&SpiderBaby),
+               #new_row=Nth(lSpawnPoint,1),#new_col=Nth(lSpawnPoint,2));
+         i = i - 1;
+      }
+
+      return;
+   }
+
+   PhaseTwo()
+   {
+      local i,lSpawnPoint;
+
+      piPhase = 2;
+
+      if vbAnnounce
+      {
+         Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,
+               #string=SpiderInvasion_phase2_msg);
+      }
+
+      i = piBabySpiders;
+
+      while (i > 0)
+      {
+         lSpawnPoint = Send(self,@MakeSpawnPoint);
+         Send(Send(SYS,@FindRoomByNum,#num=piActiveRoom),
+               @NewHold,#what=Create(&SpiderBaby),
+               #new_row=Nth(lSpawnPoint,1),#new_col=Nth(lSpawnPoint,2));
+         i = i - 1;
+      }
+
+      i = piSpiders;
+
+      while (i > 0)
+      {
+         lSpawnPoint = Send(self,@MakeSpawnPoint);
+         Send(Send(SYS,@FindRoomByNum,#num=piActiveRoom),
+               @NewHold,#what=Create(&Spider),
+               #new_row=Nth(lSpawnPoint,1),#new_col=Nth(lSpawnPoint,2));
+         i = i - 1;
+      }
+
+      return;
+   }
+
+   PhaseThree()
+   {
+      local i,lSpawnPoint;
+
+      piPhase = 3;
+
+      if vbAnnounce
+      {
+         Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,
+               #string=SpiderInvasion_phase3_msg);
+      }
+
+      i = piBabySpiders;
+
+      while (i > 0)
+      {
+         lSpawnPoint = Send(self,@MakeSpawnPoint);
+         Send(Send(SYS,@FindRoomByNum,#num=piActiveRoom),
+               @NewHold,#what=Create(&SpiderBaby),
+               #new_row=Nth(lSpawnPoint,1),#new_col=Nth(lSpawnPoint,2));
+         i = i - 1;
+      }
+
+      i = piSpiders;
+
+      while (i > 0)
+      {
+         lSpawnPoint = Send(self,@MakeSpawnPoint);
+         Send(Send(SYS,@FindRoomByNum,#num=piActiveRoom),
+               @NewHold,#what=Create(&Spider),
+               #new_row=Nth(lSpawnPoint,1),#new_col=Nth(lSpawnPoint,2));
+         i = i - 1;
+      }
+
+      i = piBlackSpiders;
+      
+      while (i > 0)
+      {
+         lSpawnPoint = Send(self,@MakeSpawnPoint);
+         Send(Send(SYS,@FindRoomByNum,#num=piActiveRoom),
+               @NewHold,#what=Create(&DeathSpider),
+               #new_row=Nth(lSpawnPoint,1),#new_col=Nth(lSpawnPoint,2));
+         i = i - 1;
+      }
+
+      return;
+   }
+
+   FinalPhase()
+   {
+      local oKing, i;
+
+      piPhase = 4;
+
+      if vbAnnounce
+      {
+         Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,
+               #string=SpiderInvasion_finalphase_msg);
+      }
+
+      i = piMotherSpiders;
+      
+      while (i > 0)
+      {
+		  oKing = Create(&SpiderQueen);
+		  Send(Send(SYS,@FindRoomByNum,#num=piActiveRoom),
+				@NewHold,#what=oKing,#new_row=(51+i),#new_col=(18+i));
+         i = i - 1;
+      }
+
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,32 @@
+// Quest description.
+shalofferingqt_name_rsc = de "Shal'ill Beten Quest"
+shalofferingqt_desc_rsc = de \
+   "Priesterin Xiana hat Dich eingeladen mit ihr zu singen, um die Herrin zu stärken."
+
+shalofferingqt_completed = de \
+   "Du gibst ein wenig deiner Lebenskraft an Shalill ab."
+   "Du hast ebenfalls einen mächtigen magischen Gegenstand erhalten. Wenn dieser an einem "
+   "der Schreine in der Welt platziert wird, wird er Shalill geweiht und verleit den "
+   "Zaubern Shalills mehr Kraft."
+
+// Quest resources.
+shalilleoffering_assign_2 = de \
+   "`b%NAME, reiner Schüler unserer Göttin. Gibst du Dich selber dafür auf, "
+   "so das unsere Götting stärker sein kann?"
+shalilleoffering_assign_3 = de \
+   "`bDann bete mit mir.  Zusammen werden wir unsere eigene Lebenskraft aufgeben, "
+   "als Symbol für die Reinheit unserer Göttin. Selten stehen die Sterne "
+   "so günstig wie heute, um das heilige Ritual auszuüben. Also lass uns "
+   "schnell sprechen. Spreche diese Worte mit mir: %CARGO"
+shalilleoffering_trigger_3 = de \
+   "Bei dem Licht unserer hellen Sonne, bitten wir Dich um Wiedergeburt, "
+   "Sha'lill. "
+shalilleoffering_failure_3 = de \
+   "Betreff: Ach\nAn diesem Tag haben sind wir nicht hoch genug gekommen, "
+   "aber jetzt haben wir es geschafft, dass es ausreicht. Am heutigen Tage "
+   "sind wir schwach und ohne etwas in den Händen, aber wenn die Zeit reif "
+   "ist wird Sha'lill uns nach oben tragen."
+shalilleoffering_assign_4 = de "`b%CARGO!"
+shalilleoffering_success_5 = de \
+   "`bLobet Shal'ill! Geh nun und trage die das Symbol der Reinheit unserer "
+   "Göttinin die ganze Welt.!"

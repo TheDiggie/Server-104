@@ -1,0 +1,13 @@
+Transference_name_rsc = de "transference"
+Transference_desc_rsc = de \
+  "Sends any item to your guild hall chest.  "
+  "Requires only a moment of your precious time."
+Transference_cant = de "You cannot convey %s%s to your guild hall chest."
+Transference_chest_full = de "Your guild chest can't hold anymore items."
+Transference_not_holding = de \
+  "The item must be in your inventory first."
+Transference_cast = de \
+  "Delivered %s%s to your guild hall chest."
+Transference_not_guilded = de "You must be guilded to cast this spell."
+Transference_rank_too_low = de "You are not high enough rank to access your guild hall chest."
+Transference_no_hall = de "Your guild does not own a hall. Perhaps you should complain to your guild master."

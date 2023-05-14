@@ -1,0 +1,7 @@
+dmrescue_name_rsc = de "Spieler Retten"
+dmrescue_desc_rsc = de \
+   "Schickt die Zielperson in ihre Heimatstadt. Wird dieser Zauber auf eine "
+   "Person im Schuldturm angewandt entfernt er auch 'Wurde zur Hölle "
+   "geschickt von...' aus ihrer Beschreibung."
+dmrescue_hit_rsc = de \
+   "Ein Riss im Raumgefüge tut sich auf und Du schickst %s%s nach Hause."

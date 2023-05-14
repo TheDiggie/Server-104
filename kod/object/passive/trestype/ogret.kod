@@ -1,0 +1,51 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+OgreTreasure is TreasureType
+
+constants:
+
+   include blakston.khd
+
+classvars:
+
+   viTreasure_num = TID_OGRE
+
+properties:
+
+   piItem_att_chance = 8
+   piDiff_seed = 7
+
+messages:
+
+   Constructed()
+   {
+      plTreasure = [ [ &OrcTooth, 30 ],
+                     [ &Emerald,  10 ],
+                     [ &Sapphire, 10 ],
+                     [ &Diamond,  10 ],
+                     [ &Ruby,  10 ],
+                     [ &PurpleMushroom, 5],
+                     [ &CyanMushroom, 5],
+                     [ &GrayMushroom, 5],
+                     [ &YellowMushroom, 5],
+                     [ &GreenMushroom, 5],
+                     [ &TrueLute, 1],
+                     [ &OrcShield, 1],
+                     [ &WeaponWand, 1 ],
+                     [ &Rose, 1],
+                     [ &PlateArmor, 1]
+                   ];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

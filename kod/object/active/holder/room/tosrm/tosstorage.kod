@@ -1,0 +1,65 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+//////////////////////////////////////////////////////////////////////////////////
+TosStorage is TosRoom
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include tosstorage.lkod
+
+   room_name_tosstorage = "Abandoned Storage Room"
+   room_tosstorage = tosstorage.roo
+   tosstorage_music = tos.ogg
+
+classvars:
+
+   vrName = room_name_tosstorage
+
+   viTeleport_row = 6
+   viTeleport_col = 9
+
+   viTerrain_type = TERRAIN_CITY
+
+properties:
+
+   viPermanent_flags = ROOM_NO_COMBAT
+
+   prRoom = room_tosstorage
+   piRoom_num = RID_TOS_STORAGE
+
+   piBaseLight = 100
+   piOutside_factor = OUTDOORS_NONE
+
+   prMusic = tosstorage_music
+
+messages:
+
+   CreateStandardExits()
+   {
+      plExits = $;
+
+      /// TO TOWN
+      plExits = Cons([ 6, 6, RID_TOS, 70, 18, ROTATE_180 ],plExits);
+      plExits = Cons([ 6, 7, RID_TOS, 70, 18, ROTATE_180 ],plExits);
+      plExits = Cons([ 7, 6, RID_TOS, 70, 18, ROTATE_180 ],plExits);
+      plExits = Cons([ 7, 7, RID_TOS, 70, 18, ROTATE_180 ],plExits);
+
+      plExits = Cons([ 1, 3, RID_TOS_SMUGGLERS_WAY, 36, 11, ROTATE_NONE ],plExits);
+      plExits = Cons([ 1, 4, RID_TOS_SMUGGLERS_WAY, 36, 11, ROTATE_NONE ],plExits);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

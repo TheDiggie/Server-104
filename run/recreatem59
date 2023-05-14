@@ -1,0 +1,3 @@
+#!/bin/bash
+cd /var/www/vhosts/meridian59.us/httpdocs && php blakserv.php "save" && php blakserv.php "reloadAndRecreate"
+

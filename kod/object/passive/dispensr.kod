@@ -1,0 +1,148 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+FoodDispenser is PassiveObject
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include dispensr.lkod
+
+   FoodDispenser_no_can_hold = "You can't hold anything more!"
+   FoodDispenser_none_left = "There is nary %s%s left!"
+
+classvars:
+
+   viObject_flags = OF_ACTIVATABLE | OF_NOEXAMINE
+
+properties:
+
+   vrName = $
+   vrDesc = $
+   vrIcon = $
+   piAmount_left = -1
+   piMaxAmount = 20
+   ptFillDispenser = $
+   poTemplate = $
+
+messages:
+
+   Constructor(classtype=$,amount=-1)
+   {
+      if classtype = $
+      {
+         Debug("Dispenser created without a classtype declared!");
+         Post(self,@Delete);
+
+         propagate;
+      }
+
+      poTemplate = Create(Classtype);
+      vrName = Send(poTemplate,@GetDispenserName);
+      vrDesc = Send(poTemplate,@GetDispenserDesc);
+      vrIcon = Send(poTemplate,@GetDispenserIcon);
+
+      // If we're trying to create an infinite dispenser on an item that
+      // has value, set it to have a finite amount instead.
+      if (amount < 0
+         AND Send(poTemplate,@GetValue) > 0)
+      {
+         piAmount_left = piMaxAmount;
+      }
+      else
+      {
+         piAmount_left = amount;
+         piMaxAmount = amount;
+      }
+
+      propagate;
+   }
+
+   TryActivate(who=$)
+   "Return False only if you want user.kod to send its own error message to user."
+   {
+      local oItem;
+
+      if IsClass(who,&User)
+         AND poOwner = Send(who,@GetOwner)
+      {
+         oItem = Create(GetClass(poTemplate));
+         if piAmount_left = 0
+         {
+            Send(who,@MsgSendUser,#message_rsc=FoodDispenser_none_left,
+                  #parm1=Send(oItem,@GetIndef),#parm2=Send(oItem,@GetName));
+
+            return TRUE;
+         }
+
+         if Send(who,@ReqNewHold,#what=oItem)
+         {
+            Send(oItem,@NewHoldMessage,#who=who,#disp=self);
+            Send(who,@NewHold,#what=oItem);
+            if piAmount_left > 0
+            {
+               piAmount_left = piAmount_left - 1;
+               if (ptFillDispenser = $)
+               {
+                  ptFillDispenser = CreateTimer(self,@FillDispenser,600000);
+               }
+            }
+         }
+         else
+         {
+            Send(who,@MsgSendUser,#message_rsc=FoodDispenser_no_can_hold);
+
+            return TRUE;
+         }
+      }
+
+      return TRUE;
+   }
+
+   ReqNewOwner(what = $)
+   {
+      return FALSE;
+   }
+
+   FillDispenser()
+   {
+      ptFillDispenser = $;
+
+      if (piAmount_left >= 0
+         AND piAmount_left < piMaxAmount)
+      {
+         ++piAmount_left;
+         ptFillDispenser = CreateTimer(self,@FillDispenser,600000);
+      }
+
+      return;
+   }
+
+   Delete()
+   {
+      if poTemplate <> $
+      {
+         Send(poTemplate,@Delete);
+      }
+
+      if ptFillDispenser <> $
+      {
+         DeleteTimer(ptFillDispenser);
+         ptFillDispenser = $;
+      }
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

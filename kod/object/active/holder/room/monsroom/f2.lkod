@@ -1,0 +1,7 @@
+room_name_OutdoorsF2 = de "Der Sandstrand am großen Meer"
+F2_oceanwalk = de \
+   "Du stehst bis zu den Knöcheln im Salzwasser und beschließt, dass das "
+   "tief genug ist."
+F2_icewalk = de \
+   "Das Eis sieht irgendwie zu dünn aus, als ob Du dich traust weiter raus "
+   "zu gehen"

@@ -1,0 +1,287 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+EscapedConvict is User
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+classvars:
+
+   // Amount of shillings to distribute to EACH ATTACKER.
+   viMoneyAmount = 20000
+
+   viMax_Vigor = 50000
+   viMax_Health = 50000
+   viMax_Mana = 50000
+
+   viBulk_hold_max = 1000000
+   viWeight_hold_max = 1000000
+
+properties:
+
+   // NOT IMPLEMENTED
+   // Enable Convict Pick Pocket ability.
+   // pbPickPocket = FALSE
+
+   // Queue of most recent attackers.
+   plAttackers = $
+   // Number of attackers to keep in queue.
+   piAttackers = 15
+
+   // List of treasure items
+   plTreasure = $
+
+   // List of list of numbered treasure items and value
+
+   pbDebug = FALSE
+
+   piNameColor = NC_EVENTCHAR
+
+messages:
+
+   AllowBattlerAttack(victim=$)
+   "Will not let a person attack someone who isn't pkill_enabled."
+   "Will not let a person who isn't pkill_enabled attack another person."
+   {
+      if (victim = $
+         OR Send(victim,@GetOwner) = $)
+      {
+         return FALSE;
+      }
+
+      return TRUE;
+   }
+
+   // Handles damage done to player
+   AssessDamage(what=$,damage=$,atype=0,aspell=0,stroke_obj=$,bonus=0,
+               scalefactor=1000,report=TRUE,report_resistance=TRUE,
+               absolute=FALSE)
+   {
+      local atcker;
+
+      if what <> $
+         AND IsClass(what,&Player)
+      {
+         // List already contains this player - move to top.
+         if plAttackers <> $
+            AND (FindListElem(plAttackers,what) > 0)
+         {
+            // Don't do this if they're already at the top
+            if NOT (First(plAttackers) = what)
+            {
+               plAttackers = DelListElem(plAttackers,what);
+               plAttackers = Cons(what,plAttackers);
+            }
+         }
+         else if (Length(plAttackers) < piAttackers)
+         {
+            // Player not already in list, check size and delete if needed.
+            plAttackers = Cons(what,plAttackers);
+         }
+         else
+         {
+            plAttackers = DelListElem(plAttackers,Nth(plAttackers,piAttackers));
+            plAttackers = Cons(what,plAttackers);
+         }
+      }
+
+      if pbDebug
+      {
+         foreach atcker in plAttackers
+         {
+            Debug("plAttackers: ",atcker);
+         }
+      }
+
+      propagate;
+   }
+
+   Killed(what = $)
+   {
+      local oAttacker, lTreasure, oTreasure, lInventory;
+
+      lInventory = [plActive, plPassive];
+
+      // Autogive loot to all players in plAttackers that are present
+      foreach oAttacker in plAttackers
+      {
+         if Send(self,@GetOwner) <> Send(oAttacker,@GetOwner)
+         {
+            continue;
+         }
+
+         foreach lTreasure in lInventory
+         {
+            if pbDebug
+            {
+               Debug("treasure list",lTreasure);
+            }
+
+            foreach oTreasure in lTreasure
+            {
+               if pbDebug
+               {
+                  Debug("treasure object",Send(oTreasure,@GetName));
+               }
+
+               if Send(oTreasure,@DropOnDeath)
+               {
+                  // Numbered item, include value in creation
+                  if IsClass(oTreasure,&NumberItem)
+                  {
+                     Send(oAttacker,@NewHold,#what=Create(GetClass(oTreasure),
+                           #number=Send(oTreasure,@GetNumber)));
+                  }
+                  else
+                  {
+                     Send(oAttacker,@NewHold,#what=Create(GetClass(oTreasure)));
+                  }
+               }
+            }
+         }
+      }
+
+      foreach lTreasure in lInventory
+      {
+         foreach oTreasure in lTreasure
+         {
+            if Send(oTreasure,@DropOnDeath)
+            {
+               Send(oTreasure,@Delete);
+            }
+         }
+      }
+
+      plAttackers = $;
+
+      propagate;
+   }
+
+   AdminReset()
+   {
+      piMight = 50;
+      piIntellect = 50;
+      piStamina = 50;
+      piAgility = 50;
+      piMysticism = 50;
+      piAim = 50;
+
+      Send(self,@FillHealth);
+      Send(self,@FillMana);
+      Send(self,@FillVigor);
+
+      Send(self,@GivePlayerAllSpells,#override=TRUE);
+      Send(self,@GivePlayerAllSKills,#override=TRUE);
+      Send(self,@EvaluatePKStatus);
+      Send(self,@PlayerIsIntriguing);
+      Send(self,@SetPlayerFlag,#flag=PFLAG_MURDERER,#value=TRUE);
+
+      Send(self,@EquipEscapedConvict);
+
+      return;
+   }
+
+   GetBaseMaxHealth()
+   "Override this so we can set health higher than normal."
+   {
+      return piBase_max_health;
+   }
+
+   EquipEscapedConvict()
+   {
+      if (Send(self,@FindHolding,#class=&ReagentBag) = $)
+      {
+         Send(self,@NewHold,#what=Create(&ReagentBag));
+      }
+
+      return;
+   }
+
+   AdminHarm(percent=10)
+   {
+      piHealth = piHealth - (piHealth / (100 / percent));
+      Send(self,@DrawHealth);
+
+      return piHealth;
+   }
+
+   AdminHeal(percent=10)
+   {
+      piHealth = piHealth + ((viMax_Health / (100 / percent)) * 100);
+
+      return;
+   }
+
+   FillHealth(percent=100)
+   {
+      local iAmount;
+
+      iAmount = viMax_Health * percent / 100;
+
+      piHealth = iAmount * 100;
+      piMax_Health = iAmount;
+      piBase_Max_Health = iAmount;
+      Send(self,@DrawHealth);
+      Send(self,@ResetXPToLevel);
+      Send(self,@DrawXP);
+
+      return piHealth;
+   }
+
+   FillMana(percent=100)
+   {
+      local iAmount;
+
+      iAmount = viMax_Mana * percent / 100;
+
+      piMana = iAmount;
+      piMax_Mana = iAmount;
+      Send(self,@DrawMana);
+
+      return piMana;
+   }
+
+   FillVigor(percent=100)
+   {
+      local iAmount;
+
+      iAmount = viMax_Vigor * percent / 100;
+
+      piVigor = iAmount;
+      Send(self,@DrawVigor);
+
+      return piVigor;
+   }
+
+   SendStatVigor()
+   {
+      AddPacket(1,3, 4,user_stat_vigor, 1,STAT_VALUE, 1,STAT_INTEGER,
+                4,piVigor, 4,0, 4,viMax_Vigor, 4,piVigor_rest_threshold);
+
+      return;
+   }
+
+   GetClientObjectType()
+   {
+      return OT_EVENTCHAR;
+   }
+
+   RevenantChance()
+   "No revenants for Escaped Convict."
+   {
+      return 0;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

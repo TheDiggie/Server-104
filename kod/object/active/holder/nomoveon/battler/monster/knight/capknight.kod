@@ -1,0 +1,64 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CaptainKnight is KnightA
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   capknight_name_rsc = "Undead Captain"
+   capknight_icon_rsc = Cknight.bgf
+   capknight_desc_rsc = \
+      "A captain of a once feared army, this knight is one to be avoided. "
+
+   capknight_dead_icon_rsc = CknightX.bgf
+   capknight_dead_name_rsc = "dead captain"
+
+classvars:
+
+   vrName = capknight_name_rsc
+   vrIcon = capknight_icon_rsc
+   vrDesc = capknight_desc_rsc
+   vrDead_icon = capknight_dead_icon_rsc
+   vrDead_name = capknight_dead_name_rsc
+
+   viTreasure_type = TID_KNIGHT
+   viSpeed = 8
+   viAttributes = 0
+   viLevel = 125
+   viDifficulty = 9
+   viDefault_behavior = AI_FIGHT_AGGRESSIVE | AI_FIGHT_WIZARD_KILLER
+   viCashmin = 500
+   viCashmax = 1200
+
+properties:
+
+messages:
+
+   Constructed()
+   {
+      plResistances = [ [-ATCK_SPELL_COLD, -5],
+                        [-ATCK_SPELL_SHOCK, -5],
+                        [-ATCK_SPELL_ACID, 10 ],
+                        [-ATCK_SPELL_FIRE, -5 ],
+                        [ATCK_WEAP_SLASH, 60 ],
+                        [ATCK_WEAP_NERUDITE, 35 ],
+                        [ATCK_WEAP_PIERCE, 75 ],
+                        [ATCK_WEAP_THRUST, 75 ],
+                        [ATCK_WEAP_BLUDGEON, 40 ]];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

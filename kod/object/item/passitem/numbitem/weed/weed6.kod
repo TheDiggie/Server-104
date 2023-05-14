@@ -1,0 +1,28 @@
+////////////////////////////////////////////////////////////////////////////////
+Weed6 is Weed
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Weed6_name_one_rsc = "Kraanan C-Strain"
+   Weed6_name_many_rsc = "A few ounces of Kraanan C-Strain"
+   
+   Weed6_icon_rsc = weed6.bgf
+   Weed6_desc_rsc = \
+      "This is a special strain of cannabis home grown by Cyrus  "
+      "in a grow room hidden under the arena.  With the nothing  "
+      "but the sound of battle, this strain compels the user to  "
+      "commit violent acts.  \nBetter save these up, Cyrus will  "
+      "trade you items for good weed.  "
+
+classvars:
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

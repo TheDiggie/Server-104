@@ -1,0 +1,42 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+SquareMask is FaceMask
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   SquareMask_name_rsc = "manager mask"
+   SquareMask_icon_male_rsc = squids.bgf
+   SquareMask_icon_female_rsc = squids.bgf
+   SquareMask_desc_rsc = \
+      "This mask is used by managers of the Squid Games."
+      "Do not let them find out who you are."
+
+classvars:
+
+   vrName = SquareMask_name_rsc
+   vrDesc = SquareMask_desc_rsc
+   vrIcon = SquareMask_icon_male_rsc
+
+   vrMaleIcon = SquareMask_icon_male_rsc
+   vrFemaleIcon = SquareMask_icon_female_rsc
+
+properties:
+
+
+messages:
+
+
+end
+////////////////////////////////////////////////////////////////////////////////

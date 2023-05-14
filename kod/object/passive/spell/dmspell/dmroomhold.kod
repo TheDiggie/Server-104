@@ -1,0 +1,128 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DMRoomHold is DMSpell
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include dmroomhold.lkod
+
+   dmroomhold_icon_rsc = ihold.bgf
+   dmroomhold_projectile_rsc = orcspel.bgf
+   dmroomhold_name_rsc = "room immobilize"
+   dmroomhold_desc_rsc = \
+      "Prevents movement of all players and monsters in the room for 10 "
+      "minutes.  Cast again to free the victims, or cast superior hold on "
+      "specific targets to free them."
+   dmroomhold_casted_msg = \
+      "%s%s raises %s hands, and all movement in the room ceases."
+
+classvars:
+
+   vrName = dmroomhold_name_rsc
+   vrIcon = dmroomhold_icon_rsc
+   vrDesc = dmroomhold_desc_rsc
+   vrProjectile = dmroomhold_projectile_rsc
+
+   viSpell_num = SID_SUPER_ROOM_HOLD
+
+   viMana = 0
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+
+      return;
+   }
+
+   CastSpell(who = $, lTargets = $, iSpellpower = 0)
+   {
+      local i, oRoom, each_obj, oSpell;
+
+      oRoom = Send(who,@GetOwner);
+
+      Send(oRoom,@SomeoneSaid,#type=SAY_MESSAGE,#string=dmroomhold_casted_msg,
+            #what=who,#parm1=Send(who,@GetInDef),#parm2=Send(who,@GetName),
+            #parm3=Send(who,@GetHisHer));
+
+      oSpell = Send(SYS,@FindSpellByNum,#num=SID_DMHOLD);
+
+      foreach i in Send(oRoom,@GetHolderActive)
+      {
+         each_obj = First(i);
+
+         if (NOT IsClass(each_obj,&Battler)
+            OR IsClass(each_obj,&DM))
+         {
+            continue;
+         }
+
+         // Give this spell a projectile to show something big happening.
+         Send(oRoom,@SomethingShot,#who=who,#target=each_obj,
+               #projectile=self,#flags=PROJ_FLAG_LIGHT_SOURCE);
+         Send(oSpell,@CastSpell,#who=who,#lTargets=[each_obj],
+               #iSpellpower=iSpellpower);
+      }
+
+      propagate;
+   }
+
+   SendLookAnimation()
+   {
+      AddPacket(1,ANIMATE_NONE,2,1);
+
+      return;
+   }
+
+   GetProjectileIcon()
+   {
+      return vrProjectile;
+   }
+
+   GetProjectileSpeed()
+   {
+      return 12;
+   }
+
+   SendProjectileAnimation()
+   {
+      // 40ms between animations
+      AddPacket(1, ANIMATE_CYCLE, 4, 40, 2, 1, 2, 8);
+
+      return;
+   }
+
+   GetProjectileLightFlags()
+   {
+      // General lighting information.
+      return LIGHT_FLAG_ON | LIGHT_FLAG_DYNAMIC;
+   }
+
+   GetProjectileLightIntensity()
+   {
+      // Medium light radius for projectiles.  Out of 255 levels.
+      return 100;
+   }
+
+   GetProjectileLightColor()
+   {
+      return LIGHT_RED;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

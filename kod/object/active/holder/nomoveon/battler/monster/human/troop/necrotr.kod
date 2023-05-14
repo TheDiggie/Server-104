@@ -1,0 +1,123 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+NecromancerTroop is FactionTroop
+
+constants:
+
+include blakston.khd
+
+   FACTIONTROOP_TRANSLATION_Skin_MASK = 0xff0000
+   FACTIONTROOP_TRANSLATION_Skin_MUL = 0x10000
+
+resources:
+
+   include necrotr.lkod
+
+   NecromancerTroop_name_rsc = "necromancer"
+
+   NecromancerTroop_desc_rsc = \
+      "Transfixed under the unearthly stare of this foul being, your "
+      "mind skitters fearfully around the thought of the dark rituals "
+      "which must have transformed it into what it is.  Indeed, the "
+      "necromancer is an unliving testimonial to the terrible price "
+      "of magical power."
+
+   NecromancerTroop_dead_name_rsc = "dead necromancer"
+   NecromancerTroop_sound_aware = skl2_awr.ogg
+
+classvars:
+
+   vrName = NecromancerTroop_name_rsc
+   vrDesc = NecromancerTroop_desc_rsc
+   vrDead_name = NecromancerTroop_dead_name_rsc
+
+   viSpeed = SPEED_AVERAGE
+   viAttack_type = ATCK_WEAP_SLASH
+   viAttributes = 0
+   vbIsUndead = TRUE
+   viDefault_behavior = AI_FIGHT_NEWBIESAFE | AI_MOVE_REGROUP
+   viVisionDistance = 18
+   viTreasure_type = TID_NECRO
+   viCashmin = 3000
+   viCashmax = 4000
+   viChanceFemale = 1  // percentage chance to be female
+
+   viColorTranslate1 = XLAT_TO_GRAY     // Shirt
+   viColorTranslate2 = XLAT_TO_BLACK   // Pants
+
+   // Old guildshield info.
+   // viShieldColor1 = XLAT_TO_RED
+   // viShieldColor2 = XLAT_TO_RED
+   // viShieldShape = SHIELDSHAPE_HORIZ
+   // viInsignia = INSIG_QOR
+   vcShieldClass = &NecromancerShield
+
+   viFaction = FACTION_NECROMANCER
+
+   viBonusXP = 500
+   viBonusTP = 2
+
+properties:
+
+   piBaseLevel = 150
+   viLevel = 150
+   viKarma = -150
+   piBaseDifficulty = 2
+   viDifficulty = 4
+
+   piBody_translations = 0
+   vrSound_aware = NecromancerTroop_sound_aware
+
+messages:
+
+   Constructed()
+   {
+		Send(self,@SetResistances);
+		
+		propagate;
+   }
+   
+   SetSkinColor()
+   // Sets skin to one of the four skin colors.
+   {
+      local skin_color;
+      skin_color = PT_BLUE_TO_ASHEN;
+
+      piBody_translations = piBody_translations & ~FACTIONTROOP_TRANSLATION_SKIN_MASK;
+      piBody_translations = piBody_translations | (skin_color * FACTIONTROOP_TRANSLATION_SKIN_MUL);
+
+      return;
+   }
+
+   // Overwrites base class
+   SetKarma()
+   {
+      viKarma = -150;
+
+      return;
+   }
+
+   SetResistances()
+   {
+      plResistances = [ [ATCK_WEAP_PIERCE, 70 ],
+                        [ATCK_WEAP_THRUST, 20 ],
+                        [-ATCK_SPELL_UNHOLY, 70 ],
+                        [-ATCK_SPELL_SHOCK, 70 ],
+                        [-ATCK_SPELL_COLD, 70 ],
+                        [-ATCK_SPELL_FIRE, -10 ],
+                        [-ATCK_SPELL_HOLY, -20 ],
+                        [ATCK_WEAP_BLUDGEON, -20 ]
+                      ];
+
+      return;
+   }
+end
+////////////////////////////////////////////////////////////////////////////////

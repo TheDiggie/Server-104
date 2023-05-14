@@ -1,0 +1,117 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+RazaSmith is RazaRoom
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include razasmith.lkod
+
+   room_name_razasmith = "The Blacksmith of Raza"
+   room_razasmith = razasmith.roo
+   razasmith_music = smithy.ogg
+
+   fire_sound_razasmith = fireplac.ogg
+
+   razasmith_signname = "Buying items"
+   razasmith_sign = \
+      "You've come into this world virtually empty handed.  Fortunately, "
+      "you also started with a bit of cash (and a weapon!), so you can buy "
+      "some items to get started.\n\nGo up to the blacksmith, press the "
+      "enter key to get to the chat window, type BUY and press enter "
+      "again (CTRL-B is the shortcut for buying items).  "
+      "A list of items that the blacksmith has for sale will appear.  Choose "
+      "the items you want, and then press [OK].  First buy a shield, and then "
+      "some armor.  If you have enough money to pay for them all, they will "
+      "appear in your inventory.\n\n"
+      "To equip items from your inventory, press the little chest icon below "
+      "the mini-map to the right of the graphics window.  Right-click on the "
+      "item you want to use, and press the [USE] button.  A yellow glow will "
+      "appear around it, meaning that you're wielding it.  Repeat this for "
+      "your weapon, armor and shield.  To remove an object from use, simply "
+      "right-click the object and press the [UNUSE] button.\n\nYou may also "
+      "just double-click on an item in your inventory to use or unuse it."
+      "\n\n-------------\n\n" 
+      "When you're done here you should go to the tavern, the large brown "
+      "building at the west end of town with the cup and bottle sign next "
+      "to the door."
+
+classvars:
+
+   vrName = room_name_razasmith
+
+   viTeleport_row = 5
+   viTeleport_col = 4
+   viTeleport_angle = ANGLE_NORTH_WEST
+
+   viTerrain_type = TERRAIN_CITY | TERRAIN_SHOP
+
+properties:
+
+   viPermanent_flags = ROOM_NO_COMBAT
+
+   prRoom = room_razasmith
+   piRoom_num = RID_RAZA_SMITH
+
+   piBaseLight = LIGHT_NICE
+   piOutside_factor = OUTDOORS_SOME
+
+   prMusic = razasmith_music
+
+messages:
+
+   Constructed()
+   {
+      plLooping_sounds = [[ fire_sound_razasmith, 9, 6 ]];
+
+      propagate;
+   }
+
+   CreateStandardExits()
+   {
+      plExits = $;
+
+      /// TO TOWN
+      plExits = Cons([ 4, 3, RID_RAZA, 18, 47, ROTATE_NONE ],plExits);
+      plExits = Cons([ 4, 4, RID_RAZA, 18, 47, ROTATE_NONE ],plExits);
+
+      propagate;
+   }
+
+   CreateStandardObjects()
+   {
+      local oSign;
+
+      Send(self,@NewHold,#what=Create(&RazaBlacksmith),
+            #new_row=7,#new_col=7,#fine_row=24,#fine_col=24,#new_angle=ANGLE_SOUTH);
+
+      oSign = Create(&Sign,#desc=razasmith_sign,#name=razasmith_signname,#newbie=TRUE);
+      Send(self,@NewHold,#what=oSign,#new_row=7,#new_col=5,#fine_row=24,#fine_col=24);
+
+      // Lighting
+      //  Forge
+      Send(self,@NewHold,#what=Create(&DynamicLight,#iColor=LIGHT_BORANGE,#iIntensity=30),
+            #new_row=9,#new_col=6,#fine_row=16,#fine_col=24);
+
+      //  Torches
+      Send(self,@NewHold,#what=Create(&DynamicLight,#iColor=LIGHT_FIRE,#iIntensity=30),
+            #new_row=7,#new_col=4,#fine_row=53,#fine_col=35);
+      Send(self,@NewHold,#what=Create(&DynamicLight,#iColor=LIGHT_FIRE,#iIntensity=30),
+            #new_row=4,#new_col=8,#fine_row=6,#fine_col=38);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

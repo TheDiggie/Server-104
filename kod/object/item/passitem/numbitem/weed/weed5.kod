@@ -1,0 +1,28 @@
+////////////////////////////////////////////////////////////////////////////////
+Weed5 is Weed
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Weed5_name_one_rsc = "Jala C-Strain"
+   Weed5_name_many_rsc = "A few ounces of Jala C-Strain"
+   
+   Weed5_icon_rsc = weed5.bgf
+   Weed5_desc_rsc = \
+      "This is a special strain of cannabis home grown by Cyrus in "
+      "a hidden grow room. Rumors say only Parrin can find it.  This   "
+      "strain is played music its entier growth cycle. The genre  "
+      "is changed with each season.  \nBetter save these up, Cyrus will  "
+      "trade you items for good weed.  "
+
+classvars:
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

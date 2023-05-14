@@ -1,0 +1,301 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Boon is Spell
+
+// Boons are long term enchantments that last over a period of real time days.
+// They work via enchantment timers that are restared every hour for the
+// duration of the boon.  Boons can also work as banes.  
+
+constants:
+
+   include blakston.khd
+
+   BOON_HOUR = 3600000
+   BOON_DEFAULT_LENGTH = 1    // in realtime weeks
+   BOON_DEFAULT_AMOUNT = 5
+   HOURS_LOGGED_ON_PER_DAY = 2
+
+resources:
+
+   include boon.lkod
+
+   boon_look_rsc = "%s\n%r"
+   boon_caster_msg = "You cast %s on %s%s."
+
+classvars:
+
+   viMana = 0
+   viSpell_level = 50
+   viSpellExertion = 0
+   viSchool = SS_DM_COMMAND
+   viPersonal_ench = FALSE
+   viFlash = FLASH_GOOD
+
+properties:
+
+messages:
+
+   ResetReagents()
+   "Reagents for DM and NPC spells = nil"
+   {
+      plReagents = $;
+
+      return;
+   }
+
+   CanPayCosts(who=$, lTargets = $)
+   "Checks to be sure that only NPCs and DMs use this command."
+   {
+      local oTarget;
+
+      if NOT (IsClass(who,&DM) OR IsClass(who,&Monster))
+      {
+         Debug("Mortal has Boon Spells!");
+
+         return FALSE;
+      }
+
+      oTarget = First(lTargets);
+      if NOT IsClass(oTarget,&User)
+      {
+         Send(who,@MsgSendUser,#message_rsc=spell_bad_target,
+               #parm1=vrName,#parm2=Send(oTarget,@GetDef),
+               #parm3=Send(oTarget,@GetName));
+
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+   CastSpell(who = $, lTargets = $, iSpellPower = 0)
+   {
+      local iAmount, iNumEnchantHours, iState, oTarget;
+
+      iNumEnchantHours = Send(self,@DecodeDuration,#Compound=iSpellPower);
+      iAmount = Send(self,@DecodeAmount,#Compound=iSpellPower);
+
+      oTarget = First(lTargets);
+
+      if who <> $
+      {
+         if IsClass(who,&DM)
+         {
+            iNumEnchantHours = HOURS_LOGGED_ON_PER_DAY * BOON_DEFAULT_LENGTH * 7;
+            iAmount = BOON_DEFAULT_AMOUNT;
+         }
+      }
+
+      iState = (iNumEnchantHours * 100) + Abs(iAmount);
+      if iAmount < 0
+      {
+         iState = -iState;
+      }
+
+      Send(self,@DoSpellEffect,#who=oTarget,#amount=iAmount);
+
+      Send(oTarget,@StartEnchantment,#what=self,#time=BOON_HOUR,#state=iState);
+      if who <> $
+      {
+         if IsClass(who,&DM)
+         {
+            Send(who,@MsgSendUser,#message_rsc=boon_caster_msg,
+                  #parm1=Send(self,@GetName),#parm2=Send(oTarget,@GetDef),
+                  #parm3=Send(oTarget,@GetName));
+         }
+      }
+
+      Send(self,@PlaySpellSound,#room_obj=Send(oTarget,@GetOwner),#what=oTarget);
+
+      return;
+   }
+
+   IsPersonalEnchantment()
+   {
+      return FALSE;
+   }
+
+   GetNumSpellTargets()
+   {
+      return 1;
+   }
+
+   DoSpellEffect(who = $, amount = $)
+   {
+      return;
+   }
+
+   UndoSpellEffect(who = $, amount = $)
+   {
+      return;
+   }
+
+   DecodeDuration(Compound = $)
+   {
+      local iDuration;
+
+      iDuration = (Compound % 10) * HOURS_LOGGED_ON_PER_DAY;
+      // We accept negative effects, but not durations
+      iDuration = Abs(iDuration);
+
+      return iDuration;
+   }
+
+   DecodeAmount(Compound = $)
+   {
+      return Compound / 10;
+   }
+
+   AddBoon(target = $, days = $, amount = $)
+   {
+      local iSpellPower;
+
+      iSpellPower = days;
+      iSpellPower += Abs(amount * 10);
+      if amount < 0
+      {
+         iSpellPower = -iSpellPower;
+      }
+
+      Send(self,@CastSpell,#lTargets=[target],#iSpellPower=iSpellPower);
+
+      return;
+   }
+
+   RemoveEnchantmentEffects(who = $, state = $, report = TRUE)
+   {
+      local iState;
+
+      if state < 0
+      {
+         iState = -(state % 100);
+      }
+      else
+      {
+         iState = state % 100;
+      }
+
+      Send(self,@EndEnchantment,#who=who,#state=iState,#report=report);
+
+      return;
+   }
+
+   SuccessChance()
+   "NPC, DMs spells always succeed."
+   {
+      return TRUE;
+   }
+
+   CanForget()
+   {
+      return FALSE;
+   }
+
+   EndEnchantment(who = $, state = 0, report = TRUE)
+   {
+      if (state / 100 = 0)
+      {
+         state *= 1;
+         Send(self,@UndoSpellEffect,#who=who,#amount=state);
+      }
+      else
+      {
+         if state > 0
+         {
+            state -= 100;
+         }
+         else
+         {
+            state += 100;
+         }
+
+         Send(who,@StartEnchantment,#what=self,#time=BOON_HOUR,#state=state);
+      }
+
+      return;
+   }
+
+   CanBeRemovedByPlayer()
+   "Returns if a spell can be removed by normal Purge/Purify"
+   {
+      // Can't remove boon spells with purify or purge
+      return TRUE;
+   }
+
+   ShowDesc(who=$)
+   "Adds a warning line to the look description."
+   {
+      if who = $
+         OR (IsClass(who,&User)
+            AND NOT Send(who,@IsEnchanted,#what=self))
+      {
+         AddPacket(4,vrDesc);
+
+         return;
+      }
+
+      AddPacket(4, boon_look_rsc, 4,vrDesc);
+      Send(self,@SendTimeDesc,#who=who);
+
+      return;
+   }
+
+   SendTimeDesc(who=$)
+   {
+      local i, iHours, iDuration, iNewDuration, iTime, oList;
+
+      oList = Send(who,@GetEnchantmentList);
+
+      iDuration = 0;
+      iHours = 0;
+
+      foreach i in oList
+      {
+         if Nth(i,2) = self
+         {
+            iTime = First(i);
+            if IsTimer(iTime)
+            {
+               iNewDuration = GetTimeRemaining(iTime);
+            }
+            else
+            {
+               // Should be an integer
+               iNewDuration = iTime;
+            }
+            iHours = Abs(Nth(i,3)) / 100;
+            iNewDuration = iNewDuration / 1000 + iHours * 3600;
+            // We can have multiple copies of the same boon, so
+            // use the lowest duration one.
+            if iDuration = 0
+               OR iNewDuration < iDuration
+            {
+               iDuration = iNewDuration;
+            }
+         }
+      }
+
+      // If we somehow ended up with $, set iDuration to 0. This isn't
+      // likely to happen, but check anyway.
+      if iDuration = $
+      {
+         iDuration = 0;
+      }
+
+      // This message picks the appropriate resources for the duration given,
+      // and sends them to the user.
+      Send(self,@SendTimeRemaining,#iTime=iDuration);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

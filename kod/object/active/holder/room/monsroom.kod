@@ -1,0 +1,467 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+MonsterRoom is Room
+
+constants:
+
+   include blakston.khd
+
+   DEFAULT_GEN_TIME = 15000
+   DEFAULT_GEN_PERCENT = 100
+   
+resources:
+
+classvars:
+
+   // If true, reduce monster spawn rate when there are few players in the room
+   vbScaleSpawnRateWithPlayers = FALSE
+   
+properties:
+
+   piGen_Time = DEFAULT_GEN_TIME
+   ptGen = $
+
+   ptOkay_To_Load = $
+   pbOkay_To_Load = TRUE
+
+   // Timer makes 'em wait before new batch loads.
+
+   // This is how long they have to wait before room resets, in ms.
+   piReload_Wait_Time = 90000
+
+   // Only loads the first monster in list plMonsters if set to true.
+   pbLoad_first_monster_only = FALSE
+
+   // Minimum # of monsters loaded by first_user_enters.
+   piInit_count_min = 1
+
+   // Maximum # of monsters loaded by initial load.
+   //  Must never be greater than # of available coordinates!
+   piInit_count_max = 5
+
+   // percentage chance that you'll get a new monster when timer expires
+   piGen_percent = DEFAULT_GEN_PERCENT
+
+   // maximum number of total monsters a room can hold       
+   piMonster_count_max = 10
+
+   // Number of monsters currently in room
+   piMonster_count = 0
+
+   // List of monsters we spawn, if for: [monster class, chance to spawn]
+   plMonsters = $
+
+   // Should we generate monsters?
+   pbGenerateMonsters = TRUE
+
+   // Is this a room where monsters grow in strength?
+   piLevel = 0
+
+   // Monster Portals
+   oDuskRatPortal = $
+
+messages:
+
+   Delete()
+   {
+      if ptGen <> $
+      {
+         DeleteTimer(ptGen);
+         ptGen = $;
+      }
+
+      if ptOkay_To_Load <> $
+      {
+         DeleteTimer(ptOkay_To_Load);
+         ptOkay_To_Load = $;
+         pbOkay_To_Load = TRUE;
+      }
+
+      propagate;
+   }
+
+   GetMonsterList()
+   {
+      return plMonsters;
+   }
+
+   GetMonsterGenTime()
+   {
+      local iWaitTime, iNumberOfPlayers, iMaxPlayers;
+      // GetSpawnRate =  100
+      // iWaitTime = (20000 * (100 / 100));
+      // iWaitTime = 20000
+
+      // GetSpawnRate =  300
+      // iWaitTime = (20000 * (300 / 100));
+      // iWaitTime = 60000
+     
+      // GetSpawnRate =  1
+      // iWaitTime = (20000 * (300 / 100));
+      // iWaitTime = 200
+      iWaitTime = (piGen_Time * Send(SETTINGS_OBJECT,@GetSpawnRate)) / 100;
+
+      // Reduce spawn time for up to 5 people.
+      iNumberOfPlayers = Send(self,@CountHoldingHowMany,#class=&Player);
+
+      iMaxPlayers = 5;
+      if vbScaleSpawnRateWithPlayers
+      {
+         iNumberOfPlayers = Bound(iNumberOfPlayers,1,iMaxPlayers);
+      }
+      else
+      {
+         // Always have max spawn rate
+         iNumberOfPlayers = iMaxPlayers;
+      }
+      iWaitTime = iWaitTime / iNumberOfPlayers;
+
+      return iWaitTime;
+   }
+
+   MonsterGenTimer()
+   {
+      ptGen = $;
+
+      Send(self,@TryCreateMonster);
+
+      ptGen = CreateTimer(self,@MonsterGenTimer,Send(self,@GetMonsterGenTime));
+
+      return;
+   }
+
+   SetMonsterGeneration(bValue=TRUE)
+   {
+      pbGenerateMonsters = bValue;
+
+      return;
+   }
+
+   CanMonsterGenerate()
+   {
+      return pbGenerateMonsters;
+   }
+
+   TryCreateMonster(initroom = FALSE,loadfirst = FALSE)
+   "Will try to create a monster in the room.  Initroom=TRUE means it's"
+   "being called when first player enters."
+   {
+      local oMonster,iRoll,iTotal,lMonster_info,iRow,iCol,lPos;
+
+      if NOT Send(self,@IsMonsterCountBelowMax)
+         OR NOT pbGenerateMonsters
+      {
+         return FALSE;
+      }
+
+      iRoll = Random(1,100);
+      if (iRoll > piGen_percent) AND (initroom=FALSE)
+      {
+         return FALSE;
+      }
+
+      if NOT loadfirst
+      {
+         iRoll = Random(1,100);
+      }
+      else
+      {
+         iRoll = 1;
+      }
+
+      iTotal = 0;
+      foreach lMonster_info in plMonsters
+      {
+         iTotal = iTotal + Nth(lMonster_info,2);
+
+         if iRoll <= iTotal
+         {
+            if IsClass(self,&SurvivalRoom)
+            {
+               oMonster = Create(First(lMonster_info),#piSurvivalLevel=piLevel);
+            }
+            else
+            {
+               oMonster = Create(First(lMonster_info));
+            }
+
+            if NOT Send(self,@GenerateMonster,#oMonster=oMonster)
+            {
+               return FALSE;
+            }
+
+            break;
+         }
+      }
+
+      return TRUE;
+   }
+
+   IsMonsterCountBelowMax()
+   {
+      return (piMonster_count < piMonster_count_max); 
+   }
+
+   NewHold(what = $)
+   {
+      if IsClass(what,&Monster)
+      {
+         piMonster_count = piMonster_count + 1;
+      }
+
+      propagate;
+   }
+
+   LeaveHold(what = $)
+   {
+      if IsClass(what,&Monster)
+      {
+         piMonster_count = piMonster_count - 1;
+      }
+
+      propagate;
+   }
+
+   FirstUserEntered(what = $)
+   "This is run when a player first enters the room.  Loads a random #"
+   "of critters to keep things lively.  Loads no monsters if there"
+   "are already monsters here or if area cleaned out recently"
+   {
+      local iHowMany, oMonster, iLength, i, bFound;
+
+      iLength = Length(plGenerators);
+
+      if NOT pbGenerateMonsters
+      {
+         propagate;
+      }
+
+      if ptGen <> $
+      {
+         Debug("Monster room got firstuserentered when apparently that wasn't true");
+
+         propagate;
+      }
+
+      // Find a monster in the room, and update our count of monsters in the
+      // in the room.  Sometimes this becomes inaccurate.
+      bFound = FALSE;
+      piMonster_Count = 0;
+      foreach i in plActive
+      {
+         oMonster = Send(self,@HolderExtractObject,#data=i);
+         // Count monsters, but not NPCs.
+         if IsClass(oMonster,&Monster)
+            AND NOT Send(oMonster,@HasAttribute,#mask=MOB_NOFIGHT)
+         {
+            bFound = TRUE;
+
+            // Increment our monster count.
+            piMonster_Count = piMonster_Count + 1;
+         }
+      }
+
+      if bFound OR NOT pbOkay_To_Load
+      {
+         ptGen = CreateTimer(self,@MonsterGenTimer,
+                                    Send(self,@GetMonsterGenTime));
+
+         propagate;
+      }
+
+      iHowMany = Random(piInit_count_min,piInit_count_max); 
+
+      if iHowMany > iLength
+      {
+         iHowMany = iLength;
+      }
+
+      while iHowMany > 0 AND piMonster_Count < piMonster_count_max
+      {
+         Send(self,@TryCreateMonster,#initroom=TRUE,
+               #loadfirst=pbLoad_First_Monster_Only);
+         --iHowMany;
+      }
+
+      ptGen = CreateTimer(self,@MonsterGenTimer,Send(self,@GetMonsterGenTime));
+
+      propagate;
+   }
+
+   OkayToLoadTimer()
+   "When a player leaves a room with no monsters in it, this timer starts"
+   "to be sure a player doesn't return immediately and trigger a reset."
+   {
+      ptOkay_To_Load = $;
+      pbOkay_To_Load = TRUE;
+
+      return;
+   }
+
+   LastUserLeft(what = $)
+   "OkaytoloadTimer started if no monsters are left alive, to prevent"
+   "Endless exp boosting."
+   {
+      local iWaitTime;
+
+      if ptGen <> $
+      {
+         DeleteTimer(ptGen);
+         ptGen = $;
+      }
+      else if pbGenerateMonsters
+      {
+         Debug("Monster room had $ ptGen timer in LastUserLeft, room ",
+               Send(self,@GetName));
+      }
+
+      if (ptOkay_To_Load = $) AND (piMonster_count = 0)
+      {
+         iWaitTime = (piReload_Wait_Time
+                        * Send(SETTINGS_OBJECT,@GetSpawnRate)) / 100;
+         ptOkay_To_Load = CreateTimer(self,@OkaytoLoadTimer,iWaitTime);
+         pbOkay_To_Load = FALSE;
+      }
+
+      propagate;
+   }
+
+   ActivateAllGenerators(cClass =$)
+   "A command to test the room--makes all generators create a monster, so"
+   "that one can easily see where the generators are."
+   {
+      local lPos, iRow, iCol, oMonster, bReqNewHold, bReqSomethingMoved,
+            iCount, iLength;
+
+      iCount = 1;  //initialize iCount
+
+      if plGenerators = $
+      {
+         Debug("There are no generators in this room!");
+
+         return 0;
+      }
+
+      iLength = Length(plGenerators);
+
+      while iCount <= iLength
+      {
+         if cClass = $
+         {
+            oMonster = Create(&Apple);
+         }
+         else
+         {
+            oMonster = Create(cClass);
+         }
+
+         lPos = Nth(plGenerators,iCount);
+         iRow = First(lPos);
+         iCol = Nth(lPos, 2);
+
+         bReqNewHold = Send(self,@ReqNewHold,#what=oMonster,
+                              #new_row=iRow,#new_col=iCol);
+         bReqSomethingMoved = Send(self,@ReqSomethingMoved,#what=oMonster,
+                                    #new_row=iRow,#new_col=iCol);
+
+         if bReqNewHold AND bReqSomethingMoved
+         {
+            Send(self,@NewHold,#what=oMonster,#new_row=iRow,#new_col=iCol,
+                  #fine_row=FINENESS_HALF,#fine_col=FINENESS_HALF);
+         }
+
+         iCount = iCount + 1;
+      }
+
+      return iCount - 1;
+   }
+
+   GetGenerators()
+   {
+      return plGenerators;
+   }
+
+   SetGenerators(generators = $)
+   {
+      if (generators = $)
+      {
+         return;
+      }
+
+      plGenerators = generators;
+
+      return;
+   
+   }
+
+   GetPatrolPaths()
+   {
+      return plPatrolPaths;
+   }
+
+   SetPatrolPaths(patrolPaths = $)
+   {
+      if (patrolPaths = $)
+      {
+         return;
+      }
+      
+      plPatrolPaths = patrolPaths;
+
+      return;
+   }
+
+   GetGenTime()
+   {
+      return piGen_Time;
+   }
+
+   SetGenTIme(time = DEFAULT_GEN_TIME)
+   {
+      piGen_Time = time;
+
+      return;
+   }
+
+   GetGenPercent()
+   {
+      return piGen_Percent;
+   }
+
+   SetGenPercent(percent = DEFAULT_GEN_PERCENT)
+   {
+      piGen_Percent = percent;
+
+      return;
+   }
+
+   PrintMobGenerators()
+   "Prints out monster spawn % and class name."
+   {
+      local i;
+
+      if (plMonsters = $)
+      {
+         return;
+      }
+
+      GodLog(Send(self,@GetName),":");
+
+      foreach i in plMonsters
+      {
+         GodLog(First(i),", ",Nth(i,2),"\%");
+      }
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

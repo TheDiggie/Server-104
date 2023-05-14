@@ -1,0 +1,796 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+///////////////////////////////////////////////////////////////////////////
+Settings is UtilityFunctions
+
+// This class keeps global game settings.
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+classvars:
+
+properties:
+
+   //
+   // Economy controls
+   //
+
+   // piMoneyFactor: How much money should be given out?  Raise this number to
+   //  increase the amount of money given out.
+   piMoneyFactor = 150
+
+   // Increase this to increase the number of items dropped from monster deaths.
+   piItemFactor = 200
+
+   // Modifier to the chance for items to be generated.
+   piMagicItemModifier = 75
+   
+   // Changed the wait for monsters to spawn.  A decrease means things
+   //  spawn faster (less time waiting between spawns).
+   piSpawnRate = 200
+
+   //
+   // Player advancement
+   //
+
+   piKillKarmaSwingNeutral = 3
+   piKillKarmaSwingMonster = 6
+   piKillKarmaSwingPlayer = 10
+
+   pbMonsterFactionEnabled = FALSE
+
+   pbAtrophyOn = FALSE
+   
+   // Stat reset options
+   pbStatsResetEnabled = TRUE
+   piStatsResetPenalty = -2
+   piFreeStatsResetCap = 19
+   piStatResetTokenLife = 40
+
+   // Stat reset token has a 1 in (piStatResetTokenDropFactor / monster_level)
+   // chance to drop, with monster_level bound between 50 and 150.
+   piStatResetTokenDropFactor = 500000
+
+   // Lore book drop facter, 1 in piLoreBookDropFactor per loot roll
+   piLoreBookDropFactor = 2000
+
+   // DefaultDeathCost:  Should always be a value between 1 and 100.  Lowering
+   //  this will lower the odds of a dead player losing health and skill/spell
+   //  percents.
+   piDefaultDeathCost = 50
+
+   // piAdvancementRate: Determines how fast or slow advancement goes for all
+   //  spells and skills.  This is a percent of normal, and only affects the
+   //  secondary chance.
+   piAdvancementRate = 600
+
+   // The training points we grant players each day to reward them for logging on.
+   piLogonBonus = 150
+
+   // The maximum amount of unbound energy we can absorb
+   piUnboundMax = 500
+
+   // The maximum percentage of XP we can absorb as unbound energy.
+   piUnboundAbsorption = 100
+
+   // The permillage of unbound energy that is lost every second. 50 means 5 percent.
+   piUnboundDecay = 50
+
+   // Delay between receiving unbound energy and decay setting in in ms.
+   piUnboundDelay = 30000
+
+   // Players can't absorb unbound energy from monsters while engaged in PvP or
+   // a short while thereafter. Default of 4 minutes.
+   piUnboundEnergyAttackDelaySec = 240
+
+   // XP percent awarded, can be raised to give a bonus.
+   piXPPercent = 100
+   
+   // How far up the food chain can basic players learn?  See player for more
+   //  specific information on what this number means.
+   piMaxLearnPoints = 16
+
+   // The default time for building group membership.
+   piDefaultGroupTime = 60000
+
+   // The maximum HP a player can suicide their character at, without admin
+   // help. Prevents people making mistakes in a fit of rage, or suiciding
+   // hacked accounts.
+   piMaxSuicideHP =  60
+
+   // FALSE if newbies never drop loot, TRUE if they do if they don't have
+   // the "new to the lands" tag.
+   pbNewbiesDropLoot = FALSE
+
+   //
+   // Spell settings
+   //
+
+   // If true, you can recast a personal enchantment on yourself if you already have it.
+   // This makes it easier to advance spells.
+   pbCanRecastSelfEnchantment = TRUE
+
+   // If true, while wearing a Jala necklace, you can cast spells even while
+   // in a trance for a Jala song.
+   pbCanRecastJalaWithNecklace = TRUE
+
+   // Can't cast a teleport spell until this long after attacking someone.  Prevents
+   // hit-and-run.  If 0, there's no restriction on when the spell can be cast.
+   // Time in seconds.
+   piTeleportAttackDelaySec = 240
+
+   // Rescue always takes at least this long to cast
+   piRescueBaseDelaySec = 5
+
+   // If true, spellpower and duration are displayed for all spells cast.
+   pbDisplaySpellData = TRUE
+
+   // If true, JoF regains hits when players kill mobs.
+   pbFrozRechargeOnKill = TRUE
+
+   // Spell items cost this much compared to casting the actual spell.
+   piItemManaCostPct = 75
+
+   // Can users buff each other in safe zones?
+   pbBuffOthersInSafeZones = TRUE
+
+   //
+   // Guild hall settings
+   //
+
+   // Are guild halls raidable?
+   pbGuildHallRaids = TRUE
+
+   // Wait one hour between raids by same guild.
+   piGuildHallRaidDelay = 3600 
+
+   // If true, "hot plate" objects (in guild halls) notify players when they're stepped on.
+   // This is used for debugging room creation.  It should normally be off.
+   pbShowHotPlates = FALSE
+
+   // If true, tell DMs when a player crosses a "hot plate" object (in a guild hall).
+   // Used for debugging the placement of hot plates.
+   pbReportHotPlates = FALSE
+
+   //
+   // Speedhack & Teleport protection
+   //
+   
+   // Maximum amount of tokens in the movement bucket
+   piMovementBucketMax = 15000000
+
+   //
+   // Penalties
+   //
+
+   //If enabled, unsafe penalties send the player to their last safe place.
+   // This is intended to prevent being players 'kept offline' by enemies.
+   pbReturnToSafetyPenaltiesEnable = TRUE
+
+   // If enabled, unsafe penalties send angeled players to their last safe
+   // place. This is intended to prevent being players 'scouting' with mules.
+   pbAngelReturnToSafetyPenaltiesEnable = TRUE
+
+   // If this is enabled a player will lose half their mana and all buffs
+   // when they log off in a safe zone. This is to prevent 'character trains'
+   // with pre-buffed characters
+   pbLogSafePenaltyEnable = FALSE
+
+   // If enabled, logoff penalties do not rise exponentially, and instead
+   // remain flat. Separate booleans for red/white players, orange handled
+   // as white.
+   pbFlatPenaltiesWhite = TRUE
+   pbFlatPenaltiesRed = TRUE
+
+   // Possible to lose XP if a penalty is harsh enough?
+   pbLoseXPOnPenalty = TRUE
+
+   // Time in milliseconds that ghosts will last before taking a penalty
+   piLogPenGhostTime = 480 * 1000
+
+   // Time in milliseconds that outlaw / murderer ghosts will last
+   // before taking a penalty
+   piOutlawMurdererLogPenGhostTime = 180 * 1000
+
+   // Seconds for which we consider the player 'active' in PvP. This includes
+   // attacking or being attacked.
+   piRecentPvPTimeSec = 900
+
+   // Booleans for whether we bypass the pen system for players who have not
+   // participated in PvP in piRecentPvPTimeSec seconds. White and red handled
+   // separately, orange players handled as white.
+   pbFreeNoPvPPenActiveWhite = TRUE
+   pbFreeNoPvPPenActiveRed = TRUE
+
+   //
+   // Miscellaneous
+   //
+
+   // Set map where players start in.
+   piInitialHomeRoomID = RID_RAZA_INN
+
+   // Enables or disables some safe-spots, see blakston.khd comments.
+   piLOSSkip = LOS_SKIP_1
+
+   // How many summoned objects can be in a room
+   piPlayerSummonedObjectLimit = 18
+
+   // Minimum number of HP you have to have to vote for or become
+   // Justicar
+   piMinHPForJusticar = 100
+
+   // Cost for Caramo to change a player's name.
+   piNameChangeCost = 3000000
+
+   // If disabled, outlaws & murderers will not be afforded the 1/3-hp damage cap protection.
+   pbDamageCapProtectionMurderersEnable = FALSE
+   
+   // Number of reflections allowed per caster.
+   piPlayerReflectionLimit = 2
+
+   // Number of minions allowed per caster.
+   piPlayerMinionLimit = 4
+   piMonsterMinionLimit = 4
+
+   // Minimum swings needed for a chance to improve a weaponcraft skill.
+   piWeaponcraftImprovementMinimumSwings = 50
+   
+   // Riija Sword drops on death? (Used to limit griefing)
+   pbRiijaSwordDropOnDeath = FALSE
+
+   // Replaces old constant
+   piPKillEnableHP = 50
+   
+   // Replaces old constant
+   piIntrigueEnableHP = 50
+   
+   // If set to true, Resist Rings will lose durability upon taking an appropriate elemental hit.
+   piResistRingLoseDurability = TRUE
+
+   // Length of hold effect players experience when logging or phasing in
+   piLogonDelay = 2500
+   
+   // Length of time the temporary guardian angel lasts, in minutes
+   piTempSafeMinutes = 360
+
+   // Revenant speed setting
+   piRevSpeed = 18
+
+   // The divisor for all skill post-softcap imp rates. Higher means harder.
+   // One means softcaps don't matter at all.
+   piSkillSoftcapPenalty = 5
+
+   // The divisor for all spell post-softcap imp rates.
+   piSpellSoftcapPenalty = 4
+
+   // Turns damage scaling for chance to hit greater than 100 percent on or off
+   piDamageScaling = FALSE
+
+   // A battler's chance to hit when offense equals defense in per MILLE
+   piEqualChanceToHit = 500
+
+   // This amount is added to a battler's offense and defense and
+   // serves as a baseline for calculation.
+   piBaseRating = 0
+
+   // Percent of mana required/used for broadcasting. Default 0 (no cost).
+   piBroadcastManaPercent = 0
+
+   // Chance for stormy weather
+   piStormChance = 15
+
+   // Setting to allow users to remove their own posts.
+   pbCanUserRemoveOwnPosts = TRUE
+
+   // How many rods can be picked up at one time.
+   piRodMax = 5
+
+   // Do safe rooms recharge rods?
+   pbInnsRechargeRods = FALSE
+
+   // Determines whether players lose faction for attacking each other
+   // in a way that requires turning safety off.
+   pbFactionLoss = FALSE
+
+   // Do all users get "logged on for first time" messages?
+   pbMsgAllForNewUser = FALSE
+
+   // Do soldiers attack all factioned players?
+   pbTroopsAttackNonShielded = FALSE
+
+   // Whether the PvP opt-out quest is available. Note that if this
+   // setting changes, you should recreate the system. Doesn't affect
+   // players that already have the flag - if this is switched off,
+   // the flag needs to be manually removed from players.
+   pbPvPOptOutEnabled = TRUE
+
+   // Do spell items cost mana to use?
+   // Mana costs were added mainly in response to ogre being
+   // much more powerful with these items.
+   pbSpellItemsCostMana = FALSE
+
+messages:
+
+   Constructor()
+   {
+      return;
+   }
+
+   GetSettingsObject()
+   "If we need to obtain the settings object, use this message."
+   {
+      return self;
+   }
+
+   Recreate()
+   {
+      return;
+   }
+
+   GetPKillEnableHP()
+   {
+      return piPKillEnableHP;
+   }
+   
+   GetIntrigueEnableHP()
+   {
+      return piIntrigueEnableHP;
+   }
+
+   //
+   // Economy controls
+   //
+
+   GetMoneyFactor()
+   {
+      return piMoneyFactor;
+   }
+
+   GetItemFactor()
+   {
+      return piItemFactor;
+   }
+
+   GetMagicItemModifier()
+   {
+      return piMagicItemModifier;
+   }
+
+   GetSpawnRate()
+   {
+      return piSpawnRate;
+   }
+   
+   //
+   // Player advancement
+   //
+
+   GetStatsResetEnabled()
+   {
+      return pbStatsResetEnabled;
+   }
+   
+   GetStatsResetPenalty()
+   {
+      return piStatsResetPenalty;
+   }
+   
+   GetFreeStatsResetCap()
+   {
+      return piFreeStatsResetCap;
+   }
+   
+   GetStatResetTokenLife()
+   {
+      return piStatResetTokenLife;
+   }
+   
+   GetStatResetTokenDropFactor()
+   {
+      return piStatResetTokenDropFactor;
+   }
+
+   GetLoreBookDropFactor()
+   {
+      return piLoreBookDropFactor;
+   }
+
+   GetDefaultDeathCost()
+   {
+      return piDefaultDeathCost;
+   }
+
+   GetAdvancementRate()
+   {
+      return piAdvancementRate;
+   }
+
+   GetLogonBonus()
+   {
+      return piLogonBonus;
+   }
+
+   GetUnboundMax()
+   {
+      return piUnboundMax;
+   }
+
+   GetUnboundAbsorption()
+   {
+      return piUnboundAbsorption;
+   }
+
+   GetUnboundDecay()
+   {
+      return piUnboundDecay;
+   }
+
+   GetUnboundDelay()
+   {
+      return piUnboundDelay;
+   }
+
+   GetXPPercent()
+   {
+      return piXPPercent;
+   }
+
+   GetKillKarmaSwingNeutral()
+   {
+      return piKillKarmaSwingNeutral;
+   }
+
+   GetKillKarmaSwingMonster()
+   {
+      return piKillKarmaSwingMonster;
+   }
+
+   GetKillKarmaSwingPlayer()
+   {
+      return piKillKarmaSwingPlayer;
+   }
+
+   GetMonsterFactionEnabled()
+   {
+      return pbMonsterFactionEnabled;
+   }
+
+   IsAtrophyOn()
+   {
+      return pbAtrophyOn;
+   }
+
+   GetMaxLearnPoints()
+   {
+      return piMaxLearnPoints;
+   }
+
+   GetDefaultGroupTime()
+   {
+      return piDefaultGroupTime;
+   }
+
+   GetMaxSuicideHP()
+   {
+      return piMaxSuicideHP;
+   }
+
+   NewbiesDropLoot()
+   {
+      return pbNewbiesDropLoot;
+   }
+
+   //
+   // Spells
+   //
+
+   CanRecastSelfEnchantment() 
+   {
+      return pbCanRecastSelfEnchantment;
+   }
+
+   CanRecastJalaWithNecklace()
+   {
+      return pbCanRecastJalaWithNecklace;
+   }
+
+   UnboundEnergyAttackDelaySec()
+   {
+      return piUnboundEnergyAttackDelaySec;
+   }
+
+   TeleportAttackDelaySec()
+   {
+      return piTeleportAttackDelaySec;
+   }
+
+   RescueBaseDelaySec()
+   {
+      return piRescueBaseDelaySec;
+   }
+
+   DisplaySpellData()
+   {
+      return pbDisplaySpellData;
+   }
+
+   CanFrozRechargeOnKill()
+   {
+      return pbFrozRechargeOnKill;
+   }
+
+   GetItemManaCostPct()
+   {
+      return piItemManaCostPct;
+   }
+
+   CanBuffOthersInSafeZones()
+   {
+      return pbBuffOthersInSafeZones;
+   }
+
+   //
+   // Guild hall settings
+   //
+
+   GuildHallRaidsEnabled()
+   {
+      return pbGuildHallRaids;
+   }
+
+   GetGuildhallRaidDelay()
+   {
+      return piGuildHallRaidDelay;
+   }
+
+   ShowHotPlates()
+   {
+      return pbShowHotPlates;
+   }
+
+   ReportHotPlates()
+   {
+      return pbReportHotPlates;
+   }
+
+   //
+   // Speedhack & teleport protection
+   //
+
+   GetMovementBucketMax()
+   {
+      return piMovementBucketMax;
+   }
+
+   //
+   // Penalties
+   //
+
+   // This returns whether players go to a room's blink spot or their last
+   // safe place when they pen
+   ReturnToSafetyPenaltiesEnabled()
+   {
+      return pbReturnToSafetyPenaltiesEnable;
+   }
+
+   // This returns whether angeled players go to a room's blink spot or
+   // their last safe place when they pen.
+   AngelReturnToSafetyPenaltiesEnabled()
+   {
+      return pbAngelReturnToSafetyPenaltiesEnable;
+   }
+
+   // Returns if a player should recive a 'penalty' for logging off
+   // in a safe zone
+   LogSafePenaltyEnable()
+   {
+      return pbLogSafePenaltyEnable;
+   }
+
+   GetFlatPenaltiesEnable(flag = 0)
+   {
+      if (flag)
+      {
+         return pbFlatPenaltiesRed;
+      }
+
+      return pbFlatPenaltiesWhite;
+   }
+
+   LoseXPOnPenalty()
+   {
+      return pbLoseXPOnPenalty;
+   }
+
+   GetLogPenGhostTime()
+   {
+      return piLogPenGhostTime;
+   }
+
+   GetOutlawMurdererLogPenGhostTime()
+   {
+      return piOutlawMurdererLogPenGhostTime;
+   }
+
+   GetRecentPvpTime()
+   {
+      return piRecentPvPTimeSec;
+   }
+
+   GetFreeNoPvPPenActive(flag = 0)
+   {
+      if (flag)
+      {
+         return pbFreeNoPvPPenActiveRed;
+      }
+
+      return pbFreeNoPvPPenActiveWhite;
+   }
+
+   //
+   // Miscellaneous
+   //
+
+   GetRiijaSwordDropOnDeath()
+   {
+      return pbRiijaSwordDropOnDeath;
+   }
+
+   GetInitialRoomID()
+   {
+      return piInitialHomeRoomID;
+   }
+
+   GetLOSSkip()
+   {
+      return piLOSSkip;
+   }
+
+   GetPlayerSummonedObjectLimit()
+   {
+      return piPlayerSummonedObjectLimit;
+   }
+
+   GetMinHPForJusticar()
+   {
+      return piMinHPForJusticar;
+   }
+
+   GetNameChangeCost()
+   {
+      return piNameChangeCost;
+   }
+
+   DamageCapProtectionMurderersEnabled()
+   {
+      return pbDamageCapProtectionMurderersEnable;
+   }
+
+   GetPlayerReflectionLimit()
+   {
+      return piPlayerReflectionLimit;
+   }
+
+   GetPlayerMinionLimit()
+   {
+      return piPlayerMinionLimit;
+   }
+
+   GetMonsterMinionLimit()
+   {
+      return piMonsterMinionLimit;
+   }
+
+   GetSwingsPerImproveCheck()
+   {
+      return piWeaponcraftImprovementMinimumSwings;
+   }
+
+   GetLogonDelay()
+   {
+      return piLogonDelay;
+   }
+
+   GetTempSafeTime()
+   {
+      return piTempSafeMinutes;
+   }
+
+   GetResistRingLoseDurability()
+   {
+      return piResistRingLoseDurability;
+   }
+
+   GetRevenantSpeed()
+   {
+      return piRevSpeed;
+   }
+
+   GetSkillSoftcapPenalty()
+   {
+      return piSkillSoftcapPenalty;
+   }
+
+   GetSpellSoftcapPenalty()
+   {
+      return piSpellSoftcapPenalty;
+   }
+
+   GetDamageScaling()
+   {
+      return piDamageScaling;
+   }
+
+   GetEqualChanceToHit()
+   {
+      return piEqualChanceToHit;
+   }
+
+   GetBaseRating()
+   {
+      return piBaseRating;
+   }
+
+   GetBroadcastManaCost()
+   {
+      return piBroadcastManaPercent;
+   }
+
+   GetStormChance()
+   {
+      return piStormChance;
+   }
+
+   CanUsersRemoveOwnPosts()
+   {
+      return pbCanUserRemoveOwnPosts;
+   }
+
+   GetMaxNumRods()
+   {
+      return piRodMax;
+   }
+
+   CanInnsRechargeRods()
+   {
+      return pbInnsRechargeRods;
+   }
+
+   FactionLossEnabled()
+   {
+      return pbFactionLoss;
+   }
+
+   MessageAllForNewUser()
+   {
+      return pbMsgAllForNewUser;
+   }
+
+   TroopsAttackNonShielded()
+   {
+      return pbTroopsAttackNonShielded;
+   }
+
+   PvPOptOutEnabled()
+   {
+      return pbPvPOptOutEnabled;
+   }
+
+   GetSpellItemsCostMana()
+   {
+      return pbSpellItemsCostMana;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

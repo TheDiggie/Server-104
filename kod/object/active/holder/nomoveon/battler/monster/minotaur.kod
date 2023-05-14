@@ -1,0 +1,143 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Minotaur is Monster
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include minotaur.lkod
+
+   minotaur_koc_name_rsc = "minotaur"
+   minotaur_name_rsc = "minotaur"
+   minotaur_icon_rsc = minotaur.bgf
+   minotaur_desc_rsc = \
+      "minotaur."
+
+   minotaur_dead_icon_rsc = minotaurX.bgf
+   minotaur_dead_name_rsc = "dead minotaur"
+
+   minotaur_sound_hit = mino_atkh.ogg
+   minotaur_sound_miss = mino_atkh.ogg
+   minotaur_sound_death = mino_dth.ogg
+   minotaur_sound_aware = mino_awr.ogg
+
+classvars:
+
+   viTreasure_type = TID_MINOTAUR
+   
+   viLevel = 200
+
+   vrKocName = minotaur_koc_name_rsc
+   vrName = minotaur_name_rsc
+   vrIcon = minotaur_icon_rsc
+   vrDesc = minotaur_desc_rsc
+   vrDead_icon = minotaur_dead_icon_rsc
+   vrDead_name = minotaur_dead_name_rsc
+
+   viSpeed = SPEED_FAST
+   viAttack_type = ATCK_WEAP_SLASH
+   viDefault_behavior = AI_FIGHT_HYPERAGGRESSIVE | AI_FIGHT_SWITCHALOT | AI_MOVE_FLEE_FRIGHTENERS
+
+   viDifficulty = 10
+
+   viKarma = -100
+
+   viCashmin = 20000
+   viCashmax = 25000
+
+   vrSound_hit = minotaur_sound_hit
+   vrSound_miss = minotaur_sound_miss
+   vrSound_aware = minotaur_sound_aware
+   vrSound_death = minotaur_sound_death
+   
+   viBonusXP = 1000
+   viBonusTP = 5
+
+properties:
+
+   piAnimation = ANIM_NONE
+
+   vbSummoned = FALSE
+
+   ptRevertControl = $
+
+messages:
+
+   Constructed()
+   {
+
+      // Give Minotaur more HP.
+      piMax_Hit_Points = piMax_Hit_Points * 2;
+      // piHit_Points uses high-precision numbers, so multiply by 100.
+      piHit_Points = piMax_Hit_Points * 100;
+
+      plResistances = [ [ATCK_WEAP_PIERCE, 70 ],
+                        [ATCK_WEAP_THRUST, 40 ],
+                        [ATCK_WEAP_BLUDGEON, -20 ],
+                        [-ATCK_SPELL_UNHOLY, 70 ],
+                        [-ATCK_SPELL_SHOCK, 70 ],
+                        [-ATCK_SPELL_COLD, 70 ],
+                        [-ATCK_SPELL_FIRE, -10 ],
+                        [-ATCK_SPELL_HOLY, -20 ]
+                      ];
+
+      propagate;
+   }
+
+
+   SendLookAnimation()
+   {
+      AddPacket(1,ANIMATE_ONCE,4,20,2,1,2,16,2,1);
+
+      return;
+   }
+
+   SendMoveAnimation()
+   {
+      // Cycle through "walking" bitmaps (groups 2-5) at 50 milliseconds per frame
+      AddPacket(1,ANIMATE_CYCLE,4,31,2,17,2,32);
+
+      return;
+   }
+
+   SendAnimation()
+   {
+      if piAnimation = ANIM_ATTACK
+      {
+         AddPacket(1,ANIMATE_ONCE,4,20,2,1,2,16,2,1);
+         return;
+      }
+
+      // if no body animation
+      
+      propagate;
+   }
+
+   Delete()
+   {
+      if ptRevertControl <> $
+      {
+         deleteTimer(ptRevertControl);
+         ptRevertControl = $;
+      }
+      propagate;
+   }
+   
+   CanMorphTo()
+   {
+      return false;
+   }
+   
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,204 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Bank is PassiveObject
+
+constants:
+
+   include blakston.khd
+
+classvars:
+
+properties:
+
+   piBank   // bank ID (BID)
+
+   // each element of this list is a list, containing
+   // user object id, amount.
+   plAccounts = $
+
+messages:
+
+   Constructor(bid = $)
+   {
+      if bid = $
+      {
+         Debug("Bank created with no bid",self);
+
+         propagate;
+      }
+
+      piBank = bid;
+
+      propagate;
+   }
+
+   Delete()
+   "Deletes this bank and removes from system's list of banks."
+   {
+      Send(SYS,@DeleteBank,#what=self);
+
+      propagate;
+   }
+
+   GetBankNum()
+   {
+      return piBank;
+   }
+
+   DepositAccount(what = $,amount = $)
+   {
+      local lAccount;
+
+      lAccount = GetListNode(plAccounts,1,what);
+
+      if (lAccount = $)
+      {
+         // Create account if not found.
+         plAccounts = Cons([what, amount],plAccounts);
+      }
+      else
+      {
+         // If already have account, add to it.
+         SetNth(lAccount,2,Nth(lAccount,2) + amount);
+      }
+
+      return;
+   }
+
+   WithdrawAccount(what = $,amount = $)
+   "If <amount> = $, then withdraw all.  Returns amount withdrawn"
+   {
+      local lAccount, iCurrent;
+
+      lAccount = GetListNode(plAccounts,1,what);
+
+      // No account, no money.
+      if (lAccount = $)
+      {
+         return 0;
+      }
+
+      iCurrent = Nth(lAccount,2);
+
+      // If no amount given or amount greater than balance,
+      // give everything and delete the account.
+      if (amount = $
+         OR (amount >= iCurrent))
+      {
+         plAccounts = DelListElem(plAccounts,lAccount);
+
+         return iCurrent;
+      }
+
+      // Remove the money from the account.
+      SetNth(lAccount,2,iCurrent - amount);
+
+      return amount;
+   }
+
+   GetAccount(what = $)
+   "Return the amount deposited by <what>"
+   {
+      local lAccount;
+
+      lAccount = GetListNode(plAccounts,1,what);
+
+      if (lAccount = $)
+      {
+         return 0;
+      }
+
+      return Nth(lAccount,2);
+   }
+
+   FixMoney(amount = $, bAreYouSure = FALSE)
+   {
+      local i, new_num;
+
+      // Check for really wanting to do this - can destroy bank accounts.
+      if (NOT bAreYouSure)
+      {
+         return;
+      }
+
+      foreach i in plAccounts
+      {
+         new_num = Nth(i,2);
+         new_num = Bound(new_num,0,amount);
+         SetNth(i,2,new_num);
+      }
+
+      return;
+   }
+
+   FindTopAccounts(number = 5)
+   {
+      local lTops, account;
+
+      number = Bound(number,1,Length(plAccounts));
+
+      while Length(lTops) < number
+      {
+         account = Send(self,@FindTopAccountHelper,#except=lTops);
+         lTops = Cons(account, lTops);
+      }
+
+      return lTops;
+   }
+
+   FindTopAccountHelper(except = $)
+   {
+      local i, best, max;
+
+      max = -1;
+
+      // Find the highest account that isn't listed in except.
+      foreach i in plAccounts
+      {
+         if Nth(i,2) >= max
+         {
+            if FindListElem(except, First(i)) = 0
+            {
+               best = i;
+               max = Nth(i,2);
+            }
+         }
+      }
+
+      if best = $
+      {
+         return $;
+      }
+
+      return First(best);
+   }
+
+   GetPlayerMoneyTotal()
+   {
+      local i, iTotal;
+
+      iTotal = 0;
+
+      foreach i in plAccounts
+      {
+         iTotal += Nth(i,2);
+      }
+
+      return iTotal;
+   }
+
+   GetBankAccounts()
+   {
+      return plAccounts;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

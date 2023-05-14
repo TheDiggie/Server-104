@@ -1,0 +1,224 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Squelch is DMSpell
+
+constants:
+   include blakston.khd
+
+resources:
+
+   include squelch.lkod
+
+   Squelch_name_rsc = "squelch"
+   Squelch_icon_rsc = isilence.bgf
+   Squelch_desc_rsc = \
+      "Takes away (or gives back) the ability for a player to "
+      "communicate via says, tells and sends, broadcasts and posts."
+
+   Squelch_msg_DM_on = "You remove %s%q's ability to %s."
+   Squelch_msg_DM_off = "You return %s%q's ability to %s."
+
+   // Types for squelch messages.
+   Squelch_broadcasts_message = "broadcast"
+   Squelch_tells_message = "send tells"
+   Squelch_globes_message = "post on the Newsglobes"
+   Squelch_says_message = "speak aloud"
+   Squelch_all_message = "communicate"
+   squelch_mails_message = "send mail"
+   squelch_appeals_message = "send appeals"
+   Squelch_msg_target_on = \
+      "Your ability to %s has been taken away."
+   Squelch_msg_target_off = \
+      "Your ability to %s has been restored."
+   Squelch_help_rsc = \
+      "You have 20 seconds to name a type of squelch to apply and a player to "
+      "apply it to. Players don't have to be logged on. Available types are:\n "
+      "'`rbroadcasts`n', '`rtells`n', '`rsays`n', '`rglobes`n','`rmails`n' and "
+      "'`rappeals`n'. If no type is given, all forms of communication (except "
+      "appeals) will be blocked for that player.  For example, if "
+      "you say `rglobes test`n, the player 'test' will lose the ability to "
+      "post.  If the player has any communication blocked, saying just the "
+      "name will remove all current blocks on that player."
+   Squelch_bad_target = "Invalid name."
+   Squelch_no_self = "You can't use this on yourself!"
+
+   // Squelch types.
+   Squelch_broadcast = "broadcasts"
+   Squelch_tells = "tells"
+   Squelch_globes = "globes"
+   Squelch_says = "says"
+   squelch_mails = "mails"
+   squelch_appeals = "appeals"
+
+classvars:
+
+   vrName = Squelch_name_rsc
+   vrIcon = Squelch_icon_rsc
+   vrDesc = Squelch_desc_rsc
+
+   viSpell_num = SID_SQUELCH
+
+properties:
+
+messages:
+
+   GetNumSpellTargets()
+   {
+      return 0;
+   }
+
+   GetTranceTime(iSpellpower=0,who=$)
+   {
+      return 20000;
+   }
+
+   DoPreTranceEffects(who=$)
+   {
+      if who <> $
+         AND IsClass(who,&DM)
+      {
+         Send(who,@MsgSendUser,#message_rsc=Squelch_help_rsc);
+      }
+
+      return;
+   }
+
+   SomethingSaidDuringTrance(who=$,string=$)
+   {
+      local i, iFlag, oTarget, bSquelched, rMessageDM, rMessageTarget,
+            rSquelchType, bFound, sName;
+
+      // First, get the type.
+      if StringContain(string,Squelch_broadcast)
+      {
+         iFlag = PFLAG2_SQUELCHED_BCAST;
+         StringSubstitute(string,Squelch_broadcast," ");
+         rSquelchType = Squelch_broadcasts_message;
+      }
+      else if StringContain(string,Squelch_tells)
+      {
+         iFlag = PFLAG2_SQUELCHED_TELLS;
+         StringSubstitute(string,Squelch_tells," ");
+         rSquelchType = Squelch_tells_message;
+      }
+      else if StringContain(string,Squelch_globes)
+      {
+         iFlag = PFLAG2_SQUELCHED_POSTS;
+         StringSubstitute(string,Squelch_globes," ");
+         rSquelchType = Squelch_globes_message;
+      }
+      else if StringContain(string,Squelch_says)
+      {
+         iFlag = PFLAG2_SQUELCHED_SAYS;
+         StringSubstitute(string,Squelch_says," ");
+         rSquelchType = Squelch_says_message;
+      }
+      else if StringContain(string,squelch_mails)
+      {
+         iFlag = PFLAG2_SQUELCHED_MAIL;
+         StringSubstitute(string,squelch_mails," ");
+         rSquelchType = squelch_mails_message;
+      }
+      else if StringContain(string,Squelch_appeals)
+      {
+         iFlag = PFLAG2_SQUELCHED_APPEAL;
+         StringSubstitute(string,squelch_appeals," ");
+         rSquelchType = squelch_appeals_message;
+      }
+      else
+      {
+         // Squelch everything.
+         iFlag = PFLAG2_SQUELCHED_ALL;
+         rSquelchType = Squelch_all_message;
+      }
+
+      bFound = FALSE;
+      foreach i in Send(SYS,@GetUsers)
+      {
+         if StringEqual(string,Send(i,@GetTrueName))
+         {
+            oTarget = i;
+            bFound = TRUE;
+
+            break;
+         }
+      }
+
+      if oTarget <> $
+         AND bFound
+      {
+         if oTarget = who
+         {
+            Send(who,@MsgSendUser,#message_rsc=Squelch_no_self);
+
+            return FALSE;
+         }
+
+         bSquelched = Send(oTarget,@SquelchPlayer,#type=iFlag);
+
+         // Log this squelch in the God Log.
+         ClearTempString();
+
+         if bSquelched
+         {
+            rMessageTarget = Squelch_msg_target_on;
+            rMessageDM = Squelch_msg_DM_on;
+            AppendTempString(" removed ");
+         }
+         else
+         {
+            rMessageTarget = Squelch_msg_target_off;
+            rMessageDM = Squelch_msg_DM_off;
+            AppendTempString(" returned ");
+         }
+
+         GodLog("DM ",Send(who,@GetTrueName),GetTempString(),
+               Send(oTarget,@GetTrueName),"'s ability to ",rSquelchType,".");
+
+         if Send(oTarget,@IsLoggedOn)
+         {
+            Send(oTarget,@MsgSendUser,#message_rsc=rMessageTarget,
+                  #parm1=rSquelchType);
+         }
+
+         // We convert the target's name to a string,
+         // since if they're offline we won't have
+         // access to their resource ID.
+         sName = CreateString();
+         SetString(sName,Send(oTarget,@GetName));
+
+         Send(who,@MsgSendUser,#message_rsc=rMessageDM,
+               #parm1=Send(oTarget,@GetDef),
+               #parm2=sName,
+               #parm3=rSquelchType);
+      }
+      else
+      {
+         Send(who,@MsgSendUser,#message_rsc=Squelch_bad_target);
+
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+   CastSpell()
+   {
+      propagate;
+   }
+
+   TranceBlocksSay()
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

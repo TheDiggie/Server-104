@@ -1,0 +1,16 @@
+// Quest description.
+bonepriestessquest_name_rsc = de "Knochenpriesterin: Orkboss Quest"
+bonepriestessquest_desc_rsc = de \
+   "Du bist etwas eingerostet in der Sprache der Avar, aber "
+   "du glaubst, dass die Priesterin den Kopf eines Orkbosses haben möchte."
+
+bonepriestessquest_completed_rsc = de \
+   "Du hast einen Orkbosskopf abgeliefert und dafür einen Schwertsplitter erhalten."
+
+// Quest resources.
+bonepriestessquest_trigger_1 = de "Riija"
+bonepriestessquest_assign_2 = de \
+   "Wak-wak! Kopp von Höhlenscheff! Wak wak wa-ak!"
+bonepriestessquest_success_2 = de "Chp chp chp chp chp chp chp!"
+bonepriestessquest_failure_2 = de \
+   "Subject:  Ik ik ak\nWak wak Riija nicht ak!  Chp Chp kp ip!"

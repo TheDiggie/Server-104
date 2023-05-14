@@ -1,0 +1,884 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Reflection is Monster
+
+// TODO BUG FIX: Somehow reflections are ending up with a nil owner.  How?
+
+constants:
+
+   include blakston.khd
+
+   MANA_DRAIN_DELAY = 8000
+   MANA_DRAIN_AMOUNT = 1
+
+resources:
+
+   include reflectn.lkod
+
+   reflection_name_rsc = "reflection"
+
+   reflection_male_icon_rsc = btg.bgf
+   reflection_female_icon_rsc = bth.bgf
+
+   reflection_dead_icon_rsc = amoebaX.bgf
+   reflection_dead_name_rsc = "dead reflection"
+   reflection_weapon_rsc = scimov.bgf
+
+   reflection_sound_hit = orc_atkh.ogg
+   reflection_sound_miss = orc_atkm.ogg
+   reflection_sound_death = orc_dth.ogg
+   reflection_sound_aware = orc_awr.ogg
+
+   reflection_delete =  "%s%s disappears into a puff of smoke."
+
+   reflection_trouble = \
+      "You sense that your reflection has gotten you into some trouble..."
+
+classvars:
+
+   // Defaults if we don't have an original.
+   viDefinite = ARTICLE_THE
+   viGender = GENDER_NEUTER
+
+   vrDead_icon = reflection_dead_icon_rsc
+   vrDead_name = reflection_dead_name_rsc
+
+   viTreasure_type = TID_NONE
+
+   viSpeed = SPEED_VERY_FAST
+   viAttack_type = ATCK_WEAP_SLASH
+   viAttributes = 0
+   viLevel = 44
+   viDifficulty = 4
+   viDamagePercent = 50
+   viVisionDistance = 60
+
+   viKarma = 0
+   viCashmin = 0
+   viCashmax = 0
+   vrSound_hit = reflection_sound_hit
+   vrSound_miss = reflection_sound_miss
+   vrSound_aware = reflection_sound_aware
+   vrSound_death = reflection_sound_death
+   vrMinion_trouble = reflection_trouble
+
+   viDefault_behavior = AI_FIGHT_MONSTERS | AI_FIGHT_NEWBIESAFE \
+                        | AI_FIGHT_AGGRESSIVE
+
+properties:
+
+   ptManaDrain
+   vrName = reflection_name_rsc
+   piDrawfx = 4
+   vrIcon = reflection_male_icon_rsc
+   piAnimation = PANM_NONE
+   // Who the reflection is of.
+   poOriginal = $
+   piGender = GENDER_MALE
+   pbIllusion = TRUE
+
+   piSpellpower = 1
+   poArrow = $
+   piDamagePercent
+   ptSomethingChanged = $
+
+messages:
+
+   Constructor(iSpellPower=1,oMaster=$)
+   {
+      if oMaster <> $
+      {
+         poMaster = oMaster;
+      }
+
+      piSpellpower = iSpellpower;
+      ptManaDrain = CreateTimer(self,@ManaDrainTimer,MANA_DRAIN_DELAY);
+      poArrow = Create(&Arrow);
+      piDamagePercent = viDamagePercent;
+
+      propagate;
+   }
+
+   GetApparentName()
+   {
+      if (poOriginal <> $)
+      {
+         return Send(poOriginal,@GetApparentName);
+      }
+
+      propagate;
+   }
+
+   GetName(cap=FALSE)
+   {
+      if (poOriginal <> $)
+      {
+         return Send(poOriginal,@GetName,#cap=cap);
+      }
+
+      propagate;
+   }
+
+   GetDef()
+   {
+      if (poOriginal <> $)
+      {
+         return Send(poOriginal,@GetDef);
+      }
+
+      propagate;
+   }
+
+   GetCapDef()
+   {
+      if (poOriginal <> $)
+      {
+         return Send(poOriginal,@GetCapDef);
+      }
+
+      propagate;
+   }
+
+   GetIndef()
+   {
+      if (poOriginal <> $)
+      {
+         return Send(poOriginal,@GetIndef);
+      }
+
+      propagate;
+   }
+
+   GetCapIndef()
+   {
+      if (poOriginal <> $)
+      {
+         return Send(poOriginal,@GetCapIndef);
+      }
+
+      propagate;
+   }
+
+   GetHisHer(cap=FALSE)
+   {
+      if (poOriginal <> $)
+      {
+         return Send(poOriginal,@GetHisHer,#cap=cap);
+      }
+
+      propagate;
+   }
+
+   GetHeShe(cap=FALSE)
+   {
+      if (poOriginal <> $)
+      {
+         return Send(poOriginal,@GetHeShe,#cap=cap);
+      }
+
+      propagate;
+   }
+
+   GetLordLady(cap=FALSE)
+   {
+      if (poOriginal <> $)
+      {
+         return Send(poOriginal,@GetLordLady,#cap=cap);
+      }
+
+      propagate;
+   }
+
+   GetHisHers(cap=FALSE)
+   {
+      if (poOriginal <> $)
+      {
+         return Send(poOriginal,@GetHisHers,#cap=cap);
+      }
+
+      propagate;
+   }
+
+   GetHimHer(cap=FALSE)
+   {
+      if (poOriginal <> $)
+      {
+         return Send(poOriginal,@GetHimHer,#cap=cap);
+      }
+
+      propagate;
+   }
+
+   ReqSomethingEntered(what=$)
+   {
+      if poOriginal = $
+      {
+         return TRUE;
+      }
+      else
+      {
+         if IsClass(poOriginal,&Player)
+            AND NOT Send(poOriginal,@IsLoggedOn)
+         {
+            Post(self,@Delete);
+
+            return TRUE;
+         }
+      }
+
+      propagate;
+   }
+
+   SomethingLeft(what=$)
+   {
+      if poOriginal = $
+      {
+         return;
+      }
+
+      if IsClass(poOriginal,&Player)
+         AND NOT Send(poOriginal,@IsLoggedOn)
+      {
+         // This happens when the original leaves (i.e. logs off), and the
+         // reflection is deleted when it is removed from the system list.
+         // We don't need to delete it again here.
+         return;
+      }
+
+      propagate;
+   }
+
+   SomethingKilled(what=$,victim=$,use_weapon=$)
+   "Someone just died, perhaps we need to clear our target."
+   {
+      if victim = poOriginal
+      {
+         Post(self,@Delete);
+
+         return;
+      }
+
+      propagate;
+   }
+
+   SetMaster(oMaster=$)
+   {
+      local oRoom, oTarget;
+
+      if oMaster = $
+      {
+         if poMaster <> $
+         {
+            // If the original master has control, just return.
+            if (poMaster = poOriginal)
+            {
+               return;
+            }
+
+            // Reflection goes back to original owner.
+            Send(poMaster,@RemoveControlledMinion,#what=self);
+            oTarget = poMaster;
+            poMaster = poOriginal;
+
+            // If the original is logged off, just return.
+            if (IsClass(poMaster,&User)
+               AND NOT Send(poMaster,@IsLoggedOn))
+            {
+               return;
+            }
+
+            // If we're killed while under a Seduce enchantment, need a way
+            // to determine we're being deleted.
+            if (poArrow = $)
+            {
+               return;
+            }
+
+            // Add ourselves back to master's control list.
+            Send(poMaster,@NewControlledMinion,#minion=self);
+
+            // Two cases: owner in same room, owner elsewhere.
+            oRoom = Send(poMaster,@GetOwner);
+            if (oRoom = poOwner)
+            {
+               // Attack the old master.
+               Send(self,@TargetSwitch,#what=oTarget,#iHatred=150);
+               Send(self,@EnterStateChase);
+            }
+            else
+            {
+               // Break target, go to original master.
+               Send(self,@EnterStateWait);
+               Send(self,@GotoMaster);
+            }
+         }
+      }
+      else
+      {
+         Send(poMaster,@RemoveControlledMinion,#what=self);
+         poMaster = oMaster;
+         Send(poMaster,@NewControlledMinion,#minion=self);
+
+         // Break target.
+         Send(self,@EnterStateWait);
+      }
+
+      Send(self,@ResetBehaviorFlags);
+
+      if poOwner <> $
+      {
+         Post(poOwner,@SomethingChanged,#what=self);
+      }
+
+      return;
+   }
+
+   ManaDrainTimer()
+   {
+      ptManaDrain = $;
+
+      if poOriginal = $
+      {
+         return;
+      }
+
+      // Ignore mana drain for non-players.
+      if IsClass(poOriginal,&Monster)
+      {
+         return;
+      }
+
+      if NOT Send(poOriginal,@IsLoggedOn)
+      {
+         Send(self,@Delete);
+
+         return;
+      }
+
+      if Send(poOriginal,@GetMana) < MANA_DRAIN_AMOUNT
+      {
+         Send(self,@Delete);
+
+         return;
+      }
+
+      Send(poOriginal,@LoseMana,#amount=MANA_DRAIN_AMOUNT);
+      Send(self,@GetOriginalInfo);
+      Send(poOwner,@SomethingChanged,#what=self);
+      ptManaDrain = CreateTimer(self,@ManaDrainTimer,MANA_DRAIN_DELAY);
+
+      return;
+   }
+
+   Delete(bSystem = FALSE)
+   {
+      // System clears this list already.
+      if (NOT bSystem)
+      {
+         Send(SYS,@RemoveReflection,#oReflection=self);
+      }
+
+      if poOwner <> $
+         AND (IsClass(poOriginal,&Monster)
+            OR Send(poOriginal,@IsLoggedOn))
+      {
+         Send(poOwner,@SomeoneSaid,#type=SAY_MESSAGE,#string=reflection_delete,
+              #what=self,#parm1=Send(self,@GetCapDef),
+              #parm2=Send(self,@GetName,#cap=FALSE));
+      }
+
+      if ptManaDrain <> $
+      {
+         DeleteTimer(ptManaDrain);
+         ptManaDrain = $;
+      }
+
+      if ptSomethingChanged <> $
+      {
+         DeleteTimer(ptSomethingChanged);
+         ptSomethingChanged = $;
+      }
+
+      if poArrow <> $
+      {
+         Send(poArrow,@Delete);
+      }
+      poArrow = $;
+      Post(self,@RemoveOriginal);
+
+      propagate;
+   }
+
+   RemoveOriginal()
+   {
+      poOriginal = $;
+
+      // Switch to defaults if we lose original.
+      // Can happen if something posts a MsgSendUser call that gets
+      // executed after this message.
+      piGender = GENDER_NEUTER;
+      vrName = reflection_name_rsc;
+
+      return;
+   }
+
+   GetOriginal()
+   {
+      return poOriginal;
+   }
+
+   GetOriginalInfo()
+   {
+      if poOriginal = $
+      {
+         return;
+      }
+
+      if IsClass(poOriginal,&Player)
+      {
+         vrIcon = Send(poOriginal,@GetPlayerIcon);
+         piDrawfx = Send(poOriginal,@GetDrawingEffects);
+         vrName = Send(poOriginal,@GetTrueName);
+      }
+      else
+      {
+         vrIcon = Send(poOriginal,@GetIcon);
+         piDrawfx = Send(poOriginal,@GetDrawingEffects);
+         vrName = Send(poOriginal,@GetName);
+      }
+
+      piGender = Send(poOriginal,@GetGender);
+
+      return;
+   }
+
+   GetObjectFlags()
+   {
+      if poOriginal = $
+      {
+         return 0;
+      }
+
+      return Send(poOriginal,@GetObjectFlags);
+   }
+
+   GetDrawingEffects()
+   {
+      if poOriginal = $
+      {
+         return 0;
+      }
+
+      return Send(poOriginal,@GetDrawingEffects);
+   }
+
+   GetPlayerNameColor()
+   {
+      if poOriginal = $
+      {
+         return 0;
+      }
+
+      return Send(poOriginal,@GetPlayerNameColor);
+   }
+
+   GetClientObjectType()
+   {
+      if poOriginal = $
+      {
+         return 0;
+      }
+
+      return Send(poOriginal,@GetClientObjectType);
+   }
+
+   GetOptimalRange()
+   {
+      return Send(self,@GetAttackRange);
+   }
+
+   GetAttackRange()
+   {
+      local iWeapon;
+
+      if poOriginal = $
+      {
+         return 0;
+      }
+
+      if IsClass(poOriginal,&Player)
+      {
+         iWeapon = Send(poOriginal,@GetWeapon);
+
+         if iWeapon <> $
+         {
+            return Send(iWeapon,@GetRange);
+         }
+      }
+      else
+      {
+         return Send(poOriginal,@GetAttackRange);
+      }
+
+      return 64;
+   }
+
+   GetOffense(what=$,stroke_obj=$)
+   {
+      return Send(poOriginal,@GetOffense,#what=what,#stroke_obj=stroke_obj);
+   }
+
+   GetDefense(what = $, stroke_obj=$)
+   {
+      return Send(poOriginal,@GetDefense,#what=what,#stroke_obj=stroke_obj);
+   }
+
+   GetDamage(what = $, stroke_obj=$)
+   {
+      local oStroke, iDamage;
+
+      if poOriginal = $
+      {
+         return 0;
+      }
+
+      oStroke = stroke_obj;
+      if IsClass(poOriginal,&Player)
+      {
+         oStroke = $;
+      }
+      iDamage = Send(poOriginal,@GetDamage,#what=what,#stroke_obj=oStroke);
+
+      return iDamage * piDamagePercent / 100;
+   }
+
+   GetDamageType(what=$,use_weapon=$)
+   {
+      if poOriginal = $
+      {
+         return viAttack_type;
+      }
+
+      return Send(poOriginal,@GetDamageType,#what=what,#use_weapon=use_weapon);
+   }
+
+   GetSpellType(what=$,use_weapon=$)
+   {
+      if poOriginal = $
+      {
+         return viAttack_spell;
+      }
+
+      return Send(poOriginal,@GetSpellType,#what=what,#use_weapon=use_weapon);
+   }
+
+   SomethingChanged(what=$)
+   {
+      if poOriginal = $
+      {
+         return;
+      }
+
+      // Our source object changed; tell everyone that we've changed, too.
+      if (what = poOriginal)
+      {
+         piDrawfx = Send(poOriginal,@GetDrawingEffects);
+         if IsClass(poOriginal,&User)
+         {
+            // Players report that if a character casts a lot of
+            // reflections and then changes state, e.g. by putting on lots
+            // of clothing, other clients in the room may crash.  Our
+            // suspicion is that a server buffer gets filled, and then
+            // clients go out of sync.  We increased server buffer sizes
+            // and this appeared to fix it, but players report there may
+            // still be a problem.  Thus we jitter reflection updates to
+            // try to avoid lots of messages being sent out at once.
+            if ptSomethingChanged <> $
+            {
+               ptSomethingChanged = CreateTimer(self,@SomethingChangedTimer,750);
+            }
+         }
+         else
+         {
+            Send(poOwner,@SomethingChanged,#what=self);
+         }
+      }
+
+      propagate;
+   }
+
+   SomethingChangedTimer()
+   "Tell room that we've changed.  This is on a timer to avoid tons "
+   "of changes sent all at once."
+   {
+      ptSomethingChanged = $;
+      if poOriginal <> $
+         AND poOwner <> $
+      {
+         Post(poOwner,@SomethingChanged,#what=self);
+      }
+
+      return;
+   }
+
+   DoWave()
+   "Causes the reflection to wave."
+   {
+      Send(self,@GetOriginalInfo);
+      piAnimation = PANM_WAVE;
+      Send(poOwner,@SomethingChanged,#what=self);
+      piAnimation = PANM_NONE;
+
+      return;
+   }
+
+   DoPoint()
+   {
+      Send(self,@GetOriginalInfo);
+      piAnimation = PANM_POINT;
+      Send(poOwner,@SomethingChanged,#what=self);
+      piAnimation = PANM_NONE;
+
+      return;
+   }
+
+   DoDance()
+   {
+      Send(self,@GetOriginalInfo);
+      piAnimation = PANM_DANCE;
+      Send(poOwner,@SomethingChanged,#what=self);
+      piAnimation = PANM_NONE;
+
+      return;
+   }
+
+   SetOriginal(who=$)
+   {
+      if who = $
+      {
+         Debug("Reflection called with invalid $ SetOriginal");
+      }
+
+      poOriginal = who;
+      piMax_Hit_Points = piSpellpower / 3;
+      piMax_hit_points = Bound(piMax_hit_points,15,40);
+      piHit_Points = piMax_Hit_Points*100;
+
+      Send(self,@GetOriginalInfo);
+
+      return;
+   }
+
+   GetIcon()
+   {
+      return Send(poOriginal,@GetIcon);
+   }
+
+   MonsterAttack(what=$)
+   {
+      // Do the animation!
+      Send(self,@DoAttack);
+
+      return;
+   }
+
+   // The next three messages deal with the three defense skills.
+   // These messages return the relative values of the three skills.
+   //  Used in player for defense, used in battler for defense messages.
+   GetParryAbility(stroke_obj=$)
+   {
+      return Send(poOriginal,@GetParryAbility,#stroke_obj=stroke_obj);
+   }
+
+   GetBlockAbility(stroke_obj=$)
+   {
+      return Send(poOriginal,@GetBlockAbility,#stroke_obj=stroke_obj);
+   }
+
+   GetDodgeAbility(stroke_obj=$)
+   {
+      return Send(poOriginal,@GetDodgeAbility,#stroke_obj=stroke_obj);
+   }
+
+   DoAttack()
+   {
+      local oWeapon, oAmmo, i;
+
+      Send(self,@GetOriginalInfo);
+
+      if IsClass(poOriginal,&User)
+      {
+         oWeapon = Send(poOriginal,@GetWeapon);
+         oAmmo = poArrow;
+
+         if oWeapon <> $
+         {
+            if IsClass(oWeapon,&Bow)
+            {
+               piAnimation = PANM_BOW_FIRE;
+
+               foreach i in Send(poOriginal,@GetPlayerUsing)
+               {
+                  if Send(i,@GetItemUseType) = ITEM_USE_QUIVER
+                  {
+                     oAmmo = i;
+                  }
+               }
+
+               Send(poOwner,@SomethingShot,#who=self,#target=poTarget,
+                     #projectile=oAmmo);
+            }
+            else if IsClass(oWeapon,&TouchAttackSpell)
+            {
+               piAnimation = PANM_CAST;
+            }
+            else
+            {
+               piAnimation = PANM_WEAPON_ATTACK;
+            }
+         }
+         else
+         {
+            piAnimation = PANM_FIST_ATTACK;
+         }
+      }
+      else
+      {
+         piAnimation = ANIM_ATTACK;
+         Send(poOriginal,@SetAnimation,#animation=piAnimation);
+         // If original fires a projectile, we send one too.
+         if Send(poOriginal,@GetProjectileIcon) <> $
+         {
+            Send(poOwner,@SomethingShot,#who=self,#target=poTarget,
+                  #projectile=poOriginal);
+         }
+      }
+
+      Send(poOwner,@SomethingChanged,#what=self);
+
+      if IsClass(poOriginal,&User)
+      {
+         piAnimation = PANM_NONE;
+      }
+      else
+      {
+         piAnimation = ANIM_NONE;
+         Send(poOriginal,@SetAnimation,#animation=piAnimation);
+      }
+
+      return;
+   }
+
+   TryLook(what=$)
+   {
+      if what = $
+      {
+         return;
+      }
+
+      if poOriginal = $
+      {
+         return;
+      }
+
+      if IsClass(poOriginal,&Player)
+      {
+         if Send(poOriginal,@CheckPlayerFlag,#flag=PFLAG_INVISIBLE)
+            AND (what <> poOriginal)
+         {
+            return;
+         }
+
+         Send(what,@SendLookPlayer,#what=poOriginal);
+      }
+      else
+      {
+         Send(poOriginal,@TryLook,#what=what);
+      }
+
+      return;
+   }
+
+   ShowDesc()
+   {
+      return Send(poOriginal,@ShowDesc);
+   }
+
+   ShowExtraInfo()
+   {
+      return Send(poOriginal,@ShowExtraInfo);
+   }
+
+   GetURL()
+   {
+      return Send(poOriginal,@GetURL);
+   }
+
+   SendMoveAnimation()
+   {
+      return Send(poOriginal,@SendMoveAnimation);
+   }
+
+   SendMoveOverlays()
+   {
+      return Send(poOriginal,@SendMoveOverlays);
+   }
+
+   SendAnimation()
+   {
+       return Send(poOriginal,@SendAnimation,#iAnimation=piAnimation);
+   }
+
+   SendOverlays()
+   {
+      return Send(poOriginal,@SendOverlays,#iAnimation=piAnimation);
+   }
+
+   GetIllusionForm()
+   {
+      return poOriginal;
+   }  
+
+   SendLightingInformation()
+   {
+      return Send(poOriginal,@SendLightingInformation);
+   }
+
+   SpecialHatredBehavior(what=$)
+   {
+      // Trying to reduce the tendency of reflections to turn on themselves
+      //  or their master.
+      if (IsClass(what,&Reflection)
+          AND Send(what,@GetIllusionForm) = poOriginal)
+         OR what = poOriginal
+         OR (IsClass(poOriginal,&Monster)
+             AND IsClass(what,GetClass(poOriginal)))
+         OR IsClass(what,&Revenant)
+         OR IsClass(what,&EvilTwin)
+      {
+         return -1000;
+      }
+
+      return 0;
+   }
+
+   GetCaster()
+   {
+      return poOriginal;
+   }
+
+   CanEvilTwin()
+   {
+      return FALSE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

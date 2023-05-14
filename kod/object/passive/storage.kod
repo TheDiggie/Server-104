@@ -1,0 +1,358 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Storage is PassiveObject
+
+constants:
+
+   include blakston.khd
+
+   VAULT_ITEMS_MAX = 10000000
+
+resources:
+
+   include storage.lkod
+   msg_not_enough_items_on_deposit = "%s%s does not have that many on deposit."
+   msg_does_not_have_item = "%s%s does not have that item on deposit for you."
+   msg_has_no_deposit = "%s%s does not have any items on deposit for you."
+
+   msg_reduced_tally = "You couldn't carry everything you requested."
+   msg_cannot_carry = "You were unable to withdraw %s%s."
+
+classvars:
+
+properties:
+
+   piVault_num   // vault ID (VID)
+
+   // Each element of this list is a list, containing
+   // the player, and a list of all of his stuff.
+   plStored = $
+
+   piCapacity = 3000
+
+messages:
+
+   Constructor(vid = $, capacity = $)
+   {
+      if vid = $
+      {
+         Debug("Vault created with no vault id",self);
+
+         propagate;
+      }
+
+      if capacity <> $
+      {
+         piCapacity = capacity;
+      }
+
+      piVault_num = vid;
+
+      propagate;
+   }
+
+   Delete()
+   "Deletes this bank and removes from system's list of banks."
+   {
+      local i, j;
+
+      foreach i in plStored
+      {
+         Send(i,@Delete);
+         plStored = DelListElem(plStored,i);
+      }
+
+      if plStored <> $
+      { 
+         Debug("Delete() didn't clear out vault completely!");
+         plStored = $;
+
+         return;
+      }
+
+      Send(SYS,@DeleteVault,#what=self);
+
+      propagate;
+   }
+
+   GetCapacity()
+   {
+      return piCapacity;
+   }
+
+   GetVaultNum()
+   {
+      return piVault_num;
+   }
+
+   GetBankNum()
+   {
+      return piVault_num;
+   }
+
+   CanDepositItems(lItems = $, who = $)
+   {
+      local plItemsStored;
+
+      if who = $
+      {
+         Debug("CanDepositItems passed with who=$!");
+
+         return FALSE;
+      }
+
+      if lItems = $
+      {
+         Debug("Cannot deposit a null set!");
+
+         return FALSE;
+      }
+
+      plItemsStored = Send(self,@GetItemsStored,#who=who);
+      if plItemsStored <> $
+         AND (Length(plItemsStored) + Length(lItems)) > VAULT_ITEMS_MAX
+         AND NOT (Length(lItems) = 1
+            AND IsClass(First(lItems),&NumberItem))
+      {
+         return FALSE;
+      }
+
+      return TRUE;
+   }
+
+   DepositItems(lItems = $, who = $)
+   "This procedure assumes that CanDepositItems has already been called "
+   "and passed.  It actually puts items into that player's storage lockers, "
+   "and creates a new one if none exists."
+   {
+      local oIndexBox, oPlayerBox, oItem, oNewItem;
+
+      oPlayerBox = $;
+      foreach oIndexBox in plStored
+      {
+         /// does the player have an account already?
+         if Send(oIndexBox,@GetSafeBoxOwner) = who
+         {
+            oPlayerBox = oIndexBox;
+
+            break;
+         }
+      }
+
+      if oPlayerBox = $
+      {
+         // Player has no account yet, make a new one.
+         oPlayerBox = Create(&SafetyDepositBox,#who=who,#vid=piVault_num);
+         plStored = Cons(oPlayerBox,plStored);
+      }
+
+      // Take the items, put them in storage.  Assume ReqNewHold has already
+      // been passed.  Remove number items from that player's possession.
+      foreach oItem in lItems
+      {
+         if IsClass(oItem,&NumberItem)
+         {
+            // The number item will be deleted at the end of the ReqGive Call
+            // (in CleanUpCancelOffer).  Make a copy of the item and give that
+            // to the mob.
+            oNewItem = Create(GetClass(oItem),#number=Send(oItem,@GetNumber));
+            Send(oPlayerBox,@newhold,#what=oNewItem);
+            Send(who,@RemoveNumberItemFromPossession,#ToBeRemoved=oNewItem);
+         }
+         else
+         {
+            Send(oPlayerBox,@newhold,#what=oItem);
+         }
+      }
+
+      return;
+   }
+
+   GetCurrentBulkStored(who=$)
+   {
+      local i, j, iBulk;
+
+      iBulk = 0;
+
+      foreach i in plStored
+      {
+         if Send(i,@GetSafeBoxOwner) = who
+         {
+            return Send(i,@GetBulkHold);
+         }
+      }
+
+      return 0;
+   }
+
+   GetItemsStored(who=$)
+   "returns nil if no players are in."
+   {
+      local i;
+
+      foreach i in plStored
+      {
+         if Send(i,@GetSafeBoxOwner) = who
+         {
+            return Send(i,@GetHolderPassive);
+         }
+      }
+
+      return $;
+   }
+
+   GetPlayerSafeBox(who=$)
+   {
+      local i;
+
+      foreach i in plStored
+      {
+         if Send(i,@GetSafeBoxOwner) = who
+         {
+            return i;
+         }
+      }
+
+      return $;
+   }
+
+   WithdrawFromStorage(who=$,what=$,count=$)
+   {
+      local i, j, oBox, oItem, cClass, currentAmount, iCanHold;
+      
+      if who = $
+         OR what = $
+      {
+         Debug("Called with invalid data!");
+
+         return;
+      }
+
+      oBox = Send(self,@GetPlayerSafeBox,#who=who);
+      if oBox = $
+      {
+         // Player does not have a deposit box
+         Debug("Player does not have a deposit box");
+         Send(self,@MsgSendUser,#message_rsc=msg_has_no_deposit,
+               #parm1=Send(what,@GetCapDef),#parm2=Send(what,@GetName));
+
+         return FALSE; 
+      }
+
+      if Send(what,@GetOwner) <> oBox
+      {
+         // This item is NOT in the deposit box
+         Debug("Item is NOT in the deposit box");
+         Send(self,@MsgSendUser,#message_rsc=msg_does_not_have_item,
+               #parm1=Send(what,@GetCapDef),#parm2=Send(what,@GetName));
+
+         return FALSE;
+      }
+
+      if IsClass(what,&NumberItem)
+      {
+         iCanHold = Send(who,@GetNumberCanHold,#what=what);
+
+         // Check for DMs with $ bulk/weight max.
+         if iCanHold = $
+            AND IsClass(who,&DM)
+            AND Send(who,@PlayerIsImmortal)
+         {
+            iCanHold = count;
+         }
+
+         // Check for GetNumberCanHold returning less than 0.
+         if iCanHold < 0
+         {
+            iCanHold = 0;
+         }
+
+         if iCanHold < count
+         {
+            count = iCanHold;
+            if count > 0
+            {
+               Send(who,@MsgSendUser,#message_rsc=msg_reduced_tally);
+            }
+            if count = 0
+            {
+               return FALSE;
+            }
+         }
+
+         currentAmount = Send(what,@GetNumber);
+
+         if (count > 0)
+            AND (count <= currentAmount)
+         {
+            cClass = GetClass(what);
+            oItem = Create(cClass,#number=count);
+            Send(what,@SubtractNumber,#number=count);
+            Send(who,@NewHold,#what=oItem);
+         }
+         else
+         {
+            // Send message to user that they don't have that many items on deposit
+            Debug("Failed test for count > 0 and count <= currentAmount ",
+                  "user is ",Send(who,@GetTrueName)," count is ",count,
+                  " currentAmount is ",currentAmount,"item is ",what);
+            Send(self,@MsgSendUser,#message_rsc=msg_not_enough_items_on_deposit,
+                  #parm1=Send(what,@GetCapDef),#parm2=Send(what,@GetName));
+
+            return FALSE;
+         }
+      }
+      else
+      {
+         if Send(who,@ReqNewHold,#what=what)
+         {
+            Send(who,@NewHold,#what=what);
+         }
+         else
+         {
+            Send(who,@MsgSendUser,#message_rsc=msg_cannot_carry,
+                  #parm1=Send(what,@GetDef),#parm2=Send(what,@GetName));
+
+             return FALSE;
+         }
+      }
+
+      if Send(oBox,@GetHolderPassive) = $
+      { 
+         Send(self,@DestroyPlayersVault,#who=who);
+      }
+
+      return TRUE;
+   }
+
+   DestroyPlayersVault(who=$)
+   "This is called when a player suicides.  Note it does two things: "
+   "* Deletes the box (which deletes the items in 'em), "
+   "* Deletes the list nodes inside the box."
+   {
+      local i, j;
+
+      foreach i in plStored
+      {
+         if Send(i,@GetSafeBoxOwner) = who
+         {
+            Send(i,@Delete);
+            plStored = DelListElem(plStored,i);
+
+            return;
+         }
+      }
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

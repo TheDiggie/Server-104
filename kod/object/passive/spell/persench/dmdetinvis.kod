@@ -1,0 +1,172 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DMDetectInvisible is PersonalEnchantment
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include dmdetinvis.lkod
+
+   dm_det_invis_name_rsc = "greater detect invisible"
+   dm_det_invis_icon_rsc = idetinvi.bgf
+   dm_det_invis_desc_rsc = \
+      "Allows you to see those whom others cannot.  This powerful spell "
+      "lasts far longer than regular detect invisible.  Casting this spell "
+      "again on an already enchanted target will remove the enchantment."
+   dm_det_invis_off_rsc = \
+      "You remove the greater detect invisible enchantment from %s%s."
+
+classvars:
+
+   vrName = dm_det_invis_name_rsc
+   vrIcon = dm_det_invis_icon_rsc
+   vrDesc = dm_det_invis_desc_rsc
+
+   vrAlreadyEnchanted = DetectInvisible_already_enchanted_rsc
+   vrEnchantment_On = DetectInvisible_on_rsc
+   vrEnchantment_Off = DetectInvisible_off_rsc
+   vrSuccess = DetectInvisible_Success_rsc
+
+   viSpell_num = SID_DM_DETECT_INVISIBLE
+   viSchool = SS_KRAANAN
+   viSpell_level = 6
+   viMana = 0
+   viSpellExertion = 0
+
+properties:
+
+   piDuration = 86400000 // 24 in milliseconds
+
+   // Keep track of targets enchanted with this spell. Useful if we need
+   // to list them or remove the enchantment after an event etc.
+   plEnchanted = $
+
+messages:
+
+   ResetReagents()
+   {
+      return;
+   }
+
+   CanPayCosts(who=$,lTargets=$)
+   {
+      local oTarget;
+
+      if (lTargets = $)
+      {
+         return FALSE;
+      }
+
+      oTarget = First(lTargets);
+
+      if NOT IsClass(oTarget,&User)
+      {
+         return FALSE;
+      }
+
+      // If spell already active on the target, remove it instead.
+      if (FindListElem(plEnchanted,oTarget) > 0)
+      {
+         Send(who,@MsgSendUser,#message_rsc=dm_det_invis_off_rsc,
+               #parm1=Send(oTarget,@GetDef),#parm2=Send(oTarget,@GetTrueName));
+         Send(oTarget,@RemoveEnchantment,#what=self);
+
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+   CastSpell(who = $, lTargets = $)
+   {
+      local oTarget;
+
+      if (lTargets = $)
+      {
+         return FALSE;
+      }
+
+      oTarget = First(lTargets);
+      if (oTarget = $
+         OR NOT IsClass(oTarget,&User))
+      {
+         return FALSE;
+      }
+
+      // Post adding player to enchanted list so we can check if they
+      // actually got enchanted. Cleanest way to do this without adding
+      // a new message that gets called after StartEnchantment to specifically
+      // handle this spell.
+      Post(self,@AddToEnchantedList,#who=oTarget);
+
+      propagate;
+   }
+
+   GetStateValue(iSpellpower=$,target=$)
+   {
+      // Post this so it's after the flag being applied.
+      Post(target,@ToCliRoomContents);
+
+      return iSpellpower;
+   }
+
+   SetSpellPlayerFlag(who=$)
+   {
+      Send(who,@SetPlayerFlag,#flag=PFLAG2_DETECT_INVIS,#flagset=2,#value=TRUE);
+
+      return;
+   }
+
+   GetDuration()
+   {
+      return piDuration;
+   }
+
+   EndEnchantment(who=$,report=TRUE,state=0)
+   {
+      if Send(who,@IsLoggedOn)
+      {
+         /// Must post this so it's after the flag being removed.
+         Post(who,@ToCliRoomContents);
+      }
+
+      plEnchanted = DelListElem(plEnchanted,who);
+
+      propagate;
+   }
+
+   // Can't purge this.
+   CanBeRemovedByPlayer()
+   {
+      return FALSE;
+   }
+
+   AddToEnchantedList(who=$)
+   {
+      if (who <> $
+         AND Send(who,@IsEnchanted,#what=self))
+      {
+         plEnchanted = Cons(who,plEnchanted);
+      }
+
+      return;
+   }
+
+   GetEnchantedPlayers()
+   {
+      return plEnchanted;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,92 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+RazaForest is MonsterRoom
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include razaforest.lkod
+
+   room_razaforest = razaforest.roo
+   room_name_razaforest = "Outskirts of Raza"
+   razaforest_music = walk5.ogg
+
+classvars:
+
+   vrName = room_name_razaforest
+
+   viTeleport_row = 24
+   viTeleport_col = 37
+
+   viTerrain_type = TERRAIN_FOREST
+   viWeatherZone = WEATHER_ZONE_RAZA
+
+   viFlag_row = 9
+   viFlag_col = 62
+
+properties:
+
+   prRoom = room_razaforest
+   prMusic = razaforest_music
+   piRoom_num = RID_RAZA_FOREST
+
+   piBaseLight = LIGHT_NICE
+   piOutside_factor = 8
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+   pbSnowGroundTexture = TRUE
+
+   // Longer dispose time.
+   piDispose_delay = 240000
+
+   piGen_time = 20000
+   piGen_percent = 100
+
+   piInit_count_min = 3
+   piInit_count_max = 7
+
+   piMonster_count_max = 15
+
+messages:
+
+   Constructed()
+   {
+      plMonsters = [ [&Bunny, 30], [&GiantRat, 30],
+                     [&SpiderBaby, 20], [&Centipede, 20] ];
+
+      plGenerators = [ [13, 47], [18, 36], [17, 21], [6, 10],
+                       [21, 14], [31, 9], [31, 17], [33, 25] ];
+      propagate;
+   }
+
+   CreateStandardExits()
+   {
+      plExits = $;
+      plExits = Cons([ 43, 39, RID_RAZA, 3, 38, ROTATE_NONE ],plExits);
+      plExits = Cons([ 43, 40, RID_RAZA, 3, 38, ROTATE_NONE ],plExits);
+      plExits = Cons([ 43, 41, RID_RAZA, 3, 38, ROTATE_NONE ],plExits);
+
+      plExits = Cons([ 24, 53, ROOM_LOCKED_DOOR, room_door_is_locked ],plExits);
+      plExits = Cons([ 25, 53, ROOM_LOCKED_DOOR, room_door_is_locked ],plExits);
+
+      plEdge_Exits = $;
+      //plEdge_Exits = Cons([LEAVE_SOUTH, RID_RAZA, 2, 38, ROTATE_NONE], plEdge_exits);
+      plEdge_Exits = Cons([LEAVE_NORTH, RID_FAROL_WEST, 48, 24, ROTATE_NONE], plEdge_exits);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

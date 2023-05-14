@@ -1,0 +1,171 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Paralyze is PersonalEnchantment
+
+constants:
+
+   include blakston.khd
+
+   MAX_CAST_LENGTH = 30000  // 30 sec max, just to be safe.
+
+resources:
+
+   include gaze.lkod
+
+   paralyze_name_rsc = "gaze of the basilisk"
+   paralyze_icon_rsc = iparalyz.bgf
+   paralyze_desc_rsc = \
+      "Grants the caster the ability to paralyze any who meet his gaze.  "
+      "Requires one yrxl sap and one purple mushroom to cast."
+   gaze_enchantment_rsc = \
+      "\n\nYour current %s enchantment will paralyze opponents that attack "
+      "you for %i - %i milliseconds.  Opponents attacking at range have a "
+      "50%% chance to avoid your paralyzing gaze."
+   paralyze_on_rsc = "Your eyes seem to swell and pulse with magical energy."
+   paralyze_off_rsc = "Your eyes return to normal."
+   paralyze_already_enchanted_rsc = \
+      "You already have the gaze of the basilisk."
+   paralyze_caster = "%s%s meets your gaze and freezes in place."
+   paralyze_target_on = \
+      "As you meet %s%s's terrible gaze you feel your limbs stiffen "
+      "and freeze."
+
+   paralyze_no_soul = "You can't detect a soul in %s%s to turn to stone!"
+
+   paralyze_sound= qparalyz.ogg
+
+classvars:
+
+   viSpell_num = SID_GAZE_OF_THE_BASILISK
+   viSchool = SS_QOR
+   viMana = 15
+   viCast_Time = 1000
+   viSpell_Exertion = 15
+   viSpell_level = 6
+
+   viChance_To_Increase = 10
+   viMeditate_ratio = 75
+
+   vrName = paralyze_name_rsc
+   vrIcon = paralyze_icon_rsc
+   vrDesc = paralyze_desc_rsc
+
+   vrAlreadyEnchanted = paralyze_already_enchanted_rsc
+   vrEnchantment_On = paralyze_On_rsc
+   vrEnchantment_Off = paralyze_Off_rsc
+
+   vrSucceed_wav = paralyze_sound
+
+   viFlash = FLASH_BAD
+
+   vbCanCastonOthers = FALSE
+
+   viDefensive = TRUE
+
+properties:
+
+   // The effectiveness of purge on the target spell as a percentage.
+   // 100 will cause purge to remove its entire spellpower, 0 will
+   // prevent purge from removing this spell.
+   viPurgeFactor = 10
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&Yrxlsap,1],plReagents);
+      plReagents = Cons([&PurpleMushroom,1],plReagents);
+
+      return;
+   }
+
+   GetDuration(iSpellPower=0)
+   {
+      // Duration for Gaze is simply the spellpower it was cast at.
+      // One second per spellpower, bound 1-99 here just in case.
+      return Bound(iSpellPower,1,99) * 3000;
+   }
+
+   GetStateValue(who=$,iSpellPower=0)
+   {
+      Send(who,@AddDefenseModifier,#what=self);
+
+      return iSpellPower;
+   }
+
+   ModifyDefensePower(who=$,what=$,defense_power=$,state=$)
+   {
+      local oSpell, iDuration, oWeapon;
+
+      if what <> $
+      {
+         oSpell = Send(SYS,@FindSpellByNum,#num=SID_HOLD);
+         iDuration = Bound(state * Random(20,45),1300,4500);
+
+         // TODO: Make chance to paralyze based on if caster is facing opponent?
+
+         if IsClass(what,&Revenant)
+         {
+            Send(who,@MsgSendUser,#message_rsc=paralyze_no_soul,
+                  #parm1=Send(what,@GetDef),#parm2=Send(what,@GetName));
+         }
+         else
+         {
+            if IsClass(what,&Player)
+            {
+               oWeapon = Send(what,@GetWeapon);
+
+               // Ranged weapons don't always trigger the effect.
+               if oWeapon <> $
+                  AND IsClass(oWeapon,&RangedWeapon)
+                  AND Random(1,100) < 50
+               {
+                  // No effect.
+                  return defense_power;
+               }
+
+               Send(what,@MsgSendUser,#message_rsc=paralyze_target_on,
+                     #parm1=Send(who,@GetDef),#parm2=Send(who,@GetName));
+            }
+
+            Send(who,@MsgSendUser,#message_rsc=paralyze_caster,
+                  #parm1=Send(what,@GetCapDef),#parm2=Send(what,@GetName));
+
+            Send(oSpell,@DoSpell,#what=who,#oTarget=what,#iDuration=iDuration,
+                  #report=FALSE);
+         }
+      }
+
+      return defense_power;
+   }
+
+   EndEnchantment(who=$,report=TRUE,state=0)
+   {
+      Send(who,@RemoveDefenseModifier,#what=self);
+
+      propagate;
+   }
+
+   EffectDesc(who=$)
+   {
+      local iState;
+
+      iState = Send(who,@GetEnchantedState,#what=self);
+
+      AddPacket(4,gaze_enchantment_rsc, 4,Send(self,@GetName),
+                4,Bound(iState * 20,1300,2500), 4,Bound(iState * 25,1300,4500));
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

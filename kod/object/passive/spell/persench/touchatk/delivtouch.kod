@@ -1,0 +1,112 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeliveranceTouch is TouchAttackSpell
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include delivtouch.lkod
+
+   delivtouch_icon_rsc = light.bgf
+   delivtouch_name_rsc = "divine touch"
+   delivtouch_desc_rsc = \
+      "Hitting a target with this touch spell sends them to their hometown.  "
+      "By default has a 25% chance to hit."
+   delivtouch_already_enchanted_rsc = "Your hands are already glowing."
+   delivtouch_On_rsc = "Your hands take on a divine glow."
+   delivtouch_Off_rsc = "Your hands lose their divine glow."
+
+classvars:
+
+   vrName = delivtouch_name_rsc
+   vrIcon = delivtouch_icon_rsc
+   vrDesc = delivtouch_desc_rsc
+
+   vrAlreadyEnchanted = delivtouch_already_enchanted_rsc
+   vrEnchantment_On = delivtouch_On_rsc
+   vrEnchantment_Off = delivtouch_Off_rsc
+
+   viIndefinite = ARTICLE_NONE
+   viDefinite = ARTICLE_NONE
+
+   viSchool = SS_DM_COMMAND
+   viSpell_num = SID_DELIVERANCE_TOUCH
+   viSpellExertion = 0
+   viSpell_level = 50
+   viMana = 0
+
+   viMin_Damage = 0
+   viMax_Damage = 0
+
+   viSpellType = ATCK_SPELL_ALL
+   viStroke = STROKE_DELVIERANCE
+
+   viDifficulty = 1
+
+   vbAutomatic = FALSE
+
+   vrSucceed_wav = spell_sound_dm_command
+
+properties:
+
+   piHitPercent = 25 // Percent
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+
+      return;
+   }
+
+   TryDeliveranceAttack(who=$,oTarget=$)
+   {
+      local oSpell;
+
+      // Can only attack users with this.
+      if (who = $
+         OR oTarget = $
+         OR NOT IsClass(oTarget,&User))
+      {
+         return FALSE;
+      }
+
+      if (Random(1,100) <= piHitPercent)
+      {
+         // Do deliverance on victim. Deliverance spell handles animation
+         // and sound effect.
+         oSpell = Send(SYS,@FindSpellByNum,#num=SID_DELIVERANCE);
+         Send(oSpell,@CastSpell,#who=who,#lTargets=[oTarget],#iSpellPower=99);
+      }
+      else
+      {
+         // Touch spell animation.
+         Send(self,@CheckWeaponAndDoAnimation,#who=who,
+               #weapon_used=self,#victim=oTarget);
+         // Provide a generic miss message and sound.
+         Send(who,@AssessMiss,#what=oTarget,#stroke_obj=self);
+      }
+
+      return TRUE;
+   }
+
+   GetDuration(iSpellpower=$)
+   {
+      // Lasts for an hour.
+      return MS_PER_DAY;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

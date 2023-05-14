@@ -1,0 +1,74 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+BardLetter is PassiveItem
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include bardnote.lkod
+
+   bardletter_name_rsc = "slip of parchment"
+   bardletter_icon_rsc = scroll.bgf
+   bardletter_desc_written_rsc = \
+      "%q"
+
+classvars:
+
+   vrName = bardletter_name_rsc
+   vrIcon = bardletter_icon_rsc
+   vrDesc  = bardletter_desc_written_rsc
+
+properties:
+
+   psInscription = $
+
+messages:
+
+   Constructor(desc = $)
+   {
+      Send(self,@SetDesc,#desc=desc);
+
+      propagate;
+   }
+
+   SetDesc(desc = $)
+   {
+      // If not a string, try create one.
+      if (IsString(desc))
+      {
+         psInscription = desc;
+      }
+      else
+      {
+         psInscription = SetString($,desc);
+      }
+
+      // If we couldn't make a string, set a blank one.
+      if (psInscription = $)
+      {
+         psInscription = SetString($, " ");
+      }
+
+      return;
+   }
+
+   DoBaseDesc()
+   {
+      AddPacket(4,vrDesc, 4, psInscription);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

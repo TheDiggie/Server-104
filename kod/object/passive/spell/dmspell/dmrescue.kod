@@ -1,0 +1,85 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DMRescue is DMSpell
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include dmrescue.lkod
+
+   dmrescue_name_rsc = "deliverance"
+   dmrescue_desc_rsc = \
+      "Sends the target to their home town.  If removing the target from Out "
+      "of Grace, will remove the 'damned' string from their description."
+   dmrescue_hit_rsc = \
+      "You open a rip in space to %s%s's hometown and push them into it."
+   dmrescue_icon_rsc = light.bgf
+
+classvars:
+
+   vrName = dmrescue_name_rsc
+   vrIcon = dmrescue_icon_rsc
+
+   viSpell_num = SID_DMRESCUE
+
+properties:
+
+messages:
+
+   GetNumSpellTargets()
+   {
+      return 1;
+   }
+
+   CastSpell(who=$,lTargets=$)
+   {
+      local i, j, oRoom, oHell;
+
+      foreach j in lTargets
+      {
+         i = j;
+
+         if IsClass(i,&LogoffGhost)
+         {
+            i = Send(i,@GetGhostedPlayer);
+            Send(i,@AdminGoToSafety);
+            oRoom = Send(SYS,@FindRoomByNum,#num=Send(i,@GetSaveRoom));
+            Send(SYS,@UtilGoToSquare,#what=j,#where=oRoom,
+                 #row=Send(i,@GetSaveRow),#col=Send(i,@GetSaveCol));
+
+            // If they have the damned string, this will remove it.
+            Send(i,@RemoveHonorString,#string=damn_last_annoyed);
+         }
+         else if IsClass(i,&Player)
+         {
+            Send(i,@AdminGoToSafety);
+
+            // If they have the damned string, this will remove it.
+            Send(i,@RemoveHonorString,#string=damn_last_annoyed);
+            Send(who,@MsgSendUser,#message_rsc=dmrescue_hit_rsc,
+                  #parm1=Send(i,@GetDef),#parm2=Send(i,@GetTrueName));
+         }
+         else
+         {
+            Send(who,@MsgSendUser,#message_rsc=spell_bad_target,
+                  #parm1=Send(self,@GetName),#parm2=Send(i,@GetIndef),
+                  #parm3=Send(i,@GetName));
+         }
+      }
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

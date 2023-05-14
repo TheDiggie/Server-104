@@ -1,0 +1,42 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+RiceMask is FaceMask
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   RiceMask_name_rsc = "rice hat mask"
+   RiceMask_icon_male_rsc = ricehat.bgf
+   RiceMask_icon_female_rsc = ricehat.bgf
+   RiceMask_desc_rsc = \
+      "This is a rice hat.  It will surely keep the sun out of"
+      "your eyes."
+
+classvars:
+
+   vrName = RiceMask_name_rsc
+   vrDesc = RiceMask_desc_rsc
+   vrIcon = RiceMask_icon_male_rsc
+
+   vrMaleIcon = RiceMask_icon_male_rsc
+   vrFemaleIcon = RiceMask_icon_female_rsc
+
+properties:
+
+
+messages:
+
+
+end
+////////////////////////////////////////////////////////////////////////////////

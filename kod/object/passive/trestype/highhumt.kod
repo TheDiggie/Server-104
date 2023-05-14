@@ -1,0 +1,54 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+HighHumanTreasure is TreasureType
+
+constants:
+
+   include blakston.khd
+
+classvars:
+
+   viTreasure_num = TID_HIGH_HUMAN
+
+properties:
+
+   piDiff_seed = 3
+   piItem_att_chance = 2
+
+messages:
+
+   Constructed()
+   {
+      plTreasure = [ [ &MeatPie, 1],
+                     [ &GoldShield, 8 ],
+                     [ &Gauntlet, 8 ],
+                     [ &Longsword, 1],
+                     [ &Sapphire, 5],
+                     [ &Diamond, 5],
+                     [ &BlueMushroom, 15 ],
+                     [ &RingofLethargy, 5],
+                     [ &AcidRing, 5],
+                     [ &FireRing, 4],
+                     [ &ColdRing, 4],
+                     [ &ShockRing, 4],
+                     [ &ScaleArmor, 8 ],
+                     [ &HealWand, 1 ],
+                     [ &VampireWand, 3 ],
+                     [ &Scepter, 4 ],
+                     [ &DarkAngelFeather, 5 ],
+                     [ &BlueDragonScale, 10 ],
+                     [ &FreeActionPotion, 3]
+                   ];
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,11 @@
+   dHelm_name_rsc = de "Der Dämonen Helm" 
+      dHelm_desc_rsc = de \
+      "Der Anblick dieses Helms lässt Dein Herz angsterfüllt schlagen! Er strahlt "
+      "eine Aura von Macht und Stärke aus und scheint geeignet für einen guten Kampf."
+  
+   dHelm_use_rsc = de \
+      "Die Lust nach dem Kampf steigt in Dir hoch, während dem du den Helm trägst. "
+      "Du sehnst Dich danach, Deine Feinde niederzustrecken!"
+  
+   dHelm_unuse_rsc = de \
+      "Die Kampfeslust des Dämonen Helm verlässt Dich."

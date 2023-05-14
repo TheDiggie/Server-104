@@ -1,0 +1,13 @@
+deedpoll_name_rsc = de "Urkunde"
+deedpoll_desc_rsc = de \
+   "Das ist ein Offizielles Dokument des Königlichen Justiziar.\n"
+   "Das Büro des Justiziar ist zuständig für die rechtliche Namensänderungen. "
+   "Fülle die Urkunde mit deinem Wunsch-Namen aus und biete anschließend diese "
+   "Caramo an. Sollte dein gewünschter Name gültig "
+   "sein, es soll es deiner sein!\n "
+   "\n"
+   "    =[C]=   Caramo, Assistent des Königlichen Justiziar"
+deedpoll_cant_drop_rsc = de \
+   "Du befindest dich nicht in der Lage, die Urkunde loszuwerden."
+deedpoll_destroyed_rsc = de \
+   "Die Urkunde löst sich plötzlich in Staub auf!"

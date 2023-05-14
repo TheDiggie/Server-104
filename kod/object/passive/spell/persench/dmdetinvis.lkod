@@ -1,0 +1,8 @@
+dm_det_invis_name_rsc = de "Unsichtbares erkennen"
+dm_det_invis_desc_rsc = de \
+   "Der Zauber lässt Dich Gestalten erkennen, die anderen verborgen bleiben. "
+   "Dieser mächtige Zauber hält länger als das gewöhnliche Unsichtbares "
+   "Entdecken. Die erneute Anwendung des Zaubers wird ihn von der Zielperson "
+   "entfernen."
+dm_det_invis_off_rsc = de \
+   "Du entfernst den größeren Unsichtbares entdecken Zauber von %s%s."

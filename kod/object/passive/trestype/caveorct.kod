@@ -1,0 +1,52 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CaveOrcTreasure is TreasureType
+
+constants:
+
+   include blakston.khd
+
+classvars:
+
+   viTreasure_num = TID_CAVE_ORC
+
+properties:
+
+   piItem_att_chance = 3
+   piDiff_seed = 3
+
+messages:
+
+   Constructed()
+   {
+      plTreasure = [ [ &OrcTooth, 39 ],
+                     [ &OreChunk, 5 ],
+                     [ &Scimitar, 1 ],
+                     [ &GoldShield, 1 ],
+                     [ &SimpleHelm, 1 ],
+                     [ &Emerald, 10 ],
+                     [ &Sapphire, 12 ],
+                     [ &Diamond, 12 ],
+                     [ &Ruby, 5 ],
+                     [ &NeruditeOreChunk, 1 ],
+                     [ &FireRing, 3 ],
+                     [ &ColdRing, 3 ],
+                     [ &ShockRing, 3 ],
+                     [ &AcidRing, 2 ],
+                     [ &KnightShield, 1 ],
+                     [ &FlashScroll, 1 ]
+                   ];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

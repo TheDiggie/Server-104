@@ -1,0 +1,16 @@
+icenova_name_rsc = de "Eisstern"
+icenova_desc_rsc = de \
+   "Ruft die Magie von Faren herbei und wirft eine Explosion von "
+   "Eissternen auf die Haut von deinen Gegner in naher Umgebung. "
+   "Dazu braucht man einen roten und zwei blaue Pilze."
+icenova_first_rsc = de \
+   "Du rufst die Magie Farens herbei und eine Flut von Eissternen trifft deine Gegner!"
+icenova_third_rsc = de \
+   "%s%s ruft die Magie Farens herbei und erzeugt eine Flut von Eissternen!"
+icenova_killed_someone = de "Die Eissterne treffen %s%s tödlich."
+icenova_cast_rsc = de \
+   "Du schreist vor Schmerzen, als die Eissterne auf deine Haut treffen! Die Eissterne "
+   "verursachen ~r~B%i~n Schaden."
+icenova_hit_rsc = de \
+   "%s%s schreit vor Schmerzen, als die Eissterne auf %s Haut treffen und "
+   "~k~B%i~n Schaden verursachen."

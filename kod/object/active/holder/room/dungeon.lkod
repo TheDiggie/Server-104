@@ -1,0 +1,5 @@
+room_name_dungeon = de "Gewölbe von Schloss Viktoria"
+climb_crates_rsc = de "Du steigst auf die Kiste."
+dungeon_climb_down_rsc = de "Du springst von der Kiste herunter."
+search_crates_rsc = de "Du wühlst in einer offenen Kiste."
+found_in_crate_rsc = de "Du hast etwas Interessantes gefunden!"

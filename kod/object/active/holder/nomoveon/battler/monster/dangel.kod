@@ -1,0 +1,304 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DarkAngel is Monster
+
+constants:
+
+   include blakston.khd
+
+   ANIM_SPEED = 75
+   WING_ANIM_SPEED = 200
+
+   FRAME_STAND = 1
+   FRAME_ATTACK_START = 2
+   FRAME_ATTACK_END = 6
+
+   FRAME_WING_START = 1
+   FRAME_WING_END = 4
+
+   HS_WINGS = 1
+
+   // Base percent chance to resist spells.
+   MAGIC_RESIST = 50
+
+resources:
+
+   include dangel.lkod
+
+   DarkAngel_koc_name_rsc = "ozangelis"
+   DarkAngel_name_rsc = "dark angel"
+   DarkAngel_icon_rsc = angel.bgf
+   DarkAngel_desc_rsc = \
+      "Travelling under cover of darkness, the Dark Angels seek the souls of "
+      "people to consume.  They are pure evil, lashing out at any that wander "
+      "near them.  Surely these beasts are the hand-servants of Qor!"
+
+   DarkAngel_wings_rsc = anglwing.bgf
+
+   DarkAngel_dead_icon_rsc = angelX.bgf
+   DarkAngel_dead_name_rsc = "dead dark angel"
+
+   DarkAngel_sound_attack = lich_atk.ogg
+   DarkAngel_sound_death = gst_dth.ogg
+   DarkAngel_sound_aware = gst_awr.ogg
+
+   DarkAngel_fireball = fireball.bgf
+
+classvars:
+
+   viIndefinite = ARTICLE_A
+   vrName = DarkAngel_name_rsc
+   vrIcon = DarkAngel_icon_rsc
+   vrDesc = DarkAngel_desc_rsc
+   vrDead_icon = DarkAngel_dead_icon_rsc
+   vrDead_name = DarkAngel_dead_name_rsc
+
+   viTreasure_type = TID_GHOST
+   viCashmin = 3000
+   viCashmax = 4000
+   viSpeed = SPEED_FASTER
+   viAttack_type = ATCK_WEAP_MAGIC
+   viAttack_spell = ATCK_SPELL_FIRE
+   viLevel = 150
+   viDifficulty = 7
+   viVisionDistance = 28
+
+   // Attack range of 448, or 7 row/col.
+   viAttackRange = 348
+
+   viKarma = -100
+   viDefault_behavior = AI_FIGHT_NEWBIESAFE | AI_FIGHT_AGGRESSIVE \
+                        | AI_FIGHT_SWITCHALOT | AI_MOVE_REGROUP \
+                        | AI_MOVE_OPTIMAL_RANGE | AI_FIGHT_THROUGH_WALLS
+
+   vrSound_miss = DarkAngel_sound_attack
+   vrSound_aware = DarkAngel_sound_aware
+   vrSound_death = DarkAngel_sound_death
+
+   // 1 in x chance to cast a spell.
+   viSpellChance = 3
+
+properties:
+
+   piAnimation = ANIM_NONE
+   piDrawEffectFlag = OF_BOUNCING
+
+   piSpellPower = 99
+   piMax_mana = 40
+
+   // piSpellRange in FINENESS units. 10 row/cols.
+   piSpellRange = 640
+
+   piReputationGroup = REP_HERETIC
+
+messages:
+
+   Constructed()
+   {
+      plResistances = [ [ -ATCK_SPELL_COLD, 50 ],
+                        [ -ATCK_SPELL_FIRE, 50 ],
+                        [ -ATCK_SPELL_SHOCK, 50 ],
+                        [ ATCK_WEAP_NERUDITE, 75 ],
+                        [ ATCK_WEAP_MAGIC, -5 ]
+                      ];
+      plSpellBook =  [ [SID_BLIND,8,20],[SID_EVIL_TWIN,12,30], [SID_HOLD,8,40],
+                       [SID_REFLECTION,5,60], [SID_DISCORDANCE,5,70],
+                       [SID_ENFEEBLE,8,80], [SID_FORGET,5,100] ];
+
+      propagate;
+   }
+
+   MonsterAttack(what=$)
+   {
+      local oSpell;
+
+      oSpell = Send(SYS,@FindSpellByNum,#num=SID_DARKNESS);
+      if NOT Send(poOwner,@IsEnchanted,#what=oSpell)
+         AND Send(oSpell,@CanPayMonsterCosts,#who=self,#lTargets=$,
+                  #iSpellPower=piSpellPower)
+         AND Send(poOwner,@ReqSpellCast,#who=self,#oSpell=oSpell,#litems=$)
+      {
+         Send(oSpell,@CastSpell,#who=self,#lTargets=$,
+              #iSpellPower=piSpellPower);
+      }
+
+      Send(self,@MonsterCastSpell);
+      Send(self,@DoFireball);
+
+      return;
+   }
+
+   MonsterCastAnimation(iSpellNum=$)
+   {
+      // We use the fireball for cast animation.
+      Send(self,@DoFireball);
+
+      return;
+   }
+
+   DoFireball()
+   {
+      piAnimation = ANIM_ATTACK;
+      Send(poOwner,@SomethingChanged,#what=self);
+      Send(poOwner,@SomethingShot,#who=self,#target=poTarget,#projectile=self,
+           #flags=PROJ_FLAG_LIGHT_SOURCE);
+      piAnimation = ANIM_NONE;
+
+      return;
+   }
+
+   GetProjectileIcon()
+   {
+      return DarkAngel_fireball;
+   }
+
+   GetProjectileSpeed()
+   {
+      return 25;
+   }
+
+   SendProjectileAnimation()
+   {
+      // 40ms between animations
+      AddPacket(1,ANIMATE_CYCLE, 4,40, 2,1, 2,2);
+
+      return;
+   }
+
+   GetProjectileLightFlags()
+   {
+      // General lighting information.
+      return LIGHT_FLAG_ON | LIGHT_FLAG_DYNAMIC;
+   }
+
+   GetProjectileLightIntensity()
+   {
+      // Medium light radius for projectile.  Out of 255 levels.
+      return 125;
+   }
+
+   GetProjectileLightColor()
+   {
+      // Color is a bright orange.
+      return LIGHT_BORANGE;
+   }
+
+   SendLookAnimation()
+   {
+      AddPacket(1,ANIMATE_NONE,2,FRAME_STAND);
+
+      return;
+   }
+
+   SendMoveAnimation()
+   {
+      AddPacket(1,ANIMATE_NONE, 2,FRAME_STAND);
+
+      return;
+   }
+
+   SendMoveOverlays()
+   {
+      Send(self,@SendOverlays);
+
+      return;
+   }
+
+   SendOverlays()
+   {
+      AddPacket(1,1);
+      AddPacket(4,DarkAngel_wings_rsc, 1,HS_WINGS);
+      AddPacket(1,ANIMATE_CYCLE, 4,WING_ANIM_SPEED, 2,FRAME_WING_START,
+                2,FRAME_WING_END);
+
+      return;
+   }
+
+   SendAnimation(iAnimation = $)
+   {
+      local iAnim;
+
+      if iAnimation = $
+      {
+         iAnim = piAnimation;
+      }
+      else
+      {
+         iAnim = iAnimation;
+      }
+      
+      if iAnim = ANIM_NONE
+      {
+         AddPacket(1,ANIMATE_NONE,2,FRAME_STAND);
+
+         return;
+      }
+      
+      if iAnim = ANIM_ATTACK
+      {
+         AddPacket(1,ANIMATE_ONCE, 4,ANIM_SPEED, 2,FRAME_ATTACK_START,
+                   2,FRAME_ATTACK_END, 2,FRAME_STAND);
+
+         return;
+      }
+
+      propagate;
+   }
+
+   Delete()
+   {
+      propagate;
+   }
+
+   CanMorphTo()
+   {
+      // Dark Angel has overlays.
+      return FALSE;
+   }
+
+   CanBeSilenced()
+   "Dark Angels cannot be silenced by the room enchantment."
+   {
+      return FALSE;
+   }
+
+   SpellResist(oSpell=$,who=$,iSpellpower=$)
+   {
+      local iResistChance;
+
+      if IsClass(who,&DM)
+      {
+         return FALSE;
+      }
+
+      if Send(oSpell,@IsHarmful)
+      {
+         iResistChance = MAGIC_RESIST;
+         if IsClass(oSpell,&Dazzle)
+            OR IsClass(oSpell,&Blind)
+            OR IsClass(oSpell,&Hold)
+         {
+            // Extra 60// chance to resist.  Brings 50// up to 80//
+            iResistChance = (iResistChance * 160)/100;
+         }
+
+         if iSpellPower < 40
+            OR Random(0,100) < iResistChance
+         {
+            return TRUE;
+         }
+      }
+
+      return FALSE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,42 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+NarthylWormTreasure is TreasureType
+
+constants:
+
+   include blakston.khd
+
+classvars:
+
+   viTreasure_num = TID_NARTHYL_WORM
+
+properties:
+
+   piItem_att_chance = 4
+   piDIff_seed = 7
+
+messages:
+
+   Constructed()
+   {
+      plTreasure = [ [ &BlueDragonScale, 48 ],
+                     [ &DarkAngelFeather, 48 ],
+                     [ &NightVisionPotion, 1 ],
+                     [ &FireRing, 1 ],
+                     [ &ColdRing, 1 ],
+                     [ &ShockRing, 1 ]
+                   ];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

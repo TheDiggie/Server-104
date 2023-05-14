@@ -1,0 +1,142 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+/////////////////////////////////////////////////////////////////////////////////
+Mirth is Jala
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include mirth.lkod
+
+   Mirth_name_rsc = "mirth"
+   Mirth_icon_rsc = imirth.bgf
+   Mirth_desc_rsc = \
+      "This song makes people happy!  It is a lively tune, which makes people "
+      "feel as if they have a new start on life.  The song causes some people "
+      "to smile, often resulting in better moods.  A good mood allows others "
+      "to fight evil more effectively.  Requires one sapphire to cast."
+
+   Mirth_song = main.ogg
+
+   Mirth_cast = "You begin to play a mirthful song."
+   Mirth_starts = "%s%s begins to play a mirthful song."
+   Mirth_ends = "The mirthful song played by %s%s fades away."
+   Mirth_caster_ends = "Your mirthful song fades."
+   Mirth_caster_enter = "Your spirits lift a bit."
+   Mirth_enter = "%s%s's mirthful song lifts your spirits a bit."
+   Mirth_leave = "You can no longer hear the mirthful notes of %s%s's song."
+
+classvars:
+
+   vrEnchantmentOn = Mirth_cast
+   vrEnchantmentOnOther = Mirth_starts
+   vrEnchantmentOff = Mirth_caster_ends
+   vrEnchantmentOffOther = Mirth_ends
+   vrEnterRadiusCaster = Mirth_caster_enter
+   vrEnterRadius = Mirth_enter
+   vrLeaveRadius = Mirth_leave
+
+   vrName = Mirth_name_rsc
+   vrIcon = Mirth_icon_rsc
+   vrDesc = Mirth_desc_rsc
+
+   viSpell_num = SID_MIRTH
+   viSchool = SS_JALA
+   viSpell_level = 1
+
+   viMana = 2
+   viManaDrain = 0
+   viDrainTime = 1000
+
+   viSpellExertion = 1
+   viChance_To_Increase = 25
+   viMeditate_ratio = 20
+
+   viAffectsEveryone = TRUE
+
+properties:
+
+   prMusic = Mirth_song
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&Sapphire,1],plReagents);
+
+      return;
+   }
+
+   AddEnchantmentEffects(who=$,state=$)
+   {
+      if IsClass(who,&User)
+      {
+         Send(who,@SetAction,#action=UA_HAPPY);
+      }
+
+      propagate;
+   }
+
+   RemoveEnchantmentEffects(who=$,iPower=0,source=$)
+   {
+      if IsClass(who,&User)
+         AND Send(who,@GetAction) = UA_HAPPY
+      {
+         Send(who,@SetAction,#action=UA_NORMAL);
+      }
+
+      propagate;
+   }
+
+   // Stuff we handle to be an attack modifier.
+
+   ModifyHitRoll(who = $,what = $,hit_roll = $,state = $)
+   {
+      if what = $
+      {
+         return hit_roll;
+      }
+
+      // Only affect the evil ones...
+      if Send(what,@GetKarma,#detect=TRUE) < 0
+      {
+         // Give a small bonus
+         return hit_roll + Nth(state,5);
+      }
+
+      return hit_roll;
+   }
+
+   ModifyDamage(who = $,what = $,damage = $,state = $)
+   {
+      local iPower;
+
+      if what = $
+      {
+         return damage;
+      }
+
+      // Only affect the evil ones...
+      if Send(what,@GetKarma,#detect=TRUE) < 0
+      {
+         iPower = Bound(Nth(state,5) / 24,1,4);
+
+         return damage + Random(1,iPower);
+      }
+
+      return damage;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,50 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Weed is NumberItem
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Weed_name_one_rsc = "Riija C-Strain"
+   Weed_name_many_rsc = "A few ounces of Riija C-Strain"
+   
+   Weed_icon_rsc = weed.bgf
+   Weed_desc_rsc = \
+      "This is a special strain of cannabis home grown by Cyrus  "
+      "in a grow room hidden under the temple of Riija.  With  "
+      "Riijas magic combining with the herbs I assure you stoned  "
+      "isn't all you'll be.  \nBetter save these up, Cyrus will  "
+      "trade you items for good weed.  "
+
+classvars:
+
+   vrName = Weed_name_one_rsc
+   vrIcon = Weed_icon_rsc
+   vrDesc = Weed_desc_rsc
+
+   vrName_plural = Weed_name_many_rsc
+
+   viBulk = 0
+   viWeight = 0
+
+   viValue_average = 100
+
+   viUse_type = ITEM_CANT_USE
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

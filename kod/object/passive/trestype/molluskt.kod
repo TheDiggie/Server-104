@@ -1,0 +1,43 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+MolluskTreasure is TreasureType
+
+constants:
+
+   include blakston.khd
+
+classvars:
+
+   viTreasure_num = TID_MOLLUSK
+
+properties:
+
+   piDiff_seed = 5
+   piItem_att_chance = 2
+
+messages:
+
+   Constructed()
+   {
+      plTreasure = [ [ &GreenMushroom, 1 ],
+                   [ &BlueDragonScale, 26],
+                   [ &Ruby, 26],
+                   [ &InkyCap, 20],
+                   [ &MysticSword, 1],
+                   [ &AcidArrow, 1],
+				   [ &DarkAngelFeather, 25 ]
+                 ];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

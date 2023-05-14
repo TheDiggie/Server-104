@@ -1,0 +1,20 @@
+weapatt_faction_princess = de \
+   " Das in die Waffe eingelassene Siegel der Prinzessin verspricht einen "
+   "%s Vorteil bei der Verteidigung ihrer Ehre."
+weapatt_faction_duke = de \
+   " Das Wappen des Herzogs ist in die Waffe eingraviert und bietet "
+   "%s Vorteil bei seinem Streben nach dem Thron."
+weapatt_faction_rebel = de \
+   " Die Rebellen Fahne ist in die Waffe eingeprägt und verspricht einen %s "
+   "Vorteil für die Rebellion."
+weapatt_faction_necro = de \
+   " Das dunkle Symbol der Nekromanten ist in dieser Waffe eingeprägt und "
+   "gibt einen %s Vorteil für die untote Armee."
+weapatt_faction_duke_name = de "%s des Herzogs"
+weapatt_faction_princess_name = de "%s der Prinzessin"
+weapatt_faction_rebel_name = de "der Rebell %s"
+weapatt_faction_necro_name = de "Nekromanten %s"
+iafaction_duke_dm = de "Herzog"
+iafaction_princess_dm = de "Prinzessin"
+iafaction_rebel_dm = de "Rebell"
+iafaction_necro_dm = de "Nekromanten"

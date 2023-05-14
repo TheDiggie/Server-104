@@ -1,0 +1,100 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+GuildRoster is GuildCommand
+
+constants:
+
+   include blakston.khd
+   include protocol.khd
+
+resources:
+
+   include gcroster.lkod
+
+   guildroster_name_rsc = "roster"
+   guildroster_icon_rsc = light.bgf
+   guildroster_desc_text_rsc = "Shows a list of the people in your guild."
+
+   roster_message_rsc = "~rThe following people are members of %s%s: \n~k%s%s%s"
+   roster_comma = "~n~k, %s%s%s"
+   roster_gm = "~B~r"
+   roster_not_gm = "~n~k"
+   roster_period = "."
+
+classvars:
+
+   vrName = guildroster_name_rsc
+   vrIcon = guildroster_icon_rsc
+   vrDesc = guildroster_desc_text_rsc
+
+   viIndefinite = ARTICLE_NONE
+   viDefinite = ARTICLE_NONE
+
+   viGuildcommand_num = GCID_ROSTER
+   viRank_needed = RANK_LORD
+
+properties:
+
+messages:
+
+   GetNumSpellTargets()
+   {
+      return 0;
+   }
+
+   DoCommand(who=$, oTarget = $)
+   "Most of this is handled in guild.kod."
+   {
+      local oGuild, lMembers, i, firstone;
+
+      oGuild = Send(who,@GetGuild);
+      lMembers = Send(oGuild,@GetMemberList);
+
+      if Send(who,@IsLoggedOn)
+      {
+         AddPacket(1,BP_MESSAGE,4,roster_message_rsc);
+         AddPacket(4,Send(oGuild,@GetDef),4,Send(oGuild,@GetName));
+         firstone = TRUE;
+         foreach i in lMembers
+         {
+            if NOT firstone
+            {
+               AddPacket(4,roster_comma);
+            }
+            else
+            {
+               firstone = FALSE;
+            }
+
+            if Send(oGuild,@GetGuildmaster) = First(i)
+            {
+               AddPacket(4,roster_gm);
+            }
+            else
+            {
+               AddPacket(4,roster_not_gm);
+            }
+
+            AddPacket(4,Send(First(i),@GetTrueName));
+         }
+         AddPacket(4,roster_period);
+         AddPacket(4,roster_period);
+         AddPacket(4,roster_period);
+         AddPacket(4,roster_period);
+
+         SendPacket(Send(who,@GetSession));
+      }
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

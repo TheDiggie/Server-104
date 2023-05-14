@@ -1,0 +1,337 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+KocatanShopkeeper is KocatanTown
+
+constants:
+
+   include blakston.khd
+
+   // Max number of different items for sale.
+   MAX_FORSALE = 25
+
+   // Max number of number items that will be held.
+   NUMBER_ITEM_MAX = 5500
+
+resources:
+
+   include kcshopk.lkod
+
+   kocatanShopkeeper_name_rsc = "Pacal ix'Anoak"
+   kocatanShopkeeper_icon_rsc = kcshopk.bgf
+   kocatanShopkeeper_desc_rsc =  \
+      "This somewhat scattered man runs a very scattered store set in an "
+      "abandoned arsenal.  Regardless of his apparent lack of organization, "
+      "Pacal has a remarkable understanding of exactly what is here and where."
+
+   kocatanShopkeeper_entry_welcome = \
+      "I probably got what you're looking for.... somewhere...."
+
+   JunkMan_AlreadyHaveOne_rsc = \
+      "I've already got one of them to unload, I don't need another right now."
+   JunkMan_NumberItem_rsc = \
+      "Sorry, my friend, trinkets like those are things I `Bwon't`n take."
+   JunkMan_Full_rsc = \
+      "I wish I could take that off of your hands for you, but mine "
+      "are all full too!"
+   JunkMan_Not_Interested = "I thank ye, but I am not interested."
+
+classvars:
+
+   vrName = kocatanShopkeeper_name_rsc
+   vrIcon = kocatanShopkeeper_icon_rsc
+   vrDesc = kocatanShopkeeper_desc_rsc
+   viMerchant_markup = MERCHANT_EXPENSIVE
+
+   viAttributes = \
+      MOB_NOFIGHT | MOB_SELLER | MOB_RANDOM | \
+      MOB_LISTEN | MOB_NOMOVE | MOB_BUYER 
+   viOccupation = MOB_ROLE_MERCHANT
+
+   // We sell what other people have given us
+   vbSellFromInventory = TRUE
+
+properties:
+
+   ptNew_Junk = $
+
+messages:
+
+   Constructed()
+   {
+      ptNew_Junk = CreateTimer(self,@AddNewJunkToSell,Random(900000,1800000));
+
+      propagate;
+   }
+
+   UserEntered(who=$)
+   {
+      if Send(who,@CheckPlayerFlag,#flag=PFLAG_MURDERER)
+         OR Send(who,@CheckPlayerFlag,#flag=PFLAG_OUTLAW)
+      {
+         Send(self,@SetMood,#new_mood=piMood+1);
+      }
+
+      if Send(who,@GetAction) = UA_HAPPY
+      {
+         Send(self,@SetMood,#new_mood=piMood-2);
+      }
+
+      if Send(who,@GetAction) = UA_SAD
+      {
+         Send(self,@SetMood,#new_mood=piMood-2);
+      }
+
+      Post(who,@SomeoneSaid,#what=self,#string=kocatanShopkeeper_entry_welcome,
+            #type=SAY_RESOURCE);
+
+      return;
+   }
+
+   AffectMood(what=$,why=$)
+   {
+      if why = MOODMOD_DAWN
+      {
+         Send(self,@SetMood,#new_mood=piMood+1);
+
+         return;
+      }
+
+      if why = MOODMOD_DUSK
+      {
+         Send(self,@SetMood,#new_mood=piMood-1);
+
+         return;
+      }
+
+      if why = MOODMOD_ACCEPT_ITEM
+      {
+         Send(self,@SetMood,#new_mood=piMood+1);
+
+         return;
+      }
+
+      if why = MOODMOD_SELL_ITEM
+      {
+         if IsClass(what,&Junk)
+         {
+            Send(self,@SetMood,#new_mood=piMood+10);
+
+            return;
+         }
+      }
+
+      return;
+   }
+
+   Delete()
+   {
+      if ptNew_Junk <> $
+      {
+         DeleteTimer(ptNew_Junk);
+         ptNew_Junk = $;
+      }
+
+      propagate;
+   }
+
+   AddNewJunkToSell()
+   "Adds more junk to sell, also reduces the amount of number items "
+   "held if over max."
+   {
+      local oJunk, lForSale, i, bAdd;
+
+      ptNew_Junk = $;
+
+      lForSale = first(plFor_sale);
+
+      oJunk = Create(&Junk);
+      bAdd = (length(lForSale) < MAX_FORSALE);
+
+      foreach i in lForSale
+      {
+         if bAdd AND Send(i,@GetName) = Send(oJunk,@GetName)
+         {
+            bAdd = FALSE;
+            Send(oJunk,@Delete);
+         }
+
+         // Reduce our stock at this point.
+         if IsClass(i,&NumberItem)
+         {
+            // Reduce number item stock by 1/3 to free up room to buy more.
+            Send(i,@SubtractNumber,#Number=Send(i,@GetNumber)/3);
+         }
+         else
+         {
+            // Likewise, delete about 1/3rd our non-number items.
+            if random(1,3) = 1
+            {
+               Send(i,@Delete);
+            }
+         }
+      }
+
+      if bAdd
+      {
+         lForSale = cons(oJunk,lForSale);
+         SetNth(plFor_Sale,1,lForSale);
+      }
+
+      ptNew_Junk = CreateTimer(self,@AddNewJunkToSell,
+                           (Random(12,24)*60*60*1000)); // 12-24 hours.
+
+      return;
+   }
+
+   SetForSale()
+   {
+      local i, oJunk1, oJunk2, oJunk3, lForSale;
+
+      lForSale = $;
+
+      oJunk1 = Create(&Junk);
+      oJunk2 = Create(&Junk);
+      oJunk3 = Create(&Junk);
+
+      plFor_sale = [ [oJunk1,oJunk2,oJunk3 ],$,$ ];
+
+      Send(self,@NewHold,#what=oJunk1);
+      Send(self,@NewHold,#what=oJunk2);
+      Send(self,@NewHold,#what=oJunk3);
+
+      return;
+   }
+
+   ObjectDesired(what=$,report=TRUE)
+   "This is set in individual buyers.  It allows them to pick and choose"
+   "what they want to buy."
+   {
+      local i;
+
+      // Don't take money for resale.  That's just silly.
+      if IsClass(what,&Money)
+      {
+         return FALSE;
+      }
+
+      if length(first(plFor_Sale)) > MAX_FORSALE
+      {
+         return FALSE;
+      }
+
+      foreach i in first(plFor_Sale)
+      {
+         if GetClass(i) = GetClass(what)
+         {
+            if IsClass(i,&NumberItem)
+               AND (Send(what,@GetNumber) + Send(i,@GetNumber))
+                        < NUMBER_ITEM_MAX
+            {
+               return TRUE;
+            }
+
+            return FALSE;
+         }
+      }
+
+      if Send(what,@HasAttribute,#ItemAtt=IA_BONDED)
+         OR Send(what,@IsItemType,#type=ITEMTYPE_SPECIAL)
+      {
+         return FALSE;
+      }
+
+      if IsClass(what,&Token) OR IsClass(what,&Totem)
+      {
+         return FALSE;
+      }
+      
+      return TRUE;
+   }
+
+   AcceptOffer()
+   "Transfer the purchased merchandise - MOB_BUYER"
+   {
+      local i,j,oHolder,lTake_items, bHadSomeNum, lForSale;
+
+      lForSale = First(plFor_Sale);
+
+      // Set the stuff where the user can get to it
+      oHolder = Send(SYS,@GetSystemHolder2);
+      foreach i in plOffer_items
+      {
+         Send(oHolder,@NewHold,#what=i);
+      }
+
+      // Take stuff the user put there.
+      oHolder = Send(SYS,@GetSystemHolder1);
+      foreach lTake_items in [ Send(oHolder,@GetHolderActive),
+                           Send(oHolder,@GetHolderPassive) ]
+      {
+         foreach i in lTake_items
+         {
+            Send(self,@NewHold,#what=i);
+            if IsClass(i,&NumberItem)
+            {
+               bHadSomeNum = FALSE;
+               foreach j in lForSale
+               {
+                  if GetClass(j) = GetClass(i)
+                  {
+                     bHadSomeNum = TRUE;
+                     Send(j,@AddNumber,#number=Send(i,@GetNumber));
+                     // We don't need 'i' any more, delete it.
+                     Send(i,@Delete);
+
+                     break;
+                  }
+               }
+               if NOT bHadSomeNum
+               {
+                  lForSale = Cons(i,lForSale);
+               }
+            }
+            else
+            {
+               // If this is a spell item, then stop the go bad timer.
+               if IsClass(i,&SpellItem)
+               {
+                  Send(i,@StopGoBadTimer);
+               }
+               
+               lForSale = Cons(i,lForSale);
+            }
+         }
+      }
+
+      // kill the cancel offer timer
+      SetNth(plFor_Sale,1,lForSale);
+      Send(self,@OfferCanceled);
+
+      return TRUE;
+   }
+
+   NewHoldObject(what = $)
+   {
+      local oOwner;
+
+      oOwner = Send(what,@GetOwner);
+
+      if oOwner <> $
+      {
+         Send(poOwner,@LeaveHold,#what=what);
+         Send(what,@NewOwner,#what=$);
+      }
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

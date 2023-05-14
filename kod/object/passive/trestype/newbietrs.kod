@@ -1,0 +1,57 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+NewbieAreaTreasure is TreasureType
+
+/// This is special because it is used only for newbieville/demoville area, and
+/// therefore must follow a reasonably tight script
+
+constants:
+
+   include blakston.khd
+
+classvars:
+
+   viTreasure_num = TID_NEWBIE_AREA
+
+properties:
+
+messages:
+
+   Constructed()
+   {
+      plTreasure = [ [ &Snack, 15 ],
+                     [ &InkyCap, 2 ],
+                     [ &Emerald, 5 ],
+                     [ &Sapphire, 5 ],
+                     [ &EntrootBerry, 4 ],
+                     [ &BlueMushroom, 4 ],
+                     [ &RedMushroom, 4 ],
+                     [ &Mushroom, 5 ],
+                     [ &FairyWing, 5 ],
+                     [ &OrcTooth, 4 ],
+                     [ &Gauntlet, 2 ],
+                     [ &SimpleHelm, 2 ],
+                     [ &HealWand, 2 ],
+                     [ &Mace, 8 ],
+                     [ &ShortSword, 5 ],
+                     [ &LeatherArmor, 8 ],
+                     [ &Flask, 3 ],
+                     [ &MagicShieldPotion, 9 ],
+                     [ &LightScroll, 3 ],
+                     [ &LightningWand, 3 ],
+                     [ &JewelofFroz, 1 ],
+                     [ &BerserkerRing, 1 ] ];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

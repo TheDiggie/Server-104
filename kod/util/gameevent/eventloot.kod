@@ -1,0 +1,128 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+///////////////////////////////////////////////////////////////////////////
+EventLoot is GameEvent
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+classvars:
+
+properties:
+
+messages:
+
+   Constructor()
+   {
+      propagate;
+   }
+
+   GetRandomMonster(who = $)
+   {
+		local i, oRoom, iRoom, sRoomName, lMonsters, iMonsterCount, oMonster, oMonsterChosen;
+		
+		oRoom = Send(who, @GetOwner);
+		iRoom = Send(oRoom,@GetRoomNum);
+		sRoomName = Send(oRoom, @GetName);
+		lMonsters = Send(oRoom, @GetHolderActive);
+		
+		Debug("Room is", Send(oRoom, @GetName));
+		Debug("Room has", Length(lMonsters),"active");
+		
+		iMonsterCount = 1;
+		oMonsterChosen = $;
+		
+		Debug("Choosing a monster");
+		
+		while oMonsterChosen = $
+		{
+			foreach i in lMonsters
+			{
+				oMonster = First(i);
+				
+				if oMonster <> $ AND IsClass(oMonster, &Monster)
+				{
+					iMonsterCount++;
+					
+					if Random(0, 5) = 1
+					{
+						oMonsterChosen = oMonster;
+					}
+				}
+			}
+			
+			if oMonsterChosen = $ AND iMonsterCount = 1
+			{
+				Debug("Not even monsters to start the event");
+				break;
+			}
+		}
+		
+		if oMonsterChosen = $
+		{
+			return $;
+		}
+		
+		return oMonsterChosen;
+   }
+
+   SetLoot(who = $, count = 3)
+   {
+		local i, c, x, oGodRoom, iChestCount, lChestItems, oBox, iGivenOut, oMonster;
+		
+		iChestCount = 0;
+		iGivenOut = 0;
+		
+		oGodRoom = Send(SYS,@FindRoomByNum,#num=RID_GODROOM);
+		
+		foreach i in Send(oGodRoom,@GetHolderActive)
+		{
+			 oBox = First(i);
+			 
+			 if oBox <> $ AND IsClass(oBox,&StorageBox)
+			 {
+				iChestCount++;
+
+				lChestItems = Send(oBox,@GetHolderPassive);
+				
+				if lChestItems <> $
+				{
+					foreach c in lChestItems
+					{
+						if IsClass(c, &Item)
+						{
+							iGivenOut++;
+
+							oMonster = Send(self, @GetRandomMonster, #who=who);
+							
+							if oMonster <> $
+							{
+								Send(oMonster, @NewHold, #what=c);
+								Debug("Gave", Send(c, @GetName),"to",Send(oMonster, @GetName));
+							}
+							
+							if iGivenOut >= count 
+							{
+								return;
+							}
+						}
+					}
+				}
+			 }
+		}
+			  
+	   return;
+   }
+
+end
+///////////////////////////////////////////////////////////////////////////

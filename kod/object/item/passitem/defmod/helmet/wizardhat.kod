@@ -1,0 +1,177 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Wizardhat is Helmet
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   wiz_name_rsc = "wizard's hat"
+   wiz_icon_male_rsc   = wizardhat.bgf
+   wiz_icon_female_rsc = wizardhatF.bgf
+   wiz_desc_rsc = \
+      "Woven from the queen spiders web this hat is infused with "
+      "the magic power of %s. Tho comfortable this hat is "
+      "likely to catch fire when near a flame.  "
+
+classvars:
+
+   vrName = wiz_name_rsc
+   vrDesc = wiz_desc_rsc
+   vrIcon = wiz_icon_male_rsc
+
+   viHits_init_min = 200
+   viHits_init_max = 225
+
+   viValue_average = 100
+   viWeight = 50
+   viBulk = 25
+
+   viUse_type = ITEM_USE_HEAD
+   viUse_amount = 1
+
+   viGround_group = 3
+   viInventory_group = 2
+   viBroken_group = 4
+
+   viDefense_base = 20
+   viDamage_base = 0
+
+properties:
+
+   viPT_qor_master = PT_GRAY_TO_BLACK
+   viPT_shalille_master = PT_GRAY_TO_PLATBLOND
+   viPT_faren_master = PT_GRAY_TO_LRED
+   viPT_kraanan_master = PT_GRAY_TO_LBBLUE
+   viPT_riija_master = PT_GRAY_TO_LPURPLE
+   viPT_jala_master = PT_GRAY_TO_LBGREEN
+   piSchool = SS_RIIJA
+
+messages:
+
+   Constructor(school = -1)
+   {
+      if school = -1
+      {
+         school = Random(1,6);
+      }
+
+      Send(self,@SetSchool,#school=school);
+      Send(self,@ResetColors);
+
+      propagate;
+   }
+
+   NewUsed()
+   {
+      Send(poOwner,@RemoveHair,#what=self);
+
+      propagate;
+   }
+
+   NewUnused()
+   {
+      Send(poOwner,@ResetHair,#what=self);
+
+      propagate;
+   }
+
+   GetResistanceModifiers()
+   {
+      return [ [-ATCK_SPELL_FIRE,-10]
+             ];
+   }
+
+   GetOverlay(animation = $)
+   {
+      if Send(poOwner,@GetGender) = GENDER_FEMALE
+      {
+         return wiz_icon_female_rsc;
+      }
+
+      return wiz_icon_male_rsc;
+   }
+
+   GetBaseSpellModifier(oSpell=$)
+   {
+      if Send(oSpell,@GetSchool) = piSchool
+      {
+         return 10;
+      }
+
+      return 0;
+    }
+
+   ResetColors()
+   {
+         if piSchool = SS_FAREN
+         {
+            Send(self,@SetPaletteTranslation,#translation=viPT_faren_master);
+         }
+         else if piSchool = SS_KRAANAN
+         {
+            Send(self,@SetPaletteTranslation,#translation=viPT_kraanan_master);
+         }
+         else if piSchool = SS_SHALILLE
+         {
+            Send(self,@SetPaletteTranslation,#translation=viPT_shalille_master);
+         }
+         else if piSchool = SS_QOR
+         {
+            Send(self,@SetPaletteTranslation,#translation=viPT_qor_master);
+         }
+         else if piSchool = SS_RIIJA
+         {
+            Send(self,@SetPaletteTranslation,#translation=viPT_riija_master);
+         }
+         else if piSchool = SS_JALA
+         {
+            Send(self,@SetPaletteTranslation,#translation=viPT_jala_master);
+         }
+
+      return;
+   }
+
+   SetSchool(school=SS_RIIJA,bRefresh=FALSE)
+   {
+      if bRefresh
+      {
+         School = piSchool;
+      }
+      else
+      {
+         piSchool = School;
+      }
+
+      return;
+   }
+
+   DoBaseDesc()
+   {
+      local oSpell;
+
+      // Find a spell, any spell, so we can get the string out of it
+      // for which school we are.
+      oSpell = Send(SYS,@FindSpellByNum,#num=SID_BLINK);
+      AddPacket(4,vrDesc,4,Send(oSpell,@GetSchoolStr,#iSchool=piSchool));
+
+      return;
+   }
+
+   GetSchool()
+   {
+      return piSchool;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

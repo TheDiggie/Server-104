@@ -1,0 +1,111 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+ItemAttXPKillBonus is ItemAttribute
+
+///////////////////////////////////////////////////////////////////////
+//
+//  Awards the player X amount of bonus XP on kill
+//
+//  Form is:
+//
+//      [ItemAttXPBonus, XP]
+//
+
+///////////////////////////////////////////////////////////////////////
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include iaxpkillbonus.lkod
+
+   itematt_xpkillbonus_name = "adventuring %s"
+   xpkillbonus_dm = "adventuring"
+   itematt_xpkillbonus_desc = \
+      " This %s is exceptionally well made, and would be of benefit to "
+      "any adventurer seeking to gain experience."
+   xpkillbonus_info_desc = "%i bonus XP per kill\n"
+
+classvars:
+
+   viItem_Att_Num = IA_XP_KILL_BONUS
+   vrName = itematt_xpkillbonus_name
+   vrDesc = itematt_xpkillbonus_desc
+   vrInfoDesc = xpkillbonus_info_desc
+   viDefault_bonus = 25
+   viDifficulty = 1
+   vrDM_Trigger = xpkillbonus_DM
+
+properties:
+
+   piValue_modifier = 150
+   piValue_power_modifier = 0
+
+messages:
+
+   AddToTreasureTable()
+   {
+      local i, iChance;
+
+      for (i = 1, iChance = 30; i < 11; ++i, iChance = iChance - 3)
+      {
+         Send(SYS,@AddToItemAttTreasureTable,#diff=i,#percent=iChance,
+               #iItemAtt=viItem_Att_Num);
+      }
+
+      return;
+   }
+
+   InitialPower(oItem = $, diff_seed = 1)
+   {
+      return Bound(diff_seed - 1,0,9);
+   }
+
+   GetXPBonusFromCompound(iCompound=0)
+   {
+      // Ranges from 1 * bonus to 10 * bonus.
+      return ((iCompound / 10) % 10) * viDefault_bonus + viDefault_bonus;
+   }
+
+   AppendDesc(oItem =$)
+   {
+      AddPacket(4,vrDesc, 4,Send(oItem,@GetName));
+
+      return;
+   }
+
+   AppendDescInfo(oItem = $,compound = $)
+   {
+      local iXPBonus;
+
+      if (Send(oItem,@GetIDStatusFromCompound,#compound=compound))
+      {
+         iXPBonus = Send(self,@GetXPBonusFromCompound,#iCompound=compound);
+         AddPacket(4,vrInfoDesc, 4,iXPBonus);
+      }
+      else
+      {
+         // Not identified, add nothing (blank resource).
+         AddPacket(4,system_blank_resource);
+      }
+
+      return;
+   }
+
+   IsMagicalEffect()
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

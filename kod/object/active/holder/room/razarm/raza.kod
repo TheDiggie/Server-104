@@ -1,0 +1,345 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+/////////////////////////////////////////////////////////////////////////////////
+Raza is RazaRoom
+
+constants:
+
+   include blakston.khd
+
+   CLOCK_FACE = 1
+
+resources:
+
+   include raza.lkod
+
+   room_name_raza = "Raza"
+   room_raza = raza.roo
+   raza_music = login.ogg
+
+   raza_wading_sound = weatstp1.ogg
+
+   raza_signname = "Getting around"
+   raza_sign = \
+      "Now that you're outside, you can really practice moving "
+      "around.  Autorun is on by default, but if you wish to slow down a "
+      "bit use the SHIFT key to walk while you move.  Also, you can use "
+      "the A and D keys to slide sideways (or 'strafe').  The END key is "
+      "good for turning around 180 degrees in a hurry.\n\n"
+      "It's also a good time to learn about the map, to the right of the "
+      "graphics window.  The blue line shows your position on the map.  "
+      "Depending on the size of the map, this may look like a blue dot but "
+      "you can use the + and - keys to zoom in/out.  Other players will show "
+      "up as blue dots, monsters as red dots, and NPCs as black dots.  "
+      "You can add comments to the map by RIGHT CLICKING on the map, and then "
+      "entering your reminder to yourself.\n\n"
+      "-------------------\n\n"
+      "After you experiment a bit, you should head towards the blacksmith's "
+      "shop, which is housed in the south wing of the stone building at the "
+      "east end of the pond. The shop has the hammer and anvil sign next to "
+      "the door."
+
+   raza_signname2 = "Entering the world"
+   raza_sign2 = \
+      "Beyond this gate lies the rest of the world of Meridian 59.  At this "
+      "time, you may wish to read the mail your guardian angel has sent you "
+      "as it contains information on how to survive and what you might do in "
+      "this world.  To access your mail, type MAIL.\n\n"
+      "In the area surrounding Raza you will find monsters appropriate for "
+      "your level, however when encountering a new monster, you should look "
+      "at its description to see what hitpoints it will take you to.  If this "
+      "number is far beyond your own level, the monster may be too dangerous "
+      "for you to challenge alone.\n\n"
+      "You can return to Raza at any time to sell your items or purchase more, "
+      "and if you venture north-east to the Forest of Farol you may travel "
+      "north or south to other towns."
+
+   raza_locked_farm = \
+      "The door to the farmhouse is firmly bolted from the inside."
+   raza_locked_stable = "The door to the tiny shed is locked."
+   raza_locked_clock = \
+      "The doors to the temple remain locked at all times, except "
+      "during funeral services."
+   raza_locked_townhall = \
+      "The doors to the town hall are firmly bolted from the inside."
+   raza_locked_tavern = \
+      "The door to Eric D'Jorn's living quarters is locked."
+
+classvars:
+
+   vrName = room_name_raza
+
+   viTeleport_row = 23
+   viTeleport_col = 41
+   viTeleport_angle = ANGLE_NORTH
+
+   viPermanent_flags = ROOM_NO_COMBAT | ROOM_LAMPS
+   viTerrain_type = TERRAIN_CITY | TERRAIN_ROAD | TERRAIN_LAKE | TERRAIN_FOREST
+
+   viFlag_row = 20
+   viFlag_col = 6
+
+   vrWading_Sound = raza_wading_sound
+
+properties:
+
+   prRoom = room_raza
+   piRoom_num = RID_RAZA
+
+   prMusic = raza_music
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+   pbSnowGroundTexture = TRUE
+
+messages:
+
+   CreateStandardExits()
+   {
+      plExits = $;
+      plExits = Cons([ 16, 60, ROOM_LOCKED_DOOR, raza_locked_farm ],plExits); // Farmhouse
+      plExits = Cons([ 7, 62, ROOM_LOCKED_DOOR, raza_locked_stable ],plExits); // Stable
+      plExits = Cons([ 23, 31, ROOM_LOCKED_DOOR, raza_locked_clock ],plExits); // Temple
+      plExits = Cons([ 23, 32, ROOM_LOCKED_DOOR, raza_locked_clock ],plExits); // Temple
+      plExits = Cons([ 15, 50, ROOM_LOCKED_DOOR, raza_locked_townhall ],plExits); // Townhall
+      plExits = Cons([ 14, 50, ROOM_LOCKED_DOOR, raza_locked_townhall ],plExits); // Townhall
+      plExits = Cons([ 12, 11, ROOM_LOCKED_DOOR, raza_locked_tavern ],plExits); // Tavern
+
+      plExits = Cons([ 7, 26, RID_RAZA_INN, 8, 6, ROTATE_NONE ],plExits); // RID_RAZA_INN (Inn)
+      plExits = Cons([ 7, 27, RID_RAZA_INN, 8, 6, ROTATE_NONE ],plExits); // RID_RAZA_INN (Inn)
+
+      plExits = Cons([ 18, 48, RID_RAZA_SMITH, 5, 3, ROTATE_NONE ],plExits); // Blacksmith
+      plExits = Cons([ 19, 48, RID_RAZA_SMITH, 5, 3, ROTATE_NONE ],plExits); // Blacksmith
+      plExits = Cons([ 18, 49, RID_RAZA_SMITH, 5, 3, ROTATE_NONE ],plExits); // Blacksmith
+
+      plExits = Cons([ 11, 48, RID_RAZA_APOTH, 5, 3, ROTATE_NONE ],plExits); // Reagent shop
+      plExits = Cons([ 12, 48, RID_RAZA_APOTH, 5, 3, ROTATE_NONE ],plExits); // Reagent shop
+      plExits = Cons([ 11, 49, RID_RAZA_APOTH, 5, 3, ROTATE_NONE ],plExits); // Reagent shop
+      plExits = Cons([ 12, 49, RID_RAZA_APOTH, 5, 3, ROTATE_NONE ],plExits); // Reagent shop
+
+      plExits = Cons([ 5, 17, RID_RAZA_ELDER, 5, 4, ROTATE_NONE ],plExits); // Hut
+      plExits = Cons([ 5, 18, RID_RAZA_ELDER, 5, 4, ROTATE_NONE ],plExits); // Hut
+      plExits = Cons([ 6, 17, RID_RAZA_ELDER, 5, 4, ROTATE_NONE ],plExits); // Hut
+      plExits = Cons([ 6, 18, RID_RAZA_ELDER, 5, 4, ROTATE_NONE ],plExits); // Hut
+
+      plExits = Cons([ 27, 24, RID_RAZA_MAUSOLEUM, 11, 16, ROTATE_NONE ],plExits); // Mausoleum
+      plExits = Cons([ 28, 24, RID_RAZA_MAUSOLEUM, 11, 16, ROTATE_NONE ],plExits); // Mausoleum
+
+      plExits = Cons([ 16, 11, RID_RAZA_BAR, 5, 7, ROTATE_NONE ],plExits); // Tavern
+      plExits = Cons([ 17, 11, RID_RAZA_BAR, 5, 7, ROTATE_NONE ],plExits); // Tavern
+
+      plExits = Cons([ 27, 15, RID_RAZA_MUSEUM, 4, 11, ROTATE_NONE ],plExits); // Museum
+      plExits = Cons([ 27, 14, RID_RAZA_MUSEUM, 4, 11, ROTATE_NONE ],plExits); // Museum
+      plExits = Cons([ 27, 14, RID_RAZA_MUSEUM, 4, 11, ROTATE_NONE ],plExits); // Museum
+
+      plExits = Cons([ 6, 10, RID_RAZA_HALL, 5, 8, ROTATE_NONE ],plExits); // Adventurer's Hall
+      plExits = Cons([ 6, 11, RID_RAZA_HALL, 5, 8, ROTATE_NONE ],plExits); // Adventurer's Hall
+      plExits = Cons([ 7, 10, RID_RAZA_HALL, 5, 8, ROTATE_NONE ],plExits); // Adventurer's Hall
+      plExits = Cons([ 7, 11, RID_RAZA_HALL, 5, 8, ROTATE_NONE ],plExits); // Adventurer's Hall
+
+      plExits = Cons([ 3, 37, RID_RAZA_FOREST, 43, 41, ROTATE_NONE ],plExits);
+      plExits = Cons([ 3, 38, RID_RAZA_FOREST, 43, 41, ROTATE_NONE ],plExits);
+      plExits = Cons([ 3, 39, RID_RAZA_FOREST, 43, 41, ROTATE_NONE ],plExits);
+
+      propagate;
+   }
+
+   CreateStandardObjects()
+   {
+      local oSign;
+
+      oSign=Create(&Sign,#desc=raza_sign,#newbie=TRUE,#name=raza_signname);
+      Send(self,@NewHold,#what=oSign,#new_row=12,#new_col=27,
+            #fine_row=10,#fine_col=16);
+      oSign=Create(&Sign,#desc=raza_sign2,#newbie=TRUE,#name=raza_signname2);
+      Send(self,@NewHold,#what=oSign,#new_row=3,#new_col=40,
+            #fine_row=37,#fine_col=8);
+
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+            #new_row=24,#new_col=36,#fine_row=0,#fine_col=0,#new_angle=ANGLE_EAST); // Mausoleum
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+            #new_row=29,#new_col=5,#fine_row=32,#fine_col=32,#new_angle=ANGLE_EAST); // Museum
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+            #new_row=28,#new_col=7,#fine_row=32,#fine_col=32,#new_angle=ANGLE_EAST); // Museum
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+            #new_row=26,#new_col=6,#fine_row=32,#fine_col=32,#new_angle=ANGLE_EAST); // Museum
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+            #new_row=26,#new_col=8,#fine_row=32,#fine_col=32,#new_angle=ANGLE_EAST); // Museum
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+            #new_row=24,#new_col=5,#fine_row=32,#fine_col=32,#new_angle=ANGLE_EAST); // Museum
+
+      Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Apple),
+            #new_row=9,#new_col=13,#fine_row=52,#fine_col=04,#new_angle=ANGLE_EAST); // Tavern
+
+      Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Apple),
+            #new_row=4,#new_col=13,#fine_row=56,#fine_col=04,#new_angle=ANGLE_EAST); // Tavern
+
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+            #new_row=6,#new_col=30,#fine_row=0,#fine_col=32,#new_angle=ANGLE_EAST); // Inn
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+            #new_row=6,#new_col=33,#fine_row=0,#fine_col=0,#new_angle=ANGLE_EAST); // Inn
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+            #new_row=6,#new_col=21,#fine_row=0,#fine_col=56,#new_angle=ANGLE_EAST); // Inn
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+            #new_row=23,#new_col=21,#fine_row=0,#fine_col=32,#new_angle=ANGLE_EAST); // Mausoleum
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+            #new_row=13,#new_col=49,#fine_row=10,#fine_col=10,#new_angle=ANGLE_EAST); // Apothecary
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+            #new_row=23,#new_col=27,#fine_row=32,#fine_col=32,#new_angle=ANGLE_EAST); // Mausoleum
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+            #new_row=19,#new_col=46,#fine_row=48,#fine_col=32,#new_angle=ANGLE_EAST); // Blacksmith
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+            #new_row=6,#new_col=43,#fine_row=0,#fine_col=0,#new_angle=ANGLE_EAST); // Gate
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+            #new_row=16,#new_col=48,#fine_row=56,#fine_col=20,#new_angle=ANGLE_EAST); // Blacksmith
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_SHRUB),
+            #new_row=28,#new_col=5,#fine_row=32,#fine_col=0,#new_angle=ANGLE_EAST); // Museum
+
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_SHRUB),
+            #new_row=30,#new_col=54,#fine_row=24,#fine_col=56,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_NESTOBJ2),
+            #new_row=27,#new_col=50,#fine_row=56,#fine_col=32,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_DUNG),
+            #new_row=27,#new_col=51,#fine_row=56,#fine_col=40,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_NECTREE1),
+            #new_row=29,#new_col=49,#fine_row=16,#fine_col=0,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_ROCKB),
+            #new_row=27,#new_col=49,#fine_row=56,#fine_col=0,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_HAY),
+            #new_row=29,#new_col=45,#fine_row=8,#fine_col=24,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_NESTOBJ1),
+            #new_row=28,#new_col=42,#fine_row=34,#fine_col=32,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_DUNG),
+            #new_row=29,#new_col=50,#fine_row=32,#fine_col=32,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_HAY),
+            #new_row=30,#new_col=52,#fine_row=24,#fine_col=40,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_ROCK1),
+            #new_row=30,#new_col=44,#fine_row=32,#fine_col=30,#new_angle=ANGLE_EAST); // Farmland
+
+      Send(self,@NewHold,#what=Create(&Lamp),
+            #new_row=23,#new_col=46,#fine_row=24,#fine_col=26,#new_angle=ANGLE_EAST); // Lake
+      Send(self,@NewHold,#what=Create(&Lamp),
+            #new_row=9,#new_col=45,#fine_row=32,#fine_col=26,#new_angle=ANGLE_EAST);  // Lake
+      Send(self,@NewHold,#what=Create(&Lamp),
+            #new_row=14,#new_col=24,#fine_row=30,#fine_col=24,#new_angle=ANGLE_EAST); // Lake
+      Send(self,@NewHold,#what=Create(&Lamp),
+            #new_row=21,#new_col=25,#fine_row=24,#fine_col=26,#new_angle=ANGLE_EAST); // Lake
+      Send(self,@NewHold,#what=Create(&Lamp),
+            #new_row=24,#new_col=12,#fine_row=55,#fine_col=24,#new_angle=ANGLE_EAST); // Museum
+      Send(self,@NewHold,#what=Create(&Lamp),
+            #new_row=24,#new_col=16,#fine_row=55,#fine_col=56,#new_angle=ANGLE_EAST); // Museum
+      Send(self,@NewHold,#what=Create(&Lamp),
+            #new_row=14,#new_col=12,#fine_row=49,#fine_col=44,#new_angle=ANGLE_EAST); // Tavern
+
+     Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_HAY),
+            #new_row=29,#new_col=51,#fine_row=35,#fine_col=32,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_DUNG),
+            #new_row=29,#new_col=43,#fine_row=36,#fine_col=30,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_DUNG),
+            #new_row=28,#new_col=44,#fine_row=34,#fine_col=32,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_DUNG),
+            #new_row=28,#new_col=47,#fine_row=32,#fine_col=32,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_NESTOBJ1),
+            #new_row=28,#new_col=46,#fine_row=16,#fine_col=30,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_HAY),
+            #new_row=30,#new_col=42,#fine_row=30,#fine_col=28,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_HAY),
+            #new_row=29,#new_col=46,#fine_row=56,#fine_col=30,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_NESTOBJ2),
+            #new_row=30,#new_col=47,#fine_row=16,#fine_col=30,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_HAY),
+            #new_row=29,#new_col=52,#fine_row=0,#fine_col=32,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_HAY),
+            #new_row=30,#new_col=51,#fine_row=24,#fine_col=24,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_HAY),
+            #new_row=29,#new_col=42,#fine_row=32,#fine_col=32,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_HAY),
+            #new_row=29,#new_col=49,#fine_row=32,#fine_col=60,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_HAY),
+            #new_row=29,#new_col=52,#fine_row=35,#fine_col=52,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_DUNG),
+            #new_row=28,#new_col=50,#fine_row=16,#fine_col=0,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_NESTOBJ2),
+            #new_row=30,#new_col=48,#fine_row=48,#fine_col=32,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_CORN),
+            #new_row=25,#new_col=53,#fine_row=56,#fine_col=16,#new_angle=ANGLE_EAST); // Farmland
+
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_CORN),
+            #new_row=28,#new_col=52,#fine_row=0,#fine_col=32,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_ROCKB),
+            #new_row=29,#new_col=44,#fine_row=40,#fine_col=40,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_ROCKB),
+            #new_row=28,#new_col=51,#fine_row=48,#fine_col=24,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_ROCKC),
+            #new_row=27,#new_col=45,#fine_row=48,#fine_col=24,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_CORN),
+            #new_row=23,#new_col=57,#fine_row=30,#fine_col=16,#new_angle=ANGLE_EAST); // Farmhouse
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_CORN),
+            #new_row=25,#new_col=51,#fine_row=56,#fine_col=16,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_CORN),
+            #new_row=30,#new_col=50,#fine_row=48,#fine_col=48,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_CORN),
+            #new_row=30,#new_col=50,#fine_row=48,#fine_col=0,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_CORN),
+            #new_row=30,#new_col=49,#fine_row=48,#fine_col=16,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_CORN),
+            #new_row=21,#new_col=60,#fine_row=0,#fine_col=56,#new_angle=ANGLE_EAST); // Farmhouse
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_CORN),
+            #new_row=9,#new_col=64,#fine_row=0,#fine_col=24,#new_angle=ANGLE_EAST); // Farmshed
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_CORN),
+            #new_row=9,#new_col=63,#fine_row=0,#fine_col=32,#new_angle=ANGLE_EAST); // Farmshed
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_CORN),
+            #new_row=24,#new_col=58,#fine_row=24,#fine_col=24,#new_angle=ANGLE_EAST); // Farmhouse
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_LETTUCE),
+            #new_row=11,#new_col=59,#fine_row=56,#fine_col=0,#new_angle=ANGLE_EAST); // Farm field
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_CORN),
+            #new_row=24,#new_col=64,#fine_row=24,#fine_col=32,#new_angle=ANGLE_EAST); // Farmhouse
+
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_CORN),
+            #new_row=10,#new_col=59,#fine_row=32,#fine_col=16,#new_angle=ANGLE_EAST); // Farm field
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_LETTUCE),
+            #new_row=12,#new_col=59,#fine_row=40,#fine_col=0,#new_angle=ANGLE_EAST); // Farm field
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_CORN),
+            #new_row=6,#new_col=56,#fine_row=40,#fine_col=40,#new_angle=ANGLE_EAST); // Outside farm
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_CORN),
+            #new_row=9,#new_col=57,#fine_row=24,#fine_col=16,#new_angle=ANGLE_EAST); // Outside farm
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_CORN),
+            #new_row=25,#new_col=55,#fine_row=56,#fine_col=16,#new_angle=ANGLE_EAST); // Farmland
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_CORN),
+            #new_row=6,#new_col=57,#fine_row=56,#fine_col=8,#new_angle=ANGLE_EAST); // Outside farm
+
+      Send(self,@NewHold,#what=Create(&Cow),#new_row=27,#new_col=48);
+      Send(self,@NewHold,#what=Create(&Cow),#new_row=29,#new_col=47);
+      Send(self,@NewHold,#what=Create(&Cow),#new_row=30,#new_col=45);
+
+      propagate;
+   }
+
+   RecalcLightAndWeather()
+   {
+      local iHour, iGroup;
+
+      iHour = Send(SYS,@GetHour);
+
+      iGroup = 1 + (iHour % 12);
+
+      Send(self,@AnimateWall,#wall=CLOCK_FACE,#animation=ANIMATE_NONE,
+            #first_group=iGroup);
+
+      propagate;
+   }
+
+   AvailableTombstone()
+   {
+      return;
+   }
+
+end
+/////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,7347 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+//////////////////////////////////////////////////////////////////////////////
+Monster is Battler
+
+constants:
+
+   include blakston.khd
+   include protocol.khd
+
+   // 9 minutes
+   TURN_TIME = 9*60*1000   
+
+   // How many percents between each message for how much a player needs to
+   //  learn to qualify for a new spell.
+   MONSTER_LEARN_GRADIENT = 15
+
+   // Values returned by UserGet
+   AUTOLOOT_GOT_ITEM = 1
+   AUTOLOOT_OUT_OF_RANGE = 2
+   AUTOLOOT_GOT_PARTIAL_STACK = 3
+   AUTOLOOT_CANNOT_GET = 4
+
+   // Number of ms to lose one boosted health or mana point.
+   BOOST_DECAY_TIME = 30000 
+
+resources:
+
+   include monster.lkod
+
+   monster_percent_q = "%q"
+   monster_color_blue_rsc = "~b"
+
+   monster_plural = "s"
+   monster_little = "a little "             // for under 15pts to gain
+   monster_nothing = ""                     // for 15-30 pts to gain
+   monster_some = "some "                   // for 30-45 pts to gain
+   monster_much = "much "                   // for 45-60 pts to gain
+   monster_significantly = "significantly " // for 60-75 pts to gain
+   monster_drastically = "drastically "     // for 75+ pts to gain
+
+   monster_teach_karma = \
+      "Your karma is not far enough along the true path for you to learn %s."
+   monster_teach_quest_needed = \
+      "I can teach you %s, but first you must prove your worth as a pupil."
+   monster_teach_base = \
+      "Your mind is focused properly, and with %sfurther progress in the "
+      "previous %s levels you can learn %s." 
+   monster_teach_success = \
+      "You are currently qualified to learn %s.  Congratulations."
+   monster_teach_already = "You have already been taught %s."
+   monster_teach_nobase = \
+      "You first need to have some knowledge of the previous level before you "
+      "can learn %s."
+   monster_teach_impossible = \
+      "Indeed, you have learned so much already! A fine accomplishment.  You "
+      "have no... need... to learn further in this school."
+
+   monster_level = "level"
+   monster_one = "one"
+   monster_num_one = "1"
+   monster_two = "two"
+   monster_num_two = "2"
+   monster_three = "three"
+   monster_num_three = "3"
+   monster_four = "four"
+   monster_num_four = "4"
+   monster_five = "five"
+   monster_num_five = "5"
+   monster_six = "six"
+   monster_num_six = "6"
+   monster_said_resource_str = "%s%s says, \"%s~n\""
+
+   monster_teach_comma = ", "
+   monster_teach_and = "and "
+   monster_teach_blank = ""
+
+   monster_sch_weaponcraft = "Weaponcraft"
+   monster_sch_kraanan = "Kraanan magic"
+   monster_sch_shalille = "Shal'ille magic"
+   monster_sch_qor = "Qor magic"
+   monster_sch_faren = "Faren magic"
+   monster_schools_faren_shalille = "Shal'ille and Faren magic"
+   monster_schools_qor_shalille = "Shal'ille and Qor magic"
+   monster_school_qor_faren = "Qor and Faren magic"
+   monster_division_combat = "Weaponcraft and Kraanan magic"
+   monster_division_magic = "Shal'ille, Faren, and Qor magic"
+
+   monster_anonymous_response = \
+      "%s looks at you with a peculiar expression, and does not respond." 
+
+   LS_Cant_part = \
+      "I cannot see how you could bear to part with %s%s!  I certainly "
+      "couldn't be the one to take it off your hands."
+   LS_Signet_returned = \
+      "Oh! I was sure this was lost forever.  Thank you very, very much for "
+      "bringing it back to me.  Here, let me give you a small reward."
+   LS_Signet_wrong = \
+      "An heirloom for sure.  You should take it to %s%s yourself.  There's "
+      "likely to be a reward for its return."
+   LS_wanted_keep = "Thank you.  I will someday return the favor."
+   LS_unwanted_keep = \
+      "~k%s%s tells you, \"Thank you.  It is very nice of you to just give "
+      "this to me.~n~k\""
+   LS_unwanted_pay = \
+      "~k%s%s tells you, \"Here.  I'll give you a few shillings for "
+      "this.~n~k\""
+   LS_unwanted_give = \
+      "~k%s%s tells you, \"I simply have no need for that.~n~k\""
+   LS_unwanted_token = \
+      "~k%s%s tells you, \"I am honored to hold it briefly, but this token "
+      "must be returned to the member of the Meridian Council who studies "
+      "it.  I'm afraid I must give it back to you.~n~k\""
+   LS_nofight_attacked = \
+      "You have a funny feeling that attacking is pointless."
+
+   Lm_nothing_for_sale = "I'm afraid I have nothing to sell right now."
+
+   Lm_first_damage_level = "~B~r%s%s is slightly wounded."
+   Lm_second_damage_level = "~B~r%s%s is clearly injured."
+   Lm_third_damage_level = "~B~r%s%s is seriously wounded."
+   Lm_fourth_damage_level = "~B~r%s%s is weak, and near death."
+   Lm_party_killed_monster = "~B%s%s has valiantly slain %s%s!"
+
+   Lm_monster_healing = \
+      "%s%s falls back to recover for a moment, then returns to the fight."
+   
+   monster_desc_level = "This monster will take you to %i hitpoints."
+   Lm_condition_healthy = "%s\n\n%r"
+   Lm_condition_good = \
+      "%s\n\n%r\n\n%s%s is injured, but is still relatively strong."
+   Lm_condition_fair = \
+      "%s\n\n%r\n\n%s%s is wounded, but is still relatively strong."
+   Lm_condition_poor = "%s\n\n%r\n\n%s%s is suffering from deep wounds."
+   Lm_condition_bad = \
+      "%s\n\n%r\n\n%s%s is weak and seems unlikely to survive much longer."
+
+   Lm_cant_remove_item = "You can't give %s%s away right now."
+   Lm_mrcnt_not_selling = "You tried to buy something that is not being sold."
+   Lm_mrcnt_too_costly = "Come back when you have enough money for %s%s."
+   Lm_mrcnt_cant_give = \
+      "I'm unable to give you %s%s.  Perhaps you carry too much?"
+   Lm_mrcnt_can_give_some = \
+      "It looks like you can only hold some of %s%s. I'll reduce your tally."
+
+   Lm_only_receiver = "%s%s says, \"I don't buy things, but I do take gifts.\""
+   Lm_buyer_offer_busy = "%s is busy right now with another customer." 
+   Lm_buyer_no_value = "I can't even give you a shilling for that."
+   Lm_buyer_timeout = \
+      "Can't make up your mind?  Think on it and come back when you are ready."
+   Lm_buyer_unwanted = "I'm not interested."
+   Lm_bnkr_balance = "You have %i shillings in your account."
+   Lm_bnkr_did_deposit = \
+      "Thank you for your deposit.  You now have %i shillings in your account."
+   Lm_bnkr_no_account = "You have no money to withdraw!"
+   Lm_bnkr_acct_full = \
+      "You have so many shillings stored here, that I'm afraid I have no "
+      "space to store any more!"
+   Lm_bnkr_acct_almost_full = \
+      "You have so many shillings stored here, that I'm afraid I can only "
+      "store %i more."
+   Lm_bnkr_not_enough_withdraw = \
+      "But you only have %i shillings in your account!"
+   Lm_bnkr_not_enough_deposit = \
+      "But you only have %i shillings in your possession!"
+   Lm_bnkr_did_withdraw = \
+      "Here are your %i shillings. Thank you for your business."
+   Lm_bnkr_player_full = \
+      "I swear, if I gave you a shilling more than %i you'd topple right over!"
+   Lm_bnkr_player_all_full = "You can't hold even a single shilling more!"
+
+   vaultman_nogold = "You may not use my services to store %s%s."
+   vaultman_nocursed = "I cannot take %s%s from you."
+   vaultman_fullvault = \
+      "Your vault cannot hold that much stuff!  Perhaps you should try "
+      "offering items in smaller quantities."
+   vaultman_thanks_amount = \
+      "That will cost %i shillings.  Thank you for trusting me to "
+      "quartermaster your gear."
+   vaultman_dont_have = "Hmmm, I can't seem to find %s%s in your vault."
+   vaultman_no_room = \
+      "You can't carry all of that!  Perhaps you should try withdrawing the "
+      "items one at a time."
+   vaultman_deposit_thanks = \
+      "Thank you for trusting me to quartermaster your gear."
+   vaultman_thanks = "Here is your gear.  Thank you for your patronage."
+   vaultman_withdraw_failed = \
+      "I was unable to complete our transaction.  Please sort your inventory "
+      "and try again."
+   vaultman_nowithdraw_cash = \
+      "You currently cannot pay the exit fee to get your stuff out."
+   vaultman_nodeposit_cash = \
+      "Storing these items would cost %i shillings - which I see you do not "
+      "have."
+   vaultman_cant_part = \
+      "Wow... I couldn't feel responsible if your %s were to disappear - I "
+      "cannot store it."
+   vaultman_noaccount = "I do not seem to be storing any of your gear."
+   vaultman_not_enough = "You don't have that many %s stored in your name!"
+
+   monster_say_to_one = "~k%s%s tells you, \"%s~n~k\""
+
+   monster_iteach = "I teach %s%s%s%s%s%s%s%s%s%s%s%s at that level."
+   monster_teachnothing = "I teach no abilities at that level."
+
+   monster_koc_name = "moch"
+
+   monster_report_balance = \
+      "~B~g[~n~k%s%s tells you, \"%q has %i shillings in this bank.\"~B~g]"
+   Monster_Sweep_Reward = \
+      "Hmm... that looks a bit cleaner.  Here, take this as payment, %s%s."
+
+   monster_default_attack = "attack"
+   minion_trouble = \
+      "You sense your minion has gotten you into some trouble..."
+
+   autolooted_all = "You loot the corpse clean, and find %d shillings."
+   autolooted_all_no_money = "You loot the corpse clean."
+   autolooted_some = "You loot some of the items from your fallen kill, and "
+      "find %d shillings."
+   autolooted_some_no_money = "You loot some of the items from your fallen enemy."
+   autolooted_only_money = "You find nothing easily lootable on your slain "
+      "enemy other than %d shillings."
+   autolooted_none = "You find nothing easily lootable on your slain enemy."
+     
+   autoloot_too_far_away = "You're too far away to loot your fallen enemy!"
+   autoloot_got_some_but_full_now = "You pick up some of your slain enemy's "
+      "loot, but find yourself too encumbered to get it all."
+   autoloot_got_nothing_because_full= "You can't carry any more, so you loot "
+      "nothing from your fallen enemy."
+   autoloot_got_only_shillings_because_full = "You can't carry any more, so you "
+      "loot nothing from your fallen enemy, but you do find %d shillings."
+
+   monster_faction_negative_msg = \
+      "Your standing with The %s has decreased"
+
+   monster_faction_positive_msg = \
+      "Your standing with The %s has increased"
+
+   monster_faction_unspecified = "UNSPECIFIED MONSTER FACTION!"
+   monster_faction_farol = "Minions of Life"
+   monster_faction_orc = "Orcs"
+   monster_faction_troll = "Trolls"
+   monster_faction_farnohl = "House of Lord Far'Nohl"
+   monster_faction_lich = "Subjects of Queen Venya'cyr"
+   monster_faction_psavar = "Peet-Seeeep Avar Clan"
+   monster_faction_kkavar = "Kyip-Kyip-Kreeet Avar Clan"
+   monster_faction_ctavar = "Chyup-Tewee Avar Clan"
+   monster_faction_fey_good = "Fey Elhai"
+   monster_faction_fey_evil = "Fey Dirhai"
+   monster_faction_frogmen = "Frogmen"
+   monster_faction_heretic = "Cult of the Three"
+   monster_faction_undead = "Minions of Death"
+
+   shop_sold_offer = "~B~gLooks like you sold somthing for %i shillings!  "
+   
+classvars:
+
+   vrKocName = monster_koc_name
+   viGender = GENDER_NEUTER
+   
+   vbNamedMob = FALSE
+   
+   vrDead_icon = $
+   vrDead_name = $
+
+   viAttack_type = ATCK_WEAP_HIT
+   viAttack_spell = 0
+   viMerchant_markup = MERCHANT_NORMAL
+   viCancel_offer_time = 30000
+   // Default to teleport if there's no move anim, also used for movement timer
+   //  (range is 1 to 20)
+   viSpeed = 0
+
+   viTreasure_type = TID_NONE
+
+   // Random delay from delay to 1.50*delay
+   viRandom_delay = 40000
+   // from delay to 1.33*delay
+   viSpasm_delay  = 15000
+
+   viQuestID      = 0
+   // viAttributes is a bitvector of behavior and services
+   viAttributes   = 0
+   // viOccupation is what this mob does for a living, used for NPCs.
+   viOccupation   = 0
+   viKarma        = 0
+
+   // If the monster is undead, set this to TRUE.
+   vbIsUndead = FALSE
+
+   // viLevel ranges from 25 to 200 (150 and above is for "boss" mobs)
+   //  determines hit points.
+   viLevel        = 25
+
+   // viDifficulty ranges from 1 to 9, increases combat prowess. 10 can
+   // be used but is far too difficult for general use.
+   viDifficulty = 0
+
+   // viVisionDistance is the radius (in row/col units) that the monster
+   // can see within. Default 10.
+   viVisionDistance = 10
+
+   // viAttackRange is the radius (in FINENESS units) that the monster
+   // can attack within. Default 128, or 2 row/cols.
+   viAttackRange = 128
+
+   // All monsters use BRAIN_ORIGINAL for now.
+   viBrain_type = BRAIN_ORIGINAL
+
+   // Bitvector for monster/NPC behaviors. This variable contains the flags
+   // monsters use for determining combat/aggro behavior.
+   viDefault_behavior = 0
+
+   viCashmin = 1
+   viCashmax = 10
+
+   // 1 in x chance to cast a spell. Default 10// chance.
+   viSpellChance = 10
+
+   viWimpy = 0
+
+   // If true, items that are sold actually come out of the monster's
+   //inventory. If false, the items in the inventory are inexhaustible
+   // templates, and copies are sold.
+   vbSellFromInventory = FALSE
+
+   vrCondition_healthy = Lm_condition_healthy
+   vrCondition_good = Lm_condition_good
+   vrCondition_fair = Lm_condition_fair
+   vrCondition_poor = Lm_condition_poor
+   vrCondition_bad = Lm_condition_bad
+   vrFirst_damage_level = Lm_first_damage_level
+   vrSecond_damage_level = Lm_second_damage_level
+   vrThird_damage_level = Lm_third_damage_level
+   vrFourth_damage_level = Lm_fourth_damage_level
+   vrParty_killed_monster = Lm_party_killed_monster
+
+   vrTeach_message = monster_iteach
+   vrTeach_nothing = monster_teachnothing
+   vrUnwanted_keep = LS_unwanted_keep
+   vrUnwanted_pay = LS_unwanted_pay
+   vrUnwanted_give = LS_unwanted_give
+   vrUnwanted_token = LS_unwanted_token
+   vrTeach_quest_needed = monster_teach_quest_needed
+   vrNothing_for_sale = Lm_nothing_for_sale
+   vrMrcnt_too_costly = Lm_mrcnt_too_costly
+   vrMonster_healing = Lm_monster_healing
+   vrMinion_trouble = minion_trouble
+
+   // Obsolete, but still included here for safety's sake.
+   vrSound_hit = $
+   vrSound_miss = $
+   vrSound_aware = $
+   vrSound_death = $
+
+   viDead_drawfx = 0
+
+   viFaction = FACTION_NEUTRAL
+
+   vbIsAreaEffect = FALSE
+      
+   viBonusXP = 0
+   viBonusTP = 0
+	  
+properties:
+
+   piVisionDistance
+   piAttackRange
+   piAnimation = ANIM_NONE
+
+   // List of the mobs wanted items.
+   plWantedItems = $
+   // List of items offered to the player by buyer.
+   plOffer_items = $
+   // List of items offered to the player by seller.
+   // [item list, skill list, spell list, conditional items (?)]
+   plFor_sale = $
+
+   ptCancelOffer = $
+   ptRandom = $
+   ptSpasm = $
+
+   // IMPORTANT NOTE: For higher accuracy, a battler's current health 
+   //(and only current health) is inflated by a factor of 100. Doing so 
+   // avoids truncation errors but is not revealed to users in any way.
+   piHit_points = 1
+   piMax_hit_points = 1
+
+   // Who we are dealing with.
+   poCustomer = $
+
+   poBrain = $
+
+   piTargetLocationRow
+   piTargetLocationCol
+   piTargetLocationFineRow = 0
+   piTargetLocationFineCol = 0
+   piPatrolAttempts = 0
+   plPatrolPath = $
+   piPatrolNode = 0
+   // chance to move to next patrol node (1 to 10000)
+   piChanceToPatrol = 125
+
+   //// The Monster State Meta-Object
+
+   // These should be modified only by the EnterStateX routines
+   // Who to chase or attack
+   poTarget = $
+   // Bitvector of personality and mutable behavior
+   piState = 0
+   // Either chasing, moving, or attacking
+   ptBehavior = $
+   // Behavior flags = have prefix of AI_
+   // All mobs will loop through a patrol path, if one is available.
+   piBehavior = AI_LOOPING_PATROL
+   // Who is our master, if we have one.
+   poMaster = $
+   // Flag used for minion moves around master
+   piKeepWalkingSteps = 0
+   // Player who has turned us.
+   poHolySymbolCaster = $
+   // Timer to expire turning.
+   ptUnturn = $
+   piHatred = 0
+   // Emulates agility and aim for monsters based on difficulty.
+   piAgility = 25
+   piAim = 25
+
+   piEnch_flags = 0
+
+   piDrawfx = 0
+
+   // A list of quest nodes for which this monster is the destination NPC
+   plActiveQuestNodes = $
+   pbIllusion = FALSE
+   vbSummoned = FALSE
+
+   // Apparition object (caster)
+   poApparitionCaster = $
+
+   // Should this monster stick around through a call to DestroyDisposable()?
+   pbDontDispose = FALSE
+
+   piMood = 0
+
+   // list of keyed speechlib items [class, key] triggered since last
+   //  RandomTimer firing
+   plSpamList = $
+
+   piColor_Translation = 0
+
+   piSweepCounter = 0
+
+   // Passive reagent return spell list.
+   plSpellList = $
+
+   // List of spells this monster can cast. Has the format:
+   // [ Spell num, mana cost, number req. from Random(1,100) to cast ]
+   plSpellBook = $
+
+   // 1 in x chance to cast a spell. Default 10// chance. Set
+   // from classvar in Constructor.
+   piSpellChance = 10
+
+   // Monster's spellpower. Default 50 sp.
+   piSpellPower = 50
+
+   // Monster's spell range, in FINENESS units. Default is 25 row/cols.
+   piSpellRange = 1600
+
+   piOffense = $
+   piDefense = $
+   piMinDamage = $
+   piMaxDamage = $
+
+   piArmor = 0
+   
+   // Was this monster boosted by a Survival Room?
+   piBoostedLevel = 0
+
+   piLastTimeAttacked = 0
+   poLastAttacker = $
+
+   // some monsters are created on the fly (ex: avar) we may need to set this at
+   // runtime
+   piReputationGroup = REP_NEUTRAL
+   plReputationEnemies = $
+
+   // 20 seconds default for players, 60 for monsters
+   piHurtMeTime = 60000
+   
+     viCurrentState = STATE_WAIT
+
+   poStoreOwner = $
+
+messages:
+
+   Constructor(template=FALSE, color=0, piSurvivalLevel=0, iBrain = 0)
+   "Simple enough, we create a monster. If they are questworthy, we note it."
+   {
+      local iStatPoints, iMin, iMax;
+
+      piMax_Hit_points = Send(Self,@Fuzzy,#num=Send(self,@GetMaxHitPoints))
+                         + piSurvivalLevel*viDifficulty;
+      piHit_points = piMax_hit_points*100;
+      piMana = piMax_mana;
+      piAttackRange = viAttackRange;
+      piSpellChance = viSpellChance;
+      piVisionDistance = viVisionDistance + piSurvivalLevel;
+      piBoostedLevel = piSurvivalLevel;
+
+      if Send(self,@MobIsSeller)
+      {
+         Send(Self,@SetForSale);
+      }
+
+      if Send(self,@MobIsCondSeller)
+      {
+         Send(Self,@InitCondSale);
+      }
+
+      if (viDefault_behavior & AI_NPC) = AI_NPC
+      {
+         Send(Send(SYS,@GetLibrary),@AddNPC,#who=self);
+      }
+
+      if viOccupation <> 0
+         AND NOT template
+      {
+         // template set to TRUE means this monster is in the System
+         // monster template list, so we shouldn't add it.
+         Send(Send(SYS,@GetLibrary),@AddToOccupationList,#who=self);
+      }
+
+      Send(self,@TryAddToLibrary);
+
+      if (iBrain > 0 AND iBrain <= BRAIN_MAX_NUM)
+      {
+         poBrain = Send(SYS,@FindBrainByNum,#num=iBrain);
+      }
+      else
+      {
+         poBrain = Send(SYS,@FindBrainByNum,#num=viBrain_type);
+      }
+      
+      piState = piState & ESTATE_ZERO_MASK;
+      Send(poBrain,@MobConstructor,#mob=self);
+
+      piEnch_flags = 0;
+
+      Send(self,@ClearActiveQuests);
+      Send(self,@ResetBehaviorFlags);
+
+      piMood = 0;
+
+      iStatPoints = Bound((viDifficulty + 1) * 10,20,100);
+
+      if iStatPoints - 1 > 50
+      {
+         iMax = 50;
+      }
+      else
+      {
+         iMax = iStatpoints - 1;
+      }
+
+      if iStatPoints - 50 < 1
+      {
+         iMin = 1;
+      }
+      else
+      {
+         iMin = iStatpoints - 50;
+      }
+
+      piAgility = Random(iMin,iMax);
+      piAim = iStatPoints - piAgility;
+
+      if piSurvivalLevel > 0
+      {
+         piOffense = Send(self,@GetOffense) + piSurvivalLevel*viDifficulty;
+         piDefense = Send(self,@GetDefense) + piSurvivalLevel*viDifficulty;
+         piMinDamage = viLevel/15 + piSurvivalLevel/2;
+         piMaxDamage = viLevel/10 + piSurvivalLevel/2;
+         piArmor = piSurvivalLevel/5;
+      }
+
+      if color <> 0
+      {
+         piColor_translation = color;
+      }
+
+      propagate;
+   }
+   
+   GetBonusXP()
+   {
+       return viBonusXP;
+   }
+   
+   GetBonusTP()
+   {
+      return viBonusTP;
+   }
+   
+   GetCurrentState()
+   {
+	   return viCurrentState;
+   }
+   
+   SetPatrolPath(lPath = $)
+   {
+      if (lPath <> $)
+      {
+         plPatrolPath = lPath;
+         Send(self,@SetBehaviorFlag,#flag=AI_CAN_PATROL,#value=TRUE);
+      }
+
+      return;
+   }
+
+   GetKocName()
+   {
+      return vrKocName;
+   }
+
+   IsNamedMob()
+   {
+      return vbNamedMob;
+   }
+
+   // Overridden for specific NPCs,
+   // common point for mood changes, except word triggers
+   AffectMood( why = $, what = $ )
+   {
+      return;
+   }
+
+   ClearActiveQuests()
+   {
+      plActiveQuestNodes = $;
+
+      return;
+   }
+
+   // This monster is the destination NPC for a questnode
+   // Add the node to his list, so he can check completion criteria
+   //  when someone enters, says something, or gives him something
+   AddQuestNodeToActiveList(node = $)
+   {
+      if node = $
+      {
+         Debug("AddQuestNode: nil questnode.");
+
+         return;
+      }
+
+      plActiveQuestNodes = Cons(node, plActiveQuestNodes);
+
+      return;
+   }
+ 
+   // Remove the questnode from this NPCs list
+   RemoveQuestNodeFromActiveList(node = $)
+   {
+      local iLength, oActiveNode;
+
+      if node = $
+      {
+         Debug("RemoveQuestNode: nil questnode.");
+
+         return;
+      }
+
+      // Save original Length for validation
+      iLength = Length( plActiveQuestNodes );
+
+      foreach oActiveNode in plActiveQuestNodes
+      {
+         if oActiveNode = node
+         {
+            plActiveQuestNodes = DelListElem(plActiveQuestNodes,oActiveNode);
+         }
+      }
+
+      // validate that we removed it
+      if iLength > Length(plActiveQuestNodes)
+      {
+         return;
+      }
+
+      Debug( "RemoveQuestNode: couldn't find questnode." );
+
+      return;
+   }
+
+   TryAddToLibrary()
+   "Adds the NPC to the library's random NPC lists, which are used as "
+   "defaults for quests and other things, e.g. signet rings. Some NPCs "
+   "should have chatter and random triggers, but should not be part of "
+   "the game's quest system.  This procedure should be overwritten "
+   "for them to return FALSE."
+   {
+      if (viAttributes & MOB_RANDOM) AND (viAttributes & MOB_LISTEN)
+      {
+         Send(Send(SYS,@GetLibrary),@AddToSignetNPCList,#who=self);
+         if (viAttributes & MOB_RECEIVE) OR (viAttributes & MOB_BUYER)
+         {
+            Send(Send(SYS,@GetLibrary),@AddToRandomNPCList,#who=self);
+         }
+
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   Delete()
+   "End of monster. Clean up any quests it might have spawned."
+   {
+      local i, j, k;
+
+      // Minion Management - upon dying they should leave your control list
+      if poMaster <> $
+      {
+         Send(poMaster,@RemoveControlledMinion,#what=self);
+      }
+
+      if poStoreOwner <> $
+      {
+         Send(self,@SetStoreOwner,#report=FALSE);
+      }
+
+      // Enchantments must be removed before brain gets set to $.
+      Send(self,@RemoveAllEnchantments);
+
+      // Clear reagent return list.
+      plSpellList = $;
+
+      // If this monster is an Apparition, tell the original it was deleted.
+      if poApparitionOriginal <> $
+      {
+         Send(poApparitionOriginal,@RemoveApparition,#what=self);
+         poApparitionOriginal = $;
+         poApparitionCaster = $;
+      }
+
+      // Under rare conditions delete is called twice in succession
+      if poBrain <> $
+      {
+         Send(poBrain,@MobDelete,#mob=self,#state=piState);
+         poBrain = $;
+      }
+
+      Send(self,@ClearBehavior);
+      Send(self,@ClearBasicTimers);
+
+      if (viDefault_behavior & AI_NPC) = AI_NPC
+      {
+         Send(Send(SYS,@GetLibrary),@RemoveNPC,#who=self);
+      }
+
+      if (plFor_sale <> $)
+      {
+         Send(self,@DeleteForSaleList);
+      }
+
+      if (viAttributes & MOB_RANDOM)
+      {
+         Send(Send(SYS,@GetLibrary),@DeleteFromSignetNPCList,#who=self);
+         if (viAttributes & MOB_LISTEN)
+            AND (viAttributes & MOB_RECEIVE)
+         {
+            Send(Send(SYS,@GetLibrary),@DeleteFromRandomNPCList,#who=self);
+         }
+      }
+
+      Send(Send(SYS,@GetLibrary),@DeleteFromOccupationList,#who=self);
+
+      foreach i in plWantedItems
+      {
+         if i = &SignetRing
+         {
+            foreach j in Send(Send(SYS,@GetLibrary),@GetSignetRings)
+            {
+               if Send(j,@GetRingOwner) = self
+                 {
+                    Send(Send(SYS,@GetLibrary),@UnregisterSignet,#newring=j);
+                    Send(j,@Delete);
+                 }
+             }
+         }
+      }
+
+      if ptMana <> $
+      {
+         DeleteTimer(ptMana);
+         ptMana = $;
+      }
+
+      plSpellBook = $;
+
+      poMaster = $;
+      poHolySymbolCaster = $;
+      if ptUnturn <> $
+      {
+         deleteTimer(ptUnturn);
+         ptUnturn = $;
+      }
+
+      poLastAttacker = $;
+
+      propagate;
+   }
+
+   // For illusionary form, it makes a bunch of monsters so it can call 'em and
+   //  get access to their SendAnimation() things.  To be useful, it needs to
+   //  be able to set our piAnimation (to either ANIM_NONE or ANIM_ATTACK, which
+   //  work for all monsters).
+
+   SetAnimation(animation = $)
+   {
+      piAnimation = animation;
+
+      return;
+   }
+
+   //// Enchantments of Monsters
+
+   EnchantmentTimer(timer = $)
+   {
+      local i;
+
+      foreach i in plEnchantments
+      {
+         if First(i) = timer
+         {
+            if Length(i) > ENCHANTMENT_LIST_NO_STATE
+            {
+               Send(Nth(i,2),@EndEnchantment,#who=self,#state=Nth(i,3));
+            }
+            else
+            {
+               Send(Nth(i,2),@EndEnchantment,#who=self);
+            }
+
+            plEnchantments = DelListElem(plEnchantments,i);
+
+            return;
+         }
+      }
+
+      propagate;
+   }
+
+   StartEnchantment(what = $,time = $,state=$, iSpellPower = 0,
+                    lastcall = TRUE, bRadiusEnchant = FALSE)
+   "Adds <what> to our enchantments, and creates a timer that will cause it "
+   "to end."
+   {
+      local oTimer, lNew_enchantment;
+
+      if time = $ OR time = SPELL_INDEFINITE_DURATION 
+      {
+         oTimer = $;
+      }
+      else if lastcall
+      {
+         oTimer = CreateTimer(self,@EnchantmentTimer,time);
+      }
+      else
+      {
+         oTimer = CreateTimer(self,@PeriodicEnchantmentTimer,time);
+      }
+
+      if state <> $
+      {
+         lNew_enchantment = [ oTimer, what, state, iSpellPower ];
+      }
+      else
+      {
+         lNew_enchantment = [ oTimer, what, iSpellPower ];
+      }
+
+      if (bRadiusEnchant)
+      {
+         plRadiusEnchantments = Cons(lNew_enchantment,plRadiusEnchantments);
+      }
+      else
+      {
+         plEnchantments = Cons(lNew_enchantment,plEnchantments);
+      }
+
+      return;
+   }
+
+   RemoveAllEnchantments()
+   "Remove all current enchantments."
+   {
+      local i;
+
+      foreach i in plEnchantments
+      {
+         Send(self,@RemoveEnchantment,#what=Nth(i,2));
+      }
+      
+      foreach i in plRadiusEnchantments
+      {
+         Send(self,@RemoveRadiusEnchantment,#what=Nth(i,2),#state=Nth(i,3));
+      }
+
+      plRadiusEnchantments = $;
+
+      return;
+   }
+
+   RemoveEnchantment(what = $)
+   "If have a current enchantment set by <what>, end it."
+   {
+      local i, state;
+
+      state = $;
+
+      foreach i in plEnchantments
+      {
+         if Nth(i,2) = what
+         {
+            if First(i) <> $
+            {
+               if IsTimer(First(i))
+               {
+                  DeleteTimer(First(i));
+               }
+            }
+            SetFirst(i,$);
+
+            if Length(i) > ENCHANTMENT_LIST_NO_STATE
+            {
+               Send(Nth(i,2),@RemoveEnchantmentEffects,#who=self,
+                    #state=Nth(i,3));
+            }
+            else
+            {
+               Send(Nth(i,2),@RemoveEnchantmentEffects,#who=self);
+            }
+
+            plEnchantments = DelListElem(plEnchantments,i); 
+         }
+      }
+
+      return;
+   }
+
+   ////  State Transition Functions
+   
+   EnterStateLimbo()
+   {
+      Send(self,@ClearBehavior);
+      
+      if poTarget <> $
+         AND Send(poTarget,@GetOwner) = poOwner
+         AND isClass(poTarget,&User)
+      {
+         Send(poTarget,@SubtractFromMonsterChasers,
+              #level=viLevel);
+      }
+
+      poTarget = $;
+      piHatred = 0;
+      Send(self,@SetState,#bit=STATE_LIMBO);
+      // The whole point of the limbo state is that there are no timers to set.
+
+      return;
+   }
+
+   EnterStateWait(actnow=FALSE,delay=MOB_MOVE_TIMER_WAIT)
+   {
+      if poTarget <> $
+         AND Send(poTarget,@GetOwner) = poOwner
+         AND isClass(poTarget,&user)
+      {
+         Send(poTarget,@SubtractFromMonsterChasers,
+              #level=viLevel);
+      }
+
+      poTarget = $;
+      piHatred = 0;
+
+      Send(self,@SetState,#bit=STATE_WAIT);
+      Send(self,@ClearBehavior);
+
+      if actnow
+      {
+         Send(self,@WaitTimer);
+      }
+      else
+      {
+         ptBehavior = CreateTimer(self,@WaitTimer,delay);
+      }
+
+      return;
+   }
+
+   EnterStateMove( actnow=FALSE )
+   {
+      // Note: All monsters "move" even the ones who physically can't.
+      Send(self,@SetState,#bit=STATE_MOVE);
+
+      if poTarget <> $
+         AND Send(poTarget,@GetOwner) = poOwner
+         AND isClass(poTarget,&User)
+      {
+         Send(poTarget,@SubtractFromMonsterChasers,
+              #level=viLevel);
+      }
+
+      poTarget = $;
+      piHatred = 0;
+
+      Send(self,@ClearBehavior);
+
+      if actnow
+      {
+         Send(self,@MoveTimer);
+      }
+      else
+      {
+         ptBehavior = CreateTimer(self,@MoveTimer,Send(self,@GetMoveTime));
+      }
+
+      return;
+   }
+
+   EnterStateAttack(target = $, actnow=TRUE)
+   {     
+      Send(self,@SetState,#bit=STATE_ATTACK);
+      Send(self,@ClearBehavior);
+      if actnow
+      {
+         Send(self,@AttackTimer);
+      }
+      else
+      {
+         ptBehavior = CreateTimer(self,@AttackTimer,Send(self,@GetAttackTime));
+      }
+
+      return;
+   }
+
+   EnterStateChase( target = $, actnow = TRUE )
+   {
+      if poTarget <> target AND vrSound_aware <> $
+      {
+         Send(poOwner,@SomethingWaveRoom,#what=self,#wave_rsc=vrSound_aware,
+              #flags=SOUND_RANDOM_PITCH);
+      }
+
+      Send(self,@SetState,#bit=STATE_CHASE);
+      Send(self,@ClearBehavior);
+
+      if actnow
+      {
+         Send(self,@ChaseTimer);
+      }
+      else
+      {
+         ptBehavior = CreateTimer(self,@ChaseTimer,Send(self,@GetMoveTime));
+      }
+
+      return;
+   }
+
+   //// Sensory Inputs
+   
+   NewOwner(what = $)
+   "Monster just entered this room. Right now, thats only possible on a"
+   "creation. So, lets pause for a few beats if we got users."
+   {
+      if what = $
+      {
+         Send(self,@ClearBasicTimers);
+
+         propagate;
+      }
+
+      // Mobs can change owner, i.e. wanderers. This lets them react properly
+      // to leaving a room with users and arriving in a room without them.
+      if poOwner <> $
+         AND Send(poOwner,@IsUserInRoom)
+         AND NOT Send(what,@IsUserInRoom)
+      {
+         Post(self,@LastUserLeft);
+      }
+
+      if Send(what,@IsUserInRoom)
+      {
+         Send(self,@StartBasicTimers);
+      }
+
+      Send(poBrain,@NewOwner,#mob=self,#state=piState,#what=what);
+
+      propagate;
+   }
+
+   FirstUserEntered(what = $,new_row = $,new_col = $)
+   "Since we've already been notified in SomethingEntered that a user got"
+   "here, we have already handled the case that the user was plunked down"
+   "near a non-fighting and agressive mob. So, lets just start our timers."
+   {
+      if ((piState & STATE_LIMBO)
+         OR (piBehavior & AI_NPC))
+      {
+         Send(self,@StartBasicTimers);
+      }
+
+      Send(poBrain,@FirstUserEntered,#mob=self,#state=piState,
+           #what=what,#new_row=new_row,#new_col=new_col);
+
+      propagate;
+   }
+   
+   LastUserLeft()
+   "All our users just left, so lets stop all our timers. If we were a"
+   "seller of some conditional goods, we hide them again so the next"
+   "set of players has to ask for them by name."
+   {
+      local i;
+
+      Send(self,@ClearBasicTimers);
+
+      if Send(self,@MobIsCondSeller)
+      {
+         foreach i in Nth(plFor_sale,4)
+         {
+            Send(self,@RemoveFromConditionalList,#obj=First(i));
+         }
+      }
+
+      Send(poBrain,@LastUserLeft,#mob=self,#state=piState);
+
+      propagate;
+   }
+   
+   SomethingMoved(what=$,new_row=$,new_col=$,fine_row=$,fine_col=$)
+   "Check to see if we need to change our combat plan because someone moved."
+   {
+      // If either we or our target moved, then we no longer know 
+      //  if the attack is valid.
+      if what = self OR what = poTarget
+      {
+         piState = (piState & VSTATE_VALIDITY_MASK);
+      }
+
+      if poBrain <> $
+      {
+         Send(poBrain,@SomethingMoved,#mob=self,#state=piState,
+               #what=what,#new_row=new_row,#new_col=new_col,
+               #fine_row=fine_row,#fine_col=fine_col);
+      }
+
+      propagate;
+   }
+
+   SomethingAttacked(what = $,victim = $,use_weapon = $)
+   "We may have been assaulted by something, so lets return fire if "
+   "appropriateIf were already fighting this person, this doesnt interrupt "
+   "our plans."
+   {
+      if poBrain <> $
+      {
+         Send(poBrain,@SomethingAttacked,#mob=self,#state=piState,
+               #what=what,#victim=victim,#use_weapon=use_weapon);
+      }
+
+      propagate;
+   }
+
+   RecordTimeAttacked(who=$)
+   "This records the last time the monster was attacked, "
+   "and the player or monster that did it."
+   {
+      local oMaster;
+
+      piLastTimeAttacked = GetTime();
+
+      if who <> $
+      {
+         if IsClass(who,&Monster)
+         {
+            // Check if the monster has a master. If so, use the master here.
+            oMaster = Send(who,@GetMaster);
+            if oMaster <> $
+            {
+               who = oMaster;
+            }
+         }
+      }
+      poLastAttacker = who;
+
+      return;
+   }
+
+   GetTimeAttacked()
+   {
+      return piLastTimeAttacked;
+   }
+
+   GetLastAttacker()
+   {
+      return poLastAttacker;
+   }
+
+   PlayerFirstMove(what=$, where = $, new_row = 0, new_col=0)
+   {
+      Send(poBrain,@PlayerFirstMove,#mob=self,#state=piState,
+           #what=what,#where=where,#new_row = new_row, #new_col=new_col);
+
+      return;
+   }
+
+   SomethingEntered(what = $,where=$)
+   "If we're not fighting, and the person is right near us, lets reset our "
+   "timers so we dont attack unless we're attacked for the first few seconds "
+   "This means that chasing mobs will get reset too, but we dont want em to "
+   "hit someome in a room transition."
+   {
+      local oQuestNode;
+
+      Send(poBrain,@SomethingEntered,#mob=self,#state=piState,
+           #what=what,#where=where);
+
+      // Check if it was this mob's temporary owner.
+      Send(self,@MobSeduceCheck,#what=what);
+
+      // If there are active quest nodes, notify them -AJM
+      if plActiveQuestNodes <> $
+      {
+         // make sure it's a player who entered
+         if IsClass(what,&Player)
+         {
+            foreach oQuestNode in plActiveQuestNodes
+            {
+               if Send(oQuestNode,@CheckCompletionCriteria,#who_tried=what)
+               {
+                  return;
+               }
+            }
+         }
+      } 
+
+      propagate;
+   }
+
+   SomethingLeft(what = $, iRow=0, iCol=0)
+   "We lost someone, perhaps we need to clear our targets."
+   {
+      local cClass;
+
+      // Apparitions are dispelled if the caster or original target leave.
+      if ((poApparitionCaster <> $ AND what = poApparitionCaster)
+            OR (poApparitionOriginal <> $ AND what = poApparitionOriginal))
+      {
+         Send(self,@Delete);
+
+         return;
+      }
+
+      // Our master may have left.  If he did, and he is close by,
+      // teleport after him.
+      if poMaster <> $ AND what = poMaster
+      {
+         cClass = GetClass(self);
+
+         if iRow <> 0 AND iCol <> 0
+            AND Send(poMaster,@GetOwner) <> $
+         {
+            if ((piRow - iRow) <= 3
+               AND (piCol - iCol) <= 3
+               AND NOT (cClass = &EvilTwin
+                  AND (NOT Send(self,@IsEnchanted,#byClass=&Seduce))))
+               OR cClass = &Reflection // Flecs follow.
+               OR vbIsUndead // So do undead (Animate).
+            {
+               Post(self,@GotoMaster);
+            }
+         }
+      }
+      if poBrain <> $
+      {
+         Send(poBrain,@SomethingLeft,#mob=self,#state=piState,#what=what);
+      }
+
+      propagate;
+   }
+
+   SomethingPhasedOut(what=$)
+   {
+      if ((poApparitionCaster <> $ AND what = poApparitionCaster)
+            OR (poApparitionOriginal <> $ AND what = poApparitionOriginal))
+      {
+         Send(self,@Delete);
+      }
+
+      return;
+   }
+
+   SomethingPhasedIn(what=$)
+   {
+      // Check if it was this mob's temporary owner.
+      Send(self,@MobSeduceCheck,#what=what);
+
+      return;
+   }
+
+   SomethingSpectatedOut(what=$)
+   {
+      if ((poApparitionCaster <> $ AND what = poApparitionCaster)
+            OR (poApparitionOriginal <> $ AND what = poApparitionOriginal))
+      {
+         Send(self,@Delete);
+      }
+
+      return;
+   }
+
+   SomethingSpectatedIn(what=$)
+   {
+      // Check if it was this mob's temporary owner.
+      Send(self,@MobSeduceCheck,#what=what);
+
+      return;
+   }
+
+   MobSeduceCheck(what=$)
+   "Checks if the mob is under the effect of the Seduce spell, and should "
+   "return control to the master (e.g. master logs off/on)."
+   {
+      local oState;
+
+      if (NOT (piBehavior & AI_NPC)
+         AND poMaster = $)
+      {
+         oState = Send(self,@GetEnchantedState,
+                        #what=Send(SYS,@FindSpellByNum,#num=SID_SEDUCE));
+         // If we have no master and state for seduce, then our master
+         // logged off and back on again. We're still under the effect
+         // of the spell, so the player can have the mob back.
+         if (oState <> $)
+         {
+            Send(self,@SetMaster,#oMaster=oState);
+         }
+      }
+
+      return;
+   }
+
+   GotoMaster()
+   {
+      local oNewRoom;
+
+      if poMaster = $
+      {
+         return;
+      }
+
+      oNewRoom = Send(poMaster,@GetOwner);
+      if oNewRoom = $
+      {
+         return;
+      }
+
+      if (Send(oNewRoom,@CountMonsters,#mastered=TRUE) < 25)
+      {
+         Send(oNewRoom,@NewHold,#what=self,
+               #new_row=Send(poMaster,@GetRow),#new_col=Send(poMaster,@GetCol),
+               #new_angle=Send(poMaster,@GetAngle));
+      }
+
+      return;
+   }
+
+   SomethingKilled(what = $,victim = $,use_weapon = $)
+   "Someone just died, perhaps we need to clear our target."
+   {
+      Send(poBrain,@SomethingKilled,#mob=self,#state=piState,
+           #what=what,#victim=victim,#use_weapon=use_weapon);
+
+      propagate;
+   }
+
+   //// New Utility Routines
+
+   OfferSubtractNumberItems()
+   "filler because some junk in user.kod assumes everyone has this"
+   {
+      return;
+   }
+
+   GetTarget()
+   {
+      return poTarget;
+   }
+
+   GetCustomer()
+   {
+      return poCustomer;
+   }
+
+   CanPatrol()
+   {
+      if (plPatrolPath <> $)
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   GetChanceToPatrol()
+   {
+      return piChanceToPatrol;
+   }
+
+   SetChanceToPatrol(chance=125)
+   {
+      piChanceToPatrol = chance;
+
+      return;
+   }
+
+   GetNextPatrolNode()
+   {
+      if (plPatrolPath = $)
+      {
+         return;
+      }
+
+      piPatrolNode = piPatrolNode + 1;
+
+      if (piPatrolNode > Length(plPatrolPath))
+      {
+         if (piBehavior & AI_LOOPING_PATROL)
+         {
+            piPatrolNode = 1;
+         }
+         else
+         {
+            piPatrolNode = Length(plPatrolPath);
+         }
+      }
+
+      return Nth(plPatrolPath, piPatrolNode);
+   }
+
+   SetPatrolNode(node=1)
+   {
+      piPatrolNode = node;
+
+      return;
+   }
+
+   IncrementPatrolAttempts()
+   {
+      piPatrolAttempts = piPatrolAttempts + 1;
+
+      return;
+   }
+
+   GetPatrolAttempts()
+   {
+      return piPatrolAttempts;
+   }
+
+   ClearPatrolAttempts()
+   {
+      piPatrolAttempts = 0;
+
+      return;
+   }
+
+   ClearPatrolLocation()
+   {
+      Send(self,@SetBehaviorFlag,#flag=AI_HAS_TARGET_LOCATION,#value=FALSE);
+      piTargetLocationRow  = 0;
+      piTargetLocationCol  = 0;
+      piTargetLocationFineRow = 0;
+      piTargetLocationFineCol = 0;
+
+      return;
+   }
+
+   ////  Action Routines
+
+   AttackTimer(timer = $)
+   "We were bashing on something before, and now its time to hit it again."
+   {
+      Send(self,@ClearBehavior,#timer=timer);
+
+      // sanity checks
+      if poOwner = $
+      {
+         Debug("Unreachable. Null Owner");
+         Send(self,@EnterStateLimbo);
+
+         return;
+      }
+
+      if poTarget = $ OR NOT IsClass(poTarget,&Battler)
+      {
+         Debug("Unreachable. Null poTarget","monster",self);
+         poTarget = $;
+         Send(self,@EnterStateWait);
+
+         return;
+      }
+
+      // Victim phased out or is now in spectator mode, break aggro.
+      if IsClass(poTarget,&User)
+         AND Send(poTarget,@IsInCannotInteractMode)
+      {
+         Send(self,@EnterStateMove);
+
+         return;
+      }
+
+      Send(poBrain,@GetAttackBehavior,#mob=self,#target=poTarget,
+           #behavior=piBehavior);
+      
+      if poTarget = $
+      {
+         Send(self,@EnterStateMove);
+
+         return;
+      }      
+
+      if NOT Send(self,@CanReach,#what=poTarget) 
+      {         
+         Send(self,@EnterStateChase);
+
+         return;
+      }
+
+      // We're close enough and in range.  Now, normally, we move 
+      //  around the player to keep him guessing.   Let's zigzag around,
+      //  instead of consistently moving to that player's right.
+      if random(1,100) < 50
+      {
+         piState = piState | ESTATE_CLOCKWISE;
+      }
+      else
+      {
+         piState = piState & ESTATE_CCLK_MASK;
+      }
+
+      // Carry out attack
+      Send(self,@TryAttack,#what=poTarget,#stroke_obj=self);
+      
+      // Sanity check, in rare occurrences mob dies before this can execute 
+      if poBrain <> $
+      {
+         Send(poBrain,@PostAttackTimer,#mob=self,#state=piState);
+      }
+
+      return;
+   }
+ 
+   ChaseTimer( timer = $ )
+   "We're in Hot pursuit, so either we keep chasing, or we attack."
+   "Note that even if we can't move, we can be 'chasing'...."
+   {
+      local i,oVictim,iVision,each_obj,iCount, bCast;
+      oVictim = poTarget;
+
+      Send(self,@ClearBehavior,#timer=timer);
+
+      // Sanity checks
+      if poOwner = $
+      {
+         Debug("Unreachable. Null owner.");
+         Send(self,@EnterStateLimbo);
+
+         return;
+      }
+
+      // If target left, we should already know
+      if oVictim = $
+      {
+         //Debug("Unreachable. Null victim.");
+         Send(self,@EnterStateWait);
+
+         return;
+      }
+
+      // Victim phased out or is now in spectator mode, break aggro.
+      if IsClass(oVictim,&User)
+         AND Send(oVictim,@IsInCannotInteractMode)
+      {
+         Send(self,@EnterStateMove);
+
+         return;
+      }
+
+      // If we moved into range last cycle, we will switch to attack mode
+      if Send(poBrain,@PreChaseTimer,#mob=self)
+      {
+         return;
+      }
+
+      // Perhaps we heal this chase moment.
+      if piHit_points < piMax_hit_points*100 AND Random(0,18) < 2
+      {
+         Send(self,@HealHitPoint);
+      }
+      
+      bCast = FALSE;
+      if Send(self,@MonsterCanCastSpell)
+      {
+         bCast = Send(self,@MonsterCastSpell);
+      }         
+
+      // If we can move, we physically try to get closer
+      if not bCast
+      {
+         Send(poBrain,@GetChaseBehavior,#mob=self,#target=poTarget,
+              #behavior=piBehavior);
+      }
+
+      // Call this if the monster just killed the player with a spell
+      if poTarget <> $
+      {
+         Send(poBrain,@PostChaseTimer,#mob=self);
+      }
+      else
+      {
+         // Monster slung a spell, killed player
+         Send(self,@EnterStateMove);      
+      }
+
+      return;
+   }
+
+   MoveTimer( timer = $ )
+   "Time to move a notch. I would REALLY like it to redo this so that the "
+   "Monsters move on a finer grid than the row/col (perhaps 16finerow?) "
+   "But just havent had the time. Anyway, we want to wander unless for "
+   "some reason we are restricted not to. We do check to see if there is "
+   "someone to chase if we are the agressive type. If we cant physically "
+   "move, then we still keep the timer open for its healing/etc."
+   {
+      Send(self,@ClearBehavior,#timer=timer);
+
+      // Sanity checks
+      if poOwner = $
+      {
+         Send(self,@EnterStateLimbo);
+
+         return;
+      }
+
+      // Perhaps we heal this movement tick.
+      if piHit_points < piMax_hit_points*100 AND Random(1,8) = 1
+      {
+         Send(self,@HealHitPoint);
+      }
+
+      // Okay, ask our brain how to move
+      Send(poBrain,@GetMoveBehavior,#behavior=piBehavior,#mob=self);
+
+      // See if we want to change state now, but check for brain here first.
+      // Sometimes we've died by now.
+      if poBrain <> $
+      {
+         Send(poBrain,@PostMoveTimer,#mob=self);
+      }
+
+      return;
+   }
+
+   WaitTimer( timer = $ )
+   {
+      Send(self,@ClearBehavior,#timer=timer);
+      Send(poBrain,@PostWaitTimer,#mob=self);
+
+      return;
+   }
+
+   ////  Spell Support
+
+   ResetBehaviorFlags()
+   "This starts with the default brain, and then goes through "
+   "all the enchantments on a monster, tweaking flags as we go."
+   "Note that this can be called both at the start and the end "
+   "of an enchantment or behavior change."
+   {
+      local i, lBehavior;
+
+      // Assume if the monster is being singleminded about something,
+      //  he's got a good reason.  Example: pissed off charms.
+      if piBehavior & AI_FIGHT_SINGLEMINDED
+      {
+         lBehavior = Cons(AI_FIGHT_SINGLEMINDED,lBehavior);
+      }
+      if piBehavior & AI_MOVE_WHEN_ALONE
+      {
+         lBehavior = Cons(AI_MOVE_WHEN_ALONE,lBehavior);
+      }
+      if piBehavior & AI_CAN_PATROL
+      {
+         lBehavior = Cons(AI_CAN_PATROL,lBehavior);
+      }
+      if piBehavior & AI_HAS_TARGET_LOCATION
+      {
+         lBehavior = Cons(AI_HAS_TARGET_LOCATION,lBehavior);
+      }
+      if piBehavior & AI_LOOPING_PATROL
+      {
+         lBehavior = Cons(AI_LOOPING_PATROL,lBehavior);
+      }
+
+      // Go back to the master if we don't have a target.
+      if (poMaster <> $
+         AND poTarget = $)
+      {
+         lBehavior = Cons(AI_MOVE_FOLLOW_MASTER,lBehavior);
+      }
+
+      piBehavior = viDefault_behavior;
+
+      foreach i in lBehavior
+      {
+         Send(self,@SetBehaviorFlag,#flag=i);
+      }
+
+      foreach i in plEnchantments
+      {
+         Send(Nth(i,2),@ModifyMonsterBehavior,#mob=self);
+      }
+
+      // This is for monster specific things, such as the dragonfly queen
+      //  being charmed.  We need to do this after we set defaultbehavior,
+      //  so this goes here.  Monsters shouldn't need to overwrite
+      //  ResetBehaviorFlags, but they are encouraged to overwrite
+      //  TweakBehavior.  see monster\dflyq.kod.
+      Send(self,@TweakBehavior);
+
+      return;
+   }
+
+   TweakBehavior()
+   {
+      return;
+   }
+
+   GetBehavior()
+   {
+      return piBehavior;
+   }
+
+   AddMonsterAim(points=0)
+   {
+      local iOrigAim;
+
+      iOrigAim = piAim;
+      piAim = piAim + points;
+      piAim = Bound(piAim,1,50);
+
+      return piAim - iOrigAim;
+   }
+
+   AddMonsterAgility(points=0)
+   {
+      local iOrigAgil;
+
+      iOrigAgil = piAgility;
+      piAgility = piAgility + points;
+      piAgility = Bound(piAgility,1,50);
+
+      return piAgility - iOrigAgil;
+   }
+
+   StartPalsy()
+   {
+      piEnch_flags |= ENCH_PALSY;
+
+      return;
+   }
+
+   EndPalsy()
+   {
+      piEnch_flags &= ~ENCH_PALSY;
+
+      return;
+   }
+   
+   StartDementia()
+   {
+      piEnch_flags |= ENCH_DEMENTIA;
+
+      return;
+   }
+
+   EndDementia()
+   {
+      piEnch_flags &= ~ENCH_DEMENTIA;
+
+      return;
+   }
+
+   AdjustedChanceBase(base = 0)
+   "Adjusts the probability of a monster spell cast based on enchantments"
+   {
+      local oSpell;
+
+      oSpell = Send(SYS,@FindSpellByNum,#num=SID_ANTIMAGIC_AURA);
+      if Send(poOwner,@CheckRoomFlag,#flag=ROOM_ANTI_MAGIC)
+         AND (Send(poOwner,@GetEnchantmentState,#what=oSpell) <> $)
+      {
+         // Reduce chance to 2/3 by multplying base by 3/2
+         base = (3 * base) / 2;
+      }
+
+      if (piEnch_flags & ENCH_DEMENTIA)
+      {
+         // Halve the chance by doubling the base
+         base = base * 2;
+      }
+
+      return base;
+   }
+
+   RangedAttackChance(base=0)
+   {
+      local oSpell, state;
+
+      if Send(self,@IsEnchanted,#byClass=&Vertigo)
+      {
+         base = base + 18;
+      }
+
+      if (poOwner <> $)
+      {
+         oSpell = Send(SYS,@FindSpellByNum,#num=SID_WINDS);
+         state = Send(poOwner,@GetEnchantmentState,#what=oSpell);
+         if (state <> $)
+         {
+            base = base + 24;
+         }
+
+         oSpell = Send(SYS,@FindSpellByNum,#num=SID_SANDSTORM);
+         state = Send(poOwner,@GetEnchantmentState,#what=oSpell);
+         if (state <> $)
+         {
+            base = base + 30;
+         }
+      }
+
+      return base;
+   }
+
+   ////  Auxiliary Routines
+
+   DoRandomWalk(override=FALSE)
+   {
+      local iNew_row, iNew_col, iNew_finerow, iNew_finecol;
+
+      // The bigger/tougher I am, the less likely I'm interested in milling
+      //  around.
+      if Random(1,140) < piHit_points/100
+         AND NOT override
+      {
+         return;
+      }
+      
+      // start with old coordinates
+      iNew_row = piRow;
+      iNew_col = piCol;
+      iNew_finerow = piFine_row;
+      iNew_finecol = piFine_col;
+
+      // make a random highres-step in one of 4 directions
+      if Random(0,1) = 0
+      {
+         if (Random(0,1) = 0)
+         {
+            iNew_finerow = iNew_finerow + 16;
+         }
+         else
+         {
+            iNew_finerow = iNew_finerow - 16;
+         }
+      }
+      else
+      {
+         if (Random(0,1) = 0)
+         {
+            iNew_finecol = iNew_finecol + 16;
+         }
+         else
+         {
+            iNew_finecol = iNew_finecol - 16;
+         }
+      }
+
+      // moved down at least a full row 
+      if iNew_finerow >= FINENESS
+      {
+         iNew_row = piRow + (iNew_finerow / FINENESS);
+         iNew_finerow = iNew_finerow % FINENESS;
+      }
+      else if iNew_finerow < 0
+      {
+         // moved up at least a full row
+         iNew_row = piRow - bound((-iNew_finerow / FINENESS), 1, 100);
+         iNew_finerow = FINENESS - (-iNew_finerow % FINENESS);
+      }
+     
+      // moved right at least a full col 
+      if iNew_finecol >= FINENESS
+      {
+         iNew_col = piCol + (iNew_finecol / FINENESS);
+         iNew_finecol = iNew_finecol % FINENESS;
+      }
+      else if iNew_finecol < 0
+      {
+         // moved left at least a full row
+         iNew_col = piCol - bound((-iNew_finecol / FINENESS), 1, 100);
+         iNew_finecol = FINENESS - (-iNew_finecol % FINENESS);
+      }
+
+      if (NOT (piBehavior & AI_MOVE_WALKTHROUGH_WALLS))
+         OR Send(self,@ReqMonsterMove,#new_row=iNew_row,#new_col=iNew_col,
+                  #new_finerow=iNew_finerow,#new_finecol=iNew_finecol)
+      {
+         Send(self,@MonsterOrient,#new_row=iNew_row,#new_col=iNew_col,
+              #new_finerow=iNew_finerow,#new_finecol=iNew_finecol);
+
+         // Check for owner, perhaps we died already
+         if poOwner <> $
+         {
+            if Send(poOwner,@ReqSomethingMoved,#what=self,
+                     #new_row=iNew_row,#new_col=iNew_col,
+                     #new_finerow=iNew_finerow,#new_finecol=iNew_finecol,
+                     #server_validate=(NOT(piBehavior&AI_MOVE_WALKTHROUGH_WALLS)))
+            {
+               Send(poOwner,@SomethingMoved,#what=self,
+                     #new_row=iNew_row,#new_col=iNew_col,
+                     #fine_row=iNew_finerow,#fine_col=iNew_finecol,
+                     #speed=(0x80|viSpeed),#non_monsters_only=TRUE);
+            }
+         }
+      }
+
+      return;
+   }
+
+   MoveToMaster()
+   {
+      local drow, dcol;
+
+      if poMaster = $
+      {
+         Debug("MovetoMaster Called with nil master!",Send(self,@GetName));
+         return;
+      }
+
+      // calculate distance in highres-grid squares (steps we can still make)
+      drow = ((Send(poMaster,@GetRow) * FINENESS) + Send(poMaster,@GetFineRow)) / 16;
+      dcol = ((Send(poMaster,@GetCol) * FINENESS) + Send(poMaster,@GetFineCol)) / 16;
+      drow = abs(drow - (((piRow * FINENESS) + piFine_row) / 16));
+      dcol = abs(dcol - (((piCol * FINENESS) + piFine_col) / 16));
+
+      // Try step closer to the master, if we're not yet close enough.
+      // The move-timer is configured to make this movement seamless.
+      if drow > 3 OR dcol > 3
+      {
+        Send(self,@MoveTowards,#oTarget=poMaster,#face_target=TRUE);
+      }
+      else if piKeepWalkingSteps < 8
+      {
+         // If we're close, we start a move around the master based on a probability.
+         // To do so we just need to try to step closer, he will block us.
+         // We will do 8 seamless steps, before we again decide
+         // to stop or to go on.
+            Send(self,@MoveTowards,#oTarget=poMaster,#face_target=TRUE);
+            piKeepWalkingSteps = piKeepWalkingSteps + 1;
+      }
+      else if Random(1,100) < 5
+      {
+         // roll a dice to see if we want to start a new movement
+         piKeepWalkingSteps = 0;
+      }
+
+      return;
+   }
+
+   DoGoTowardsLocation()
+   {
+      local iDist2;
+
+      // see how far away we are (2D only)
+      iDist2 = Send(self, @SquaredFineDistanceToLocation,
+                    #row=piTargetLocationRow,
+                    #col=piTargetLocationCol,
+                    #fine_row=piTargetLocationFineRow,
+                    #fine_col=piTargetLocationFineCol);
+
+      // more than 64 fine-units far away (64*64=4096)
+      // and not yet reached maxappempts
+      if iDist2 > 4096 AND piPatrolAttempts < 500
+      {
+         // try get closer
+         Send(self,@MoveTowardsCoords,
+              #iRow=piTargetLocationRow,
+              #iCol=piTargetLocationCol,
+              #iFineRow=piTargetLocationFineRow,
+              #iFineCol=piTargetLocationFineCol);
+
+         piPatrolAttempts = piPatrolAttempts + 1;
+      }
+      else
+      {
+         // close enough
+         Send(self,@SetBehaviorFlag,#flag=AI_HAS_TARGET_LOCATION,#value=FALSE);
+         piPatrolAttempts = 0;
+      }
+ 
+      return;
+   }
+
+   StartNextPatrolLeg()
+   {
+      local lPatrolNode;
+
+      lPatrolNode = Send(self,@GetNextPatrolNode);
+
+      if (lPatrolNode <> $)
+      {
+         Send(self,@GotoCoords,#iRow=First(lPatrolNode),#iCol=Nth(lPatrolNode,2));
+      }
+
+      return;
+   }
+
+   //// Combat messages
+
+   AllowBattlerAttack(victim=$,stroke_obj=$,report=TRUE,minion=FALSE,
+                      oRoomOverride=$)
+    "Can this monster attack the victim? "
+   {
+      local oRoom, bWasBad, lMinions;
+
+      // Must be in a room to attack, must have target.
+      if (poOwner = $
+         OR victim = $)
+      {
+         return FALSE;
+      }
+
+      // Can't attack the master.
+      if (victim = poMaster)
+      {
+         return FALSE;
+      }
+
+      // NPCs can't attack. Don't check AI_NOFIGHT here, as those mobs
+      // might have a non-direct attack to cause damage with (e.g. brambles).
+      if (piBehavior & AI_NPC)
+      {
+         return FALSE;
+      }
+
+      // Default location to check is where we are.
+      oRoom = poOwner;
+
+      // If the victim is in a room, then check that location instead.  This
+      // allows distance attacks (like wall spells) to work properly.
+      if Send(victim,@GetOwner) <> poOwner
+      {
+         if (oRoomOverride <> $)
+         {
+            oRoom = oRoomOverride;
+         }
+         else
+         {
+            oRoom = Send(victim,@GetOwner);
+         }
+      }
+
+      // Phased players can't be hit.
+      // Jig prevents combat between players and monsters.
+      if IsClass(victim,&User)
+         AND (Send(victim,@IsInCannotInteractMode)
+            OR Send(victim,@IsAffectedByRadiusEnchantment,#byClass=&Jig))
+      {
+         return FALSE;
+      }
+
+      // Make sure room allows the attack.
+      if NOT Send(oRoom,@ReqSomethingAttack,#what=self,#victim=victim,
+                  #stroke_obj=stroke_obj)
+      {
+         // Check if room has special combat effects.
+         return FALSE;
+      }
+
+      // If we're hitting another monster, check if we can reach or attack it.
+      if IsClass(victim,&Monster)
+      {
+         if NOT Send(victim,@CanMonsterFight,#who=self,#oStroke=stroke_obj,
+                     #use_weapon=stroke_obj)
+         {
+            return FALSE;
+         }
+      }
+
+      // Minions are attacking for a master. Handle ETs, Reflections,
+      // Seduced and Animated monsters here. If the master can't attack,
+      // we can't either. If they can, we treat it as if they personally
+      // attacked the target.
+      if poMaster <> $
+         AND IsClass(poMaster,&Player)
+      {
+         // Is the caster bad to start with? This is for flavor text.
+         bWasBad = (Send(poMaster,@CheckPlayerFlag,#flag=PFLAG_OUTLAW)
+                    OR Send(poMaster,@CheckPlayerFlag,#flag=PFLAG_MURDERER));
+
+         // Check the attack here. If it fails, Player's AllowBatterAttack
+         // handles the message sent to the player.
+         if NOT Send(poMaster,@AllowBattlerAttack,#victim=victim,
+                     #report=report,#stroke_obj=self)
+         {
+            return FALSE;
+         }
+
+         // Don't attack other minions of the caster.
+         lMinions = Send(poMaster,@GetControlledMinions);
+         if (lMinions <> $ AND FindListElem(lMinions,victim))
+         {
+            return FALSE;
+         }
+
+         // If they weren't bad and become bad, let them know.
+         if report
+            AND NOT bWasBad
+            AND (Send(poMaster,@CheckPlayerFlag,#flag=PFLAG_OUTLAW)
+               OR Send(poMaster,@CheckPlayerFlag,#flag=PFLAG_MURDERER))
+         {
+            Send(poMaster,@MsgSendUser,#message_rsc=vrMinion_trouble);
+         }
+      }
+
+      return TRUE;
+   }
+
+   TryAttack(what=$,stroke_obj=$)
+   "Ok, we got someone to attack, lets try and hit them."
+   {
+      // AI_NOFIGHT means they can't directly attack.
+      if (piBehavior & AI_NOFIGHT)
+      {
+         return FALSE;
+      }
+
+      // AllowBattlerAttack handles all other attack checks.
+      if (NOT Send(self,@AllowBattlerAttack,#victim=what,#stroke_obj=stroke_obj))
+      {
+         return FALSE;
+      }
+
+      // If we have minions, see if they can attack too
+      Send(self,@CommandMinionAttack,#oTarget=what);
+
+      // Face the target.
+      Send(self,@MonsterOrient,#new_row=Send(what,@GetRow),
+            #new_col=Send(what,@GetCol),#new_finerow=Send(what,@GetFineRow),
+            #new_finecol=Send(what,@GetFineCol),#face_target=TRUE);
+
+      // Do any special attack routines we might have.
+      Send(self,@MonsterAttack,#what=what);
+
+      propagate;
+   }
+
+   GetOffense(what = $, stroke_obj=$)
+   "This returns the battler's ability to-hit.  Ranges from 1 to 2000."
+   {
+      local iAttack;
+
+      if piOffense = $
+      {
+         iAttack = 4*viLevel + 8*piAim;
+      }
+      else
+      {
+         iAttack = piOffense;
+      }
+
+      if piEnch_flags & ENCH_PALSY
+      {
+         iAttack = iAttack * 3 / 4;
+      }
+
+      return Bound(iAttack,1,2000);
+   }
+
+   GetDefense(what = $, stroke_obj=$)
+   "This returns the battler's ability to avoid being hit.  Ranges from "
+   "1 to 2000."
+   {
+      local iDefense;
+
+      if piDefense = $
+      {
+         iDefense = 4*viLevel + 8*piAgility;
+      }
+      else
+      {
+         iDefense = piDefense;
+      }
+
+      return Bound(iDefense,1,2000);
+   }
+
+   // The next message deals with the three defense skills.  These messages
+   //  return the relative values of the three skills.  Used for defense
+   //  messages.
+
+   GetDodgeAbility(stroke_obj=$)
+   {
+      if (stroke_obj <> $) AND NOT Send(stroke_obj,@CanDodge)
+      {
+         return 0;
+      }
+
+      return (viDifficulty * 10);
+   }
+
+   // This returns the damage done to target "what"
+   GetDamage(what = $, stroke_obj=$)
+   {
+      local iDamage;
+
+      if piMinDamage = $ and piMaxDamage = $
+      {
+         iDamage = Send(Self,@Fuzzy,#num=viLevel*100/Random(10,15));
+      }
+      else
+      {
+         if piMinDamage = $ OR piMinDamage > piMaxDamage
+         {
+            piMinDamage = piMaxDamage;
+         }
+         if piMaxDamage = $ OR piMaxDamage < piMinDamage
+         {
+            piMaxDamage = piMinDamage;
+         }
+         iDamage = random(piMinDamage*100,piMaxDamage*100);
+      }
+
+      if piEnch_flags & ENCH_PALSY
+      {
+         iDamage = iDamage * 3 / 4 ;
+      }
+      
+      return Bound(iDamage,0,$);
+   }
+
+   // This is the type of damage done.
+   GetDamageType(what = $)
+   {
+      return viAttack_type;
+   }
+
+   // This is the magical type of damage done.
+   GetSpellType(what = $)
+   {
+      return viAttack_spell;
+   }
+
+   IsRangedAttack()
+   {
+      return FALSE;
+   }
+
+   // Handles damage done to monster
+   // IMPORTANT NOTE: AssessDamage handles both legacy damage calculations and 
+   // high precision damage calculation which avoid truncation. If you feed 
+   // AssessDamage with a high precision damage number such as 941 for 9.41 
+   // points of damage, you need to notify AssessDamage by passing it a 
+   // #precision=TRUE. If you don't, AssessDamage will assume that you are 
+   // passing a legacy damage value and multiply it by 100 for further 
+   // calculations. Most notably, damage from attackspells and melee is now 
+   // handled with high precision. Eventually, all damage calculations should 
+   // be handled in high precision mode.
+   AssessDamage(what=$,damage=$,atype=0,aspell=0,bonus=0,scalefactor=1000,
+      absolute=FALSE,precision=FALSE)
+   {
+      local iDamage, iResist, iPercentClass, i, each_obj;
+
+      if NOT precision
+      {
+         damage = damage * 100;
+      }
+
+      if (piBehavior & AI_NPC)
+      {
+         Send(what,@MsgSendUser,#message_rsc=LS_nofight_attacked);
+
+         return 0;
+      }
+
+      // Attacks against a minion master will cause minions to defend the master
+      Send(self,@CommandMinionAttack,#oTarget=what);
+
+      // Check for any applicable resistances.
+      if NOT absolute
+      {
+         iDamage = Send(self,@ArmorCheck,#what=what,#bonus=bonus,#atype=atype,
+            #aspell=aspell,#damage=damage);
+         iResist = Send(self,@ResistanceCheck,#atype=atype,#aspell=aspell);
+         iDamage = Send(self,@GetDamageFromResistance,#what=iDamage,#value=iResist);
+         iDamage = iDamage + bonus;
+         iDamage = iDamage * scalefactor / 1000;
+      }
+      else
+      {
+         iDamage = damage;
+      }
+
+      // Set a predamage mark... we'll compare to it to see if threshold crossed.
+      iPercentClass = piHit_points/(piMax_hit_points*20);
+
+      // Make sure we don't deal negative damage.
+      iDamage = Bound(iDamage,0,$);
+      
+      // I hate my target more if he hits me.
+      if what = poTarget
+      {
+         // Should scale based on damage?
+         piHatred = piHatred + 1;
+      }
+
+      piHit_points = piHit_points - iDamage;
+      
+      if poOwner = $
+      {
+         return 0;
+      }
+      
+      if piHit_points <= 0 
+      {
+         foreach i in Send(poOwner,@GetHolderActive)
+         {
+            each_obj = First(i);
+            if IsClass(each_obj,&User)
+               AND each_obj <> what
+               AND Send(each_obj,@GetKillTarget)=self
+            {
+               Post(each_obj,@MsgSendUser,#what=self,
+                    #message_rsc=vrParty_killed_monster,
+                    #parm1=Send(what,@GetCapDef),#parm2=Send(what,@GetName),
+                    #parm3=Send(self,@GetDef),#parm4=Send(self,@GetName));
+            }
+         }
+         
+         return $;
+      }
+
+      // Check to see if we crossed a threshold due to the damage.
+      if iPercentClass <> (piHit_points / (piMax_hit_points * 20))
+      {
+         Send(self,@HitPointThresholdDamage);
+      }
+
+      // Let the attacker know if they hit some weakness/strength of the mob
+      if IsClass(what,&player) AND NOT absolute
+      {
+         Post(what,@MsgPlayerHitResisted,#what=what,#resistance=iResist,
+              #target=self,#color_rsc=monster_color_blue_rsc);
+      }
+      
+      Send(self,@AddHurtMeRecently,#who=what,#amount=iDamage);
+
+      return iDamage;
+   }
+
+   // Allows monsters to have armor not related to specific equipped items. 
+   // Based on piArmor.
+   ArmorCheck(what=$,damage=0,atype=0,aspell=0,bonus=0)
+   {
+      local iDamageReduce, oAttribute;
+
+      foreach oAttribute in plObject_attributes
+      {
+         damage = Send(oAttribute,@ModifyDefenseDamage,#who=self,#what=what,
+            #damage=damage,#atype=atype,#aspell=aspell);
+      }
+
+      iDamageReduce = 0;
+      if piArmor <> 0
+      {
+         iDamageReduce = random(piArmor*33,piArmor*100);
+         iDamageReduce = bound(iDamageReduce,0,(damage-100));
+      }
+
+      if aspell <> 0
+      {
+         // Reduce damage if part of the damage is spell
+         if atype <> 0
+         {
+            // Only 2/3 of the damage reduction if we're doing both weapon
+            // and spell damage types.
+            iDamageReduce = iDamageReduce * 2 / 3;
+         }
+         else
+         {
+            // If we're doing pure spell damage, we get no reduction.
+            iDamageReduce = 0;
+         }
+      }
+      
+      return damage - iDamageReduce;
+   }
+
+   AssessHit(what = $, stroke_obj = $, damage = $)
+   "This does the fallout of a hit, gives appropriate message, etc.  "
+   "Called on self when hit opponent."
+   {
+      if poOwner = $
+      {
+         // No owner to send this to, so propagate.
+         propagate;
+      }
+
+      if vrSound_miss <> $
+      {
+         Send(poOwner,@SomethingWaveRoom,#what=what,#wave_rsc=vrSound_miss,
+               #flags=SOUND_RANDOM_PITCH);
+         if (IsClass(what,&Player))
+         {
+            Send(poOwner,@SomethingWaveRoom,#what=what,
+                  #wave_rsc=Send(what,@GetOuchSound),#flags=SOUND_RANDOM_PITCH);
+         }
+      }
+
+      propagate;
+   }
+
+   AssessMiss(what = $, stroke_obj = $)
+   "This does the fallout of a miss, gives appropriate message, etc.  "
+   "Called on target when missing."
+   {
+      if poOwner = $
+      {
+         // No owner to send this to, so propagate.
+         propagate;
+      }
+
+      if vrSound_miss <> $
+      {
+         Send(poOwner,@SomethingWaveRoom,#what=what,#wave_rsc=vrSound_miss,
+               #flags=SOUND_RANDOM_PITCH);
+      }
+
+      propagate;
+   }
+
+   // This function handles damage done, etc.
+   DidDamage(what = $, amount = 0)
+   {
+      Send(self,@HitSideEffect,#what=what);
+
+      return;
+   }
+
+   // Can an opponent dodge this monster's attack?
+   CanDodge()
+   {
+      return TRUE;
+   }
+
+   // Can an opponent parry this monster's attack?
+   CanParry()
+   {
+      return TRUE;
+   }
+
+   // Can an opponent block this monster's attack with a shield?
+   CanBlock()
+   {
+      return TRUE;
+   }
+
+   // This function returns the name of the monster's attack.
+   GetAttackName()
+   {
+      return monster_default_attack;
+   }
+
+   GetVisionDistance()
+   "Returns vision radius."
+   {
+      return piVisionDistance;
+   }
+
+   GetAttackRange()
+   "Returns the attack range of the monster, in FINENESS units. "
+   "Default for most monsters is 128 (2 row/col units)."
+   {
+      return piAttackRange;
+   }
+
+   GetOptimalRange()
+   "For most monsters, this is the attack range."
+   {
+      return piAttackRange;
+   }
+
+   CanSee(what = $)
+   {
+      if what = $
+      {
+         return FALSE;
+      }
+
+      if poOwner <> Send(what,@GetOwner)
+      {
+         return FALSE;
+      }
+
+      if (Send(self,@SqFineDistToVision,#what=what) / FINENESS_SQUARED)
+               <= (piVisionDistance*piVisionDistance)
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   ValidAttack(who=$)
+   {
+      local iRange;
+
+      iRange = Send(self,@GetAttackRange);
+
+      if who = poTarget
+      {
+         // Range in FINENESS units.
+         if Send(self,@SquaredFineDistanceTo3D,#what=who)
+               > (iRange * iRange)
+         {
+            return;
+         }
+
+         piState = (piState & VSTATE_VALIDITY_MASK);
+         piState = (piState | VSTATE_VALID_ATTACK);
+      }
+
+      return;
+   }
+
+   CanReach( what = $ )
+   {
+      local iRange;
+      
+      iRange = Send(self,@GetAttackRange);
+
+      if poOwner <> Send(what,@GetOwner)
+      {
+         return FALSE;
+      }
+
+      // Check range first, for speed (in FINENESS units).
+      if Send(self,@SquaredFineDistanceTo3D,#what=what)
+            > (iRange * iRange)
+      {
+         if what = poTarget
+         {
+            piState = (piState | VSTATE_INVALID_ATTACK);
+         }
+
+         return FALSE;
+      }
+
+      // if neither the player or the monster has moved lately,
+      // we don't have to check this stuff again.
+      if what = poTarget
+      {
+         if (piState & VSTATE_VALID_ATTACK)
+         {
+            return TRUE;
+         }
+
+         if (piState & VSTATE_INVALID_ATTACK)
+         {
+            return FALSE;
+         }
+      }
+
+      // Some monsters (revenants) don't care about walls.
+      if (piBehavior & AI_FIGHT_THROUGH_WALLS)
+      {
+         if what = poTarget
+         {
+            piState = (piState | VSTATE_VALID_ATTACK);
+         }
+
+         return TRUE;
+      }
+
+      /// Okay, now then, check for walls.
+      if Send(poOwner,@LineOfSight,#obj1=self,#obj2=what)
+      {
+         if what = poTarget
+         {
+            piState = (piState | VSTATE_VALID_ATTACK);
+         }
+
+         return TRUE;
+      }
+      if what = poTarget
+      {
+         piState = (piState | VSTATE_INVALID_ATTACK);
+      }
+
+      return FALSE;
+   }
+
+   CanReachLocation(row=$,col=$,fine_row=$,fine_col=$)
+   {
+      local iRange;
+
+      iRange = Send(self,@GetAttackRange);
+
+      if Send(self,@SquaredFineDistanceToLocation3D,#row=row,#col=col,
+            #fine_row=fine_row,#fine_col=fine_col)
+         <= (iRange * iRange)
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   //// Movement messages
+
+   MoveTowards(oTarget = $, face_target=FALSE, face_away=FALSE,
+               to_master=FALSE)
+   {
+      if oTarget = $ 
+      { 
+         Debug("Bad info passed to MoveTowards!");
+         return FALSE; 
+      }
+
+      return Send(self, @MoveTowardsCoords,
+                   #iRow=Send(oTarget,@GetRow),
+                   #iCol=Send(oTarget,@GetCol),
+                   #iFineRow=Send(oTarget,@GetFineRow),
+                   #iFineCol=Send(oTarget,@GetFineCol),
+                   #face_target=face_target,
+                   #face_away=face_away,
+                   #to_master=to_master);
+   }
+
+   MoveAway(oTarget = $, face_target=FALSE, face_away=FALSE)
+   {
+      local drow,dcol;
+  
+      if oTarget = $
+      {
+         Debug("Bad info passed to MoveAway!");
+         return FALSE;
+      }
+
+      if poOwner <> Send(oTarget,@GetOwner)
+      {
+         return FALSE;
+      }
+
+      // calculate square delta in fineness
+      // vector from oTarget to self
+      drow = (piRow * FINENESS) + piFine_row;
+      dcol = (piCol * FINENESS) + piFine_col;
+      drow = drow - ((Send(oTarget,@GetRow) * FINENESS) + Send(oTarget,@GetFineRow));
+      dcol = dcol - ((Send(oTarget,@GetCol) * FINENESS) + Send(oTarget,@GetFineCol));
+
+      // add vector from oTarget to self on our position and try move there
+      return Send(self, @MoveTowardsCoords,
+                   #iRow=(piRow + (drow / FINENESS)),
+                   #iCol=(piCol + (dcol / FINENESS)),
+                   #iFineRow=(piFine_row + (drow % FINENESS)),
+                   #iFineCol=(piFine_col + (dcol % FINENESS)),
+                   #face_target=face_target,
+                   #face_away=face_away);
+   }
+
+   ReqMonsterMove(new_row = $,new_col = $,new_finerow = FINENESS_HALF,
+                  new_finecol = FINENESS_HALF)
+   "Called by monster moving code to check if we really want to go"
+   "to <new_row>,<new_col>."
+   {
+      local r,c;
+
+      if NOT (piBehavior & AI_MOVE_WALKTHROUGH_WALLS)
+      {
+         return TRUE;
+      }
+
+      // Get coordinates in highres squares
+      r = ((new_row * FINENESS) + new_finerow) / 16;
+      c = ((new_col * FINENESS) + new_finecol) / 16;
+
+      // Monsters that can attack/move through walls shouldn't wander off the
+      //  map.
+      if r > Send(poOwner,@GetRoomRowsHighRes)
+         OR r < 1
+         OR c > Send(poOwner,@GetRoomColsHighRes)
+         OR c < 1
+      {
+         return FALSE;
+      }
+
+      return TRUE;
+   }
+    
+   MonsterOrient(new_row = $,new_col = $,new_finerow = FINENESS_HALF,
+               new_finecol=FINENESS_HALF,face_target = FALSE, face_away=FALSE)
+   "Called by monster moving code before and after a real move"
+   {
+      local drow, dcol, iAngle;
+
+      // aiming towards a target or away from it
+      if (NOT (poTarget = $)) AND (face_target OR face_away)
+      { 
+         // build face towards (in fine-units)
+         drow = (Send(poTarget,@GetRow) * FINENESS) + Send(poTarget,@GetFineRow);
+         dcol = (Send(poTarget,@GetCol) * FINENESS) + Send(poTarget,@GetFineCol);
+         drow = drow - ((piRow * FINENESS) + piFine_row);
+         dcol = dcol - ((piCol * FINENESS) + piFine_col);
+
+         // rotate 180??, if we face away
+         if face_away
+         { 
+            drow = -drow;
+            dcol = -dcol;
+         }
+      }
+      else
+      {
+         drow = (new_row * FINENESS) + new_finerow;
+         dcol = (new_col * FINENESS) + new_finecol;
+         drow = drow - ((piRow * FINENESS) + piFine_row);
+         dcol = dcol - ((piCol * FINENESS) + piFine_col);
+      }
+
+      if poOwner <> $
+      {
+         iAngle = Send(SYS,@UtilGetAngleTowards,#row=drow,#col=dcol);
+         Send(poOwner,@SomethingTurned,#what=self,#new_angle=iAngle);
+      }
+
+      return;
+   }
+
+   MoveTowardsCoords(iRow=$, iCol=$, iFineRow=FINENESS_HALF, iFineCol=FINENESS_HALF,
+                     face_target=FALSE, face_away=FALSE, to_master=FALSE)
+   {
+      local iState, iMoveFlags;
+
+      if (iRow = $ or iCol = $)
+      {
+         return;
+      }
+
+      // Mobs that can move outside the BSP tree set this field which is then
+      // combined with the state flags and sent to GetStepTowardsBSP. These
+      // moves aren't checked against room geometry.
+      iMoveFlags = 0;
+      if (piBehavior & AI_MOVE_WALKTHROUGH_WALLS)
+      {
+         iMoveFlags = iMoveFlags | MSTATE_MOVE_OUTSIDE_BSP;
+      }
+
+      // query where to step next
+      // note: these need some persistent info across
+      // calls which are stored in piState (flags from old KOD code)
+      iState = GetStepTowardsBSP(
+                Send(poOwner, @GetRoomData),
+                piRow, piCol, piFine_row, piFine_col,
+                *iRow, *iCol, *iFineRow, *iFineCol,
+                piState | iMoveFlags, self);
+
+      if iState <> $
+      {
+         piState = iState;
+
+         // debug("step",iRow,iCol,iFineRow,iFineCol);
+	  
+         if (NOT (piBehavior & AI_MOVE_WALKTHROUGH_WALLS))
+             OR Send(self,@ReqMonsterMove,#new_row=iRow,#new_col=iCol,
+                     #new_finerow=iFineRow,#new_finecol=iFineCol)
+         {
+            Send(self,@MonsterOrient,#new_row=iRow,#new_col=iCol,
+                 #new_finerow=iFineRow,#new_finecol=iFineCol,
+                 #face_target=face_target,#face_away=face_away);
+		
+            Send(poOwner,@SomethingMoved,#what=self,#speed=viSpeed,
+                 #new_row=iRow,#new_col=iCol,
+                 #fine_row=iFineRow,#fine_col=iFineCol,
+                 #non_monsters_only=TRUE);
+
+            // Turn to face target
+            Send(self,@MonsterOrient,#new_row=iRow,#new_col=iCol,
+                 #new_finerow=iFineRow,#new_finecol=iFineCol,
+                 #face_target=face_target,#face_away=face_away);
+
+         return TRUE;		
+         }
+      }
+
+      return FALSE;
+   }
+
+   GotoCoords(iRow=$,iCol=$,iFineRow=FINENESS_HALF,iFineCol=FINENESS_HALF)
+   "Move to a specific row and column. warning! fineness really"
+   "isn't accurate as the monster will stop when it reaches the destination"
+   "row and column"
+   {
+      if (iRow = $ OR iCol = $)
+      {
+         return;
+      }
+
+      piTargetLocationRow = iRow;
+      piTargetLocationCol = iCol;
+      piTargetLocationFineRow = iFineRow;
+      piTargetLocationFineCol = iFineCol;
+      Send(self,@SetBehaviorFlag,#flag=AI_HAS_TARGET_LOCATION,#value=TRUE);
+
+      return;
+   }
+
+   GetTargetLocationRow()
+   {
+      return piTargetLocationRow;
+   }
+
+   GetTargetLocationCol()
+   {
+      return piTargetLocationCol;
+   }
+
+   GetTargetLocationFineRow()
+   {
+      return piTargetLocationFineRow;
+   }
+
+   GetTargetLocationFineCol()
+   {
+      return piTargetLocationFineCol;
+   }
+
+   //// Spasming messages
+
+   SpasmMonsterTimer()
+   {
+      if poOwner = $ OR NOT (viAttributes & MOB_SPASM)
+      {
+         return;
+      }
+
+      ptSpasm = $;
+      Send(self,@DoSpasm);
+      ptSpasm = CreateTimer(self,@SpasmMonsterTimer,
+                            viSpasm_delay+Random(0,viSpasm_delay/3));
+
+      return;
+   }
+
+   DoSpasm()
+   {
+      return;
+   }
+
+   //// Receive messages
+
+   CanAcceptGift()
+   {
+      // We AND this with TRUE so that we get a boolean instead of the raw
+      //  value.
+      return ((viAttributes & MOB_RECEIVE) AND TRUE);
+   }
+
+   CanAcceptOffer(who=$)
+   {
+      return ((viAttributes & MOB_BUYER OR viAttributes & MOB_RECEIVE)
+               OR (who <> $ AND IsClass(who,&DM)));
+   }
+
+   ReqOffer(what = $, item_list = $)
+   "Someone offered us something, figure out if we want it, etc. "
+   "Return TRUE if the offer should go through, meaning that the monster will "
+   "offer the value of the items in return."
+   {
+      local i,j, lArgList, iValueOffered, oQuestNode, bIsBuyer, bWarnAboutUnwantedItems;
+
+      if item_list = $
+      {
+         return FALSE;
+      }
+
+      // Check for if in the same room.
+      if Send(what,@GetOwner) <> poOwner
+      {
+         Debug("ALERT! ",Send(what,@GetTrueName),what,"offered items to NPC",
+               Send(self,@GetTrueName),"from distant RID",
+               Send(Send(what,@GetOwner),@GetRoomNum));
+         
+         return FALSE;
+      }     
+
+      // If there are active quest nodes, notify them   -AJM
+      foreach i in item_list
+      {
+         /// first, let's be sure the item CAN be given away.
+         if NOT Send(i,@CanBeGivenToNPC)
+         {
+            Post(self,@SayToOne,#target=what,#message_rsc=LS_cant_part,
+                 #parm1=Send(i,@GetIndef),#parm2=Send(i,@GetName));
+
+            return FALSE;
+         }
+
+         if NOT Send(what,@ReqLeaveHold,#what=i)
+         {
+            Post(what,@MsgSendUser,#message_rsc=Lm_cant_remove_item,
+                 #parm1=Send(i,@GetDef),#parm2=Send(i,@GetName));
+
+            return FALSE;
+         }
+
+         if plActiveQuestNodes <> $
+         {
+            foreach oQuestNode in plActiveQuestNodes
+            {
+               if Send(oQuestNode,@CheckCompletionCriteria,#who_tried=what,
+                       #item_offered=i)
+               {
+                  return FALSE;
+               }
+            }
+         }
+      } 
+
+      bIsBuyer = Send(self, @MobIsBuyer);
+      if (viAttributes & MOB_RECEIVE)
+      {
+         // If we also buy items, don't complain about being offered something
+         // that we can't use for a quest.  Maybe we'll buy it.
+         bWarnAboutUnwantedItems = (NOT Send(self, @MobIsVaultman)) AND
+              (NOT bIsBuyer);
+         if Send(self,@ReqGive,#what=what,#item_list=item_list,
+                 #notify_about_unwanted_items = bWarnAboutUnwantedItems)
+         {
+            return FALSE;
+         }
+         
+         // If we both buy items and receive them, fall through to the buy case.
+         if NOT bIsBuyer
+         {
+            return FALSE;
+         }
+      }
+
+      if bIsBuyer
+      {
+         if poCustomer <> $
+         {
+            Send(what,@MsgSendUser,#message_rsc=Lm_buyer_offer_busy,
+                 #parm1=Send(self,@GetName));
+
+            return FALSE;
+         }
+
+         iValueOffered = 0;
+
+         foreach i in item_list
+         {
+            if NOT Send(what,@ReqLeaveHold,#what=i)
+            {
+               Post(what,@MsgSendUser,#message_rsc=Lm_cant_remove_item,
+                    #parm1=Send(i,@GetDef),#parm2=Send(i,@GetName));
+
+               return FALSE;
+            }
+
+            if NOT Send(self,@ObjectDesired,#what=i)
+            {
+               Send(self,@SayToOne,#target=what,
+                    #message_rsc=Lm_buyer_unwanted);
+
+               return FALSE;
+            }
+
+            iValueOffered = iValueOffered + Send(i,@GetValue);
+         }
+
+         if iValueOffered = 0
+         {
+            Send(self,@SayToOne,#target=what,#message_rsc=Lm_buyer_no_value);
+
+            return FALSE;
+         }
+
+         if NOT Send(self,@IsCustomerOkay,#who=what)
+         {
+            return FALSE;
+         }
+
+         return TRUE;
+      }
+
+      // Let DMs give monsters stuff - will drop on death.
+      if IsClass(what,&DM)
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   ReqGive(what = $, item_list = $, notify_about_unwanted_items = True)
+   "Returns TRUE if we'll take everything that was offered."
+   {
+      local i, j, bWanted, oQuestNode, bAllWanted;
+
+      bAllWanted = TRUE;
+
+      foreach i in item_list
+      {
+         if NOT Send(what,@ReqLeaveHold,#what=i)
+         {
+            Post(what,@MsgSendUser,#message_rsc=LM_cant_remove_item,
+                 #parm1=Send(i,@GetDef),#parm2=Send(i,@GetName));
+
+            return FALSE;
+         }
+
+         // If there are active quest nodes, notify them   -AJM
+         if plActiveQuestNodes <> $
+         {
+            foreach oQuestNode in plActiveQuestNodes
+            {
+               if Send(oQuestNode,@CheckCompletionCriteria,#who_tried=what,
+                       #item_offered=i)
+               {
+                  return TRUE;
+               }
+            }
+         } 
+
+         bWanted = FALSE;
+         bAllWanted = FALSE;
+         foreach j in plWantedItems 
+         {
+            if IsClass(i,j)
+            {
+               // We were offered something we want.
+               Send(Self,@GotWantedItem,#obj=i,#who=what);
+               bWanted = TRUE;
+
+               break;
+            }
+         }
+
+         // Were we offered something we dont want?
+         if (NOT bWanted) AND notify_about_unwanted_items
+         {
+            Send(Self,@GotUnwantedItem,#obj=i,#who=what);
+         }
+      }
+      
+      // Last chance.  Am I a vaultman?
+      if Send(self,@MobIsVaultman)
+      {            
+         Send(self,@VaultDeposit,#who=what,#lItems=item_list);
+         return TRUE;
+      }
+
+      return bAllWanted;
+   }
+   
+   GotWantedItem(obj = $, who = $)
+   "We have been given an item on our wanted list. This is either a banker"
+   "type, or a quest completion of some kind or an intrigue token."
+   {
+      // Handle the kludgy banker interface immediately.
+      if (viAttributes & MOB_BANKER) AND IsClass(obj,&Money)
+      {
+         Send(self,@BankDeposit,#who=who,#amount=Send(obj,@GetNumber));
+
+         return;
+      }
+
+      // We musta wanted the item for some other reason. So do special stuff
+      // If we get a FALSE return, it means we didnt keep the item.
+      if NOT Send(self,@CheckWhyWanted,#obj=obj,#who=who)
+      {
+         return;
+      }
+
+      // accepting some items makes NPC's happier or sadder
+      Send(self,@AffectMood,#why=MOODMOD_ACCEPT_ITEM,#what=obj);
+
+      if IsClass(obj,&Token) AND Send(SYS,@GetTokenGame) <> $
+      {
+         Send(Send(SYS,@GetTokenGame),@TokenDelivered,
+              #what=obj,#who=who,#mob=self);
+
+         return;
+      }
+
+      //Lets dispose of the offered item.
+      if IsClass(obj,&NumberItem)
+      {
+         Send(who,@RemoveNumberItemFromPossession,#ToBeRemoved=obj);
+      }
+
+      Send(obj,@Delete);
+
+      return;
+   }
+
+   GotUnwantedItem(obj = $, who = $)
+   "Someone just randomly gave us an object we didnt really want."
+   "They could be fishing for a quest, so occasionally, lets keep it."
+   {
+      // Quickly, lets check to see if it's a signet ring.  If so, give a
+      //  special message.
+      if IsClass(obj,&SignetRing)
+      {
+         Post(poOwner,@SomeoneSaid,#what=self,
+              #string=LS_Signet_wrong,#type=SAY_RESOURCE,
+              #parm1=Send(Send(obj,@GetRingOwner),@GetDef),
+              #parm2=Send(Send(obj,@GetRingOwner),@GetName));
+
+         return;
+      }
+
+      // Handle giving us a token.  In general, we don't want it.
+      if IsClass(obj,&Token) AND NOT IsClass(self,&DragonFlyQueen)
+      {
+         Post(who,@MsgSendUser,#message_rsc=vrUnwanted_token,
+              #parm1=Send(self,@GetCapDef),#parm2=Send(self,@GetName));
+         Send(obj,@OfferRejected);
+         Send(who,@NewHold,#what=obj);
+
+         return;
+      }
+
+      // So this really was a random offering it appears so lets act alive.
+      // We say no thanks, and return the item to the giver.
+      Post(who,@MsgSendUser,#message_rsc=vrUnwanted_give,
+           #parm1=Send(self,@GetCapDef),#parm2=Send(self,@GetName));
+      if IsClass(obj,&NumberItem)
+      {
+         // Delete the numberitem because it was created special for the offer.
+         // Giver still has all the original number.
+         Send(obj,@Delete);
+      }
+      else
+      {
+         Send(who,@NewHold,#what=obj);
+      }
+
+      return;
+   }
+
+   //// Speech messages
+
+   SomeoneSaid(what = $,type = $,string = $)
+   "Takes the said string and if its from a user searches libraries for"
+   "a response."
+   {
+      local i, lActionList, oLibrary, oQuestNode;
+
+      // Are we supposed to hear things?
+      if (NOT (viAttributes & MOB_LISTEN))
+         OR string = $
+      {
+         propagate;
+      }
+
+      // Was it a user talking, another NPC, or myself?
+      if NOT IsClass(what,&User)
+      {
+         if what = self OR NOT (viAttributes & MOB_LISTEN_MOB)
+         {
+            propagate;
+         }
+      }
+
+      oLibrary = Send(SYS,@GetLibrary);
+
+      // Anonymous (and morph) filter
+      // Don't handle triggers normally if player's anonymous flag is set,
+      // just say anonymous_response
+
+      if IsClass(what,&User)
+         AND (Send(what,@CheckPlayerFlag,#flag=PFLAG_ANONYMOUS)
+              OR Send(what,@CheckPlayerFlag,#flag=PFLAG_MORPHED))
+         AND type <> SAY_DM
+      {
+         Send(what,@MsgSendUser,#message_rsc=monster_anonymous_response,
+              #parm1=Send(self,@GetName));
+
+         return;
+      }
+
+      // Quest engine hook: if there are active quest nodes, notify them   -AJM
+      if plActiveQuestNodes <> $
+      {
+         foreach oQuestNode in plActiveQuestNodes
+         {
+            if Send(oQuestNode,@CheckCompletionCriteria,#who_tried=what,
+                    #message=string)
+            {
+               return;
+            }
+         }
+      }
+
+      // Maybe it was just a simple speech trigger. So, we check and parse.
+      lActionList = $;
+      lActionList = Send(oLibrary,@SearchSpeechLib,#mob=self,#string=string);
+      if lActionList <> $
+      {
+         Post(oLibrary,@ParseAction,#action=First(lActionList),
+              #mob=self,#target=what);
+         Send(self,@AddToSpamList,#mob_class=Nth(lActionList,2),
+              #key_num=Nth(lActionList,3));
+      }
+
+      // Last but not least, is the player asking about one of my spells/skills?
+      if (viAttributes & MOB_TEACHER) 
+      {
+         Send(self,@SomeoneSaidLevel,#what=what,#string=string);
+      }
+
+      // The investigator can use "dm top accounts" or "dm PlayerName" to get
+      //  info on accounts.
+      if type = SAY_DM
+         AND Send(self,@MobIsBanker)
+         AND (Send(SYS,@GetInvestigator) = what)
+      {
+         if StringEqual(string,"top accounts")
+         {
+            Send(self,@ReportBankBalance,#number=10);
+
+            propagate;
+         }
+
+         i = Send(SYS,@FindUserByString,#string=string);
+         if i <> $
+         {
+            Send(self,@ReportBankBalance,#who=i);
+
+            propagate;
+         }
+      }
+
+      propagate;
+   }
+
+   SomeoneSaidLevel(what = $,type = $,string = $)
+   {
+      local iLevel;
+
+      if (Nth(plFor_Sale,2) = $ AND Nth(plFor_Sale,3) = $)
+         OR NOT StringContain(string,monster_level)
+      {
+         return FALSE;
+      }
+
+      if StringContain(string,monster_one)
+         OR StringContain(string,monster_num_one)
+      {
+         iLevel = 1;
+      }
+      else if StringContain(string,monster_two)
+            OR StringContain(string,monster_num_two)
+      {
+         iLevel = 2;
+      }
+      else if StringContain(string,monster_three)
+               OR StringContain(string,monster_num_three)
+      {
+         iLevel = 3;
+      }
+      else if StringContain(string,monster_four)
+               OR StringContain(string,monster_num_four)
+      {
+         iLevel = 4;
+      }
+      else if StringContain(string,monster_five)
+               OR StringContain(string,monster_num_five)
+      {
+         iLevel = 5;
+      }
+      else if StringContain(string,monster_six)
+               OR StringContain(string,monster_num_six)
+      {
+         iLevel = 6;
+      }
+
+      if iLevel = $
+      {
+         return FALSE;
+      }
+
+      Post(self,@ReportLevel,#iLevel=iLevel);
+
+      return TRUE;
+   }
+
+   ReportLevel(iLevel=0)
+   {
+      local i, oAbility, iNum, lAvailable;
+
+      lAvailable = $;
+
+      iNum = 0;
+      foreach i in nth(plFor_Sale,2)
+      {         
+         oAbility = Send(SYS,@FindSkillByNum,#num=i);
+         if iLevel = Send(oAbility,@GetLevel)
+            AND Send(oAbility,@IsAccessible)
+         {
+            if oAbility <> $
+            {
+               lAvailable = Cons(oAbility,lAvailable);
+            }
+         }
+      }
+
+      foreach i in nth(plFor_Sale,3)
+      {         
+         oAbility = Send(SYS,@FindSpellByNum,#num=i);
+         if iLevel = Send(oAbility,@GetLevel)
+            AND Send(oAbility,@IsAccessible)
+         {
+            if oAbility <> $
+            {
+               lAvailable = Cons(oAbility,lAvailable);
+            }
+         }
+      }
+
+      if poOwner = $
+      {
+         return;
+      }
+
+      Send(self,@SendReportLevel,#lAvailable=lAvailable);
+
+      return;
+   }
+
+   SendReportLevel(lAvailable=$)
+   {
+      local i, iNumAbilities, iNumRsc, iCounter;
+
+      AddPacket(1,BP_SAID, 4,self, 4,Send(self,@GetName), 1,SAY_RESOURCE,
+                4,monster_said_resource_str, 4,Send(self,@GetCapDef),
+                4,Send(self,@GetName));
+                
+      if lAvailable = $
+      {
+         AddPacket(4, vrTeach_nothing);
+         Send(poOwner,@SendCopyPacketAllInRoom);
+
+         return;
+      }
+
+      // Add master rsc.
+      AddPacket(4,vrTeach_message);
+
+      iCounter = 0;
+      iNumRsc = 0;
+
+      iNumAbilities = Length(lAvailable);
+
+      foreach i in lAvailable
+      {
+         iCounter++;
+
+         if iNumAbilities > 1
+         {
+            if iCounter = iNumAbilities
+            {
+               iNumRsc = iNumRsc + 2;
+               if IsClass(self,&KocatanBonePriestess)
+               {
+                  AddPacket(4,Send(self,@GetRandomSquawkRsc),4,Send(i,@GetName));
+               }
+               else
+               {
+                  AddPacket(4,monster_teach_and, 4,Send(i,@GetName));
+               }
+            }
+            else
+            {
+               iNumRsc = iNumRsc + 2;
+               AddPacket(4,Send(i,@GetName), 4,monster_teach_comma);
+            }
+         }
+         else
+         {
+            iNumRsc++;
+            AddPacket(4,Send(i,@GetName));
+         }
+      }
+
+      // If we didn't add enough location resources, make up for it
+      // with blank ones.
+      while iNumRsc++ < 12
+      {
+         AddPacket(4,monster_teach_blank);
+      }
+
+      Send(poOwner,@SendCopyPacketAllInRoom);
+
+      return;
+   }
+
+   GetTeachMessage(level=$)
+   {
+      return vrTeach_message;
+   }
+
+   OnSpamList(mob_class = $, key_num = 0)
+   "Return TRUE if speech item is on the spam list."
+   {
+      local lSpeechItem;
+
+      if plSpamList = $
+      {
+         return FALSE;
+      }
+
+      if key_num = 0 OR mob_class = $
+      {
+         return FALSE;
+      }
+
+      // plSpamlist is [ [mob_class, key_num],...]
+      // List should be small, so we'll just do a linear search.
+      foreach lSpeechItem in plSpamList
+      {
+         if First(lSpeechItem) = mob_class AND Nth(lSpeechItem,2) = key_num
+         {
+            return TRUE;
+         }
+      }
+
+      return FALSE;
+   }
+
+   AddToSpamList(mob_class = $, key_num = 0)
+   "Add a speech item to the spam list."
+   {
+      if key_num = 0 OR mob_class = $
+      {
+         return;
+      }
+
+      // plSpamlist is [ [mob_class, key_num],...]
+      plSpamList = Cons([mob_class,key_num], plSpamList);
+
+      // Spam list cleared with random timer, so if we add something we need
+      // to make sure that timer is set.
+      if (ptRandom = $)
+      {
+         ptRandom = CreateTimer(self,@RandomTimer,viRandom_delay
+                        + Random(0,viRandom_delay/2));
+      }
+
+      return;
+   }
+
+   //// Random Messages
+
+   RandomTimer(timer = $,test = FALSE)
+   "Handle a random timer, and set up the next one."
+   {
+      local lAction, iNum, oTarget, i, lActives, oLibrary;
+
+      if (ptRandom <> $
+         AND ptRandom <> timer)
+      {
+         DeleteTimer(ptRandom);
+      }
+
+      ptRandom = $;
+
+      // Clear spam list
+      plSpamList = $;
+
+      if poOwner = $ OR NOT ((viAttributes & MOB_RANDOM) OR test)
+      {
+         return;
+      }
+
+      // This has to stay >0 or things go bad in library.
+      iNum = Random(1,100);   
+
+      oLibrary = Send(SYS,@GetLibrary);
+      lAction = Send(oLibrary,@SearchRandomLib,#mob=self,#percent=iNum);
+      if lAction <> $
+      {
+         // we found an applicable random trigger, find a random user.
+         iNum = 0;
+         oTarget = $;
+         foreach i in Send(poOwner,@GetHolderActive)
+         {
+            if IsClass(First(i),&User)
+            {
+               if Random(0,iNum) = 0
+               {
+                  oTarget = First(i);
+               }
+
+               iNum = iNum + 1;
+            }
+         }
+
+         if oTarget = $
+         {
+            Debug("BAD: RandomTimer expired without user present for mob ",
+                  self, Send(self,@GetName));
+
+            return;
+         }
+
+         Send(oLibrary,@ParseAction,#action=lAction,#mob=self,#target=oTarget);
+      }
+      
+      if NOT test
+      {
+         ptRandom=CreateTimer(self,@RandomTimer,
+                              viRandom_delay + Random(0,viRandom_delay/2));
+      }
+
+      return;
+   }
+
+   //// Other Trigger messages
+
+   AmbientLightChanged(test = FALSE)
+   "Triggered every Meridian hour (5 min).  Used to damp out mood swings and "
+   "trigger time-of-day mood changes."
+   {
+      local iHour, iMoodMod;
+      iHour = Send(SYS,@GetHour);
+
+      if iHour = 6
+      {
+         Send(self,@AffectMood,#why=MOODMOD_DAWN);
+         piSweepCounter = 0;
+      }
+
+      if iHour = 18
+      {
+         Send(self,@AffectMood,#why=MOODMOD_DUSK);
+      }
+
+      // Damp out mood swings every 4 Meridian hours
+      if (iHour % 4 = 0) OR test
+      {
+         // if in [-5, 5] do nothing
+         if piMood >= -5 AND piMood <= 5
+         {
+            return;
+         }
+
+         // otherwise move halfway to [-5, 5]
+         iMoodMod = ((abs(piMood) - 5) / 2) * (piMood / abs(piMood));
+         Send(self,@SetMood,#new_mood=piMood-iMoodMod);
+      }
+
+      propagate;
+   }
+
+   UserEntered(who = $)
+   "A User just entered the room."
+   {
+      return;
+   }
+
+   MonsterAttack(what = $)
+   "Called by monster attacking code right before taking a swing at <what>."
+   {
+      return;
+   }
+
+   HitSideEffect(what=$)
+   "Called after every non-fatal monster hit"
+   {
+      return;
+   }
+
+   KilledSomething(what=$,use_weapon=$)
+   {
+      if what = $
+      {
+         Debug("Bad info in killedsomething().");
+
+         return;
+      }
+
+      // If we have a master, they are responsible for our kills.
+      if poMaster <> $
+      {
+         if IsClass(what,&Player)
+            AND IsClass(poMaster,&Player)
+         {
+            // If we killed an innocent, tell the master they're in trouble.
+            if (NOT Send(poMaster,@CheckPlayerFlag,#flag=PFLAG_MURDERER))
+               AND NOT (Send(what,@CheckPlayerFlag,#Flag=PFLAG_OUTLAW)
+                  OR Send(what,@CheckPlayerFlag,#Flag=PFLAG_MURDERER))
+            {
+               Send(poMaster,@MsgSendUser,#message_rsc=vrMinion_trouble);
+            }
+
+            // Evil twins are dispelled by any player they kill.
+            if IsClass(self,&EvilTwin)
+            {
+               Post(self,@Delete);
+            }
+         }
+
+         // Our master handles the kill from here, since they
+         // made us do it.
+         return Send(poMaster,@KilledSomething,#what=what,
+                     #use_weapon=use_weapon);
+      }
+
+      // If this is an apparition, and it has no master,
+      // the caster of the apparition acts as the master for
+      // tracking the results of monster kills, but not any
+      // accidental player kills (or player minion kills).
+      if poApparitionCaster <> $
+         AND IsClass(what,&Monster)
+         AND (Send(what,@GetMaster) = $
+            OR IsClass(Send(what,@GetMaster),&Monster))
+      {
+         return Send(poApparitionCaster,@KilledSomething,#what=what,
+                     #use_weapon=use_weapon);
+      }
+
+      // If we don't have a master, proceed as normal.
+      Send(Send(what,@GetOwner),@SomethingKilled,#what=self,#victim=what);
+
+      if what = self
+      {
+         Post(what,@Killed,#what=self);
+      }
+      else
+      {
+         Send(what,@Killed,#what=self);
+      }
+
+      return;
+   }
+
+   CreateDeadBody(killer=$)
+   {
+      local oBody;
+
+      oBody = $;
+
+      if vrDead_icon <> $
+      {
+         oBody = Create(&DeadBody,
+                        #victim=self,
+                        #killer=killer,
+                        #drawfx=viDead_drawfx,
+                        #BodyTranslation = piColor_translation);
+      }
+
+      return oBody;
+   }
+
+   GetDeadName()
+   {
+      return vrDead_name;
+   }
+   
+   GetDeadIcon()
+   {
+      return vrDead_Icon;
+   }
+   
+   Killed(what=$)
+   "The mob was just killed."
+   {
+      local i,val,oBody,hReputation;
+
+      // If the monster was just killed, assume it did itself in.
+      if what = $
+      {
+         what = self;
+      }
+
+      if (viDefault_behavior & AI_NPC)
+      {
+         return;
+      }
+
+      if poOwner <> $
+      {
+         // If a monster was the killer, and it has a master, set 'what'
+         // to the master. This *should* be handled by the killer in
+         // KilledSomething, but to be safe (and because quests are
+         // checked here) we should check again for a master.
+         if IsClass(what,&Monster)
+            AND Send(what,@GetMaster) <> $
+         {
+            what = Send(what,@GetMaster);
+         }
+
+         oBody = Send(self,@CreateDeadBody,#killer=what);
+
+         if oBody <> $
+         {
+            Send(poOwner,@NewHold,#what=oBody,#new_row=piRow,#new_col=piCol,
+                  #fine_row=piFine_row,#fine_col=piFine_col,
+                  #new_angle=Send(self,@GetAngle));
+         }
+
+         if vrSound_death <> $
+         {
+            Send(poOwner,@SomethingWaveRoom,#what=oBody,#wave_rsc=vrSound_death,
+                  #flags=SOUND_RANDOM_PITCH);
+         }
+
+         if NOT Send(poOwner,@IsArena)
+         {
+            // Notify the quest engine, to check if a quest is affected -AJM
+            Send(Send(SYS,@GetQuestEngine),@MonsterKilled,#dead_monster=self,
+                  #killing_player=what,#corpse=oBody);
+
+            Send(EVENTENGINE_OBJECT,@MonsterKilled,#dead_monster=self,
+                  #killing_player=what,#corpse=oBody);
+
+            if (piReputationGroup <> REP_NEUTRAL
+               AND Send(SETTINGS_OBJECT,@GetMonsterFactionEnabled))
+            {
+               hReputation = Send(what,@GetReputationHash);
+               
+               // attempt to create a players rep hash if it does not exist
+               if (hReputation=$)
+               {
+                  hReputation = Send(what,@CreateReputationHash);
+
+                  if (hReputation = $)
+                  {
+                     Debug("Unable to get player reputation hash, not changing reputation");
+                  }
+               }
+               
+               // now actually do the rep chenge unless there is no hash
+               if (hReputation <> $)
+               {
+                  val=GetTableEntry(hReputation,piReputationGroup);
+                  if (val <> $)
+                  {
+                     --val;
+                     if (val >= -20000)
+                     {
+                        DeleteTableEntry(hReputation,piReputationGroup);
+                        AddTableEntry(hReputation,piReputationGroup,val);
+                     }
+                  }
+                  else
+                  {
+                     AddTableEntry(hReputation,piReputationGroup,-1);
+                  }
+
+                  Send(what,@MsgSendUser,
+                     #message_rsc=monster_faction_negative_msg,
+                     #parm1=Send(self,@GetMonsterFactionRSC,
+                              #faction=piReputationGroup));
+
+                  // Adjust reputation with enemies of this monster
+                  foreach i in plReputationEnemies
+                  {
+                     val=GetTableEntry(hReputation,i);
+                     if (val <> $)
+                     {
+                        ++val;
+                        if (val <= 20000)
+                        {
+                           DeleteTableEntry(hReputation,i);
+                           AddTableEntry(hReputation,i,val);
+                        }
+                     }
+                     else
+                     {
+                        AddTableEntry(hReputation,i,1);
+                     }
+
+                     Send(what,@MsgSendUser,
+                     #message_rsc=monster_faction_positive_msg,
+                     #parm1=Send(self,@GetMonsterFactionRSC,#faction=i));
+                  }
+               }
+            }
+                  
+            Send(self,@CreateTreasure,#who=what,#corpse=oBody);
+         }
+
+         // Delete here so we don't accidentally "kill" then delete system
+         //  template monsters.
+         Send(self,@Delete);
+      }
+
+      return;
+   }
+
+   GetMonsterFactionRSC(faction = $)
+   {
+      local factionRSC;
+
+      switch(faction)
+      {
+         case REP_FAROL:
+            factionRSC = monster_faction_farol;
+            break;
+
+         case REP_ORC:
+            factionRSC = monster_faction_orc;
+            break;
+
+         case REP_TROLL:
+            factionRSC = monster_faction_troll;
+            break;
+
+         case REP_FARNOHL:
+            factionRSC = monster_faction_farnohl;
+            break;
+
+         case REP_LICH:
+            factionRSC = monster_faction_lich;
+            break;
+
+         case REP_PSAVAR:
+            factionRSC = monster_faction_psavar;
+            break;
+
+         case REP_KKAVAR:
+            factionRSC = monster_faction_kkavar;
+            break;
+
+         case REP_CTAVAR:
+            factionRSC = monster_faction_ctavar;
+            break;
+
+         case REP_FEY_GOOD:
+            factionRSC = monster_faction_fey_good;
+            break;
+
+         case REP_FEY_EVIL:
+            factionRSC = monster_faction_fey_evil;
+            break;
+
+         case REP_FROGMEN:
+            factionRSC = monster_faction_frogmen;
+            break;
+
+         case REP_HERETIC:
+            factionRSC = monster_faction_heretic;
+            break;
+
+         case REP_UNDEAD:
+            factionRSC = monster_faction_undead;
+            break;
+
+         default:
+            factionRSC = monster_faction_unspecified;
+            break;
+      }
+      return factionRSC;
+   }
+
+   //// SERVICE MESSAGES
+
+   Repair()
+   "This is just a stub"
+   {
+      return;
+   }
+
+   Offer(what = $,item_list = $)
+   "Offer the player money in exchange for their goods - MOB_BUYER"
+   {
+      local i, iValue_offered, iAdd, x, y;
+
+      // The Faction Pricing bonus was selling items to NPCs at higher prices
+      // than the new price.  This has been taken out.
+
+      if (viAttributes & MOB_BUYER
+         OR viAttributes & MOB_RECEIVE)
+      {
+         iValue_offered = 0;
+         foreach i in item_list
+         {
+            x = Send(i,@GetValue) * (100 - 10*viMerchant_markup) / 100;
+            iAdd = Bound(x,1,$);
+
+            iValue_offered = iValue_offered + iAdd;
+         }
+
+         poCustomer = what;
+
+         plOffer_items = [ Create(&Money,#number=iValue_offered) ];
+         Send(what,@CounterOffer,#item_list=plOffer_items);
+         ptCancelOffer = CreateTimer(self,@CancelOfferTimer,viCancel_offer_time);
+      }
+      else if IsClass(what,&DM)
+      {
+         Send(what,@CounterOffer,#item_list=$);
+      }
+
+      return;
+   }
+
+   CancelOfferTimer()
+   {
+      ptCancelOffer = $;
+
+      Post(self,@SayToOne,#target=poCustomer,#message_rsc=Lm_buyer_timeout);
+      Send(poCustomer,@OfferCanceled);
+      Send(self,@OfferCanceled);
+
+      return;
+   }
+
+   OfferCanceled()
+   {
+      // if called from timer, no timer left.  If user cancelled, delete timer.
+
+      if ptCancelOffer <> $
+      {
+         DeleteTimer(ptCancelOffer);
+      }
+
+      ptCancelOffer = $;
+
+      poCustomer = $;
+      plOffer_items = $;
+
+      return;
+   }
+
+   AcceptOffer()
+   "Transfer the purchased merchandise - MOB_BUYER"
+   {
+      local i,oHolder,lTake_items;
+
+      // set the stuff where the user can get to it
+      oHolder = Send(SYS,@GetSystemHolder2);
+      foreach i in plOffer_items
+      {
+         Send(oHolder,@NewHold,#what=i);
+         if IsClass(i,&Money)
+         {
+            Send(Send(SYS,@GetStatistics),@MoneyCreated,#amount=Send(i,@GetNumber));
+         }
+      }
+
+      // take stuff the user put there
+      oHolder = Send(SYS,@GetSystemHolder1);
+      foreach lTake_items in [ Send(oHolder,@GetHolderActive),
+                           Send(oHolder,@GetHolderPassive) ]
+      {
+         foreach i in lTake_items
+         {
+            Send(self,@NewHold,#what=i);
+         }
+      }
+
+      // kill the cancel offer timer
+      Send(self,@OfferCanceled);
+
+      return TRUE;
+   }
+
+   VaultDeposit(who=$,lItems=$)
+   {
+      local i, oVault, iFee, oMoney, iCash;
+
+      if not Send(self,@MobIsVaultman)
+      {
+         return;
+      }
+
+      oVault = Send(SYS,@FindVaultByNum,#num=Send(self,@GetVaultNum));
+      if oVault = $
+      {
+         Debug("Nil vault!");
+
+         return;
+      }
+
+      iFee = 0;
+      foreach i in lItems
+      {
+         // Can't store anything without any bulk, such as gold
+         if Send(i,@GetBulk) <= 0 
+         {
+            Send(self,@SayToOne,#message_rsc=vaultman_nogold,#target=who,
+                 #parm1=Send(i,@GetDef),#parm2=Send(i,@GetName));
+
+            return FALSE;
+         }
+
+         if NOT Send(who,@ReqLeaveHold,#what=i)
+         {
+            Send(self,@SayToOne,#message_rsc=vaultman_nocursed,#target=who,
+                 #parm1=Send(i,@GetDef),#parm2=Send(i,@GetName));
+
+            return FALSE;            
+         }
+
+         if NOT Send(i,@CanBeStoredInVault)
+         {
+            Send(self,@SayToOne,#message_rsc=vaultman_cant_part,#target=who,
+                 #parm1=Send(i,@GetName));
+
+            return FALSE;            
+         }
+
+         iFee = iFee + Send(self,@GetVaultDepositFee,#what=i,#who=who);
+      }
+
+      oMoney = Send(who,@GetMoneyObject);
+      if oMoney = $
+      {
+         // No cash.
+         iCash = 0;
+      }
+      else
+      {
+         iCash = Send(oMoney,@GetValue);
+      }
+
+      if iCash < iFee AND iFee <> 0
+      {
+         Send(self,@SayToOne,#target=who,#message_rsc=vaultman_nodeposit_cash,
+              #parm1=iFee);
+
+         return;
+      }               
+
+      // this checks bulk of deposited items.
+      if NOT Send(oVault,@CanDepositItems,#who=who,#lItems=lItems)
+      {
+         Send(self,@SayToOne,#message_rsc=vaultman_fullvault,#target=who);
+
+         return FALSE;            
+      }
+
+      // passed all checks.  put the stuff in.      
+      Send(oVault,@DepositItems,#lItems=lItems,#who=who);
+
+      if iFee <> 0
+      {
+         Send(oMoney,@SubtractNumber,#number=iFee);  
+         Send(self,@SayToOne,#message_rsc=vaultman_Thanks_amount,#target=who,
+              #parm1=iFee);
+      }
+      else
+      {
+         Send(self,@SayToOne,#message_rsc=vaultman_deposit_thanks,#target=who);
+      }
+
+      Send(self,@AffectMood,#why=MOODMOD_VAULT_DEPOSIT);
+
+      return;
+   }
+
+   GetVaultDepositFee(what=$)
+   "Default cost is 1 gp per stone."
+   {
+      return Send(what,@GetBulk);
+   }
+
+   GetVaultRetrievalFee(what=$)
+   "Default cost no cost.  However, expensive places can charge more."
+   {
+      return 0;
+   }
+
+   VaultWithdraw(what=$,lItems=$,number_list = $)
+   {
+      local i, j, iFee, iCash, lStored, oVault, iBulk, oMoney, bFound,
+            oSafeBox, lNumbers, iCount, bFailed;
+
+      if what = $ OR lItems = $
+      {
+         return;
+      }
+
+      oMoney = Send(what,@GetMoneyObject);
+      if oMoney = $
+      {
+         // No cash.
+         iCash = 0;
+      }
+      else
+      {
+         iCash = Send(oMoney,@GetValue);
+      }
+
+      oVault = Send(SYS,@FindVaultByNum,#num=Send(self,@GetVaultNum));
+      oSafeBox = Send(oVault,@GetPlayerSafeBox,#who=what);
+
+      if oSafeBox = $
+      {
+         Send(self,@SayToOne,#target=what,#message_rsc=vaultman_noAccount);
+
+         return;
+      }
+
+      iFee = 0;
+      iBulk = 0;
+      iCount = 0;
+      bFound = FALSE;
+
+      // Make sure the player really has this item in storage.
+      foreach i in lItems
+      {
+         foreach j in Send(oSafeBox,@GetHolderPassive)
+         {
+            if i = j
+            {
+               bFound = TRUE;
+            }
+
+            if IsClass(i,&NumberItem)
+               AND GetClass(i) = GetClass(j)
+            {
+               // Check if we have a valid number list. Check is done here
+               // as we don't need a number list for non-number items.
+               if number_list = $
+               {
+                  return;
+               }
+
+               iCount = iCount + 1;
+               if Nth(number_list,iCount) > Send(j,@GetNumber)
+               {
+                  Send(self,@SayToOne,#target=what,
+                        #message_rsc=vaultman_not_enough,
+                        #parm1=Send(i,@GetName));
+
+                  return;
+               }
+
+               bFound = TRUE;
+            }
+         }
+
+         if NOT bFound
+         {
+            Post(self,@SayToOne,#target=what,#message_rsc=vaultman_dont_have,
+                 #parm1=Send(i,@getindef),#parm2=Send(i,@GetName));
+
+            return;
+         }
+
+         iFee = iFee + Send(self,@GetVaultRetrievalFee,#what=i);
+
+         if IsClass(i,&NumberItem)
+            AND number_list <> $
+            AND Length(number_list) >= iCount
+         {
+            iBulk = iBulk + ((Send(i,@GetBulk) * nth(number_list,iCount))
+                             / Send(i,@GetNumber));
+         }
+         else
+         {
+            iBulk = iBulk + Send(i,@GetBulk);
+         }
+      }
+
+      // Does the player have enough ca$h?
+      if iCash < iFee AND iFee <> 0
+      {
+         Send(self,@SayToOne,#target=what,
+              #message_rsc=vaultman_nowithdraw_cash);
+
+         return;
+      }         
+
+      //if Send(what, @GetBulkMax) <> $ AND
+      //   (iBulk + Send(what,@GetBulkHold)) > Send(what,@GetBulkMax)
+      //{
+      //   Send(self,@SayToOne,#target=what,#message_rsc=vaultman_no_room);
+      //
+      //   return;
+      //}   
+      
+      // The next line added to handle player specified amounts
+      lNumbers = number_list;
+      bFailed = FALSE;
+
+      // At this point, we're pretty sure it's all legal.      
+      foreach i in lItems
+      {
+         // Don't bother calling ReqMewHold.  It just checks weight,
+         // which you already know is legal.
+         // Adding this check would be difficult.
+         if Send(i,@ReqNewOwner,#what=what)
+         {
+            if IsClass(i,&NumberItem)
+            {               
+               if NOT Send(oVault,@WithdrawFromStorage,#what=i,#who=what,
+                    #count=First(lNumbers))
+               {
+                  bFailed = TRUE;
+                  break;
+               }
+
+               lNumbers = Rest(lNumbers);
+            }
+            else
+            {
+               if NOT Send(oVault,@WithdrawFromStorage,#what=i,#who=what,#count=1)
+               {
+                  bFailed = TRUE;
+                  break;
+               }
+            }
+            
+         }
+      }
+
+      if iFee <> 0
+      {
+         Send(oMoney,@SubtractNumber,#number=iFee);
+         if bFailed
+         {
+            Send(self,@SayToOne,#target=what,#message_rsc=vaultman_withdraw_failed);
+         }
+         else
+         {
+            Send(self,@SayToOne,#message_rsc=vaultman_Thanks_amount,#target=what,
+              #parm1=iFee);
+         }
+      }
+      else
+      {
+         if bFailed
+         {
+            Send(self,@SayToOne,#target=what,#message_rsc=vaultman_withdraw_failed);
+         }
+         else
+         {
+            Send(self,@SayToOne,#target=what,#message_rsc=vaultman_thanks);
+         }
+      }
+
+      return;
+   }
+
+   BankBalance(who=$)
+   {
+      local oBank;
+
+      if NOT Send(self,@MobIsBanker)
+      {
+         return;
+      }
+
+      if Send(self,@GetBankNum) = $
+      {
+         Debug("BAD: Banker has no bankID",vrname,self);
+
+         return;
+      }
+
+      oBank = Send(SYS,@FindBankByNum,#num=Send(self,@GetBankNum));
+      Post(who,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
+           #string=Lm_bnkr_balance,#parm1=Send(oBank,@GetAccount,#what=who));
+
+      return;
+   }
+
+   ReportBankBalance(who=$,number=0)
+   {
+      local oBank, lTops, oSnoop;
+
+      if NOT Send(self,@MobIsBanker)
+      {
+         return FALSE;
+      }
+
+      oSnoop = Send(SYS,@GetInvestigator);
+      if oSnoop = $
+      {
+         return FALSE;
+      }
+
+      if number = 0 AND who = $
+      {
+         return FALSE;
+      }
+
+      if Send(self,@GetBankNum) = $
+      {
+         Debug("BAD: Banker has no bankID",vrname,self);
+
+         return FALSE;
+      }
+
+      oBank = Send(SYS,@FindBankByNum,#num=Send(self,@GetBankNum));
+
+      if who <> $
+      {
+         Send(oSnoop,@MsgSendUser,#message_rsc=monster_report_balance,
+              #parm1=Send(self,@GetCapDef),#parm2=Send(self,@GetName),
+              #parm3=Send(who,@GetUserName),#type3=STRING_RESOURCE,
+              #parm4=Send(oBank,@GetAccount,#what=who));
+      }
+      else
+      {
+         lTops = Send(oBank,@FindTopAccounts,#number=number);
+         foreach who in lTops
+         {
+            Send(oSnoop,@MsgSendUser,#message_rsc=monster_report_balance,
+               #parm1=Send(self,@GetCapDef),#parm2=Send(self,@GetName),
+               #parm3=Send(who,@GetUserName),#type3=STRING_RESOURCE,
+               #parm4=Send(oBank,@GetAccount,#what=who));
+         }
+      }
+
+      return TRUE;
+   }
+
+   BankDeposit(who=$, amount = 0)
+   {
+      local oMoney, oBank, iBankAmt;
+
+      if NOT Send(self,@MobIsBanker)
+      {
+         return;
+      }
+
+      if amount <= 0
+      {
+         return;
+      }
+
+      if Send(self,@GetBankNum) = $
+      {
+         Debug("BAD: Banker has no bankID",vrname,self);
+
+         return;
+      }
+
+      oMoney = Send(who,@GetMoneyObject);
+      if oMoney = $
+      {
+         Post(poOwner,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
+              #string=Lm_bnkr_not_enough_deposit,#parm1=0);
+
+         return;
+      }
+
+      if Send(oMoney,@GetValue) < amount
+      {
+         Post(poOwner,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
+              #string=Lm_bnkr_not_enough_deposit,
+              #parm1=Send(oMoney,@GetValue));
+
+         return;
+      }
+
+      oBank = Send(SYS,@FindBankByNum,#num=Send(self,@GetBankNum));
+      iBankAmt = Send(oBank,@GetAccount,#what=who);
+
+      // Check for integer overflow.
+      if (iBankAmt = MAX_KOD_INT)
+      {
+         Post(poOwner,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
+              #string=Lm_bnkr_acct_full);
+
+         return;
+      }
+      else if (iBankAmt + amount < 0)
+      {
+         amount = MAX_KOD_INT - iBankAmt;
+         // Re-check amount, just to be sure.
+         if Send(oMoney,@GetValue) < amount
+         {
+            Debug("Error modifying bank deposit amount for ",
+                  Send(who,@GetTrueName),"amt: ",amount," bank amt: ",iBankAmt);
+
+            return;
+         }
+
+         Post(poOwner,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
+               #string=Lm_bnkr_acct_almost_full,#parm1=amount);
+      }
+
+      Send(oMoney,@SubtractNumber,#number=amount);
+      Send(oBank,@DepositAccount,#what=who,#amount=amount);
+
+      Post(who,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
+           #string=Lm_bnkr_did_deposit,
+           #parm1=Send(oBank,@GetAccount,#what=who));
+
+      Send(self,@AffectMood,#why=MOODMOD_BANK_DEPOSIT);
+
+      if Send(SYS,@IsSuspect,#who=who)
+      {
+         Send(self,@ReportBankBalance,#who=who);
+      }
+
+      return;
+   }
+
+   BankWithdraw(who = $, amount = 0)
+   {
+      local iPlayerAmt, iBankAmt, oMoney, oBank;
+
+      if NOT Send(self,@MobIsBanker)
+      {
+         return;
+      }
+
+      if amount < 0
+      {
+         return;
+      }
+
+      if Send(self,@GetBankNum) = $
+      {
+         Debug("BAD: Banker has no bankID",vrname,self);
+
+         return;
+      }
+
+      oBank = Send(SYS,@FindBankByNum,#num=Send(self,@GetBankNum));
+      iBankAmt = Send(oBank,@WithdrawAccount,#what=who);
+
+      if iBankAmt = 0
+      {
+         Post(who,@SomeoneSaid,#what=self,#string=Lm_bnkr_no_account,
+              #type=SAY_RESOURCE);
+
+         return;
+      }
+
+      if amount > iBankAmt
+      {
+         Send(oBank,@DepositAccount,#what=who,#amount=iBankAmt);
+         Post(who,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
+              #string=Lm_bnkr_not_enough_withdraw,#parm1=iBankAmt);
+
+         return;
+      }
+
+      oMoney = Send(who,@GetMoneyObject);
+      if oMoney = $
+      {
+         oMoney = Create(&Money,#number=amount);
+         Send(who,@NewHold,#what=oMoney);
+      }
+      else if (Send(oMoney,@GetNumber) + amount) <= 0
+      {
+         iPlayerAmt = Send(oMoney,@GetNumber);
+         if iPlayerAmt = MAX_KOD_INT
+         {
+            Send(oBank,@DepositAccount,#what=who,#amount=iBankAmt);
+            Post(who,@SomeoneSaid,#what=self,#string=Lm_bnkr_player_all_full,
+                  #type=SAY_RESOURCE);
+
+            return;
+         }
+         else if (iPlayerAmt + amount) <= 0
+         {
+            amount = MAX_KOD_INT - iPlayerAmt;
+            Post(who,@SomeoneSaid,#what=self,#string=Lm_bnkr_player_full,
+                  #type=SAY_RESOURCE,#parm1=amount);
+
+            if amount > iBankAmt
+            {
+               Debug("Error giving player ",Send(who,@GetTrueName),amount,
+                  " shillings from total ",iBankAmt,"!. Player has ",iPlayerAmt);
+               Send(oBank,@DepositAccount,#what=who,#amount=iBankAmt);
+
+               return;
+            }
+         }
+      }
+      else
+      {
+         Send(oMoney,@AddNumber,#number=amount);
+      }
+
+      Send(oBank,@DepositAccount,#what=who,#amount=iBankAmt-amount);
+
+      // Send this message even if we gave the almost full one - players are
+      // used to seeing this message on a successful transaction.
+      Post(who,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
+            #string=Lm_bnkr_did_withdraw,#parm1=amount);
+
+      Send(self,@AffectMood,#why=MOODMOD_BANK_WITHDRAWAL);
+
+      if Send(SYS,@IsSuspect,#who=who)
+      {
+         Send(self,@ReportBankBalance,#who=who);
+      }
+
+      return;
+   }
+
+   Buy(what = $,item_list = $,number_list = $)
+   "Handle things having to do with mobs who have stuff to sell. "
+   "This is used for both teachers and sellers"
+   {
+      local i, j, bFound, oBuy, oMoney, iPrice, iPriceOne, lNumbers,
+            iAmount, oItemAtt, iCan_hold, oSplit, oStoreOwner; 
+
+      // Ensure that buyer and seller are in the same room
+      if Send(what,@GetOwner) <> poOwner
+      {
+         Debug("ALERT! ",Send(what,@GetTrueName),what," tried to buy items "
+               "from ",Send(self,@GetTrueName)," while in distant RID ",
+               Send(Send(what,@GetOwner),@GetRoomNum));
+
+         return FALSE;
+      }
+
+      if NOT Send(self,@IsCustomerOkay,#who=what)
+      {
+         return;
+      }
+
+      if Send(self,@MobIsVaultman)
+      {
+         Send(self,@VaultWithdraw,#what=what,#lItems=item_list,
+               #number_list=number_list);
+         Send(self,@AffectMood,#why=MOODMOD_VAULT_WITHDRAWAL);
+
+         return;
+      }
+
+      // The next line added to handle player specified amounts
+      lNumbers = number_list;
+
+      // Walk the objects the user selected as wanting to purchase from
+      // our Sale list
+      foreach i in item_list
+      {
+         // Find the dude's money.  Do this each time in case we exactly use it
+         // up.
+
+         // Get the amount of money for standard amount
+         oMoney = Send(what,@GetMoneyObject);
+
+         // Get the price for that amount
+         iPriceOne = Send(self,@GetPrice,#what=i,#who=what);
+
+         // Init iPrice to the cost of one item.
+         iPrice = iPriceOne;
+
+         if IsClass(i,&Item)
+         {
+            // If the item is an item (not a skill)
+            if IsClass(i,&NumberItem)
+            {
+               // Check if we have a valid number list. Check is done here
+               // as we don't need a number list for non-number items.
+               if lNumbers = $
+               {
+                  continue;
+               }
+               // See how many the player wants.
+               iAmount = First(lNumbers);
+
+               if (iAmount = $)
+               {
+                  iAmount = 1;
+               }
+
+               // Make sure requested number of items is within the
+               // limits. If selling from inventory, we can only sell
+               // as many as we have.
+               if vbSellFromInventory
+               {
+                  iAmount = Bound(iAmount,1,Send(i,@GetNumber));
+               }
+               else
+               {
+                  iAmount = Bound(iAmount,1,MAX_BUY_AMOUNT);
+               }
+
+               // Make sure cost for 1 item is at least one gold coin.
+               iPriceOne = Bound(iPriceOne, 1, $);
+
+               // Now figure price
+               iPrice = iPriceOne * iAmount;
+
+               // Make sure we have a price of at least one gold coin
+               iPrice = Bound(iPrice, 1, $);
+
+               // Move to next number in the list.
+               lNumbers = Rest(lNumbers);
+            }
+         }
+
+         // Does player have enough money to buy it?
+         if oMoney = $ OR Send(oMoney,@GetValue) < iPrice
+         {
+            Post(poOwner,@SomeoneSaid,#what=self,#string=vrMrcnt_too_costly,
+                  #type=SAY_RESOURCE,#parm1=Send(i,@GetDef),
+                  #parm2=Send(i,@GetName));
+
+            continue;
+         }
+
+         // Make sure the item is really for sale from this mob.
+         bFound = FALSE;
+         foreach j in Send(self,@GetForSale,#who=what)
+         {
+            if i = j
+            {
+               bFound = TRUE;
+            }
+         }
+
+         if NOT bFound
+         {
+            Post(poOwner,@SomeoneSaid,#what=self,
+                  #string=Lm_mrcnt_not_selling,#type=SAY_RESOURCE);
+
+            continue;
+         }
+
+         if IsClass(i,&Item)
+         {
+            if IsClass(i,&NumberItem)
+            {
+               oBuy = Create(GetClass(i),#number=iAmount);
+            }
+            else
+            {
+               // Selling the item itself, or a copy?
+               if vbSellFromInventory
+               {
+                  oBuy = i;
+               }
+               else
+               {
+                  oBuy = Create(GetClass(i),#model=i);
+               }
+            }
+
+            if Send(what,@ReqNewHold,#what=oBuy)
+               AND Send(oBuy,@ReqNewOwner,#what=what)
+            {
+               // Get rid of the item from our inventory?
+               if vbSellFromInventory
+               {
+                  if IsClass(i,&NumberItem)
+                  {
+                     // Sold all of the item?
+                     if Send(i,@GetNumber) = iAmount
+                     {
+                        SetNth(plFor_Sale,1,DelListElem(First(plFor_Sale),i));
+                     }
+
+                     Send(i,@SubtractNumber,#Number=iAmount);
+                  }
+                  else
+                  {
+                     // Start the go bad timer.
+                     if IsClass(i,&SpellItem)
+                     {
+                        Send(i,@StartGoBadTimer);
+                     }
+
+                     SetNth(plFor_Sale,1,DelListElem(First(plFor_Sale),i));
+                  }
+               }
+
+               // Add item to buyer's inventory
+               Send(what,@NewHold,#what=oBuy);
+               Send(oMoney,@SubtractNumber,#number=iPrice);
+               Send(self,@RemoveFromConditionalList,
+                     #obj=Send(self,@GetObjectOnConditionalList,
+                     #class=GetClass(i)));
+
+               Send(self,@AffectMood,#why=MOODMOD_SELL_ITEM,#what=oBuy);
+
+               if Send(oBuy,@HasAttribute,#ItemAtt=IA_SELL_INFO)
+               {
+                  oItemAtt = Send(oBuy,@GetAttributeData,
+                                    #ItemAtt=IA_SELL_INFO);
+                  Post(poOwner,@SomeoneSaid,#what=self,#string=Nth(oItemAtt,2),
+                        #type=SAY_RESOURCE);
+               }
+            }
+            else
+            {
+               // Check if this is a number item we're buying too much of.
+               if IsClass(oBuy,&NumberItem)
+                  AND Send(what,@GetNumberCanHold,#what=oBuy) > 0
+               {
+                  iCan_hold = Send(what,@GetNumberCanHold,#what=oBuy);
+                  if iCan_hold > 0
+                  {
+                     oSplit = Send(oBuy,@Split,#number=iCan_hold);
+                     if Send(oBuy,@ReqNewOwner,#what=oSplit)
+                     {
+                        Send(oMoney,@SubtractNumber,
+                              #number=iPriceOne * Send(oSplit,@GetNumber));
+                        Send(i,@SubtractNumber,#Number=Send(oSplit,@GetNumber));
+                        Send(what,@NewHold,#what=oSplit);
+                        Post(poOwner,@SomeoneSaid,#what=self,
+                              #string=Lm_mrcnt_can_give_some,
+                              #type=SAY_RESOURCE,#parm1=Send(oBuy,@GetDef),
+                              #parm2=Send(oBuy,@GetName));
+                              
+                        Send(self,@RemoveFromConditionalList,
+                           #obj=Send(self,@GetObjectOnConditionalList,
+                           #class=GetClass(i)));
+
+                        Send(self,@AffectMood,#why=MOODMOD_SELL_ITEM,#what=oBuy);
+
+                        if Send(oBuy,@HasAttribute,#ItemAtt=IA_SELL_INFO)
+                        {
+                           oItemAtt = Send(oBuy,@GetAttributeData,
+                                           #ItemAtt=IA_SELL_INFO);
+                           Post(poOwner,@SomeoneSaid,#what=self,
+                               #string=Nth(oItemAtt,2),
+                               #type=SAY_RESOURCE);
+                        }
+                        Send(oBuy,@Delete);
+                     }
+                  }
+               }
+               else
+               {
+                  // Buyer can't accept the item for some reason.
+                  Post(poOwner,@SomeoneSaid,#what=self,#string=Lm_mrcnt_cant_give,
+                        #type=SAY_RESOURCE,#parm1=Send(oBuy,@GetDef),
+                        #parm2=Send(oBuy,@GetName));
+                  Send(oBuy,@Delete);
+               }
+            }
+         }
+         else
+         {
+            // It's a skill or spell which we know to be legal to "sell"
+            // so go ahead and add it....
+            if IsClass(i,&Skill)
+            {
+               Send(what,@AddSkill,#num=Send(i,@GetSkillNum));
+            }
+            else
+            {
+               Send(what,@AddSpell,#num=Send(i,@GetSpellNum));
+            }
+            Send(oMoney,@SubtractNumber,#number=iPrice);
+         }
+      }
+
+	 if (viAttributes & MOB_SHOP)
+	 {
+		oStoreOwner = poStoreOwner;
+		Send(self,@GetStoreOwner);
+		Send(oStoreOwner,@NewHold,#what=Create(&Money,#number=iPrice));
+		Send(oStoreOwner,@MsgSendUser,#message_rsc=shop_sold_offer,#parm1=iPrice);
+		
+	 	return;
+ 	  }
+
+      Send(self,@ItemBoughtHook,#buyer=what);
+
+      return;
+   }
+
+   ItemBoughtHook(buyer = $)
+   "Hook called after someone has bought something from us"
+   {
+      return;
+   }
+
+   //// Utility messages
+
+   GetOccupation()
+   {
+      return viOccupation;
+   }
+
+   GainHealthNormal(amount = $, precision = FALSE)
+   "for when holy touch is cast on a good monster"
+   {
+      if amount = $
+      {
+         return;
+      }
+
+      if NOT precision
+      {
+         amount = amount * 100;
+      }
+
+      piHit_points = Bound(piHit_points+amount,1,piMax_hit_points*100);
+
+      return;
+   }
+
+   NewMaxMana(amount=0)
+   {
+      local iPrev_max;
+
+      iPrev_max = piMax_mana;
+      piMax_Mana = piMax_mana + amount;
+
+      return (piMax_mana - iPrev_max);
+   }
+
+   CalculateManaTime()
+   "Calculate # of milliseconds until monster will gain a mana point."
+   {
+      local iTime, oSpell;
+
+      // Old system had monsters regenerating 1 mana point per second.
+      // Do the same here for now.
+      if piMana > piMax_mana
+      {
+         iTime = BOOST_DECAY_TIME;
+      }
+      else
+      {
+         iTime =  1000;
+      }
+
+      return iTime;
+   }
+
+   MonsterCanCastSpell()
+   "Returns FALSE if a monster can't currently cast a spell for some reason."
+   {
+      if (piBehavior & AI_NOFIGHT)
+      {
+         return FALSE;
+      }
+
+      return TRUE;
+   }
+
+   MonsterCastSpell()
+   "Handle monster spellcasting here."
+   {
+      local i, iDistance, oSpell, iRandom, lTargets, iSpellNum, iManaCost;
+
+      // If monster knows no spells, or has no target, return.
+      if plSpellBook = $
+         OR poTarget = $
+      {
+         return FALSE;
+      }
+
+      // Get the adjusted chance to cast, based on whether we're demented
+      // or if AmA is up. Multiply this by 6 because we've decreased the
+      // time between chase behavior checks by a factor of 4-7x.
+      iRandom = Send(self,@AdjustedChanceBase,#base=(piSpellChance*6));
+
+      // Do the random check now, so we don't go any further
+      // if we don't have to.
+      if Random(1,iRandom) <> 1
+      {
+         return FALSE;
+      }
+
+      // Get distance to target.
+      iDistance = Send(self,@SquaredFineDistanceTo3D,#what=poTarget);
+
+      // Check LoS to target here so we don't waste mana casting
+      // when we can't get our target. Instead, we use that time
+      // walking to the target.
+
+      if iDistance > (piAttackRange * piAttackRange)
+         AND iDistance <= piSpellRange * piSpellRange
+         AND Send(poOwner,@LineOfSight,#obj1=self,#obj2=poTarget)
+         AND Send(poOwner,@ReqSomethingAttack,#what=self,#victim=poTarget,
+                  #use_weapon=self)
+      {
+         // We go through the monster's spellbook and pick the spell
+         // that corresponds to the random number picked. This is used
+         // to give a // chance for each spell to be picked.
+         iRandom = Random(1,100);
+         foreach i in plSpellBook
+         {
+            if iRandom <= Nth(i,3)
+            {
+               iSpellNum = Nth(i,1);
+               iManaCost = Nth(i,2);
+
+               break;
+            }
+         }
+
+         // If no spell returned or cannot pay mana costs, spell fails.
+         if iSpellNum = $
+            OR piMana < iManaCost
+         {
+            return FALSE;
+         }
+
+         // Take mana from monster.
+         piMana = piMana - iManaCost;
+         Send(self,@NewMana);
+
+         // Get the spell object.
+         oSpell = Send(SYS,@FindSpellByNum,#num=iSpellNum);
+         
+         // Find the valid targets, defaulting to poTarget.
+         lTargets = [poTarget];
+         lTargets = Send(oSpell,@GetTargets,#who=self,#lTargets=lTargets);
+
+         // See if we can cast the spell here.
+         if Send(oSpell,@CanPayMonsterCosts,#who=self,#lTargets=lTargets,
+                  #iSpellPower=piSpellPower)
+            AND Send(poOwner,@ReqSpellCast,#who=self,#oSpell=oSpell,
+                     #lItems=lTargets)
+         {
+            // Do any special cast animations; send spell for specific ones.
+            Send(self,@MonsterCastAnimation,#iSpellNum=iSpellNum);
+
+            // Cast the spell.
+            Send(oSpell,@CastSpell,#who=self,#lTargets=lTargets,
+                  #iSpellPower=piSpellPower);
+         }
+
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   MonsterCastAnimation(iSpellNum=$)
+   "If a monster has a special cast animation, call this."
+   {
+      piAnimation = ANIM_ATTACK;
+      Send(poOwner,@SomethingChanged,#what=self);
+      piAnimation = ANIM_NONE;
+
+      return;
+   }
+
+   HitPointThresholdDamage()
+   {
+      local i, iThreshold, rDamage_report, each_obj;
+
+      iThreshold = piHit_points / (piMax_hit_points * 20);
+
+      if iThreshold >= 4
+      {
+         return;
+      }
+      else if iThreshold = 3
+      {
+         rDamage_report = vrFirst_damage_level;
+      }
+      else if iThreshold = 2
+      {
+         rDamage_report = vrSecond_damage_level;
+      }
+      else if iThreshold = 1
+      {
+         rDamage_report = vrThird_damage_level;
+      }
+      else
+      {
+         rDamage_report = vrFourth_damage_level;
+      }
+
+      foreach i in Send(poOwner,@GetHolderActive)
+      {
+         each_obj = First(i);
+         if IsClass(each_obj,&User)
+            AND Send(each_obj,@GetKillTarget) = self
+         {
+            Post(each_obj,@MsgSendUser,#what=self,#message_rsc=rDamage_report,
+                  #parm1=Send(self,@GetCapDef),#parm2=Send(self,@GetName));
+         }
+      }
+
+      return;
+   }
+
+   HitPointThresholdHeal()
+   {
+      return;
+   }
+
+   HealHitPoint()
+   {
+      local iPercentClass, i, each_obj;
+
+      if piHit_points >= piMax_Hit_points * 100
+      {
+         return;
+      }
+
+      // We set a mark to see if the healing changes our threshold
+      iPercentClass = piHit_points / (piMax_Hit_points * 20);
+      piHit_points = piHit_points + 100;
+      if iPercentClass <> (piHit_points / (piMax_Hit_points * 20))
+      {
+         Send(self,@HitPointThresholdHeal);
+
+         foreach i in Send(poOwner,@GetHolderActive)
+         {
+            each_obj = First(i);
+            if IsClass(each_obj,&User)
+               AND Send(each_obj,@GetKillTarget) = self
+            {
+               Post(each_obj,@MsgSendUser,#what=self,
+                     #message_rsc=vrMonster_healing,
+                     #parm1=Send(self,@GetCapDef),#parm2=Send(self,@GetName));
+            }
+         }
+      }
+
+      return;
+   }
+
+   CheckWhyWanted(obj=$, who=$)
+   {
+      local value,oMoney;
+
+      if IsClass(obj,&SignetRing)
+      {
+         // Does the signet want this mob? (or vice versa).
+         if Send(obj,@GetRingOwner) = self
+         {
+            Send(Send(SYS,@GetLibrary),@UnregisterSignet,#newring=obj);
+            Send(Send(SYS,@GetLibrary),@SignetDelivered,#who=who);
+            Post(poOwner,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
+                 #string=LS_Signet_returned);
+            Send(obj,@NewOwner,#what=self);
+
+            // Have the ring handle the reward.
+            Send(obj,@RewardReturner,#who=who);
+
+            return TRUE;
+         }
+         else
+         {
+            Post(poOwner,@SomeoneSaid,#what=self,
+                 #string=LS_Signet_wrong,#type=SAY_RESOURCE,
+                 #parm1=Send(Send(obj,@GetRingOwner),@GetDef),
+                 #parm2=Send(Send(obj,@GetRingOwner),@GetName));
+
+            return FALSE;
+         }
+      }
+
+      Post(poOwner,@SomeoneSaid,#what=self,#string=LS_wanted_keep,
+           #type=SAY_RESOURCE);
+
+      return TRUE;
+   }
+
+   ShowDesc(iHitPoint_Percent = $)
+   "Adds max HP that can be gained from monster, followed by its condition."
+   {
+      local iHit_Percent, rMonster_condition;
+
+      if iHitPoint_Percent = $
+      {
+         iHit_Percent = piHit_points / piMax_hit_points;
+      }
+      else
+      {
+         iHit_Percent = iHitPoint_Percent;
+      }
+
+      if iHit_Percent > 80
+      {
+         if piBehavior & AI_NPC
+         {
+            AddPacket(4,vrCondition_healthy, 4,vrDesc, 4,monster_nothing);
+         }
+         else
+         {
+            AddPacket(4,vrCondition_healthy, 4,vrDesc, 4,monster_desc_level,
+                      4,Bound(viLevel,20,150));
+         }
+
+         return;
+      }
+      else if iHit_Percent > 60
+      {
+         rMonster_condition = vrCondition_good;
+      }
+      else if iHit_Percent > 40
+      {
+         rMonster_condition = vrCondition_fair;
+      }
+      else if iHit_Percent > 20
+      {
+         rMonster_condition = vrCondition_poor;
+      }
+      else
+      {
+         rMonster_condition = vrCondition_bad;
+      }
+
+      if piBehavior & AI_NPC
+      {
+         AddPacket(4,rMonster_Condition, 4,vrDesc, 4,monster_nothing,
+                   4,Send(self,@GetCapDef), 4,Send(self,@GetName));
+      }
+      else
+      {
+         AddPacket(4,rMonster_Condition, 4,vrDesc, 4,monster_desc_level,
+                   4,Bound(viLevel,20,150), 4,Send(self,@GetCapDef),
+                   4,Send(self,@GetName));
+      }
+
+      return;
+   }
+
+   GetMaxHitPoints()
+   "Right now this returns the level. It is used to create the hp at "
+   "construction, and to heal the monster, as well as for indicating "
+   "its current damage."
+   {
+      if viLevel < 40
+      {
+         return viLevel;
+      }
+
+      return ((120 * viLevel) / 100);
+   }
+   
+   ReturnMaxHitPoints()
+   {
+      return piMax_hit_points;
+   }
+
+   GainMaxHealth(amount = 0)
+   "Equivalent to the message in Player, but without starting a timer."
+   {
+      local iPrev_max;
+
+      iPrev_max = piMax_hit_points;
+      piMax_hit_points = Bound(piMax_hit_points + amount, 1, $);
+
+      return piMax_hit_points - iPrev_max;
+   }
+
+   GetMaxHealth()
+   "Some objects will call this instead of the monster-specific message."
+   {
+      return piMax_hit_points;
+   }
+
+   SetMaxHitPoints(amount=$)
+   {
+      piMax_hit_points = amount;
+      piHit_points = amount*100;
+
+      return;
+   }
+
+   // Returns the number of remaining hit points.
+   GetHealth()
+   {
+      return piHit_points/100;
+   }
+
+   GetExactHealth()
+   {
+      return piHit_points;
+   }
+
+   IsFullTalk()
+   {
+      // We AND with TRUE to have it return a boolean.
+      return (viAttributes & MOB_FULL_TALK) AND TRUE;
+   }
+
+   GetLevel()
+   {
+      return viLevel;
+   }
+
+   GetDifficulty()
+   {
+      return viDifficulty;
+   }
+
+   ClearBehavior(timer = $)
+   {
+      if ptBehavior <> timer AND ptBehavior <> $
+      {
+         DeleteTimer(ptBehavior);
+      }
+
+      ptBehavior = $;
+
+      return;
+   }
+
+   IsObjectWeapon(what=$)
+   {
+      return Send(what,@IsItemType,#type=ITEMTYPE_WEAPON);
+   }
+
+   IsObjectSundry(what=$)
+   {
+      // perhaps here so certain merchants will buy them?
+      if IsClass(what,&Torch)
+      {
+         return TRUE;
+      }
+
+      return Send(what,@IsItemType,#type=ITEMTYPE_SUNDRY);
+   }
+
+   IsObjectPotion(what=$)
+   {
+      return Send(what,@IsItemType,#type=ITEMTYPE_POTION);
+   }
+
+   IsObjectMisc(what=$)
+   {
+      // not sure why these were in misc but keeping them here for now
+      if IsClass(what,&SpellItem)
+         OR IsClass(what,&Arsenic)
+      {
+         return TRUE;
+      }
+
+      return Send(what,@IsItemType,#type=ITEMTYPE_MISC);
+   }
+
+   IsObjectWearable(what=$)
+   {
+      return Send(what,@IsItemType,#type=ITEMTYPE_RING) |
+               Send(what,@IsItemType,#type=ITEMTYPE_NECKLACE) |
+               Send(what,@IsItemType,#type=ITEMTYPE_ARMOR);
+   }
+
+   IsObjectGem(what=$)
+   {
+      if IsClass(what,&JewelofFroz)
+      {
+         return TRUE;
+      }
+
+      return Send(what,@IsItemType,#type=ITEMTYPE_GEM);
+   }
+
+   IsObjectReagent(what=$)
+   {
+      return Send(what,@IsItemType,#type=ITEMTYPE_REAGENT);
+   }
+
+   KarmaSame(who=$)
+   "Return TRUE if the mob and the who have karmas of the same polarity."
+   {
+      local iPlayer_karma;
+
+      // This means the monster has no Karma.
+      if viKarma = $
+      {
+         return TRUE;
+      }
+
+      iPlayer_karma = Send(who,@GetKarma);
+      
+      // Second clause is to give newbies a break
+      if (viKarma * Send(who,@GetKarma)) < 0
+         AND abs(iPlayer_karma) >= 10
+      {
+         return FALSE;
+      }
+
+      return TRUE;
+      
+   }
+
+   StartBasicTimers()
+   {
+      if (viAttributes & MOB_RANDOM)
+      {
+         ptRandom = CreateTimer(self,@RandomTimer,
+                                viRandom_delay+Random(0,viRandom_delay/2));
+      }
+
+      if (viAttributes & MOB_SPASM)
+      {
+         ptSpasm = CreateTimer(self,@SpasmMonsterTimer,
+                               viSpasm_delay+Random(0,viSpasm_delay/3));
+      }
+
+      return;
+   }
+
+   Fuzzy(num = 0, scale = 4)
+   "Returns a number which is +/- num/scale of the original num."
+   "Without the scale factor given, default is 0.75 to 1.25 of orig num."
+   {
+      if scale < 1
+      {
+         scale = 1;
+      }
+
+      if num < 0
+      {
+         num = num * -1;
+         return (num - num/scale + Random(0,num*2/scale)) * -1; 
+      }
+
+      return num - num/scale + Random(0,num*2/scale);
+   }
+
+   ClearBasicTimers()
+   {
+      if ptRandom <> $
+      {
+         DeleteTimer(ptRandom);
+         ptRandom = $;
+      }
+
+      if ptSpasm <> $
+      {
+         DeleteTimer(ptSpasm);
+         ptSpasm = $;
+      }
+
+      if ptCancelOffer <> $
+      {
+         DeleteTimer(ptCancelOffer);
+         ptCancelOffer = $;
+      }
+
+      poCustomer = $;
+
+      // Clear spam list when last user leaves.
+      plSpamList = $;
+
+      return;
+   }
+
+   SetState(bit=0)
+   "For now, the personality (or state) bits are used as numerical"
+   "tokens rather than as independent flags."
+   {
+      // ESTATE gets erased when we change states
+      if not(piState & bit)  
+      {
+         piState = piState & ESTATE_ZERO_MASK;
+      }
+
+      piState = piState & STATE_ZERO_MASK;
+      piState = piState | bit;
+
+         viCurrentState = bit;
+
+      return;
+   }
+
+   GetAttackTime()
+   {
+      return Send(self,@Fuzzy,#num=MOB_ATTACK_TIMER_WAIT)
+             + 3500-70*(3*viDifficulty+viSpeed);
+   }
+
+   GetMoveTime()
+   {
+      local iTime;
+
+      // Unit of viSpeed is: #gridsquares per 10 seconds (per 10000 ms)
+      // viSpeed is pre-defined by monster
+      // Move-increment is predefined/fixed at 16fine unit per step
+      // --> The elapse-interval is fixed!
+  
+      // EXAMPLE: SPEED_VERY_SLOW: 4 squares per 10000 ms
+      // 1024 super-fine squares = 1 square
+      // 256 super-fine squares = 1 highres square = 16 finesquare = stepwidth
+      // -------------------------------------------------------
+      // 4 * 1024 	= 4096 super-fine squares per 10000 ms
+      // 4096 / 256  = 16 (Monster has to make 16 steps per 10000ms)
+      // 10000 / 16  = 625 (steps must be made in 625ms intervals)
+      // T = 10000 / ((viSpeed * 1024) / 256)  
+
+      // avoid division by zero, if objects teleport
+      // objects with viSpeed = 0 don't need seamless movements in the client
+      // so we just assume it is enough to teleport them once a second
+      if viSpeed > 0
+      {
+         // see formula above  
+         iTime = 10000 / (viSpeed * 4);
+
+         // finally we reduce the timer a bit (right now it's exact at ms)
+         // why? the client should get a new position before the last destination
+         // is reached. This prevents cases of stuttering if our message was a 
+         // bit late in transmission. the client has a dynamic playout which 
+         // will compensate this.
+         iTime = iTime - 5;
+		 
+		 // make sure timer interval does not get negative
+         // and also not like "run all the time"
+         iTime = bound(iTime, 10, 10000);
+      }
+      else
+      {
+         iTime = 1000;
+      }
+
+      return iTime;
+   }
+
+   CutWantedItem(class = $)
+   {
+      local i;
+
+      if class = $
+      {
+         return;
+      }
+
+      foreach i in plWantedItems
+      {
+         if i = class
+         {
+            // You only want to delete one of the items that the NPC wants so
+            //  as not to ruin any quests for duplicate items
+            //  (esp signet rings).
+            plWantedItems = DelListElem(plWantedItems,i);
+
+            return;   
+         }
+      }
+
+      return;
+   }
+
+   SetWantedItem(class = $)
+   {
+      if class = $
+      {
+       return;
+      }
+
+      plWantedItems = cons(class,plWantedItems);
+
+      return;
+   }
+
+   DeleteForSaleList()
+   {
+      local i;
+      
+      if plFor_sale = $
+      {
+         return;
+      }
+
+      foreach i in Nth(plFor_sale,2)
+      {
+         i = $;
+      }
+
+      foreach i in Nth(plFor_sale,3)
+      {
+         i = $;
+      }
+
+      foreach i in First(plFor_sale)
+      {
+         Send(i,@Delete);
+      }
+
+      if Length(plFor_sale) = 4
+      {
+         foreach i in Nth(plFor_sale,4)
+         {
+            Send(i,@Delete);
+         }
+      }
+
+      plFor_sale = $;
+
+      return;
+   }
+
+   CanAddSkill(who = $, num = 0)
+   {
+      local rval;
+
+      rval = Send(who,@PlayerCanLearn,#skill_num=num,#spell_num=0);
+      if rval = PLAYER_LEARN_SUCCESS
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   CanAddSpell(who = $, num = 0)
+   {
+      local rval;
+
+      rval = Send(who,@PlayerCanLearn,#skill_num=0,#spell_num=num);
+      if rval = PLAYER_LEARN_SUCCESS
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   HasDoneLearnQuest(who=$)
+   {
+      local iQuestHistory;
+
+      if who = $
+      {
+         Debug("Who shouldn't be $!");
+
+         return FALSE;
+      }
+
+      if viQuestID = 0
+      {
+         return TRUE;
+      }
+
+      iQuestHistory = First(Send(who,@GetQuestHistory,#index=viQuestID));
+      return (QUEST_HISTORY_SUCCESS & iQuestHistory);
+   }
+
+   CanDoTeach(who = $, sid = 0, bSkill = FALSE)
+   {
+      local oAbility, iVal, iReason, iAmount, rAmount, bitSchools, i, tmp,
+            lSchools;
+
+      if sid = 0 OR who = $
+      { 
+         Debug("Invalid data sent to CanDoTeach!");  
+
+         return FALSE; 
+      }
+
+      if bSkill
+      {
+         oAbility = Send(SYS,@FindSkillByNum,#num=sid);
+      }
+      else
+      {
+         oAbility = Send(SYS,@FindSpellByNum,#num=sid);
+      }
+
+      if oAbility = $
+      {
+         Debug("Got invalid sid info!",sid);
+
+         return FALSE;
+      }
+
+      // Sacred Haven check.
+      if NOT Send(oAbility,@IsAccessible)
+      {
+         return FALSE;
+      }
+
+      //if (NOT bSkill) AND IsClass(self,&Temples)
+      //   AND Send(oAbility,@GetLevel) > 2
+      //   AND NOT Send(self,@HasDoneLearnQuest,#who=who)
+      //{
+         // Player needs to do a quest for the priestess to gain this spell or
+         //  skill.
+         
+      //   Send(poOwner,@SomeoneSaid,#type=SAY_RESOURCE,#what=self,
+      //        #string=vrTeach_quest_needed,#parm1=Send(oAbility,@GetName));
+
+      //   return FALSE;
+      //}
+
+      // KLUDGE: This should be handled in the individual subclasses.
+      //         This makes baby Jesus cry.
+      if (IsClass(self,&JasperBlacksmith) OR IsClass(self,&JasperElder)
+          OR IsClass(self,&BarloqueApothecary) OR IsClass(self,&Minstrel))
+         AND NOT Send(self,@HasDoneLearnQuest,#who=who)
+      {
+         // Player needs to do a quest for the seller to gain this spell or
+         //  skill.
+         
+         Send(poOwner,@SomeoneSaid,#type=SAY_RESOURCE,#what=self,
+              #string=vrTeach_quest_needed,#parm1=Send(oAbility,@GetName));
+
+         return FALSE;
+      }
+
+      if bSkill
+      {
+         iVal = Send(who,@PlayerCanLearn,#skill_num=SID);
+      }
+      else
+      {
+         iVal = Send(who,@PlayerCanLearn,#spell_num=SID);
+      }
+
+      if iVal = PLAYER_LEARN_ERROR
+      {
+         return FALSE;
+      }
+
+      if iVal = PLAYER_LEARN_SUCCESS
+      {
+         Send(poOwner,@SomeoneSaid,#type=SAY_RESOURCE,#what=self,
+              #string=monster_teach_success,#parm1=Send(oAbility,@GetName));
+
+         return TRUE;
+      }
+
+      if iVal = PLAYER_LEARN_ALREADY
+      {
+         Send(poOwner,@SomeoneSaid,#type=SAY_RESOURCE,#what=self,
+              #string=monster_teach_already,#parm1=Send(oAbility,@GetName));
+
+         return FALSE;
+      }
+
+      if iVal = PLAYER_LEARN_NOBASE
+      {
+         Send(poOwner,@SomeoneSaid,#type=SAY_RESOURCE,#what=self,
+              #string=monster_teach_nobase,#parm1=Send(oAbility,@GetName));
+
+         return FALSE;
+      }
+
+      if iVal = PLAYER_LEARN_KARMA 
+      {
+         Send(poOwner,@SomeoneSaid,#type=SAY_RESOURCE,#what=self,
+              #string=monster_teach_karma,#parm1=Send(oAbility,@GetName));
+
+         return FALSE;
+      }
+
+      if iVal = PLAYER_LEARN_IMPOSSIBLE 
+      {
+         Send(poOwner,@SomeoneSaid,#type=SAY_RESOURCE,#what=self,
+              #string=monster_teach_impossible);
+
+         return FALSE;
+      }
+
+      // Of we're below here, then the 1's column stores the reason, and the
+      //  10s and 100s stores by how much.
+      
+      iReason = iVal % 10;
+      iAmount = iVal/10;     
+      rAmount = Send(self,@LearnHowMuchFurther,#iAmount = iAmount);
+      
+      if iReason = PLAYER_LEARN_BASE
+      {
+         Send(poOwner,@SomeoneSaid,#type=SAY_RESOURCE,#what=self,
+              #string=monster_teach_base,#parm1=rAmount,
+              #parm2=Send(oAbility,@GetSchoolStr),
+              #parm3=Send(oAbility,@GetName));
+
+         return FALSE;
+      }
+      
+      lSchools = $;              
+
+      Debug("Oops, fell through in our testing for learning.");
+
+      return FALSE;
+   }
+
+   LearnHowMuchFurther(iAmount=0,rval=0)
+   {
+      local temp_rsc;
+
+      if iAmount < MONSTER_LEARN_GRADIENT
+      {
+         temp_rsc=monster_little;
+      }
+      else
+      {
+         if iAmount < 2 * MONSTER_LEARN_GRADIENT
+         {
+            temp_rsc=monster_nothing;
+         }
+         else
+         {
+            if iAmount < 3 * MONSTER_LEARN_GRADIENT
+            {
+               temp_rsc=monster_some;
+            }
+            else
+            {
+               if iAmount < 4 * MONSTER_LEARN_GRADIENT
+               {
+                  temp_rsc=monster_much;
+               }
+               else
+               {
+                  if iAmount < 5 * MONSTER_LEARN_GRADIENT
+                  {
+                     temp_rsc=monster_significantly;
+                  }
+                  else
+                  {
+                     temp_rsc=monster_drastically;
+                  }
+               }
+            }
+         }
+      }
+
+      return temp_rsc;
+   }
+
+   HasAttribute(mask = $)
+   {
+      return (viAttributes & mask);
+   }
+
+   // We AND to TRUE for the MobIs... functions to return a boolean instead
+   //  of a value.
+   MobIsBanker()
+   {
+      // We AND with TRUE to have it return a boolean.
+      return ((viAttributes & MOB_BANKER) AND TRUE);
+   }
+
+   MobIsVaultman()
+   {
+      // We AND with TRUE to have it return a boolean.
+      return ((viAttributes & MOB_VAULTMAN) AND TRUE);
+   }
+
+   MobIsBuyer()
+   {
+      // We AND with TRUE to have it return a boolean.
+      return ((viAttributes & MOB_BUYER) AND TRUE);
+   }
+
+   MobIsCondSeller()
+   {
+      // We AND with TRUE to have it return a boolean.
+      return ((viAttributes & MOB_COND_SELLER) AND TRUE);
+   }
+
+   MobIsSeller()
+   {
+      return (viAttributes & MOB_SELLER)
+             OR (viAttributes & MOB_COND_SELLER)
+             OR (viAttributes & MOB_TEACHER);
+   }
+
+   GetAttributes()
+   {
+      return viAttributes;
+   }
+
+   ObjectDesired(what=$)
+   "This is set in individual buyers.  It allows them to pick and choose"
+   "what they want to buy."
+   {
+      return TRUE;
+   }
+
+   InitCondSale()
+   {
+      return;
+   }
+
+   AddToConditionalList(obj=$,value=0)
+   {
+      local i;
+
+      if plFor_sale = $ OR Length(plFor_sale) < 4
+      {
+         return;
+      }
+
+      foreach i in Nth(plFor_sale,4)
+      {
+         if First(i) = obj
+         {
+            return;
+         }
+      } 
+
+      SetNth(plFor_sale,4,Cons([obj,value],Nth(plFor_sale,4)));
+
+      return;
+   }
+
+   GetObjectOnConditionalList(class=$)
+   {
+      local i;
+
+      if plFor_sale=$ OR Length(plFor_sale) < 4
+      {
+         return;
+      }
+
+      foreach i in Nth(plFor_sale,4)
+      {
+         if GetClass(First(i)) = class
+         {
+            return First(i);
+         }
+      } 
+
+      return $;
+   }
+
+   RemoveFromConditionalList(obj=$)
+   {
+      local i;
+
+      if obj = $ OR plFor_sale = $ OR Length(plFor_sale) < 4
+      {
+         return;
+      }
+
+      foreach i in Nth(plFor_sale,4)
+      {
+         if First(i)=obj
+         {
+            SetNth(plFor_sale,4,DelListElem(Nth(plFor_sale,4),i)); 
+
+            return;
+         }
+      }
+
+      return;
+   }
+
+   SetForSale()
+   "Clears and recreates plFor_sale."
+   {
+      plFor_sale = $;
+
+      return;
+   }
+
+   SetForSaleFrenzy(override=FALSE)
+   "Used to give Innkeepers a frenzy sale list."
+   {
+      if Send(SYS,@GetChaosNight)
+         OR override
+      {
+         plFor_sale = [
+            [
+               Create(&ShockRing),
+               Create(&FireRing),
+               Create(&ColdRing),
+               Create(&AcidRing),
+               Create(&BerserkerRing),
+               Create(&RingInvisibility),
+               Create(&LeatherArmor),
+               Create(&ChainArmor),
+               Create(&ScaleArmor),
+               Create(&NeruditeArmor),
+               Create(&PlateArmor),
+               Create(&DiscipleRobe),
+               Create(&GuildShield),
+               Create(&NeruditeSword),
+               Create(&Mace),
+               Create(&Hammer),
+               Create(&Axe),
+               Create(&MysticSword),
+               Create(&Scimitar),
+               Create(&Longsword),
+               Create(&Longbow),
+               Create(&BattleBow),
+               Create(&Gauntlet),
+               Create(&JewelOfFroz),
+               Create(&Arrow,#number=150),
+               Create(&SilverArrow,#number=150),
+               Create(&NeruditeArrow,#number=150),
+               Create(&IceArrow,#number=150),
+               Create(&FireArrow,#number=150),
+               Create(&AcidArrow,#number=150),
+               Create(&Helm),
+               Create(&Mint,#number=100),
+               Create(&NeruditeBow),
+               Create(&Gift),
+               Create(&Chaosfood,#number=100),
+               Create(&KarmaPotion,#karma=-10000),
+               Create(&KarmaPotion,#karma=10000)
+            ],
+            $,
+            $,
+         $];
+      }
+
+      return;
+   }
+
+   AssembleVaultList(who=$)
+   {
+      local oVault, i, j;
+
+      oVault = Send(SYS,@FindVaultByNum,#num=Send(self,@GetVaultNum));
+
+      if oVault = $
+      {
+         Debug("Something wrong here!");
+
+         return $;
+      }
+
+      return Send(oVault,@GetItemsStored,#who=who);      
+   }
+
+   GetCostPer100Bulk()
+   {
+      return 200;
+   }
+
+   GetForSale(who = $)
+   "Returns the list of objects the mob has for sale "
+   "(items, skills, spells, conditionals)"
+   {
+      local i,lForSale;
+
+      if Send(self,@MobIsVaultman) 
+      {
+         return Send(self,@AssembleVaultList,#who=who);
+      }
+    
+      if plFor_sale = $
+      {
+         return;
+      }
+
+      lForSale = $;
+
+      // first do conditional items
+      if Length(plFor_sale) = 4
+      {
+         foreach i in Nth(plFor_sale,4)
+         {
+            lForSale = cons(First(i),lForSale);
+         }
+      }
+
+      // now do spells
+      foreach i in Nth(plFor_sale,3)
+      {
+         if Send(self,@CanAddSpell,#who=who,#num=i)
+            AND (Send(who,@GetSpellAbility,#spell_num=i) = 0)
+         {
+            lForSale = cons(Send(SYS,@FindSpellByNum,#num=i),lForSale);
+         }
+      }
+
+      // now do skills
+      foreach i in Nth(plFor_sale,2)
+      {
+         if Send(self,@CanAddSkill,#who=who,#num=i)
+            AND (Send(who,@GetSkillAbility,#skill_num=i) = 0)
+         {
+            lForSale = cons(Send(SYS,@FindSkillByNum,#num=i),lForSale);
+         }
+      }
+
+      // now do the items
+      foreach i in First(plFor_sale)
+      {
+         lForSale = cons(i,lForSale);
+      }
+
+      if lForSale=$ 
+      {
+         Send(poOwner,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
+               #string=vrNothing_for_sale);
+      }  
+
+      return lForSale;
+   }
+   
+   GetPrice(what = $, who = $)
+   "Returns the value of an item, or the cost of a skill or spell"
+   "No markup for skills or spells"
+   {
+      local i, x, y;
+
+      if plFor_sale <> $ AND Length(plFor_sale) = 4
+      {
+         foreach i in Nth(plFor_sale,4)
+         {
+            if what=First(i)
+            {
+               return Nth(i,2);
+            }
+         }
+      }
+
+      if IsClass(what,&Item) 
+      {
+         x = Send(what,@GetInitValue) * (100 + 20*viMerchant_markup) / 100;
+         y = Send(Send(SYS,@GetParliament),@GetFactionPriceBonus,#who=who,
+                  #buying=TRUE);
+         return Bound(x*y/100, 1, $);
+      }
+
+      if IsClass(what,&Spell) OR IsClass(what,&Skill)
+      {
+         return Send(what,@GetValue);
+      }
+
+      Debug("Strange item",what,":",Send(what,@GetName),"in GetPrice");
+
+      return 0;
+   }
+
+   GetGender()
+   {
+      return viGender;
+   }
+
+   GetKarma(detect=FALSE)
+   {
+      if pbDontDispose
+         AND NOT detect
+      {
+         // This means that the monster has no Karma.  This is used for event
+         //  monsters like Xeos and admin-created beasties.
+         return 0;
+      }
+      
+      // A survival mob
+      if poOwner <> $
+         AND IsClass(poOwner,&SurvivalRoom)
+      {
+         return 0;
+      }
+      
+      return viKarma;
+   }
+
+   GetTreasureType()
+   {
+      return viTreasure_type;
+   }
+
+   CreateTreasure(who=$,corpse=$)
+   {
+      local i, j, oReagent, iNumberItems, oTreasure, oTreasure_type,
+            lTreasureItems, iNumberOfItemsDropped, iNumberOfItemsLooted,
+            iRandomCashAmount, oMoney, iGetResult, bCapacityFailure,
+            bRangeFailure, iSurvivalLoot;
+
+      // Apparitions, etc, provide no treasure
+      if pbIllusion
+      {
+         return;
+      }
+
+      oTreasure_type = Send(SYS,@FindTreasureByNum,
+                              #num=Send(self,@GetTreasureType));
+      if oTreasure_type = $
+      {
+         Debug("Can't find monster treasure type",Send(self,@GetTreasureType),
+               vrname,self);
+
+         return;
+      }
+
+      // TreasureType now handles putting together the treasure list.
+      // Returns a list of items to drop, or $.
+      lTreasureItems = Send(oTreasure_Type,@CreateMobTreasure,#mob=self,
+                              #who=who,#level=viLevel,#difficulty=viDifficulty,
+                              #corpse=corpse,#attributes=viAttributes,
+                              #boostedlevel=piBoostedLevel);
+
+      // Add in our inventory
+      foreach i in plActive
+      {
+         lTreasureItems = Cons(i,lTreasureItems);
+      }
+
+      foreach i in plPassive
+      {
+         lTreasureItems = Cons(i,lTreasureItems);
+      }
+
+      // Add money to the treasure
+      iRandomCashAmount = Random(viCashMin,viCashMax);
+      if iRandomCashAmount > 0
+      {
+         // Don't send a corpse unless the player killed the mob. Minion kills
+         // already handed to the player in KilledSomething and double-checked
+         // in Killed. Corpse is used for the loot timer, which GenerateTreasure
+         // handles for monster kills but Constructor in Item does not.
+         if NOT IsClass(who,&Player)
+         {
+            corpse = $;
+         }
+
+		 iRandomCashAmount = iRandomCashAmount * (Send(SETTINGS_OBJECT, @GetMoneyFactor) / 100);
+
+         oMoney = Create(&Money,#corpse=corpse,#number=iRandomCashAmount + (piBoostedLevel
+                     * Send(Send(SYS,@GetSurvivalRoomMaintenance),@GetSurvivalCash)));
+
+         Send(Send(SYS,@GetStatistics),@MoneyCreated,#amount=Send(oMoney,@GetNumber));
+         lTreasureItems = Cons(oMoney,lTreasureItems);
+      }
+
+      // Add one set of spell reagents to the treasure for each type of spell 
+      // that was cast on the monster.
+      /* foreach i in plSpellList
+      {
+         foreach j in Send(Send(SYS,@FindSpellByNum,#num=i),@GetReagents)
+         {
+            oReagent = Create(First(j),#corpse=corpse,#number=Nth(j,2));
+            lTreasureItems = Cons(oReagent,lTreasureItems);
+         }
+      }*/
+
+      iNumberOfItemsDropped = 0;
+      iNumberOfItemsLooted = 0;
+      bCapacityFailure = FALSE;
+      bRangeFailure = FALSE;
+      
+      // Now drop all the treasure.
+      foreach oTreasure in lTreasureItems
+      {
+         if Send(poOwner,@ReqNewHold,#what=oTreasure,#new_row=piRow,
+                 #new_col=piCol)
+         {
+            Send(poOwner,@NewHold,#what=oTreasure,
+                  #new_row=piRow,#new_col=piCol,
+                  #fine_row=piFine_row,#fine_col=piFine_col);
+
+            if NOT IsClass(oTreasure,&Money)
+            {
+               ++iNumberOfItemsDropped;
+            }
+
+            if IsClass(oTreasure,&NumberItem)
+               AND Send(SYS,@UtilGetRoom,#what=oTreasure) = Send(who,@GetOwner)
+               AND Send(oTreasure,@GetPos) <> $
+               AND IsClass(who,&User)
+               AND Send(who,@CheckPlayerPreference,#flag=CF_AUTOLOOT)
+               AND (IsClass(oTreasure,&Money)
+                       OR (NOT bRangeFailure
+                           AND NOT bCapacityFailure))
+            {
+               iGetResult = Send(who,@UserGet,#what=oTreasure,#report=FALSE);
+               if NOT IsClass(oTreasure,&Money)
+                  AND (iGetResult = AUTOLOOT_GOT_ITEM
+                         OR iGetResult = AUTOLOOT_GOT_PARTIAL_STACK)
+               {
+                  ++iNumberOfItemsLooted;
+               }
+
+               if iGetResult = AUTOLOOT_OUT_OF_RANGE
+               {
+                  bRangeFailure = TRUE;
+               }
+               else if (iGetResult = AUTOLOOT_GOT_PARTIAL_STACK
+                        OR iGetResult = AUTOLOOT_CANNOT_GET)
+               {
+                  bCapacityFailure = TRUE;
+               }
+            }
+         }
+         else
+         {
+            Send(oTreasure,@Delete);
+         }
+      }
+
+      // Handle autoloot resources displayed to user.
+      if iNumberOfItemsDropped <> 0
+         AND IsClass(who,&User)
+         AND Send(who,@CheckPlayerPreference,#flag=CF_AUTOLOOT)
+      {
+         if bRangeFailure
+         {
+            Send(who,@MsgSendUser,#message_rsc=autoloot_too_far_away);
+
+            return;
+         }
+
+         if bCapacityFailure
+         {
+            if iNumberOfItemsLooted > 0
+            {
+               Send(who,@MsgSendUser,#message_rsc=autoloot_got_some_but_full_now);
+            }
+            else if iNumberOfItemsLooted = 0
+            {
+               if iRandomCashAmount > 0
+               {
+                  Send(who,@MsgSendUser,#message_rsc=autoloot_got_only_shillings_because_full,
+                        #parm1=Send(oMoney,@GetNumber));
+               }
+               else
+               {
+                  Send(who,@MsgSendUser,#message_rsc=autoloot_got_nothing_because_full);
+               }
+            }
+
+            return;
+         }
+
+         if iNumberOfItemsLooted > 0
+         {
+            if iNumberOfItemsLooted = iNumberOfItemsDropped
+            {
+               if iRandomCashAmount > 0
+               {
+                  Send(who,@MsgSendUser,#message_rsc=autolooted_all,
+                        #parm1=Send(oMoney,@GetNumber));
+               }
+               else
+               {
+                  Send(who,@MsgSendUser,#message_rsc=autolooted_all_no_money);
+               }
+            }
+            else if iNumberOfItemsLooted < iNumberOfItemsDropped
+            {
+               if iRandomCashAmount > 0
+               {
+                  Send(who,@MsgSendUser,#message_rsc=autolooted_some,
+                        #parm1=Send(oMoney,@GetNumber));
+               }
+               else
+               {
+                  Send(who,@MsgSendUser,#message_rsc=autolooted_some_no_money);
+               }
+            }
+         }
+         else if iNumberOfItemsLooted = 0
+         {
+            if iRandomCashAmount > 0
+            {
+               Send(who,@MsgSendUser,#message_rsc=autolooted_only_money,
+                     #parm1=Send(oMoney,@GetNumber));
+            }
+            else if iRandomCashAmount <= 0
+            {
+               Send(who,@MsgSendUser,#message_rsc=autolooted_none);
+            }
+         }
+      }
+
+      return;
+   }
+
+   CanMonsterFight(who=$)
+   {
+      if (piBehavior & AI_NPC)
+      {
+         if who <> $
+         {
+            Send(who,@MsgSendUser,#message_rsc=LS_nofight_attacked);
+         }
+
+         return FALSE;
+      }
+
+      return TRUE;
+   }
+
+   IsCustomerOkay(who=$)
+   {
+      // Do business with everyone.
+
+      return TRUE;
+   }
+
+   SomeoneTryUserCommand(who = $,command = $,data = $)
+   {
+      if NOT (viAttributes & MOB_BANKER) AND NOT (viAttributes & MOB_VAULTMAN)
+      {
+         return;
+      }
+
+      if NOT Send(self,@IsCustomerOkay,#who=who)
+      {
+         propagate;
+      }
+
+      if command = UC_DEPOSIT
+      {
+         if (viAttributes & MOB_VAULTMAN)
+         {
+            return TRUE;
+         }
+
+         Send(self,@BankDeposit,#who=who,#amount=data);
+
+         return TRUE;
+      }
+
+      if command = UC_WITHDRAW
+      {
+         if (viAttributes & MOB_VAULTMAN)
+         {
+            return TRUE;
+         }
+
+         Send(self,@BankWithdraw,#who=who,#amount=data);
+
+         return TRUE;
+      }
+
+      if command = UC_BALANCE
+      {
+         Send(self,@BankBalance,#who=who);
+
+         return TRUE;
+      }
+
+      propagate;
+   }
+
+   DestroyDisposable()
+   {
+      if (viAttributes & MOB_LISTEN)
+         OR (piBehavior & AI_NPC)
+         OR poMaster <> $
+         OR pbDontDispose
+      {
+         return;
+      }
+
+      Send(self,@Delete);
+
+      return;
+   }
+
+   SetDontDispose(bValue=TRUE)
+   {
+      pbDontDispose = bValue;
+
+      return pbDontDispose;
+   }
+
+   GetObjectFlags(what=$)
+   {
+      local iFlags;
+
+      iFlags = viObject_flags | piDrawEffectFlag;
+
+      if (piBehavior & AI_NPC)
+      {
+         iFlags = iFlags & ~OF_ATTACKABLE;
+      }
+
+      if Send(Self,@MobIsSeller)
+      {
+         iFlags = iFlags | OF_BUYABLE;
+      }
+
+      if ((viAttributes & MOB_BUYER
+         OR viAttributes & MOB_RECEIVE)
+         OR what <> $ AND IsClass(what,&DM))
+      {
+         iFlags = iFlags | OF_OFFERABLE;
+      }
+
+      return iFlags;
+   }
+
+   Say(message_rsc=$, parm1=$, parm2=$, parm3=$, parm4=$,
+       parm5=$, parm6=$, parm7=$, parm8=$)
+   {
+      Send(poOwner,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
+           #string=message_rsc,#parm1=parm1,#parm2=parm2,#parm3=parm3,
+           #parm4=parm4,#parm5=parm5,#parm6=parm6,#parm7=parm7,#parm8=parm8);
+
+      return;
+   }
+
+   SayToOne(target=$, message_rsc=$,
+            parm1=$, parm2=$, parm3=$, parm4=$, parm5=$,
+            type1=STANDARD_RESOURCE, type2=STANDARD_RESOURCE,
+            type3=STANDARD_RESOURCE, type4=STANDARD_RESOURCE,
+            type5=STANDARD_RESOURCE)
+   {
+      if target = $
+      {
+         Debug("SayToOne reached with null target.");
+         return;
+      }
+
+      Send(target,@MsgSendUser,#message_rsc=monster_say_to_one,
+           #parm1=Send(self,@GetCapDef),#parm2=Send(self,@GetName),
+           #parm3=message_rsc,#parm4=parm1,#type4=type1,
+           #parm5=parm2,#type5=type2,#parm6=parm3,#type6=type3,
+           #parm7=parm4,#type7=type4,#parm8=parm5,#type8=type5);
+
+      return;
+   }
+   
+   CanMorphTo()
+   {
+      return TRUE;
+   }
+
+   IsIllusion()
+   {
+      return pbIllusion;
+   }  
+
+   // TRUE if mob can have evil twin cast on it
+   CanEvilTwin()
+   {
+      return TRUE;
+   }
+
+   ApparitionCaster(who=$)
+   "If this monster is an apparition, keep track of the caster."
+   {
+      poApparitionCaster = who;
+
+      return;
+   }
+
+   IsOwnedByPlayer()
+   "Checks the two cases of minions, and returns TRUE if owned by "
+   "a player, FALSE if not. If minion has a monster for a master, "
+   "IsOwnedByPlayer is called on the master."
+   {
+      if poMaster <> $
+      {
+         if IsClass(poMaster,&Player)
+         {
+            return TRUE;
+         }
+
+         if IsClass(poMaster,&Monster)
+         {
+            return Send(poMaster,@IsOwnedByPlayer);
+         }
+
+         // Could be a room or an item that owns the monster.
+         // If we allow players to attach minions to guild halls
+         // or other creative uses of non-player/monster owners,
+         // we may need to change this.
+         return FALSE;
+      }
+
+      if poApparitionCaster <> $
+      {
+         if IsClass(poApparitionCaster,&User)
+         {
+            return TRUE;
+         }
+
+         if IsClass(poApparitionCaster,&Monster)
+         {
+            return Send(poApparitionCaster,@IsOwnedByPlayer);
+         }
+
+         return FALSE;
+      }
+
+      return FALSE;
+   }
+
+   IsMinion()
+   "Returns TRUE for seduced and animated mobs, reflections, "
+   "evil twins and apparitions."
+   {
+      if poMaster <> $
+         OR poApparitionCaster <> $
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   // This section deals with minion code.
+   CommandMinionAttack(oTarget=$)
+   {
+      local oActive;
+
+      // If we have minions, we only want them to attack Battlers,
+      // not items or anything else that can damage us.
+      if plControlledMinions = $
+         OR oTarget = $
+         OR NOT IsClass(oTarget,&Battler)
+         OR IsClass(oTarget,&Revenant)
+      {
+         return;
+      }
+
+      // Lets not have the minions kill each other. Check if the target is
+      // a minion under our control.
+      if IsClass(oTarget,&Monster)
+         AND Send(oTarget,@GetMaster) = self
+      {
+         return;
+      }
+
+      foreach oActive in plControlledMinions
+      {
+         if IsClass(oActive,&Monster)
+            AND Send(oActive,@GetMaster) = self
+            AND Send(oActive,@GetTarget) <> oTarget
+         {
+            Send(oActive,@SetBehaviorFlag,
+                  #flag=AI_MOVE_FOLLOW_MASTER,#value=FALSE);
+            Send(oActive,@TargetSwitch,#what=oTarget,
+                  #iHatred=100);
+            Send(oActive,@EnterStateChase,#target=oTarget,
+                  #actnow=TRUE);
+         }
+      }
+
+      return;
+   }
+
+   GetMaster()
+   "Preferably return poMaster, otherwise check if monster is an apparition."
+   {
+      if (poMaster <> $)
+      {
+         return poMaster;
+      }
+      else if (poApparitionCaster <> $)
+      {
+         return poApparitionCaster;
+      }
+
+      return $;
+   }
+
+   // Evil twin and reflection have an override for this.
+   SetMaster(oMaster=$)
+   {
+      if oMaster = $
+      {
+         if poMaster <> $
+         {
+            Send(poMaster,@RemoveControlledMinion,#what=self);
+            poMaster = $;
+         }
+      }
+      else
+      {
+         poMaster = oMaster;
+         // Add this creature to master's minion list
+         Send(oMaster,@NewControlledMinion,#minion=self);
+         // Break target.
+         Send(self,@EnterStateWait);
+      }
+
+      Send(self,@ResetBehaviorFlags);
+
+      if poOwner <> $
+      {
+         Post(poOwner,@SomethingChanged,#what=self);
+      }
+
+      return;
+   }
+
+   CanPlayerAdvanceOnMe()
+   {
+      return (NOT Send(self,@IsIllusion));
+   }
+
+   SetIllusion(value = $)
+   {
+      if value = $
+      {
+         Debug("SetIllusion called without an argument!");
+         value = FALSE;
+      }
+
+      pbIllusion = value;
+
+      return;
+   }
+
+   SetSummoned(value = $)
+   {
+      if value = $
+      {
+         Debug("SetSummoned called without an argument!");
+         value = FALSE;
+      }
+
+      vbSummoned = value;
+
+      return;
+   }
+
+   DispelIllusionEnchantments(report = TRUE, iChance = 100)
+   {
+      local i, oSpell, each_obj;
+
+      foreach i in plEnchantments 
+      {                       
+         oSpell = Nth(i,2);
+         if Send(oSpell,@IsIllusion)
+            AND Random(1,100) <= iChance
+         {
+            Send(self,@RemoveEnchantment,#what=Nth(i,2),#report=report);
+         }
+      }
+
+      return;
+   }
+
+   RemoveSchoolEnchantments(school = $, report=TRUE)
+   {
+      local i, oSpell, each_obj;
+
+      foreach i in plEnchantments 
+      {                       
+         oSpell = Nth(i,2);
+         if Send(oSpell,@GetSchool) = school
+         {
+            Send(self,@RemoveEnchantment,#what=Nth(i,2),#report=report);
+         }
+      }
+
+      return;
+   }
+
+   GetClosestFrightener()
+   {
+      local lActive, iRangeSquared, oTarget, iThisRangeSquared, i,
+            iDistRow, iDistCol, oIllusion, oObject, oBodyType;
+
+      if poOwner = $
+      {
+         return $;
+      }
+
+      iRangeSquared = piVisionDistance * piVisionDistance;
+
+      oTarget = $;
+
+      lActive = Send(poOwner,@GetHolderActive);
+      foreach i in lActive
+      {
+         oObject = First(i);
+
+         // Pass if we're looking at ourself here.
+         if oObject = self
+         {
+            continue;
+         }
+
+         oBodyType = oObject;
+         if IsClass(oObject,&User)
+         {
+            oIllusion = Send(oObject,@GetIllusionForm);
+            if oIllusion <> $
+            {
+               oBodyType = oIllusion;
+            }
+         }
+
+         // Check if we are scared of this.
+         if NOT Send(self,@IsFrightenedOf,#target=oBodyType,#regroup=TRUE)
+         {
+            continue;
+         }
+
+         iDistRow = (piRow * FINENESS + piFine_row)
+                     - (Send(oObject,@GetRow) * FINENESS + Send(oObject,@GetFineRow));
+
+         iDistCol = (piCol * FINENESS + piFine_col)
+                     - (Send(oObject,@GetCol) * FINENESS + Send(oObject,@GetFineCol));
+
+         iThisRangeSquared = (iDistRow * iDistRow + iDistCol * iDistCol)
+                                 / FINENESS_SQUARED;
+
+         if iThisRangeSquared <= iRangeSquared
+         {
+            iRangeSquared = iThisRangeSquared;
+            oTarget = oObject;
+         }
+      }
+
+      // oTarget = nil if none are in range.
+      return oTarget;
+   }
+
+   IsFrightenedOf(target = $)
+   {
+      if vbIsUndead
+         AND (poHolySymbolCaster <> $)
+         AND (poHolySymbolCaster = target)
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   GetClosestAlly()
+   {
+      local lActive, iRangeSquared, oTarget, iThisRangeSquared, i,
+            iDistRow, iDistCol, oIllusion, oObject, oBodyType;
+
+      if poOwner = $
+      {
+         return $;
+      }
+
+      oTarget = $;
+
+      iRangeSquared = piVisionDistance * piVisionDistance;
+
+      lActive = Send(poOwner,@GetHolderActive);
+      foreach i in lActive
+      {
+         oObject = First(i);
+
+         // Pass if we're looking at ourself here.
+         if oObject = self
+         {
+            continue;
+         }
+
+         // is what it looks like, an ally?
+         oBodyType = oObject;
+         if IsClass(oObject,&User)
+         {
+            oIllusion = Send(oObject,@GetIllusionForm); 
+            if oIllusion <> $
+            {
+               oBodyType = oIllusion;
+            }
+         }
+
+         // If not an ally, we don't care.
+         if NOT Send(self,@IsAlly,#target=oBodyType,#regroup=TRUE)
+         {
+            continue;
+         }
+
+         iDistRow = (piRow * FINENESS + piFine_row)
+                     - (Send(oObject,@GetRow) * FINENESS + Send(oObject,@GetFineRow));
+
+         iDistCol = (piCol * FINENESS + piFine_col)
+                     - (Send(oObject,@GetCol) * FINENESS + Send(oObject,@GetFineCol));
+
+         iThisRangeSquared = (iDistRow * iDistRow + iDistCol * iDistCol)
+                              / FINENESS_SQUARED;
+
+         if iThisRangeSquared <= iRangeSquared
+         {
+            iRangeSquared = iThisRangeSquared;
+            oTarget = oObject;
+         }
+      }
+
+      // oTarget = nil if none are in range.
+      return oTarget;
+   }
+
+   IsAlly(target=$,regroup=FALSE)
+   {
+      if IsClass(target,GetClass(self))
+         OR (poMaster <> $
+            AND IsClass(target,&Battler)
+            AND Send(target,@GetMaster) = poMaster)
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   HealthBelowWimpy()
+   {
+      // Wimpy of 0 means monster never runs, just fights til the end.
+      if viWimpy = 0
+      {
+         return FALSE;
+      }
+      
+      // If wimpy is set at 50, monster will flee once his health is at 49// of
+      //  max.
+      if (piHit_points/ piMax_Hit_points) < viWimpy
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   SetBehaviorFlag(flag=0, value = TRUE)
+   {
+      if value
+      {
+         piBehavior=piBehavior | flag ;
+      }
+      else
+      {
+         piBehavior=piBehavior & ~flag ;
+      }
+
+      return;
+   }
+   
+   IsWizard()
+   {
+      return FALSE;
+   }
+
+   IsAreaEffect()
+   {
+      return vbIsAreaEffect;
+   }
+
+   GetHatred()
+   {
+      return piHatred;
+   }
+
+   TargetSwitch(what=$, iHatred = 0)
+   {
+      if what = $
+         OR poOwner = $
+      {
+         Debug("BAD target we're switching to here!");
+
+         return;
+      }
+
+      if IsClass(what,&User)
+         AND NOT Send(what,@IsLoggedOn)
+      {
+         // Trying to switch to someone logged off. Can't do that.
+         return;
+      }
+
+      piHatred = iHatred;
+
+      if poTarget <> $
+         AND IsClass(poTarget,&User)
+         AND Send(poTarget,@GetOwner) = poOwner
+      {
+         Send(poTarget,@SubtractFromMonsterChasers,#level=viLevel);
+      }
+
+      poTarget = what;
+      if IsClass(poTarget,&User)
+         AND Send(poTarget,@GetOwner) = poOwner
+      {
+         Send(poTarget,@AddToMonsterChasers,#level=viLevel);
+      }
+
+      piState = (piState & VSTATE_VALIDITY_MASK);
+
+      // 'lock' sound
+      if vrSound_aware <> $
+      {
+         Send(poOwner,@SomethingWaveRoom,#what=self,#wave_rsc=vrSound_aware);
+      }
+
+      return;
+   }
+
+   SpecialHatredBehavior(what=$)
+   "A monster may hate an opponent more under special behaviors, or may "
+   "hate certain opponents more.  Use this to check for those special cases."
+   "Test case is avar clans fighting in the temple ruins."
+   {
+      return 0;
+   }
+
+   GetMood()
+   {
+      return piMood;
+   }
+
+   // used for library speech/random lib restriction vectors
+   GetMoodFlags()
+   {
+      if piMood < -10
+      {
+         return LIBRES_MOOD_BAD;
+      }
+
+      if piMood > 10
+      {
+         return LIBRES_MOOD_GOOD;
+      }
+
+      return LIBRES_MOOD_NEUTRAL;
+   }
+
+   SetMood(new_mood = 0)
+   {
+      piMood = Bound(new_mood,-100,100);
+
+      return;
+   }
+
+   ChangeMood(change = 0)
+   {
+      piMood = Bound(piMood+change,-100,100);
+
+      return;
+   }
+
+   IsInvisible()
+   {
+      return (Send(self,@GetDrawingEffects) & DRAWFX_INVISIBLE);
+   }
+
+   IsShadowForm()
+   {
+      return (Send(self,@GetDrawingEffects) & DRAWFX_BLACK);
+   }
+
+   GetVaultNum()
+   {
+      return $;
+   }
+
+   GetBankNum()
+   {
+      return $;
+   }
+
+   GetIllusionForm()
+   {
+      return $;
+   }
+
+   PrintState()
+   "Prints monster state out to the Debug log."
+   {
+      if (piState & STATE_LIMBO)
+      {
+         Debug(self,"is in limbo.");
+      }
+
+      if (piState & STATE_WAIT)
+      {
+         Debug(self,"is in wait");
+      }
+
+      if (piState & STATE_ATTACK)
+      {
+         Debug(self,"is in attack");
+      }
+
+      if (piState & STATE_CHASE)
+      {
+         Debug(self,"is in chase");
+      }
+
+      if (piState & STATE_MOVE)
+      {
+         Debug(self,"is in move");
+      }
+
+      if ptBehavior = $
+      {
+         Debug("Behavior Timer is equal to nil!");
+
+         return;
+      }
+
+      Debug("ptBehavior has ",GetTimeRemaining(ptBehavior),"ms left.");
+
+      return;
+   }
+
+   GetFaction()
+   {
+      return viFaction;
+   }
+
+   AddLearnAdvice()
+   {
+      local i, lFinal, lDialogue, oAbility, sid, oName;
+
+      // Go through the monster's sell list.  If the monster has a spell or 
+      //  skill to sell, add it to their dialogue.
+
+      if NOT (viAttributes & MOB_TEACHER)
+      {
+         return;
+      }
+
+      if plFor_sale = $ OR Length(plFor_sale) < 3
+      {
+         return;
+      }  
+
+      lDialogue = $;
+
+      foreach sid in nth(plFor_sale,2)
+      {
+         // skills first
+         oAbility = Send(SYS,@FindSkillByNum,#num=sid);
+         if oAbility <> $
+         {
+            oName = Send(oAbility,@GetName);
+         }
+         
+         lDialogue = cons([[oName],0,[LIBACT_LEARN, sid, TRUE]],lDialogue);
+      }
+      
+      foreach sid in nth(plFor_sale,3)
+      {
+         // spells next
+         oAbility = Send(SYS,@FindSpellByNum,#num=sid);
+         if oAbility <> $
+         {
+            oName = Send(oAbility,@GetName);
+         }
+         
+         lDialogue = cons([[oName],0,[LIBACT_LEARN, sid, FALSE]],lDialogue);
+      }
+      
+      lFinal = [ GetClass(self), lDialogue ];
+
+      Send(Send(SYS,@GetLibrary),@AppendSpeechLibrary,#lDialogue=lFinal);
+      
+      return;
+   }
+
+   GetBrain()
+   {
+      return poBrain;
+   }
+
+   IsUndead()
+   {
+      return vbIsUndead;
+   }
+
+   TurnedBy(who = $)
+   {
+      if who = $
+      {
+         Debug("Turned by $.");
+
+         return;
+      }
+
+      if NOT vbIsUndead
+      {
+         Debug("Somehow turned a monster that isn't undead.");
+
+         return;
+      }
+
+      poHolySymbolCaster = who;
+
+      if ptUnturn <> $
+      {
+         DeleteTimer(ptUnturn);
+         ptUnturn = $;
+      }
+
+      ptUnturn = CreateTimer(self,@UnTurn,TURN_TIME/viDifficulty);
+      
+      return;
+   }
+
+   UnTurn()
+   {
+      ptUnturn = $;
+      poHolySymbolCaster = $;
+
+      return;
+   }
+
+   DMCanArmageddon()
+   {
+      return TRUE;
+   }
+
+   CanBeSilenced()
+   "Can this monster be silenced by the room enchantment?"
+   {
+      return TRUE;
+   }
+
+   RewardSweep(who = $)
+   {
+      local oMoney,oRoom;
+
+      oMoney=Create(&Money,#number=Random(20,120));
+      oRoom = Send(self,@GetOwner);
+
+      if piSweepCounter < 5
+      {
+         Post(oRoom,@SomeoneSaid,#what=self,#string=Monster_Sweep_Reward,
+              #type=SAY_RESOURCE,#parm1=Send(who,@GetDef),
+              #parm2=Send(who,@GetName));
+              
+         piSweepCounter = piSweepCounter + 1;
+         
+         if Send(who,@ReqNewHold,#what=oMoney)
+         {
+            Send(who,@NewHold,#what=oMoney);
+            Send(Send(SYS,@GetStatistics),@MoneyCreated,#amount=Send(oMoney,@GetNumber));
+         }
+      }
+      
+      return;
+   }
+
+   AddToSpellList(spellNum=$)
+   {
+      local i;
+
+      foreach i in plSpellList
+      {
+         if i = spellNum
+         {
+            return;
+         }
+      }
+
+      plSpellList = Cons(spellNum,plSpellList);
+
+      return;
+   }
+
+   GetSpellBook()
+   {
+      return plSpellBook;
+   }
+
+   GetBaseSpellPower()
+   {
+      return piSpellPower;
+   }
+
+   // Gets the projectile icon of the monster.  If monster doesn't use
+   //  projectiles, return nil
+   GetProjectileIcon()
+   {
+      return;
+   }
+   
+   GetBaseResistances()
+   {
+      return plResistances;
+   }
+   
+   GetBoostedLevel()
+   {
+      return piBoostedLevel;
+   }
+
+   // GainLight and LoseLight here so (some) mobs can use touch spells.
+   GainLight()
+   {
+      return 0;
+   }
+
+   LoseLight()
+   {
+      return 0;
+   }
+
+   PrintInfo()
+   {
+      local i, iTresLen, lTresList, oItem, oTresType;
+
+      ClearTempString();
+
+      oTresType = Send(SYS,@FindTreasureByNum,#num=Send(self,@GetTreasureType));
+
+      if (oTresType <> $)
+      {
+         lTresList = Send(oTresType,@GetTreasureList);
+      }
+
+      iTresLen = Length(lTresList);
+
+      if (iTresLen > 0)
+      {
+         AppendTempString(", Treasure: ");
+      }
+      else
+      {
+         AppendTempString(", No Treasure.");
+      }
+
+      foreach i in lTresList
+      {
+         oItem = Send(SYS,@FindTemplateItemByClass,#cClass=First(i));
+         if (oItem = $)
+         {
+            continue;
+         }
+
+         AppendTempString(Send(oItem,@GetTrueName));
+         AppendTempString(" ");
+         AppendTempString(Nth(i,2));
+         if (--iTresLen > 0)
+         {
+            AppendTempString("\%, ");
+         }
+         else
+         {
+            AppendTempString("\%");
+         }
+      }
+
+      GodLog(Send(self,@GetTrueName)," level: ",viLevel,", karma: ",viKarma,
+         ", speed: ",viSpeed, GetTempString());
+
+      return;
+   }
+
+   PrintSellList()
+   "Prints out all the items (not spells/skills) for sale for this mob, "
+   "including any conditional sale items (with prices)."
+   {
+      local i, iPrice;
+
+      if (plFor_sale = $
+         OR First(plFor_sale) = $)
+      {
+         return;
+      }
+
+      GodLog("NPC: ",Send(self,@GetName));
+
+      foreach i in First(plFor_sale)
+      {
+         iPrice = Send(i,@GetInitValue) * (100 + 20 * viMerchant_markup) / 100;
+         GodLog("Item: ",Send(i,@GetName),", Price: ",iPrice);
+      }
+
+      Send(Send(SYS,@GetLibrary),@PrintMobConditional,#mob=self);
+
+      return;
+   }
+
+   PrintRoom()
+   "Prints out the name of the mob and the room it is in."
+   {
+      if (poOwner = $)
+      {
+         return;
+      }
+
+      GodLog("NPC: ",Send(self,@GetName),", Map: ",Send(poOwner,@GetName));
+
+      return;
+   }
+
+   GetStoreOwner()
+   {
+      return poStoreOwner;
+   }
+
+   SetStoreOwner(oStoreOwner=$,report=TRUE,bContracted=FALSE)
+   {
+      // We don't have a store owner thus far.
+      if (poStoreOwner = $)
+      {
+         // New store owner provided.
+         if (oStoreOwner <> $)
+         {
+            // Store owner already has a store. Return FALSE.
+            if Send(oStoreOwner,@GetStore) <> $
+            {
+               return FALSE;
+            }
+            // Our owner-to-be has a free store spot! Take it and return TRUE.
+            else
+            {
+                          Send(oStoreOwner,@SetStore,#oStore=self);
+               poStoreOwner = oStoreOwner;
+            }
+         }
+         else
+         {
+            return FALSE;
+         }
+      }
+
+      // We already have a store.
+      if (poStoreOwner <> $)
+      {
+         // We no longer employed. Tell the store owner and return TRUE.
+         if (oStoreOwner = $)
+         {
+            Send(poStoreOwner,@SetStore);
+            poStoreOwner = $;
+
+            // This may happen when the player isn't even logged on.
+            if poOwner <> $
+            {
+               Send(poOwner,@SomethingChangedFlags,#what=self);
+            }
+         }
+         // We won't take a new store owner if we already got one. Return FALSE.
+         if (oStoreOwner <> $)
+         {
+            return FALSE;
+         }
+      }
+
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,42 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+WolfMask is FaceMask
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   WolfMask_name_rsc = "wolf mask"
+   WolfMask_icon_male_rsc = wolfmask.bgf
+   WolfMask_icon_female_rsc = wolfmask.bgf
+   WolfMask_desc_rsc = \
+      "This is a wolf mask.  Looks like it was torn straight "
+      "off the face of a werewolf."
+
+classvars:
+
+   vrName = WolfMask_name_rsc
+   vrDesc = WolfMask_desc_rsc
+   vrIcon = WolfMask_icon_male_rsc
+
+   vrMaleIcon = WolfMask_icon_male_rsc
+   vrFemaleIcon = WolfMask_icon_female_rsc
+
+properties:
+
+
+messages:
+
+
+end
+////////////////////////////////////////////////////////////////////////////////

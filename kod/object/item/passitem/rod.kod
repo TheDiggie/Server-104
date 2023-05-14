@@ -1,0 +1,252 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+///////////////////////////////////////////////////////////////////////////////
+Rod is PassiveItem
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include rod.lkod
+
+   Rod_desc_rsc = "You can feel magical energy pulsing through the rod."
+   Rod_broken = "%s%s goes dark, having expended its last charge!"
+   Rod_useless = "The rod must be recharged before it can be used again."
+   Rod_desc_broken_rsc = \
+      "This once pristine rod is dull and dark, and must be recharged."
+   Rod_success_msg = "The rod pulses in your hand."
+   rod_consumes_charges_rsc = \
+      "  Unleashing the magic within will consume %i charges."
+   rod_charges_left_rsc = \
+      "\n\nThis rod has %i charges remaining, and can hold a maximum "
+      "of %i charges."
+   rod_success_wav_default_rsc = healwand.ogg
+   rod_fail_wav_default_rsc = spelfail.ogg
+   rod_cannot_hold_more_rsc = \
+      "If you held another rod, their competing magics would all "
+      "conflict and explode!"
+   rod_cant_use_yet = "You cannot use that item yet."
+
+classvars:
+
+   viUse_type = ITEM_SINGLE_USE
+   viItem_type = ITEMTYPE_ROD
+
+   viStartHits = 0
+   viStartMaxHits = 5
+   viConsumesHits = 1
+
+   vrGoodDesc = Rod_desc_rsc
+   vrBrokenDesc = Rod_desc_broken_rsc
+
+   vrFail = Rod_useless
+   vrFailSound = rod_fail_wav_default_rsc
+   vrSuccess = Rod_success_msg
+   vrSuccessSound = rod_success_wav_default_rsc
+
+   viRodUseDelay = 500 // Milliseconds
+
+properties:
+
+   vrDesc = Rod_desc_rsc
+   piRodUseDelay = 500 // Milliseconds
+
+messages:
+
+   Constructed()
+   {
+      Send(self,@SetHits,#number=viStartHits);
+      Send(self,@SetMaxHits,#number=viStartMaxHits);
+
+      piRodUseDelay = viRodUseDelay;
+
+      propagate;
+   }
+
+   NewOwner()
+   {
+      Send(self,@SetHits,#number=0);
+
+      propagate;
+   }
+   
+   ReqNewOwner(what = $)
+   {
+      local i, iRodCount;
+
+      iRodCount = 0;
+      if IsClass(what,&User)
+      {
+         foreach i in Send(what,@GetHolderPassive)
+         {
+            if IsClass(i,&Rod)
+            {
+               iRodCount = iRodCount + 1;
+            }
+         }
+
+         if iRodCount >= Send(SETTINGS_OBJECT,@GetMaxNumRods)
+         {
+            Send(what,@MsgSendUser,#message_rsc=rod_cannot_hold_more_rsc);
+
+            return FALSE;
+         }
+      }
+
+      propagate;
+   }
+
+   GetItemUseType()
+   {
+      return viUse_type;
+   }
+
+   ReqNewApply(what = $, apply_on = $)
+   {
+      if NOT IsClass(poOwner,&User)
+      {
+         return FALSE;
+      }
+
+      if Send(self,@GetHits) < viConsumesHits
+      {
+         Send(poOwner,@MsgSendUser,#message_rsc=vrFail);
+         Send(poOwner,@WaveSendUser,#wave_rsc=vrFailSound);
+
+         return FALSE;
+      }
+      
+      if NOT Send(what,@IsOkayAttackTime,#time=piRodUseDelay)
+      {
+         Send(what,@MsgSendUser,#message_rsc=rod_cant_use_yet);
+
+         return FALSE;
+      }
+
+      return TRUE;
+   }
+
+   NewApplied(what = $,apply_on = $)
+   {
+      Send(self,@SetHits,#number=Send(self,@GetHits)-viConsumesHits);
+      Send(self,@CastSpell,#what=what,#apply_on=apply_on);
+
+      if Send(self,@GetHits) <= 0
+      {
+         Send(poOwner,@MsgSendUser,#message_rsc=Rod_broken,
+               #parm1=Send(self,@GetCapDef),#parm2=Send(self,@GetName));
+         vrDesc = vrBrokenDesc;
+      }
+
+      return;
+   }
+
+   CastSpell(what = $, apply_on = $)
+   {
+      Send(poOwner,@MsgSendUser,#message_rsc=vrSuccess);
+      Send(Send(poOwner,@GetOwner),@SomethingWaveRoom,#what=poOwner,
+            #wave_rsc=vrSuccessSound);
+
+      return;
+   }
+
+   SomethingKilled(what = $, victim = $)
+   {
+      // Gain a charge upon our owner killing a monster.
+      if what = poOwner
+         AND IsClass(victim,&Monster)
+         AND Send(self,@GetHits) < Send(self,@GetMaxHits)
+      {
+         Send(self,@SetHits,#number=Send(self,@GetHits)+1);
+
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   FullyRecharge()
+   {
+      if Send(self,@GetHits) < Send(self,@GetMaxHits)
+      {
+         Send(self,@SetHits,#number=Send(self,@GetMaxHits));
+
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   SetHits(number = $)
+   {
+      if number = $
+      {
+         return;
+      }
+
+      if number = 0
+      {
+         vrDesc = vrBrokenDesc;
+      }
+
+      if piHits = 0
+         AND number > 0
+      {
+         vrDesc = vrGoodDesc;
+      }
+
+      piHits = number;
+
+      propagate;
+   }
+
+   SetRodDelay(iTime=0)
+   "If no parameter is sent, sets the rod back to default (1000ms) delay. "
+   "If iTime is greater than 0, will set the rod use delay to that many "
+   "milliseconds."
+   {
+      if iTime < 1
+      {
+         piRodUseDelay = viRodUseDelay;
+      }
+      else
+      {
+         piRodUseDelay = iTime;
+      }
+
+      return;
+   }
+
+   DoBaseDesc()
+   {
+      if viConsumesHits > 1
+      {
+         AddPacket(4, system_rsc_template_2, 4,vrDesc,
+                   4,rod_consumes_charges_rsc, 4,viConsumesHits);
+      }
+      else
+      {
+         AddPacket(4,vrDesc);
+      }
+
+      return;
+   }
+
+   AppendDesc()
+   {
+      AddPacket(4,rod_charges_left_rsc, 4,piHits, 4,viStartMaxHits);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

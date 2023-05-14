@@ -1,0 +1,213 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+FactionFlag is PassiveItem
+
+constants:
+
+   include blakston.khd
+
+   IDLE_TIME = 2 * 60 * 60 * 1000  // 2 hours
+
+resources:
+
+   include factflag.lkod
+
+   FactionFlag_icon_rsc = dukeflag.bgf
+   FactionFlag_name_rsc = "flag"
+   FactionFlag_desc_rsc = "This is the flag of neutrality."
+   FactionFlag_drops = "%s%s slips from your grasp and falls to the ground!"
+   FactionFlag_not_soldier = \
+      "The flag can only be used by an officially recognized "
+      "soldier of this faction!"
+
+classvars:
+
+   vrName = FactionFlag_name_rsc
+   vrDesc = FactionFlag_desc_rsc
+   vrIcon = FactionFlag_icon_rsc
+
+   viItem_type = ITEMTYPE_SPECIAL
+
+   viValue_average = 20
+   viWeight = 10
+   viBulk = 10
+
+   viGround_group = 2
+
+   viFaction = FACTION_NEUTRAL
+
+properties:
+
+   ptTeleportIdle = $
+   pbCounted = FALSE
+
+messages:
+
+   Constructor()
+   {
+      Send(Send(SYS,@GetTerritoryGame),@IncrementFlagItemCount,#flag=self);
+      pbCounted = TRUE;
+
+      propagate;
+   }
+
+   ReqNewOwner(what=$)
+   {
+      local oSoldierShield;
+
+      if IsClass(what,&StorageBox)
+      {
+         return FALSE;
+      }
+
+      if IsClass(what,&Player)
+      {
+         oSoldierShield = Send(what,@FindUsing,#class=&SoldierShield);
+
+         if oSoldierShield = $
+            OR Send(oSoldierShield,@GetFaction) <> viFaction
+            OR NOT Send(what,@CanPlayerPVP)
+         {
+            return FALSE;
+         }
+      }
+
+      propagate;
+   }
+
+   NewOwner(what=$)
+   {
+      local oRoom, oFlagpole;
+
+      if ptTeleportIdle <> $
+      {
+         DeleteTimer(ptTeleportIdle);
+         ptTeleportIdle = $;
+      }
+
+      if what = $
+      {
+         propagate;
+      }
+
+      if NOT IsClass(what,&User)
+      {
+         ptTeleportIdle = CreateTimer(self,@TeleportIdle,IDLE_TIME);
+      }
+
+      oRoom = Send(SYS,@UtilGetRoomRecurse,#what=what);
+
+      // Check for a valid room, perhaps we were sold to an NPC.
+      if oRoom <> $
+      {
+         oFlagpole = Send(oRoom,@FindHoldingActive,#class=&Flagpole);
+      }
+
+      if oFlagpole <> $
+      {
+         Post(oFlagpole,@CheckClaimerFlag);
+      }
+
+      propagate;
+   }
+
+   TeleportIdle()
+   {
+      ptTeleportIdle = $;
+      Send(self,@TeleportHome);
+
+      return;
+   }
+
+   TeleportHome()
+   {
+      // Override this for each flag.
+      return;
+   }
+
+   CanShatter()
+   {
+      return FALSE;
+   }
+
+   ReqDMDelete()
+   "Flags are not deleted with the DM Clear Ability command."
+   {
+      return FALSE;
+   }
+
+   DestroyDisposable()
+   {
+      return FALSE;
+   }
+
+   DropSelf(what=$)
+   {
+      local oRoom, iRow, iCol;
+
+      oRoom = Send(what,@GetOwner);
+      iRow = Send(what,@GetRow);
+      iCol = Send(what,@GetCol);
+
+      Send(oRoom,@NewHold,#what=self,#new_col=iCol,#New_row=iRow);
+
+      return;
+   }
+
+   UserLogoff()
+   {
+      if IsClass(poOwner,&Admin)
+      {
+         propagate;
+      }
+
+      Send(poOwner,@MsgSendUser,#message_rsc=FactionFlag_drops,
+            #parm1=Send(self,@GetCapDef),#parm2=vrName);
+
+      Send(self,@DropSelf,#what=poOwner);
+
+      propagate;
+   }
+
+   Delete()
+   {
+      if ptTeleportIdle <> $
+      {
+         DeleteTimer(ptTeleportIdle);
+         ptTeleportIdle = $;
+      }
+
+      if pbCounted
+      {
+         Send(Send(SYS,@GetTerritoryGame),@DecrementFlagItemCount,#flag=self);
+         pbCounted = FALSE;
+      }
+
+      propagate;
+   }
+
+   RecountFlagItemsReply()
+   {
+      if pbCounted
+      {
+         Send(Send(SYS,@GetTerritoryGame),@IncrementFlagItemCount,#flag=self);
+      }
+
+      return;
+   }
+
+   CanBeStoredInVault()
+   {
+      return FALSE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

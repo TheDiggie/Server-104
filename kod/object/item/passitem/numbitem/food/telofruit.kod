@@ -1,0 +1,61 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+TeloFruit is Food
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include telofruit.lkod
+
+   telofruit_name_rsc = "telo fruit"
+   telofruit_icon_rsc = telofruit.bgf
+   telofruit_desc_rsc = \
+      "This small apple-like fruit is native to Ko'catan and is used heavily "
+      "by both the settlement and the avar tribes.  A thick outer husk "
+      "covers a surprisingly sweet fruit which is best eaten raw, although the "
+      "settlers are fond of using it to make an even sweeter drink."
+   telofruit_name_plural_rsc = "telo fruit"
+
+classvars:
+
+   vrName = telofruit_name_rsc
+   vrIcon = telofruit_icon_rsc
+   vrDesc = telofruit_desc_rsc
+
+   vrName_plural = telofruit_name_plural_rsc
+
+   viIndefinite = ARTICLE_A
+
+   viBulk = 4
+   viWeight = 4
+   viValue_average = 150
+
+properties:
+
+   viNutrition = 40
+   viFilling = 25
+   piNumber = 1
+
+messages:
+
+   Constructor()
+   {
+      // Brownish color, xlat from gray.
+      piItem_flags = PT_GRAY_TO_SKIN2;
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////
