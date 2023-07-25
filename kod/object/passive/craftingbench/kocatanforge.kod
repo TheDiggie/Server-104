@@ -1,0 +1,25 @@
+////////////////////////////////////////////////////////////////////////////////
+KocatanForge is CraftingBench
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   KocatanForge_name_rsc = "Kocatan smelting forge"
+   KocatanForge_icon_rsc = Forge.bgf
+   KocatanForge_desc_rsc = "This Kocatan forge is used to smelt nerudite."
+
+classvars:
+
+   vrName = KocatanForge_name_rsc
+   vrIcon = KocatanForge_icon_rsc
+   vrDesc = KocatanForge_desc_rsc
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

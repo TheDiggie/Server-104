@@ -1,0 +1,120 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Mining is Skill
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   //include mining.lkod
+
+   Mining_name_rsc = "mining"
+   Mining_icon_rsc = imining.bgf
+   Mining_desc_rsc = "This skill allows you to break down heavy rocks and "
+                     "recover precious minerals. Higher proficiency in this "
+                     "skill will prevent damaging those precious minerals. "
+                     "Requires a pickaxe and sense of adventure."
+   Mining_skill_intro = \
+      "Crafting Lv. 1: This skill allows you to break down heavy rocks and recover precious minerals."
+                        
+classvars:
+
+   vrName = Mining_name_rsc
+   vrIcon = Mining_icon_rsc
+   vrDesc = Mining_desc_rsc
+
+   vrSkill_intro = Mining_skill_intro
+
+   viIndefinite = ARTICLE_NONE
+   viDefinite = ARTICLE_NONE
+
+   viSkill_num = SKID_MINING
+   viSchool = SS_CRAFTING
+   viSkill_Level = 1
+   viChance_to_Increase = 15
+   viMeditate_ratio = 0
+
+   viSkillExertion = 20
+   vbCheck_exertion = FALSE
+
+   vbAutomatic = FALSE
+
+   viAttack_Type = ATCK_WEAP_CLAW
+
+properties:
+
+messages:
+
+   GetRequisiteStat(who=$)
+   "Varies from skill to skill and spell to spell."
+   {
+      return Send(who, @GetMight);
+   }
+
+   PayCosts(who=$,modifier=0)
+   "Some skills may require certain stats to be depleted."
+   "return TRUE if they were successfully depleted."
+   {
+      if NOT Send(self,@SuccessChance,#who=who,#modifier=modifier)
+      {
+         return FALSE;
+      }
+
+      Send(who,@AddExertion,#amount=1000*viSkillExertion);
+
+      return TRUE;
+   }
+
+   SuccessChance(who=$,modifier=0)
+   "Modifier indicates the plusses (or minuses, if negative) to apply to the chance"
+   {
+       local iReqStat, iAbility, num;
+
+      iReqStat = Send(self,@GetRequisiteStat,#who=who);
+      iAbility = Send(who,@GetSkillAbility,#skill_num=viSkill_num);
+
+      num = ((100 - iReqStat) * iAbility / 100) + iReqStat;
+
+      if Random(1,100) < num
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   DoSkill(who=$,oTarget=$,oWeapon=$)
+   {
+      if oTarget <> $ AND NOT IsClass(oTarget, &Ore)
+      {
+         // We can only use this skill on Ore (veins).
+         return FALSE;
+      }
+
+      if who = $
+      {
+         Debug("DoSkill called with bad who.");
+
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+   OfferToNewCharacters()
+   {
+      return FALSE;
+   }
+   
+end
+////////////////////////////////////////////////////////////////////////////////

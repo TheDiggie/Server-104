@@ -1,0 +1,55 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CraftSmallShield is Crafting
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   CraftSmallShield_name_rsc = "craft small round shield"
+   CraftSmallShield_icon_rsc = icraftsmallshld.bgf
+   CraftSmallShield_desc_rsc = \
+      "Craft a small round shield from wood, leather, and iron ingots. "
+
+   CraftSmallShield_sound = kraanan.ogg
+
+classvars:
+
+   vrName = CraftSmallShield_name_rsc
+   vrIcon = CraftSmallShield_icon_rsc
+   vrDesc = CraftSmallShield_desc_rsc
+
+   viSpell_num = SID_CRAFTSMALLSHIELD
+   viSpell_level = 3
+   viSpellExertion = 15
+
+   vrGear = &MetalShield
+   voTool = &BlackSmithsHammer
+   viBench  = &CraftingAnvil
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&IronIngot,5],plReagents);
+      plReagents = Cons([&Lumber,10],plReagents);
+      plReagents = Cons([&Leather,5],plReagents);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

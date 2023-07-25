@@ -125,11 +125,19 @@ classvars:
    viUnrevealedColor = 0
    viRevealedColor = 0
 
+   viDefense_base = 0 
+   viAttack_base  = 0
+   viRefined      = $
+   viRefinedAt    = $
+   
 properties:
 
    viObject_flags = OF_GETTABLE
    piHits_init = 0
    piHits = 0
+
+   piDefense_bonus = 0
+   piHitBonus = 0
 
    plItem_attributes = $
    piItem_flags = 0
@@ -140,6 +148,10 @@ properties:
    // Item is colored
    pbColored = FALSE
    piSpecial = $
+
+   viMiningBonus     = 0
+   viGatheringBonus  = 0
+   viLoggingBonus    = 0
 
 messages:
 
@@ -2645,5 +2657,52 @@ messages:
 	   return pbColored;
    }
 
+   GetMiningBonus()
+   {
+      return viMiningBonus;
+   }
+
+   GetLoggingBonus()
+   {
+      return viLoggingBonus;
+   }
+
+   GetGatheringBonus()
+   {
+      return viGatheringBonus;
+   }
+   
+   SetDefense(number = $)
+   {
+      if number = $
+      {
+         return;
+      }
+
+      piDefense_bonus = piDefense_bonus + number;
+      return piDefense_bonus;
+   }
+
+   SetOffense(number = $)
+   {
+      if number = $
+      {
+         return;
+      }
+
+      piHitBonus = piHitBonus + number;
+      return piHitBonus;
+   }
+
+   GetRefinedVersion()
+   {
+      return viRefined;
+   }
+   
+   GetRefinedAt()
+   {
+      return viRefinedAt;
+   }
+   
 end
 ////////////////////////////////////////////////////////////////////////////////

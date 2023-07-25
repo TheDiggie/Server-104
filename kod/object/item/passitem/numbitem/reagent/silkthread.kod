@@ -1,0 +1,47 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+SilkThread is Reagent
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   SilkThread_name_rsc = "silk thread"
+   SilkThread_icon_rsc = SilkThread.bgf
+   SilkThread_desc_rsc = \
+      "Silk spun into strong threads good for making garments and bows. "
+   SilkThread_name_plural_rsc = "silk thread"
+
+classvars:
+
+   vrName = SilkThread_name_rsc
+   vrName_plural = SilkThread_name_plural_rsc
+   vrIcon = SilkThread_icon_rsc
+   vrDesc = SilkThread_desc_rsc
+
+   viBulk = 1
+   viWeight = 1
+   viValue_average = 100
+
+   viItem_type = ITEMTYPE_REAGENT
+
+   viGround_group = 2
+
+properties:
+
+   piNumber = 1
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

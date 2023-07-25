@@ -323,7 +323,9 @@ char *GetSchoolString(School school_id)
    case SS_RIIJA:
       return GetString(hInst, IDS_RIIJA);
    case SS_JALA:
-      return GetString(hInst, IDS_JALA);
+      return GetString(hInst, IDS_JALA);   
+   case SS_CRAFTING:
+      return GetString(hInst, IDS_CRAFTING);
    case SS_DM_COMMAND:
       return GetString(hInst, IDS_DMSCHOOL);
    case SKS_FENCING:

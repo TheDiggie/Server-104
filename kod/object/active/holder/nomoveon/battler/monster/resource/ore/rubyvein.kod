@@ -1,0 +1,40 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+RubyVein is Ore
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   RubyVein_name_rsc = "ruby vein"
+   RubyVein_icon_rsc = rubyvein.bgf
+   RubyVein_desc_rsc = \
+      "A giant hunk of rock, possibly containing usefull ore. "
+
+classvars:
+
+   vrName = RubyVein_name_rsc
+   vrIcon = RubyVein_icon_rsc
+   vrDesc = RubyVein_desc_rsc
+
+   viTreasure_type = TID_RUBY
+   viDifficulty = 30
+   
+   vcResource = &Ruby
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

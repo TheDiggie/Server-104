@@ -1,0 +1,25 @@
+////////////////////////////////////////////////////////////////////////////////
+CraftingAnvil is CraftingBench
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   CraftingAnvil_name_rsc = "blacksmith's anvil"
+   CraftingAnvil_icon_rsc = craftanvil.bgf
+   CraftingAnvil_desc_rsc = "A solid anvil used for crafting metal based gear."
+
+classvars:
+
+   vrName = CraftingAnvil_name_rsc
+   vrIcon = CraftingAnvil_icon_rsc
+   vrDesc = CraftingAnvil_desc_rsc
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

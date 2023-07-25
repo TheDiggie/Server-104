@@ -1,0 +1,47 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+KriipaLeather is Reagent
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   KriipaLeather_name_rsc = "kriipa leather"
+   KriipaLeather_icon_rsc = KriipaLeather.bgf
+   KriipaLeather_desc_rsc = \
+      "Strong leather for crafting Ko'catan armors and shields. "
+   KriipaLeather_name_plural_rsc = "kriipa leather"
+
+classvars:
+
+   vrName = KriipaLeather_name_rsc
+   vrName_plural = KriipaLeather_name_plural_rsc
+   vrIcon = KriipaLeather_icon_rsc
+   vrDesc = KriipaLeather_desc_rsc
+
+   viBulk = 1
+   viWeight = 1
+   viValue_average = 100
+
+   viItem_type = ITEMTYPE_REAGENT
+
+   viGround_group = 2
+
+properties:
+
+   piNumber = 1
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

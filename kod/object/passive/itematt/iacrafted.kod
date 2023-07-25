@@ -1,0 +1,56 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+ItemAttCrafted is ItemAttribute
+
+///////////////////////////////////////////////////////////////////////
+//
+//   This item was crafted by a player.
+//
+///////////////////////////////////////////////////////////////////////
+
+constants:
+
+   include blakston.khd
+   include protocol.khd
+
+resources:
+
+   itematt_crafted_desc = " This piece of gear was crafted."
+
+classvars:
+
+   viItem_Att_Num = IA_CRAFTED
+   vrDesc = itematt_crafted_desc
+
+   viDifficulty = 5
+
+properties:
+
+messages:
+
+
+   InitiallyIdentified()
+   {
+      return TRUE;
+   }
+
+   AddToTreasureTable()
+   {
+      return;
+   }
+
+   CanBeSpoofed()
+   {
+      return FALSE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

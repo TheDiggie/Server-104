@@ -238,7 +238,11 @@ messages:
             Create(&Herbs,#number=5),
             Create(&Torch)
          ],
-      $,$,$];
+         $,
+         [
+            SID_HEWING
+         ],
+         $];
 
       return;
    }

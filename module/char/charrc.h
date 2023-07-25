@@ -36,6 +36,7 @@
 #define IDS_FENCING                     263
 #define IDS_BRAWLING                    264
 #define IDS_THIEVERY                    265
+#define IDS_CRAFTING                    266
 #define IDC_DESCRIPTION                 1000
 #define IDC_FACE                        1001
 #define IDC_PLACEHOLDER                 1002

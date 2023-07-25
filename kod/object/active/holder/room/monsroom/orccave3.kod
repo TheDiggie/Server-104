@@ -53,7 +53,16 @@ messages:
 
    Constructed()
    {
-      plMonsters = [ [&CaveOrc, 70], [&Shadowbeast, 30] ];
+      plMonsters = [ [&CaveOrc, 60],
+                     [&Shadowbeast, 19],
+                     [&Ore, 3],
+                     [&DiamondVein, 3],
+                     [&EmeraldVein, 3],
+                     [&NeruditeVein, 3],
+                     [&RubyVein, 3],
+                     [&SapphireVein, 3],
+                     [&UncutVein, 3] ];
+
       plGenerators = [[71,49],[65,56],[68,52],[60,43],[63,39],[60,32],
       [51,39],[51,43],[54,43],[59,50],[59,56],[48,52],[43,37],[45,28],
       [51,25],[52,13],[43,10],[38,21],[18,34],[18,40],[18,50],[14,57],

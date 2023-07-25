@@ -1,0 +1,25 @@
+////////////////////////////////////////////////////////////////////////////////
+KocatanAnvil is CraftingBench
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   KocatanAnvil_name_rsc = "Ko'catan anvil"
+   KocatanAnvil_icon_rsc = craftanvil.bgf
+   KocatanAnvil_desc_rsc = "A solid anvil used for crafting nerudite based gear."
+
+classvars:
+
+   vrName = KocatanAnvil_name_rsc
+   vrIcon = KocatanAnvil_icon_rsc
+   vrDesc = KocatanAnvil_desc_rsc
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -46,6 +46,7 @@
 #include <DxErr.h>
 
 typedef unsigned char Bool;
+typedef INT64 int64;
 enum {False = 0, True = 1};
 
 #define MAJOR_REV 50   /* Major version of client program */
@@ -203,7 +204,6 @@ M59EXPORT void _cdecl dprintf(char *fmt,...);
 #include "d3ddriver.h"
 #include "rscload.h"
 #include "crc.h"
-#include "signup.h"
 
 // Only include externs if compiling main client
 #ifdef BLAKCLIENT

@@ -1,0 +1,25 @@
+////////////////////////////////////////////////////////////////////////////////
+SpinningWheel is CraftingBench
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   SpinningWheel_name_rsc = "spinning wheel"
+   SpinningWheel_icon_rsc = spinwheel.bgf
+   SpinningWheel_desc_rsc = "A spinning wheel for turning fibers into thread."
+
+classvars:
+
+   vrName = SpinningWheel_name_rsc
+   vrIcon = SpinningWheel_icon_rsc
+   vrDesc = SpinningWheel_desc_rsc
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

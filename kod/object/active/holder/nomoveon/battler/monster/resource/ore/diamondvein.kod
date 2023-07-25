@@ -1,0 +1,40 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DiamondVein is Ore
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   DiamondVein_name_rsc = "diamond vein"
+   DiamondVein_icon_rsc = diamondvein.bgf
+   DiamondVein_desc_rsc = \
+      "A giant hunk of rock, possibly containing usefull ore. "
+
+classvars:
+
+   vrName = DiamondVein_name_rsc
+   vrIcon = DiamondVein_icon_rsc
+   vrDesc = DiamondVein_desc_rsc
+
+   viTreasure_type = TID_DIAMOND
+   viDifficulty = 30
+
+   vcResource = &Diamond
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,54 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CraftLongBow is Crafting
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   CraftLongBow_name_rsc = "craft long bow"
+   CraftLongBow_icon_rsc = icraftlbow.bgf
+   CraftLongBow_desc_rsc = \
+      "Craft a long bow from dense wood and silk thread. "
+
+   CraftLongBow_sound = kraanan.ogg
+
+classvars:
+
+   vrName = CraftLongBow_name_rsc
+   vrIcon = CraftLongBow_icon_rsc
+   vrDesc = CraftLongBow_desc_rsc
+
+   viSpell_num = SID_CRAFTLONGBOW
+   viSpell_level = 5
+   viSpellExertion = 15
+
+   vrGear = &Longbow
+   voTool = &DrawKnife
+   viBench  = &ShaveHorse
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&DenseLumber,30],plReagents);
+      plReagents = Cons([&SilkThread,15],plReagents);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

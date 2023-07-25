@@ -1,0 +1,41 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+ResPlant is Resource
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   ResPlant_name_rsc = "silk worm infested plant"
+   ResPlant_icon_rsc = ResPlant.bgf
+   ResPlant_desc_rsc = \
+      "This plant is completly taken over by silk worms! I'm "
+      "sure I can gather raw silk from it.  "
+
+classvars:
+
+   vrName = ResPlant_name_rsc
+   vrIcon = ResPlant_icon_rsc
+   vrDesc = ResPlant_desc_rsc
+
+   viTreasure_type = TID_RESPLANT
+   vcResource = &RawSilk
+   viSkill    = SKID_GATHERING
+   viTool     = &Sickle
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

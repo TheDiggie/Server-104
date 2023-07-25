@@ -1,0 +1,47 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Leather is Reagent
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Leather_name_rsc = "leather"
+   Leather_icon_rsc = Leather.bgf
+   Leather_desc_rsc = \
+      "Strong leather for crafting various armors and shields. "
+   Leather_name_plural_rsc = "leather"
+
+classvars:
+
+   vrName = Leather_name_rsc
+   vrName_plural = Leather_name_plural_rsc
+   vrIcon = Leather_icon_rsc
+   vrDesc = Leather_desc_rsc
+
+   viBulk = 1
+   viWeight = 1
+   viValue_average = 100
+
+   viItem_type = ITEMTYPE_REAGENT
+
+   viGround_group = 2
+
+properties:
+
+   piNumber = 1
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

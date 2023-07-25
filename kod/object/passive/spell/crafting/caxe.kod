@@ -1,0 +1,54 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CraftAxe is Crafting
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   CraftAxe_name_rsc = "craft axe"
+   CraftAxe_icon_rsc = icraftaxe.bgf
+   CraftAxe_desc_rsc = \
+      "Craft a axe from wood and iron ingots. "
+
+   CraftAxe_sound = kraanan.ogg
+
+classvars:
+
+   vrName = CraftAxe_name_rsc
+   vrIcon = CraftAxe_icon_rsc
+   vrDesc = CraftAxe_desc_rsc
+
+   viSpell_num = SID_CRAFTAXE
+   viSpell_level = 3
+   viSpellExertion = 15
+
+   vrGear = &Axe
+   voTool = &BlackSmithsHammer
+   viBench  = &CraftingAnvil
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&IronIngot,10],plReagents);
+      plReagents = Cons([&Lumber,5],plReagents);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

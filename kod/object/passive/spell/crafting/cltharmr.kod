@@ -1,0 +1,52 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CraftLeather is Crafting
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   CraftLeatherArmor_name_rsc = "craft leather armor"
+   CraftLeatherArmor_icon_rsc = icraftleatha.bgf
+   CraftLeatherArmor_desc_rsc = \
+      "Craft a leather armor from leather and silk thread. "
+
+   CraftLeatherArmor_sound = kraanan.ogg
+
+classvars:
+
+   vrName = CraftLeatherArmor_name_rsc
+   vrIcon = CraftLeatherArmor_icon_rsc
+   vrDesc = CraftLeatherArmor_desc_rsc
+
+   viSpell_num = SID_CRAFTLEATHERARMOR
+   viSpell_level = 3
+   viSpellExertion = 15
+
+   vrGear = &LeatherArmor
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&Leather,20],plReagents);
+      plReagents = Cons([&SilkThread,5],plReagents);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

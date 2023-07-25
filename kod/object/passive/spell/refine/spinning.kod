@@ -1,0 +1,37 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Spinning is Refine
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Spinning_name_rsc = "spinning"
+   Spinning_icon_rsc = ispinning.bgf
+
+   SpinningHide_sound = kraanan.ogg
+
+classvars:
+
+   vrName = Spinning_name_rsc
+   vrIcon = Spinning_icon_rsc
+
+   viSpell_num       = SID_SPINNING
+   viBench           = &SpinningWheel
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

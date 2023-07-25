@@ -1,0 +1,49 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Wood is Reagent
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Wood_name_rsc = "wood"
+   Wood_icon_rsc = Wood.bgf
+   Wood_desc_rsc = \
+      "Wooden log, can be split into lumber at a splitting stump. "
+   Wood_name_plural_rsc = "wood"
+
+classvars:
+
+   vrName = Wood_name_rsc
+   vrName_plural = Wood_name_plural_rsc
+   vrIcon = Wood_icon_rsc
+   vrDesc = Wood_desc_rsc
+
+   viBulk = 1
+   viWeight = 1
+   viValue_average = 100
+
+   viItem_type = ITEMTYPE_REAGENT
+
+   viGround_group = 2
+   viRefined      = &Lumber
+   viRefinedAt    = &SplittingStump
+
+properties:
+
+   piNumber = 5
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

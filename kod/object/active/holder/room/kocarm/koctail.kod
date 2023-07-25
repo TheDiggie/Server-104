@@ -99,6 +99,8 @@ messages:
       Send(self,@NewHold,#what=Create(&KocatanTailor),
             #new_row=18,#new_col=7,#fine_row=40,#fine_col=0,
             #new_angle=ANGLE_EAST);
+      Send(self,@NewHold,#what=Create(&KocatanTanningRack),
+            #new_row=10,#new_col=9,#fine_row=51,#fine_col=3,#new_angle=ANGLE_WEST);
 
       propagate;
    }

@@ -1,0 +1,55 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CraftGauntlets is Crafting
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   CraftGauntlets_name_rsc = "craft gauntlets"
+   CraftGauntlets_icon_rsc = icraftgaunt.bgf
+   CraftGauntlets_desc_rsc = \
+      "Craft a gauntlets from leather and iron ingots. "
+
+   CraftGauntlets_sound = kraanan.ogg
+
+classvars:
+
+   vrName = CraftGauntlets_name_rsc
+   vrIcon = CraftGauntlets_icon_rsc
+   vrDesc = CraftGauntlets_desc_rsc
+
+   viSpell_num = SID_CRAFTGAUNTLETS
+   viSpell_level = 4
+   viSpellExertion = 15
+
+   vrGear = &Gauntlet
+   voTool = &BlackSmithsHammer
+   viBench  = &CraftingAnvil
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&IronIngot,10],plReagents);
+      plReagents = Cons([&Leather,5],plReagents);
+      plReagents = Cons([&SilkThread,5],plReagents);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

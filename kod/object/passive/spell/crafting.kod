@@ -1,0 +1,167 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Crafting is Spell
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Crafting_cast_rsc = "You craft a %s%s."
+   Crafting_inv_full_rsc = \
+      "You cant carry %s%s, it falls on the floor with a loud clang."
+   Crafting_name_rsc = "crafting"
+   Crafting_icon_rsc = icremace.bgf
+   Crafting_desc_rsc = \
+      "The study of crafting gear from various materials"
+   Need_Tool = "You dont have the required tool to craft this."
+   No_Work_Bench ="You need the appropriate work bench!"
+
+   Crafting_sound = kraanan.ogg
+
+classvars:
+
+   vrName = Crafting_name_rsc
+   vrIcon = Crafting_icon_rsc
+   vrDesc = Crafting_desc_rsc
+
+   viSchool = SS_CRAFTING
+   viSpell_level = 1
+   viMana = 0
+   viSpellExertion = 15
+   viCast_time = 500
+   viMeditate_ratio = 0
+   
+   vrSucceed_wav = Crafting_sound
+
+   vrGear   = &Mace
+   voTool   = $
+   viBench  = $
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+
+      return;
+   }
+
+   GetNumSpellTargets()
+   {
+      return 0;
+   }
+
+   CanPayCosts(who=$,lTargets=$,iSpellPower=0)
+   {
+      local oTool;
+
+      oTool = Send(who,@FindHolding,#class=voTool);
+
+      if voTool <> $
+      {
+         if oTool = $ OR NOT IsClass(oTool,voTool)
+         {
+            Send(who,@MsgSendUser,#message_rsc=Need_Tool);
+            return FALSE;
+         }
+      }
+      
+      if viBench <> $
+      {
+         if viBench <> Send(Self,@FindBench,#who=who)
+         {
+            Send(who,@MsgSendUser,#message_rsc=No_Work_Bench);
+            return FALSE;
+         }
+         
+      }
+      
+      propagate;
+   }
+
+   FindBench(who=$)
+   {
+      local oRoom, i, cBench, cDist, Dist, each_obj;
+
+      oRoom = Send(who,@GetOwner);
+      cBench = $;
+      cDist = 25;
+
+      foreach i in Send(oRoom,@GetHolderPassive)
+      {
+         each_obj = Send(oRoom,@HolderExtractObject,#data=i);
+         if IsClass(each_obj,viBench)
+         {
+            Dist = Send(who,@SquareddistanceTo,#what=each_obj);
+            if Dist < cDist
+            {
+               cDist = Dist;
+               cBench = each_obj;
+            }
+         }
+      }
+
+      if cBench = $
+      {
+         return cBench = $;
+      }
+      
+      return GetClass(cBench);
+   }
+
+   CastSpell(who=$,lTargets=$)
+   {
+      local oGear, iSpellPower, oItemAtt;
+
+      iSpellPower = Send(self,@GetSpellPower,#who=who);
+      oGear = Create(vrGear);
+
+      Send(oGear,@SetOffense,#number=((1+iSpellPower)/2));
+      Send(oGear,@SetDefense,#number=((1+iSpellPower)/5));
+
+      if Send(who,@ReqNewHold,#what=oGear)
+      {
+         Send(who,@NewHold,#what=oGear);
+         Send(who,@MsgSendUser,#message_rsc=Crafting_cast_rsc,
+               #parm1=Send(oGear,@GetCapIndef),#parm2=Send(oGear,@GetName));
+      }
+      else
+      {
+         Send(Send(who,@GetOwner),@NewHold,#what=oGear,
+               #new_row=Send(who,@GetRow),#new_col=Send(who,@GetCol),
+               #fine_row=(Send(who,@GetFineRow)+2),
+               #fine_col=(Send(who,@GetFineCol)+2));
+         Send(who,@MsgSendUser,#message_rsc=Crafting_inv_full_rsc,
+               #parm1=Send(oGear,@GetCapIndef),#parm2=Send(oGear,@GetName));
+      }
+
+      oItemAtt = Send(SYS,@FindItemAttByNum,#num=IA_CRAFTED);
+      Send(oItemAtt,@AddtoItem,#oItem=oGear);
+
+      if IsClass(oGear,&GuildShield)
+      {
+         Send(oGear,@Randomize);
+      }
+
+      propagate;
+   }
+
+   OfferToNewCharacters()
+   {
+      return FALSE;
+   }
+   
+end
+////////////////////////////////////////////////////////////////////////////////

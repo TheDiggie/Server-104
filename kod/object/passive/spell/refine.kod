@@ -1,0 +1,247 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Refine is Spell
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Refine_icon_rsc  = icremace.bgf
+   Cant_Refine      = "You can't refine that. "
+   Not_Enough       = "You don't have enough %s to refine."
+   Made_Product     = "~B~gYou refined %i %s into %i %s."
+   No_WorkBench     = "You need the appropriate work bench!"
+   Cant_Refine_Here = "This isn't the right work bench."
+
+   RefineHide_sound = kraanan.ogg
+
+classvars:
+
+   viSchool          = SS_CRAFTING
+   viSpell_level     = 2
+   viMana            = 0
+   viSpellExertion   = 15
+   viCast_time       = 500
+   viMeditate_ratio  = 0
+   viBench           = $
+   
+   vrSucceed_wav = Crafting_sound
+
+properties:
+
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+
+      return;
+   }
+
+   GetNumSpellTargets()
+   {
+      return 1;
+   }
+
+   CanPayCosts(who=$,lTargets=$,iSpellPower=0)
+   {
+      local cResource, oBench;
+      
+      cResource = First(lTargets);
+      oBench    = Send(cResource,@GetRefinedAt);
+
+      if cResource = $
+         OR Send(cResource,@GetRefinedVersion) = $
+      {
+         Send(who,@MsgSendUser,#message_rsc=Cant_Refine);
+         return FALSE;
+      }
+
+      if oBench <> $
+      {
+         if oBench <> Send(Self,@FindBench,#who=who,#Bench=oBench)
+         {
+            Send(who,@MsgSendUser,#message_rsc=No_WorkBench);
+            return FALSE;
+         }
+      }
+      
+      propagate;
+   }
+
+   FindBench(who=$,Bench=$)
+   {
+      local oRoom, i, cBench, cDist, Dist, each_obj;
+
+      oRoom = Send(who,@GetOwner);
+      cBench = $;
+      cDist = 25;
+
+      foreach i in Send(oRoom,@GetHolderPassive)
+      {
+         each_obj = Send(oRoom,@HolderExtractObject,#data=i);
+         if IsClass(each_obj,Bench)
+         {
+            Dist = Send(who,@SquareddistanceTo,#what=each_obj);
+            if Dist < cDist
+            {
+               cDist = Dist;
+               cBench = each_obj;
+            }
+         }
+      }
+      
+      if cBench = $
+      {
+         return cBench = $;
+      }
+
+      return GetClass(cBench);
+   }
+
+   CastSpell(who=$,lTargets=$)
+   {
+      local i, oUsed, iSpellPower, cProduct, oProduct, iRequired, iMake, cResource, oResource, iStock, each_obj;
+
+      cResource = First(lTargets);
+      oResource = Send(cResource,@GetName);
+      cProduct = Send(cResource,@GetRefinedVersion);
+      iSpellPower = Send(self,@GetSpellPower,#who=who);
+
+      if isClass(cResource,&NumberItem)
+      {
+         iStock = Send(cResource,@GetNumber);
+      }
+      else
+      {
+         iStock = Send(who,@CountHoldingHowMany,#class=GetClass(cResource));
+      }
+
+      if iSpellPower >= 1 AND iSpellPower <= 9
+      {
+         iRequired = 5;
+         iMake     = 1;
+      }
+      else
+      {
+         if iSpellPower >= 10 AND iSpellPower <= 19
+         {
+            iRequired = 4;
+            iMake     = 1;
+         }
+         else
+         {
+            if iSpellPower >= 20 AND iSpellPower <= 29
+            {
+               iRequired = 3;
+               iMake     = 1;
+            }
+            else
+            {
+               if iSpellPower >= 30 AND iSpellPower <= 39
+               {
+                  iRequired = 2;
+                  iMake     = 1;
+               }
+               else
+               {
+                  if iSpellPower >= 40 AND iSpellPower <= 49
+                  {
+                     iRequired = 1;
+                     iMake     = 1;
+                  }
+                  else
+                  {
+                     if iSpellPower >= 50 AND iSpellPower <= 59
+                     {
+                        iRequired = 1;
+                        iMake     = 1;
+                     }
+                     else
+                     {
+                        if iSpellPower >= 60 AND iSpellPower <= 69
+                        {
+                           iRequired = 1;
+                           iMake     = 2;
+                        }
+                        else
+                        {
+                           if iSpellPower >= 70 AND iSpellPower <= 79
+                           {
+                              iRequired = 1;
+                              iMake     = 3;
+                           }
+                           else
+                           {
+                              if iSpellPower >= 80 AND iSpellPower <= 89
+                              {
+                                 iRequired = 1;
+                                 iMake     = 4;
+                              }
+                              else
+                              {
+                                 if iSpellPower >= 90 AND iSpellPower <= 99
+                                 {
+                                    iRequired = 1;
+                                    iMake     = 5;
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+
+      if iStock >= iRequired
+      {
+         if isClass(cResource,&NumberItem)
+         {
+            Send(cResource,@SubtractNumber,#number=iRequired);
+         }
+         else
+         {
+            for (i = 0; i < iRequired; ++i)
+            {
+                 oUsed = Send(who,@FindHolding,#class=GetClass(cResource));
+
+                 if oUsed <> $
+                 {
+                   Send(oUsed,@Delete);
+                 }
+            }
+         }
+
+         Send(who,@NewHold,#what=Create(cProduct,#number=iMake));
+
+         oProduct = Send(who,@FindHolding,#class=cProduct);
+      
+         Send(who,@MsgSendUser,#message_rsc=Made_Product,#parm1=iRequired,#parm2=Send(cResource,@GetName),#parm3=iMake,#parm4=Send(oProduct,@GetName));
+      }
+
+      if iStock < iRequired
+      {
+
+         Send(who,@MsgSendUser,#message_rsc=Not_Enough,#parm1=Send(cResource,@GetName));
+
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

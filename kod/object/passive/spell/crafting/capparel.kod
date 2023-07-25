@@ -1,0 +1,210 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CraftApparel is Crafting
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   CraftApparel_name_rsc = "craft apparel"
+   CraftApparel_icon_rsc = icraftapparel.bgf
+   CraftApparel_desc_rsc = \
+      "Craft several different garments from silk thread. "
+
+   CraftApparel_sound = kraanan.ogg
+
+classvars:
+
+   vrName = CraftApparel_name_rsc
+   vrIcon = CraftApparel_icon_rsc
+   vrDesc = CraftApparel_desc_rsc
+
+   viSpell_num = SID_CRAFTAPPAREL
+   viSpell_level = 2
+   viCast_time = 5000
+   viSpellExertion = 15
+
+   vrGear = &ShirtBase
+   viBench  = &Loom
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&SilkThread,50],plReagents);
+
+      return;
+   }
+
+   TranceBlocksSay()
+   {
+      return TRUE;
+   }
+
+   SomethingSaidDuringTrance(who=$,string=$)
+   {
+      local i, iCount, iNum, isGearCreateable, oGear, oItemAtt, iSpellPower, oColor;
+
+      oColor = XLAT_TO_RED;
+      iCount = 0;
+      iSpellPower = Send(self,@GetSpellPower,#who=who);
+      isGearCreateable = false;
+      iNum = Random(1,10);
+
+      if iNum = 1
+      {
+         oColor = XLAT_TO_RED;
+      }
+      else
+      {
+         if iNum = 2
+         {
+            oColor = XLAT_TO_ORANGE;
+         }
+      else
+      {
+         if iNum = 3
+         {
+            oColor = XLAT_TO_GREEN;
+         }
+      else
+      {
+         if iNum = 4
+         {
+            oColor = XLAT_TO_BLUE;
+         }
+      else
+      {
+         if iNum = 5
+         {
+            oColor = XLAT_TO_PURPLE;
+         }
+      else
+      {
+         if iNum = 6
+         {
+            oColor = XLAT_TO_YELLOW;
+         }
+      else
+      {
+         if iNum = 7
+         {
+            oColor = XLAT_TO_GRAY;
+         }
+      else
+      {
+         if iNum = 8
+         {
+            oColor = XLAT_TO_SKY;
+         }
+      else
+      {
+         if iNum = 9
+         {
+            oColor = XLAT_TO_DGREEN;
+         }
+      else
+      {
+         if iNum = 10
+         {
+            oColor = XLAT_TO_BLACK;
+         }
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+
+      foreach i in Send(SYS,@GetItemTemplates)
+      {
+         if(StringEqual(string,Send(i,@GetName)))
+         {
+            if(NOT Send(self,@CanCreateGear,#sGear=Send(i,@GetName)))
+            {
+               return;
+            }
+
+            oGear = Create(getClass(i),#color=oColor);
+            isGearCreateable = true;
+            break;
+         }
+      }
+
+      if(isGearCreateable = true)
+      {
+         Send(who,@BreakTrance,#event=EVENT_STEER);
+         Send(oGear,@SetDefense,#number=((1+iSpellPower)/5));
+
+         if Send(who,@ReqNewHold,#what=oGear)
+         {
+            Send(who,@NewHold,#what=oGear);
+            Send(who,@MsgSendUser,#message_rsc=Crafting_cast_rsc,
+                  #parm1=Send(oGear,@GetCapIndef),#parm2=Send(oGear,@GetName));
+         }
+         else
+         {
+            Send(Send(who,@GetOwner),@NewHold,#what=oGear,
+                  #new_row=Send(who,@GetRow),#new_col=Send(who,@GetCol),
+                  #fine_row=(Send(who,@GetFineRow)+2),
+                  #fine_col=(Send(who,@GetFineCol)+2));
+            Send(who,@MsgSendUser,#message_rsc=Crafting_inv_full_rsc,
+                  #parm1=Send(oGear,@GetCapIndef),#parm2=Send(oGear,@GetName));
+         }
+
+         oItemAtt = Send(SYS,@FindItemAttByNum,#num=IA_CRAFTED);
+         Send(oItemAtt,@AddtoItem,#oItem=oGear);
+
+      }
+
+      return;
+   }
+
+   CanCreateGear(sGear=$)
+   {
+
+      if(StringEqual("shirt",sGear))
+      {
+         return true;
+      }
+      if(StringEqual("long skirt",sGear))
+      {
+         return true;
+      }
+      if(StringEqual("pants",sGear))
+      {
+         return true;
+      }
+      if(StringEqual("short skirt",sGear))
+      {
+         return true;
+      }
+      if(StringEqual("light jerkin",sGear))
+      {
+         return true;
+      }
+      if(StringEqual("robes",sGear))
+      {
+         return true;
+      }
+      return false;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,117 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Logging is Skill
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   //include Logging.lkod
+
+   Logging_name_rsc = "logging"
+   Logging_icon_rsc = ilogging.bgf
+   Logging_desc_rsc = "This skill allows you to chop down mature trees and "
+                     "recover precious minerals. Requires a wood cutting axe."
+   Logging_skill_intro = \
+      "Crafting Lv. 1: This skill allows you to chop down mature trees and recover precious minerals."
+                        
+classvars:
+
+   vrName = Logging_name_rsc
+   vrIcon = Logging_icon_rsc
+   vrDesc = Logging_desc_rsc
+
+   vrSkill_intro = Logging_skill_intro
+
+   viIndefinite = ARTICLE_NONE
+   viDefinite = ARTICLE_NONE
+
+   viSkill_num = SKID_LOGGING
+   viSchool = SS_CRAFTING
+   viSkill_Level = 1
+   viChance_to_Increase = 15
+   viMeditate_ratio = 0
+
+   viSkillExertion = 20
+   vbCheck_exertion = FALSE
+
+   vbAutomatic = FALSE
+
+   viAttack_Type = ATCK_WEAP_SLASH
+
+properties:
+
+messages:
+
+   GetRequisiteStat(who=$)
+   "Varies from skill to skill and spell to spell."
+   {
+      return Send(who, @GetMight);
+   }
+
+   PayCosts(who=$,modifier=0)
+   "Some skills may require certain stats to be depleted."
+   "return TRUE if they were successfully depleted."
+   {
+      if NOT Send(self,@SuccessChance,#who=who,#modifier=modifier)
+      {
+         return FALSE;
+      }
+
+      Send(who,@AddExertion,#amount=1000*viSkillExertion);
+
+      return TRUE;
+   }
+
+   SuccessChance(who=$,modifier=0)
+   "Modifier indicates the plusses (or minuses, if negative) to apply to the chance"
+   {
+       local iReqStat, iAbility, num;
+
+      iReqStat = Send(self,@GetRequisiteStat,#who=who);
+      iAbility = Send(who,@GetSkillAbility,#skill_num=viSkill_num);
+
+      num = ((100 - iReqStat) * iAbility / 100) + iReqStat;
+
+      if Random(1,100) < num
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   DoSkill(who=$,oTarget=$,oWeapon=$)
+   {
+      if oTarget <> $ AND NOT IsClass(oTarget, &ResTree)
+      {
+         return FALSE;
+      }
+
+      if who = $
+      {
+         Debug("DoSkill called with bad who.");
+
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+   OfferToNewCharacters()
+   {
+      return FALSE;
+   }
+   
+end
+////////////////////////////////////////////////////////////////////////////////

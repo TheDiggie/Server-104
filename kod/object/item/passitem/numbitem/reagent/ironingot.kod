@@ -1,0 +1,47 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+IronIngot is Reagent
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   IronIngot_name_rsc = "iron ingot"
+   IronIngot_icon_rsc = IronIngot.bgf
+   IronIngot_desc_rsc = \
+      "Ingots forged from ore. "
+   IronIngot_name_plural_rsc = "iron ingots"
+
+classvars:
+
+   vrName = IronIngot_name_rsc
+   vrName_plural = IronIngot_name_plural_rsc
+   vrIcon = IronIngot_icon_rsc
+   vrDesc = IronIngot_desc_rsc
+
+   viBulk = 1
+   viWeight = 1
+   viValue_average = 100
+
+   viItem_type = ITEMTYPE_REAGENT
+
+   viGround_group = 2
+
+properties:
+
+   piNumber = 1
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

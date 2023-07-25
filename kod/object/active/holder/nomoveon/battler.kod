@@ -163,6 +163,10 @@ resources:
    battler_pierce_damage = "lacerates"
    battler_pierce_slay = "fells"
 
+   battler_hit_ore = "You swing your pickaxe at the ore."
+   battler_hit_tree = "You swing your axe at the tree."
+   battler_hit_plant = "You search through leaves for silk."
+   
 classvars:
 
    viObject_flags = OF_ATTACKABLE
@@ -728,7 +732,7 @@ messages:
          + Send(SETTINGS_OBJECT,@GetBaseRating);
       iChanceToHit = iOffense * Send(SETTINGS_OBJECT,@GetEqualChanceToHit) / iDefense;
       iChanceToHit = bound(iChanceToHit,125,2000);
-      if iChanceToHit >= random(1,1000)
+      if iChanceToHit >= random(1,1000) OR ISClass(what,&Resource)
       {
          // We hit!
          iDamage = Send(self,@GetDamage,#what=what,#stroke_obj=stroke_obj);

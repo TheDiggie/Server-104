@@ -36,6 +36,10 @@ resources:
    BQSm_mace_sale = \
       "All these beautiful weapons, and you want %s%s.  Son of a ...!  "
       "Well, I suppose I got no choice but to sell you one."
+   BQsmith_already_have_spell = \
+      "You already have knowledge of the %s spell.  You waste my time."
+   BQsmith_not_ready = \
+      "Your not ready to learn how to craft that.  "
 
 classvars:
 
@@ -76,7 +80,10 @@ messages:
          ],
          $,
          [
-            SID_MAGICSHIELD
+            SID_MAGICSHIELD,
+            SID_SMELTING,
+            SID_CRAFTPLATEARMOR,
+            SID_CRAFTGUILDSHIELD
          ],
       $];
 
@@ -104,5 +111,99 @@ messages:
       return;
    }
 
+   CanDoTeach(who=$,sid=0)
+   {
+      if sid = SID_CRAFTGUILDSHIELD
+      {
+         if NOT Send(self,@SpecialTeachChecks,#report=TRUE,#who=who,#num=sid)
+         {
+            return FALSE;
+         }
+      }
+
+      propagate;
+   }
+
+   CanAddSpell(who=$,num=0,report=FALSE)
+   {
+      if NOT Send(self,@SpecialTeachChecks,#report=report,#who=who,#num=num)
+      {
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+   SpecialTeachChecks(who=$,num=0,report=FALSE)
+   {
+      local i, oSkill, oSpell, iSchoolRequired, bFound;
+
+      if who = $ OR num = 0
+      {
+         Debug("Called SpecialTeachChecks with bad parameters!");
+
+         return FALSE;
+      }
+
+      oSpell = Send(SYS,@FindSpellByNum,#num=num);
+
+      if NOT Send(oSpell,@IsAccessible)
+      {
+         return FALSE;
+      }
+
+      if Send(who,@HasSpell,#num=num)
+      {
+         if report
+         {
+            Post(self,@SayToOne,#target=who,
+                  #message_rsc=BQsmith_already_have_spell,
+                  #parm1=Send(oSpell,@GetName));
+         }
+
+         return FALSE;
+      }
+
+      bFound = FALSE;
+      iSchoolRequired=0;
+
+      if num = SID_CRAFTGUILDSHIELD
+      {
+         iSchoolRequired = SKS_FENCING;
+      }
+
+      if iSchoolRequired = 0
+      {
+         return TRUE;
+      }
+
+      // Special checks for high level spells: need a high level spell in 
+      // a particular school.
+      foreach i in Send(who,@GetSkillList)
+      {
+         oSkill = Send(SYS,@FindSkillByNum,
+                        #num=Send(who,@DecodeSkillNum,#compound=i));
+         if Send(oSkill,@GetLevel) > 4
+            AND Send(oSkill,@GetSchool) = iSchoolRequired
+         {
+            bFound = TRUE;
+
+            break;
+         }
+      }
+
+      if bFound = FALSE
+      {
+         if report
+         {
+            Post(self,@SayToOne,#target=who,#message_rsc=BQsmith_not_ready);
+         }
+
+         return FALSE;
+      }
+
+      return TRUE;
+   }
+   
 end
 ////////////////////////////////////////////////////////////////////////////////

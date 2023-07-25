@@ -29,7 +29,7 @@ messages:
    Constructed()
    {
       plTreasure = [ [ &Entrootberry, 55],
-		             [ &DarkAngelFeather, 12 ],
+		               [ &DarkAngelFeather, 12 ],
                      [ &Snack, 5 ],
                      [ &PurpleMushroom, 25 ],
                      [ &Lightningwand,2],

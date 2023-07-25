@@ -262,7 +262,6 @@ $(SolutionDir)postbuild.bat
     <ClInclude Include="winmsg.h" />
     <ClInclude Include="winxblak.h" />
     <ClInclude Include="xlat.h" />
-    <ClCompile Include="signup.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\util\crc.c" />
@@ -362,7 +361,6 @@ $(SolutionDir)postbuild.bat
     <ClCompile Include="winmenu.c" />
     <ClCompile Include="winmsg.c" />
     <ClCompile Include="xlat.c" />
-    <ClCompile Include="signup.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="bitmap\crosscur.cur" />

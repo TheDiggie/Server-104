@@ -1,0 +1,47 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+KriipaHide is Reagent
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   KriipaHide_name_rsc = "kriipa hide"
+   KriipaHide_icon_rsc = KriipaHide.bgf
+   KriipaHide_desc_rsc = \
+      "Thick hide of a fearsome kriipa. "
+   KriipaHide_name_plural_rsc = "kriipa hides"
+
+classvars:
+
+   vrName = KriipaHide_name_rsc
+   vrName_plural = KriipaHide_name_plural_rsc
+   vrIcon = KriipaHide_icon_rsc
+   vrDesc = KriipaHide_desc_rsc
+
+   viBulk = 1
+   viWeight = 1
+   viValue_average = 100
+
+   viItem_type    = ITEMTYPE_REAGENT
+   viRefined      = &KriipaLeather
+   viRefinedAt    = &KocatanTanningRack
+
+properties:
+
+   piNumber = 5
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

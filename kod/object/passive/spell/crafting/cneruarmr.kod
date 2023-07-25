@@ -1,0 +1,54 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CraftNerudite is Crafting
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   CraftNeruditeArmor_name_rsc = "craft nerudite armor"
+   CraftNeruditeArmor_icon_rsc = icraftnerua.bgf
+   CraftNeruditeArmor_desc_rsc = \
+      "Craft a nerudite armor from kriipa leather and nerudite ingots."
+
+   CraftNeruditeArmor_sound = kraanan.ogg
+
+classvars:
+
+   vrName = CraftNeruditeArmor_name_rsc
+   vrIcon = CraftNeruditeArmor_icon_rsc
+   vrDesc = CraftNeruditeArmor_desc_rsc
+
+   viSpell_num = SID_CRAFTNERUDITEARMOR
+   viSpell_level = 5
+   viSpellExertion = 15
+
+   vrGear = &NeruditeArmor
+   voTool = &BlackSmithsHammer
+   viBench  = &KocatanAnvil
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&NeruditeIngot,40],plReagents);
+      plReagents = Cons([&KriipaLeather,15],plReagents);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

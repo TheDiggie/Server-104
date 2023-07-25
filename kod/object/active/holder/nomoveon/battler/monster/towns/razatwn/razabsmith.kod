@@ -87,7 +87,13 @@ messages:
             SKID_PROFICIENCY_MACE,
             SKID_BLOCK 
          ],
-      $,$];
+         [
+            SID_CRAFTMACE,
+            SID_CRAFTSHORTSWORD,
+            SID_CRAFTLEATHERARMOR,
+            SID_CRAFTSMALLSHIELD
+         ],
+         $];
 
       return;
    }

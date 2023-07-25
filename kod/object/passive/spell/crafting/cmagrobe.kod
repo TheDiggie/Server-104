@@ -1,0 +1,166 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CraftMagicRobes is Crafting
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   CraftMagicRobes_name_rsc = "craft magic robes"
+   CraftMagicRobes_icon_rsc = icraftmagicrobe.bgf
+   CraftMagicRobes_desc_rsc = \
+      "Craft robes of disciple of a chosen school from a lot of silk thread. "
+      "When crafting say the name of the school you want to empower to the robe.  "
+
+   CraftMagicRobes_sound = kraanan.ogg
+
+classvars:
+
+   vrName = CraftMagicRobes_name_rsc
+   vrIcon = CraftMagicRobes_icon_rsc
+   vrDesc = CraftMagicRobes_desc_rsc
+
+   viSpell_num = SID_CRAFTMAGICROBES
+   viSpell_level = 6
+   viCast_time = 10000
+   viSpellExertion = 15
+
+   vrGear = &DiscipleRobe
+   viBench  = &Loom
+
+properties:
+
+   piSchool = -1
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&SilkThread,250],plReagents);
+
+      return;
+   }
+
+   TranceBlocksSay()
+   {
+      return TRUE;
+   }
+
+   SomethingSaidDuringTrance(who=$,string=$)
+   {
+      local i, iCount, isGearCreateable, oGear, oItemAtt, iSpellPower, oSchool, lSchools;
+
+      lSchools = [ "Jala","jala","Faren","faren","Kraanan","kraanan","Qor","qor",
+                   "Shal'ille","shal'ille","Shalille","shalille","Riija","riija"];
+
+      iCount = 0;
+      iSpellPower = Send(self,@GetSpellPower,#who=who);
+      isGearCreateable = false;
+
+      foreach i in lSchools
+      {
+         if(StringEqual(string,i))
+         {
+            if(NOT Send(self,@CanCreateGear,#sSchool=i))
+            {
+               return;
+            }
+
+            oSchool = piSchool;
+            oGear = Create(vrGear,#school=oSchool);
+            isGearCreateable = true;
+            break;
+         }
+      }
+
+      if(isGearCreateable = true)
+      {
+         Send(who,@BreakTrance,#event=EVENT_STEER);
+         Send(oGear,@SetDefense,#number=((1+iSpellPower)/2));
+
+         if Send(who,@ReqNewHold,#what=oGear)
+         {
+            Send(who,@NewHold,#what=oGear);
+            Send(who,@MsgSendUser,#message_rsc=Crafting_cast_rsc,
+                  #parm1=Send(oGear,@GetCapIndef),#parm2=Send(oGear,@GetName));
+         }
+         else
+         {
+            Send(Send(who,@GetOwner),@NewHold,#what=oGear,
+                  #new_row=Send(who,@GetRow),#new_col=Send(who,@GetCol),
+                  #fine_row=(Send(who,@GetFineRow)+2),
+                  #fine_col=(Send(who,@GetFineCol)+2));
+            Send(who,@MsgSendUser,#message_rsc=Crafting_inv_full_rsc,
+                  #parm1=Send(oGear,@GetCapIndef),#parm2=Send(oGear,@GetName));
+         }
+
+         oItemAtt = Send(SYS,@FindItemAttByNum,#num=IA_CRAFTED);
+         Send(oItemAtt,@AddtoItem,#oItem=oGear);
+
+      }
+
+      return;
+   }
+
+   CanCreateGear(sSchool=$)
+   {
+      if(StringEqual("Jala",sSchool))
+         OR (StringEqual("jala",sSchool))
+      {
+         piSchool = SS_JALA;
+
+         return true;
+      }
+      if(StringEqual("Faren",sSchool))
+         OR (StringEqual("faren",sSchool))
+      {
+         piSchool = SS_FAREN;
+
+         return true;
+      }
+      if(StringEqual("Kraanan",sSchool))
+         OR (StringEqual("kraanan",sSchool))
+      {
+         piSchool = SS_KRAANAN;
+
+         return true;
+      }
+      if(StringEqual("Shal'ille",sSchool))
+         OR (StringEqual("shal'ille",sSchool))
+         OR (StringEqual("Shalille",sSchool))
+         OR (StringEqual("shalille",sSchool))
+      {
+         piSchool = SS_SHALILLE;
+
+         return true;
+      }
+      if(StringEqual("Qor",sSchool))
+         OR (StringEqual("qor",sSchool))
+      {
+         piSchool = SS_QOR;
+
+         return true;
+      }
+      if(StringEqual("Riija",sSchool))
+         OR (StringEqual("riija",sSchool))
+      {
+         piSchool = SS_RIIJA;
+
+         return true;
+      }
+      return false;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

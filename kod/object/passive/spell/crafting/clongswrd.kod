@@ -1,0 +1,54 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CraftLongSword is Crafting
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   CraftLongSword_name_rsc = "craft long sword"
+   CraftLongSword_icon_rsc = icraftlongsword.bgf
+   CraftLongSword_desc_rsc = \
+      "Craft a long sword from wood and iron ingots. "
+
+   CraftLongSword_sound = kraanan.ogg
+
+classvars:
+
+   vrName = CraftLongSword_name_rsc
+   vrIcon = CraftLongSword_icon_rsc
+   vrDesc = CraftLongSword_desc_rsc
+
+   viSpell_num = SID_CRAFTLONGSWORD
+   viSpell_level = 3
+   viSpellExertion = 15
+
+   vrGear = &LongSword
+   voTool = &BlackSmithsHammer
+   viBench  = &CraftingAnvil
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&IronIngot,20],plReagents);
+      plReagents = Cons([&Lumber,5],plReagents);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

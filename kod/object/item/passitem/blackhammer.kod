@@ -1,0 +1,49 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+BlacksmithsHammer is PassiveItem
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   BlacksmithsHammer_name_rsc = "blacksmith's hammer"
+   BlacksmithsHammer_icon_rsc = forgehammer.bgf
+   BlacksmithsHammer_desc_rsc = \
+   "A tool for most metal based gear. "
+
+classvars:
+
+   vrName = BlacksmithsHammer_name_rsc
+   vrIcon = BlacksmithsHammer_icon_rsc
+   vrDesc = BlacksmithsHammer_desc_rsc
+
+   viBulk = 5
+   viWeight = 15
+   viValue_average = 7500
+
+   viGround_group = 2
+   
+properties:
+
+
+messages:
+
+   SendLookAnimation()
+   {
+      AddPacket(1,ANIMATE_NONE,2,1);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

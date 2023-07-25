@@ -221,23 +221,6 @@
 #define IDC_SIZE_UPDATE_FILES_BYTES     193
 #define IDC_SIZE_UPDATE_FILES_KB        194
 #define IDC_SIZE_UPDATE_FILES_MB        195
-#define IDS_CANTSIGNUP                  196
-#define IDD_SIGNUP                      197
-#define IDS_TROUBLESHOOT                198
-#define IDS_SIGNUPFAILED                199
-#define IDS_USERNAMEINVALID             201
-#define IDS_EMAILINVALID                202
-#define IDS_EMAILINUSE                  203
-#define IDS_PASSWORDINVALID             204
-#define IDS_SERVERUNKNOWN               205
-#define IDS_SIGNUPOFFLINE               206
-#define IDS_SIGNUPUNKNOWNERROR          207
-#define IDS_SIGNUPAPI                   208
-#define IDS_WEBAPIDOMAIN                209
-#define IDS_VERIFIEDAPI                 210
-#define IDS_UNVERIFIED                  211
-#define IDS_RESENDAPI                   212
-#define IDS_SIGNUPMSG                   213
 #define IDC_PORTNUM                     1000
 #define IDC_HOST                        1001
 #define IDC_ITEMLIST                    1002
@@ -497,20 +480,6 @@
 #define ID_HOMEPAGE                     3516
 #define ID_COLOR_QUESTHEADER            3517
 #define ID_GRAPHICS_MENU                3518
-#define IDC_SIGNUP                      3519
-#define ID_SU_EMAIL                     3520
-#define ID_SU_USERNAME                  3521
-#define ID_SU_PW1                       3522
-#define ID_SU_PW2                       3523
-#define ID_SU_SERVER                    3524
-#define IDC_SIGNUP_OK                   3525
-#define IDC_NEW_EMAIL                   3526
-#define IDC_NEW_USERNAME                3527
-#define IDC_NEW_PW1                     3528
-#define IDC_NEW_PW2                     3529
-#define IDC_EMAIL_ADDRESS               3530
-#define IDC_SIGNUP_TROUBLESHOOT         3531
-
 
 // Next default values for new objects
 // 

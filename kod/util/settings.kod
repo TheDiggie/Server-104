@@ -28,13 +28,13 @@ properties:
 
    // piMoneyFactor: How much money should be given out?  Raise this number to
    //  increase the amount of money given out.
-   piMoneyFactor = 150
+   piMoneyFactor = 100
 
    // Increase this to increase the number of items dropped from monster deaths.
-   piItemFactor = 200
+   piItemFactor = 100
 
    // Modifier to the chance for items to be generated.
-   piMagicItemModifier = 75
+   piMagicItemModifier = 50
    
    // Changed the wait for monsters to spawn.  A decrease means things
    //  spawn faster (less time waiting between spawns).
@@ -56,7 +56,7 @@ properties:
    pbStatsResetEnabled = TRUE
    piStatsResetPenalty = -2
    piFreeStatsResetCap = 19
-   piStatResetTokenLife = 40
+   piStatResetTokenLife = 400
 
    // Stat reset token has a 1 in (piStatResetTokenDropFactor / monster_level)
    // chance to drop, with monster_level bound between 50 and 150.
@@ -68,15 +68,15 @@ properties:
    // DefaultDeathCost:  Should always be a value between 1 and 100.  Lowering
    //  this will lower the odds of a dead player losing health and skill/spell
    //  percents.
-   piDefaultDeathCost = 50
+   piDefaultDeathCost = 75
 
    // piAdvancementRate: Determines how fast or slow advancement goes for all
    //  spells and skills.  This is a percent of normal, and only affects the
    //  secondary chance.
-   piAdvancementRate = 600
+   piAdvancementRate = 200
 
    // The training points we grant players each day to reward them for logging on.
-   piLogonBonus = 150
+   piLogonBonus = 120
 
    // The maximum amount of unbound energy we can absorb
    piUnboundMax = 500
@@ -85,7 +85,7 @@ properties:
    piUnboundAbsorption = 100
 
    // The permillage of unbound energy that is lost every second. 50 means 5 percent.
-   piUnboundDecay = 50
+   piUnboundDecay = 30
 
    // Delay between receiving unbound energy and decay setting in in ms.
    piUnboundDelay = 30000
@@ -95,7 +95,7 @@ properties:
    piUnboundEnergyAttackDelaySec = 240
 
    // XP percent awarded, can be raised to give a bonus.
-   piXPPercent = 100
+   piXPPercent = 75
    
    // How far up the food chain can basic players learn?  See player for more
    //  specific information on what this number means.
@@ -107,7 +107,7 @@ properties:
    // The maximum HP a player can suicide their character at, without admin
    // help. Prevents people making mistakes in a fit of rage, or suiciding
    // hacked accounts.
-   piMaxSuicideHP =  60
+   piMaxSuicideHP =  150
 
    // FALSE if newbies never drop loot, TRUE if they do if they don't have
    // the "new to the lands" tag.
@@ -128,10 +128,10 @@ properties:
    // Can't cast a teleport spell until this long after attacking someone.  Prevents
    // hit-and-run.  If 0, there's no restriction on when the spell can be cast.
    // Time in seconds.
-   piTeleportAttackDelaySec = 240
+   piTeleportAttackDelaySec = 120
 
    // Rescue always takes at least this long to cast
-   piRescueBaseDelaySec = 5
+   piRescueBaseDelaySec = 2
 
    // If true, spellpower and duration are displayed for all spells cast.
    pbDisplaySpellData = TRUE
@@ -244,7 +244,7 @@ properties:
    piMonsterMinionLimit = 4
 
    // Minimum swings needed for a chance to improve a weaponcraft skill.
-   piWeaponcraftImprovementMinimumSwings = 50
+   piWeaponcraftImprovementMinimumSwings = 75
    
    // Riija Sword drops on death? (Used to limit griefing)
    pbRiijaSwordDropOnDeath = FALSE
@@ -256,10 +256,10 @@ properties:
    piIntrigueEnableHP = 50
    
    // If set to true, Resist Rings will lose durability upon taking an appropriate elemental hit.
-   piResistRingLoseDurability = TRUE
+   piResistRingLoseDurability = FALSE
 
    // Length of hold effect players experience when logging or phasing in
-   piLogonDelay = 2500
+   piLogonDelay = 0
    
    // Length of time the temporary guardian angel lasts, in minutes
    piTempSafeMinutes = 360
@@ -294,17 +294,17 @@ properties:
    pbCanUserRemoveOwnPosts = TRUE
 
    // How many rods can be picked up at one time.
-   piRodMax = 5
+   piRodMax = 4
 
    // Do safe rooms recharge rods?
-   pbInnsRechargeRods = FALSE
+   pbInnsRechargeRods = TRUE
 
    // Determines whether players lose faction for attacking each other
    // in a way that requires turning safety off.
-   pbFactionLoss = FALSE
+   pbFactionLoss = TRUE
 
    // Do all users get "logged on for first time" messages?
-   pbMsgAllForNewUser = FALSE
+   pbMsgAllForNewUser = TRUE
 
    // Do soldiers attack all factioned players?
    pbTroopsAttackNonShielded = FALSE
@@ -313,7 +313,7 @@ properties:
    // setting changes, you should recreate the system. Doesn't affect
    // players that already have the flag - if this is switched off,
    // the flag needs to be manually removed from players.
-   pbPvPOptOutEnabled = TRUE
+   pbPvPOptOutEnabled = FALSE
 
    // Do spell items cost mana to use?
    // Mana costs were added mainly in response to ogre being

@@ -70,9 +70,9 @@ messages:
    {
       Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_BIGIRON),
            #new_row=3,#new_col=7,#fine_row=30,#fine_col=31,#angle=ANGLE_EAST);
-      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_JUG),
+      Send(self,@NewHold,#what=Create(&Forge),
            #new_row=4,#new_col=7,#fine_row=29,#fine_col=35,#angle=ANGLE_EAST);
-      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_BUCKET),
+      Send(self,@NewHold,#what=Create(&CraftingAnvil),
            #new_row=8,#new_col=5,#fine_row=24,#fine_col=32,#angle=ANGLE_EAST);
 
       // Lighting

@@ -1,0 +1,54 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CraftPlate is Crafting
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   CraftPlateArmor_name_rsc = "craft plate armor"
+   CraftPlateArmor_icon_rsc = icraftplatea.bgf
+   CraftPlateArmor_desc_rsc = \
+      "Craft a plate armor from wood, leather. and iron ingots. "
+
+   CraftPlateArmor_sound = kraanan.ogg
+
+classvars:
+
+   vrName = CraftPlateArmor_name_rsc
+   vrIcon = CraftPlateArmor_icon_rsc
+   vrDesc = CraftPlateArmor_desc_rsc
+
+   viSpell_num = SID_CRAFTPLATEARMOR
+   viSpell_level = 5
+   viSpellExertion = 15
+
+   vrGear = &PlateArmor
+   voTool = &BlackSmithsHammer
+   viBench  = &CraftingAnvil
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&IronIngot,40],plReagents);
+      plReagents = Cons([&Leather,15],plReagents);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

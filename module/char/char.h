@@ -92,6 +92,7 @@ typedef enum {
    SS_RIIJA = 5,
    SS_JALA = 6,
    SS_DM_COMMAND = 7,
+   SS_CRAFTING = 8,
    SKS_FENCING = 10,
    SKS_BRAWLING = 11,
    SKS_THIEVERY = 12,

@@ -1,0 +1,25 @@
+////////////////////////////////////////////////////////////////////////////////
+GoadsAnvil is CraftingBench
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   GoadsAnvil_name_rsc = "Goad's anvil"
+   GoadsAnvil_icon_rsc = craftanvil.bgf
+   GoadsAnvil_desc_rsc = "Goad's anvil he uses to craft circlets and daemon helmets."
+
+classvars:
+
+   vrName = GoadsAnvil_name_rsc
+   vrIcon = GoadsAnvil_icon_rsc
+   vrDesc = GoadsAnvil_desc_rsc
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

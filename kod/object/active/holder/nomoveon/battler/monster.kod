@@ -497,9 +497,7 @@ properties:
    // 20 seconds default for players, 60 for monsters
    piHurtMeTime = 60000
    
-     viCurrentState = STATE_WAIT
-
-   poStoreOwner = $
+   viCurrentState = STATE_WAIT
 
 messages:
 
@@ -732,11 +730,6 @@ messages:
       if poMaster <> $
       {
          Send(poMaster,@RemoveControlledMinion,#what=self);
-      }
-
-      if poStoreOwner <> $
-      {
-         Send(self,@SetStoreOwner,#report=FALSE);
       }
 
       // Enchantments must be removed before brain gets set to $.
@@ -2103,6 +2096,11 @@ messages:
          return FALSE;
       }
 
+      if IsClass(self,&Resource)
+      {
+         return FALSE;
+      }
+      
       // Make sure room allows the attack.
       if NOT Send(oRoom,@ReqSomethingAttack,#what=self,#victim=victim,
                   #stroke_obj=stroke_obj)
@@ -4542,7 +4540,7 @@ messages:
    "This is used for both teachers and sellers"
    {
       local i, j, bFound, oBuy, oMoney, iPrice, iPriceOne, lNumbers,
-            iAmount, oItemAtt, iCan_hold, oSplit, oStoreOwner; 
+            iAmount, oItemAtt, iCan_hold, oSplit; 
 
       // Ensure that buyer and seller are in the same room
       if Send(what,@GetOwner) <> poOwner
@@ -4788,16 +4786,6 @@ messages:
             Send(oMoney,@SubtractNumber,#number=iPrice);
          }
       }
-
-	 if (viAttributes & MOB_SHOP)
-	 {
-		oStoreOwner = poStoreOwner;
-		Send(self,@GetStoreOwner);
-		Send(oStoreOwner,@NewHold,#what=Create(&Money,#number=iPrice));
-		Send(oStoreOwner,@MsgSendUser,#message_rsc=shop_sold_offer,#parm1=iPrice);
-		
-	 	return;
- 	  }
 
       Send(self,@ItemBoughtHook,#buyer=what);
 
@@ -7285,62 +7273,6 @@ messages:
       GodLog("NPC: ",Send(self,@GetName),", Map: ",Send(poOwner,@GetName));
 
       return;
-   }
-
-   GetStoreOwner()
-   {
-      return poStoreOwner;
-   }
-
-   SetStoreOwner(oStoreOwner=$,report=TRUE,bContracted=FALSE)
-   {
-      // We don't have a store owner thus far.
-      if (poStoreOwner = $)
-      {
-         // New store owner provided.
-         if (oStoreOwner <> $)
-         {
-            // Store owner already has a store. Return FALSE.
-            if Send(oStoreOwner,@GetStore) <> $
-            {
-               return FALSE;
-            }
-            // Our owner-to-be has a free store spot! Take it and return TRUE.
-            else
-            {
-                          Send(oStoreOwner,@SetStore,#oStore=self);
-               poStoreOwner = oStoreOwner;
-            }
-         }
-         else
-         {
-            return FALSE;
-         }
-      }
-
-      // We already have a store.
-      if (poStoreOwner <> $)
-      {
-         // We no longer employed. Tell the store owner and return TRUE.
-         if (oStoreOwner = $)
-         {
-            Send(poStoreOwner,@SetStore);
-            poStoreOwner = $;
-
-            // This may happen when the player isn't even logged on.
-            if poOwner <> $
-            {
-               Send(poOwner,@SomethingChangedFlags,#what=self);
-            }
-         }
-         // We won't take a new store owner if we already got one. Return FALSE.
-         if (oStoreOwner <> $)
-         {
-            return FALSE;
-         }
-      }
-
-      return TRUE;
    }
 
 end

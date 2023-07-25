@@ -1,0 +1,29 @@
+////////////////////////////////////////////////////////////////////////////////
+CraftingBench is PassiveObject
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+classvars:
+
+properties:
+
+messages:
+
+   SendAnimation()
+   {
+      AddPacket(1,ANIMATE_NONE,2,1);
+      return;
+   }
+
+   SendLookAnimation()
+   {
+      AddPacket(1,ANIMATE_NONE,2,1);
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

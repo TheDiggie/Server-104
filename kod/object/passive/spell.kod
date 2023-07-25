@@ -96,6 +96,7 @@ resources:
    spell_school_faren = "Faren"
    spell_school_kraanan = "Kraanan"
    spell_school_jala = "Jala"
+   spell_school_crafting = "Crafting"
    spell_intro_rsc = "One of the many mystical spells."
 
    spell_sound_jala = lute_equip.ogg
@@ -309,6 +310,10 @@ messages:
       {
          rSchool = spell_school_jala;
       }
+      else if iSchool = SS_CRAFTING
+      {
+         rSchool = spell_school_crafting;
+      }
       else
       {
          rSchool = spell_school_shalille;
@@ -453,6 +458,7 @@ messages:
       }
 
       if viSchool = SS_KRAANAN
+         OR viSchool = SS_CRAFTING
       {
          return Send(who,@GetStamina);
       }
@@ -474,6 +480,7 @@ messages:
    GetPrimaryStat()
    {
       if viSchool = SS_KRAANAN
+         OR viSchool = SS_CRAFTING
       {
          return STAT_ID_STAMINA;
       }
@@ -1695,6 +1702,11 @@ messages:
          return spell_sound_dm_command;
       }
 
+      if viSchool = SS_CRAFTING
+      {
+         return spell_sound_kraanan;
+      }
+      
       return $;
    }
 

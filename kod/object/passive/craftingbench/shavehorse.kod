@@ -1,0 +1,25 @@
+////////////////////////////////////////////////////////////////////////////////
+ShaveHorse is CraftingBench
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   ShaveHorse_name_rsc = "shave horse"
+   ShaveHorse_icon_rsc = shavehorse.bgf
+   ShaveHorse_desc_rsc = "A wooden shave horse for shaping wood for bows."
+
+classvars:
+
+   vrName = ShaveHorse_name_rsc
+   vrIcon = ShaveHorse_icon_rsc
+   vrDesc = ShaveHorse_desc_rsc
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

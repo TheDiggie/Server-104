@@ -183,7 +183,10 @@ messages:
             Create(&Mug,#number=4),
             Create(&BeerMug)
          ],
-      $,$,$];
+         [
+            SKID_LOGGING
+         ], 
+      $,$];
 
       return;
    }

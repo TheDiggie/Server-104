@@ -1086,15 +1086,6 @@ messages:
       // Free the room memory.
       FreeRoom(prmRoom);
 
-	  foreach i in plActive
-      {
-         if IsClass(First(i),&Store)
-         {
-            Send(SYS,@AddStoreToList,#oStore=First(i));
-            Send(First(i),@EnterLimbo,#what=First(i));
-         }
-      }
-
       propagate;
    }
 

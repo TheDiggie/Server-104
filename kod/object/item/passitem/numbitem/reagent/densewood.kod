@@ -1,0 +1,50 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DenseWood is Reagent
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   DenseWood_name_rsc = "dense wood"
+   DenseWood_icon_rsc = DenseWood.bgf
+   DenseWood_desc_rsc = \
+      "This wood is stronger than the wood found on the mainland. "
+      "The people of Ko'catan use this for crafting weapons and armor. "
+   DenseWood_name_plural_rsc = "dense wood"
+
+classvars:
+
+   vrName = DenseWood_name_rsc
+   vrName_plural = DenseWood_name_plural_rsc
+   vrIcon = DenseWood_icon_rsc
+   vrDesc = DenseWood_desc_rsc
+
+   viBulk = 1
+   viWeight = 1
+   viValue_average = 100
+
+   viItem_type = ITEMTYPE_REAGENT
+
+   viGround_group = 2
+   viRefined      = &DenseLumber
+   viRefinedAt    = &KocatanSplittingStump
+
+properties:
+
+   piNumber = 2
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

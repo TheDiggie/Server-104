@@ -1,0 +1,37 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Tanning is Refine
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Tanning_name_rsc = "tanning"
+   Tanning_icon_rsc = itanning.bgf
+
+   TanningHide_sound = kraanan.ogg
+
+classvars:
+
+   vrName = Tanning_name_rsc
+   vrIcon = Tanning_icon_rsc
+
+   viSpell_num       = SID_TANNING
+   viBench           = &TanningRack
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

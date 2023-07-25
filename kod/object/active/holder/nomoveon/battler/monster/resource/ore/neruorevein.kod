@@ -1,0 +1,40 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+NeruditeVein is Ore
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   NeruditeOreVein_name_rsc = "nerudite vein"
+   NeruditeOreVein_icon_rsc = neruorevein.bgf
+   NeruditeOreVein_desc_rsc = \
+      "A giant hunk of rock, possibly containing usefull ore. "
+
+classvars:
+
+   vrName = NeruditeOreVein_name_rsc
+   vrIcon = NeruditeOreVein_icon_rsc
+   vrDesc = NeruditeOreVein_desc_rsc
+
+   viTreasure_type = TID_NERUORE
+   viDifficulty = 40
+   
+   vcResource = &NeruditeOreChunk
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -6,7 +6,7 @@ OUTDIR = .
 
 .SUFFIXES: .bbg
 
-BGFS = nerushld.bgf povshldi.bgf iwolfpack.bgf
+BGFS = nerushld.bgf povshldi.bgf
 
 !include $(RESOURCEDIR)\copy.mak
 

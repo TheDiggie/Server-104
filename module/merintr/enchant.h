@@ -12,7 +12,7 @@
 #ifndef _ENCHANT_H
 #define _ENCHANT_H
 
-#define ENCHANT_SIZE   20    // Height and width of enchantment icon
+#define ENCHANT_SIZE 19 // Height and width of enchantment icon
 #define ENCHANT_BORDER 1     // Space between enchantment icons
 
 void EnchantmentsInit(void);

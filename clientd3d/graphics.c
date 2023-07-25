@@ -82,6 +82,10 @@ static int num_move_areas = (sizeof(move_areas) / sizeof(ScreenArea));
 extern room_type current_room;
 extern int border_index;
 
+int main_viewport_width;
+int main_viewport_height;
+extern float player_overlay_scaler;
+
 /************************************************************************/
 /*
  * GraphicsAreaCreate:  Create main graphics view window.
@@ -136,14 +140,12 @@ void ResizeAll(void)
  */
 Bool TranslateToRoom(int client_x, int client_y, int *x, int *y)
 {
-   int stretchfactor = config.large_area ? 2 : 1;
-
    if (client_x < view.x || client_x > view.x + view.cx ||
        client_y < view.y || client_y > view.y + view.cy)
       return False;
 
-   *x = (client_x - view.x) / stretchfactor;
-   *y = (client_y - view.y) / stretchfactor;
+   *x = (client_x - view.x) / 2;
+   *y = (client_y - view.y) / 2;
 
    return True;
 }
@@ -197,26 +199,28 @@ void GraphicsAreaResize(int xsize, int ysize)
    int new_xsize, new_ysize;  /* Need signed #s */
    Bool must_redraw = False;
 
-   int max_width, max_height;
-   int stretchfactor = config.large_area ? 2 : 1;
-
    int iHeightAvailableForMapAndStats;
 
-   max_width  = stretchfactor * MAXX;
-   max_height = stretchfactor * MAXY;
+   // Determine the height of the text area section of the client
+   int text_area_size = ((float)config.text_area_size / 100.0) * ysize;
+   int text_area_height = text_area_size + BOTTOM_BORDER + GetTextInputHeight() + TOP_BORDER + EDGETREAT_HEIGHT * 2;
+   text_area_height += config.toolbar ? TOOLBAR_BUTTON_HEIGHT + MIN_TOP_TOOLBAR : MIN_TOP_NOTOOLBAR;
 
-   new_xsize = min(xsize - INVENTORY_MIN_WIDTH, max_width);
+   // Calculate the largest possible viewport size keeping the classic client aspect ratio
+   new_ysize = ysize - text_area_height;
+   new_xsize = new_ysize * MAXYX_ASPECT_RATIO;
 
-   new_ysize = ysize - TEXT_AREA_MIN_HEIGHT - BOTTOM_BORDER - GetTextInputHeight() - TOP_BORDER - EDGETREAT_HEIGHT * 2;
-   if (config.toolbar)
-     new_ysize -= TOOLBAR_BUTTON_HEIGHT - MIN_TOP_TOOLBAR;
-   else new_ysize -= MIN_TOP_NOTOOLBAR;
-   new_ysize = min(new_ysize, max_height);   
+   if ((new_xsize + INVENTORY_MIN_WIDTH) > xsize) {
+       new_xsize = xsize - INVENTORY_MIN_WIDTH;
+       new_ysize = new_xsize * MAXXY_ASPECT_RATIO;
+   } 
 
    /* Make sizes divisible by 4.  Must be even for draw3d, and when 
     * stretchfactor = 2, need divisible by 4 so that room fits exactly in view */
    new_xsize &= ~3;
    new_ysize &= ~3;
+
+   int inventory_width = xsize - new_xsize;
 
    if (new_xsize < 0)
       new_xsize = 0;
@@ -236,18 +240,25 @@ void GraphicsAreaResize(int xsize, int ysize)
    view.cx = new_xsize;
    view.cy = new_ysize;
 
+   // update main viewport and classic scaler (required for FOV calculations and equipment scaling)
+   main_viewport_width = view.cx;
+   main_viewport_height = view.cy;
+   player_overlay_scaler = (float)(main_viewport_width - CLASSIC_WIDTH) / CLASSIC_WIDTH;
+   player_overlay_scaler = (player_overlay_scaler > 0) ? 1.0f + player_overlay_scaler : 1.0f - player_overlay_scaler;
+
    D3DRenderResizeDisplay(view.x, view.y, view.cx, view.cy);
 
+   int minimap_width_height = (inventory_width + 3) & ~3;
+
    //	areaMiniMap added by ajw.
-   areaMiniMap.x	= view.x + view.cx + LEFT_BORDER + 2 * HIGHLIGHT_THICKNESS + MAPTREAT_WIDTH;
-   areaMiniMap.cx	= min( xsize - areaMiniMap.x - 2 * HIGHLIGHT_THICKNESS - EDGETREAT_WIDTH - MAPTREAT_WIDTH, MINIMAP_MAX_WIDTH );
-
-   areaMiniMap.y	= 2 * TOP_BORDER + USERAREA_HEIGHT + EDGETREAT_HEIGHT + (MAPTREAT_HEIGHT * 2) - 1;
-
+   areaMiniMap.x = view.x + view.cx + LEFT_BORDER + 2 * HIGHLIGHT_THICKNESS + MAPTREAT_WIDTH;
+   areaMiniMap.cx = min(xsize - areaMiniMap.x - 2 * HIGHLIGHT_THICKNESS - EDGETREAT_WIDTH - MAPTREAT_WIDTH, minimap_width_height);
+   areaMiniMap.y = 2 * TOP_BORDER + USERAREA_HEIGHT + EDGETREAT_HEIGHT + (MAPTREAT_HEIGHT * 2) - 1;
+   
    iHeightAvailableForMapAndStats = ysize - areaMiniMap.y - 2 * HIGHLIGHT_THICKNESS - EDGETREAT_HEIGHT;
 
-   areaMiniMap.cy	= (int)( iHeightAvailableForMapAndStats * PROPORTION_MINIMAP ) - HIGHLIGHT_THICKNESS - MAPTREAT_HEIGHT;
-   areaMiniMap.cy	= min( areaMiniMap.cy, MINIMAP_MAX_HEIGHT );
+   areaMiniMap.cy = (int)(iHeightAvailableForMapAndStats * PROPORTION_MINIMAP) - HIGHLIGHT_THICKNESS - MAPTREAT_HEIGHT;
+   areaMiniMap.cy = min(areaMiniMap.cy, minimap_width_height);
 
    areaMiniMap.cy -= (TOOLBAR_BUTTON_HEIGHT + TOOLBAR_SEPARATOR_WIDTH) * 2;
    areaMiniMap.y += (TOOLBAR_BUTTON_HEIGHT + TOOLBAR_SEPARATOR_WIDTH) * 2;
@@ -390,8 +401,6 @@ void RedrawForce(void)
       GdiFlush();
    }
    ReleaseDC(hMain, hdc);
-
-   GameWindowSetCursor();   // We may have moved; reset cursor
 }
 /************************************************************************/
 void RedrawAll(void)
@@ -429,14 +438,13 @@ void GraphicsAreaRedraw(HDC hdc)
 void UserMouseMove(void)
 {
    int x, y, xunit, yunit, i;
-   int stretchfactor = config.large_area ? 2 : 1;
 
    if (!MouseToRoom(&x, &y) || view.cx == 0 || view.cy == 0)
       return;
 
    // Find action that corresponds to this part of the graphics area
-   xunit = x * SCREEN_UNIT * stretchfactor / view.cx;
-   yunit = y * SCREEN_UNIT * stretchfactor / view.cy;
+   xunit = x * SCREEN_UNIT * 2 / view.cx;
+   yunit = y * SCREEN_UNIT * 2 / view.cy;
 
    for (i=0; i < num_move_areas; i++)
    {

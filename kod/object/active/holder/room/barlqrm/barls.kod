@@ -152,6 +152,8 @@ messages:
       plExits = Cons([ 36, 13, RID_BAR_MERCHANT, 11, 3, ROTATE_NONE ],plExits);
 
       plExits = Cons([ 28, 42, RID_BAR_SMITHY, 3, 2, ROTATE_NONE ],plExits);
+      
+      plExits = Cons([ 10,47, RID_GUILDH16, 32, 35, SET_ANGLE_NORTH ],plExits);
 
       plExits = Cons([ 37,19, ROOM_LOCKED_DOOR ],plExits);
       plExits = Cons([ 39,25, ROOM_LOCKED_DOOR ],plExits);
@@ -163,7 +165,6 @@ messages:
       plExits = Cons([ 22,45, ROOM_LOCKED_DOOR ],plExits);
       plExits = Cons([ 27,40, ROOM_LOCKED_DOOR ],plExits);
       plExits = Cons([ 28,40, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 10,47, ROOM_LOCKED_DOOR ],plExits);
       plExits = Cons([  4,46, ROOM_LOCKED_DOOR ],plExits);
       plExits = Cons([ 17,44, ROOM_LOCKED_DOOR ],plExits);
       plExits = Cons([ 38, 7, ROOM_LOCKED_DOOR ],plExits);

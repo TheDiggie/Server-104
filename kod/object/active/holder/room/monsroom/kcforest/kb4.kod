@@ -58,7 +58,8 @@ messages:
 
    Constructed()
    {
-      plMonsters = [ [&Kriipa, 100] ];
+      plMonsters = [ [&Kriipa, 90], [&DenseTree, 10]];
+
       plGenerators = [ [16,7], [9,13], [40,39], [29,44], [13,37],
                        [11,23], [46,17], [30,24]
                      ];

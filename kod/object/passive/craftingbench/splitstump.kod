@@ -1,0 +1,25 @@
+////////////////////////////////////////////////////////////////////////////////
+SplittingStump is CraftingBench
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   SplittingStump_name_rsc = "splitting stump"
+   SplittingStump_icon_rsc = splitstump.bgf
+   SplittingStump_desc_rsc = "This splitting stump is used to split wood into lumber."
+
+classvars:
+
+   vrName = SplittingStump_name_rsc
+   vrIcon = SplittingStump_icon_rsc
+   vrDesc = SplittingStump_desc_rsc
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -189,6 +189,7 @@ resources:
    user_kraanan_power = "Kraanan"
    user_riija_power = "Riija"
    user_jala_power = "Jala"
+   user_crafting_power = "Crafting"
 
    user_stat_health = heal.bgf
    user_stat_mana = ankh.bgf
@@ -333,6 +334,7 @@ resources:
    user_school_faren = "School of Faren"
    user_school_riija = "School of Riija"
    user_school_jala = "School of Jala"
+   user_school_crafting = "School of Crafting"
    user_school_dm = "DM spells"
 
    user_admin_message = "%q"
@@ -2073,7 +2075,8 @@ messages:
                                        #faren_lvl=Nth(client_msg,11),
                                        #riija_lvl=Nth(client_msg,12),
                                        #jala_lvl=Nth(client_msg,13),
-                                       #weaponcraft_lvl=Nth(client_msg,14));
+                                       #weaponcraft_lvl=Nth(client_msg,14),
+                                       #crafting_lvl=Nth(client_msg,15));
          return;
       }
 
@@ -3810,7 +3813,8 @@ messages:
       AddPacket(1,BP_USERCOMMAND, 1,UC_SPELL_SCHOOLS, 1,num_schools,
                 4,user_school_shallile, 4,user_school_qor,
                 4,user_school_kraanan, 4,user_school_faren,
-                4,user_school_riija, 4,user_school_jala);
+                4,user_school_riija, 4,user_school_jala, 
+                4,user_school_crafting);
 
       if viDM
       {
@@ -10689,7 +10693,7 @@ messages:
 
    UserChangedStats(might=25,intellect=25,stamina=25,agility=25,mysticism=25,
                      aim=25,shallile_lvl=0,qor_lvl=0,kraanan_lvl=0,faren_lvl=0,
-                     riija_lvl=0,jala_lvl=0,weaponcraft_lvl=0)
+                     riija_lvl=0,jala_lvl=0,weaponcraft_lvl=0,crafting_lvl=0)
    "Processes a stat change request from the client"
    {
       local i, lSpellLevels, lSkillLevels, lSpellLevels_new, lSkillLevels_new,
@@ -10714,7 +10718,8 @@ messages:
       totalSchools = 0;
       lSpellLevels = Send(self, @GetSpellSchoolLevels);
       lSpellLevels_new = [shallile_lvl,qor_lvl,kraanan_lvl,
-                           faren_lvl,riija_lvl,jala_lvl];
+                          faren_lvl,riija_lvl,jala_lvl,
+                          crafting_lvl];
       lSkillLevels = Send(self, @GetSkillSchoolLevels);
       lSkillLevels_new = [weaponcraft_lvl];
    
@@ -10738,6 +10743,7 @@ messages:
          OR (riija_lvl < 0 OR riija_lvl > 6)
          OR (jala_lvl < 0 OR jala_lvl > 6)
          OR (weaponcraft_lvl < 0 OR weaponcraft_lvl > 6)
+         OR (crafting_lvl < 0 OR crafting_lvl > 6)
       {
          Debug("School Range Check: Failed!");
          return FALSE;

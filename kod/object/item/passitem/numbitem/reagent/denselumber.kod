@@ -1,0 +1,45 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DenseLumber is Reagent
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   DenseLumber_name_rsc = "dense lumber"
+   DenseLumber_icon_rsc = DenseLumber.bgf
+   DenseLumber_desc_rsc = \
+      "Lumber made from dense wood. "
+   DenseLumber_name_plural_rsc = "dense lumber"
+
+classvars:
+
+   vrName = DenseLumber_name_rsc
+   vrName_plural = DenseLumber_name_plural_rsc
+   vrIcon = DenseLumber_icon_rsc
+   vrDesc = DenseLumber_desc_rsc
+
+   viBulk = 1
+   viWeight = 1
+   viValue_average = 100
+
+   viItem_type = ITEMTYPE_REAGENT
+
+properties:
+
+   piNumber = 1
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

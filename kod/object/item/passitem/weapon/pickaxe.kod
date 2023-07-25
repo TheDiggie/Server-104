@@ -1,0 +1,90 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+PickAxe is Weapon
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   PickAxe_name_rsc = "pickaxe"
+   PickAxe_icon_rsc = PickAxe.bgf
+   PickAxe_desc_rsc = \
+   "Crafted by Quintor this old pickaxe is still sturdy.  "
+
+   PickAxe_window_overlay_rsc = povPickAxe.bgf
+   PickAxe_player_overlay = PickAxeov.bgf
+
+classvars:
+
+   vrName = PickAxe_name_rsc
+   vrIcon = PickAxe_icon_rsc
+   vrDesc = PickAxe_desc_rsc
+
+   viWeaponType = WEAPON_TYPE_SLASH
+   viWeaponQuality = WEAPON_QUALITY_LOW
+
+   viProficiency_Needed = SKID_MINING
+
+   viValue_average = 100
+   viWeight = 60
+   viBulk = 60
+   viHits_init_min = 500
+   viHits_init_max = 1000
+
+   vrWeapon_window_overlay = PickAxe_window_overlay_rsc
+
+   vrWeapon_overlay = PickAxe_player_overlay
+
+   viGround_group = 1
+   viInventory_group = 3
+   viBroken_group = 2
+
+   viDamage_min = 4
+   viDamage_max = 5
+
+properties:
+
+   piAttack_type = ATCK_WEAP_NONMAGIC+ATCK_WEAP_PIERCE
+
+   piMiningPercent = $
+
+messages:
+
+   GetMiningPercent(who=$)
+   {
+      piMiningPercent = Send(who,@GetSkillAbility,#Skill_num=SKID_MINING);
+
+      return piMiningPercent;
+   }
+
+   ModifyDamage(who=$,what=$,damage=$)
+   {
+      local iDamage;
+
+      iDamage = damage;
+
+      if who <> $ AND what <> $ AND IsClass(what,&Ore) AND Send(self,@GetMiningPercent,#who=who) <> $
+      {
+         iDamage += Bound(Send(self,@GetMiningPercent,#who=who), 1, 75);
+      } else {
+         if who <> $ AND what <> $ AND (IsClass(what,&Orc) OR IsClass(what,&OrcWizard) OR IsClass(what,&CaveOrc) OR IsClass(what,&OrcPitBoss))
+         {
+            iDamage += Bound(Send(self,@GetMiningPercent,#who=who), 1, 60);
+         }
+      }
+
+      return iDamage;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

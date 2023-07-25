@@ -129,8 +129,7 @@ OBJS = \
     $(OUTDIR)\d3dlighting.obj \
     $(OUTDIR)\d3dparticle.obj \
     $(OUTDIR)\d3drender.obj \
-    $(OUTDIR)\matrix.obj \
-    $(OUTDIR)\signup.obj \
+    $(OUTDIR)\matrix.obj
 
 
 $(OUTDIR)\trig.c $(OUTDIR)\trig.h: $(OUTDIR)\maketrig.exe

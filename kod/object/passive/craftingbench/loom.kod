@@ -1,0 +1,25 @@
+////////////////////////////////////////////////////////////////////////////////
+Loom is CraftingBench
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Loom_name_rsc = "loom"
+   Loom_icon_rsc = loom.bgf
+   Loom_desc_rsc = "This loom is used to craft garments."
+
+classvars:
+
+   vrName = Loom_name_rsc
+   vrIcon = Loom_icon_rsc
+   vrDesc = Loom_desc_rsc
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

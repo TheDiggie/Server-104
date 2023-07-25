@@ -12,7 +12,10 @@
 #ifndef _INTRFACE_H
 #define _INTRFACE_H
 
-#define TEXT_AREA_MIN_HEIGHT 96
+// Default text area height as a percentage of the height of the client.
+#define TEXT_AREA_HEIGHT 20
+#define TEXT_AREA_HEIGHT_MIN 0.15
+#define TEXT_AREA_HEIGHT_MAX 0.75
 
 /* Grid view area */
 #define GRID_TOP_BORDER  5
@@ -40,13 +43,10 @@
 #define GRAPHICS_TOP_HEIGHT 24
 
 /* Inventory area */
-//#define INVENTORY_MIN_WIDTH (170 + LEFT_BORDER)
-#define INVENTORY_MIN_WIDTH (185 + LEFT_BORDER + 67)
-#define INVENTORY_MAX_WIDTH (250 + LEFT_BORDER)
+#define INVENTORY_MIN_WIDTH (215 + LEFT_BORDER + 67)
 
 //	MiniMap area.
-#define MINIMAP_MAX_WIDTH	( INVENTORY_MAX_WIDTH + 3 ) & ~3
-#define MINIMAP_MAX_HEIGHT	MINIMAP_MAX_WIDTH
+#define MINIMAP_MAX_AREA 9000
 
 //	How much of the minimap/stats box area goes to the minimap.
 #define PROPORTION_MINIMAP		.4

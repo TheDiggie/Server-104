@@ -1,0 +1,59 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Qorcite is food
+
+constants:
+
+resources:
+
+   Qorcite_name_rsc = "qorcite"
+   Qorcite_desc_rsc = \
+      "A magical glowing crystal full of negative energy.  "
+   Qorcite_icon_rsc = qorcite.bgf
+   Qorcite_name_plural_rsc = "qorcite"
+
+classvars:
+
+   vrName = Qorcite_name_rsc
+   vrIcon = Qorcite_icon_rsc
+   vrDesc = Qorcite_desc_rsc
+
+   vrName_plural = Qorcite_name_plural_rsc
+
+   viValue_average = 200
+   viWeight = 8
+   viBulk = 5
+
+   viGround_group = 2
+   viInventory_group = 1
+
+properties:
+
+   viFilling = 1
+   viNutrition = 1
+   piNumber = 3
+
+messages:
+
+   NewApplied(what = $,apply_on = $)
+   {
+      local iKarma_change;
+
+      // User moves toward (-80) karma.
+      iKarma_change=Send(poOwner,@CalculateKarmaChangeFromAct,#karma_act=-80,
+         #karma_doer=Send(poOwner,@GetKarma),#swing_factor=10);
+      Send(apply_on,@AddKarma,#amount=iKarma_Change);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

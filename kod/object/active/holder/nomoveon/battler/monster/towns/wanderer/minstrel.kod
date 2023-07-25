@@ -98,7 +98,6 @@ messages:
             SID_MELANCHOLY,
             SID_SPELLBANE,
             SID_WARPTIME,
-			SID_WOLFPACK,
             SID_JIG,
             SID_MANA_CONVERGENCE,
             SID_REJUVENATE,

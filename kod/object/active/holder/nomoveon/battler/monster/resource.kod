@@ -1,0 +1,123 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Resource is Monster
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Resource_cannot_hit = \
+      "Your weapon is not suitable for harvesting this. "
+
+   Gathered_rsc = "~B~gYou gather %i %s."
+
+classvars:
+
+   viAttributes = 0
+   viLevel = 400
+   viDifficulty = 10
+   viAmountofLoot = 20
+   viKarma = 0
+   viDefault_behavior = MOB_NOMOVE
+   viCashmin = 0
+   viCashmax = 0
+
+   viCanEarnHP = FALSE
+
+   vcResource = $
+   viSkill    = $
+   viTool     = $
+
+properties:
+
+   piAnimation = ANIM_NONE
+
+messages:
+
+   SendLookAnimation()
+   {
+      AddPacket(1,ANIMATE_ONCE);
+      AddPacket(4,400,2,1,2,1,2,1);
+
+      return;
+   }
+
+   GetTool()
+   {
+      return viTool;
+   }
+
+   AssessDamage(what=$)
+   "This is called when something causes damage to us."
+   {
+      local i, oResource, iAmount, cSkillAbility, iBonus;
+
+      cSkillAbility = Send(what,@GetSkillAbility,#skill_num=viSkill);
+
+      iBonus = 0;
+
+      foreach i in Send(what,@GetPlayerUsing)
+      {
+         if viSkill = SKID_MINING
+         {
+            iBonus = iBonus + Send(i,@GetMiningBonus);
+         }
+
+         if viSkill = SKID_LOGGING
+         {
+            iBonus = iBonus + Send(i,@GetLoggingBonus);
+         }
+
+         if viSkill = SKID_GATHERING
+         {
+            iBonus = iBonus + Send(i,@GetGatheringBonus);
+         }
+      } 
+
+      if cSkillAbility <> $
+      {
+         iAmount = Random(cSkillAbility / 10,cSkillAbility / 5);
+         iAmount = Bound(iAmount,1,$);
+         iAmount = iAmount+iBonus;
+         oResource = Create(vcResource,#number=iAmount);
+
+         if what <> $ AND IsClass(what,&player) AND Random(1, (150 - cSkillAbility)) <= cSkillAbility
+         {
+            iAmount = 1;
+
+            if IsClass(oResource, &NumberItem)
+            {
+               iAmount = Send(oResource,@GetNumber);
+            }
+            
+            Send(what,@NewHold,#what=oResource);
+            Send(what,@MsgSendUser,#message_rsc=Gathered_rsc,#parm1=iAmount,#parm2=Send(oResource,@GetName));
+         }
+      }
+
+      propagate;
+   }
+
+   CanMorphTo()
+   {
+      return FALSE;
+   }
+
+   GetMinimapDotFlags()
+   {
+      // Special item, add minimap dot.
+      return MM_RARE_ITEM;
+   }
+   
+end
+////////////////////////////////////////////////////////////////////////////////

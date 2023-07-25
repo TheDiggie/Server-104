@@ -192,6 +192,13 @@ messages:
             iPercent = Send(oSkill,@GetAbility,#who=who);
             iRatio = Send(oSkill,@GetMeditateRatio);
 
+            if iRatio = 0
+            { 
+               Send(who,@MsgSendUser,#message_rsc=Meditate_cast_failure);
+
+               return;
+            }
+            
             if iPercent = 99
             {
                Send(who,@MsgSendUser,#message_rsc=Meditate_maxed_skill,

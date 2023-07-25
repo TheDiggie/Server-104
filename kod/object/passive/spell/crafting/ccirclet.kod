@@ -1,0 +1,54 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CraftCirclet is Crafting
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   CraftCirclet_name_rsc = "craft circlet"
+   CraftCirclet_icon_rsc = icraftcirclet.bgf
+   CraftCirclet_desc_rsc = \
+      "Craft a circlet from jewl of froz and iron ingots. "
+
+   CraftCirclet_sound = kraanan.ogg
+
+classvars:
+
+   vrName = CraftCirclet_name_rsc
+   vrIcon = CraftCirclet_icon_rsc
+   vrDesc = CraftCirclet_desc_rsc
+
+   viSpell_num = SID_CRAFTCIRCLET
+   viSpell_level = 4
+   viSpellExertion = 15
+
+   vrGear   = &Circlet
+   voTool   = &BlackSmithsHammer
+   viBench  = &GoadsAnvil
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&Ruby,10],plReagents);
+      plReagents = Cons([&IronIngot,20],plReagents);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -29,9 +29,11 @@ classvars:
    vrIcon = NeruditeOreChunk_icon_rsc
 
    viValue_average = 1500
-   viWeight = 300
-   viBulk = 300
 
+   viWeight        = 300
+   viBulk          = 300
+   viRefined       = &NeruditeIngot
+   viRefinedAt     = &KocatanForge
 
 properties:  
 

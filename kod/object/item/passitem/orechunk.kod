@@ -29,9 +29,10 @@ classvars:
    vrIcon = OreChunk_icon_rsc
 
    viValue_average = 1000
-   viWeight = 600
-   viBulk = 600
-
+   viWeight = 200
+   viBulk = 200
+   viRefined       = &IronIngot
+   viRefinedAt     = &Forge
 
 properties:  
 

@@ -91,6 +91,9 @@ messages:
       send(self,@NewHold,#what=Create(&DynamicLight,#iColor=LIGHT_FIRE,#iIntensity=30),
            #new_row=4,#new_col=7,#fine_row=16,#fine_col=32);
 
+      Send(self,@NewHold,#what=Create(&ShaveHorse),
+            #new_row=4,#new_col=3,#fine_row=45,#fine_col=52);
+            
       propagate;
    }
 

@@ -1,0 +1,37 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Smelting is Refine
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Smelting_name_rsc = "smelting"
+   Smelting_icon_rsc = ismelting.bgf
+
+   SmeltingHide_sound = kraanan.ogg
+
+classvars:
+
+   vrName = Smelting_name_rsc
+   vrIcon = Smelting_icon_rsc
+
+   viSpell_num       = SID_SMELTING
+   viBench           = &Forge
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,25 @@
+////////////////////////////////////////////////////////////////////////////////
+KocatanTanningRack is CraftingBench
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   KocatanTanningRack_name_rsc = "Ko'catan tanning rack"
+   KocatanTanningRack_icon_rsc = tanrack.bgf
+   KocatanTanningRack_desc_rsc = "A wooden rack for tanning kriipa hides into leather."
+
+classvars:
+
+   vrName = KocatanTanningRack_name_rsc
+   vrIcon = KocatanTanningRack_icon_rsc
+   vrDesc = KocatanTanningRack_desc_rsc
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

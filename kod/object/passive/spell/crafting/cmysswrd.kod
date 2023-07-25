@@ -1,0 +1,55 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CraftMysticSword is Crafting
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   CraftMysticSword_name_rsc = "craft mystic sword"
+   CraftMysticSword_icon_rsc = icraftmyssword.bgf
+   CraftMysticSword_desc_rsc = \
+      "Craft a mystic sword from wood and iron ingots. "
+
+   CraftMysticSword_sound = kraanan.ogg
+
+classvars:
+
+   vrName = CraftMysticSword_name_rsc
+   vrIcon = CraftMysticSword_icon_rsc
+   vrDesc = CraftMysticSword_desc_rsc
+
+   viSpell_num = SID_CRAFTMYSTICSWORD
+   viSpell_level = 5
+   viSpellExertion = 15
+
+   vrGear = &MysticSword
+   voTool = &BlackSmithsHammer
+   viBench  = &CraftingAnvil
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&IronIngot,25],plReagents);
+      plReagents = Cons([&Lumber,5],plReagents);
+      plReagents = Cons([&Leather,5],plReagents);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,25 @@
+////////////////////////////////////////////////////////////////////////////////
+Forge is CraftingBench
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Forge_name_rsc = "smelting forge"
+   Forge_icon_rsc = forge.bgf
+   Forge_desc_rsc = "This forge is used to smelt metals."
+
+classvars:
+
+   vrName = Forge_name_rsc
+   vrIcon = Forge_icon_rsc
+   vrDesc = Forge_desc_rsc
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

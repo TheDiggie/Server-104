@@ -1,0 +1,40 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+UncutVein is Ore
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   UncutVein_name_rsc = "uncut vein"
+   UncutVein_icon_rsc = uncutvein.bgf
+   UncutVein_desc_rsc = \
+      "A giant hunk of rock, possibly containing usefull ore. "
+
+classvars:
+
+   vrName = UncutVein_name_rsc
+   vrIcon = UncutVein_icon_rsc
+   vrDesc = UncutVein_desc_rsc
+
+   viTreasure_type = TID_UNCUT
+   viDifficulty = 30
+   
+   vcResource = &UncutSeraphym
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

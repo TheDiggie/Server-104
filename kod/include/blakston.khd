@@ -743,10 +743,11 @@
    RID_GUILDH13 = 713
    RID_GUILDH14 = 714
    RID_GUILDH15 = 715
+   RID_GUILDH16 = 716
 
    // Keep these up to date!
    RID_GUILDH_MIN = 701
-   RID_GUILDH_MAX = 715
+   RID_GUILDH_MAX = 716
 
    RID_ICE_CAVE1 = 750
 
@@ -1575,7 +1576,6 @@
    MOB_KARMA_AG         = 0x04000   // Wont attack players of like karma
    MOB_FULL_TALK        = 0x08000   // Isnt affected by the say ranges
    MOB_COND_SELLER      = 0x10000   // Has things that must be asked for
-   MOB_SHOP             = 0x20000
 
    MOB_LAWFUL           = 0x40000   // Won't publicly do business with murderers
    MOB_VAULTMAN         = 0x80000   // Can be a vaultkeeper (set Vault ID!!!)
@@ -1804,7 +1804,24 @@
    TID_MINOTAUR = 79
    TID_KNIGHT = 80
    TID_OGRE = 81
-   
+
+   //Ore
+   TID_QORCITE = 82
+   TID_RUBY = 83
+   TID_SAPPHIRE = 84
+   TID_DIAMOND = 85
+   TID_UNCUT = 86
+   TID_EMERALD = 87
+   TID_ORE = 88
+   TID_NERUORE = 89
+
+   //Resources
+   TID_RESTREE = 90
+   TID_DENSETREE = 91
+   TID_RESPLANT = 92
+
+   TID_TROLL = 93
+
    // English articles
 
    ARTICLE_NONE = 0
@@ -1880,6 +1897,7 @@
    IA_MADE_TRANSCENDANT    = 20
    IA_DM_CREATED           = 21
    IA_XP_KILL_BONUS        = 22
+   IA_CRAFTED              = 23
 
    // Weapon Attributes.  These are attributes only applied to weapons.
    WA_TRAINING             = 51
@@ -2027,6 +2045,11 @@
    SKID_SECOND_WIND = 405
    SKID_DISARM = 406
 
+   //Crafting Skills
+   SKID_MINING = 407
+   SKID_LOGGING = 408
+   SKID_GATHERING = 409
+
    // Melee weapon strokes start here.
    SKID_DEFAULT = 420
    SKID_SLASH = 421
@@ -2051,6 +2074,7 @@
    SKID_PROFICIENCY_SHORT_SWORD = 457
    // Duplicate, for the easily confused.
    SKID_PROFICIENCY_SHORTSWORD = 457
+
 
    // Unique spell constants
 
@@ -2244,6 +2268,39 @@
    
    SID_VAULT_LOADOUT = 200
    
+   //Crafting
+   SID_CRAFTMACE           = 210
+   SID_CRAFTAXE            = 211
+   SID_CRAFTHAMMER         = 212
+   SID_CRAFTCHAINARMOR     = 213
+   SID_CRAFTIVYCIRCLET     = 214
+   SID_CRAFTLEATHERARMOR   = 215
+   SID_CRAFTNERUDITESWORD  = 216
+   SID_CRAFTSHORTSWORD     = 217
+   SID_CRAFTSMALLSHIELD    = 218
+   SID_CRAFTBATTLEBOW      = 219
+   SID_CRAFTNERUDITESHIELD = 220
+   SID_CRAFTGOLDSHIELD     = 221
+   SID_CRAFTGAUNTLETS      = 222
+   SID_CRAFTHELMET         = 223
+   SID_CRAFTCIRCLET        = 224
+   SID_CRAFTSCALEARMOR     = 225
+   SID_CRAFTLONGBOW        = 226
+   SID_CRAFTNERUDITEARMOR  = 227
+   SID_CRAFTKNIGHTSHIELD   = 228
+   SID_CRAFTMYSTICSWORD    = 229
+   SID_CRAFTPLATEARMOR     = 230
+   SID_CRAFTDAEMONHELM     = 231
+   SID_CRAFTGUILDSHIELD    = 232
+   SID_CRAFTSCIMITAR       = 233
+   SID_CRAFTLONGSWORD      = 234
+   SID_CRAFTAPPAREL        = 235
+   SID_CRAFTMAGICROBES     = 236
+   SID_SMELTING            = 237
+   SID_HEWING              = 238
+   SID_TANNING             = 239
+   SID_SPINNING            = 240
+
    // Depreciated spell IDs
    SID_LIGHTNING = 1                   // use SID_LIGHTNING_BOLT
    SID_NIGHTVISION = 4                 // use SID_NIGHT_VISION
@@ -2274,7 +2331,6 @@
    SID_MANA_BOON =    196
    SID_HP_BOON =      197
    SID_VIGOR_BOON =      198
-   SID_WOLFPACK = 199
    // No sids above 400 to keep spell IDs unique from skill IDs!
 
    // Stats
@@ -2309,6 +2365,7 @@
    SS_RIIJA = 5
    SS_JALA = 6
    SS_DM_COMMAND = 7
+   SS_CRAFTING    = 8
 
    // We may use skill an spell schools in the same routines, thus no overlap.
    SKS_FENCING = 10

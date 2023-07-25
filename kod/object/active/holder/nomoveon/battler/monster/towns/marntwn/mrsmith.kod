@@ -88,11 +88,19 @@ messages:
             Create(&MetalShield),
             Create(&Axe),
             Create(&Shortsword),
-            Create(&Mace)
+            Create(&Mace),
+            Create(&BlacksmithsHammer),
+            Create(&Sickle),
+            Create(&CuttingAxe)
          ],
          $,
          [
-            SID_MEND
+            SID_MEND,
+            SID_CRAFTHAMMER,
+            SID_CRAFTAXE,
+            SID_CRAFTLONGSWORD,
+            SID_CRAFTCHAINARMOR,
+            SID_CRAFTGOLDSHIELD
          ],
       $];
 

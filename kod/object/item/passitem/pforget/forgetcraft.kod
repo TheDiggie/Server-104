@@ -1,0 +1,53 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+ForgetPotionCrafting is ForgetPotion
+
+constants:
+
+   MESSAGE_DELAY = 3000    /// three seconds
+
+   include blakston.khd
+
+resources:
+
+   ForgetPotionCrafting_desc_rsc = \
+      "Drinking this potion causes one to forget all crafting skills that he or she "
+      "possesses."
+
+   ForgetPotionCrafting_forget_skill = "The art of crafting slips from your mind!"
+
+classvars:
+
+   vrDesc = ForgetPotionCrafting_desc_rsc
+   viForget_school = SS_CRAFTING
+
+properties:
+
+messages:
+
+   QuaffTimer()
+   {
+
+      // Delete all skills!
+      Send(poApply_target,@RemoveSkill,#num=SKID_MINING);
+      Send(poApply_target,@RemoveSkill,#num=SKID_LOGGING);
+      Send(poApply_target,@RemoveSkill,#num=SKID_GATHERING);
+
+      Send(poApply_target,@MsgSendUser,
+            #message_rsc=ForgetPotionCrafting_forget_skill);
+
+      Send(self,@Delete);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

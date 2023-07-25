@@ -1,0 +1,47 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+TrollHide is Reagent
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   TrollHide_name_rsc = "troll hide"
+   TrollHide_icon_rsc = TrollHide.bgf
+   TrollHide_desc_rsc = \
+      "Thick hide of a fearsome troll. "
+   TrollHide_name_plural_rsc = "troll hides"
+
+classvars:
+
+   vrName = TrollHide_name_rsc
+   vrName_plural = TrollHide_name_plural_rsc
+   vrIcon = TrollHide_icon_rsc
+   vrDesc = TrollHide_desc_rsc
+
+   viBulk = 1
+   viWeight = 1
+   viValue_average = 100
+
+   viItem_type    = ITEMTYPE_REAGENT
+   viRefined      = &Leather
+   viRefinedAt    = &TanningRack
+
+properties:
+
+   piNumber = 5
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

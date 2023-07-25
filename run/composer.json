@@ -1,0 +1,13 @@
+{
+    "require": {
+        "bestnetwork/telnet": "*",
+        "larapack/dd": "^1.1",
+        "graze/telnet-client": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {"App\\": "app/"},
+        "files": [
+            "app/helpers.php"
+        ]
+    }
+}

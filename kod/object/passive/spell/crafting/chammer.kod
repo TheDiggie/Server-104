@@ -1,0 +1,54 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CraftHammer is Crafting
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   CraftHammer_name_rsc = "craft hammer"
+   CraftHammer_icon_rsc = icraftham.bgf
+   CraftHammer_desc_rsc = \
+      "Craft a hammer from wood and iron ingots. "
+
+   CraftHammer_sound = kraanan.ogg
+
+classvars:
+
+   vrName = CraftHammer_name_rsc
+   vrIcon = CraftHammer_icon_rsc
+   vrDesc = CraftHammer_desc_rsc
+
+   viSpell_num = SID_CRAFTHAMMER
+   viSpell_level = 3
+   viSpellExertion = 15
+
+   vrGear = &Hammer
+   voTool = &BlackSmithsHammer
+   viBench  = &CraftingAnvil
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&IronIngot,20],plReagents);
+      plReagents = Cons([&Lumber,5],plReagents);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

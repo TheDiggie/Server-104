@@ -1,0 +1,49 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+RawSilk is Reagent
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   RawSilk_name_rsc = "raw silk"
+   RawSilk_icon_rsc = RawSilk.bgf
+   RawSilk_desc_rsc = \
+      "A bundle of raw silk ready to be spun into thread. "
+   RawSilk_name_plural_rsc = "raw silk"
+
+classvars:
+
+   vrName = RawSilk_name_rsc
+   vrName_plural = RawSilk_name_plural_rsc
+   vrIcon = RawSilk_icon_rsc
+   vrDesc = RawSilk_desc_rsc
+
+   viBulk = 1
+   viWeight = 1
+   viValue_average = 100
+
+   viItem_type = ITEMTYPE_REAGENT
+
+   viGround_group = 2
+   viRefined      = &SilkThread
+   viRefinedAt    = &SpinningWheel
+
+properties:
+
+   piNumber = 5
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

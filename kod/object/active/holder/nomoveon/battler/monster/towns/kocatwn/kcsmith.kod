@@ -104,9 +104,17 @@ messages:
             Create(&GoldShield),
             Create(&NeruditeSword),
             Create(&Axe),
-            Create(&Hammer)
+            Create(&Hammer),
+            Create(&PickAxe),
+            Create(&BlacksmithsHammer)
          ],
-      $,$,$];
+         $,
+         [
+            SID_CRAFTNERUDITEARMOR,
+            SID_CRAFTNERUDITESHIELD,
+            SID_CRAFTNERUDITESWORD
+         ],
+         $];
 
       return;
    }

@@ -79,8 +79,7 @@ messages:
       local lObjCoords1;
 
       lObjCoords1 = [ [09,09,48,32,OO_JUG], [03,03,24,56,OO_JUG],
-                      [04,05,56,32,OO_anvil],
-                      [06,03,56,32,OO_bluejug], [12,07,16,24,OO_barrel2]
+                      [04,05,56,32,OO_anvil], [12,07,16,24,OO_barrel2]
                     ];
 
       Send(self,@CreateOrnObjFromList,#lObjlist=lObjCoords1);
@@ -93,7 +92,12 @@ messages:
       Send(self,@NewHold,#what=Create(&DynamicLight,
             #iColor=LIGHT_ORANGE,#iIntensity=50),
             #new_row=6,#new_col=6,#fine_row=0,#fine_col=0);
-
+      Send(self,@NewHold,#what=Create(&KocatanForge),
+            #new_row=6,#new_col=7,#fine_row=0,#fine_col=51,
+            #new_angle=ANGLE_EAST);
+      Send(self,@NewHold,#what=Create(&KocatanAnvil),
+            #new_row=6,#new_col=3,#fine_row=56,#fine_col=32,
+            #new_angle=ANGLE_EAST);
       propagate;
    }
 
