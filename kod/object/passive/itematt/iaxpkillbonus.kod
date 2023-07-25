@@ -42,7 +42,7 @@ classvars:
    vrName = itematt_xpkillbonus_name
    vrDesc = itematt_xpkillbonus_desc
    vrInfoDesc = xpkillbonus_info_desc
-   viDefault_bonus = 25
+   viDefault_bonus = 10
    viDifficulty = 1
    vrDM_Trigger = xpkillbonus_DM
 

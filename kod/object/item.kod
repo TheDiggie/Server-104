@@ -149,6 +149,8 @@ properties:
    pbColored = FALSE
    piSpecial = $
 
+   piIndestructible = FALSE
+
    viMiningBonus     = 0
    viGatheringBonus  = 0
    viLoggingBonus    = 0
@@ -1297,6 +1299,11 @@ messages:
 
    DefendingHit(who = $,what = $)
    {
+      if piIndestructible = TRUE
+      {
+         return;
+      }
+
       // Set to 75// currently
       if Random(1,100) < ARMOR_TAKE_DAMAGE_PCT
       {
@@ -2704,5 +2711,12 @@ messages:
       return viRefinedAt;
    }
    
+   SetIndestructible()
+   {
+      piIndestructible = TRUE;
+
+      return;
+   }
+
 end
 ////////////////////////////////////////////////////////////////////////////////
