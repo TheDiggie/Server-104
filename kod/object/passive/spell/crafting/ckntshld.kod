@@ -19,7 +19,8 @@ resources:
    CraftKnightShield_name_rsc = "craft knight's shield"
    CraftKnightShield_icon_rsc = icraftknightshld.bgf
    CraftKnightShield_desc_rsc = \
-      "Craft a knight's shield from wood, leather, and iron ingots. "
+      "Craft a knight's at a anvil with a blacksmith's hammer. "
+      "Requires 20 iron ingots, 5 lumber and 5 leather. "
 
    CraftKnightShield_sound = kraanan.ogg
 

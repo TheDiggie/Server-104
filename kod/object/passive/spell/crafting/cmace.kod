@@ -19,7 +19,8 @@ resources:
    CraftMace_name_rsc = "craft mace"
    CraftMace_icon_rsc = icraftmace.bgf
    CraftMace_desc_rsc = \
-      "Craft a mace from wood and iron ingots. "
+      "Craft a mace at a anvil with a blacksmith's hammer. "
+      "Requires 10 iron ingots and 2 lumber. "
 
    CraftMace_sound = kraanan.ogg
 

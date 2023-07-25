@@ -19,7 +19,8 @@ resources:
    CraftAxe_name_rsc = "craft axe"
    CraftAxe_icon_rsc = icraftaxe.bgf
    CraftAxe_desc_rsc = \
-      "Craft a axe from wood and iron ingots. "
+      "Craft a axe at a anvil with a blacksmith's hammer. "
+      "Requires 10 iron ingots and 5 lumber. "
 
    CraftAxe_sound = kraanan.ogg
 

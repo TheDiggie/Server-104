@@ -19,7 +19,8 @@ resources:
    CraftNeruditeSword_name_rsc = "craft nerudite sword"
    CraftNeruditeSword_icon_rsc = icraftnerusword.bgf
    CraftNeruditeSword_desc_rsc = \
-      "Craft a nerudite sword from dense wood and nerudite ingots. "
+      "Craft a nerudite sword at a ko'catan anvil with a blacksmith's hammer. "
+      "Requires 15 nerudite ingots, 5 dense lumber and 5 kriipa leather. "
 
    CraftNeruditeSword_sound = kraanan.ogg
 

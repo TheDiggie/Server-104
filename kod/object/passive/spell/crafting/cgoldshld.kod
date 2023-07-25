@@ -19,7 +19,8 @@ resources:
    CraftGoldShield_name_rsc = "craft gold shield"
    CraftGoldShield_icon_rsc = icraftgoldshld.bgf
    CraftGoldShield_desc_rsc = \
-      "Craft a gold shield from wood, leather, and iron ingots. "
+      "Craft a gold shield at a anvil with a blacksmith's hammer. "
+      "Requires 10 iron ingots and 5 lumber. "
 
    CraftGoldShield_sound = kraanan.ogg
 

@@ -19,7 +19,8 @@ resources:
    CraftGuildShield_name_rsc = "craft herald shield"
    CraftGuildShield_icon_rsc = icraftgldshld.bgf
    CraftGuildShield_desc_rsc = \
-      "Craft a herald shield from wood, leather, and a lot iron ingots. "
+      "Craft a herald shield at a anvil with a blacksmith's hammer. "
+      "Requires 35 iron ingots, 15 lumber and 10 leather. "
 
    CraftGuildShield_sound = kraanan.ogg
 

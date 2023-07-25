@@ -19,7 +19,8 @@ resources:
    CraftDaemonHelm_name_rsc = "craft daemon helm"
    CraftDaemonHelm_icon_rsc = icraftdaemhelm.bgf
    CraftDaemonHelm_desc_rsc = \
-      "Craft a daemon helm from wood, leather, and iron ingots. "
+      "Craft a daemon at goad's anvil with a blacksmith's hammer. "
+      "Requires 15 iron ingots and 20 leather. "
 
    CraftDaemonHelmet_sound = kraanan.ogg
 

@@ -19,7 +19,8 @@ resources:
    CraftLongSword_name_rsc = "craft long sword"
    CraftLongSword_icon_rsc = icraftlongsword.bgf
    CraftLongSword_desc_rsc = \
-      "Craft a long sword from wood and iron ingots. "
+      "Craft a long sword at a anvil with a blacksmith's hammer. "
+      "Requires 20 iron ingots and 5 lumber. "
 
    CraftLongSword_sound = kraanan.ogg
 

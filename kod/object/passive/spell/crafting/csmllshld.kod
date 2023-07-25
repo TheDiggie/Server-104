@@ -19,7 +19,8 @@ resources:
    CraftSmallShield_name_rsc = "craft small round shield"
    CraftSmallShield_icon_rsc = icraftsmallshld.bgf
    CraftSmallShield_desc_rsc = \
-      "Craft a small round shield from wood, leather, and iron ingots. "
+      "Craft a small round shield at a anvil with a blacksmith's hammer. "
+      "Requires 5 iron ingots, 10 lumber and 5 leather. "
 
    CraftSmallShield_sound = kraanan.ogg
 

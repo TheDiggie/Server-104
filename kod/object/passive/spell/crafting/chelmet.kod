@@ -19,7 +19,8 @@ resources:
    CraftHelmet_name_rsc = "craft helmet"
    CraftHelmet_icon_rsc = icrafthelm.bgf
    CraftHelmet_desc_rsc = \
-      "Craft a helmet from leather and iron ingots. "
+      "Craft a helmet at a anvil with a blacksmith's hammer. "
+      "Requires 15 iron ingots and 10 leather. "
 
    CraftHelmet_sound = kraanan.ogg
 

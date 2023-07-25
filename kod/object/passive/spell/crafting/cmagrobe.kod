@@ -19,8 +19,9 @@ resources:
    CraftMagicRobes_name_rsc = "craft magic robes"
    CraftMagicRobes_icon_rsc = icraftmagicrobe.bgf
    CraftMagicRobes_desc_rsc = \
-      "Craft robes of disciple of a chosen school from a lot of silk thread. "
+      "Craft robes of disciple of a chosen school at a loom. "
       "When crafting say the name of the school you want to empower to the robe.  "
+      "Requires 250 silk thread. "
 
    CraftMagicRobes_sound = kraanan.ogg
 

@@ -19,7 +19,8 @@ resources:
    CraftScimitar_name_rsc = "craft scimitar"
    CraftScimitar_icon_rsc = icraftscim.bgf
    CraftScimitar_desc_rsc = \
-      "Craft a scimitar from wood and iron ingots. "
+      "Craft a scimitar at a anvil with a blacksmith's hammer. "
+      "Requires 30 iron ingots, 5 lumber and 5 leather. "
 
    CraftScimitar_sound = kraanan.ogg
 

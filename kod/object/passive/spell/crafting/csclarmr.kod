@@ -19,7 +19,8 @@ resources:
    CraftScaleArmor_name_rsc = "craft scale armor"
    CraftScaleArmor_icon_rsc = icraftscalea.bgf
    CraftScaleArmor_desc_rsc = \
-      "Craft a scale armor from leather and iron ingots. "
+      "Craft a scale armor at a anvil. "
+      "Requires 30 iron ingots, 15 leather and 10 silk thread. "
 
    CraftScaleArmor_sound = kraanan.ogg
 

@@ -19,7 +19,8 @@ resources:
    CraftLeatherArmor_name_rsc = "craft leather armor"
    CraftLeatherArmor_icon_rsc = icraftleatha.bgf
    CraftLeatherArmor_desc_rsc = \
-      "Craft a leather armor from leather and silk thread. "
+      "Craft a leather armor from leather. "
+      "Requires 20 leather and 5 silk threads. "
 
    CraftLeatherArmor_sound = kraanan.ogg
 

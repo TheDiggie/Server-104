@@ -19,7 +19,8 @@ resources:
    CraftApparel_name_rsc = "craft apparel"
    CraftApparel_icon_rsc = icraftapparel.bgf
    CraftApparel_desc_rsc = \
-      "Craft several different garments from silk thread. "
+      "Craft several different garments at a loom. "
+      "Requires 50 silk threads. "
 
    CraftApparel_sound = kraanan.ogg
 

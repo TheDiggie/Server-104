@@ -19,7 +19,8 @@ resources:
    CraftChainArmor_name_rsc = "craft chain armor"
    CraftChainArmor_icon_rsc = icraftchaina.bgf
    CraftChainArmor_desc_rsc = \
-      "Craft a chain armor from wood, leather, and iron ingots. "
+      "Craft chain armor at a anvil with a blacksmith's hammer. "
+      "Requires 10 iron ingots and 15 leather. "
 
    CraftChainArmor_sound = kraanan.ogg
 

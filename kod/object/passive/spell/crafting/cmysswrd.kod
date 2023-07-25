@@ -19,7 +19,8 @@ resources:
    CraftMysticSword_name_rsc = "craft mystic sword"
    CraftMysticSword_icon_rsc = icraftmyssword.bgf
    CraftMysticSword_desc_rsc = \
-      "Craft a mystic sword from wood and iron ingots. "
+      "Craft a mystic sword at a anvil with a blacksmith's hammer. "
+      "Requires 25 iron ingots, 5 lumber and 5 leather. "
 
    CraftMysticSword_sound = kraanan.ogg
 

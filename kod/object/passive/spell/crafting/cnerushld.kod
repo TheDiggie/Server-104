@@ -19,7 +19,8 @@ resources:
    CraftNeruditeShield_name_rsc = "craft nerudite shield"
    CraftNeruditeShield_icon_rsc = icraftnerushld.bgf
    CraftNeruditeShield_desc_rsc = \
-      "Craft a nerudite shield from dense wood, kriipa leather, and nerudite ingots. "
+      "Craft a nerudite shield at a ko'catan anvil with a blacksmith's hammer. "
+      "Requires 20 nerudite ingots, 10 dense lumber and 10 kriipa leather. "
 
    CraftNeruditeShield_sound = kraanan.ogg
 

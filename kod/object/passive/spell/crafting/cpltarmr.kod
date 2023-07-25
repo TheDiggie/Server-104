@@ -19,7 +19,8 @@ resources:
    CraftPlateArmor_name_rsc = "craft plate armor"
    CraftPlateArmor_icon_rsc = icraftplatea.bgf
    CraftPlateArmor_desc_rsc = \
-      "Craft a plate armor from wood, leather. and iron ingots. "
+      "Craft a plate armor at a anvil with a blacksmith's hammer. "
+      "Requires 40 iron ingots and 15 leather. "
 
    CraftPlateArmor_sound = kraanan.ogg
 

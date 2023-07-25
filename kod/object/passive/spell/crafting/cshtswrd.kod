@@ -19,7 +19,8 @@ resources:
    CraftShortSword_name_rsc = "craft short sword"
    CraftShortSword_icon_rsc = icraftshortsword.bgf
    CraftShortSword_desc_rsc = \
-      "Craft a short sword from wood and iron ingots. "
+      "Craft a short sword at a anvil with a blacksmith's hammer. "
+      "Requires 10 iron ingots and 5 lumber. "
 
    CraftShortSword_sound = kraanan.ogg
 

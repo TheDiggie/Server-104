@@ -19,7 +19,8 @@ resources:
    CraftHammer_name_rsc = "craft hammer"
    CraftHammer_icon_rsc = icraftham.bgf
    CraftHammer_desc_rsc = \
-      "Craft a hammer from wood and iron ingots. "
+      "Craft a hammer at a anvil with a blacksmith's hammer. "
+      "Requires 20 iron ingots and 5 lumber. "
 
    CraftHammer_sound = kraanan.ogg
 

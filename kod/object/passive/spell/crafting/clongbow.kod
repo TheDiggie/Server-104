@@ -19,7 +19,8 @@ resources:
    CraftLongBow_name_rsc = "craft long bow"
    CraftLongBow_icon_rsc = icraftlbow.bgf
    CraftLongBow_desc_rsc = \
-      "Craft a long bow from dense wood and silk thread. "
+      "Craft a long bow at a shavehorse with a draw knife. "
+      "Requires 30 dense lumber and 15 silk threads. "
 
    CraftLongBow_sound = kraanan.ogg
 

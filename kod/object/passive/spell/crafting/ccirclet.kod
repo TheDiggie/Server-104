@@ -19,7 +19,8 @@ resources:
    CraftCirclet_name_rsc = "craft circlet"
    CraftCirclet_icon_rsc = icraftcirclet.bgf
    CraftCirclet_desc_rsc = \
-      "Craft a circlet from jewl of froz and iron ingots. "
+      "Craft a circlet at goad's anvil with blacksmith's hammer. "
+      "Requires 10 rubys and 20 iron ingots. "
 
    CraftCirclet_sound = kraanan.ogg
 

@@ -19,7 +19,8 @@ resources:
    CraftIvyCirclet_name_rsc = "craft ivy circlet"
    CraftIvyCirclet_icon_rsc = icraftivy.bgf
    CraftIvyCirclet_desc_rsc = \
-      "Craft a ivy circlet from rainbow ferns and silk thread. "
+      "Craft a ivy circlet at a spinning wheel. "
+      "Requires 20 silk threads and 10 rainbow ferns. "
 
    CraftIvyCirclet_sound = kraanan.ogg
 

@@ -19,7 +19,8 @@ resources:
    CraftGauntlets_name_rsc = "craft gauntlets"
    CraftGauntlets_icon_rsc = icraftgaunt.bgf
    CraftGauntlets_desc_rsc = \
-      "Craft a gauntlets from leather and iron ingots. "
+      "Craft a gauntlets at a anvil with a blacksmith's hammer. "
+      "Requires 10 iron ingots, 5 leather and 5 silk threads. "
 
    CraftGauntlets_sound = kraanan.ogg
 

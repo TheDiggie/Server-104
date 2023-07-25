@@ -19,7 +19,8 @@ resources:
    CraftNeruditeArmor_name_rsc = "craft nerudite armor"
    CraftNeruditeArmor_icon_rsc = icraftnerua.bgf
    CraftNeruditeArmor_desc_rsc = \
-      "Craft a nerudite armor from kriipa leather and nerudite ingots."
+      "Craft a nerudite armor at a ko'catan anvil with a blacksmith's hammer. "
+      "Requires 40 nerudite ingots and 15 kriipa leather. "
 
    CraftNeruditeArmor_sound = kraanan.ogg
 
