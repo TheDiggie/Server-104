@@ -2789,7 +2789,7 @@ messages:
             {
                oSkill = Send(SYS,@FindSkillByNum,#num=i);
 
-               if (oSkill <> $ AND Send(oSkill,@OfferToNewCharacters))
+               if (oSkill <> $)
                {
                   iLevel = Send(oSkill,@GetLevel);
                   if (iLevel <= 2)

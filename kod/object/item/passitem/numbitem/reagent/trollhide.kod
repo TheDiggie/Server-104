@@ -29,8 +29,8 @@ classvars:
    vrIcon = TrollHide_icon_rsc
    vrDesc = TrollHide_desc_rsc
 
-   viBulk = 1
-   viWeight = 1
+   viBulk = 3
+   viWeight = 4
    viValue_average = 100
 
    viItem_type    = ITEMTYPE_REAGENT

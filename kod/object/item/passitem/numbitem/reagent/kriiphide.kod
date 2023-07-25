@@ -29,8 +29,8 @@ classvars:
    vrIcon = KriipaHide_icon_rsc
    vrDesc = KriipaHide_desc_rsc
 
-   viBulk = 1
-   viWeight = 1
+   viBulk = 2
+   viWeight = 3
    viValue_average = 100
 
    viItem_type    = ITEMTYPE_REAGENT

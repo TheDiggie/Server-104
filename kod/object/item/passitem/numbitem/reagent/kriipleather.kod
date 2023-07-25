@@ -29,8 +29,8 @@ classvars:
    vrIcon = KriipaLeather_icon_rsc
    vrDesc = KriipaLeather_desc_rsc
 
-   viBulk = 1
-   viWeight = 1
+   viBulk = 2
+   viWeight = 2
    viValue_average = 100
 
    viItem_type = ITEMTYPE_REAGENT

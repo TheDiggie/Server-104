@@ -29,8 +29,8 @@ classvars:
    vrIcon = NeruditeIngot_icon_rsc
    vrDesc = NeruditeIngot_desc_rsc
 
-   viBulk = 1
-   viWeight = 1
+   viBulk = 5
+   viWeight = 3
    viValue_average = 100
 
    viItem_type = ITEMTYPE_REAGENT

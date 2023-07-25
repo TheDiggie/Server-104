@@ -29,7 +29,7 @@ classvars:
    vrIcon = RawSilk_icon_rsc
    vrDesc = RawSilk_desc_rsc
 
-   viBulk = 1
+   viBulk = 3
    viWeight = 1
    viValue_average = 100
 
