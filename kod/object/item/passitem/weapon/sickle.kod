@@ -39,7 +39,7 @@ classvars:
    viWeight = 40
    viBulk = 40
    viHits_init_min = 500
-   viHits_init_max = 1000
+   viHits_init_max = 1500
 
    vrWeapon_window_overlay = Sickle_window_overlay_rsc
 
