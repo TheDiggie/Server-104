@@ -67,8 +67,8 @@ classvars:
    // Enormous monster
    viEnemyRangeBonus = 64 * 2
 
-   viBonusXP = 5000
-   viBonusTP = 100
+   viBonusXP = 0
+   viBonusTP = 0
 
    viHoldDurationMax = 28000  // Milliseconds.
    viHoldDurationMin = 17000  // Milliseconds.

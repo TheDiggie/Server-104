@@ -78,7 +78,7 @@ classvars:
    vrSound_aware = thrasher_sound_aware
    vrSound_death = thrasher_sound_death
 
-   viBonusXP = 700
+   viBonusXP = 0
 
 properties:
 

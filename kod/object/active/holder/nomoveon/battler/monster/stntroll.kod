@@ -68,8 +68,8 @@ classvars:
 
    viDead_drawfx = DRAWFX_SECONDTRANS
 
-   viBonusXP = 500
-   viBonusTP = 1
+   viBonusXP = 0
+   viBonusTP = 0
 
 properties:
 

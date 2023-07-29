@@ -70,8 +70,8 @@ classvars:
 
    vrHeadIcon = mimic_head
 
-   viBonusXP = 1000
-   viBonusTP = 20
+   viBonusXP = 0
+   viBonusTP = 0
 
 properties:
 

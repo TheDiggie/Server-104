@@ -98,8 +98,8 @@ classvars:
    viHoldDurationMax = 28000  // Milliseconds.
    viHoldDurationMin = 17000  // Milliseconds.
 
-   viBonusXP = 2000
-   viBonusTP = 10
+   viBonusXP = 0
+   viBonusTP = 0
 
 properties:
 
