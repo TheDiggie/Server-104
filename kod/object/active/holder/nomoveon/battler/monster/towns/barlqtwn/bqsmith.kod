@@ -83,7 +83,8 @@ messages:
             SID_MAGICSHIELD,
             SID_SMELTING,
             SID_CRAFTPLATEARMOR,
-            SID_CRAFTGUILDSHIELD
+            SID_CRAFTGUILDSHIELD,
+            SID_TANNING
          ],
       $];
 

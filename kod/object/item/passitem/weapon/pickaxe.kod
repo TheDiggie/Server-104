@@ -35,7 +35,7 @@ classvars:
 
    viProficiency_Needed = SKID_MINING
 
-   viValue_average = 100
+   viValue_average = 5000
    viWeight = 60
    viBulk = 60
    viHits_init_min = 500

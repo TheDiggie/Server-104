@@ -294,7 +294,7 @@ properties:
    pbCanUserRemoveOwnPosts = TRUE
 
    // How many rods can be picked up at one time.
-   piRodMax = 4
+   piRodMax = 5
 
    // Do safe rooms recharge rods?
    pbInnsRechargeRods = TRUE
