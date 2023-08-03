@@ -838,6 +838,8 @@ resources:
       
    pvp_notify_wav = gong.ogg
 
+   cant_cast_resources = "You cannot cast on resources!"
+   
 classvars:
 
    viHand_space = 2
@@ -4431,6 +4433,13 @@ messages:
          {
             oRoom = Send(victim,@GetOwner);
          }
+      }
+
+      if IsClass(victim,&Resource) AND IsClass(stroke_obj,&Spell)
+      {
+         Send(self,@MsgSendUser,#message_rsc=cant_cast_resources);
+
+         return FALSE;
       }
 
       // No attacking logged out players under any circumstances
