@@ -18,6 +18,8 @@ resources:
 
    Spinning_name_rsc = "spinning"
    Spinning_icon_rsc = ispinning.bgf
+   Spinning_desc_rsc = \
+      "Turn raw silk into useable threads. "
 
    SpinningHide_sound = kraanan.ogg
 

@@ -43,15 +43,15 @@ classvars:
    viTreasure_type = TID_OGRE
    viSpeed = SPEED_FAST
    viAttributes = 0
-   viLevel = 300
-   viDifficulty = 9
+   viLevel = 200
+   viDifficulty = 8
    viVisionDistance = 18
    // Attack range of 192, or 3 row/col.
    viAttackRange = 192
    viKarma = -100
    viDefault_behavior = AI_FIGHT_HYPERAGGRESSIVE | AI_FIGHT_SWITCHALOT
-   viCashmin = 5000
-   viCashmax = 10000
+   viCashmin = 2000
+   viCashmax = 6000
    vrSound_hit = ogre_sound_hit
    vrSound_miss = ogre_sound_miss
    vrSound_aware = ogre_sound_aware

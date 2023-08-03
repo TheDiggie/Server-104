@@ -18,6 +18,8 @@ resources:
 
    Smelting_name_rsc = "smelting"
    Smelting_icon_rsc = ismelting.bgf
+   Smelting_desc_rsc = \
+      "Turn ore into useable ingots. "
 
    SmeltingHide_sound = kraanan.ogg
 

@@ -18,6 +18,8 @@ resources:
 
    Tanning_name_rsc = "tanning"
    Tanning_icon_rsc = itanning.bgf
+   Tanning_desc_rsc = \
+      "Turn hides into useable leather. "
 
    TanningHide_sound = kraanan.ogg
 
