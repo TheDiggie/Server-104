@@ -24,8 +24,8 @@ resources:
    
 classvars:
 
-   viTeleport_row = 25
-   viTeleport_col = 29
+   viTeleport_row = 3
+   viTeleport_col = 21
 
    viPermanent_flags = ROOM_GUILD_PK_ONLY
    viTerrain_Type = TERRAIN_CITY | TERRAIN_ROAD | TERRAIN_BEACH
@@ -47,42 +47,52 @@ properties:
 
 messages:
 
+   CreateStandardObjects()
+   {
+      Send(self,@NewHold,#what=Create(&BoatCaptain),
+         #new_row=1,#new_col=26,#fine_row=40,#fine_col=62,#new_angle=ANGLE_NORTH);
+
+
+      propagate;
+   }
+
    CreateStandardExits()
    {
       plExits = $;
-      plExits = Cons([ 29, 27, RID_BAR_NORTH, 4, 49, ROTATE_NONE ],plExits);
-      plExits = Cons([ 29, 26, RID_BAR_NORTH, 4, 49, ROTATE_NONE ],plExits);
-      plExits = Cons([ 22, 5,  RID_GUILDH9, 9, 23, ROTATE_NONE ],plExits);
-      plExits = Cons([ 11, 55,  RID_BAR_VAULT, 3, 11, ROTATE_NONE ],plExits);
+      plExits = Cons([ 45, 27, RID_BAR_NORTH, 4, 49, ROTATE_NONE ],plExits);
+      plExits = Cons([ 45, 26, RID_BAR_NORTH, 4, 49, ROTATE_NONE ],plExits);
+      plExits = Cons([ 38, 5,  RID_GUILDH9, 9, 23, ROTATE_NONE ],plExits);
+      plExits = Cons([ 27, 55,  RID_BAR_VAULT, 3, 11, ROTATE_NONE ],plExits);
 
-      plExits = Cons([ 15,4 , ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 23,13, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 24,13, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 10,10, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 10,11, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 9,15 , ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 9,16 , ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 9,19 , ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 17,26, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 18,26, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 20,26, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 14,32, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 14,33, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 13,32, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 13,33, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 12,34, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 12,35, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 13,34, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 13,25, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 24,41, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 24,45, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 25,45, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 22,52, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 19,57, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 19,58, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 10,47, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 10,48, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 10,50, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 31,4 , ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 39,13, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 40,13, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 26,10, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 26,11, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 25,15 , ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 25,16 , ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 25,19 , ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 33,26, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 34,26, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 36,26, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 30,32, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 30,33, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 29,32, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 29,33, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 28,34, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 28,35, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 29,34, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 29,25, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 40,41, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 40,45, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 41,45, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 37,54, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 38,52, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 35,57, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 35,58, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 26,47, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 26,48, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 26,50, ROOM_LOCKED_DOOR ],plExits);
 
       propagate;
    }

@@ -1,0 +1,88 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+BoatTicket is Ticket
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   // TODO: German translation from Tyran
+   //include boatticket.lkod
+
+   boat_ticket_name_rsc = "Boat Ticket"
+   boat_ticket_icon_rsc = scr06.bgf
+   boat_ticket_desc_rsc = "This is a boat ticket to ''%s'' aboard the Seaborn Legend. To travel to your destination, offer the ticket to the Boat Captain."   
+
+classvars:
+
+   vrName = boat_ticket_name_rsc
+   vrIcon = boat_ticket_icon_rsc
+   vrDesc = boat_ticket_desc_rsc
+
+   viBulk = 1
+   viWeight = 1
+   viValue_average = 40000
+   
+properties:
+
+   pbIn_use = FALSE
+
+   poDestination = $
+   piDestination = $
+   psDestination = $
+   
+messages:
+   
+   Constructor(model=$,destination=$)
+   {
+      local iDestination;
+	  
+	  if destination <> $
+	  {
+	     iDestination = destination;
+	  }
+	  
+      if model <> $
+	  {
+	     iDestination = Send(model, @GetDestination);
+	  }
+	  
+      if iDestination <> $
+	  {
+	     piDestination = iDestination;
+		 poDestination = Send(SYS,@FindRoomByNum,#num=piDestination);
+		 psDestination = Send(poDestination, @GetName);
+	  }
+	  
+	  propagate;
+   }
+   
+   GetDestination()
+   {
+      return piDestination;
+   }
+   
+   CanBeStoredInVault()
+   {
+      return TRUE;
+   }
+
+   DoBaseDesc()
+   {
+      AddPacket(4,vrDesc, 4,psDestination);
+	  
+      return;
+   }
+   
+end
+////////////////////////////////////////////////////////////////////////////////

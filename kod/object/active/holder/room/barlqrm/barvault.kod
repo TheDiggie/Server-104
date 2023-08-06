@@ -63,8 +63,8 @@ messages:
       plExits = $;
 
       /// TO TOWN
-      plExits = Cons([ 3, 12, RID_BAR_PORT, 10, 55, ROTATE_NONE ],plExits);
-      plExits = Cons([ 2, 12, RID_BAR_PORT, 10, 55, ROTATE_NONE ],plExits);
+      plExits = Cons([ 3, 12, RID_BAR_PORT, 27, 55, ROTATE_NONE ],plExits);
+      plExits = Cons([ 2, 12, RID_BAR_PORT, 27, 55, ROTATE_NONE ],plExits);
 
       propagate;
    }

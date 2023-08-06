@@ -45,8 +45,8 @@ classvars:
    vrName = room_name_kocatansouth
    viPermanent_flags = ROOM_GUILD_PK_ONLY
 
-   viTeleport_row = 12
-   viTeleport_col = 26
+   viTeleport_row = 67
+   viTeleport_col = 36
 
    viTerrain_type = TERRAIN_CITY | TERRAIN_ROAD | TERRAIN_BEACH
 
@@ -66,6 +66,14 @@ properties:
    pbSnowGroundTexture = TRUE
 
 messages:
+
+   CreateStandardObjects()
+   {
+      Send(self,@NewHold,#what=Create(&BoatCaptain),
+         #new_row=68,#new_col=30,#fine_row=44,#fine_col=45,#new_angle=ANGLE_NORTH);
+
+      propagate;
+   }
 
    CreateStandardExits()
    {

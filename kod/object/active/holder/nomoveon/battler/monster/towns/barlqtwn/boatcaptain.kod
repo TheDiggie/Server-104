@@ -1,0 +1,174 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+BoatCaptain is BarloqueTown
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   // We'll need Tyran for German translation
+   //include boatcaptain.lkod
+
+   captain_name_rsc = "Captain of the Seaborn Legend"
+   captain_icon_rsc = captain.bgf
+   captain_desc_rsc = \
+      "If you want to travel to the land beyond, Captain of the Seaborn Legend "
+	  "charges a heavy price for such a luxurious experience."
+
+   captain_solicit_rsc = "~kCaptain of the Seaborn Legend says, ''Hey, over here! For a bargain, I can take you to the land beyond. Come aboard the Seaborn Legend.''~k"
+   
+   captain_Not_Interested = "~kCaptain of the Seaborn Legend tells you, ''~B~rIf you want to travel on my boat, you need to buy a ticket. If you're not buying a ticket, get off my boat.~B~r''~k"
+
+   captain_sold_rsc = "When you're ready to travel, offer me your ticket. Hurry up, the boat is leaving soon."
+   
+   captain_got_wanted_rsc = "~kCaptain of the Seaborn Legend tells you, ''Good luck and may Shal'ille bless you on your journey.''~k"
+
+   captain_wrong_ticket_rsc = "~kCaptain of the Seaborn Legend tells you, ''You're already at your destination. If you want to go somewhere else, buy a different ticket.''~k"
+   
+classvars:
+
+   vrName = captain_name_rsc
+   vrIcon = captain_icon_rsc
+   vrDesc = captain_desc_rsc
+
+   viAttributes = MOB_NOFIGHT | MOB_NOMOVE | MOB_SELLER | MOB_RECEIVE
+   viOccupation = MOB_ROLE_MERCHANT
+   viMerchant_markup = MERCHANT_FLAT
+
+   // Boat captain only sells boat tickets.
+   vbSellFromInventory = FALSE
+   
+   vrUnwanted_give = captain_Not_Interested
+
+properties:
+
+   plWantedItems = $
+
+messages:
+
+   //Constructor()
+   //{
+   //   // We came into existence.
+	//  Send(self,@SetForSale);
+	//  
+   //   propagate;
+   //}
+   
+   Recreate()
+   {
+      Send(self,@SetForSale);
+	  
+	  return;
+   }
+
+   UserEntered(who=$)
+   {
+      Send(self,@SetForSale);
+	  
+      // Solicite boat tickets.
+	  if who <> $ AND IsClass(who, &Player)
+	  {
+	     Send(who,@MsgSendUser,#message_rsc=captain_solicit_rsc);
+	  }
+	  
+      propagate;
+   }
+
+   Delete()
+   {
+      propagate;
+   }
+
+   SetForSale()
+   {
+      local lDestinations;
+	  
+	  // We only accept boat tickets.
+	  plWantedItems = [&BoatTicket];
+	  
+	  if poOwner <> $ AND Send(poOwner,@GetRoomNum) = RID_KOC_SOUTH
+	  {
+	     // Boat on Ko'catan sells tickets to these destinations
+	     lDestinations = [
+		    Create(&BoatTicket,#model=$,#destination=RID_BAR_PORT)
+		 ];
+	  }
+	  
+	  if poOwner <> $ AND Send(poOwner,@GetRoomNum) = RID_BAR_PORT
+	  {
+	     // Boat on Barloque Port sells tickets to these destinations
+	     lDestinations = [
+		    Create(&BoatTicket,#model=$,#destination=RID_KOC_SOUTH)
+		 ];
+	  }
+
+      plFor_sale = [ 
+         lDestinations,
+      $,$,$];
+
+      return;
+   }
+   
+   GotWantedItem(obj=$,who=$)
+   {
+      local iRoom;
+	  
+      if obj <> $ AND NOT IsClass(obj, &BoatTicket)
+	  {
+	     propagate;
+	  }
+	  
+	  iRoom = Send(poOwner,@GetRoomNum);
+
+      if iRoom = Send(obj, @GetDestination)
+      {
+	     Send(who,@MsgSendUser,#message_rsc=captain_wrong_ticket_rsc);
+		 
+		 return FALSE;
+      }
+	  
+	  propagate;
+   }
+
+   CheckWhyWanted(obj=$, who=$)
+   {
+      local oRoom;
+	  
+      if who <> $ AND obj <> $ AND IsClass(obj,&BoatTicket)
+	  {
+	     // Rescue them to the destination of the Boat Ticket.
+         oRoom = Send(SYS,@FindRoomByNum,#num=Send(obj,@GetDestination));
+
+         if oRoom <> $
+         {
+            Send(oRoom, @Teleport, #what=who);
+			Send(who, @AdminGotoBlink);
+			Send(who,@MsgSendUser,#message_rsc=captain_got_wanted_rsc);
+         }
+		 
+	     return TRUE;
+	  }
+	  
+	  propagate;
+   }
+
+   ItemBoughtHook(buyer = $)
+   {
+      Post(poOwner,@SomeoneSaid,#what=self,
+            #string=captain_sold_rsc,#type=SAY_RESOURCE);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

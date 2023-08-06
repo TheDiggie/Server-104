@@ -5886,6 +5886,8 @@ messages:
       plItemTemplates = cons(create(&DrawKnife),plItemTemplates);
       plItemTemplates = cons(create(&BlacksmithsHammer),plItemTemplates);
       
+      plItemTemplates = cons(create(&BoatTicket),plItemTemplates);
+      
       return;
    }
 
