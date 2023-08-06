@@ -5644,6 +5644,7 @@ messages:
 
       // Rings
       plItemTemplates = cons(create(&RingDefense),plItemTemplates);
+      plItemTemplates = cons(create(&RingMining),plItemTemplates);
 
       plItemTemplates = cons(create(&RingWedding),plItemTemplates);
       plItemTemplates = cons(create(&RingInvisibility),plItemTemplates);

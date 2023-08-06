@@ -65,7 +65,8 @@ classvars:
    viMerchant_Markup = MERCHANT_BARGAIN
    viAttributes = \
       MOB_NOFIGHT | MOB_NOMOVE | MOB_LISTEN | MOB_BUYER \
-         | MOB_SELLER | MOB_LISTEN_MOB | MOB_FULL_TALK
+         | MOB_SELLER | MOB_LISTEN_MOB | MOB_FULL_TALK \
+         | MOB_TEACHER
    viOccupation = MOB_ROLE_INNKEEPER
 
 properties:

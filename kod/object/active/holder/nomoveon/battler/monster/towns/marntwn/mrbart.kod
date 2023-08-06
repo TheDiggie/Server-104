@@ -51,7 +51,8 @@ classvars:
    viMerchant_markup = MERCHANT_BARGAIN
    viAttributes = \
       MOB_NOFIGHT | MOB_RECEIVE | MOB_RANDOM | MOB_LISTEN \
-      | MOB_NOMOVE | MOB_SELLER | MOB_COND_SELLER | MOB_FULL_TALK
+      | MOB_NOMOVE | MOB_SELLER | MOB_COND_SELLER | MOB_FULL_TALK \
+      | MOB_TEACHER
    viOccupation = MOB_ROLE_BARTENDER
 
    vrUnwanted_keep = tova_unwanted_keep

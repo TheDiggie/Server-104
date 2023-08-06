@@ -95,7 +95,7 @@ properties:
    piUnboundEnergyAttackDelaySec = 240
 
    // XP percent awarded, can be raised to give a bonus.
-   piXPPercent = 75
+   piXPPercent = 115
    
    // How far up the food chain can basic players learn?  See player for more
    //  specific information on what this number means.

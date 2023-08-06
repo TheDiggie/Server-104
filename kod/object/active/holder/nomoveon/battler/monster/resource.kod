@@ -86,7 +86,7 @@ messages:
 
       if cSkillAbility <> $
       {
-         iAmount = Random(cSkillAbility / 10,cSkillAbility / 5);
+         iAmount = Random(cSkillAbility / 12,cSkillAbility / 8);
          iAmount = Bound(iAmount,1,$);
          iAmount = iAmount+iBonus;
          oResource = Create(vcResource,#number=iAmount);

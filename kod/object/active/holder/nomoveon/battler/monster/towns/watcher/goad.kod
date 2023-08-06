@@ -171,7 +171,8 @@ classvars:
    viIndefinite = ARTICLE_NONE
 
    viAttributes = \
-      MOB_NOMOVE | MOB_FULL_TALK | MOB_LISTEN | MOB_NOFIGHT | MOB_NOQUEST
+      MOB_NOMOVE | MOB_FULL_TALK | MOB_LISTEN | MOB_NOFIGHT | MOB_NOQUEST \
+      | MOB_TEACHER
    viOccupation = MOB_ROLE_WATCHER
    viWatcherID = WATCHER_BRAX_ARENA
 

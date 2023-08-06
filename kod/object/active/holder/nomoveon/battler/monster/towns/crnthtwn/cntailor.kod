@@ -34,7 +34,8 @@ classvars:
    vrDesc = CornothTailor_desc_rsc
    viAttributes = \
       MOB_NOFIGHT | MOB_SELLER | MOB_RANDOM \
-      | MOB_NOMOVE | MOB_LISTEN | MOB_RECEIVE
+      | MOB_NOMOVE | MOB_LISTEN | MOB_RECEIVE \
+      | MOB_TEACHER
    viOccupation = MOB_ROLE_TAILOR
    viMerchant_markup = MERCHANT_DISCOUNT
    viGender = GENDER_FEMALE

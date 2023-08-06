@@ -47,7 +47,8 @@ classvars:
 
    viAttributes = \
       MOB_NOFIGHT | MOB_SELLER | MOB_RANDOM \
-      | MOB_LISTEN | MOB_NOMOVE | MOB_RECEIVE
+      | MOB_LISTEN | MOB_NOMOVE | MOB_RECEIVE \
+      | MOB_TEACHER
    viOccupation = MOB_ROLE_BLACKSMITH
 
    viGender = GENDER_FEMALE

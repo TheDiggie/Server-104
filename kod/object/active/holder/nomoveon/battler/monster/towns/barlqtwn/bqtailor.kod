@@ -46,7 +46,7 @@ classvars:
    viMerchant_markup = MERCHANT_EXPENSIVE
    viAttributes = \
       MOB_NOFIGHT | MOB_RANDOM | MOB_NOMOVE | MOB_LISTEN \
-      | MOB_RECEIVE | MOB_SELLER | MOB_LAWFUL
+      | MOB_RECEIVE | MOB_SELLER | MOB_LAWFUL | MOB_TEACHER
    viOccupation = MOB_ROLE_TAILOR
    viGender = GENDER_FEMALE
 
