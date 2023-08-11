@@ -85,10 +85,10 @@ properties:
    piUnboundAbsorption = 100
 
    // The permillage of unbound energy that is lost every second. 50 means 5 percent.
-   piUnboundDecay = 30
+   piUnboundDecay = 20
 
    // Delay between receiving unbound energy and decay setting in in ms.
-   piUnboundDelay = 30000
+   piUnboundDelay = 60000
 
    // Players can't absorb unbound energy from monsters while engaged in PvP or
    // a short while thereafter. Default of 4 minutes.
