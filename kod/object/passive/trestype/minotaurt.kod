@@ -34,9 +34,8 @@ messages:
                      [ &PolishedSeraphym, 20],
                      [ &InkyCap, 10],
                      [ &NeruditeShield, 5],
-                     [ &Axe, 14 ],
-                     [ &JewelofFroz, 10],
-                     [ &Weed, 1 ]
+                     [ &Axe, 15 ],
+                     [ &JewelofFroz, 10]
                    ];
       propagate;
    }
