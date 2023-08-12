@@ -53,8 +53,6 @@ classvars:
    viInner_teleport_col = 15
    viSeconds_til_close = 24
 
-   vbChestInFoyer = TRUE
-
    viTerrain_type = TERRAIN_GUILDHALL
 
 properties:

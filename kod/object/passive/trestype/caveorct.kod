@@ -42,7 +42,7 @@ messages:
                      [ &ShockRing, 3 ],
                      [ &AcidRing, 2 ],
                      [ &KnightShield, 1 ],
-                     [ &FlashScroll, 1 ]
+                     [ &Pickaxe, 1 ]
                    ];
 
       propagate;
