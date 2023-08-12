@@ -280,6 +280,12 @@ messages:
          return TRUE;
       }
 
+      if Send(what,@GetOwner) <> $
+         AND IsClass(Send(what,@GetOwner),&MinersBag)
+      {
+         return TRUE;
+      }
+
       if NOT Send(what,@ReqNewOwner,#what=self)
          OR NOT Send(self,@CanHoldWeightAndBulk,#weight=Send(what,@GetWeight),
                      #bulk=Send(what,@GetBulk))

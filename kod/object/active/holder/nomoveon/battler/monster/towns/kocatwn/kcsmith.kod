@@ -106,7 +106,8 @@ messages:
             Create(&Axe),
             Create(&Hammer),
             Create(&PickAxe),
-            Create(&BlacksmithsHammer)
+            Create(&BlacksmithsHammer),
+            Create(&MinersBag)
          ],
          $,
          [

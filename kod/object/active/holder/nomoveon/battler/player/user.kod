@@ -4782,7 +4782,7 @@ messages:
    UserGet(what = $, report = TRUE)
    {
       local oOldOwner, i, lItem_pos, iRow, iCol, iRow_dist, iCol_dist,
-            iCan_hold, oSplit, oCorpse, bFromReagentBag;
+            iCan_hold, oSplit, oCorpse, bFromReagentBag, bFromMinersBag;
 
       if Send(self,@IsInCannotInteractMode)
       {
@@ -4819,6 +4819,16 @@ messages:
          bFromReagentBag = FALSE;
       }
 
+      if oOldOwner <> $
+         AND IsClass(oOldOwner,&MinersBag)
+      {
+         bFromMinersBag = TRUE;
+      }
+      else
+      {
+         bFromMinersBag = FALSE;
+      }
+      
       // Make sure object still exists, etc, so we don't cause errors
       if Send(SYS,@UtilGetRoom,#what=what) <> poOwner
          OR IsClass(Send(what,@GetOwner),&User)
@@ -4948,7 +4958,7 @@ messages:
          Send(what,@PickedUp,#by=self);
       }
 
-      Send(self,@NewHold,#what=what,#bFromReagentBag=bFromReagentBag);
+      Send(self,@NewHold,#what=what,#bFromReagentBag=bFromReagentBag,#bFromMinersBag=bFromMinersBag);
 
       return 1;
    }
@@ -5120,6 +5130,7 @@ messages:
 
       if NOT IsClass(where,&Holder)
          AND NOT IsClass(where,&ReagentBag)
+         AND NOT IsClass(where,&MinersBag)
       {
          Send(self,@MsgSendUser,#message_rsc=user_err_put,
                #parm1=Send(what,@GetDef),#parm2=Send(what,@GetName),
@@ -5199,7 +5210,7 @@ messages:
       local i, iObjs, oThing, lHolding1, lHolding2;
 
       if (NOT IsClass(what,&Holder)
-         AND NOT IsClass(what,&ReagentBag))
+         AND NOT (IsClass(what,&ReagentBag) OR (IsClass(what,&MinersBag))))
          OR (IsClass(what,&User)
              AND NOT (what = self OR IsClass(self,&Admin)))
          OR IsClass(what,&Monster)
@@ -5248,6 +5259,11 @@ messages:
       else if IsClass(what,&ReagentBag)
       {
          lHolding1 = Send(what,@GetReagentBagContents);
+         lHolding2 = $;
+      }
+      else if IsClass(what,&MinersBag)
+      {
+         lHolding1 = Send(what,@GetMinersBagContents);
          lHolding2 = $;
       }
       else
@@ -5894,6 +5910,13 @@ messages:
 
          if IsClass(what,&ReagentBag)
             AND Send(what,@GetReagentBagContents) <> $
+         {
+            Send(self,@UserObjectContents,#what=what);
+            return;
+         }
+
+         if IsClass(what,&MinersBag)
+            AND Send(what,@GetMinersBagContents) <> $
          {
             Send(self,@UserObjectContents,#what=what);
             return;
@@ -7818,7 +7841,7 @@ messages:
       return;
    }
 
-   NewHold(what = $, bFromReagentBag = FALSE, check_combine = TRUE)
+   NewHold(what = $, bFromReagentBag = FALSE, bFromMinersBag = FALSE, check_combine = TRUE)
    {
       local i, oLastSpellItem;
 
@@ -7841,6 +7864,18 @@ messages:
       {
          Post(Send(self,@GetReagentBag),@NewHold,#what=what,
                #where=Send(self,@GetReagentBag));
+
+         return;
+      }
+      
+      if (IsClass(what,&OreChunk)
+         OR IsClass(what,&NeruditeOreChunk))
+         AND NOT bFromMinersBag
+         AND Send(self,@GetMinersBag) <> $
+         AND (piPreferences & CF_REAGENTBAG)
+      {
+         Post(Send(self,@GetMinersBag),@NewHold,#what=what,
+               #where=Send(self,@GetMinersBag));
 
          return;
       }

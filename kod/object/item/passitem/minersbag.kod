@@ -1,0 +1,268 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+MinersBag is PassiveItem
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   MinersBag_name_rsc = "miners bag"
+   MinersBag_icon_rsc = minersbag.bgf
+
+   MinersBag_desc_rsc = "This lumpy bag is magical in nature, and able to "
+   "hold large amounts of objects that themselves have inherent power."
+
+   miners_stash_in_bag = "You stash a %s in your miners bag."
+   miners_get_from_bag = "You get a %s from your miners bag."
+
+classvars:
+
+   vrName = MinersBag_name_rsc
+   vrIcon = MinersBag_icon_rsc
+   vrDesc = MinersBag_desc_rsc
+
+   viValue_average = 5000
+   viBulk_hold_max = 120000
+   viWeight_hold_max = $
+
+properties:
+
+   plOre = $
+
+   viObject_flags = OF_CONTAINER | OF_GETTABLE
+
+   piItem_Flags = PT_GRAY_TO_KORANGE
+
+messages:
+
+   Constructor(owner=$)
+   {
+      if owner <> $
+         AND IsClass(owner,&Player)
+         AND Send(owner,@GetMinersBag) = $
+      {
+         Send(owner,@NewHold,#what=self);
+      }
+
+      propagate;
+   }
+
+   Delete()
+   {
+      local i;
+
+      foreach i in plOre
+      {
+         Send(i,@Delete);
+      }
+
+      propagate;
+   }
+   
+   GetMinersBagContents()
+   {
+      return plOre;
+   }
+
+   HolderExtractObject(data=$)
+   {
+      return data;
+   }
+
+   IsHolding(what=$)
+   {
+      local i,each_obj;
+
+      foreach i in plOre
+      {
+         if what = i
+         {
+            return TRUE;
+         }
+      }
+
+      return FALSE;
+   }
+
+   GetBulk()
+   {
+      local i, iSum;
+
+      iSum = 0;
+
+      foreach i in plOre
+      {
+         iSum = iSum + Send(i,@GetBulk);
+      }
+
+      return iSum;
+   }
+
+   GetWeight()
+   {
+      local i, iSum;
+
+      iSum = 0;
+
+      foreach i in plOre
+      {
+         iSum = iSum + (Send(i,@GetWeight)/10);
+      }
+
+      return iSum;
+   }
+
+   ReqTaker(what=$,taker=$)
+   {
+      if taker <> poOwner
+      {
+         return FALSE;
+      }
+
+      Send(poOwner,@MsgSendUser,#message_rsc=miners_get_from_bag,
+            #parm1=Send(what,@GetName));
+
+      return TRUE;
+   }
+
+   ReqNewHold(what=$,who=$)
+   {
+      if who <> poOwner
+      {
+         return FALSE;
+      }
+
+      if NOT IsClass(what,&OreChunk)
+         OR NOT IsClass(what,&NeruditeOreChunk)
+      {
+         return FALSE;
+      }
+
+      return;
+   }
+
+   NewHold(what=$)
+   {
+      local i;
+
+      if what = $
+         OR what = self
+      {
+         return;
+      }
+
+      Send(poOwner,@MsgSendUser,#message_rsc=miners_stash_in_bag,
+            #parm1=Send(what,@GetName));
+
+      Send(what,@NewOwner,#what=self);
+      plOre = Cons(what,plOre);
+
+      // If our owner is a player, update the weight carried stat.
+      if poOwner <> $
+         AND IsClass(poOwner,&Player)
+      {
+         Post(poOwner,@DrawCapacity);
+      }
+
+      return;
+   }
+
+   ReqNewOwner(what=$)
+   {
+      if what <> $
+         AND IsClass(what,&Player)
+         AND Send(what,@GetMinersBag) <> $
+      {
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+   ReqLeaveHold(what=$)
+   {
+      return TRUE;
+   }
+
+   LeaveHold(what=$)
+   {
+      local i;
+
+      foreach i in plOre
+      {
+         if i = what
+         {
+            plOre = DelListElem(plOre,i);
+         }
+      }
+
+      return;
+   }
+
+   ChangeBulkAndWeight()
+   {
+      return;
+   }
+
+   SendAnimation()
+   {
+      if piItem_flags <> 0
+      {
+         AddPacket(1,ANIMATE_TRANSLATION,1,piItem_flags);
+      }
+
+      if poOwner <> $ AND IsClass(poOwner,&Room)
+      {
+         AddPacket(1,ANIMATE_NONE, 2,2);
+      }
+      else
+      {
+         AddPacket(1,ANIMATE_NONE, 2,1);
+      }
+
+      return;
+   }
+
+   CanBeGivenToNPC()
+   {
+      return FALSE;
+   }
+
+   CanSwap()
+   {
+      return FALSE;
+   }
+
+   CanShatter()
+   {
+      return FALSE;
+   }
+
+   ReqDMDelete()
+   "Keys are not deleted with the DM clear inventory command."
+   {
+      return FALSE;
+   }
+   
+   CanBeStoredInVault()
+   {
+      return FALSE;
+   }
+
+   DropOnDeath()
+   {
+      return FALSE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -138,6 +138,7 @@ resources:
    player_not_using = "You are not using that."
    player_not_holding = "You are not even holding %s%s."
    player_regbag_empty = "The reagent bag is empty."
+   player_minersbag_empty = "The miners bag is empty."
    
    player_hit_color_red = "~r"
    player_hit_color_blue = "~b"
@@ -4154,6 +4155,20 @@ messages:
          if Send(what,@GetReagentBagContents) = $
          {
             Send(self,@MsgSendUser,#message_rsc=player_regbag_empty);
+
+            return FALSE;
+         }
+
+         Send(self,@UserObjectContents,#what=what);
+
+         return TRUE;
+      }
+
+      if IsClass(what,&MinersBag)
+      {
+         if Send(what,@GetMinersBagContents) = $
+         {
+            Send(self,@MsgSendUser,#message_rsc=player_minersbag_empty);
 
             return FALSE;
          }
@@ -15117,6 +15132,24 @@ messages:
       if oBag <> $
       {
          return Send(oBag,@GetReagentBagContents);
+      }
+
+      return $;
+   }
+
+   GetMinersBag()
+   {
+      return GetListElemByClass(plPassive,&MinersBag);
+   }
+
+   GetMinersBagContents()
+   {
+      local oBag;
+
+      oBag = GetListElemByClass(plPassive,&MinersBag);
+      if oBag <> $
+      {
+         return Send(oBag,@GetMinersBagContents);
       }
 
       return $;

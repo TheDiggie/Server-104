@@ -58,7 +58,6 @@ classvars:
    vrSound_miss = slime_sound_miss
    vrSound_aware = slime_sound_aware
    vrSound_death = slime_sound_death
-   viDead_drawfx = DRAWFX_TRANSLUCENT_75
 
 properties:
 
