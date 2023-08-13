@@ -5849,13 +5849,6 @@ messages:
 
       plItemTemplates = cons(create(&ShieldRod),plItemTemplates);
       plItemTemplates = cons(create(&DamageRod),plItemTemplates);
-      plItemTemplates = cons(create(&Weed),plItemTemplates);
-      plItemTemplates = cons(create(&Weed2),plItemTemplates);
-      plItemTemplates = cons(create(&Weed3),plItemTemplates);
-      plItemTemplates = cons(create(&Weed4),plItemTemplates);
-      plItemTemplates = cons(create(&Weed5),plItemTemplates);
-      plItemTemplates = cons(create(&Weed6),plItemTemplates);
-      plItemTemplates = cons(create(&Weed7),plItemTemplates);
       plItemTemplates = cons(create(&WeaponWand),plItemTemplates);
       plItemTemplates = cons(create(&Wizardhat),plItemTemplates);
 
