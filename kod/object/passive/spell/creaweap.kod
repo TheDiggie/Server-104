@@ -44,7 +44,7 @@ classvars:
    viSchool = SS_KRAANAN
    viSpell_level = 1
    viMana = 15
-   viCast_time = 500
+   viCast_time = 5000
    viMeditate_ratio = 10
    
 
