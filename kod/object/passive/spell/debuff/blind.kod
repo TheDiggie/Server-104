@@ -133,6 +133,8 @@ messages:
             Send(oTarget,@MsgSendUser,#message_rsc=vrEnchantment_On);
             Send(oTarget,@EffectSendUser,#what=self,#effect=EFFECT_BLIND_ON);
          }
+
+         Send(oTarget,@EffectSendUserDuration,#effect=EFFECT_BLUR,#duration=iDuration+2000);
       }
       else
       {
@@ -143,7 +145,6 @@ messages:
       Send(what,@MsgSendUser,#message_rsc=vrSuccess,
             #parm1=Send(oTarget,@GetCapDef),#parm2=Send(oTarget,@GetName));
       Send(oTarget,@StartEnchantment,#what=self,#time=iDuration);
-      Send(oTarget,@EffectSendUserDuration,#effect=EFFECT_BLUR,#duration=iDuration+2000);
 
       propagate;
    }
