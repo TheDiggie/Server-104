@@ -30,7 +30,7 @@ classvars:
    viSchool          = SS_CRAFTING
    viSpell_level     = 2
    viMana            = 0
-   viSpellExertion   = 15
+   viSpellExertion   = 5
    viCast_time       = 500
    viMeditate_ratio  = 0
    viBench           = $
