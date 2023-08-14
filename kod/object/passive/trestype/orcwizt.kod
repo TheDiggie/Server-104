@@ -37,7 +37,7 @@ messages:
                      [ &LightDiscipleRobe, 25 ],
                      [ &Gauntlet, 2 ],
                      [ &PolishedSeraphym, 2 ],
-                     [ &StaffOfJolting, 2 ],
+                     [ &&Wizardhat, 2 ],
                      [ &DispellIllusionScroll, 2 ],
 					      [ &Key, 4 ],
 					      [ &WeaponWand, 1]
