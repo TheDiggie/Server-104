@@ -193,8 +193,8 @@ messages:
                               {
                                  if iSpellPower >= 90 AND iSpellPower <= 99
                                  {
-                                    iRequired = 1;
-                                    iMake     = 5;
+                                    iRequired = iStock;
+                                    iMake     = iStock * 5;
                                  }
                               }
                            }
