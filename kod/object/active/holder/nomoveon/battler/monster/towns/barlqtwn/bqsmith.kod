@@ -76,7 +76,8 @@ messages:
             Create(&ChainArmor),
             Create(&MetalShield),
             Create(&Axe),
-            Create(&Hammer)
+            Create(&Hammer),
+            Create(&PlateArmor)
          ],
          $,
          [

@@ -118,7 +118,8 @@ messages:
             Create(&Mace),
             Create(&PickAxe),
             Create(&BlacksmithsHammer),
-            Create(&MinersBag)
+            Create(&MinersBag),
+            Create(&Scimitar)
          ],
          [
             SKID_PROFICIENCY_SCIMITAR,

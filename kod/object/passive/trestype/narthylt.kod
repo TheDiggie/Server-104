@@ -30,7 +30,7 @@ messages:
       plTreasure = [ [ &BlueDragonScale, 48 ],
                      [ &DarkAngelFeather, 48 ],
                      [ &NightVisionPotion, 1 ],
-                     [ &&Wizardhat, 3 ]
+                     [ &Wizardhat, 3 ]
                    ];
 
       propagate;

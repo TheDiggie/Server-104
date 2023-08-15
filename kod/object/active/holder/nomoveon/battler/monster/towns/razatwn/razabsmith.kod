@@ -76,7 +76,8 @@ messages:
             Create(&MetalShield),
             Create(&ShortSword),
             Create(&Mace),
-            Create(&Torch)
+            Create(&Torch),
+            Create(&SimpleHelm)
          ],
          [ 
             SKID_PROFICIENCY_SHORTSWORD,
