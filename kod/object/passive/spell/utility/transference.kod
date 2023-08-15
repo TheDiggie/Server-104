@@ -122,6 +122,20 @@ messages:
          return;
       }
 
+      if NOT IsClass(oTarget,&NeruditeOreChunk) 
+      {
+         if NOT IsClass(oTarget,&OreChunk)
+         {
+            if NOT IsClass(oTarget,&NumberItem)
+            {
+               Send(who,@MsgSendUser,#message_rsc=Transference_cant,
+                     #parm1=Send(oTarget,@GetDef),#parm2=Send(oTarget,@GetName));
+
+               return;
+            }
+         }
+      }
+
       if NOT Send(oTarget,@CanBeStoredInVault)
          OR IsClass(oTarget,&Money)
       {
