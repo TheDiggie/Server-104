@@ -1,0 +1,121 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+IceReaver is DeathRealmM
+
+constants:
+
+   include blakston.khd
+
+resources:
+   
+   Ice_Reaver_name_rsc = "ice reaver"
+   Ice_Reaver_icon_rsc = reaverb.bgf
+   Ice_Reaver_desc_rsc = \
+      "The coldest and the purest of the reavers, the ice reaver is so cold, "
+      "even being near this nasty creature begins to freeze your fingers "
+      "and toes!  While the most fragile of the reavers she does massive "
+      "cold damage and if you aren't careful you'll be frozen and then "
+      "smashed into bits no one would be able to recognize."
+
+   Ice_Reaver_dead_icon_rsc = reaverbX.bgf
+   Ice_Reaver_dead_name_rsc = "slain ice reaver"
+
+   Ice_Reaver_sound_hit = Ice_Reaver_att.mp3
+   Ice_Reaver_sound_miss = Ice_Reaver_att.mp3
+   Ice_Reaver_sound_death = Ice_Reaver_death.mp3
+   Ice_Reaver_sound_aware = Ice_Reaver_miss.mp3
+
+classvars:
+
+   vrName = Ice_Reaver_name_rsc
+   vrIcon = Ice_Reaver_icon_rsc
+   vrDesc = Ice_Reaver_desc_rsc
+   vrDead_icon = Ice_Reaver_dead_icon_rsc
+   vrDead_name = Ice_Reaver_dead_name_rsc
+
+   viAttack_type = ATCK_SPELL_COLD
+  
+   viTreasure_type = TID_ICE_REAVER
+   viSpeed = SPEED_FAST
+   viAttributes = 0
+   viLevel = 300
+   viDifficulty = 9
+   viAmountofLoot = 9
+   viVisionDistance = 18
+   viAttackRange = 192
+   viKarma = 0
+   viDefault_behavior = AI_FIGHT_HYPERAGGRESSIVE | AI_FIGHT_SWITCHALOT
+   viCashmin = 5000
+   viCashmax = 10000
+   vrSound_hit = Ice_Reaver_sound_hit
+   vrSound_miss = Ice_Reaver_sound_miss
+   vrSound_aware = Ice_Reaver_sound_aware
+   vrSound_death = Ice_Reaver_sound_death
+
+   viBonusXP = 900
+   viBonusTP = 3
+
+properties:
+
+   piAnimation = ANIM_NONE
+
+messages:
+
+   Constructed()
+   {
+      plResistances = [ [-ATCK_SPELL_FIRE, -80 ],
+                        [-ATCK_SPELL_COLD, 100 ],
+                        [ATCK_WEAP_NONMAGIC, 30 ] ];
+
+      plSpellBook = [ [SID_ICE_NOVA,5,40] ];
+      
+      propagate;
+   }
+
+   MonsterAttack(what = $)
+   {
+      piAnimation = ANIM_ATTACK;
+      Send(poOwner,@SomethingChanged,#what=self);
+      piAnimation = ANIM_NONE;
+
+      return;
+   }
+
+   SendLookAnimation()
+   {
+      AddPacket(1,ANIMATE_ONCE);
+      AddPacket(4,400,2,8,2,10,2,1);
+
+      return;
+   }
+
+   SendMoveAnimation()
+   {
+      AddPacket(1,ANIMATE_CYCLE,4,300,2,2,2,7);
+
+      return;
+   }
+
+   SendAnimation()
+   {
+      if piAnimation = ANIM_ATTACK
+      {
+         AddPacket(1,ANIMATE_ONCE,4,200,2,8,2,10,2,1);
+
+         return;
+      }
+
+      // if no body animation
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

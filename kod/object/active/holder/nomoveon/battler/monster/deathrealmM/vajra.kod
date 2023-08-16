@@ -1,0 +1,121 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Vajra is DeathRealmM
+
+constants:
+
+   include blakston.khd
+
+resources:
+   
+   Vajra_name_rsc = "Vajra"
+   Vajra_icon_rsc = vajra.bgf
+   Vajra_desc_rsc = \
+      "Spiked from head-to-toe, nearly colorless, Vajra is ready "
+      "to impale, crush and then devour your body while you take your last breath. "
+      "Its favorite meal is Dark Angels, but he'll settle for you if its belly "
+      "is growling. This dark creature traveled from a place unlike this, far away, "
+      "and excessively EVIL! Tread carefully, you may suffer a painful death by its "
+      "spiked shield if you aren't paying attention."
+
+   Vajra_dead_icon_rsc = vajraX.bgf
+   Vajra_dead_name_rsc = "conquored Vajra"
+
+   Vajra_sound_hit = Vajra_att.mp3
+   Vajra_sound_miss = Vajra_att.mp3
+   Vajra_sound_death = Vajra_death.mp3
+   Vajra_sound_aware = Vajra_miss.mp3
+
+classvars:
+
+   vrName = Vajra_name_rsc
+   vrIcon = Vajra_icon_rsc
+   vrDesc = Vajra_desc_rsc
+   vrDead_icon = Vajra_dead_icon_rsc
+   vrDead_name = Vajra_dead_name_rsc
+
+   viAttack_type = ATCK_WEAP_PIERCE
+
+   viTreasure_type = TID_VAJRA
+   viSpeed = SPEED_SLOW
+   viAttributes = 0
+   viLevel = 300
+   viDifficulty = 9
+   viAmountofLoot = 9
+   viVisionDistance = 18
+   viAttackRange = 192
+   viKarma = 0
+   viDefault_behavior = AI_FIGHT_HYPERAGGRESSIVE | AI_FIGHT_SWITCHALOT
+   viCashmin = 5000
+   viCashmax = 10000
+   vrSound_hit = Vajra_sound_hit
+   vrSound_miss = Vajra_sound_miss
+   vrSound_aware = Vajra_sound_aware
+   vrSound_death = Vajra_sound_death
+
+   viBonusXP = 1600
+   viBonusTP = 12
+
+properties:
+
+   piAnimation = ANIM_NONE
+
+messages:
+
+   Constructed()
+   {
+      plResistances = [ [-ATCK_SPELL_ACID, -5 ],
+                        [ATCK_WEAP_SLASH, -5 ] ];
+
+      plSpellBook = [ [SID_BLIND,5,40] ];
+      
+      propagate;
+   }
+
+   MonsterAttack(what = $)
+   {
+      piAnimation = ANIM_ATTACK;
+      Send(poOwner,@SomethingChanged,#what=self);
+      piAnimation = ANIM_NONE;
+
+      return;
+   }
+
+   SendLookAnimation()
+   {
+      AddPacket(1,ANIMATE_ONCE);
+      AddPacket(4,400,2,4,2,7,2,1);
+
+      return;
+   }
+
+   SendMoveAnimation()
+   {
+      AddPacket(1,ANIMATE_CYCLE,4,200,2,2,2,7);
+
+      return;
+   }
+
+   SendAnimation()
+   {
+      if piAnimation = ANIM_ATTACK
+      {
+         AddPacket(1,ANIMATE_ONCE,4,200,2,8,2,11,2,1);
+
+         return;
+      }
+
+      // if no body animation
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

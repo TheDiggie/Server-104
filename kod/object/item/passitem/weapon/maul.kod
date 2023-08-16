@@ -1,0 +1,62 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Maul is Weapon
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Maul_name_rsc = "Maul"
+   Maul_icon_rsc = maul.bgf
+   Maul_desc_rsc = \
+   "Heavy and blunt, this Maul is a powerful blunt weapon. Prefect for smashing "
+   " armored enemies.  "
+
+   Maul_window_overlay_rsc = povmaul.bgf
+   Maul_player_overlay = maulov.bgf
+
+classvars:
+   vrName = Maul_name_rsc
+   vrIcon = Maul_icon_rsc
+   vrDesc = Maul_desc_rsc
+
+   // Mauls are average quality blunt weapons
+   viWeaponType = WEAPON_TYPE_BLUDGEON
+   viWeaponQuality = WEAPON_QUALITY_NORMAL
+
+   viProficiency_Needed = SKID_PROFICIENCY_HAMMER
+
+   viValue_average = 8000
+   viWeight = 80
+   viBulk = 75
+
+   vrWeapon_window_overlay = Maul_window_overlay_rsc
+   vrWeapon_overlay = Maul_player_overlay
+
+   viGround_group = 1
+   viInventory_group = 3
+   viBroken_group = 2
+
+   viRange = 3 * FINENESS
+   
+   viDamage_min = 15
+   viDamage_max = 30
+
+properties:
+
+   piAttack_type = ATCK_WEAP_NONMAGIC+ATCK_WEAP_BLUDGEON
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

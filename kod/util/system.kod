@@ -4030,6 +4030,39 @@ messages:
       //Plants
       Create(&ResPlantTreasure);
 
+      // Death Realm
+      Create(&IceReaverTreasure);
+      Create(&ObsidianReaverTreasure);
+      Create(&StoneReaverTreasure);
+      Create(&TyrantTreasure);
+      Create(&VajraTreasure);
+      Create(&VozunTreasure);
+      Create(&RedHydraTreasure);
+      Create(&BlackHydraTreasure);
+      Create(&GreenHydraTreasure);
+      Create(&GoldHydraTreasure);
+      Create(&MinotaurBerserkerTreasure);
+      Create(&GrandpaTrentTreasure);
+      Create(&GreenSeekerTreasure);
+      Create(&GreySeekerTreasure);
+
+      Create(&BrownSeekerTreasure);
+      Create(&ChimeraTreasure);
+      Create(&CrocoTreasure);
+      Create(&CrusherSproutTreasure);
+      Create(&CyclopsTreasure);
+      Create(&DeathMiteMageTreasure);
+      Create(&DeathMiteScoutTreasure);
+      Create(&DeathMiteSoldierTreasure);
+      Create(&DeathMiteTankTreasure);
+      Create(&DulahanTreasure);
+      Create(&FallenMonkTreasure);
+      Create(&FollowerOfQorTreasure);
+      Create(&FrenzySproutTreasure);
+      Create(&HellWaspTreasure);
+      Create(&RevenantBTreasure);
+      Create(&SpitterSproutTreasure);
+      
       return;
    }
 
@@ -5452,6 +5485,38 @@ messages:
       //Plants
       plMonsterTemplates = cons(create(&ResPlant),plMonsterTemplates);
 
+      //DeathRealm
+      plMonsterTemplates = cons(create(&BlackHydra),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&BrownSeeker),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&Chimera),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&Croco),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&CrusherSprout),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&Cyclops),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&DeathMiteMage),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&DeathMiteScout),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&DeathMiteSoldier),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&DeathMiteTank),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&Dulahan),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&FallenMonk),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&FollowerOfQor),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&FrenzySprout),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&GoldHydra),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&GrandpaTrent),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&GreenHydra),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&GreenSeeker),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&GreySeeker),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&HellWasp),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&IceReaver),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&MinotaurBerserker),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&ObsidianReaver),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&RedHydra),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&Revenantb),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&SpitterSprout),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&StoneReaver),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&Tyrant),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&Vajra),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&Vozun),plMonsterTemplates);
+
       return;
    }
 
@@ -5744,6 +5809,16 @@ messages:
       plItemTemplates = cons(create(&EntrootBerry),plItemTemplates);
       plItemTemplates = cons(create(&Elderberry),plItemTemplates);
       plItemTemplates = cons(create(&Herbs),plItemTemplates);
+      plItemTemplates = cons(create(&BlackHydraHead),plItemTemplates);
+      plItemTemplates = cons(create(&BrownDragonScale),plItemTemplates);
+      plItemTemplates = cons(create(&GoldHydraHead),plItemTemplates);
+      plItemTemplates = cons(create(&GreenHydraHead),plItemTemplates);
+      plItemTemplates = cons(create(&RedHydraHead),plItemTemplates);
+      plItemTemplates = cons(create(&VialOfVenom),plItemTemplates);
+      plItemTemplates = cons(create(&BlackHydraScale),plItemTemplates);
+      plItemTemplates = cons(create(&GoldenHydraScale),plItemTemplates);
+      plItemTemplates = cons(create(&GreenHydraScale),plItemTemplates);
+      plItemTemplates = cons(create(&RedHydraScale),plItemTemplates);
 
       // Edibles
       plItemTemplates = cons(create(&KocatanMug),plItemTemplates);
@@ -5782,7 +5857,11 @@ messages:
       plItemTemplates = cons(create(&QormasHelm),plItemTemplates);
       plItemTemplates = cons(create(&IvyCirclet),plItemTemplates);
       plItemTemplates = cons(create(&Circlet),plItemTemplates);
-	  plItemTemplates = cons(create(&DaemonHelm),plItemTemplates);
+	   plItemTemplates = cons(create(&DaemonHelm),plItemTemplates);
+      plItemTemplates = cons(create(&KnightsHelm),plItemTemplates);
+      plItemTemplates = cons(create(&LegionHelm),plItemTemplates);
+      plItemTemplates = cons(create(&SteelHelm),plItemTemplates);
+	   plItemTemplates = cons(create(&WarHelm),plItemTemplates);
 
       // Shields
       plItemTemplates = cons(create(&GuildShield),plItemTemplates);
@@ -5846,10 +5925,17 @@ messages:
       plItemTemplates = cons(create(&PickAxe),plItemTemplates);
       plItemTemplates = cons(create(&CuttingAxe),plItemTemplates);
       plItemTemplates = cons(create(&Sickle),plItemTemplates);
+      plItemTemplates = cons(create(&BerserkerAxe),plItemTemplates);
+      plItemTemplates = cons(create(&LightSword),plItemTemplates);
+      plItemTemplates = cons(create(&Maul),plItemTemplates);
+      plItemTemplates = cons(create(&NeruditeAxe),plItemTemplates);
+      plItemTemplates = cons(create(&TwinBlade),plItemTemplates);
 
       plItemTemplates = cons(create(&ShieldRod),plItemTemplates);
       plItemTemplates = cons(create(&DamageRod),plItemTemplates);
-      plItemTemplates = cons(create(&WeaponWand),plItemTemplates);
+      plItemTemplates = cons(create(&BaseWand),plItemTemplates);
+      plItemTemplates = cons(create(&ApprenticeWand),plItemTemplates);
+      plItemTemplates = cons(create(&MasterWand),plItemTemplates);
       plItemTemplates = cons(create(&Wizardhat),plItemTemplates);
 
       //Thanksgiving

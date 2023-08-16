@@ -1,0 +1,48 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+GreenHydraTreasure is TreasureType
+
+constants:
+
+   include blakston.khd
+
+classvars:
+
+   viTreasure_num = TID_GREEN_HYDRA
+
+properties:
+
+messages:
+
+   Constructed()
+   {
+      plTreasure = [ 
+                     [&Ruby, 99],
+                     [&Emerald, 99],
+                     [&BlueMushroom, 99],
+                     [&DarkAngelFeather, 50],
+                     [&Elderberry, 50],
+                     [&InkyCap, 50],
+                     [&PlateArmor, 20],
+                     [&NeruditeSword, 20],
+                     [&KnightShield, 20],
+                     [&WarHelm, 20],
+                     [&Maul, 20],
+                     [&GreenHydraScale, 40],
+                     [&GrayMushroom, 5],
+                     [&GreenHydraHead, 1],
+                     [&GreenHeartStone, 1]
+                  ];
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

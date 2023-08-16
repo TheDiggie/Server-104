@@ -1,0 +1,135 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+GreenSeeker is DeathRealmM
+
+constants:
+
+   include blakston.khd
+
+resources:
+   
+   GreenSeeker_name_rsc = "green seeker"
+   GreenSeeker_icon_rsc = seekerb.bgf
+   GreenSeeker_desc_rsc = \
+      "This floating, pointy, squishy, monstrosity, is always up to no good. "
+      "These ''seekers''' claim to be immensely powerful with magic, so I'd be "
+      "a bit cautious around these things. This being a green seeker, you are "
+      "likely to be hit with some kind of plague-like attacks!"
+
+   GreenSeeker_dead_icon_rsc = seekerbX.bgf
+   GreenSeeker_dead_name_rsc = "slain green seeker"
+
+   GreenSeeker_sound_hit = GreenSeeker_att.mp3
+   GreenSeeker_sound_miss = GreenSeeker_att.mp3
+   GreenSeeker_sound_death = GreenSeeker_death.mp3
+   GreenSeeker_sound_aware = GreenSeeker_miss.mp3
+
+classvars:
+
+   vrName = GreenSeeker_name_rsc
+   vrIcon = GreenSeeker_icon_rsc
+   vrDesc = GreenSeeker_desc_rsc
+   vrDead_icon = GreenSeeker_dead_icon_rsc
+   vrDead_name = GreenSeeker_dead_name_rsc
+
+   viAttack_type = ATCK_WEAP_PIERCE
+
+   viTreasure_type = TID_GREEN_SEEKER
+
+   viSpeed = SPEED_FAST
+   viAttributes = 0
+   viLevel = 300
+   viDifficulty = 9
+   viAmountofLoot = 9
+   viVisionDistance = 18
+   viAttackRange = 256
+   viKarma = 0
+   viDefault_behavior = AI_FIGHT_HYPERAGGRESSIVE | AI_FIGHT_SWITCHALOT
+   viCashmin = 5000
+   viCashmax = 10000
+   vrSound_hit = GreenSeeker_sound_hit
+   vrSound_miss = GreenSeeker_sound_miss
+   vrSound_aware = GreenSeeker_sound_aware
+   vrSound_death = GreenSeeker_sound_death
+
+   viBonusXP = 900
+   viBonusTP = 3
+
+properties:
+
+   piAnimation = ANIM_IDLE
+
+   piDrawEffectFlag = OF_BOUNCING
+
+   pbIsFlying = TRUE
+
+messages:
+
+   Constructed()
+   {
+      plResistances = [ [-ATCK_SPELL_ACID, 80 ],
+                        [-ATCK_SPELL_QUAKE, 100 ],
+                        [-ATCK_SPELL_SHOCK, -50 ],
+                        [ATCK_WEAP_SLASH, -50 ] ];
+
+      propagate;
+   }
+
+   MonsterAttack(what = $)
+   {
+      piAnimation = ANIM_ATTACK;
+      Send(poOwner,@SomethingChanged,#what=self);
+      piAnimation = ANIM_IDLE;
+
+      return;
+   }
+
+   SendLookAnimation()
+   {
+      AddPacket(1,ANIMATE_ONCE);
+      AddPacket(4,400,2,5,2,8,2,1);
+
+      return;
+   }
+
+   SendMoveAnimation()
+   {
+      AddPacket(1,ANIMATE_CYCLE,4,200,2,1,2,4);
+
+      return;
+   }
+
+   SendAnimation()
+   {
+      if piAnimation = ANIM_ATTACK
+      {
+         AddPacket(1,ANIMATE_ONCE,4,240,2,5,2,8,2,1);
+
+         return;
+      }
+
+	  if piAnimation = ANIM_IDLE
+	  {
+			AddPacket(1,ANIMATE_CYCLE,4,500,2,1,2,4);
+
+			// Send animation info to user.  Default is no animation, display with
+	  }     //  group 1.
+	  else
+	  {
+			AddPacket(1, ANIMATE_NONE, 2, 1);
+	  }
+
+		return;
+		
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

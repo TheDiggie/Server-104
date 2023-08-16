@@ -1,0 +1,142 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+VialOfVenom is Reagent
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   VialOfVenom_name_rsc = "vial of venom"
+   VialOfVenom_icon_rsc = venom.bgf
+   VialOfVenom_desc_rsc = \
+      "A vial of deadly venom. "
+   VialOfVenom_name_plural_rsc = "vials of venom"
+   VialOfVenom_vial_name_plural_rsc = "vials of venom"
+   VialOfVenom_vial_name_rsc = "vial of venom"
+
+classvars:
+
+   vrName = VialOfVenom_name_rsc
+   vrIcon = VialOfVenom_icon_rsc
+   vrDesc = VialOfVenom_desc_rsc
+
+   vrName_plural = VialOfVenom_name_plural_rsc
+
+   viValue_average = 70
+   viWeight = 4
+   viBulk = 5
+
+properties:
+
+   piNumber = 2
+   pbGathered = TRUE
+
+messages:
+
+   Constructor(Gathered=TRUE)
+   {
+      pbGathered = Gathered;
+
+      propagate;
+   }
+
+   NewOwner(what = $)
+   {
+      if poOwner <> $
+         AND (what = $ OR IsClass(what,&Battler))
+      {
+         pbGathered = TRUE;
+      }
+
+      propagate;
+   }
+
+   SendAnimation()
+   {
+      if pbGathered
+      {
+         if poOwner <> $ AND IsClass(poOwner,&Player)
+         {
+            AddPacket(1,ANIMATE_NONE,2,1);
+         }
+         else
+         {
+            AddPacket(1,ANIMATE_NONE,2,2);
+         }
+      }
+      else
+      {
+         AddPacket(1,ANIMATE_NONE,2,3);
+      }
+
+      return;
+   }
+
+   SendLookAnimation()
+   {
+      if pbGathered
+      {
+         if poOwner <> $ AND IsClass(poOwner,&player)
+         {
+            AddPacket(1,ANIMATE_NONE,2,1);
+         }
+         else
+         {
+            AddPacket(1,ANIMATE_NONE,2,2);
+         }
+      }
+      else
+      {
+         AddPacket(1,ANIMATE_NONE,2,3);
+      }
+
+      return;
+   }
+
+   SendInventoryAnimation()
+   {
+      AddPacket(1,ANIMATE_NONE,2,1);
+
+      return;
+   }
+
+   GetName()
+   {
+      if pbGathered
+      {
+         if piNumber = 1
+         {
+            return VialOfVenom_vial_name_rsc;
+         }
+         else
+         {
+            return VialOfVenom_vial_name_plural_rsc;
+         }
+      }
+      else
+      {
+         if piNumber = 1
+         {
+            return vrName;
+         }
+         else
+         {
+            return vrName_plural;
+         }
+      }
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

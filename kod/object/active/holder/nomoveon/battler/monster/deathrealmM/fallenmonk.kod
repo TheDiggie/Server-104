@@ -1,0 +1,121 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+FallenMonk is DeathRealmM
+
+constants:
+
+   include blakston.khd
+
+resources:
+   
+   fallenmonk_name_rsc = "fallen monk"
+   fallenmonk_icon_rsc = fallenmonk.bgf
+   fallenmonk_desc_rsc = \
+      "Levitating several feet above the ground, this disciple of Riija "
+      "appears to have been severed from the waste down while in deep "
+      "prayer. It's carrying a staff that can only be described as a "
+      "powerful bludgeoning weapon with magical attributes."
+
+   fallenmonk_dead_icon_rsc = fallenmonkX.bgf
+   fallenmonk_dead_name_rsc = "slain fallen monk"
+
+   fallenmonk_sound_hit = fallenmonk_att.mp3
+   fallenmonk_sound_miss = fallenmonk_att.mp3
+   fallenmonk_sound_death = fallenmonk_death.mp3
+   fallenmonk_sound_aware = fallenmonk_miss.mp3
+
+classvars:
+
+   vrName = fallenmonk_name_rsc
+   vrIcon = fallenmonk_icon_rsc
+   vrDesc = fallenmonk_desc_rsc
+   vrDead_icon = fallenmonk_dead_icon_rsc
+   vrDead_name = fallenmonk_dead_name_rsc
+
+   viTreasure_type = TID_FALLEN_MONK
+   
+   viSpeed = SPEED_FAST
+
+   viAttributes = 0
+   viLevel = 300
+   viDifficulty = 9
+   viAmountofLoot = 9
+   viVisionDistance = 18
+   
+   viAttackRange = 192
+   viKarma = 0
+   viDefault_behavior = AI_FIGHT_HYPERAGGRESSIVE | AI_FIGHT_SWITCHALOT
+   viCashmin = 5000
+   viCashmax = 10000
+   vrSound_hit = fallenmonk_sound_hit
+   vrSound_miss = fallenmonk_sound_miss
+   vrSound_aware = fallenmonk_sound_aware
+   vrSound_death = fallenmonk_sound_death
+
+   viBonusXP = 900
+   viBonusTP = 3
+
+properties:
+
+   piAnimation = ANIM_NONE
+
+   piDrawEffectFlag = OF_BOUNCING
+   
+messages:
+
+   Constructed()
+   {
+      plResistances = [ [-ATCK_SPELL_ACID, 80 ],
+                        [ATCK_WEAP_NERUDITE, -10 ],
+                        [ATCK_WEAP_NONMAGIC, 80 ] ];
+
+      propagate;
+   }
+
+   MonsterAttack(what = $)
+   {
+      piAnimation = ANIM_ATTACK;
+      Send(poOwner,@SomethingChanged,#what=self);
+      piAnimation = ANIM_NONE;
+
+      return;
+   }
+
+   SendLookAnimation()
+   {
+      AddPacket(1,ANIMATE_ONCE);
+      AddPacket(4,400,2,5,2,7,2,1);
+
+      return;
+   }
+
+   SendMoveAnimation()
+   {
+      AddPacket(1,ANIMATE_CYCLE,4,200,2,2,2,4);
+
+      return;
+   }
+
+   SendAnimation()
+   {
+      if piAnimation = ANIM_ATTACK
+      {
+         AddPacket(1,ANIMATE_ONCE,4,200,2,5,2,7,2,1);
+
+         return;
+      }
+
+      // if no body animation
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,49 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+GreySeekerTreasure is TreasureType
+
+constants:
+
+   include blakston.khd
+
+classvars:
+
+   viTreasure_num = TID_GREY_SEEKER
+
+properties:
+
+messages:
+
+   Constructed()
+   {
+      plTreasure = [ 
+                     [&Sapphire, 99],
+                     [&BlueMushroom, 99],
+                     [&RedMushroom, 99],
+                     [&PurpleMushroom, 99],
+                     [&Mushroom, 99],
+                     [&Elderberry, 99],
+                     [&Herbs, 99],
+                     [&InkyCap, 99],
+                     [&NeruditeArrow, 99],
+                     [&SilverArrow, 99],
+                     [&CyanMushroom, 5],
+                     [&ApprenticeWand, 5],
+                     [&Wizardhat, 5],
+                     [&DiscipleRobe, 5],
+                     [&RedHeartStone, 1]
+                  ];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

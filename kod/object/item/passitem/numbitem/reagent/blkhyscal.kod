@@ -1,0 +1,47 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+BlackHydraScale is Reagent
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   BlackHydraScale_name_rsc = "black hydra scale"
+   BlackHydraScale_icon_rsc = scale.bgf
+   BlackHydraScale_desc_rsc = \
+      "This scale is warm to the touch, no doubt its from a fierce hydra.  "
+
+   BlackHydraScale_name_plural_rsc = "black hydra scales"
+
+classvars:
+
+   vrName = BlackHydraScale_name_rsc
+   vrIcon = BlackHydraScale_icon_rsc
+   vrDesc = BlackHydraScale_desc_rsc
+
+   vrName_plural = BlackHydraScale_name_plural_rsc
+
+   viValue_average = 100
+   viWeight = 5
+   viBulk = 5
+
+properties:
+
+   piNumber = 1
+
+   piItem_flags = PT_GRAY_TO_BLACK
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

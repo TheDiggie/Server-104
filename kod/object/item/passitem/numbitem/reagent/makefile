@@ -12,7 +12,9 @@ BOFS = mushroom.bof mushb.bof mushp.bof mushr.bof herbs.bof elderbry.bof \
        shamblod.bof polserpm.bof yrxlsap.bof webmoss.bof mushgray.bof \
        mushgreen.bof mushyellow.bof mushcyan.bof denselumber.bof \
        densewood.bof ironingot.bof kriiphide.bof kriipleather.bof \
-       lumber.bof neruingot.bof rawsilk.bof regleather.bof \
-       silkthread.bof trollhide.bof wood.bof 
+       lumber.bof neruingot.bof rawsilk.bof regleather.bof grnhyscal.bof \
+       silkthread.bof trollhide.bof wood.bof blkhyhead.bof brwndrgscal.bof \
+       goldhyhead.bof grnhyhead.bof redhyhead.bof venom.bof redhyscal.bof \
+       goldhyscal.bof blkhyscal.bof 
 
 !include $(KODDIR)\kod.mak

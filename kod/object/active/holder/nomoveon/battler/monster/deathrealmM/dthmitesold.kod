@@ -1,0 +1,121 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeathMiteSoldier is DeathRealmM
+
+constants:
+
+   include blakston.khd
+
+resources:
+   
+   Death_Mite_Soldier_name_rsc = "death mite soldier"
+   Death_Mite_Soldier_icon_rsc = dthmiteb.bgf
+   Death_Mite_Soldier_desc_rsc = \
+      "This death mite contains the soul of a reincarnated Rebel soldier. "
+      "It seeks out water, but finds that blood is just as satisfying."
+      "These creatures have a strong cerebral constitution, making them "
+      "the perfect vessel of a damned soul. They are commonly used by "
+      "magicians to return fallen masters from the dead."
+
+
+   Death_Mite_Soldier_dead_icon_rsc = dthmitebX.bgf
+   Death_Mite_Soldier_dead_name_rsc = "slain death mite soldier"
+
+   Death_Mite_Soldier_sound_hit = Death_Mite_Soldier_att.mp3
+   Death_Mite_Soldier_sound_miss = Death_Mite_Soldier_att.mp3
+   Death_Mite_Soldier_sound_death = Death_Mite_Soldier_death.mp3
+   Death_Mite_Soldier_sound_aware = Death_Mite_Soldier_miss.mp3
+
+classvars:
+
+   vrName = Death_Mite_Soldier_name_rsc
+   vrIcon = Death_Mite_Soldier_icon_rsc
+   vrDesc = Death_Mite_Soldier_desc_rsc
+   vrDead_icon = Death_Mite_Soldier_dead_icon_rsc
+   vrDead_name = Death_Mite_Soldier_dead_name_rsc
+
+   viTreasure_type = TID_DEATH_MITE_SOLDIER
+
+   viSpeed = SPEED_FAST
+
+   viAttributes = 0
+   viLevel = 300
+   viDifficulty = 9
+   viAmountofLoot = 9
+   viVisionDistance = 18
+   
+   viAttackRange = 192
+   viKarma = 0
+   viDefault_behavior = AI_FIGHT_HYPERAGGRESSIVE | AI_FIGHT_SWITCHALOT
+   viCashmin = 5000
+   viCashmax = 10000
+   vrSound_hit = Death_Mite_Soldier_sound_hit
+   vrSound_miss = Death_Mite_Soldier_sound_miss
+   vrSound_aware = Death_Mite_Soldier_sound_aware
+   vrSound_death = Death_Mite_Soldier_sound_death
+
+   viBonusXP = 900
+   viBonusTP = 3
+
+properties:
+
+   piAnimation = ANIM_NONE
+
+messages:
+
+   Constructed()
+   {
+      plResistances = [ [-ATCK_SPELL_ACID, 80 ],
+                        [ATCK_WEAP_NERUDITE, -10 ],
+                        [ATCK_WEAP_NONMAGIC, 80 ] ];
+
+      propagate;
+   }
+
+   MonsterAttack(what = $)
+   {
+      piAnimation = ANIM_ATTACK;
+      Send(poOwner,@SomethingChanged,#what=self);
+      piAnimation = ANIM_NONE;
+
+      return;
+   }
+
+   SendLookAnimation()
+   {
+      AddPacket(1,ANIMATE_ONCE);
+      AddPacket(4,400,2,6,2,8,2,1);
+
+      return;
+   }
+
+   SendMoveAnimation()
+   {
+      AddPacket(1,ANIMATE_CYCLE,4,200,2,2,2,5);
+
+      return;
+   }
+
+   SendAnimation()
+   {
+      if piAnimation = ANIM_ATTACK
+      {
+         AddPacket(1,ANIMATE_ONCE,4,200,2,6,2,8,2,1);
+
+         return;
+      }
+
+      // if no body animation
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

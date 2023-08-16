@@ -1,0 +1,46 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+StoneReaverTreasure is TreasureType
+
+constants:
+
+   include blakston.khd
+
+classvars:
+
+   viTreasure_num = TID_STONE_REAVER
+
+properties:
+
+messages:
+
+   Constructed()
+   {
+      plTreasure = [ 
+                     [&Sapphire, 99],
+                     [&Diamond, 99],
+                     [&Emerald, 99],
+                     [&KriipaClaw, 99],
+                     [&InkyCap, 50],
+                     [&PolishedSeraphym, 10],
+                     [&Hammer, 10],
+                     [&GoldShield, 10],
+                     [&ScaleArmor, 10],
+                     [&GrayMushroom, 5],
+                     [&StoneTrollMask, 1],
+                     [&SkyHeartStone, 1]
+                  ];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

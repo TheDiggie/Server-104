@@ -1,0 +1,152 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Revenants are produced with some probability upon the event
+//  of a player kill.  Revenants lock onto the killer and follow
+//  him until either the revenant dies or the killer does.  If the
+//  killer leaves the room, a new revenant is created near him (4.5-9 units)
+//  in his new room after an initial delay of 5-20 seconds.  Revenants
+//  are invisible and walk (and attack) through walls.
+//
+//  Revenants level and difficulty is a factor of his victim's piMax_health.
+//  Revenant strength is determined in player.kod.  Revenants are weaker when first
+//    created.  They get stronger if the player runs (enters another room, quits, etc).
+//    Initial Revenant difficulty:
+//       Level = 110// of maxhealth
+//       Difficulty = maxhealth/12 (bounded at 4 and 9)
+//    Standard Revenant difficulty:
+//       Level = 150// of maxhealth
+//       Difficulty = maxhealth/10 (bounded at 4 and 9)
+
+
+Revenantb is DeathRealmM
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   revenantb_name_rsc = "revenant"
+   revenantb_icon_rsc = zombie.bgf
+   revenantb_desc_rsc = \
+      "Where did you think revenants came from?"
+
+   Revb_draining_effect = \
+      "The revenant makes a mystical motion... you feel drained."
+
+classvars:
+   vrName = revenantb_name_rsc
+   vrIcon = revenantb_icon_rsc
+   vrDesc = revenantb_desc_rsc
+
+   viTreasure_type = TID_REVENANT_B
+
+   viAttack_type = ATCK_WEAP_SLASH
+   
+   viDefault_behavior = \
+      AI_FIGHT_AGGRESSIVE | AI_MOVE_WALKTHROUGH_WALLS | AI_FIGHT_THROUGH_WALLS
+
+properties:
+
+   viTreasure_type = TID_GREEN_SEEKER
+
+   viSpeed = SPEED_VERY_FAST
+   viLevel = 300               /// These are reset in constructor
+   viDifficulty = 7
+   viAmountofLoot = 8
+   viVisionDistance = 100
+   
+   viAttackRange = 192
+   viKarma = 0
+   viCashmin = 5000
+   viCashmax = 10000
+   // our private data
+
+   piAnimation = ANIM_NONE
+   piDrawFx = DRAWFX_INVISIBLE
+
+messages:
+
+   Constructed()
+   {
+      plResistances = [ [-ATCK_SPELL_ALL, 25 ],
+                        [ATCK_WEAP_MAGIC, 15 ],
+                        [ATCK_WEAP_PIERCE, 25] ];
+      propagate;
+   }
+
+   MonsterAttack(what = $)
+   {
+      piAnimation = ANIM_ATTACK;
+      Send(poOwner,@SomethingChanged,#what=self);
+      piAnimation = ANIM_NONE;
+
+      //Extra revenant penalty.. each time it hits, it drains away vigor
+      //The 20// drain might be too high, but well see. *cackle*
+      if Random(0,9) = 0
+      {
+         Send(what,@MsgSendUser,#message_rsc=Revb_draining_effect);
+         Send(what,@AddExertion,#amount=Send(what,@GetVigor)*10000/10);
+      }
+
+      return;
+   }
+
+   SomethingMoved()
+   {
+      Send(poOwner,@DeleteWallsAroundBattler,#who=self);
+
+      propagate;
+   }
+
+   SendLookAnimation()
+   {
+      AddPacket(1,ANIMATE_CYCLE);
+      AddPacket(4,200,2,2,2,3);
+
+      return;
+   }
+
+   SendMoveAnimation()
+   {
+      // Cycle through "walking" bitmaps (groups 2-5) at 50 milliseconds per frame
+      AddPacket(1,ANIMATE_CYCLE,4,200,2,2,2,3);
+
+      return;
+   }
+
+   SendAnimation()
+   {
+      if piAnimation = ANIM_ATTACK
+      {
+         AddPacket(1,ANIMATE_ONCE,4,200,2,2,2,3,2,1);
+
+         return;
+      }
+
+      // if no body animation
+
+      propagate;
+   }
+
+   CanMorphTo()
+   {
+      return FALSE;
+   }
+
+   CanEvilTwin()
+   {
+      return FALSE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -6,6 +6,7 @@
 
 DEPEND = ..\helmet.bof
 BOFS = helm.bof circlet.bof ivycircl.bof simphelm.bof mask.bof qormashelm.bof \
-       dhelm.bof wizardhat.bof
+       dhelm.bof wizardhat.bof knighthelm.bof legionhelm.bof warhelm.bof \
+       steelhelm.bof
 
 !include $(KODDIR)\kod.mak

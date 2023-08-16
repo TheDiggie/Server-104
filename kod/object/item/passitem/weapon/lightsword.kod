@@ -1,0 +1,64 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+LightSword is Weapon
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   LightSword_name_rsc = "sword of light"
+   LightSword_icon_rsc = lightsw.bgf
+
+   LightSword_desc_rsc = \
+      "Glowing with holy energy this blade can damage evil simply by "
+      "being near it. Only a follower of light can wield this blade.  "
+
+   LightSword_window_overlay_rsc = povlightsw.bgf
+   LightSword_player_overlay = lightswov.bgf
+
+classvars:
+   vrName = LightSword_name_rsc
+   vrIcon = LightSword_icon_rsc
+   vrDesc = LightSword_desc_rsc
+
+   // LightSwords are normal quality thrusting weapons
+   viWeaponType = WEAPON_TYPE_THRUST
+   viWeaponQuality = WEAPON_QUALITY_NORMAL
+
+   viProficiency_Needed = SKID_PROFICIENCY_SWORD
+
+   viValue_average = 10000
+   viWeight = 80
+   viBulk = 60
+
+   vrWeapon_window_overlay = LightSword_window_overlay_rsc
+   vrWeapon_overlay = LightSword_player_overlay
+
+   viGround_group = 1
+   viInventory_group = 3
+   viBroken_group = 2
+
+   viRange = 4 * FINENESS
+
+   viDamage_min = 10
+   viDamage_max = 25
+
+properties:
+
+   piAttack_type = ATCK_WEAP_NONMAGIC+ATCK_WEAP_THRUST
+
+messages:
+
+
+end
+////////////////////////////////////////////////////////////////////////////////

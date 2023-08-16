@@ -1,0 +1,44 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+ApprenticeWand is BaseWand
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   ApprenticeWand_name_rsc = "apprentice wand"
+   ApprenticeWand_icon_rsc = wand.bgf
+   ApprenticeWand_desc_rsc = \
+      "Made with the magical wood of living trees, this wand has been tuned "
+      "to the school of %s due to the nature of the crystal affixed to its "
+      "end."
+
+   ApprenticeWand_window_overlay_rsc = povwand.bgf
+   ApprenticeWand_player_overlay = wandov.bgf
+
+classvars:
+   vrName = ApprenticeWand_name_rsc
+   vrIcon = ApprenticeWand_icon_rsc
+   vrDesc = ApprenticeWand_desc_rsc
+
+   vrWeapon_window_overlay = ApprenticeWand_window_overlay_rsc
+   vrWeapon_overlay = ApprenticeWand_player_overlay
+
+properties:
+
+   piSpellPower = 20
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

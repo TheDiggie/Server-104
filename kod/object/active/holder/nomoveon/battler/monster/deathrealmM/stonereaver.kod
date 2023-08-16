@@ -1,0 +1,125 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+StoneReaver is DeathRealmM
+
+constants:
+
+   include blakston.khd
+
+resources:
+   
+   Stone_Reaver_name_rsc = "stone reaver"
+   Stone_Reaver_icon_rsc = reavera.bgf
+   Stone_Reaver_desc_rsc = \
+      "The toughest of the reavers and the leader of them all, "
+      "the stone reaver has heavy rock armor that makes attacking "
+      "with weapons nearly useless. Although slow, this abomination "
+      "packs one hell of a punch! The only reaver even capable of  "
+      "damaging it is the stone-shattering ice reaver."
+
+
+   Stone_Reaver_dead_icon_rsc = reaveraX.bgf
+   Stone_Reaver_dead_name_rsc = "slain stone reaver"
+
+   Stone_Reaver_sound_hit = Stone_Reaver_att.mp3
+   Stone_Reaver_sound_miss = Stone_Reaver_att.mp3
+   Stone_Reaver_sound_death = Stone_Reaver_death.mp3
+   Stone_Reaver_sound_aware = Stone_Reaver_miss.mp3
+
+classvars:
+
+   vrName = Stone_Reaver_name_rsc
+   vrIcon = Stone_Reaver_icon_rsc
+   vrDesc = Stone_Reaver_desc_rsc
+   vrDead_icon = Stone_Reaver_dead_icon_rsc
+   vrDead_name = Stone_Reaver_dead_name_rsc
+
+   viAttack_type = ATCK_WEAP_BLUDGEON
+
+   viTreasure_type = TID_STONE_REAVER
+   
+   viSpeed = SPEED_FAST
+   viAttributes = 0
+   viLevel = 300
+   viDifficulty = 9
+   viAmountofLoot = 9
+   viVisionDistance = 18
+   viAttackRange = 192
+   viKarma = 0
+   viDefault_behavior = AI_FIGHT_HYPERAGGRESSIVE | AI_FIGHT_SWITCHALOT
+   viCashmin = 5000
+   viCashmax = 10000
+   vrSound_hit = Stone_Reaver_sound_hit
+   vrSound_miss = Stone_Reaver_sound_miss
+   vrSound_aware = Stone_Reaver_sound_aware
+   vrSound_death = Stone_Reaver_sound_death
+
+   viBonusXP = 900
+   viBonusTP = 3
+
+properties:
+
+   piAnimation = ANIM_NONE
+
+messages:
+
+   Constructed()
+   {
+      plResistances = [ [-ATCK_SPELL_COLD, -90],
+                        [-ATCK_SPELL_FIRE, 90],
+                        [ATCK_WEAP_ALL, 80],
+                        [ATCK_WEAP_BLUDGEON, -10]
+                     ];
+
+      plSpellBook = [ [SID_EARTHQUAKE,5,40] ];
+
+      propagate;
+   }
+
+   MonsterAttack(what = $)
+   {
+      piAnimation = ANIM_ATTACK;
+      Send(poOwner,@SomethingChanged,#what=self);
+      piAnimation = ANIM_NONE;
+
+      return;
+   }
+
+   SendLookAnimation()
+   {
+      AddPacket(1,ANIMATE_ONCE);
+      AddPacket(4,400,2,8,2,10,2,1);
+
+      return;
+   }
+
+   SendMoveAnimation()
+   {
+      AddPacket(1,ANIMATE_CYCLE,4,300,2,2,2,7);
+
+      return;
+   }
+
+   SendAnimation()
+   {
+      if piAnimation = ANIM_ATTACK
+      {
+         AddPacket(1,ANIMATE_ONCE,4,200,2,8,2,10,2,1);
+
+         return;
+      }
+
+      // if no body animation
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

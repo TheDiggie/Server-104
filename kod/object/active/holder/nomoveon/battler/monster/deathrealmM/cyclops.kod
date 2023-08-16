@@ -1,0 +1,123 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Cyclops is DeathRealmM
+
+constants:
+
+   include blakston.khd
+
+resources:
+   
+   cyclops_name_rsc = "cyclops"
+   cyclops_icon_rsc = cyclops.bgf
+   cyclops_desc_rsc = \
+      "Standing nearly 20 feet tall, this unnatural dark magic breed "
+      "of orc and ogre stares at you with its single eye. It feels no "
+      "fear and will fight anything that enters its line of sight. "
+      "Its armor is made of thick deathscale armor collected from "
+      "dragons in the death realm. The heavy weapon it carries was "
+      "constructed from chimera and crusher sprout bones and is "
+      "bound together with dried hell wasp venom."
+
+
+   cyclops_dead_icon_rsc = cyclopsX.bgf
+   cyclops_dead_name_rsc = "slain cyclops"
+
+   cyclops_sound_hit = cyclops_att.mp3
+   cyclops_sound_miss = cyclops_att.mp3
+   cyclops_sound_death = cyclops_death.mp3
+   cyclops_sound_aware = cyclops_miss.mp3
+
+classvars:
+
+   vrName = cyclops_name_rsc
+   vrIcon = cyclops_icon_rsc
+   vrDesc = cyclops_desc_rsc
+   vrDead_icon = cyclops_dead_icon_rsc
+   vrDead_name = cyclops_dead_name_rsc
+
+   viTreasure_type = TID_CYCLOPS
+   
+   viSpeed = SPEED_SLOW
+
+   viAttributes = 0
+   viLevel = 300
+   viDifficulty = 9
+   viAmountofLoot = 9
+   viVisionDistance = 18
+   
+   viAttackRange = 192
+   viKarma = 0
+   viDefault_behavior = AI_FIGHT_HYPERAGGRESSIVE | AI_FIGHT_SWITCHALOT
+   viCashmin = 5000
+   viCashmax = 10000
+   vrSound_hit = cyclops_sound_hit
+   vrSound_miss = cyclops_sound_miss
+   vrSound_aware = cyclops_sound_aware
+   vrSound_death = cyclops_sound_death
+
+   viBonusXP = 900
+   viBonusTP = 3
+
+properties:
+
+   piAnimation = ANIM_NONE
+
+messages:
+
+   Constructed()
+   {
+      plResistances = [ [-ATCK_SPELL_ACID, 80 ],
+                        [ATCK_WEAP_NERUDITE, -10 ],
+                        [ATCK_WEAP_NONMAGIC, 80 ] ];
+
+      propagate;
+   }
+
+   MonsterAttack(what = $)
+   {
+      piAnimation = ANIM_ATTACK;
+      Send(poOwner,@SomethingChanged,#what=self);
+      piAnimation = ANIM_NONE;
+
+      return;
+   }
+
+   SendLookAnimation()
+   {
+      AddPacket(1,ANIMATE_ONCE);
+      AddPacket(4,400,2,6,2,9,2,1);
+
+      return;
+   }
+
+   SendMoveAnimation()
+   {
+      AddPacket(1,ANIMATE_CYCLE,4,200,2,2,2,5);
+
+      return;
+   }
+
+   SendAnimation()
+   {
+      if piAnimation = ANIM_ATTACK
+      {
+         AddPacket(1,ANIMATE_ONCE,4,200,2,6,2,9,2,1);
+
+         return;
+      }
+
+      // if no body animation
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

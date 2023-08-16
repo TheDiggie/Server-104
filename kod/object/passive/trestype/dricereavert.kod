@@ -1,0 +1,43 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+IceReaverTreasure is TreasureType
+
+constants:
+
+   include blakston.khd
+
+classvars:
+
+   viTreasure_num = TID_ICE_REAVER
+
+properties:
+
+messages:
+
+   Constructed()
+   {
+      plTreasure = [ 
+                     [&Sapphire, 99],
+                     [&Fairywing, 99],
+                     [&Solagh, 99],
+                     [&RedMushroom, 99],
+                     [&CyanMushroom, 10],
+                     [&ApprenticeWand, 5],
+                     [&Wizardhat, 5],
+                     [&DiscipleRobe, 5],
+                     [&WhiteHeartStone, 1]
+                  ];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,94 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+NeruditeAxe is Weapon
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   NeruditeAxe_name_rsc = "nerudite axe"
+   NeruditeAxe_icon_rsc = neruaxe.bgf
+   NeruditeAxe_desc_rsc = \
+      "Swift and strong, the nerudite weapon feels good in your hand."
+
+   NeruditeAxe_window_overlay_rsc = povneruaxe.bgf
+   NeruditeAxe_player_overlay = neruaxeov.bgf
+
+   neruaxe_shatters = "The nerudite axe shatters into a flurry of splinters!"
+
+classvars:
+
+   vrName = NeruditeAxe_name_rsc
+   vrIcon = NeruditeAxe_icon_rsc
+   vrDesc = NeruditeAxe_desc_rsc
+
+   vrWeaponBroke = neruaxe_shatters
+
+   // Nerudite axes are nerudite quality thrusting weapons
+   viWeaponType = WEAPON_TYPE_SLASH
+   viWeaponQuality = WEAPON_NERUDITE
+
+   viProficiency_needed = SKID_PROFICIENCY_AXE
+
+   viValue_average = 8000
+   viWeight = 80
+   viBulk = 70
+
+   vrWeapon_window_overlay = NeruditeAxe_window_overlay_rsc
+   vrWeapon_overlay = NeruditeAxe_player_overlay
+
+   viGround_group = 1
+   viInventory_group = 3
+   viBroken_group = 2
+
+   viRange = 3 * FINENESS
+
+properties:
+
+   piAttack_type = ATCK_WEAP_SLASH + ATCK_WEAP_NERUDITE
+   piAttack_Spell = 0
+
+messages:
+
+   DoShatter()
+   {
+      send(self,@WeaponBroke);
+
+      propagate;
+   }
+
+   ShatterToShards()
+   {
+      if poOwner <> $ AND isClass(poOwner,&User)
+      {
+         if send(poOwner,@AssessDamage,#what=self,#damage=random(10,25),
+            #report=FALSE,#atype=ATCK_WEAP_NERUDITE) = $
+         {
+            Send(Send(poOwner,@GetOwner),@SomethingKilled,#what=self,#victim=poOwner);
+            Send(poOwner,@Killed,#what=self);
+         }
+      }
+
+      return;
+   }
+
+   WeaponBroke()
+   {
+      send(self,@ShatterToShards);
+
+      propagate;
+   }
+
+
+end
+////////////////////////////////////////////////////////////////////////////////

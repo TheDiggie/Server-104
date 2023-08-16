@@ -8,7 +8,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-WeaponWand is Weapon
+BaseWand is Weapon
 
 constants:
 
@@ -16,35 +16,35 @@ constants:
 
 resources:
 
-   weapwand_name_rsc = "apprentice wand"
-   weapwand_icon_rsc = wand.bgf
-   weapwand_desc_rsc = \
+   basewand_name_rsc = "wand"
+   basewand_icon_rsc = wand.bgf
+   basewand_desc_rsc = \
       "Made with the magical wood of living trees, this wand has been tuned "
       "to the school of %s due to the nature of the crystal affixed to its "
       "end."
 
-   weapwand_window_overlay_rsc = povwand.bgf
-   weapwand_player_overlay = wandov.bgf
+   basewand_window_overlay_rsc = povwand.bgf
+   basewand_player_overlay = wandov.bgf
 
 classvars:
-   vrName = weapwand_name_rsc
-   vrIcon = weapwand_icon_rsc
-   vrDesc = weapwand_desc_rsc
+   vrName = basewand_name_rsc
+   vrIcon = basewand_icon_rsc
+   vrDesc = basewand_desc_rsc
 
    viWeaponQuality = WEAPON_QUALITY_LOW
    viProficiency_needed = SKID_KICK
    viWeaponType = WEAPON_TYPE_SLASH
 
-   viValue_average = 250
-   viWeight = 20
-   viBulk = 20
+   viValue_average = 1000
+   viWeight = 15
+   viBulk = 12
 
    viGround_group = 1
    viInventory_group = 3
    viBroken_group = 2
 
-   vrWeapon_window_overlay = weapwand_window_overlay_rsc
-   vrWeapon_overlay = weapwand_player_overlay
+   vrWeapon_window_overlay = basewand_window_overlay_rsc
+   vrWeapon_overlay = basewand_player_overlay
 
    viRange = 1 * FINENESS
    viHits_init_min = 450
@@ -61,6 +61,7 @@ properties:
    viPT_kraanan_master = PT_GRAY_TO_LBBLUE
    viPT_riija_master = PT_GRAY_TO_LPURPLE
    piSchool = SS_RIIJA
+   piSpellPower = 20
 
 messages:
 
@@ -81,7 +82,7 @@ messages:
    {
       if Send(oSpell,@GetSchool) = piSchool
       {
-         return 20;
+         return piSpellPower;
       }
 
       return 0;

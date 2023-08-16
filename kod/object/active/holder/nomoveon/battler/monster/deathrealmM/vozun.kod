@@ -1,0 +1,120 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Vozun is DeathRealmM
+
+constants:
+
+   include blakston.khd
+
+resources:
+   
+   vozun_name_rsc = "vozun"
+   vozun_icon_rsc = vozun.bgf
+   vozun_desc_rsc = \
+      "Don't let these tattered wings fool you. This evil creature, "
+      "and its massive flail, will ruin anyone's day quickly. The fire "
+      "burns within him and if you aren't careful, you will be burned "
+      "alive, and sent straight to the underworld!"
+
+   vozun_dead_icon_rsc = vozunX.bgf
+   vozun_dead_name_rsc = "slain vozun"
+
+   vozun_sound_hit = vozun_att.mp3
+   vozun_sound_miss = vozun_att.mp3
+   vozun_sound_death = vozun_death.mp3
+   vozun_sound_aware = vozun_miss.mp3
+
+classvars:
+
+   vrName = vozun_name_rsc
+   vrIcon = vozun_icon_rsc
+   vrDesc = vozun_desc_rsc
+   vrDead_icon = vozun_dead_icon_rsc
+   vrDead_name = vozun_dead_name_rsc
+
+   viAttack_type = ATCK_WEAP_BLUDGEON
+
+   viTreasure_type = TID_VOZUN
+
+   viSpeed = SPEED_FAST
+   viAttributes = 0
+   viLevel = 300
+   viDifficulty = 9
+   viAmountofLoot = 9
+   viVisionDistance = 18
+   viAttackRange = 192
+   viKarma = 0
+   viDefault_behavior = AI_FIGHT_HYPERAGGRESSIVE | AI_FIGHT_SWITCHALOT
+   viCashmin = 5000
+   viCashmax = 10000
+   vrSound_hit = vozun_sound_hit
+   vrSound_miss = vozun_sound_miss
+   vrSound_aware = vozun_sound_aware
+   vrSound_death = vozun_sound_death
+
+   viBonusXP = 900
+   viBonusTP = 3
+
+properties:
+
+   piAnimation = ANIM_NONE
+
+messages:
+
+   Constructed()
+   {
+      plResistances = [ [-ATCK_SPELL_COLD, -80 ],
+                        [ATCK_WEAP_PIERCE, -50 ] ];
+
+      plSpellBook = [ [SID_FIREBALL,5,40], [SID_BLAST_OF_FIRE,5,40] ];
+
+      propagate;
+   }
+
+   MonsterAttack(what = $)
+   {
+      piAnimation = ANIM_ATTACK;
+      Send(poOwner,@SomethingChanged,#what=self);
+      piAnimation = ANIM_NONE;
+
+      return;
+   }
+
+   SendLookAnimation()
+   {
+      AddPacket(1,ANIMATE_ONCE);
+      AddPacket(4,400,2,8,2,11,2,1);
+
+      return;
+   }
+
+   SendMoveAnimation()
+   {
+      AddPacket(1,ANIMATE_CYCLE,4,200,2,2,2,7);
+
+      return;
+   }
+
+   SendAnimation()
+   {
+      if piAnimation = ANIM_ATTACK
+      {
+         AddPacket(1,ANIMATE_ONCE,4,200,2,8,2,11,2,1);
+
+         return;
+      }
+
+      // if no body animation
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

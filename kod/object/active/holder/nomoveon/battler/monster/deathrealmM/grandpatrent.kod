@@ -1,0 +1,131 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+GrandpaTrent is DeathRealmM
+
+constants:
+
+   include blakston.khd
+
+resources:
+   
+   grandpatrent_name_rsc = "Grandpa Trent"
+   grandpatrent_icon_rsc = grandpatrent.bgf
+   grandpatrent_desc_rsc = \
+      "An evil soul has possessed this elderly tree and taken control of every branch! "
+      "Trent is a master of Riija, so try not to get tricked and end up "
+      "just another victim hanging from his branches. You definitely want to "
+      "avoid eating any fruit growing from his old cracking branches. Rotten "
+      "and tainted with a potent venom, used for paralyzing his prey. The long roots "
+      "will drag your body underground where your blood is drained."
+
+   grandpatrent_dead_icon_rsc = grandpatrentX.bgf
+   grandpatrent_dead_name_rsc = "conquored Grandpa Trent"
+
+   grandpatrent_sound_hit = grandpatrent_att.mp3
+   grandpatrent_sound_miss = grandpatrent_att.mp3
+   grandpatrent_sound_death = grandpatrent_death.mp3
+   grandpatrent_sound_aware = grandpatrent_miss.mp3
+
+classvars:
+
+   vrName = grandpatrent_name_rsc
+   vrIcon = grandpatrent_icon_rsc
+   vrDesc = grandpatrent_desc_rsc
+   vrDead_icon = grandpatrent_dead_icon_rsc
+   vrDead_name = grandpatrent_dead_name_rsc
+
+   viAttack_type = ATCK_WEAP_SLASH
+
+   viTreasure_type = TID_GRANDPA_TRENT
+
+   viSpeed = SPEED_NONE
+   viAttributes = 0
+   viLevel = 300
+   viDifficulty = 9
+   viAmountofLoot = 9
+   viVisionDistance = 18
+   viAttackRange = 320
+   viKarma = 0
+   viDefault_behavior = AI_FIGHT_HYPERAGGRESSIVE | AI_FIGHT_SWITCHALOT | MOB_NOMOVE
+   viCashmin = 5000
+   viCashmax = 10000
+   vrSound_hit = grandpatrent_sound_hit
+   vrSound_miss = grandpatrent_sound_miss
+   vrSound_aware = grandpatrent_sound_aware
+   vrSound_death = grandpatrent_sound_death
+
+   viBonusXP = 1600
+   viBonusTP = 12
+
+properties:
+
+   piAnimation = ANIM_IDLE
+
+messages:
+
+   Constructed()
+   {
+      plResistances = [ [-ATCK_SPELL_FIRE, -80 ],
+                        [ATCK_WEAP_BLUDGEON, -40 ] ];
+
+      propagate;
+   }
+
+   MonsterAttack(what = $)
+   {
+      piAnimation = ANIM_ATTACK;
+      Send(poOwner,@SomethingChanged,#what=self);
+      piAnimation = ANIM_IDLE;
+
+      return;
+   }
+
+   SendLookAnimation()
+   {
+      AddPacket(1,ANIMATE_ONCE);
+      AddPacket(4,400,2,4,2,6,2,1);
+
+      return;
+   }
+
+   SendMoveAnimation()
+   {
+      AddPacket(1,ANIMATE_CYCLE,4,200,2,2,2,5);
+
+      return;
+   }
+
+   SendAnimation()
+   {
+      if piAnimation = ANIM_ATTACK
+      {
+         AddPacket(1,ANIMATE_ONCE,4,240,2,4,2,6,2,1);
+
+         return;
+      }
+
+	  if piAnimation = ANIM_IDLE
+	  {
+			AddPacket(1,ANIMATE_CYCLE,4,400,2,1,2,3);
+
+			// Send animation info to user.  Default is no animation, display with
+	  }     //  group 1.
+	  else
+	  {
+			AddPacket(1, ANIMATE_NONE, 2, 1);
+	  }
+
+		return;
+		
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

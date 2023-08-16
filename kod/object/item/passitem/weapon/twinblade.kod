@@ -1,0 +1,64 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+TwinBlade is Weapon
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   TwinBlade_name_rsc = "twin blade"
+   TwinBlade_icon_rsc = twnblad.bgf
+
+   TwinBlade_desc_rsc = \
+      "A intimidating blade to all, this sword bears two blades for double the  "
+      "carnage!"
+      
+   TwinBlade_window_overlay_rsc = povtwnblad.bgf
+   TwinBlade_player_overlay = twnbladov.bgf
+
+classvars:
+   vrName = TwinBlade_name_rsc
+   vrIcon = TwinBlade_icon_rsc
+   vrDesc = TwinBlade_desc_rsc
+
+   // TwinBlades are normal quality thrusting weapons
+   viWeaponType = WEAPON_TYPE_THRUST
+   viWeaponQuality = WEAPON_QUALITY_NORMAL
+
+   viProficiency_Needed = SKID_PROFICIENCY_SWORD
+
+   viValue_average = 10000
+   viWeight = 80
+   viBulk = 60
+
+   vrWeapon_window_overlay = TwinBlade_window_overlay_rsc
+   vrWeapon_overlay = TwinBlade_player_overlay
+
+   viGround_group = 1
+   viInventory_group = 3
+   viBroken_group = 2
+
+   viRange = 3 * FINENESS
+
+   viDamage_min = 15
+   viDamage_max = 30
+
+properties:
+
+   piAttack_type = ATCK_WEAP_NONMAGIC+ATCK_WEAP_THRUST
+
+messages:
+
+
+end
+////////////////////////////////////////////////////////////////////////////////

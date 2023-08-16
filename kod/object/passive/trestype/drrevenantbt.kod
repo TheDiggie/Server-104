@@ -1,0 +1,49 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+RevenantBTreasure is TreasureType
+
+constants:
+
+   include blakston.khd
+
+classvars:
+
+   viTreasure_num = TID_VOZUN
+
+properties:
+
+messages:
+
+   Constructed()
+   {
+      plTreasure = [ 
+                     [&Ruby, 99],
+                     [&Sapphire, 99],
+                     [&Diamond, 99],
+                     [&Emerald, 99],
+                     [&Mushroom, 99],
+                     [&PurpleMushroom, 50],
+                     [&InkyCap, 50],
+                     [&Mace, 20],
+                     [&Axe, 20],
+                     [&Hammer, 20],
+                     [&LongSword, 20],
+                     [&MysticSword, 20],
+                     [&Scimitar, 20],
+                     [&ShortSword, 20],
+                     [&GreenMushroom, 5]
+                  ];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

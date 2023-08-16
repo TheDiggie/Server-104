@@ -1,0 +1,47 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+RedHydraScale is Reagent
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   RedHydraScale_name_rsc = "red hydra scale"
+   RedHydraScale_icon_rsc = scale.bgf
+   RedHydraScale_desc_rsc = \
+      "This scale is warm to the touch, no doubt its from a fierce hydra.  "
+
+   RedHydraScale_name_plural_rsc = "red hydra scales"
+
+classvars:
+
+   vrName = RedHydraScale_name_rsc
+   vrIcon = RedHydraScale_icon_rsc
+   vrDesc = RedHydraScale_desc_rsc
+
+   vrName_plural = RedHydraScale_name_plural_rsc
+
+   viValue_average = 100
+   viWeight = 5
+   viBulk = 5
+
+properties:
+
+   piNumber = 1
+   
+   piItem_flags = PT_GRAY_TO_RED
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,50 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+GrandpaTrentTreasure is TreasureType
+
+constants:
+
+   include blakston.khd
+
+classvars:
+
+   viTreasure_num = TID_GRANDPA_TRENT
+
+properties:
+
+messages:
+
+   Constructed()
+   {
+      plTreasure = [ 
+                     [&Sapphire, 99],
+                     [&BlueMushroom, 99],
+                     [&RedMushroom, 99],
+                     [&PurpleMushroom, 99],
+                     [&Mushroom, 99],
+                     [&Elderberry, 99],
+                     [&Herbs, 99],
+                     [&Apple, 99],
+                     [&Axe, 50],
+                     [&NeruditeAxe, 20],
+                     [&GreenMushroom, 5],
+                     [&YellowMushroom, 5],
+                     [&GreenHeartStone, 1],
+                     [&BrownHeartStone, 1],
+                     [&SkyHeartStone, 1],
+                     [&BlueHeartStone, 1]
+                  ];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

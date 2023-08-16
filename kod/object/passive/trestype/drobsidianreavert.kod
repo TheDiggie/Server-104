@@ -1,0 +1,45 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+ObsidianReaverTreasure is TreasureType
+
+constants:
+
+   include blakston.khd
+
+classvars:
+
+   viTreasure_num = TID_OBSIDIAN_REAVER
+
+properties:
+
+messages:
+
+   Constructed()
+   {
+      plTreasure = [ 
+                     [&Ruby, 99],
+                     [&UncutSeraphym, 99],
+                     [&Elderberry, 99],
+                     [&EntrootBerry, 99],
+                     [&FireSand, 99],
+                     [&InkyCap, 50],
+                     [&PolishedSeraphym, 10],
+                     [&LongSword, 10],
+                     [&GreenMushroom, 5],
+                     [&OrcShield, 5],
+                     [&BlackHeartStone, 1]
+                  ];
+                  
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

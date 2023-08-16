@@ -1,0 +1,44 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+MasterWand is BaseWand
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   MasterWand_name_rsc = "master wand"
+   MasterWand_icon_rsc = masterwand.bgf
+   MasterWand_desc_rsc = \
+      "Made with the magical wood of living trees, this wand has been tuned "
+      "to the school of %s due to the nature of the crystal affixed to its "
+      "end."
+
+   MasterWand_window_overlay_rsc = povmastwand.bgf
+   MasterWand_player_overlay = masterwandov.bgf
+
+classvars:
+   vrName = MasterWand_name_rsc
+   vrIcon = MasterWand_icon_rsc
+   vrDesc = MasterWand_desc_rsc
+
+   vrWeapon_window_overlay = MasterWand_window_overlay_rsc
+   vrWeapon_overlay = MasterWand_player_overlay
+
+properties:
+
+   piSpellPower = 30
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,44 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+MinotaurBerserkerTreasure is TreasureType
+
+constants:
+
+   include blakston.khd
+
+classvars:
+
+   viTreasure_num = TID_MINOTAUR_BERSERKER
+
+properties:
+
+messages:
+
+   Constructed()
+   {
+      plTreasure = [ 
+                     [&Emerald, 99],
+                     [&Sapphire, 99],
+                     [&BlueMushroom, 50],
+                     [&Mushroom, 50],
+                     [&BeerMug, 50],
+                     [&BerserkerRing, 50],
+                     [&NeruditeArmor, 20],
+                     [&KnightsHelm, 20],
+                     [&BerserkerAxe, 10],
+                     [&GreenMushroom, 5]
+                  ];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////
