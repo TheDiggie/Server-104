@@ -1,0 +1,102 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+///////////////////////////////////////////////////////////////////////////////////
+DeathRealmBarloqueSouth is DeathRealm
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   room_dbarls = barls.roo
+
+classvars:
+
+   viTeleport_row = 34
+   viTeleport_col = 43
+
+   // Not technically a beach, but we want the ocean-type sounds.
+   viTerrain_Type = TERRAIN_CITY | TERRAIN_ROAD | TERRAIN_BEACH
+
+   viWeatherMask = WEATHER_MASK_DEFAULT
+
+properties:
+
+   prRoom = room_dbarls
+   piRoom_num = RID_DBAR_SOUTH
+
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+messages:
+
+   Constructed()
+   {
+      Send(self,@ChangeTexture,#id=2,#new_texture=09738,#flags=CTF_FLOOR);
+      Send(self,@ChangeTexture,#id=1,#new_texture=09738,#flags=CTF_FLOOR);
+
+      propagate;
+   }
+
+   CreateStandardExits()
+   {
+      plExits = $;
+
+      ///Gates to BarNorth
+      plExits = Cons([ 3, 37, RID_DBAR_NORTH, 45, 51, ROTATE_NONE ],plExits);
+      plExits = Cons([ 4, 37, RID_DBAR_NORTH, 45, 51, ROTATE_NONE ],plExits);
+      plExits = Cons([ 5, 37, RID_DBAR_NORTH, 45, 51, ROTATE_NONE ],plExits);
+
+      plExits = Cons([ 22, 27, RID_DBAR_NORTH, 64, 38, ROTATE_NONE ],plExits);
+      plExits = Cons([ 23, 27, RID_DBAR_NORTH, 64, 38, ROTATE_NONE ],plExits);
+      plExits = Cons([ 24, 27, RID_DBAR_NORTH, 64, 38, ROTATE_NONE ],plExits);
+
+      plExits = Cons([ 46, 30, RID_DI3, 7, 11, ROTATE_NONE ],plExits);
+      plExits = Cons([ 46, 31, RID_DI3, 7, 12, ROTATE_NONE ],plExits);
+
+      plExits = Cons([ 33, 20, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 33, 21, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 16, 42, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 17, 42, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 36, 13, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 28, 42, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 37,19, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 39,25, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 37,36, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 37,37, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 39,43, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 35,48, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 33,28, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 22,45, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 27,40, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 28,40, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 10,47, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([  4,46, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 17,44, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 38, 7, ROOM_LOCKED_DOOR ],plExits);
+
+      propagate;
+   }
+
+   Enter(who=$)
+   {
+      Send(self,@NewHold,#what=who,#new_row=46,#new_col=30,
+            #new_angle=ANGLE_NORTH);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

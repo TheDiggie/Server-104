@@ -1,0 +1,90 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+DeathRealmCastle2b is DeathRealm
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   room_DeathRealm_castle2b = castle2b.roo
+
+classvars:
+
+   viTerrain_Type = TERRAIN_CASTLE | TERRAIN_FOUNTAIN
+
+   viTeleport_row = 8
+   viTeleport_col = 13
+
+   viWeatherZone = WEATHER_ZONE_BARLOQUE
+
+properties:
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+
+   prRoom = room_DeathRealm_castle2b
+   piRoom_num = RID_DCASTLE2B
+
+messages:
+
+   CreateStandardExits()
+   {
+      plExits = $;
+
+      plExits = Cons([ 15, 12, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 15, 13, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 19, 27, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 20, 27, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 40, 47, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 40, 48, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 40, 49, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 41, 27, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 41, 28, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 7,9, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 7,10, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 7,11, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 7,12, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 7,13, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 7,14, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 8,6, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 9,6, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 10,6, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 11,6, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 12,6, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 8,7, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 9,7, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 10,7, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 11,7, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 12,7, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 12,8, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 12,9, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 13,8, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 13,9, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 11,14, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 11,15, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 34,26, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 35,26, ROOM_LOCKED_DOOR ],plExits);
+
+      plEdge_exits = $;
+      plEdge_Exits = Cons([ LEAVE_EAST, RID_DJ3, 37, 2, ROTATE_NONE ], plEdge_exits); 
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////
+

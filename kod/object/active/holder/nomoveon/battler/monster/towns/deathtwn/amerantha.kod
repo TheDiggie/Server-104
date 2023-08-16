@@ -1,0 +1,71 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Amerantha is DeathTown
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Amerantha_name_rsc = "Amerantha"
+   Amerantha_icon_rsc = qw01i.bgf
+   Amerantha_desc_rsc = \
+      "A old prophet of the land, she learned under the teachings of Madame Yaga."
+
+   Amerantha_entry_welcome = "Greetings.  May you live to see my years."
+
+   Amerantha_unwanted_keep = \
+      "~k%s%s tells you, \"Perhaps I may find some use for that.~n~k\""
+   Amerantha_unwanted_pay = \
+      "~k%s%s tells you, \"How convenient.~n~k\""
+   Amerantha_unwanted_give = \
+      "~k%s%s tells you, \"Most material goods are of little consequence "
+      "to an old man like me.~n~k\""
+
+classvars:
+
+   viDefinite = ARTICLE_NONE
+   viIndefinite = ARTICLE_NONE
+   vrName = Amerantha_name_rsc
+   vrIcon = Amerantha_icon_rsc
+   vrDesc = Amerantha_desc_rsc
+   viAttributes = \
+      MOB_RANDOM | MOB_LISTEN | MOB_RECEIVE | MOB_NOFIGHT \
+      | MOB_NOMOVE | MOB_SELLER
+      
+   viMerchant_markup = MERCHANT_FLAT
+
+   vrUnwanted_keep = Amerantha_unwanted_keep
+   vrUnwanted_pay = Amerantha_unwanted_pay
+   vrUnwanted_give = Amerantha_unwanted_give
+
+messages:
+
+   SetForSale()
+   {
+      plFor_sale = [
+         [
+            Create(&CorNothKey),
+            Create(&Maul)
+         ],
+      $,$,$];
+
+      return;
+   }
+
+   CanAcceptOffer()
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

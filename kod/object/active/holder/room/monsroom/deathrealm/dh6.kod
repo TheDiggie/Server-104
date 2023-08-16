@@ -1,0 +1,84 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeathRealmH6 is DeathRealm
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   room_DeathRealm_H6 = h6.roo
+
+classvars:
+
+   viTeleport_row = 25
+   viTeleport_col = 22
+
+   viTerrain_type = TERRAIN_FOREST | TERRAIN_ROAD | TERRAIN_FIELDS
+
+   viWeatherZone = WEATHER_ZONE_TOS
+
+properties:
+
+   prRoom = room_DeathRealm_H6
+   piRoom_num = RID_DH6
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+messages:
+
+   SomethingMoved(what = $,new_row = $, new_col = $)
+   {
+      if (new_row = 56) AND (new_col = 44)
+      {
+         Send(SYS,@UtilGoNearSquare,#what=what,
+               #where=Send(SYS,@FindRoomByNum,#num=RID_DI6),
+               #new_row=8,#new_col=2,#new_angle=ANGLE_NORTH_EAST);
+
+         return;
+      }
+
+      propagate;
+   }
+   
+   CreateStandardExits()
+   {
+      plExits = $;
+
+  /// TO TOWN
+      plExits = Cons([ 27, 41, ROOM_LOCKED_DOOR, Needs_Key ],plExits);
+
+      plEdge_Exits = $;
+      plEdge_Exits = Cons([LEAVE_NORTH, RID_DH5, 45, 11, ROTATE_NONE], plEdge_exits);
+      plEdge_Exits = Cons([LEAVE_WEST, RID_DH7, 8, 66, ROTATE_NONE], plEdge_exits);
+ 
+      propagate;
+   }
+
+   EnterLockedTown(who=$)
+   {
+      local iRow, iCol;
+
+      iRow = send(who,@GetRow);
+      iCol = send(who,@GetCol);
+      
+      if ( iRow = 27
+           AND (iCol = 41))
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

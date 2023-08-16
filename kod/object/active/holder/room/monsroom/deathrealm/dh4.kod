@@ -1,0 +1,54 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeathRealmH4 is DeathRealm
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   room_DeathRealmH4 = h4.roo 
+
+   Dwaterfall_msg1 = "You aren't daring enough to take ~BTHAT~n plunge!"
+   Dwaterfall_soundH4 = wfall2.ogg
+   
+classvars:
+
+   viTeleport_row = 24
+   viTeleport_col = 29
+
+   viTerrain_type = TERRAIN_ROAD | TERRAIN_RIVER | TERRAIN_FOREST
+
+   viWeatherZone = WEATHER_ZONE_CORNOTH
+
+properties:
+
+   prRoom = room_DeathRealmH4
+   piRoom_num = RID_DH4
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+messages:
+
+   CreateStandardExits()
+   {
+      plEdge_Exits = $;
+      plEdge_Exits = Cons([LEAVE_SOUTH, RID_DH5, 4, 3, ROTATE_NONE], plEdge_exits);
+      plEdge_Exits = Cons([LEAVE_WEST, RID_DG4, 42, 49, ROTATE_NONE, ROW_IS_GREATER_THAN,28], plEdge_exits);
+      plEdge_Exits = Cons([LEAVE_NORTH, RID_DH3, 46, 14, ROTATE_NONE, COL_IS_LESS_THAN,33], plEdge_exits);
+      plEdge_Exits = Cons([LEAVE_NORTH, RID_DH3, 46, 33, ROTATE_NONE, COL_IS_GREATER_THAN,32], plEdge_exits);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

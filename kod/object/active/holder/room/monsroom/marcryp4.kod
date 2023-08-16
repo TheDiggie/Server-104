@@ -1,0 +1,352 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+MarionCrypt4 is MonsterRoom
+
+constants:
+
+   include blakston.khd
+
+   SECTOR_QOR    = 1
+   SECTOR_SHAL   = 2
+   SECTOR_KRAN   = 3
+   SECTOR_JALA   = 4
+   SECTOR_FAREN  = 5
+   SECTOR_RIIJA  = 6
+
+resources:
+
+   name_mar_crypt4 = "The Laboratory of the Mad Brothers" 
+   Ritual_1        = "Hear me Qor, accept my offer. Open your realm and lend me your strength.  " 
+   portal_DR       = "Through the portal, you see...darkness..and a red sky.."
+
+   death_realm_book_name = "The Ritual"
+   death_realm_book_text = \
+   "After our recent experiments with the flesh golems a rip in space appeared "
+   "before us. Unsure of whats to come of it we have decided to start"
+   "documenting our future movements as we fear the worse might happen. Tho our"
+   " creations are strong they are nothing compared to what might come through "
+   "this rift. With that said we are not sure where this leads. So to begin we will"
+   " leave behind the ritual used to open the portal shall fate decide it would close"
+   " during or expedition. Located in the main room of our lab is a summoning array. "
+   "This is capabale of channeling the power of the gods if you are able to provide a "
+   "catalyst. We keep a few in the chest outside the lab, not to interfer with "
+   "any current experiments. You will need six offerings in total. These offerings "
+   "must have a strong bond with the god. Strong enough to tip the scale of the entire "
+   "realm. Once you have these they must be placed on each of the short pedestals, with "
+   "our great leader Qor having his offering placed in the center. Once all are placed "
+   "you must as Qor for his magical strength, for our bodys can not contain enough magic "
+   "for a true ritual. You must recite the phrase, \n'Hear me Qor, accept my offer. Open "
+   "your realm and lend me your strength.'"
+
+   room_mar_crypt4 = marcrypt4.roo
+
+   mar_crypt4_music = castle2.ogg
+
+classvars:
+
+   vrName = name_mar_crypt4
+
+   viTeleport_row = 39
+   viTeleport_col = 6
+
+   viTerrain_type = TERRAIN_NECROPOLIS | TERRAIN_CAVES
+
+properties:
+
+   piBaseLight = LIGHT_VERY_DARK
+   prRoom = room_mar_crypt4
+   piRoom_num = RID_MAR_CRYPT4
+
+   prMusic = mar_crypt4_music
+
+   piOutside_factor = OUTDOORS_NONE
+
+   piPortal_counter = 0
+
+messages:
+
+   Constructed()
+   {
+      local oPortal;
+
+      plMonsters = [ [&Thrasher, 100] ];
+      plGenerators = [ [ 5, 30 ], [ 10, 35 ], [ 15, 40 ] ];
+
+      oPortal = Create(&DeathRealmEntrance,#desc=portal_DR,#dest_room_num=RID_DTEMPLE
+      ,#dest_col=8,#dest_row=17,#fine_row=15,#fine_col=32);
+
+	   Send(self,@NewHold,#what=oPortal,#new_row=53, #new_col=54,
+		#fine_row=16,#fine_col=50,#new_angle=ANGLE_NORTH);
+
+      propagate;
+   }
+
+   CreateStandardObjects()
+   {
+      local lObjCoords1, oObj;
+
+      lObjCoords1 = [ [25,30,0,31, OO_SKULL7], [27,29,49,13, OO_BONES],
+                      [30,29,54,20, OO_MUMMY], [25,3,22,44, OO_BONES],
+                      [25,1,22,44, OO_SKULL7], [25,7,22,55, OO_SKULL7],
+                      [26,6,16,48, OO_SKULL7], [20,2,20,18, OO_BONES]
+                    ];
+
+      Send(self,@CreateOrnObjFromList,#lObjlist=lObjCoords1);
+      
+      oObj = Create(&BookPedestal,#Name=death_realm_book_name,
+                  #Text=death_realm_book_text);
+
+      Send(self,@NewHold,#what=oObj,#new_row=15,#new_col=11,
+            #fine_row=48,#fine_col=34,#new_angle=ANGLE_SOUTH_WEST);
+
+      return;
+   }
+
+   CreateStandardExits()
+   {
+      plExits = $;
+
+      plExits = Cons([ 39, 4, RID_MAR_CRYPT3a, 34, 27,
+                       ROTATE_135, DISTANCE_NORMAL ],plExits);
+      plExits = Cons([ 40, 5, RID_MAR_CRYPT3a, 34, 27,
+                       ROTATE_135, DISTANCE_NORMAL ],plExits);
+      propagate;
+   }
+
+   SomeoneSaid(what=$,string=$)
+   {
+      local i, bShal, bQor, bRiija, bKran, bFaren, bJala;
+
+      if StringEqual(string,Ritual_1)
+      {
+         bShal  = FALSE;
+         bQor   = FALSE;
+         bRiija = FALSE;
+         bKran  = FALSE;
+         bFaren = FALSE;
+         bJala  = FALSE;
+
+         foreach i in plPassive
+         {
+            if IsClass(First(i),&OfferingShalille)
+               AND Send(self,@CheckShal,#what=First(i))
+            {
+               bShal = TRUE;
+            }
+            if IsClass(First(i),&OfferingQor)
+               AND Send(self,@CheckQor,#what=First(i))
+            {
+               bQor = TRUE;
+            }
+            if IsClass(First(i),&OfferingRiija)
+               AND Send(self,@CheckRiija,#what=First(i))
+            {
+               bRiija = TRUE;
+            }
+            if IsClass(First(i),&OfferingKraanan)
+               AND Send(self,@CheckKran,#what=First(i))
+            {
+               bKran = TRUE;
+            }
+            if IsClass(First(i),&OfferingFaren)
+               AND Send(self,@CheckFaren,#what=First(i))
+            {
+               bFaren = TRUE;
+            }
+            if IsClass(First(i),&OfferingJala)
+               AND Send(self,@CheckJala,#what=First(i))
+            {
+               bJala = TRUE;
+            }
+         }
+
+         if NOT bShal
+            OR NOT bQor
+            OR NOT bRiija
+            OR NOT bKran
+            OR NOT bFaren
+            OR NOT bJala
+         {
+            propagate;
+         }
+
+         // Okay, all the tokens should be here and in stonehenge.
+         // Open the portals.
+         Send(self,@OpenPortalToDeathRealm);
+      }
+
+      propagate;
+   }
+
+   CheckShal(what=$)
+   {
+      local iSector;
+
+      if what = $
+      {
+         Debug("what = $!  That ain't right!");
+
+         return FALSE;
+      }
+
+      iSector = Send(what,@GetSectorIDAtObject);
+
+      if ((iSector = 2 ))
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   CheckQor(what=$)
+   {
+      local iSector;
+
+      if what = $
+      {
+         Debug("what = $!  That ain't right!");
+
+         return FALSE;
+      }
+
+      iSector = Send(what,@GetSectorIDAtObject);
+
+      if ((iSector = 1 ))
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   CheckRiija(what=$)
+   {
+      local iSector;
+
+      if what = $
+      {
+         Debug("what = $!  That ain't right!");
+
+         return FALSE;
+      }
+
+      iSector = Send(what,@GetSectorIDAtObject);
+
+      if ((iSector = 6 ))
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   CheckKran(what=$)
+   {
+      local iSector;
+
+      if what = $
+      {
+         Debug("what = $!  That ain't right!");
+
+         return FALSE;
+      }
+
+      iSector = Send(what,@GetSectorIDAtObject);
+
+      if ((iSector = 3 ))
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   CheckFaren(what=$)
+   {
+      local iSector;
+
+      if what = $
+      {
+         Debug("what = $!  That ain't right!");
+
+         return FALSE;
+      }
+
+      iSector = Send(what,@GetSectorIDAtObject);
+
+      if ((iSector = 5 ))
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   CheckJala(what=$)
+   {
+      local iSector;
+
+      if what = $
+      {
+         Debug("what = $!  That ain't right!");
+
+         return FALSE;
+      }
+
+      iSector = Send(what,@GetSectorIDAtObject);
+
+      if ((iSector = 4 ))
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   OpenPortalToDeathRealm()
+   {
+      local i, oPortal, oRoom;
+
+      foreach i in plPassive
+      {
+         if First(i) <> $ AND IsClass(First(i),&Offering)
+         {
+            Send(First(i),@Delete);
+         }
+      }
+
+      oPortal = Create(&DeathRealmEntrance,#desc=portal_DR,#dest_room_num=RID_DTEMPLE,
+      #dest_col=8,#dest_row=17,#fine_row=15,#fine_col=32);
+
+	   Send(self,@NewHold,#what=oPortal,#new_row=27, #new_col=17,
+		#fine_row=63,#fine_col=17,#new_angle=ANGLE_NORTH);
+
+      return;
+   }
+
+   ClosePortalToTemple()
+   {
+      local i, oRoom;
+
+      foreach i in plActive
+      {
+         if IsClass(First(i),&Portal)
+         {
+            Send(First(i),@Delete);
+         }
+      }
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

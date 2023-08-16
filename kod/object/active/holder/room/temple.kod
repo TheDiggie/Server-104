@@ -135,13 +135,13 @@ messages:
    {
       local oSign;
 
-      if (Send(SETTINGS_OBJECT,@PvPOptOutEnabled))
-      {
-         oSign = Create(&Sign,#desc=temple_nopvp_sign_desc,#newbie=TRUE,
-                        #name=temple_nopvp_sign_name);
-         Send(self,@NewHold,#what=oSign,#new_row=21,#new_col=3,
-               #fine_row=32,#fine_col=0);
-      }
+      //if (Send(SETTINGS_OBJECT,@PvPOptOutEnabled))
+      //{
+      //   oSign = Create(&Sign,#desc=temple_nopvp_sign_desc,#newbie=TRUE,
+      //                  #name=temple_nopvp_sign_name);
+      //   Send(self,@NewHold,#what=oSign,#new_row=21,#new_col=3,
+      //         #fine_row=32,#fine_col=0);
+      //}
 
       Send(self,@NewHold,#what=Create(&ShalillePriestess),#new_angle=ANGLE_EAST,
             #new_row=17,#new_col=2,#fine_row=24,#fine_col=24);

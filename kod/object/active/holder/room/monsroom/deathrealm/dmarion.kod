@@ -1,0 +1,93 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeathRealmMarion is DeathRealm
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   room_DeathRealm_marion = marion.roo
+
+   wind_sound_DeathRealm_marion = rs_wind.ogg
+
+classvars:
+
+   viTeleport_row = 56
+   viTeleport_col = 39
+
+   viTerrain_type = \
+      TERRAIN_CITY | TERRAIN_ROAD | TERRAIN_FIELDS | TERRAIN_FOREST
+
+   viWeatherMask = WEATHER_MASK_DEFAULT
+
+properties:
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+   prRoom = room_DeathRealm_marion
+   piRoom_num = RID_DMARION
+
+messages:
+
+   SomethingMoved(what = $,new_row = $, new_col = $)
+   {
+      if (new_row < 32) AND (new_col > 66)
+      {
+         Send(SYS,@UtilGoNearSquare,#what=what,
+               #where=Send(SYS,@FindRoomByNum,#num=RID_DC4),
+               #new_row=34,#new_col=5,#new_angle=ANGLE_NORTH_EAST);
+
+         return;
+      }
+
+      if (new_row > 83) AND (new_col > 48)
+      {
+         Send(SYS,@UtilGoNearSquare,#what=what,
+               #where=Send(SYS,@FindRoomByNum,#num=RID_DC5),
+               #new_row=3,#new_col=23,#new_angle=ANGLE_SOUTH_WEST);
+
+         return;
+      }
+
+      propagate;
+   }
+
+   CreateStandardExits()
+   {
+      plExits = $; 
+
+      plExits = Cons([ 32, 16, ROOM_LOCKED_DOOR, tos_locked_tavern_door ],plExits);
+      plExits = Cons([ 56, 54, ROOM_LOCKED_DOOR, tos_locked_tavern_door ],plExits);
+      plExits = Cons([ 62, 58, ROOM_LOCKED_DOOR, tos_locked_tavern_door ],plExits);
+      plExits = Cons([ 50, 21, ROOM_LOCKED_DOOR, tos_locked_tavern_door ],plExits);
+      plExits = Cons([ 31, 43, ROOM_LOCKED_DOOR, tos_locked_tavern_door ],plExits);
+
+      plExits = Cons([ 70, 13, ROOM_LOCKED_DOOR, marion_gate_warning ],plExits);
+      plExits = Cons([ 70, 14, ROOM_LOCKED_DOOR, marion_gate_warning ],plExits);
+      plExits = Cons([ 71, 13, ROOM_LOCKED_DOOR, marion_gate_warning ],plExits);
+      plExits = Cons([ 71, 14, ROOM_LOCKED_DOOR, marion_gate_warning ],plExits);
+
+      propagate;
+   }
+
+   CreateStandardObjects()
+   {
+
+      Send(self,@NewHold,#what=Create(&Amerantha),
+           #new_row=69,#new_col=23,#new_angle=ANGLE_WEST);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

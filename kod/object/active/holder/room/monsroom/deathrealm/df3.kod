@@ -1,0 +1,53 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeathRealmF3 is DeathRealm
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   room_DeathRealm_F3 = f3.roo
+
+classvars:
+
+   viTeleport_row = 23
+   viTeleport_col = 60
+
+   viTerrain_type = TERRAIN_FOREST | TERRAIN_RIVER | TERRAIN_LAKE
+
+   viWeatherZone = WEATHER_ZONE_CORNOTH
+   
+properties:
+
+   prRoom = room_DeathRealm_F3
+   piRoom_num = RID_DF3
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+messages:
+   
+   CreateStandardExits()
+   {
+      plExits = $;
+      plExits = Cons([ 31, 23, ROOM_LOCKED_DOOR ],plExits);
+      
+      plEdge_Exits = $;
+      plEdge_Exits = Cons([LEAVE_EAST, RID_DH3, 8, 2, ROTATE_NONE, ROW_IS_LESS_THAN,22], plEdge_exits);
+      plEdge_Exits = Cons([LEAVE_EAST, RID_DH3, 26, 2, ROTATE_NONE, ROW_IS_GREATER_THAN,21], plEdge_exits);        
+      plEdge_Exits = Cons([LEAVE_SOUTH, RID_DF4, 2, 19, ROTATE_NONE], plEdge_exits);      
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

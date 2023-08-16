@@ -40,7 +40,7 @@ messages:
                      [ &Wizardhat, 2 ],
                      [ &DispellIllusionScroll, 2 ],
 					      [ &Key, 4 ],
-					      [ &WeaponWand, 1]
+					      [ &ApprenticeWand, 1]
                    ];
 
       propagate;

@@ -1,0 +1,170 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+//////////////////////////////////////////////////////////////////////////////////
+DeathRealmBarloqueNorth is DeathRealm
+
+constants:
+
+   CLOCK1 = 1
+   CLOCK2 = 2
+   CLOCK3 = 3
+   CLOCK4 = 4
+   CLOCK5 = 5
+   CLOCK6 = 6
+
+   include blakston.khd
+
+resources:
+
+   room_DeathRealm_barloquenorth = barln.roo
+
+   DeathRealm_barloquenorth_sound_rsc = down2.ogg
+
+classvars:
+
+   viTeleport_row = 25
+   viTeleport_col = 42
+
+   // Not technically a beach, but we want the ocean-type sounds.
+   viTerrain_Type = TERRAIN_CITY | TERRAIN_SHOP | TERRAIN_BEACH
+
+   viWeatherMask = WEATHER_MASK_DEFAULT
+
+properties:
+
+   prRoom = room_DeathRealm_barloquenorth
+   piRoom_num = RID_DBAR_NORTH
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+messages:
+
+   Constructed()
+   {
+      Send(self,@ChangeTexture,#id=11,#new_texture=09738,#flags=CTF_FLOOR);
+      Send(self,@ChangeTexture,#id=12,#new_texture=09738,#flags=CTF_FLOOR);
+      Send(self,@ChangeTexture,#id=7,#new_texture=09738,#flags=CTF_FLOOR);
+
+      propagate;
+   }
+
+   CreateStandardExits()
+   {
+      plExits = $;
+
+  
+      plExits = Cons([ 2, 48, RID_DBAR_PORT, 28, 27, ROTATE_NONE ],plExits);
+      plExits = Cons([ 2, 49, RID_DBAR_PORT, 28, 27, ROTATE_NONE ],plExits);
+
+      plExits = Cons([ 47, 41, RID_DBAR_SEWER, 56, 9, ROTATE_NONE ],plExits);
+      plExits = Cons([ 48, 41, RID_DBAR_SEWER, 56, 9, ROTATE_NONE ],plExits);
+
+      plExits = Cons([ 13,  16, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 16, 36, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 16, 37, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 19, 26, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 28, 59, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 28, 60, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 21,15 , ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 21,16 , ROOM_LOCKED_DOOR ],plExits);
+
+      /// Gates into BAR_SOUTH
+      plExits = Cons([ 44,52, RID_DBAR_SOUTH, 4, 38, ROTATE_NONE ],plExits);
+      plExits = Cons([ 45,52, RID_DBAR_SOUTH, 4, 38, ROTATE_NONE ],plExits);
+      plExits = Cons([ 46,52, RID_DBAR_SOUTH, 4, 38, ROTATE_NONE ],plExits);
+
+      plExits = Cons([ 63,39, RID_DBAR_SOUTH, 23, 28, ROTATE_NONE ],plExits);
+      plExits = Cons([ 64,39, RID_DBAR_SOUTH, 23, 28, ROTATE_NONE ],plExits);
+      plExits = Cons([ 65,39, RID_DBAR_SOUTH, 23, 28, ROTATE_NONE ],plExits);
+
+      plExits = Cons([ 26,55, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 16,22, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 13,30, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 15,21, ROOM_LOCKED_DOOR ],plExits);
+      
+
+      plExits = Cons([ 35,54, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 35,55, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 38,52, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 32,62, ROOM_LOCKED_DOOR ],plExits);
+
+      propagate;
+   }
+
+   ResetClock()
+   "Set the clypsedra water clock"
+   {
+      local iHour,iNewHeight;
+
+      iHour = Send(SYS,@GetHour);
+
+      Send(self,@SomethingWaveRoom,#wave_rsc=barloquenorth_sound_rsc);
+
+      iNewHeight = 152+(6*iHour);
+      
+      if (iHour = 1) OR (iHour = 7) OR (iHour = 13) OR (iHour = 19) OR (iHour = 0)
+      {
+         send(self,@SetSector,#sector=CLOCK1,#animation=ANIMATE_FLOOR_LIFT,
+              #height=iNewHeight,#speed=10);
+      }
+
+      if (iHour = 2) OR (iHour = 8) OR (iHour = 14) OR (iHour = 20) OR (iHour = 0)
+      {
+         send(self,@SetSector,#sector=CLOCK2,#animation=ANIMATE_FLOOR_LIFT,
+              #height=iNewHeight,#speed=10);
+      }
+
+      if (iHour = 3) OR (iHour = 9) OR (iHour = 15) OR (iHour = 21) OR (iHour = 0)
+      {
+         send(self,@SetSector,#sector=CLOCK3,#animation=ANIMATE_FLOOR_LIFT,
+              #height=iNewHeight,#speed=10);
+      }
+
+      if (iHour = 4) OR (iHour = 10) OR (iHour = 16) OR (iHour = 22) OR (iHour = 0)
+      {
+         send(self,@SetSector,#sector=CLOCK4,#animation=ANIMATE_FLOOR_LIFT,
+              #height=iNewHeight,#speed=10);
+      }
+
+      if (iHour = 5) OR (iHour = 11) OR (iHour = 17) OR (iHour = 23)  OR (iHour = 0)
+      {
+         send(self,@SetSector,#sector=CLOCK5,#animation=ANIMATE_FLOOR_LIFT,
+              #height=iNewHeight,#speed=10);
+      }
+
+      if (iHour = 6) OR (iHour = 12) OR (iHour = 18) OR (iHour = 0)
+      {
+         send(self,@SetSector,#sector=CLOCK6,#animation=ANIMATE_FLOOR_LIFT,
+              #height=iNewHeight,#speed=10);
+      }
+
+      return;
+   }
+
+   CreateStandardObjects()
+   {
+
+      Send(self,@NewHold,#what=Create(&Beelzebub),
+           #new_row=35,#new_col=52,#new_angle=ANGLE_WEST);
+
+      propagate;
+   }
+
+   Enter(who=$)
+   {
+      Send(self,@NewHold,#what=who,#new_row=47,#new_col=40,
+            #new_angle=ROTATE_NONE);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

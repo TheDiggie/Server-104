@@ -1,0 +1,170 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Farnohl is Human
+
+constants:
+
+   include blakston.khd
+
+   EQUIPMENT_DROP_PERCENT = 100
+
+resources:
+
+   Farnohl_name_rsc = "King Far'Nohl"
+   Farnohl_desc_rsc = \
+   "This is a poor lost soul. "
+   Farnohl_dead_name_rsc = "dead Farnohl"
+
+classvars:
+
+   vrName = Farnohl_name_rsc
+   vrDesc = Farnohl_desc_rsc
+   vrDead_name = Farnohl_dead_name_rsc
+
+   viTreasure_type = TID_NONE
+
+   viSpeed = SPEED_FASTER
+   viAttack_type = ATCK_WEAP_SLASH
+   viAttributes = 0
+   viDefault_behavior = AI_FIGHT_AGGRESSIVE | AI_FIGHT_WIZARD_KILLER
+
+   viVisionDistance = 12
+
+   viCashMin = 5000
+   viCashMax = 10000
+
+   viDead_drawfx = DRAWFX_TRANSLUCENT_50
+
+   viColorTranslate1 = XLAT_TO_RED
+properties:
+
+   piBaseLevel = 200
+   piBaseDifficulty = 8
+
+   //Here so they can be set
+   vrIcon = human_male_icon_rsc
+   vrDead_Icon = human_dead_male_icona_rsc
+   vrDead_Legs = human_dead_male_iconb_rsc
+   viLevel = 150         // piBaseLevel
+   viDifficulty = 8    // piBaseDifficulty
+   piGender = GENDER_MALE
+   viKarma = 0
+   piLevel = 5
+
+messages:
+
+   SetClothes()
+   {
+      Send(self,@SetDefaultClothes,#shirt_color=viColorTranslate1);
+
+      return;
+   }
+
+   Constructor()
+   {
+      plSpellBook = [ [SID_BLIND,5,100],
+                      [SID_ENFEEBLE,5,100] 
+                    ];
+
+      propagate;
+   }
+
+   SetEquipment()
+   {
+      local oEquipmentItem;
+
+      oEquipmentItem = Create(&Scimitar);
+      Send(self,@AddEquipmentObject,#what=oEquipmentItem);
+      oEquipmentItem = Create(&LightDiscipleRobe,#school=2);
+      Send(self,@AddEquipmentObject,#what=oEquipmentItem);
+      oEquipmentItem = Create(&Gauntlet);
+      Send(self,@AddEquipmentObject,#what=oEquipmentItem);
+      oEquipmentItem = Create(&DaemonHelm);
+      Send(self,@AddEquipmentObject,#what=oEquipmentItem);
+      oEquipmentItem = Create(&NeruditeShield);
+      Send(self,@AddEquipmentObject,#what=oEquipmentItem);
+
+      return;
+   }
+
+
+   // Override from monster superclass
+   // We drop some of our carried items when we die.
+   CreateTreasure(who = $, corpse = $)
+   {
+      local oUsedItem, oItemAtt, iPercentDrop, oKey;
+	  
+	  iPercentDrop = EQUIPMENT_DROP_PERCENT;
+	  
+      oItemAtt = Send(SYS,@FindItemAttByNum,#num=IA_CORPSEPOINTER);
+
+      foreach oUsedItem in plUsing
+      {
+         // Weapon Wands should only have a 1% chance to drop.
+		 if IsClass(oUsedItem, &ApprenticeWand)
+		 {
+		    iPercentDrop = 1;
+		 }
+		 else
+		 {
+		    iPercentDrop = EQUIPMENT_DROP_PERCENT;
+		 }
+		 
+         // Only a percentage chance to drop each item.  Too much stuff otherwise.
+         // Don't drop the shield!  It's a quest/special item!
+		 if (Random(1,100) <= iPercentDrop)
+            AND (NOT IsClass(oUsedItem,vcShieldClass))
+            AND NOT pbIllusion
+         {
+            if (oItemAtt <> $) AND Send(oItemAtt,@ReqAddToItem,#oItem=oUsedItem)
+            {
+               Send(oItemAtt,@AddToItem,#oItem=oUsedItem,#state1=corpse);
+            }
+
+            Send(poOwner,@NewHold,#what=oUsedItem,
+                  #new_row=piRow,#new_col=piCol,
+                  #fine_row=piFine_row,#fine_col=piFine_col);
+         }
+         else
+         {
+            Send(oUsedItem,@Delete);
+         }
+      }
+
+
+      oKey = Create(&BasementKey,#corpse=corpse);
+      Send(poOwner,@NewHold,#what=oKey,
+            #new_row=piRow,#new_col=piCol,
+            #fine_row=piFine_row,#fine_col=piFine_col);
+
+      plUsing = $;
+
+      propagate;
+   }
+
+   SetGender()
+   {
+      return;
+   }
+
+   SetHair()
+   // Sets the hairdo, color.
+   {
+      return;
+   }
+
+   SetFace()
+   {
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

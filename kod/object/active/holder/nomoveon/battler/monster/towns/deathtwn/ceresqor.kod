@@ -1,0 +1,75 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CeresofQor is DeathTown
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   CeresofQor_name_rsc = "Ceres of Qor"
+   CeresofQor_icon_rsc = qroq.bgf
+   CeresofQor_desc_rsc = \
+      "This dark and foreboding figure carries the stench of a thousand years on him, and his evil can be felt from yards away. "
+      "Black inky tendrils seem to dart in and out of the cloak, giving the illusion that Ceres never stops moving. You try to "
+      "get a look at his face only to be repulsed at the sight of pure nothingness."
+
+   CeresofQor_entry_welcome = "Greetings.  May you live to see my years."
+
+   CeresofQor_unwanted_keep = \
+      "~k%s%s tells you, \"Perhaps I may find some use for that.~n~k\""
+   CeresofQor_unwanted_pay = \
+      "~k%s%s tells you, \"How convenient.~n~k\""
+   CeresofQor_unwanted_give = \
+      "~k%s%s tells you, \"Most material goods are of little consequence "
+      "to an old man like me.~n~k\""
+
+   CeresofQor_stat_window_trigger = "change stats"
+
+classvars:
+
+   viDefinite = ARTICLE_NONE
+   viIndefinite = ARTICLE_NONE
+   vrName = CeresofQor_name_rsc
+   vrIcon = CeresofQor_icon_rsc
+   vrDesc = CeresofQor_desc_rsc
+   viAttributes = \
+      MOB_RANDOM | MOB_LISTEN | MOB_RECEIVE | MOB_NOFIGHT \
+      | MOB_NOMOVE | MOB_SELLER
+      
+   viMerchant_markup = MERCHANT_FLAT
+
+   vrUnwanted_keep = CeresofQor_unwanted_keep
+   vrUnwanted_pay = CeresofQor_unwanted_pay
+   vrUnwanted_give = CeresofQor_unwanted_give
+
+messages:
+
+   SetForSale()
+   {
+      plFor_sale = [
+         [
+            Create(&BarloqueKey),
+            Create(&NeruditeAxe)
+         ],
+      $,$,$];
+
+      return;
+   }
+
+   CanAcceptOffer()
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

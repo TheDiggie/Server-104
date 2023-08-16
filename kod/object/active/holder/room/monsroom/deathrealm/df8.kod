@@ -1,0 +1,59 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeathRealmF8 is DeathRealm
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   room_DeathRealm_F8 = f8.roo
+
+classvars:
+
+   viTeleport_row = 18
+   viTeleport_col = 21
+
+   viTerrain_type = TERRAIN_FOREST | TERRAIN_LAKE | TERRAIN_WATERFALL
+
+   viWeatherZone = WEATHER_ZONE_JASPER
+
+properties:
+
+   prRoom = room_DeathRealm_F8
+   piRoom_num = RID_DF8
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+messages:
+
+   Constructed()
+   {
+         Send(self,@ChangeTexture,#id=11,#new_texture=03203,#flags=CTF_NORMALWALL);
+         Send(self,@ChangeTexture,#id=11,#new_texture=03203,#flags=CTF_ABOVEWALL);
+
+      propagate;
+   }
+
+   CreateStandardExits()
+   {
+      plEdge_exits = $;
+
+      plEdge_Exits = Cons([LEAVE_EAST, RID_DG8, 36, 3, ROTATE_NONE], plEdge_exits);
+      plEdge_Exits = Cons([LEAVE_WEST, RID_DJASPER, 18, 75, ANGLE_SOUTH_WEST], plEdge_exits);
+      plEdge_Exits = Cons([LEAVE_NORTH, RID_DF7, 49, 15, ROTATE_NONE], plEdge_exits);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

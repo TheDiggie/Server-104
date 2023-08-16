@@ -1,0 +1,55 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeathRealmC5 is DeathRealm
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   room_DeathRealm_C5 = c5.roo
+
+classvars:
+
+   viTeleport_row = 19
+   viTeleport_col = 18
+
+   viTerrain_type = TERRAIN_FOREST | TERRAIN_LAKE | TERRAIN_WATERFALL | TERRAIN_ROAD
+
+   viWeatherZone = WEATHER_ZONE_MARION
+
+properties:
+
+   prRoom = room_DeathRealm_C5
+   piRoom_num = RID_DC5
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+messages:
+
+   CreateStandardExits()
+   {
+      plExits = $;
+      plExits = Cons([ 50, 35, ROOM_LOCKED_DOOR, tos_locked_tavern_door ],plExits);
+
+      plEdge_exits = $;
+      plEdge_Exits = Cons([LEAVE_NORTH, RID_DMARION, 83, 52, ANGLE_NORTH], plEdge_exits);
+      plEdge_Exits = Cons([LEAVE_SOUTH, RID_DC6, 4, 6, ANGLE_SOUTH], plEdge_exits);
+      
+      plEdge_Exits = Cons([LEAVE_EAST, RID_DD5, 21, 6, ROTATE_NONE, ROW_IS_LESS_THAN,23], plEdge_exits);
+      plEdge_Exits = Cons([LEAVE_EAST, RID_DD5, 33, 6, ROTATE_NONE, ROW_IS_GREATER_THAN,22], plEdge_exits);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

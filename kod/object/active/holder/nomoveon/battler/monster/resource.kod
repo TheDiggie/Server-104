@@ -89,19 +89,28 @@ messages:
          iAmount = Random(cSkillAbility / 12,cSkillAbility / 8);
          iAmount = Bound(iAmount,1,$);
          iAmount = iAmount+iBonus;
-         oResource = Create(vcResource,#number=iAmount);
 
          if what <> $ AND IsClass(what,&player) AND Random(1, (150 - cSkillAbility)) <= cSkillAbility
          {
-            iAmount = 1;
 
             if IsClass(oResource, &NumberItem)
             {
+               oResource = Create(vcResource,#number=iAmount);
                iAmount = Send(oResource,@GetNumber);
+
+               Send(what,@NewHold,#what=oResource);
+               Send(what,@MsgSendUser,#message_rsc=Gathered_rsc,#parm1=iAmount,#parm2=Send(oResource,@GetName));
             }
-            
-            Send(what,@NewHold,#what=oResource);
-            Send(what,@MsgSendUser,#message_rsc=Gathered_rsc,#parm1=iAmount,#parm2=Send(oResource,@GetName));
+            else
+            {
+               for (i = 0; i < iAmount; ++i)
+               {
+                  oResource = Create(vcResource);
+                  Send(what,@NewHold,#what=oResource);
+               }
+
+               Send(what,@MsgSendUser,#message_rsc=Gathered_rsc,#parm1=iAmount,#parm2=Send(oResource,@GetName));
+            } 
          }
       }
 

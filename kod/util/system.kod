@@ -2579,6 +2579,7 @@ messages:
       Send(self,@CreateOneRoomIfNew,#num=RID_MAR_CRYPT1,#class=&MarionCrypt1);
       Send(self,@CreateOneRoomIfNew,#num=RID_MAR_CRYPT2,#class=&MarionCrypt2);
       Send(self,@CreateOneRoomIfNew,#num=RID_MAR_CRYPT3A,#class=&MarionCrypt3a);
+      Send(self,@CreateOneRoomIfNew,#num=RID_MAR_CRYPT3A,#class=&MarionCrypt4);
 
       Send(self,@CreateOneRoomIfNew,#num=RID_OLD_JASPER,#class=&OldJasper);
       Send(self,@CreateOneRoomIfNew,#num=RID_OLD_MARION,#class=&OldMarion);
@@ -2601,6 +2602,69 @@ messages:
       Send(self,@CreateOneRoomIfNew,#num=RID_DESERTRIVER2,#class=&DesertRiver2);
       Send(self,@CreateOneRoomIfNew,#num=RID_DESERTBRIDGE,#class=&DesertBridge);
 
+      //Death Realm
+      Send(self,@CreateOneRoomIfNew,#num=RID_DH4,#class=&DeathRealmH4);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DH3,#class=&DeathRealmH3);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DI3,#class=&DeathRealmI3);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DBAR_SOUTH,#class=&DeathRealmBarloqueSouth);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DBAR_NORTH,#class=&DeathRealmBarloqueNorth);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DBAR_PORT,#class=&DeathRealmBarloquePort);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DJ3,#class=&DeathRealmJ3);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DCASTLE2B,#class=&DeathRealmCastle2b);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DBADLAND2,#class=&DeathRealmBadland2);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DBADLAND1,#class=&DeathRealmBadland1);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DK5,#class=&DeathRealmK5);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DH5,#class=&DeathRealmH5);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DH6,#class=&DeathRealmH6);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DTOS,#class=&DeathRealmTos);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DTOS_EAST,#class=&DeathRealmEastTos);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DTOS_GRAVEYARD,#class=&DeathRealmTosGraveyard);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DTOS_CRYPT,#class=&DeathRealmTosCrypt);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DDUKE1,#class=&DeathRealmDuke1);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DG4,#class=&DeathRealmG4);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DCORNOTH,#class=&DeathRealmCorNoth);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DF4,#class=&DeathRealmF4);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DF3,#class=&DeathRealmF3);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DE4,#class=&DeathRealmE4);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DD5,#class=&DeathRealmD5);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DD4,#class=&DeathRealmD4);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DC5,#class=&DeathRealmC5);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DMARION,#class=&DeathRealmMarion);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DC4,#class=&DeathRealmC4);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DTEMPLE,#class=&DeathRealmTemple);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DE2,#class=&DeathRealmE2);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DF2,#class=&DeathRealmF2);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DBAR_SEWER,#class=&DeathRealmBarlSewer);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DC6,#class=&DeathRealmC6);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DD6E6,#class=&DeathRealmD6E6);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DD6E6ULAKE,#class=&DeathRealmLD6E6);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DE5,#class=&DeathRealmE5);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DC7,#class=&DeathRealmC7);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DD7,#class=&DeathRealmD7);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DE7,#class=&DeathRealmE7);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DJASWEST,#class=&DeathRealmJasperWest);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DJASPER,#class=&DeathRealmJasper);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DF8,#class=&DeathRealmF8);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DG8,#class=&DeathRealmG8);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DG6,#class=&DeathRealmG6);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DH7,#class=&DeathRealmH7);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DG5,#class=&DeathRealmG5);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DF7,#class=&DeathRealmF7);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DF6,#class=&DeathRealmF6);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DI6,#class=&DeathRealmI6);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DI7,#class=&DeathRealmI7);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DI8,#class=&DeathRealmI8);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DI9,#class=&DeathRealmI9);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DH9,#class=&DeathRealmH9);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DG9,#class=&DeathRealmG9);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DTEMPLE_KRAANAN,#class=&DeathRealmKraanan);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DCASTLE,#class=&DeathRealmCastle);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DCASTLE1,#class=&DeathRealmCastle1);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DCASTLE2,#class=&DeathRealmCastle2);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DCASTLE3,#class=&DeathRealmCastle3);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DCASTLE4,#class=&DeathRealmCastle4);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DTHRONE1,#class=&DeathRealmThrone1);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DTHRONE2,#class=&DeathRealmThrone2);
 
       if poRentableRoomMaintenance <> $  // After a clean build, for example.
       {
@@ -2893,6 +2957,7 @@ messages:
    {
       Send(self,@CreateOneBankIfNew,#num=BID_TOS,#class=&Bank);
       Send(self,@CreateOneBankIfNew,#num=BID_KOCATAN,#class=&Bank);
+      Send(self,@CreateOneBankIfNew,#num=BID_DR,#class=&Bank);
 
       return;
    }
@@ -5516,6 +5581,10 @@ messages:
       plMonsterTemplates = cons(create(&Tyrant),plMonsterTemplates);
       plMonsterTemplates = cons(create(&Vajra),plMonsterTemplates);
       plMonsterTemplates = cons(create(&Vozun),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&HeadlessSkeleton),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&Snake),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&Farnohl),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&Spirit),plMonsterTemplates);
 
       return;
    }
@@ -5572,6 +5641,13 @@ messages:
       plItemTemplates = cons(create(&RoomKey),plItemTemplates);
       plItemTemplates = cons(create(&SanctuaryKey),plItemTemplates);
       plItemTemplates = cons(create(&Key),plItemTemplates);
+      plItemTemplates = cons(create(&BarloqueKey),plItemTemplates);
+      plItemTemplates = cons(create(&BasementKey),plItemTemplates);
+      plItemTemplates = cons(create(&CastleKey),plItemTemplates);
+      plItemTemplates = cons(create(&CorNothKey),plItemTemplates);
+      plItemTemplates = cons(create(&SewerKey),plItemTemplates);
+      plItemTemplates = cons(create(&Throne2Key),plItemTemplates);
+      plItemTemplates = cons(create(&TosKey),plItemTemplates);
 
       plItemTemplates = cons(create(&SpiderEggShell),plItemTemplates);
       plItemTemplates = cons(create(&SpiderEgg),plItemTemplates);
@@ -5933,7 +6009,6 @@ messages:
 
       plItemTemplates = cons(create(&ShieldRod),plItemTemplates);
       plItemTemplates = cons(create(&DamageRod),plItemTemplates);
-      plItemTemplates = cons(create(&BaseWand),plItemTemplates);
       plItemTemplates = cons(create(&ApprenticeWand),plItemTemplates);
       plItemTemplates = cons(create(&MasterWand),plItemTemplates);
       plItemTemplates = cons(create(&Wizardhat),plItemTemplates);

@@ -40,7 +40,7 @@ messages:
 
          iBonusModifier = Random(20,40);
 		 
-	     oEquipmentItem = Create(&WeaponWand);
+	     oEquipmentItem = Create(&ApprenticeWand);
          Send(self,@AddEquipmentObject,#what=oEquipmentItem);
       }
       else
@@ -52,7 +52,7 @@ messages:
 		 
          iBonusModifier = Random(40,60);
 		 
-	     oEquipmentItem = Create(&WeaponWand,#school=Send(oSpell,@GetSchool));
+	     oEquipmentItem = Create(&ApprenticeWand,#school=Send(oSpell,@GetSchool));
          Send(self,@AddEquipmentObject,#what=oEquipmentItem);
       }
 

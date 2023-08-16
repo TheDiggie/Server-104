@@ -1,0 +1,46 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeathRealmTosCrypt is DeathRealm
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   room_DeathRealm_toscrypt = toscrypt.roo
+
+classvars:
+   
+   viTeleport_row = 13
+   viTeleport_col = 7
+
+   viTerrain_type = TERRAIN_CITY | TERRAIN_NECROPOLIS
+
+properties:
+
+   prRoom = room_DeathRealm_toscrypt
+   piRoom_num = RID_DTOS_CRYPT
+
+messages:
+
+   CreateStandardExits()
+   {
+      plExits = $;
+
+      // GRAVEYARD
+      plExits = Cons([ 24, 9, RID_DTOS_GRAVEYARD, 10, 29, ROTATE_NONE ],plExits);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

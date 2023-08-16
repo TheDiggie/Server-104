@@ -1,0 +1,82 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeathRealmExit is Portal
+
+constants:
+
+   include blakston.khd
+
+   ROW_ADJUST = 2
+   COL_ADJUST = 0
+
+resources:
+
+   DeathRealmexit_name_rsc = "Gate to the Mortal Plane"
+   DeathRealmexit_icon_rsc = teleport.bgf
+   DeathRealmexit_desc_rsc = "Gazing through the rift you see home."
+   DeathRealm_exit_enter = \
+      "~B~rA voice from the goddess Shal'ille speaks to you ''You've done it!! "
+      "You've slain Far'nohl and defeated his master Qor!! You must be one of the "
+      "strongest adventurers in the land. If only Kraanan was around to see this..."
+   Remove_souls = "Your contained souls have been released from there prison. "
+
+classvars:
+
+   vrName = DeathRealmexit_name_rsc
+   viMoveOn_type = MOVEON_TELEPORTER
+   viAnimationSpeed = 400
+
+properties:
+
+   vrIcon = DeathRealmexit_icon_rsc
+   vrDesc = DeathRealmexit_desc_rsc
+   piDrawFx = DRAWFX_TRANSLUCENT_75
+
+messages:
+
+   TeleportSomething(what=$)
+   "Called when something walks on top of us."
+   {
+      local i, each_obj, oRoom;
+
+      foreach i in Send(what,@GetHolderPassive)
+      {
+         each_obj = Send(what,@HolderExtractObject,#data=i);
+         if IsClass(each_obj,&Souls)
+         {
+            Send(each_obj,@Delete);
+            Send(what,@MsgSendUser,#message_rsc=Remove_souls);
+         }
+      }
+
+      Send(what,@MsgSendUser,#message_rsc=DeathRealm_exit_enter);
+      Post(what,@AdminGoToSafety);
+
+      return;
+   }
+
+   PortalDisappear()
+   {
+      if poOwner = $
+      {
+         DEBUG("PortalDisappear called with null owner!");
+
+         return;
+      }
+
+      Send(poOwner,@LeaveHold,#what=self);
+      poOwner = $;
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

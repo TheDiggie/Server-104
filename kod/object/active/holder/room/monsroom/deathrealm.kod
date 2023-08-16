@@ -1,0 +1,172 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeathRealm is MonsterRoom
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   room_name_DeathRealm ="Death Realm"
+   death_realm_no_cast_rsc = "The forces of Qor prevent you from using that magic here. "
+
+   // Lava Damage
+   Lava_damage_no_hurt = "You walk through the lava as if you were a god."
+   Lava_damage_hurt = "As you wade through the lava it burns you violently."      
+   Lava_scratch_snd = frying.ogg
+
+   // Heat Damage
+   Heat_damage_hurt = "You feel your skin burn by the overwhelming heat."
+
+   // Quake Damage
+   Quake_damage_hurt = "You feel the earth beneath you move violently."
+
+   Needs_Key = "You need a key for this door, ask the town folk for help."
+
+   DeathRealm_music = drmusic.mp3
+
+classvars:
+
+   vrName = room_name_DeathRealm
+   viWeatherZone = WEATHER_ZONE_RAZA
+   viWeatherMask = WEATHER_MASK_DEFAULT_NS
+
+properties:
+
+   prBackground = background_chaos_night
+   prMusic = DeathRealm_music
+
+   piBaseLight = LIGHT_MIN
+   piOutside_factor = 0
+
+   plGenerators = $
+   piMonster_count_max = 30
+   piInit_count_min = 5
+   piInit_count_max = 10
+   
+   // Lava damage
+   piLava_damage = 3
+   piLava_interval = 2000
+   
+   // Heat damage
+   piHeat_damage_min = 1
+   piHeat_damage_max = 2
+   piHeat_interval = 6000
+   piHeat_notice = 30000
+   
+   // Earthquake damage
+   piQuake_damage_min = 3
+   piQuake_damage_max = 10
+   piQuake_interval = 1800000
+   
+   // Fire Ring
+   piFireRing_interval = 25000
+   
+   //Toggels
+   prMapChanges = TRUE
+   prMonsters = TRUE
+   prHeat = TRUE
+   prQuake = TRUE
+   prFireRing = TRUE
+   
+messages:
+
+   Constructed()
+   {
+      if prMapChanges = TRUE
+      {
+         Send(self,@ChangeTexture,#id=10,#new_texture=03203,#flags=CTF_FLOOR);
+         Send(self,@ChangeTexture,#id=11,#new_texture=03203,#flags=CTF_BELOWWALL);
+         Send(self,@ChangeTexture,#id=0,#new_texture=09738,#flags=CTF_FLOOR);
+         Send(self,@ChangeTexture,#id=5,#new_texture=09738,#flags=CTF_FLOOR);
+         Send(self,@ChangeTexture,#id=15,#new_texture=09738,#flags=CTF_BELOWWALL);
+      }
+
+      if prMonsters = TRUE
+      {
+         plMonsters = [ [&HeadlessSkeleton, 10],
+                        [&Spirit, 10],
+                        [&Revenantb, 1],
+                        [&Chimera, 7],
+                        [&Cyclops, 7],
+                        [&FollowerOfQor, 2],
+                        [&MinotaurBerserker, 2],
+                        [&Tyrant, 6],
+                        [&FallenMonk, 4],
+                        [&HellWasp, 6],
+                        [&Croco, 6],
+                        [&Vozun, 6],
+                        [&Dulahan, 4],
+                        [&BlackHydra, 2],
+                        [&RedHydra, 2],
+                        [&GoldHydra, 2],
+                        [&GreenHydra, 2],
+                        [&GreySeeker, 4],
+                        [&GreenSeeker, 4],
+                        [&BrownSeeker, 4],
+                        [&DeathMiteSoldier, 6],
+                        [&Snake, 8],
+                        [&DeathMiteScout, 6],
+                        [&DeathMiteTank, 4],
+                        [&DeathMiteMage, 4]
+                         ];
+      }
+
+      propagate;
+   }
+   
+   RecalcBackgroundSkyGraphic(iSkyBox=0)
+   {
+      return;
+   }
+
+   GetRoomLight()
+   {
+      local iLight;
+
+      return iLight=0;
+   }
+
+   ReqSpellCast(who = $, oSpell = $, lItems = $)
+   {
+      if IsClass(who, &DM)
+	  {
+	     return TRUE;
+	  }
+	  
+      if IsClass(oSpell,&Elusion)
+         OR IsClass(oSpell,&Rescue)
+         OR IsClass(oSpell,&DeathRift)
+         OR IsClass(oSpell,&Truce)
+         OR IsClass(oSpell,&Jig)
+         OR IsClass(oSpell,&NightVision)
+         OR IsClass(oSpell,&MartyrsBattleground)
+         OR IsClass(oSpell,&Anonymity)
+         OR IsClass(oSpell,&ForcesOfLight)
+         OR IsClass(oSpell,&QorBane)
+         OR IsClass(oSpell,&PortalofLife)
+         OR IsClass(oSpell,&FinalRites)
+         OR IsClass(oSpell,&BrambleWall)
+         OR IsClass(oSpell,&Seduce)
+      {
+         // We have to provide the fail message here.
+         Send(who,@MsgSendUser,#message_rsc=death_realm_no_cast_rsc,
+               #parm1=Send(oSpell,@GetName));
+
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

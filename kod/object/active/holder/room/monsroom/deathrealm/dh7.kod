@@ -1,0 +1,49 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeathRealmH7 is DeathRealm
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   room_DeathRealm_H7 = h7.roo
+
+classvars:
+
+   viTeleport_row = 22
+   viTeleport_col = 35
+
+   viTerrain_type = TERRAIN_FOREST
+
+   viWeatherZone = WEATHER_ZONE_TOS
+
+properties:
+
+   prRoom = room_DeathRealm_H7
+   piRoom_num = RID_DH7
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+messages:
+
+   CreateStandardExits()
+   {
+      plEdge_exits = $;
+      plEdge_Exits = Cons([LEAVE_EAST, RID_DI7, 7, 2, ROTATE_NONE, ROW_IS_GREATER_THAN,20], plEdge_exits);
+      plEdge_Exits = Cons([LEAVE_EAST, RID_DH6, 45, 6, ROTATE_NONE, ROW_IS_LESS_THAN,19], plEdge_exits);
+      plEdge_Exits = Cons([LEAVE_WEST, RID_DG6, 115, 88, ROTATE_NONE], plEdge_exits);
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

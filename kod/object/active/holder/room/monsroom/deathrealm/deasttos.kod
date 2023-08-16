@@ -1,0 +1,132 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+////////////////////////////////////////////////////////////////////////////////
+DeathRealmEastTos is DeathRealm
+
+constants:
+
+   include blakston.khd
+
+resources:
+   room_DeathRealm_EastTos = toseast.roo
+
+   DeathRealm_wind_sound_easttos = ambcntry.ogg
+   DeathRealm_wind1_sound_easttos = rs_wind.ogg
+
+classvars:
+
+   viTerrain_Type = TERRAIN_CITY | TERRAIN_ROAD
+
+   viTeleport_row = 27
+   viTeleport_col = 16
+
+   viWeatherMask = WEATHER_MASK_DEFAULT
+
+properties:
+
+   prRoom = room_EastTos
+   piRoom_num = RID_DTOS_EAST
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+messages:
+
+   CreateStandardExits()
+   {
+      plExits = $;
+
+      plExits = Cons([ 8,7, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 12,15, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 40, 8, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 19, 7, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 18, 7, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 7, 34, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 7, 35, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 28, 3, ROOM_LOCKED_DOOR, Needs_Key ],plExits);
+      plExits = Cons([ 29, 3, ROOM_LOCKED_DOOR, Needs_Key ],plExits);
+
+      plExits = Cons([ 28, 25, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 29, 25, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 40, 36, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 40, 37, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 17, 35, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 17, 36, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 28, 51, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 29, 51, ROOM_LOCKED_DOOR ],plExits);
+
+      propagate;
+   }
+
+   SomethingMoved(what = $,new_row = $, new_col = $)
+   {
+      if (new_row = 57) AND (new_col = 34)
+      {
+         Send(SYS,@UtilGoNearSquare,#what=what,
+               #where=Send(SYS,@FindRoomByNum,#num=RID_DI6),
+               #new_row=2,#new_col=47,#new_angle=ANGLE_EAST);
+
+         return;
+      }
+
+      if (new_row = 57) AND (new_col = 35)
+      {
+         Send(SYS,@UtilGoNearSquare,#what=what,
+               #where=Send(SYS,@FindRoomByNum,#num=RID_DI6),
+               #new_row=2,#new_col=47,#new_angle=ANGLE_EAST);
+
+         return;
+      }
+
+      if (new_row = 57) AND (new_col = 36)
+      {
+         Send(SYS,@UtilGoNearSquare,#what=what,
+               #where=Send(SYS,@FindRoomByNum,#num=RID_DI6),
+               #new_row=2,#new_col=47,#new_angle=ANGLE_EAST);
+
+         return;
+      }
+      
+      if (new_row = 57) AND (new_col = 37)
+      {
+         Send(SYS,@UtilGoNearSquare,#what=what,
+               #where=Send(SYS,@FindRoomByNum,#num=RID_DI6),
+               #new_row=2,#new_col=47,#new_angle=ANGLE_EAST);
+
+         return;
+      }
+
+      propagate;
+   }
+
+   EnterLockedTown(who=$)
+   {
+      local iRow, iCol;
+
+      iRow = send(who,@GetRow);
+      iCol = send(who,@GetCol);
+      
+      if ( iRow = 28
+           AND (iCol = 3))
+           OR ( iRow = 29
+           AND (iCol = 3))
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

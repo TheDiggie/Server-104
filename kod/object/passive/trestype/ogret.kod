@@ -39,7 +39,7 @@ messages:
                      [ &GreenMushroom, 5],
                      [ &TrueLute, 1],
                      [ &OrcShield, 1],
-                     [ &WeaponWand, 1 ],
+                     [ &ApprenticeWand, 1 ],
                      [ &Rose, 1],
                      [ &PlateArmor, 1]
                    ];

@@ -201,7 +201,7 @@ messages:
       foreach oUsedItem in plUsing
       {
          // Weapon Wands should only have a 1% chance to drop.
-		 if IsClass(oUsedItem, &WeaponWand)
+		 if IsClass(oUsedItem, &ApprenticeWand)
 		 {
 		    iPercentDrop = 1;
 		 }

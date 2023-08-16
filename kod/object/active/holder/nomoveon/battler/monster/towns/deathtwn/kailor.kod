@@ -1,0 +1,73 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Kailor is DeathTown
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Kailor_name_rsc = "Kailor"
+   Kailor_icon_rsc = Duke.bgf
+   Kailor_desc_rsc = \
+      "Commanding and straightforward, he influences many. Currently deceased. He was brutally assasinated. "
+
+   Kailor_entry_welcome = "Greetings.  May you live to see my years."
+
+   Kailor_unwanted_keep = \
+      "~k%s%s tells you, \"Perhaps I may find some use for that.~n~k\""
+   Kailor_unwanted_pay = \
+      "~k%s%s tells you, \"How convenient.~n~k\""
+   Kailor_unwanted_give = \
+      "~k%s%s tells you, \"Most material goods are of little consequence "
+      "to an old man like me.~n~k\""
+
+   Kailor_stat_window_trigger = "change stats"
+
+classvars:
+
+   viDefinite = ARTICLE_NONE
+   viIndefinite = ARTICLE_NONE
+   vrName = Kailor_name_rsc
+   vrIcon = Kailor_icon_rsc
+   vrDesc = Kailor_desc_rsc
+   viAttributes = \
+      MOB_RANDOM | MOB_LISTEN | MOB_RECEIVE | MOB_NOFIGHT \
+      | MOB_NOMOVE | MOB_SELLER
+      
+   viMerchant_markup = MERCHANT_FLAT
+
+   vrUnwanted_keep = Kailor_unwanted_keep
+   vrUnwanted_pay = Kailor_unwanted_pay
+   vrUnwanted_give = Kailor_unwanted_give
+
+messages:
+
+   SetForSale()
+   {
+      plFor_sale = [
+         [
+            Create(&Throne2Key),
+            Create(&TwinBlade)
+         ],
+      $,$,$];
+
+      return;
+   }
+
+   CanAcceptOffer()
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

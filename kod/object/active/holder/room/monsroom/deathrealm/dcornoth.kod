@@ -1,0 +1,142 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeathRealmCorNoth is DeathRealm
+
+constants:
+
+   include blakston.khd
+
+   CLOCK_FACE = 1
+
+resources:
+
+   room_DeathRealm_CorNoth = cornoth.roo
+
+   wind_sound_DeathRealm_cornoth = ambcntry.ogg
+   wind1_sound_DeathRealm_cornoth = rs_wind.ogg
+
+classvars:
+
+   viTerrain_Type = TERRAIN_CITY | TERRAIN_ROAD | TERRAIN_LAKE
+
+   viTeleport_row = 18
+   viTeleport_col = 37
+
+   viWeatherMask = WEATHER_MASK_DEFAULT
+
+properties:
+
+   prRoom = room_DeathRealm_CorNoth
+   piRoom_num = RID_DCORNOTH
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+messages:
+
+   CreateStandardExits()
+   {
+      plExits = $;
+
+      plExits = Cons([ 11, 77, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 12, 77, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 23, 49, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 24, 54, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 24, 55, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 25, 54, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 25, 55, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 38, 48, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 39, 48, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 37, 75, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 24, 36, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 24, 37, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 1, 56, RID_DG4, 54,24, ROTATE_NONE ],plExits);
+      plExits = Cons([ 2, 56, RID_DG4, 54,24, ROTATE_NONE ],plExits);
+      plExits = Cons([ 1, 57, RID_DG4, 54,25, ROTATE_NONE ],plExits);
+      plExits = Cons([ 2, 57, RID_DG4, 54,25, ROTATE_NONE ],plExits);
+
+      plExits = Cons([ 30, 85, RID_DG5, 6, 19, ROTATE_NONE ],plExits);
+      plExits = Cons([ 30, 86, RID_DG5, 6, 19, ROTATE_NONE ],plExits);
+      plExits = Cons([ 31, 85, RID_DG5, 7, 19, ROTATE_NONE ],plExits);
+      plExits = Cons([ 31, 86, RID_DG5, 7, 19, ROTATE_NONE ],plExits);
+
+      plExits = Cons([ 41, 29, ROOM_LOCKED_DOOR ],plExits);
+
+      // Main entrance
+      plExits = Cons([ 23, 9, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 24, 9, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 25, 9, ROOM_LOCKED_DOOR ],plExits);
+      // Side entrances
+      plExits = Cons([ 29, 3, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 29, 4, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 19, 3, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 19, 4, ROOM_LOCKED_DOOR ],plExits);
+
+      // Main entrance
+      plExits = Cons([ 11, 13, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 12, 13, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 11, 12, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 12, 12, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 13, 12, ROOM_LOCKED_DOOR ],plExits);
+      // Side entrance
+      plExits = Cons([ 14, 2, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 14, 3, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 15, 3, ROOM_LOCKED_DOOR ],plExits);
+
+      // Main entrance
+      plExits = Cons([ 32, 13, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 32, 14, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 33, 12, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 33, 13, ROOM_LOCKED_DOOR ],plExits);
+      // Side entrance
+      plExits = Cons([ 37, 5, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 38, 5, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 39, 5, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 9, 49, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 9, 50, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 40,39, ROOM_LOCKED_DOOR ],plExits);
+
+      propagate;
+   }
+
+   CreateStandardObjects()
+   {
+
+      Send(self,@NewHold,#what=Create(&Joline),
+           #new_row=27,#new_col=65,#new_angle=ANGLE_WEST);
+
+      propagate;
+   }
+
+   Enter(who=$)
+   {
+      Send(self,@NewHold,#what=who,#new_row=3,#new_col=57,
+            #new_angle=ROTATE_NONE);
+
+      return;
+   }
+   
+   Enterb(who=$)
+   {
+      Send(self,@NewHold,#what=who,#new_row=31,#new_col=84,
+            #new_angle=ROTATE_NONE);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

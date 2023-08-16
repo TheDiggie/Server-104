@@ -90,14 +90,14 @@ messages:
       // Quest node list to send to QuestEngine.
       plQuestNodes = [QNT_ID_ABSTAIN_PVP_ONE, QNT_ID_ABSTAIN_PVP_TWO];
 
-      if (Send(SETTINGS_OBJECT,@PvPOptOutEnabled))
-      {
-         piSchedulePct = 100;
-      }
-      else
-      {
+      //if (Send(SETTINGS_OBJECT,@PvPOptOutEnabled))
+      //{
+      //   piSchedulePct = 100;
+      //}
+      //else
+      //{
          piSchedulePct = 0;
-      }
+      //}
 
       propagate;
    }

@@ -1,0 +1,57 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeathRealmTemple is DeathRealm
+
+constants:
+
+   SECTOR_DOOR = 3
+   SECTOR_PILLAR = 4
+
+   include blakston.khd
+
+resources:
+
+   DeathRealm_room_temple = temple.roo
+
+classvars:
+
+   viTeleport_row = 18
+   viTeleport_col = 7
+
+   viTerrain_type = TERRAIN_TEMPLE | TERRAIN_FOREST
+
+   viPermanent_flags = ROOM_NO_COMBAT | ROOM_SAFELOGOFF
+
+   viWeatherZone = WEATHER_ZONE_MARION
+
+properties:
+
+   prRoom = DeathRealm_room_temple
+   piRoom_num = RID_DTEMPLE
+
+   prMapChanges = FALSE
+   prMonsters = FALSE
+   prHeat = FALSE
+   prQuake = FALSE
+   prFireRing = FALSE
+
+messages:
+
+   CreateStandardExits()
+   {
+      plEdge_exits = $;
+      plEdge_Exits = Cons([ LEAVE_EAST, RID_DC4, 20, 15, ANGLE_EAST ], plEdge_exits);
+      
+      return;
+   }
+   
+end
+////////////////////////////////////////////////////////////////////////////////

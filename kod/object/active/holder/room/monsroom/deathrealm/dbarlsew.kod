@@ -1,0 +1,68 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeathRealmBarlSewer is DeathRealm
+
+constants:
+
+   include blakston.khd
+
+   TO_ROW = 4
+   TO_COL = 11
+
+resources:
+
+   room_DeathRealm_barlsew = dbarlsew.roo
+
+classvars:
+
+   viTeleport_row = 58
+   viTeleport_col = 11
+
+   viTerrain_type = TERRAIN_SEWERS | TERRAIN_WATERFALL
+
+properties:
+
+   prRoom = room_DeathRealm_barlsew
+   piRoom_num = RID_DBAR_SEWER
+
+messages:
+
+   CreateStandardExits()
+   {
+      plExits = $;
+
+      plExits = Cons([ 56, 8, ROOM_LOCKED_DOOR, Needs_Key ],plExits);
+   
+      plEdge_Exits = $;
+
+      plEdge_Exits = Cons([LEAVE_WEST, RID_DF2, 7, 106, ROTATE_NONE, ROW_IS_GREATER_THAN,46], plEdge_exits);        
+
+      propagate;
+   }
+
+   EnterLockedTown(who=$)
+   {
+      local iRow, iCol;
+
+      iRow = send(who,@GetRow);
+      iCol = send(who,@GetCol);
+      
+      if ( iRow = 56
+           AND (iCol = 8))
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

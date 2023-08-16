@@ -1,0 +1,59 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeathRealmJ3 is DeathRealm
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   room_DeathRealmJ3 = j3.roo
+
+classvars:
+
+   viTeleport_row = 14
+   viTeleport_col = 18
+
+   viTerrain_type = TERRAIN_ROAD | TERRAIN_FOREST
+
+   viWeatherZone = WEATHER_ZONE_BARLOQUE
+
+properties:
+
+   prRoom = room_DeathRealmJ3
+   piRoom_num = RID_DJ3
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+messages:
+
+   CreateStandardExits()
+   {
+      plExits = $;
+
+      plExits = Cons([ 21,10, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 22,10, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 21,11, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 22,15, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 22,16, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 21,15, ROOM_LOCKED_DOOR ],plExits);
+         
+      plEdge_Exits = $;
+      plEdge_Exits = Cons([LEAVE_WEST, RID_DI3, 25, 60, ROTATE_NONE,ROW_IS_LESS_THAN,19], plEdge_exits);
+      plEdge_Exits = Cons([LEAVE_WEST, RID_DCASTLE2B, 44, 84, ROTATE_NONE,ROW_IS_GREATER_THAN,20], plEdge_exits);
+     
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

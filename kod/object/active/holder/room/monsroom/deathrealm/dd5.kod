@@ -1,0 +1,54 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeathRealmD5 is DeathRealm
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   room_DeathRealm_D5 = d5.roo
+
+classvars:
+
+   viTeleport_row = 24
+   viTeleport_col = 63
+   viTerrain_type = TERRAIN_FOREST | TERRAIN_RIVER | TERRAIN_ROAD | TERRAIN_HILLS | TERRAIN_WATERFALL
+
+   viWeatherZone = WEATHER_ZONE_MARION
+
+properties:
+
+   prRoom = room_DeathRealm_D5
+   piRoom_num = RID_DD5
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+messages:
+
+   CreateStandardExits()
+   {
+      plEdge_Exits = $;
+      plEdge_Exits = Cons([LEAVE_WEST, RID_DC5, 31, 47, ANGLE_SOUTH_WEST, NO_OTHER_CONDITIONS], plEdge_exits);
+      plEdge_Exits = Cons([LEAVE_WEST, RID_DC5, 20, 47, ANGLE_SOUTH_WEST, ROW_IS_LESS_THAN,24], plEdge_exits);      
+      plEdge_Exits = Cons([LEAVE_NORTH, RID_DD4, 79, 53, ROTATE_NONE, COL_IS_LESS_THAN,50], plEdge_exits);
+      plEdge_Exits = Cons([LEAVE_NORTH, RID_DE4, 47, 26, ROTATE_NONE, NO_OTHER_CONDITIONS], plEdge_exits);      
+      plEdge_Exits = Cons([LEAVE_NORTH, RID_DE4, 47, 34, ROTATE_NONE, COL_IS_GREATER_THAN, 80], plEdge_exits);      
+      plEdge_Exits = Cons([LEAVE_SOUTH, RID_DD6E6, 2, 15, ROTATE_NONE, COL_IS_LESS_THAN,50], plEdge_exits);
+      plEdge_Exits = Cons([LEAVE_SOUTH, RID_DD6E6, 3, 65, ROTATE_NONE, COL_IS_GREATER_THAN,49], plEdge_exits);      
+
+      propagate;
+   }
+
+
+end
+////////////////////////////////////////////////////////////////////////////////

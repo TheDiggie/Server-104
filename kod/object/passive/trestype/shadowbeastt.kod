@@ -39,7 +39,7 @@ messages:
                      [ &MysticSword, 5 ],
                      [ &PlateArmor, 5 ],
                      [ &Key, 5 ],
-                     [ &WeaponWand, 10 ]
+                     [ &ApprenticeWand, 10 ]
                    ];
 
       propagate;

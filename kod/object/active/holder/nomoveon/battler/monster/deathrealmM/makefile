@@ -10,7 +10,8 @@ BOFS  = vajra.bof revenantb.bof chimera.bof cyclops.bof followerofqor.bof \
 		croco.bof dulahan.bof grandpatrent.bof spittersprout.bof crushersprout.bof \
 		frenzysprout.bof blackhydra.bof redhydra.bof goldhydra.bof greenhydra.bof \
 		greyseeker.bof greenseeker.bof brownseeker.bof dthmitemage.bof dthmitescout.bof \
-		dthmitesold.bof dthmitetank.bof stonereaver.bof icereaver.bof obsidianreaver.bof
+		dthmitesold.bof dthmitetank.bof stonereaver.bof icereaver.bof obsidianreaver.bof \
+		snake.bof
 
 
 

@@ -1,0 +1,75 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeathRealmDuke1 is DeathRealm
+
+constants:
+
+   include blakston.khd
+
+   TO_ROW = 33
+   TO_COL = 27
+
+resources:
+
+   room_DeathRealm_Duke1 = duke1.roo
+
+classvars:
+
+   viTeleport_row = 33
+   viTeleport_col = 27
+   viTerrain_Type = TERRAIN_CASTLE | TERRAIN_FIELDS | TERRAIN_FOUNTAIN
+
+   viWeatherZone = WEATHER_ZONE_TOS
+
+properties:
+
+   prRoom = room_DeathRealm_Duke1
+   piRoom_num = RID_DDUKE1
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+messages:
+
+   Constructed()
+   {
+         Send(self,@ChangeTexture,#id=1,#new_texture=09738,#flags=CTF_FLOOR);
+
+      propagate;
+   }
+
+   CreateStandardExits()
+   {
+      plExits = $;
+
+  /// TO TOWN
+
+      plExits = Cons([ 43, 29, RID_DTOS, 13, 18, ROTATE_NONE ],plExits);
+      plExits = Cons([ 44, 29, RID_DTOS, 13, 18, ROTATE_NONE ],plExits);
+
+      plExits = Cons([ 13, 28, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 13, 29, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 13, 30, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 14, 15, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 14, 16, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 15, 15, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 15, 16, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 14, 42, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 14, 43, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 15, 42, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 15, 43, ROOM_LOCKED_DOOR ],plExits);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,76 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Joline is DeathTown
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Joline_name_rsc = "Joline"
+   Joline_icon_rsc = qw04i.bgf
+   Joline_desc_rsc = \
+            "This once beautiful woman has been altered. Her body is that of a giant snake. Her words are venom "
+            "and her eyes seem as cold as death yet burn with intellignce. Her words issue with a disturbing whispery "
+            "hiss. She seeks the Urn and the power it will grant the Lich Queen. Those that aid her will be rewarded. "
+            "Those that oppose her will be disposed of. "
+
+   Joline_entry_welcome = "Greetings.  May you live to see my years."
+
+   Joline_unwanted_keep = \
+      "~k%s%s tells you, \"Perhaps I may find some use for that.~n~k\""
+   Joline_unwanted_pay = \
+      "~k%s%s tells you, \"How convenient.~n~k\""
+   Joline_unwanted_give = \
+      "~k%s%s tells you, \"Most material goods are of little consequence "
+      "to an old man like me.~n~k\""
+
+   Joline_stat_window_trigger = "change stats"
+
+classvars:
+
+   viDefinite = ARTICLE_NONE
+   viIndefinite = ARTICLE_NONE
+   vrName = Joline_name_rsc
+   vrIcon = Joline_icon_rsc
+   vrDesc = Joline_desc_rsc
+   viAttributes = \
+      MOB_RANDOM | MOB_LISTEN | MOB_RECEIVE | MOB_NOFIGHT \
+      | MOB_NOMOVE | MOB_SELLER
+      
+   viMerchant_markup = MERCHANT_FLAT
+
+   vrUnwanted_keep = Joline_unwanted_keep
+   vrUnwanted_pay = Joline_unwanted_pay
+   vrUnwanted_give = Joline_unwanted_give
+
+messages:
+
+   SetForSale()
+   {
+      plFor_sale = [
+         [
+            Create(&CastleKey),
+            Create(&BerserkerAxe)
+         ],
+      $,$,$];
+
+      return;
+   }
+
+   CanAcceptOffer()
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

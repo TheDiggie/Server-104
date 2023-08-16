@@ -1,0 +1,74 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Beelzebub is DeathTown
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Beelzebub_name_rsc = "Beelzebub"
+   Beelzebub_icon_rsc = qw05i.bgf
+   Beelzebub_desc_rsc = \
+            "This creautre has still has scraps of skin on it, as if it was wearing it as a suit. "
+            "Altho a terrifying site, he doesnt seem concerned with your presence. "
+
+   Beelzebub_entry_welcome = "Greetings.  May you live to see my years."
+
+   Beelzebub_unwanted_keep = \
+      "~k%s%s tells you, \"Perhaps I may find some use for that.~n~k\""
+   Beelzebub_unwanted_pay = \
+      "~k%s%s tells you, \"How convenient.~n~k\""
+   Beelzebub_unwanted_give = \
+      "~k%s%s tells you, \"Most material goods are of little consequence "
+      "to an old man like me.~n~k\""
+
+   Beelzebub_stat_window_trigger = "change stats"
+
+classvars:
+
+   viDefinite = ARTICLE_NONE
+   viIndefinite = ARTICLE_NONE
+   vrName = Beelzebub_name_rsc
+   vrIcon = Beelzebub_icon_rsc
+   vrDesc = Beelzebub_desc_rsc
+   viAttributes = \
+      MOB_RANDOM | MOB_LISTEN | MOB_RECEIVE | MOB_NOFIGHT \
+      | MOB_NOMOVE | MOB_SELLER
+      
+   viMerchant_markup = MERCHANT_FLAT
+
+   vrUnwanted_keep = Beelzebub_unwanted_keep
+   vrUnwanted_pay = Beelzebub_unwanted_pay
+   vrUnwanted_give = Beelzebub_unwanted_give
+
+messages:
+
+   SetForSale()
+   {
+      plFor_sale = [
+         [
+            Create(&TosKey),
+            Create(&LightSword)
+         ],
+      $,$,$];
+
+      return;
+   }
+
+   CanAcceptOffer()
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

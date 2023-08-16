@@ -1,0 +1,151 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////////
+DeathRealmTos is DeathRealm
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   room_DeathRealm_tos = tos.roo
+
+   DeathRealm_tos_locked_residence_doors = "The doors to this residence are locked."
+   DeathRealm_tos_locked_residence_door = "The door to this residence is locked."
+   
+   DeathRealm_tos_locked_tavern_door = "The door to this tavern is locked."
+
+classvars:
+
+   viTeleport_Row = 60
+   viTeleport_Col = 18
+
+   viTerrain_type = TERRAIN_CITY | TERRAIN_ROAD | TERRAIN_FOUNTAIN
+
+   viWeatherMask = WEATHER_MASK_DEFAULT
+
+properties:
+
+   prRoom = room_DeathRealm_tos
+   piRoom_num = RID_DTOS
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+messages:
+
+   Constructed()
+   {
+         Send(self,@ChangeTexture,#id=1,#new_texture=09738,#flags=CTF_FLOOR);
+         Send(self,@ChangeTexture,#id=2,#new_texture=09738,#flags=CTF_FLOOR);
+         Send(self,@ChangeTexture,#id=3,#new_texture=09738,#flags=CTF_FLOOR);
+         Send(self,@ChangeTexture,#id=4,#new_texture=09738,#flags=CTF_FLOOR);
+
+         propagate;
+   }
+
+      
+
+   CreateStandardExits()
+   {
+      plEdge_Exits = $;
+      plEdge_Exits = Cons([LEAVE_WEST, RID_DTOS_GRAVEYARD, 28, 32, ROTATE_NONE], plEdge_exits);
+      
+      plExits = $;
+      plExits = Cons([ 50, 10, ROOM_LOCKED_DOOR, tos_locked_tavern_door ],plExits);
+      plExits = Cons([ 50, 11, ROOM_LOCKED_DOOR, tos_locked_tavern_door ],plExits);
+      plExits = Cons([ 49, 11, ROOM_LOCKED_DOOR, tos_locked_tavern_door ],plExits);
+
+      plExits = Cons([ 32, 23, ROOM_LOCKED_DOOR, tos_locked_residence_doors ],plExits);
+      plExits = Cons([ 33, 23, ROOM_LOCKED_DOOR, tos_locked_residence_doors ],plExits);
+
+      plExits = Cons([ 16, 22, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 17, 22, ROOM_LOCKED_DOOR ],plExits);
+
+      plExits = Cons([ 24, 15, ROOM_LOCKED_DOOR, tos_locked_residence_doors ],plExits);
+      plExits = Cons([ 25, 15, ROOM_LOCKED_DOOR, tos_locked_residence_doors ],plExits);
+      plExits = Cons([ 28, 15, ROOM_LOCKED_DOOR, tos_locked_residence_doors ],plExits);
+      plExits = Cons([ 29, 15, ROOM_LOCKED_DOOR, tos_locked_residence_doors ],plExits);
+
+      plExits = Cons([ 34, 15, ROOM_LOCKED_DOOR, tos_locked_residence_doors ],plExits);
+      plExits = Cons([ 36, 15, ROOM_LOCKED_DOOR, tos_locked_residence_doors ],plExits);
+      plExits = Cons([ 38, 15, ROOM_LOCKED_DOOR, tos_locked_residence_doors ],plExits);
+
+      plExits = Cons([ 61, 8, ROOM_LOCKED_DOOR, tos_locked_residence_door ],plExits);
+      plExits = Cons([ 61, 9, ROOM_LOCKED_DOOR, tos_locked_residence_door ],plExits);
+
+      plExits = Cons([ 56, 40, RID_DTOS_EAST, 29, 3, ROTATE_NONE ],plExits);
+      plExits = Cons([ 57, 40, RID_DTOS_EAST, 29, 3, ROTATE_NONE ],plExits);
+
+      plExits = Cons([ 57, 3, RID_DH6, 27, 40, ROTATE_NONE ],plExits);
+      plExits = Cons([ 58, 3, RID_DH6, 27, 40, ROTATE_NONE ],plExits);
+
+      plExits = Cons([ 12, 18, RID_DDUKE1, 42, 29, ROTATE_NONE ],plExits);
+      plExits = Cons([ 12, 19, RID_DDUKE1, 42, 29, ROTATE_NONE ],plExits);
+
+      // entrances to the inn
+
+      plExits = Cons([ 45, 32, ROOM_LOCKED_DOOR, tos_locked_tavern_door ],plExits);
+      plExits = Cons([ 46, 23, ROOM_LOCKED_DOOR, tos_locked_tavern_door ],plExits);
+      plExits = Cons([ 54, 31, ROOM_LOCKED_DOOR, tos_locked_tavern_door ],plExits);
+
+      // Blacksmith
+
+      plExits = Cons([ 61, 12, ROOM_LOCKED_DOOR, tos_locked_tavern_door ],plExits);
+      plExits = Cons([ 61, 13, ROOM_LOCKED_DOOR, tos_locked_tavern_door ],plExits);
+
+      // Abandoned buildings
+
+      plExits = Cons([ 41, 22, ROOM_LOCKED_DOOR, tos_locked_tavern_door ],plExits);
+
+      plExits = Cons([ 24, 16, ROOM_LOCKED_DOOR, tos_locked_tavern_door ],plExits);
+      plExits = Cons([ 25, 16, ROOM_LOCKED_DOOR, tos_locked_tavern_door ],plExits);
+      plExits = Cons([ 61, 6, ROOM_LOCKED_DOOR, tos_locked_tavern_door ],plExits);
+      plExits = Cons([ 61, 7, ROOM_LOCKED_DOOR, tos_locked_tavern_door ],plExits);
+
+      // New crypt
+      plExits = Cons([ 71, 17, ROOM_LOCKED_DOOR, tos_locked_tavern_door ],plExits);
+      plExits = Cons([ 71, 18, ROOM_LOCKED_DOOR, tos_locked_tavern_door ],plExits);
+      plExits = Cons([ 72, 17, ROOM_LOCKED_DOOR, tos_locked_tavern_door ],plExits);
+      plExits = Cons([ 72, 18, ROOM_LOCKED_DOOR, tos_locked_tavern_door ],plExits);
+
+      plExits = Cons([ 25, 23, ROOM_LOCKED_DOOR, tos_locked_tavern_door ],plExits);
+      plExits = Cons([ 25, 24, ROOM_LOCKED_DOOR, tos_locked_tavern_door ],plExits);
+
+      propagate;
+   }
+
+   CreateStandardObjects()
+   {
+
+      Send(self,@NewHold,#what=Create(&Kailor),
+           #new_row=56,#new_col=18,#new_angle=ANGLE_WEST);
+
+      propagate;
+   }
+
+   Enter(who=$)
+   {
+      Send(self,@NewHold,#what=who,#new_row=58,#new_col=4,
+            #new_angle=ROTATE_NONE);
+
+      return;
+   }
+
+   Enterb(who=$)
+   {
+      Send(self,@NewHold,#what=who,#new_row=56,#new_col=39,
+            #new_angle=ROTATE_NONE);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

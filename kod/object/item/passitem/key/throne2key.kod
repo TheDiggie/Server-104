@@ -1,0 +1,71 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Throne2Key is Key
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Throne2Key_name_rsc = "old key to the Far'Nohl's throne room."
+   Throne2Key_icon_rsc = key6.bgf
+   Throne2Key_desc_rsc = "This is a old golden key."
+
+   Throne2Key_teleport      = "You unlock the door and walk threw."
+   Throne2Key_no_use        = "You don't see anything to use the key on."
+
+classvars:
+
+   vrName = Throne2Key_name_rsc
+   vrIcon = Throne2Key_icon_rsc
+   vrDesc = Throne2Key_desc_rsc
+
+   viIndefinite = ARTICLE_AN
+
+   viBulk = 10
+   viWeight = 12
+   viValue_average = 10000
+
+   viUse_type = ITEM_SINGLE_USE
+
+properties:
+
+
+messages:
+
+   ReqNewApply()
+   {
+      return TRUE;
+   }
+
+   NewApplied(what = $,apply_on = $)
+   {
+      local oRoom, oTown;
+      
+      oRoom = Send(SYS,@FindRoomByNum,#num=RID_DTHRONE1);
+      oTown = Send(SYS,@FindRoomByNum,#num=RID_DTHRONE2);
+      if Send(what,@GetOwner) = oRoom
+         AND Send(oRoom,@EnterLockedTown,#who=what)
+      {
+         Send(what,@MsgSendUser,#message_rsc=Throne2Key_teleport);
+         Send(Send(SYS,@FindRoomByNum,#num=RID_DTHRONE2),@Enter,#who=what);
+      }
+      else
+      {
+          Send(what,@MsgSendUser,#message_rsc=Throne2Key_no_use);
+      }
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

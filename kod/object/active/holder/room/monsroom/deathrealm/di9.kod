@@ -1,0 +1,54 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeathRealmI9 is DeathRealm
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   DeathRealm_room_i9 = i9.roo
+
+classvars:
+
+   viTeleport_row = 42
+   viTeleport_col = 14
+
+   viTerrain_type = TERRAIN_MOUNTAIN | TERRAIN_MYSTICAL
+
+   viWeatherZone = WEATHER_ZONE_CV
+   viWeatherMask = WEATHER_MASK_MOUNTAINS
+
+properties:
+
+   prRoom = room_i9
+   piRoom_num = RID_DI9
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+   prMapChanges = FALSE
+
+messages:
+
+   CreateStandardExits()
+   {
+      plEdge_exits = $;
+
+      plEdge_Exits = Cons([LEAVE_NORTH, RID_DCASTLE, 21, 3, ANGLE_EAST],
+                           plEdge_exits);
+      plEdge_Exits = Cons([LEAVE_SOUTH, RID_DH9, 21, 43, ROTATE_NONE],
+                           plEdge_exits);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

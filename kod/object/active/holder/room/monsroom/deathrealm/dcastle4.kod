@@ -1,0 +1,80 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeathRealmCastle4 is DeathRealm
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   DeathRealm_room_castle4 = castle1b.roo
+
+classvars:
+
+
+   viTeleport_row = 8
+   viTeleport_col = 13
+
+   viTerrain_type = TERRAIN_CASTLE
+
+   viWeatherZone = WEATHER_ZONE_CV
+   viWeatherMask = WEATHER_MASK_MOUNTAINS
+
+properties:
+
+   prRoom = DeathRealm_room_castle4
+   piRoom_num = RID_DCASTLE4
+   prMapChanges = FALSE
+
+messages:
+
+   CreateStandardExits()
+   {
+      plExits = $;
+
+      plExits = Cons([ 8, 24, RID_DCASTLE1, 1, 18, ROTATE_NONE ],plExits);
+      plExits = Cons([ 9, 24, RID_DCASTLE1, 1, 18, ROTATE_NONE ],plExits);
+      plExits = Cons([ 8, 27, RID_DCASTLE1, 1, 18, ROTATE_NONE ],plExits);
+      plExits = Cons([ 9, 27, RID_DCASTLE1, 1, 18, ROTATE_NONE ],plExits);
+
+      propagate;
+   }
+
+   ReqSomethingAttack(what = $,victim = $,use_weapon = $,stroke_obj = $)
+   "Disallow attacks between the two parts of the room. "
+   {
+      local iWhatCol, iVicCol;
+      if (what = $
+         OR victim = $)
+      {
+         propagate;
+      }
+
+      iWhatCol = Send(what,@GetCol);
+      iVicCol = Send(victim,@GetCol);
+      if (iWhatCol = $
+         OR iVicCol = $)
+      {
+         propagate;
+      }
+      
+      if ((iWhatCol > 25 AND iVicCol < 25)
+         OR (iWhatCol < 25 AND iVicCol > 25))
+      {
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

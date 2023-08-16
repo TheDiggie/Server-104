@@ -1,0 +1,108 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeathRealmEntrance is Portal
+
+constants:
+
+   include blakston.khd
+
+   ROW_ADJUST = 2
+   COL_ADJUST = 0
+
+resources:
+
+   DeathRealmentrance_name_rsc = "Gate to the Death Realm"
+   DeathRealmentrance_icon_rsc = teleport.bgf
+   DeathRealmentrance_desc_rsc = "Gazing through the darkness, you can only see a red sky. "
+   DeathRealm_entrance_enter = \
+      "~B~rA voice from the goddess Shal'ille speaks to you ''What are you doing here mortal!?!"
+      "This place shouldn't be reachable from your realm, it's not safe here. Luckily I was "
+      "able to redirect your spirit here. This temple is the only safe place from the monsters "
+      "that roam this realm. There's no doubt the former king Far'Nohl is responsible for this. You'll "
+      "need to find out if he has a way to get you back to the mortal realm. I wish you luck.''"
+   DeathRealm_cant_enter = \
+      "This portal leads to a unforgiving realm. Those to weak to fight mortals have no business there. "
+   No_Money = "~B~rThe void throws you back as your gold burns your skin through your pocket! "
+classvars:
+
+   vrName = DeathRealmentrance_name_rsc
+   viMoveOn_type = MOVEON_TELEPORTER
+   viAnimationSpeed = 400
+
+properties:
+
+   vrIcon = DeathRealmentrance_icon_rsc
+   vrDesc = DeathRealmentrance_desc_rsc
+   piDest_room = RID_DTEMPLE
+   piDrawFx = DRAWFX_TRANSLUCENT_75
+
+messages:
+
+   TeleportSomething(what=$)
+   "Called when something walks on top of us."
+   {
+      local i, lPassive, each_obj, oRoom;
+
+      if (NOT Send(what,@CheckPlayerFlag,#flag=PFLAG_PKILL_ENABLE))
+      {
+         return;
+      }
+      else
+      {
+         lPassive = send(what,@GetHolderPassive);
+         foreach i in lPassive
+         {
+            each_obj = send(what,@HolderExtractObject,#data=i);
+            if isClass(each_obj,&Money)
+            {
+               Send(what,@MsgSendUser,#message_rsc=DeathRealm_cant_enter);
+               Send(SYS,@UtilGoNearSquare,#what=what,#where=poOwner,
+                    #new_row=Send(self,@GetRow) - ROW_ADJUST,
+                    #new_col=Send(self,@GetCol) - COL_ADJUST,
+                    #new_angle=ANGLE_SOUTH);
+
+               Send(what,@MsgSendUser,#message_rsc=No_Money);
+
+               return;
+            }
+         }
+      }
+
+      if (poOwner = $
+         OR NOT IsClass(poOwner,&MarionCrypt4)
+         OR NOT IsClass(what,&User))
+      {
+         propagate;
+      }
+
+      Send(what,@MsgSendUser,#message_rsc=DeathRealm_entrance_enter);
+      propagate;
+
+      return;
+   }
+
+   PortalDisappear()
+   {
+      if poOwner = $
+      {
+         DEBUG("PortalDisappear called with null owner!");
+
+         return;
+      }
+
+      Send(poOwner,@LeaveHold,#what=self);
+      poOwner = $;
+
+      return;
+   }
+   
+end
+////////////////////////////////////////////////////////////////////////////////

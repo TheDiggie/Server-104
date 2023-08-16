@@ -1,0 +1,76 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeathRealmC4 is DeathRealm
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   room_DeathRealm_C4 = c4.roo
+
+classvars:
+
+   viTeleport_row = 30
+   viTeleport_col = 21
+
+   viTerrain_type = TERRAIN_FOREST
+
+   viWeatherZone = WEATHER_ZONE_MARION
+
+properties:
+
+   prRoom = room_DeathRealm_C4
+   piRoom_num = RID_DC4
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+messages:
+
+
+   SomethingMoved(what = $,new_row = $, new_col = $)
+   {
+
+      if (new_row > 35) and (new_col < 9) 
+      {
+         Send(SYS,@UtilGoNearSquare,#what=what,
+               #where=Send(SYS,@FindRoomByNum,#num=RID_DMARION),
+               #new_row=30,#new_col = 66 , #fine_row = 0,
+               #new_angle=Send(what,@GetAngle));
+
+         return;
+      }
+
+      if (new_row < 18) and (new_col < 13)
+      {
+         Send(SYS,@UtilGoNearSquare,#what=what,
+               #where=Send(SYS,@FindRoomByNum,#num=RID_DTEMPLE),
+               #new_row=9,#new_col = 31,
+               #new_angle=ANGLE_SOUTH_WEST);
+
+         return;
+      }
+
+      propagate;
+   }
+
+
+   CreateStandardExits()
+   {
+      plEdge_Exits = $;
+      plEdge_Exits = Cons([LEAVE_EAST, RID_DD4, 21, 2, ROTATE_NONE], plEdge_exits);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

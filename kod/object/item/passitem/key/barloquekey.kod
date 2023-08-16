@@ -1,0 +1,70 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+BarloqueKey is Key
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   BarloqueKey_name_rsc = "old Barloque key"
+   BarloqueKey_icon_rsc = key1.bgf
+   BarloqueKey_desc_rsc = "This is a old golden key to the city."
+
+   BarloqueKey_teleport      = "You unlock the door and walk threw."
+   BarloqueKey_no_use        = "You don't see anything to use the key on."
+
+classvars:
+
+   vrName = BarloqueKey_name_rsc
+   vrIcon = BarloqueKey_icon_rsc
+   vrDesc = BarloqueKey_desc_rsc
+
+   viIndefinite = ARTICLE_AN
+
+   viBulk = 10
+   viWeight = 12
+   viValue_average = 5000
+
+   viUse_type = ITEM_SINGLE_USE
+
+properties:
+
+messages:
+
+   ReqNewApply()
+   {
+      return TRUE;
+   }
+
+   NewApplied(what = $,apply_on = $)
+   {
+      local oRoom, oTown;
+
+      oRoom = Send(SYS,@FindRoomByNum,#num=RID_DI3);
+      oTown = Send(SYS,@FindRoomByNum,#num=RID_DBAR_SOUTH);
+      if Send(what,@GetOwner) = oRoom
+         AND Send(oRoom,@EnterLockedTown,#who=what)
+      {
+         Send(what,@MsgSendUser,#message_rsc=BarloqueKey_teleport);
+         Send(Send(SYS,@FindRoomByNum,#num=RID_DBAR_SOUTH),@Enter,#who=what);
+      }
+      else
+      {
+          Send(what,@MsgSendUser,#message_rsc=BarloqueKey_no_use);
+      }
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

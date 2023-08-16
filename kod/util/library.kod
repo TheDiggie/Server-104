@@ -1191,7 +1191,7 @@ messages:
 
       plRandomLib = $;
 
-      bPvPOptOut = Send(SETTINGS_OBJECT,@PvPOptOutEnabled);
+      //bPvPOptOut = Send(SETTINGS_OBJECT,@PvPOptOutEnabled);
 
       plRandomLib = Cons([&CorNothTown,[
          [40,LIBRES_NOT_NEWBIE,[ LIBACT_RUMOR_TOKEN_LOC ]] 

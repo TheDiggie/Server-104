@@ -1,0 +1,79 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeathRealmJasper is DeathRealm
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   room_DeathRealm_JasperEast = jaseast.roo
+
+classvars:
+
+   viTeleport_row = 40
+   viTeleport_col = 54
+
+   viTerrain_type = TERRAIN_CITY | TERRAIN_ROAD | TERRAIN_MOUNTAIN
+
+   viWeatherMask = WEATHER_MASK_DEFAULT
+
+properties:
+
+   prRoom = room_DeathRealm_JasperEast
+   piRoom_num = RID_DJASPER
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+messages:
+
+   CreateStandardExits()
+   {
+      plExits = $;
+
+      ///Gates to West Jasper
+      ///Large Gate
+      plExits = Cons([ 36, 34, RID_DJASWEST, 43, 37, ROTATE_NONE ],plExits);
+      plExits = Cons([ 37, 34, RID_DJASWEST, 44, 37, ROTATE_NONE ],plExits);
+      plExits = Cons([ 38, 34, RID_DJASWEST, 45, 37, ROTATE_NONE ],plExits);
+      ///Small Gate
+      plExits = Cons([ 44, 32, RID_DJASWEST, 51, 35, ROTATE_NONE ],plExits);
+      plExits = Cons([ 45, 32, RID_DJASWEST, 52, 35, ROTATE_NONE ],plExits);
+      ///Hidden Gate
+      plExits = Cons([ 52, 26, RID_DJASWEST, 60, 32, ROTATE_NONE ],plExits);
+      plExits = Cons([ 52, 27, RID_DJASWEST, 60, 32, ROTATE_NONE ],plExits);
+
+
+      plExits = Cons([ 41, 57, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 42, 58, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 49, 39, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 59, 31, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 59, 32, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 59, 33, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 29, 61, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 29, 62, ROOM_LOCKED_DOOR ],plExits);
+
+
+
+      // Abandoned buildings
+      plExits = Cons([ 39, 49, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 48, 34, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 54, 39, ROOM_LOCKED_DOOR ],plExits);
+
+      plEdge_Exits = $;
+      plEdge_Exits = Cons([ LEAVE_EAST, RID_DF8, 14, 7, ROTATE_315 ], plEdge_exits);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////
