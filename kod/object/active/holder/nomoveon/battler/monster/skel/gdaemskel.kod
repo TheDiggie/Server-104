@@ -61,8 +61,8 @@ classvars:
    viDefault_behavior = \
       AI_FIGHT_AGGRESSIVE | AI_FIGHT_HYPERAGGRESSIVE \
       | AI_FIGHT_SWITCHALOT | AI_MOVE_FLEE_FRIGHTENERS
-   viCashmin = 5000
-   viCashmax = 10000
+   viCashmin = 2000
+   viCashmax = 4000
    vrSound_miss = GiantDaemonSkeleton_sound_miss
    vrSound_aware = GiantDaemonSkeleton_sound_death
    vrSound_death = GiantDaemonSkeleton_sound_aware
