@@ -28,8 +28,16 @@ resources:
       "souls....I know you have them...i can smell the death on you..let me keep the lost "
       "safe for you."
 
-   Lm_bnkr_did_withdraw_souls = \
-      "Here are your %i souls. Thank you for your business."
+   DR_bnkr_balance               = "You have %i souls sealed away."
+   DR_bnkr_did_deposit           = "You now have %i souls sealed away."
+   DR_bnkr_no_account            = "There are no souls linked to your spirit."
+   DR_bnkr_acct_full             = "You have to many souls bound to you, your spirit can not handle anymore."
+   DR_bnkr_acct_almost_full      = "Your spirit is almost at its limit, it won't be able to bond with many more souls."
+   DR_bnkr_not_enough_withdraw   = "You only have %i souls bound to you."
+   DR_bnkr_not_enough_deposit    = "You only have %i souls in your possession."
+   DR_bnkr_did_withdraw          = "Here are your %i souls. I hope you treat them better than I have."
+   DR_bnkr_player_full           = "The wieght of %i souls is to much for your mortal body to bear."
+   DR_bnkr_player_all_full       = "The wieght of a single other souls is to much for your mortal body to bear."
 
 classvars:
 
@@ -37,6 +45,17 @@ classvars:
    vrIcon = Deathbanker_icon_rsc
    vrDesc = Deathbanker_desc_rsc
    viMerchant_markup = MERCHANT_EXPENSIVE
+
+   vrLm_bnkr_balance                = DR_bnkr_balance
+   vrLm_bnkr_did_deposit            = DR_bnkr_did_deposit
+   vrLm_bnkr_no_account             = DR_bnkr_no_account
+   vrLm_bnkr_acct_full              = DR_bnkr_acct_full
+   vrLm_bnkr_acct_almost_full       = DR_bnkr_acct_almost_full
+   vrLm_bnkr_not_enough_withdraw    = DR_bnkr_not_enough_withdraw
+   vrLm_bnkr_not_enough_deposit     = DR_bnkr_not_enough_deposit
+   vrLm_bnkr_did_withdraw           = DR_bnkr_did_withdraw
+   vrLm_bnkr_player_full            = DR_bnkr_player_full
+   vrLm_bnkr_player_all_full        = DR_bnkr_player_all_full
 
    viAttributes = \
       MOB_NOFIGHT | MOB_SELLER | MOB_RANDOM | MOB_LISTEN \
@@ -47,11 +66,13 @@ classvars:
 
 properties:
 
+   poCurrency = &Souls
+
 messages:
 
    Constructor()
    {
-      plWantedItems = [&Money];
+      plWantedItems = [&Souls];
 
       propagate;
    }
@@ -138,101 +159,101 @@ messages:
       return viBank;
    }
    
-   BankWithdraw(who = $, amount = 0)
-   {
-      local iPlayerAmt, iBankAmt, oSouls, oBank;
-
-      if NOT Send(self,@MobIsBanker)
-      {
-         return;
-      }
-
-      if amount < 0
-      {
-         return;
-      }
-
-      if Send(self,@GetBankNum) = $
-      {
-         Debug("BAD: Banker has no bankID",vrname,self);
-
-         return;
-      }
-
-      oBank = Send(SYS,@FindBankByNum,#num=Send(self,@GetBankNum));
-      iBankAmt = Send(oBank,@WithdrawAccount,#what=who);
-
-      if iBankAmt = 0
-      {
-         Post(who,@SomeoneSaid,#what=self,#string=Lm_bnkr_no_account,
-              #type=SAY_RESOURCE);
-
-         return;
-      }
-
-      if amount > iBankAmt
-      {
-         Send(oBank,@DepositAccount,#what=who,#amount=iBankAmt);
-         Post(who,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
-              #string=Lm_bnkr_not_enough_withdraw,#parm1=iBankAmt);
-
-         return;
-      }
-
-      oSouls = Send(who,@GetSoulsObject);
-      if oSouls = $
-      {
-         oSouls = Create(&Souls,#number=amount);
-         Send(who,@NewHold,#what=oSouls);
-      }
-      else if (Send(oSouls,@GetNumber) + amount) <= 0
-      {
-         iPlayerAmt = Send(oSouls,@GetNumber);
-         if iPlayerAmt = MAX_KOD_INT
-         {
-            Send(oBank,@DepositAccount,#what=who,#amount=iBankAmt);
-            Post(who,@SomeoneSaid,#what=self,#string=Lm_bnkr_player_all_full,
-                  #type=SAY_RESOURCE);
-
-            return;
-         }
-         else if (iPlayerAmt + amount) <= 0
-         {
-            amount = MAX_KOD_INT - iPlayerAmt;
-            Post(who,@SomeoneSaid,#what=self,#string=Lm_bnkr_player_full,
-                  #type=SAY_RESOURCE,#parm1=amount);
-
-            if amount > iBankAmt
-            {
-               Debug("Error giving player ",Send(who,@GetTrueName),amount,
-                  " shillings from total ",iBankAmt,"!. Player has ",iPlayerAmt);
-               Send(oBank,@DepositAccount,#what=who,#amount=iBankAmt);
-
-               return;
-            }
-         }
-      }
-      else
-      {
-         Send(oSouls,@AddNumber,#number=amount);
-      }
-
-      Send(oBank,@DepositAccount,#what=who,#amount=iBankAmt-amount);
-
-      // Send this message even if we gave the almost full one - players are
-      // used to seeing this message on a successful transaction.
-      Post(who,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
-            #string=Lm_bnkr_did_withdraw_souls,#parm1=amount);
-
-      Send(self,@AffectMood,#why=MOODMOD_BANK_WITHDRAWAL);
-
-      if Send(SYS,@IsSuspect,#who=who)
-      {
-         Send(self,@ReportBankBalance,#who=who);
-      }
-
-      return;
-   }
+   //BankWithdraw(who = $, amount = 0)
+   //{
+   //   local iPlayerAmt, iBankAmt, oSouls, oBank;
+//
+   //   if NOT Send(self,@MobIsBanker)
+   //   {
+   //      return;
+   //   }
+//
+   //   if amount < 0
+   //   {
+   //      return;
+   //   }
+//
+   //   if Send(self,@GetBankNum) = $
+   //   {
+   //      Debug("BAD: Banker has no bankID",vrname,self);
+//
+   //      return;
+   //   }
+//
+   //   oBank = Send(SYS,@FindBankByNum,#num=Send(self,@GetBankNum));
+   //   iBankAmt = Send(oBank,@WithdrawAccount,#what=who);
+//
+   //   if iBankAmt = 0
+   //   {
+   //      Post(who,@SomeoneSaid,#what=self,#string=Lm_bnkr_no_account,
+   //           #type=SAY_RESOURCE);
+//
+   //      return;
+   //   }
+//
+   //   if amount > iBankAmt
+   //   {
+   //      Send(oBank,@DepositAccount,#what=who,#amount=iBankAmt);
+   //      Post(who,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
+   //           #string=Lm_bnkr_not_enough_withdraw,#parm1=iBankAmt);
+//
+   //      return;
+   //   }
+//
+   //   oSouls = Send(who,@GetSoulsObject);
+   //   if oSouls = $
+   //   {
+   //      oSouls = Create(&Souls,#number=amount);
+   //      Send(who,@NewHold,#what=oSouls);
+   //   }
+   //   else if (Send(oSouls,@GetNumber) + amount) <= 0
+   //   {
+   //      iPlayerAmt = Send(oSouls,@GetNumber);
+   //      if iPlayerAmt = MAX_KOD_INT
+   //      {
+   //         Send(oBank,@DepositAccount,#what=who,#amount=iBankAmt);
+   //         Post(who,@SomeoneSaid,#what=self,#string=Lm_bnkr_player_all_full,
+   //               #type=SAY_RESOURCE);
+//
+   //         return;
+   //      }
+   //      else if (iPlayerAmt + amount) <= 0
+   //      {
+   //         amount = MAX_KOD_INT - iPlayerAmt;
+   //         Post(who,@SomeoneSaid,#what=self,#string=Lm_bnkr_player_full,
+   //               #type=SAY_RESOURCE,#parm1=amount);
+//
+   //         if amount > iBankAmt
+   //         {
+   //            Debug("Error giving player ",Send(who,@GetTrueName),amount,
+   //               " shillings from total ",iBankAmt,"!. Player has ",iPlayerAmt);
+   //            Send(oBank,@DepositAccount,#what=who,#amount=iBankAmt);
+//
+   //            return;
+   //         }
+   //      }
+   //   }
+   //   else
+   //   {
+   //      Send(oSouls,@AddNumber,#number=amount);
+   //   }
+//
+   //   Send(oBank,@DepositAccount,#what=who,#amount=iBankAmt-amount);
+//
+   //   // Send this message even if we gave the almost full one - players are
+   //   // used to seeing this message on a successful transaction.
+   //   Post(who,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
+   //         #string=Lm_bnkr_did_withdraw_souls,#parm1=amount);
+//
+   //   Send(self,@AffectMood,#why=MOODMOD_BANK_WITHDRAWAL);
+//
+   //   if Send(SYS,@IsSuspect,#who=who)
+   //   {
+   //      Send(self,@ReportBankBalance,#who=who);
+   //   }
+//
+   //   return;
+   //}
 
    TeleportTimerTrigger(timer = $)
    {

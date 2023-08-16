@@ -188,8 +188,8 @@ messages:
       // QNT_ID_WAND_ID_THREE
       if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_ITEM,
                #cargolist=[ [ QN_PRIZETYPE_ITEMCLASS, &LabeledWand, 1 ] ],
-               #prizelist=[ [ [ QN_PRIZETYPE_ITEMCLASS, &Money, 1000 ],
-                              [ QN_PRIZETYPE_ITEMCLASS, &Money, 1500 ],
+               #prizelist=[ [ [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 1000 ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 1500 ],
                               [ QN_PRIZETYPE_ITEMCLASS, &MeatPie, 4 ],
                               [ QN_PRIZETYPE_ITEMCLASS, &Cheese, 3 ],
                               [ QN_PRIZETYPE_ITEMCLASS, &ShortSword, 1 ],

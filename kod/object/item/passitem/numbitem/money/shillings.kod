@@ -1,0 +1,42 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Shillings is Money
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include shillings.lkod
+
+   Shillings_name_one_rsc = "shilling"
+   Shillings_name_many_rsc = "shillings"
+   
+   Shillings_icon_rsc = coin.bgf
+   Shillings_desc_rsc = \
+      "The currency of Meridian.  A profile of an ancient princess "
+      "adorns the front and an apothecary's stone the back."
+
+classvars:
+
+   vrName = Shillings_name_one_rsc
+   vrIcon = Shillings_icon_rsc
+   vrDesc = Shillings_desc_rsc
+
+   vrName_plural = Shillings_name_many_rsc
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

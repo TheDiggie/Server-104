@@ -85,7 +85,7 @@ messages:
       // QNT_ID_JONAS_MURDER_TWO_THREE
       if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MESSAGE,
                #cargolist=lCargo,#timelimit=3 * 3600,
-               #prizelist=[ [ QN_PRIZETYPE_ITEMCLASS, &Money, 400 ] ],
+               #prizelist=[ [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 400 ] ],
                #quest_node_index=QNT_ID_JONAS_MURDER_TWO_THREE)
       {
          Send(oQE,@SetQuestNodeNPCModifier,#index=QNT_ID_JONAS_MURDER_TWO_THREE,

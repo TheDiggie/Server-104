@@ -95,7 +95,7 @@ messages:
       }
 
       if NOT Send(oTarget,@CanBeStoredInVault)
-         OR IsClass(oTarget,&Money)
+         OR IsClass(oTarget,&Shillings)
       {
          Send(who,@MsgSendUser,#message_rsc=conveyance_cant,
                #parm1=Send(oTarget,@GetDef),#parm2=Send(oTarget,@GetName));

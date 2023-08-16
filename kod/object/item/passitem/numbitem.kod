@@ -83,7 +83,7 @@ messages:
          AND IsClass(apply_on,&ReagentBag)
          AND NOT IsClass(self,&Food)
          AND NOT IsClass(self,&Ammo)
-         AND NOT IsClass(self,&Money)
+         AND NOT IsClass(self,&Shillings)
       {
          return TRUE;
       }
@@ -98,7 +98,7 @@ messages:
          AND IsClass(apply_on,&ReagentBag)
          AND NOT IsClass(self,&Food)
          AND NOT IsClass(self,&Ammo)
-         AND NOT IsClass(self,&Money)
+         AND NOT IsClass(self,&Shillings)
       {
          Send(Send(what,@GetReagentBag),@NewHold,#what=self,
                #where=Send(what,@GetReagentBag),

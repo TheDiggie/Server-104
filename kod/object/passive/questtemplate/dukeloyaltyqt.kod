@@ -167,11 +167,11 @@ messages:
       // Template #7 is 3rd Duke Standard node, bring tax $$ back to Duke
       // QNT_ID_DUKE_LOYALTY_THREE
       if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_ITEMCLASS,
-            #cargolist=[ [ QN_PRIZETYPE_ITEMCLASS, &Money, 1 ],\
-                         [ QN_PRIZETYPE_ITEMCLASS, &Money, 2 ],\
-                         [ QN_PRIZETYPE_ITEMCLASS, &Money, 3 ],\
-                         [ QN_PRIZETYPE_ITEMCLASS, &Money, 4 ],\
-                         [ QN_PRIZETYPE_ITEMCLASS, &Money, 5 ] ],
+            #cargolist=[ [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 1 ],\
+                         [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 2 ],\
+                         [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 3 ],\
+                         [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 4 ],\
+                         [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 5 ] ],
             #prizelist=[ [ QN_PRIZETYPE_FACTION, QN_PRIZE_FACTION_UPDATE ],
                          [ QN_PRIZETYPE_SCHEDULE_QUEST, QST_ID_DUKE_SERVICE ] ],
             #penaltylist=[[[ QN_PRIZETYPE_FACTION, QN_PRIZE_FACTION_NEUTRAL ]]],

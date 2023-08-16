@@ -83,7 +83,7 @@ messages:
       // Can't be a gift, unless we're allowing it for some weird reason....
       if (NOT IsClass(obj,&Item))
          OR (NOT Send(obj,@CanBeStoredInVault))
-         OR IsClass(obj,&Money)
+         OR IsClass(obj,&Shillings)
          OR (IsClass(obj,&Gift) AND NOT pbGiftInGift)
       {
          Send(self,@ExplainType,#who=who);

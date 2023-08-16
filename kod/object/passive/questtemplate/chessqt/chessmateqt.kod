@@ -192,10 +192,10 @@ messages:
       // QNT_ID_CHESS_CHECKMATE_FIVE
       if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_CHESSMOVE,
                #NPC_modifier=QN_NPCMOD_PREVIOUS,
-               #prizelist=[ [ [ QN_PRIZETYPE_ITEMCLASS, &Money, 1000 ],
-                              [ QN_PRIZETYPE_ITEMCLASS, &Money, 1500 ],
-                              [ QN_PRIZETYPE_ITEMCLASS, &Money, 1500 ],
-                              [ QN_PRIZETYPE_ITEMCLASS, &Money, 2000 ] ] ],
+               #prizelist=[ [ [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 1000 ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 1500 ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 1500 ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 2000 ] ] ],
                #timelimit=6 * 3600,#quest_node_index=QNT_ID_CHESS_CHECKMATE_FIVE)
       {
          Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_CHESS_CHECKMATE_FIVE,

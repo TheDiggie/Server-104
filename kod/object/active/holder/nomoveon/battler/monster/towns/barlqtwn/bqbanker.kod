@@ -39,7 +39,7 @@ messages:
 
    Constructor()
    {
-      plWantedItems=[&Money];
+      plWantedItems=[&Shillings];
 
       return;
    }

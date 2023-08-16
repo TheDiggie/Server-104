@@ -52,6 +52,10 @@ classvars:
    vrUnwanted_pay = CeresofQor_unwanted_pay
    vrUnwanted_give = CeresofQor_unwanted_give
 
+properties:
+
+   poCurrency = &Souls
+   
 messages:
 
    SetForSale()

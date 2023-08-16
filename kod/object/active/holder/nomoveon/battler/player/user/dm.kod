@@ -1473,7 +1473,7 @@ messages:
       {
          if StringEqual(string,dm_get_money_command)
          {
-            Send(self,@NewHold,#what=Create(&Money,#number=500000));
+            Send(self,@NewHold,#what=Create(&Shillings,#number=500000));
 
             return;
          }

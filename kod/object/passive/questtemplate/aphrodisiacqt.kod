@@ -209,10 +209,10 @@ messages:
       if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_ITEM,
                #NPC_modifier=QN_NPCMOD_PREVIOUS,
                #cargolist=[ [ QN_PRIZETYPE_ITEMCLASS, &AphrodesiacPotion, 1 ] ],
-               #prizelist=[ [ [ QN_PRIZETYPE_ITEMCLASS, &Money, 1400 ],
-                              [ QN_PRIZETYPE_ITEMCLASS, &Money, 1600 ],
-                              [ QN_PRIZETYPE_ITEMCLASS, &Money, 1800 ],
-                              [ QN_PRIZETYPE_ITEMCLASS, &Money, 2000 ] ] ],
+               #prizelist=[ [ [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 1400 ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 1600 ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 1800 ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 2000 ] ] ],
                #timelimit=3600,#quest_node_index=QNT_ID_APHRODISIAC_FOUR)
       {
          Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_APHRODISIAC_FOUR,

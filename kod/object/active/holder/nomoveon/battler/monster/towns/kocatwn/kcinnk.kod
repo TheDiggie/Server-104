@@ -116,7 +116,7 @@ messages:
 
    Constructor()
    {
-      plWantedItems = [&Money];
+      plWantedItems = [&Shillings];
        
       propagate;
    }
@@ -135,7 +135,7 @@ messages:
    {
       local oMoney, oBank, amount;
 
-      if NOT isClass(obj,&Money)
+      if NOT isClass(obj,&Shillings)
       {
          return FALSE;
       }
@@ -291,7 +291,7 @@ messages:
 
       foreach i in item_list
       {
-         if NOT IsClass(i,&Money)
+         if NOT IsClass(i,&Shillings)
          {
             if GetClass(i) = &RoomKeyCopy
             {

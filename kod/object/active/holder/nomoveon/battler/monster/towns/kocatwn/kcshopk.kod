@@ -217,7 +217,7 @@ messages:
       local i;
 
       // Don't take money for resale.  That's just silly.
-      if IsClass(what,&Money)
+      if IsClass(what,&Shillings)
       {
          return FALSE;
       }

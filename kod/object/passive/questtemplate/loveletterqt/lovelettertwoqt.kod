@@ -109,13 +109,13 @@ messages:
       // QNT_ID_LOVE_LETTERTWO_TWO
       if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_ITEM,
                #cargolist=[ [ QN_PRIZETYPE_ITEMCLASS, &LoveLetter, 1 ] ],
-               #prizelist=[ [ [ QN_PRIZETYPE_ITEMCLASS, &Money, 500 ],
-                              [ QN_PRIZETYPE_ITEMCLASS, &Money, 600 ],
-                              [ QN_PRIZETYPE_ITEMCLASS, &Money, 400 ],
-                              [ QN_PRIZETYPE_ITEMCLASS, &Money, 700 ],
-                              [ QN_PRIZETYPE_ITEMCLASS, &Money, 550 ],
-                              [ QN_PRIZETYPE_ITEMCLASS, &Money, 650 ],
-                              [ QN_PRIZETYPE_ITEMCLASS, &Money, 450 ],
+               #prizelist=[ [ [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 500 ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 600 ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 400 ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 700 ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 550 ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 650 ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 450 ],
                               [ QN_PRIZETYPE_ITEMCLASS, &Key, 1 ] ] ],
                #timelimit=6 * 3600,#quest_node_index=QNT_ID_LOVE_LETTERTWO_TWO)
       {

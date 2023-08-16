@@ -61,7 +61,7 @@ messages:
          foreach i in lPassive
          {
             each_obj = send(what,@HolderExtractObject,#data=i);
-            if isClass(each_obj,&Money)
+            if isClass(each_obj,&Shillings)
             {
                Send(what,@MsgSendUser,#message_rsc=DeathRealm_cant_enter);
                Send(SYS,@UtilGoNearSquare,#what=what,#where=poOwner,

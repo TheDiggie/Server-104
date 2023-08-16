@@ -8,7 +8,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-Money is NumberItem
+Souls is Money
 
 constants:
 
@@ -16,25 +16,28 @@ constants:
 
 resources:
 
-   money_name_one_rsc = "old money"
-   money_name_many_rsc = "old money"
-   
-   money_icon_rsc = coin.bgf
-   money_desc_rsc = \
-      "this is the old verion of money, turn it into a admin to have it converted! "
+   souls_name_rsc = "contained soul"
+   souls_icon_rsc = souls.bgf
+   souls_desc_rsc = \
+   "This is a vial of contained souls captured by the creatures of this land. "
+   "We don't know what they want with them, unsure if there food or just "
+   "a trinket of there cruelty. I'm sure there valuable regardless.  "
+
+   souls_name_plural_rsc = "contained souls"
 
 classvars:
 
-   vrName = money_name_one_rsc
-   vrIcon = money_icon_rsc
-   vrDesc = money_desc_rsc
+   vrName = souls_name_rsc
+   vrIcon = souls_icon_rsc
+   vrDesc = souls_desc_rsc
 
-   vrName_plural = money_name_many_rsc
+   vrName_plural = souls_name_plural_rsc
 
    viBulk = 0
    viWeight = 0
 
    viValue_average = 1
+   viValue_multiplier = 1
 
    viUse_type = ITEM_CANT_USE
    viItem_type = ITEMTYPE_MONEY
@@ -45,24 +48,9 @@ classvars:
 properties:
 
    viObject_flags = OF_GETTABLE
+   piNumber = 1
 
 messages:
-
-   GetValue()
-   {
-      return piNumber * Send(self,@GetInitValue);
-   }
-
-   FixMoney(amount = $)
-   "Bounds money to the upper limit of 'amount'."
-   {
-      if amount <> $
-      {
-         piNumber = Bound(piNumber,0,amount);
-      }
-
-      return;
-   }
 
 end
 ////////////////////////////////////////////////////////////////////////////////

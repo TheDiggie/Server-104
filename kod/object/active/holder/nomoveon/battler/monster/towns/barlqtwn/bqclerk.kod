@@ -417,7 +417,7 @@ messages:
 
    SetWantedItems()
    {
-      plWantedItems = [ &NameChangeScroll, &BallotItem, &Money ];
+      plWantedItems = [ &NameChangeScroll, &BallotItem, &Shillings ];
 
       return;
    }
@@ -593,7 +593,7 @@ messages:
    {
       local oMoney, oBank, amount;
 
-      if NOT IsClass(obj,&Money)
+      if NOT IsClass(obj,&Shillings)
       {
          return FALSE;
       }

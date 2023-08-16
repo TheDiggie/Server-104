@@ -461,7 +461,7 @@ messages:
                oObj = Create(First(lItem_info),#corpse=corpse);
             }
 
-            if IsClass(oObj,&Money)
+            if IsClass(oObj,&Shillings)
             {
                iNumber = 0;
                Send(oObj,@AddNumber,#number=iNumber);

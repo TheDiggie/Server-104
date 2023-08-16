@@ -162,10 +162,10 @@ messages:
       // QNT_ID_CHESS_QUEST_FOUR
       if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_CHESSMOVE,
                #NPC_modifier=QN_NPCMOD_PREVIOUS,
-               #prizelist=[ [ [ QN_PRIZETYPE_ITEMCLASS, &Money, 500 ],
-                              [ QN_PRIZETYPE_ITEMCLASS, &Money, 700 ],
-                              [ QN_PRIZETYPE_ITEMCLASS, &Money, 800 ],
-                              [ QN_PRIZETYPE_ITEMCLASS, &Money, 1000 ] ] ],
+               #prizelist=[ [ [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 500 ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 700 ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 800 ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 1000 ] ] ],
                #timelimit=6 * 3600,#quest_node_index=QNT_ID_CHESS_QUEST_FOUR)
       {
          Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_CHESS_QUEST_FOUR,

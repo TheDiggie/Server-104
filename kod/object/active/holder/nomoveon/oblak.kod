@@ -153,7 +153,7 @@ messages:
       iValue_offered = 0;
       foreach i in item_list
       {
-	 if not IsClass(i,&Money)
+	 if not IsClass(i,&Shillings)
 	 {
 	    Send(poOffer_who,@MsgSendUser,#message_rsc=oblak_only_money);
 	    Send(self,@OfferCanceled);
@@ -175,7 +175,7 @@ messages:
       if iDiff > 0
       {
 	 Send(poOffer_who,@MsgSendUser,#message_rsc=oblak_change);
-	 plOffer_items = Cons(Create(&Money,#number=iDiff),plOffer_items);
+	 plOffer_items = Cons(Create(&Shillings,#number=iDiff),plOffer_items);
       }
 
       oHolder = Send(SYS,@GetSystemHolder1);

@@ -1928,7 +1928,7 @@ of the classvar via debug string.
 
       foreach i in plItemTemplates
       {
-         if NOT IsClass(i,&Money)
+         if NOT IsClass(i,&Shillings)
          {
             SetClassVar(i,"viBulk",iNumber);
             SetClassVar(i,"viWeight",iNumber);

@@ -161,7 +161,7 @@ messages:
    AddDefaultObjects()
    "Add the objects a player is given when creating a character in newbie zone"
    {
-      Send(self,@NewHold,#what=Create(&Money,#number=2500));
+      Send(self,@NewHold,#what=Create(&Shillings,#number=2500));
       Send(self,@NewHold,#what=Create(&Mace));
       Send(self,@NewHold,#what=Create(&RedMushroom,#number=20));
       Send(self,@NewHold,#what=Create(&OrcTooth,#number=10));

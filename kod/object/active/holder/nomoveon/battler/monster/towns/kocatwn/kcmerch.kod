@@ -200,7 +200,7 @@ messages:
 
       if IsClass(obj,&NeruditeOreChunk)
       {
-         oMoney = Create(&Money,#number=(Send(obj,@GetValue)+1300));
+         oMoney = Create(&Shillings,#number=(Send(obj,@GetValue)+1300));
          if Send(who,@ReqNewHold,#what=oMoney)
          {
             Send(who,@NewHold,#what=oMoney);

@@ -651,8 +651,8 @@ messages:
       plDefaultCargoList = [ default_message ];
       plDefaultMonsterList = [ &SpiderBaby, &Centipede, &Ant, &FungusBeast,
                                &Scorpion, &Slime, &Spider, &Troll, &Orc ];
-      plDefaultPrizeList = [[[ QN_PRIZETYPE_ITEMCLASS, &Money, 10 ],\
-            [ QN_PRIZETYPE_ITEMCLASS, &Money, 500 ],\
+      plDefaultPrizeList = [[[ QN_PRIZETYPE_ITEMCLASS, &Shillings, 10 ],\
+            [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 500 ],\
             [ QN_PRIZETYPE_ITEMCLASS, &Emerald, 5 ],\
             [ QN_PRIZETYPE_ITEMCLASS, &Ruby, 5 ],\
             [ QN_PRIZETYPE_ITEMCLASS, &Diamond, 5 ],\

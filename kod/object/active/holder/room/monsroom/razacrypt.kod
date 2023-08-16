@@ -551,7 +551,7 @@ messages:
       Send(self,@NewHold,#what=oMoney,#new_row=35,#new_col=4,
             #fine_row=16,#fine_col=48);
 
-      oMoney = Create(&Money,#number=(Random(45,55)*10));
+      oMoney = Create(&Shillings,#number=(Random(45,55)*10));
       Send(self,@NewHold,#what=oMoney,#new_row=35,#new_col=5,
             #fine_row=16,#fine_col=16);
 

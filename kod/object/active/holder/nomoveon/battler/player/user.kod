@@ -6847,7 +6847,7 @@ messages:
          OR NOT (Send(what,@MobIsVaultman,#who=self)
                  OR (Send(what,@MobIsBanker,#who=self)
                      AND Length(item_list)=1
-                     AND IsClass(First(item_list),&Money)) )
+                     AND IsClass(First(item_list),&Shillings)) )
       {
          Send(self,@MsgSendUser,#message_rsc=user_cant_deposit_items);
 
@@ -7857,7 +7857,7 @@ messages:
       if IsClass(what,&NumberItem)
          AND NOT IsClass(what,&Food)
          AND NOT IsClass(what,&Ammo)
-         AND NOT IsClass(what,&Money)
+         AND NOT IsClass(what,&Shillings)
          AND NOT bFromReagentBag
          AND Send(self,@GetReagentBag) <> $
          AND (piPreferences & CF_REAGENTBAG)

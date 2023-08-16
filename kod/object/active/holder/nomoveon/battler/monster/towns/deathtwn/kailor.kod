@@ -50,6 +50,10 @@ classvars:
    vrUnwanted_pay = Kailor_unwanted_pay
    vrUnwanted_give = Kailor_unwanted_give
 
+properties:
+
+   poCurrency = &Souls
+   
 messages:
 
    SetForSale()

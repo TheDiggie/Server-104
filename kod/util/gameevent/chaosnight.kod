@@ -418,7 +418,7 @@ messages:
 
       foreach oPlayer in lGiveList
       {
-         oMoney = Create(&Money,#number=piFrenzyMoneyAmount);
+         oMoney = Create(&Shillings,#number=piFrenzyMoneyAmount);
 
          Send(oPlayer,@NewHold,#what=oMoney);
 

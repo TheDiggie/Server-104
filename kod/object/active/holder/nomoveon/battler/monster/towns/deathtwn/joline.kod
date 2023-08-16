@@ -53,6 +53,10 @@ classvars:
    vrUnwanted_pay = Joline_unwanted_pay
    vrUnwanted_give = Joline_unwanted_give
 
+properties:
+
+   poCurrency = &Souls
+   
 messages:
 
    SetForSale()

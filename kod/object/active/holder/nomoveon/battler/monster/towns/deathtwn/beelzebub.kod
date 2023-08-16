@@ -51,6 +51,10 @@ classvars:
    vrUnwanted_pay = Beelzebub_unwanted_pay
    vrUnwanted_give = Beelzebub_unwanted_give
 
+properties:
+
+   poCurrency = &Souls
+   
 messages:
 
    SetForSale()

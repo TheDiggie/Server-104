@@ -122,10 +122,10 @@ messages:
       // QNT_ID_COUNCIL_LETTER_TWO
       if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_ITEM,
                #cargolist=[ [ QN_PRIZETYPE_ITEMCLASS, &CouncilLetter, 1 ] ],
-               #prizelist=[ [ [ QN_PRIZETYPE_ITEMCLASS, &Money, 500 ],
-                              [ QN_PRIZETYPE_ITEMCLASS, &Money, 750 ],
-                              [ QN_PRIZETYPE_ITEMCLASS, &Money, 750 ],
-                              [ QN_PRIZETYPE_ITEMCLASS, &Money, 1000 ] ] ],
+               #prizelist=[ [ [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 500 ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 750 ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 750 ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 1000 ] ] ],
                #timelimit=6 * 3600,#quest_node_index=QNT_ID_COUNCIL_LETTER_TWO)
       {
          lNPCs = $;

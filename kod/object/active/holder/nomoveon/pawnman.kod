@@ -90,7 +90,7 @@ messages:
       }
 
       poOffer_who = what;
-      plOffer_items = [Create(&Money,#number=iValue_offered)];
+      plOffer_items = [Create(&Shillings,#number=iValue_offered)];
 
       Send(what,@CounterOffer,#item_list=plOffer_items);
 

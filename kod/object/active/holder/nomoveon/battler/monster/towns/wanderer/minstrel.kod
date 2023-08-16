@@ -72,7 +72,7 @@ messages:
 
       if why = MOODMOD_ACCEPT_ITEM
       {
-         if IsClass(what,&Money)
+         if IsClass(what,&Shillings)
          {
             Send(self,@SetMood,#new_mood=piMood+3);
          }

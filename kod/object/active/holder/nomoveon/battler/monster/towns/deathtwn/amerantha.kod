@@ -48,6 +48,10 @@ classvars:
    vrUnwanted_pay = Amerantha_unwanted_pay
    vrUnwanted_give = Amerantha_unwanted_give
 
+properties:
+
+   poCurrency = &Souls
+   
 messages:
 
    SetForSale()

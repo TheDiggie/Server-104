@@ -86,7 +86,7 @@ messages:
 
          // Ignore scrolls of set and money.
          if (cClass = &SetScroll
-            OR cClass = &Money)
+            OR cClass = &Shillings)
          {
             continue;
          }

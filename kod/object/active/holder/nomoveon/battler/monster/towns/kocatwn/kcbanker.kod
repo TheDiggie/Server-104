@@ -55,7 +55,7 @@ messages:
 
    Constructor()
    {
-      plWantedItems = [&Money];
+      plWantedItems = [&Shillings];
 
       propagate;
    }

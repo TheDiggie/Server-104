@@ -98,7 +98,7 @@ messages:
 
    Constructor()
    {
-      plWantedItems = [&Money,&Ruby,&Emerald,&Diamond,&Sapphire];
+      plWantedItems = [&Shillings,&Ruby,&Emerald,&Diamond,&Sapphire];
 
       propagate;
    }
@@ -176,7 +176,7 @@ messages:
          // Skivlat needs to include markup to prevent scams
          // where he buys more than he sells.
          iValue = iValue * (100 - 10*viMerchant_markup) / 100;
-         oMoney=Create(&Money,#number=iValue);
+         oMoney=Create(&Shillings,#number=iValue);
          if Send(who,@ReqNewHold,#what=oMoney)
          {
             Send(who,@NewHold,#what=oMoney);
