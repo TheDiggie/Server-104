@@ -6731,14 +6731,14 @@ messages:
 
    GetMoneyObject(type= $)
    {
-      if (type = &Shillings)
-      {
-         return GetListElemByClass(plPassive,&Shillings);
-      }
 
       if (type = &Souls)
       {
          return GetListElemByClass(plPassive,&Souls);
+      }
+      else
+      {
+         return GetListElemByClass(plPassive,&Shillings);
       }
 
       return;
