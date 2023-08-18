@@ -161,8 +161,8 @@ messages:
          return;
       }
 
-      Send(poOwner,@MsgSendUser,#message_rsc=miners_stash_in_bag,
-            #parm1=Send(what,@GetName));
+      //Send(poOwner,@MsgSendUser,#message_rsc=miners_stash_in_bag,
+      //      #parm1=Send(what,@GetName));
 
       Send(what,@NewOwner,#what=self);
       plOre = Cons(what,plOre);
