@@ -38,6 +38,7 @@ classvars:
    viGround_group = 2
    viRefined      = &SilkThread
    viRefinedAt    = &SpinningWheel
+   viRefineSpell  = &Spinning
 
 properties:
 

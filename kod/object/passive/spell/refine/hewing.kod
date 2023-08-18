@@ -30,6 +30,7 @@ classvars:
 
    viSpell_num       = SID_HEWING
    viBench           = &SplittingStump
+   viRefineSpell     = &Hewing
 
 properties:
 

@@ -30,6 +30,7 @@ classvars:
 
    viSpell_num       = SID_SPINNING
    viBench           = &SpinningWheel
+   viRefineSpell     = &Spinning
 
 properties:
 

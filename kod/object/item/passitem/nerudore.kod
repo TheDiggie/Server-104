@@ -34,6 +34,7 @@ classvars:
    viBulk          = 60
    viRefined       = &NeruditeIngot
    viRefinedAt     = &KocatanForge
+   viRefineSpell   = &Smelting
    
    viUse_type = ITEM_SINGLE_USE
 

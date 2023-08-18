@@ -30,6 +30,7 @@ classvars:
 
    viSpell_num       = SID_TANNING
    viBench           = &TanningRack
+   viRefineSpell     = &Tanning
 
 properties:
 

@@ -30,6 +30,7 @@ classvars:
 
    viSpell_num       = SID_SMELTING
    viBench           = &Forge
+   viRefineSpell     = &Smelting
 
 properties:
 

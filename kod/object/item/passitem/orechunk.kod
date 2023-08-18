@@ -33,6 +33,7 @@ classvars:
    viBulk            = 50
    viRefined         = &IronIngot
    viRefinedAt       = &Forge
+   viRefineSpell     = &Smelting
    
    viUse_type = ITEM_SINGLE_USE
 

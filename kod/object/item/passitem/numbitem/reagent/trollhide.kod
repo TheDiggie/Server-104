@@ -36,6 +36,7 @@ classvars:
    viItem_type    = ITEMTYPE_REAGENT
    viRefined      = &Leather
    viRefinedAt    = &TanningRack
+   viRefineSpell  = &Tanning
 
 properties:
 

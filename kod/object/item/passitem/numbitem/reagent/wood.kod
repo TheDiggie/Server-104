@@ -38,6 +38,7 @@ classvars:
    viGround_group = 2
    viRefined      = &Lumber
    viRefinedAt    = &SplittingStump
+   viRefineSpell  = &Hewing
 
 properties:
 
