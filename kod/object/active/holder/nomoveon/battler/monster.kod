@@ -4151,7 +4151,7 @@ messages:
       }
 
       oVault = Send(SYS,@FindVaultByNum,#num=Send(self,@GetVaultNum));
-      oSafeBox = Send(oVault,@GetPlayerSafeBox,#who=what);
+      oSafeBox = Send(what,@GetVault);
 
       if oSafeBox = $
       {

@@ -1150,6 +1150,8 @@ properties:
    piRemainingPhaseTime = 60000 * 8
    ptCanPhaseTimer = $
 
+   viVault = $
+
 messages:
 
    Constructor()
@@ -15439,6 +15441,30 @@ messages:
       }
 
       propagate;
+   }
+
+   SetVaultNumber()
+   {
+      local oVault, oSafeBox;
+
+      oVault = Send(SYS,@FindVaultByNum,#num=1);
+      oSafeBox = Send(oVault,@GetPlayerSafeBox,#who=self);
+
+      viVault = oSafeBox;
+
+      return;
+   }
+
+   SetVault(vault=$)
+   {
+      viVault = vault;
+
+      return;
+   }
+
+   GetVault()
+   {
+      return viVault;
    }
    
 end

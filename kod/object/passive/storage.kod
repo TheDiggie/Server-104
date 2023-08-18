@@ -59,6 +59,25 @@ messages:
       propagate;
    }
 
+   GetVaultNumber(who=$)
+   {
+      local oIndexBox, oVault;
+
+      oVault = $;
+      foreach oIndexBox in plStored
+      {
+         /// does the player have an account already?
+         if Send(oIndexBox,@GetSafeBoxOwner) = who
+         {
+            oVault = oIndexBox;
+
+            return oVault;
+         }
+      }
+
+      return oVault;
+   }
+
    Delete()
    "Deletes this bank and removes from system's list of banks."
    {
@@ -139,7 +158,7 @@ messages:
       foreach oIndexBox in plStored
       {
          /// does the player have an account already?
-         if Send(oIndexBox,@GetSafeBoxOwner) = who
+         if Send(who,@GetVault) = oIndexBox
          {
             oPlayerBox = oIndexBox;
 
@@ -151,6 +170,7 @@ messages:
       {
          // Player has no account yet, make a new one.
          oPlayerBox = Create(&SafetyDepositBox,#who=who,#vid=piVault_num);
+         Send(who,@SetVault,#vault=oPlayerBox);
          plStored = Cons(oPlayerBox,plStored);
       }
 
@@ -184,7 +204,7 @@ messages:
 
       foreach i in plStored
       {
-         if Send(i,@GetSafeBoxOwner) = who
+         if i = send(who,@GetVault)
          {
             return Send(i,@GetBulkHold);
          }
@@ -200,7 +220,7 @@ messages:
 
       foreach i in plStored
       {
-         if Send(i,@GetSafeBoxOwner) = who
+         if i = send(who,@GetVault)
          {
             return Send(i,@GetHolderPassive);
          }
@@ -215,7 +235,7 @@ messages:
 
       foreach i in plStored
       {
-         if Send(i,@GetSafeBoxOwner) = who
+         if i = send(who,@GetVault)
          {
             return i;
          }
@@ -236,7 +256,7 @@ messages:
          return;
       }
 
-      oBox = Send(self,@GetPlayerSafeBox,#who=who);
+      oBox = Send(who,@GetVault);
       if oBox = $
       {
          // Player does not have a deposit box
@@ -342,7 +362,7 @@ messages:
 
       foreach i in plStored
       {
-         if Send(i,@GetSafeBoxOwner) = who
+         if i = send(who,@GetVault)
          {
             Send(i,@Delete);
             plStored = DelListElem(plStored,i);

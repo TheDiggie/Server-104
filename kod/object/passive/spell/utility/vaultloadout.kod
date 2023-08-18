@@ -94,7 +94,7 @@ messages:
       Send(who,@MsgSendUser,#message_rsc=vault_loadout_cast);
 
       oVault = Send(SYS,@FindVaultByNum,#num=VID_BARLOQUE);
-      oSafeBox = Send(oVault,@GetPlayerSafeBox,#who=who);
+      oSafeBox = Send(who,@GetVault);
 
       if oSafeBox = $
       {
