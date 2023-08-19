@@ -1,0 +1,91 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+VaultResign is Ticket
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   // TODO: German translation from Tyran
+   //include boatticket.lkod
+
+   VaultResign_name_rsc     = "vault resign"
+   VaultResign_icon_rsc     = scr06.bgf
+
+   VaultResign_desc_rsc       = "Use this to resign from your current vault, you may open a new vault as you normally would. "
+
+   VaultResign_warning        = "~B~gUsing this will remove your access to your current vault!"
+
+   VaultResign_remove         = "~B~gYou have resigned from your current vault."
+
+classvars:
+
+   vrName   = VaultResign_name_rsc
+   vrIcon   = VaultResign_icon_rsc
+   vrDesc   = VaultResign_desc_rsc
+
+   viUse_type = ITEM_SINGLE_USE
+
+   viBulk            = 1
+   viWeight          = 1
+   viValue_average   = 2000
+   
+properties:
+
+   pbIn_use = FALSE
+   pbWarned = FALSE
+   
+messages:
+   
+   ReqNewApply(what = $,use_item = $)
+   {
+
+      if pbWarned = FALSE
+      {
+         Send(what,@MsgSendUser,#message_rsc=VaultResign_warning);
+
+         pbWarned = TRUE;
+         return FALSE;
+      }
+      else
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   NewApplied(what = $)
+   {
+
+      Send(what,@MsgSendUser,#message_rsc=VaultResign_remove);
+      send(what,@SetVault,#vault=$);
+      send(self,@delete);
+
+      return;
+   }
+
+   CanBeStoredInVault()
+   {
+      return TRUE;
+   }
+
+   DoBaseDesc()
+   {
+      AddPacket(4,vrDesc);
+	  
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

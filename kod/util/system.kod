@@ -6045,6 +6045,8 @@ messages:
       plItemTemplates = cons(create(&BlacksmithsHammer),plItemTemplates);
       
       plItemTemplates = cons(create(&BoatTicket),plItemTemplates);
+      plItemTemplates = cons(create(&VaultContract),plItemTemplates);
+      plItemTemplates = cons(create(&VaultResign),plItemTemplates);
       
       return;
    }

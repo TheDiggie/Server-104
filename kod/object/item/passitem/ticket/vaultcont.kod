@@ -1,0 +1,128 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+VaultContract is Ticket
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   // TODO: German translation from Tyran
+   //include boatticket.lkod
+
+   VaultContract_name_rsc     = "vault contract"
+   VaultContract_icon_rsc     = scr06.bgf
+
+   VaultContract_Not_Linked   = "Use this contract to sign it and authorize the next player that uses it to "
+                                "completely access your vault. This includes conveyance and loadout. Be warned this is not reversable! "
+   VaultContract_Linked       = "This is a contract to give you access to ''%s 's'' vault. You will lose "
+                                "access to your current vault so make sure you take out anything you wish to keep. Be warned this is not reversable! "
+
+   Sign_Contract              = "~B~gYou sign your name on the contract, give it to another player to let them access "
+                                "your vault. Be warned this is not reversible! "
+
+   Linked_Vaults              = "~B~gYou have linked your vault with %s and any other player they are linked with."
+
+   Try_Linked_Vaults          = "~B~gUsing this item will link your vault to %s. Be warned this is not reversable!"
+
+classvars:
+
+   vrName   = VaultContract_name_rsc
+   vrIcon   = VaultContract_icon_rsc
+   vrDesc   = VaultContract_Not_Linked
+   vrDesc2  = VaultContract_Linked
+
+   viUse_type = ITEM_SINGLE_USE
+
+   viBulk            = 1
+   viWeight          = 1
+   viValue_average   = 2000
+   
+properties:
+
+   pbIn_use = FALSE
+   pbWarned = FALSE
+   pbWarned2 = FALSE
+
+   pvPlayer = $
+   pvVault  = $
+   
+messages:
+   
+   ReqNewApply(what = $,use_item = $)
+   {
+
+      if pbWarned = FALSE
+      {
+         Send(what,@MsgSendUser,#message_rsc=Sign_Contract);
+         pvPlayer = what;
+         pvVault = send(what,@GetVault);
+
+         pbWarned = TRUE;
+         return FALSE;
+      }
+      else
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   NewApplied(what = $)
+   {
+      if pbWarned2 = FALSE
+      {
+         Send(what,@MsgSendUser,#message_rsc=Try_Linked_Vaults,#parm1=send(pvPlayer,@GetTrueName));
+
+         pbWarned2 = TRUE;
+
+         return;
+      }
+      else
+      {
+         Send(what,@MsgSendUser,#message_rsc=Linked_Vaults,#parm1=send(pvPlayer,@GetTrueName));
+         send(what,@SetVault,#vault=pvVault);
+
+         send(self,@delete);
+      }
+
+      return;
+   }
+
+   CanBeStoredInVault()
+   {
+      return TRUE;
+   }
+
+   DoBaseDesc()
+   {
+      if pvPlayer <> $
+      {
+         AddPacket(4,vrDesc2, 4,send(pvPlayer,@GetTrueName));
+      }
+      else
+      {
+         AddPacket(4,vrDesc);
+      }
+
+	  
+      return;
+   }
+   
+   DropOnDeath()
+   {
+      return FALSE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

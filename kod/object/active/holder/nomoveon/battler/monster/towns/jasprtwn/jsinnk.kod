@@ -79,6 +79,8 @@ messages:
    {
       plFor_sale = [
          [ 
+            Create(&VaultContract),
+            Create(&VaultResign),
             Create(&VaultLoadoutScroll,#labelled=TRUE),
             Create(&LoadoutScroll,#labelled=TRUE),
             Create(&SetScroll,#labelled=TRUE),
