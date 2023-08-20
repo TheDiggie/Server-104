@@ -7868,8 +7868,8 @@ messages:
          return;
       }
       
-      if (IsClass(what,&OreChunk)
-         OR IsClass(what,&NeruditeOreChunk))
+      if (IsClass(what,&IronOre)
+         OR IsClass(what,&NeruditeOre))
          AND NOT bFromMinersBag
          AND Send(self,@GetMinersBag) <> $
          AND (piPreferences & CF_REAGENTBAG)

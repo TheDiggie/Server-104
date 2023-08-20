@@ -22,8 +22,8 @@ resources:
    MinersBag_desc_rsc = "This lumpy bag is magical in nature, and able to "
    "hold large amounts of objects that themselves have inherent power."
 
-   miners_stash_in_bag = "You stash a %s in your miners bag."
-   miners_get_from_bag = "You get a %s from your miners bag."
+   miners_stash_in_bag = "You stash %d %s in your miners bag."
+   miners_get_from_bag = "You get %d %s from your miners bag."
 
 classvars:
 
@@ -130,7 +130,8 @@ messages:
       }
 
       Send(poOwner,@MsgSendUser,#message_rsc=miners_get_from_bag,
-            #parm1=Send(what,@GetName));
+            #parm1=Send(what,@GetNumber),
+            #parm2=Send(what,@GetName));
 
       return TRUE;
    }
@@ -161,8 +162,27 @@ messages:
          return;
       }
 
-      //Send(poOwner,@MsgSendUser,#message_rsc=miners_stash_in_bag,
-      //      #parm1=Send(what,@GetName));
+      Send(poOwner,@MsgSendUser,#message_rsc=miners_stash_in_bag,
+            #parm1=Send(what,@GetNumber),
+            #parm2=Send(what,@GetName));
+            
+      if IsClass(what,&NumberItem)
+      {
+         foreach i in plOre
+         {
+            if i <> what
+            {
+               if GetClass(what) = GetClass(i)
+               {
+                  // Should only be one of these, so can quit loop if found
+                  Send(i,@AddNumber,#number=Send(what,@GetNumber));
+                  Send(what,@Delete);
+
+                  return;
+               }
+            }
+         }
+      }
 
       Send(what,@NewOwner,#what=self);
       plOre = Cons(what,plOre);
