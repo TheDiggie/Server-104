@@ -6039,6 +6039,8 @@ messages:
       plItemTemplates = cons(create(&SilkThread),plItemTemplates);
       plItemTemplates = cons(create(&KriipaHide),plItemTemplates);
       plItemTemplates = cons(create(&KriipaLeather),plItemTemplates);
+      plItemTemplates = cons(create(&IronOre),plItemTemplates);
+      plItemTemplates = cons(create(&NeruditeOre),plItemTemplates);
       
       //Crafting tools
       plItemTemplates = cons(create(&DrawKnife),plItemTemplates);

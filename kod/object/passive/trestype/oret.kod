@@ -24,7 +24,7 @@ messages:
 
    Constructed()
    {
-      plTreasure = [ [ &OreChunk, 100 ]
+      plTreasure = [ [ &IronOre, 100 ]
                    ];
 
       propagate;

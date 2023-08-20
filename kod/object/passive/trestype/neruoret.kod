@@ -24,7 +24,7 @@ messages:
 
    Constructed()
    {
-      plTreasure = [ [ &NeruditeOreChunk, 100 ]
+      plTreasure = [ [ &NeruditeOre, 100 ]
                    ];
 
       propagate;

@@ -142,8 +142,8 @@ messages:
          return FALSE;
       }
 
-      if NOT IsClass(what,&OreChunk)
-         OR NOT IsClass(what,&NeruditeOreChunk)
+      if NOT IsClass(what,&IronOre)
+         OR NOT IsClass(what,&NeruditeOre)
       {
          return FALSE;
       }

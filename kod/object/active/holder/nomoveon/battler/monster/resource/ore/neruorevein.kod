@@ -30,7 +30,7 @@ classvars:
    viTreasure_type = TID_NERUORE
    viDifficulty = 40
    
-   vcResource = &NeruditeOreChunk
+   vcResource = &NeruditeOre
 
 properties:
 

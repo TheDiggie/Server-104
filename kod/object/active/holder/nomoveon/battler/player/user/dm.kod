@@ -2834,16 +2834,8 @@ messages:
          Send(self,@NewHold,#what=Create(&Wood,#number=200));
          Send(self,@NewHold,#what=Create(&Lumber,#number=200));
          Send(self,@NewHold,#what=Create(&TrollHide,#number=200));
-         Send(self,@NewHold,#what=Create(&NeruditeOreChunk));
-         Send(self,@NewHold,#what=Create(&OreChunk));
-         Send(self,@NewHold,#what=Create(&NeruditeOreChunk));
-         Send(self,@NewHold,#what=Create(&OreChunk));
-         Send(self,@NewHold,#what=Create(&NeruditeOreChunk));
-         Send(self,@NewHold,#what=Create(&OreChunk));
-         Send(self,@NewHold,#what=Create(&NeruditeOreChunk));
-         Send(self,@NewHold,#what=Create(&OreChunk));
-         Send(self,@NewHold,#what=Create(&NeruditeOreChunk));
-         Send(self,@NewHold,#what=Create(&OreChunk));
+         Send(self,@NewHold,#what=Create(&IronOre,#number=200));
+         Send(self,@NewHold,#what=Create(&NeruditeOre,#number=200));
          Send(self,@NewHold,#what=Create(&CuttingAxe));
          Send(self,@NewHold,#what=Create(&Sickle));
          Send(self,@NewHold,#what=Create(&Pickaxe));

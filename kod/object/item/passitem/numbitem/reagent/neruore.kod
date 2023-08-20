@@ -1,0 +1,78 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+NeruditeOre is Reagent
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   NeruditeOre_name_rsc = "nerudite ore"
+   NeruditeOre_icon_rsc = NeruOre.bgf
+   NeruditeOre_desc_rsc = \
+      "Raw nerudite ore, can be smelted into usable ore. "
+   NeruditeOre_name_plural_rsc = "nerudite ores"
+
+classvars:
+
+   vrName = NeruditeOre_name_rsc
+   vrName_plural = NeruditeOre_name_plural_rsc
+   vrIcon = NeruditeOre_icon_rsc
+   vrDesc = NeruditeOre_desc_rsc
+
+   viBulk          = 10
+   viWeight        = 15
+   viValue_average = 100
+
+   viItem_type     = ITEMTYPE_REAGENT
+
+   viRefined       = &NeruditeIngot
+   viRefinedAt     = &KocatanForge
+   viRefineSpell   = &Smelting
+   
+   viUse_type = ITEM_SINGLE_USE
+
+properties:
+
+   piNumber = 2
+
+   viObject_flags = OF_APPLYABLE | OF_GETTABLE
+   
+messages:   
+
+   ReqNewApply(what = $,apply_on = $)
+   {
+      if what = Send(self,@GetOwner)
+         AND apply_on <> $
+         AND IsClass(apply_on,&MinersBag)
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   NewApplied(what = $,apply_on = $)
+   {
+      if what = Send(self,@GetOwner)
+         AND apply_on <> $
+         AND IsClass(apply_on,&MinersBag)
+      {
+         Send(Send(what,@GetMinersBag),@NewHold,#what=self,
+               #where=Send(what,@GetMinersBag));
+      }
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////
