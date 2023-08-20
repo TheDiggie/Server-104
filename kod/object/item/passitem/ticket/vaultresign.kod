@@ -22,11 +22,11 @@ resources:
    VaultResign_name_rsc     = "vault resign"
    VaultResign_icon_rsc     = scr06.bgf
 
-   VaultResign_desc_rsc       = "Use this to resign from your current vault, you may open a new vault as you normally would. "
+   VaultResign_desc_rsc       = "Use this to resign from your current vault and return to your original vault. "
 
    VaultResign_warning        = "~B~gUsing this will remove your access to your current vault!"
 
-   VaultResign_remove         = "~B~gYou have resigned from your current vault."
+   VaultResign_remove         = "~B~gYou have reasigned to your original vault."
 
 classvars:
 
@@ -69,7 +69,7 @@ messages:
    {
 
       Send(what,@MsgSendUser,#message_rsc=VaultResign_remove);
-      send(what,@SetVault,#vault=$);
+      send(what,@SetOriginalVault);
       send(self,@delete);
 
       return;

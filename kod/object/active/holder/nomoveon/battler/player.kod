@@ -1151,6 +1151,7 @@ properties:
    ptCanPhaseTimer = $
 
    viVault = $
+   viOriginalVault = $
 
 messages:
 
@@ -15459,12 +15460,24 @@ messages:
    {
       viVault = vault;
 
+      if viOriginalVault = $
+      {
+         viOriginalVault = viVault;
+      }
+
       return;
    }
 
    GetVault()
    {
       return viVault;
+   }
+
+   SetOriginalVault()
+   {
+      viVault = viOriginalVault;
+      
+      return;
    }
    
 end

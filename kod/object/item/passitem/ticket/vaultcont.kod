@@ -23,16 +23,16 @@ resources:
    VaultContract_icon_rsc     = scr06.bgf
 
    VaultContract_Not_Linked   = "Use this contract to sign it and authorize the next player that uses it to "
-                                "completely access your vault. This includes conveyance and loadout. Be warned this is not reversable! "
+                                "completely access your vault. This includes conveyance and loadout."
    VaultContract_Linked       = "This is a contract to give you access to ''%s 's'' vault. You will lose "
-                                "access to your current vault so make sure you take out anything you wish to keep. Be warned this is not reversable! "
+                                "access to your current vault so make sure you take out anything you wish to keep."
 
    Sign_Contract              = "~B~gYou sign your name on the contract, give it to another player to let them access "
-                                "your vault. Be warned this is not reversible! "
+                                "your vault."
 
    Linked_Vaults              = "~B~gYou have linked your vault with %s and any other player they are linked with."
 
-   Try_Linked_Vaults          = "~B~gUsing this item will link your vault to %s. Be warned this is not reversable!"
+   Try_Linked_Vaults          = "~B~gUsing this item will link your vault to %s."
 
 classvars:
 
