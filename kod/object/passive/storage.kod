@@ -374,5 +374,20 @@ messages:
       return;
    }
 
+   OldGetPlayerSafeBox(who=$)
+   {
+      local i;
+
+      foreach i in plStored
+      {
+         if Send(i,@GetSafeBoxOwner) = who
+         {
+            return i;
+         }
+      }
+
+      return $;
+   }
+
 end
 ////////////////////////////////////////////////////////////////////////////////
