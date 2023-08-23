@@ -14,8 +14,6 @@ constants:
 
    include blakston.khd
 
-   EXPIRE_SELF_AT = 360000 // self-delete in milliseconds (5 minutes)
-
 resources:
    
    BrownSeeker_name_rsc = "brown seeker"
@@ -71,16 +69,6 @@ properties:
    ptSelfDelete = $
 
 messages:
-
-   Constructor()
-   {
-      plResistances = [ [-ATCK_SPELL_ACID, 80 ],
-                        [-ATCK_SPELL_QUAKE, 100 ],
-                        [-ATCK_SPELL_SHOCK, -50 ],
-                        [ATCK_WEAP_SLASH, -50 ] ];
-
-      propagate;
-   }
    
    Constructed()
    {
@@ -93,9 +81,6 @@ messages:
 
    MonsterAttack(what = $)
    {
-      DeleteTimer(ptSelfDelete);
-      ptSelfDelete = CreateTimer(self, @Delete, EXPIRE_SELF_AT);
-
       piAnimation = ANIM_ATTACK;
       Send(poOwner,@SomethingChanged,#what=self);
       piAnimation = ANIM_IDLE;

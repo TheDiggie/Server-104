@@ -5048,7 +5048,7 @@ messages:
          return FALSE;
       }
 
-      if IsClass(what, &Resource)
+      if IsClass(what,&Resource)
       {
          oTool = Send(what,@GetTool);
 
@@ -5059,7 +5059,7 @@ messages:
          }
       }
 
-      if IsClass(what, &Monster) AND NOT IsClass(what, &Ore)
+      if IsClass(what,&Monster) AND NOT IsClass(what,&Ore)
       {
          if IsClass(oWeapon,&PickAxe)
          {
@@ -5068,7 +5068,7 @@ messages:
          }
       }
 
-      if IsClass(what, &Monster) AND NOT IsClass(what, &ResTree)
+      if IsClass(what,&Monster) AND NOT IsClass(what,&ResTree)
       {
          if IsClass(oWeapon,&CuttingAxe)
          {
@@ -5077,7 +5077,7 @@ messages:
          }
       }
 
-      if IsClass(what, &Monster) AND NOT IsClass(what, &ResPlant)
+      if IsClass(what,&Monster) AND NOT IsClass(what,&ResPlant)
       {
          if IsClass(oWeapon,&sickle)
          {
@@ -15476,7 +15476,12 @@ messages:
 
    SetOriginalVault()
    {
-      viVault = viOriginalVault;
+      local oVault, oSafeBox;
+
+      oVault = Send(SYS,@FindVaultByNum,#num=1);
+      oSafeBox = Send(oVault,@OldGetPlayerSafeBox,#who=self);
+
+      viOriginalVault = oSafeBox;
       
       return;
    }

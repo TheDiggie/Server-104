@@ -2579,7 +2579,7 @@ messages:
       Send(self,@CreateOneRoomIfNew,#num=RID_MAR_CRYPT1,#class=&MarionCrypt1);
       Send(self,@CreateOneRoomIfNew,#num=RID_MAR_CRYPT2,#class=&MarionCrypt2);
       Send(self,@CreateOneRoomIfNew,#num=RID_MAR_CRYPT3A,#class=&MarionCrypt3a);
-      Send(self,@CreateOneRoomIfNew,#num=RID_MAR_CRYPT3A,#class=&MarionCrypt4);
+      Send(self,@CreateOneRoomIfNew,#num=RID_MAR_CRYPT4,#class=&MarionCrypt4);
 
       Send(self,@CreateOneRoomIfNew,#num=RID_OLD_JASPER,#class=&OldJasper);
       Send(self,@CreateOneRoomIfNew,#num=RID_OLD_MARION,#class=&OldMarion);
