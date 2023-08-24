@@ -633,6 +633,45 @@ messages:
          piHits = piHits - 1;
       }
 
+      if pihits >= (piHits_init/2) AND viHalf = TRUE
+      {
+         viHalf = FALSE;
+         viAlmost = FALSE;
+         viVery = FALSE;
+
+         return;
+      }
+
+      if viHalf = FALSE AND pihits <= (piHits_init/2)
+      {
+         Send(poOwner,@MsgSendUser,#message_rsc=half_broken,#parm1=Send(self,@getname));
+         Debug("pihits   half");
+
+         viHalf = TRUE;
+
+         return;
+      }
+      
+      if viAlmost = FALSE AND pihits <= (piHits_init/4)
+      {
+         Send(poOwner,@MsgSendUser,#message_rsc=almost_broken,#parm1=Send(self,@getname));
+         Debug("pihits   almost");
+         
+         viAlmost = TRUE;
+
+         return;
+      }
+
+      if viVery = FALSE AND pihits <= (piHits_init/10)
+      {
+         Send(poOwner,@MsgSendUser,#message_rsc=very_broken,#parm1=Send(self,@getname));
+         Debug("pihits   very");
+         
+         viVery = TRUE;
+
+         return;
+      }
+      
       if piHits <= 0
       {
          Send(self,@WeaponBroke);

@@ -145,8 +145,8 @@ BEGIN
     ICON            IDI_ICON,-1,7,7,21,20
     EDITTEXT        1191,35,7,206,27,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY | NOT WS_BORDER | NOT WS_TABSTOP,WS_EX_STATICEDGE
     GROUPBOX        "Update Download Informationen",-1,35,47,205,55
-    LTEXT           "(ungef�hre Gr��e des Downloads)",1193,44,64,188,8
-    DEFPUSHBUTTON   "&Best�tigen",1192,138,94,93,14
+    LTEXT           "(ungef�hre Gr��e des Downloads)",1193,44,64,188,8
+    DEFPUSHBUTTON   "&Bestätigen",1192,138,94,93,14
 END
 
 166 DIALOG 0, 0, 186, 95
@@ -156,7 +156,7 @@ BEGIN
     PUSHBUTTON      "Abbrechen",2,68,74,50,14
     LTEXT           "Verbinde mit Meridian 59",-1,51,11,84,8
     CONTROL         "",1170,"msctls_progress32",WS_BORDER,18,43,150,14
-    LTEXT           "Dr�cke unten um die Aktion abzubrechen.",-1,26,22,139,8
+    LTEXT           "Dr�cke unten um die Aktion abzubrechen.",-1,26,22,139,8
 END
 
 159 DIALOG 0, 0, 161, 67
@@ -166,8 +166,8 @@ FONT 8, "MS Sans Serif"
 BEGIN
     LTEXT           "Gib hier den gew�nschten Text ein:",-1,7,8,118,8
     EDITTEXT        1160,7,20,145,16,ES_AUTOHSCROLL
-    DEFPUSHBUTTON   "Best�tigen",1,7,46,42,14
-    PUSHBUTTON      "L�schen",1161,58,46,40,14
+    DEFPUSHBUTTON   "Bestätigen",1,7,46,42,14
+    PUSHBUTTON      "L�schen",1161,58,46,40,14
     PUSHBUTTON      "Abbrechen",2,107,46,47,14
 END
 
@@ -178,25 +178,25 @@ FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
     LISTBOX         1115,4,20,119,338,LBS_SORT | LBS_MULTIPLESEL | LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Mitspieler:",-1,4,7,56,8
-    LTEXT           "Klicke auf einen Spieler, um s�mtliche Nachrichten von ihm zu ignorieren.",-1,130,20,101,26
+    LTEXT           "Klicke auf einen Spieler, um s�mtliche Nachrichten von ihm zu ignorieren.",-1,130,20,101,26
     GROUPBOX        "Nachrichten",-1,130,47,101,41,WS_GROUP
     CONTROL         "Mitteilungen ignorieren",1140,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,139,59,87,10
     CONTROL         "Alle ignorieren",1141,"Button",BS_AUTOCHECKBOX,139,73,60,10
     LTEXT           "Spieler sind derzeit online.",-1,34,366,87,8
     CTEXT           "",1152,4,365,24,11,SS_SUNKEN
-    DEFPUSHBUTTON   "Best�tigen",1,181,361,50,14,WS_GROUP
+    DEFPUSHBUTTON   "Bestätigen",1,181,361,50,14,WS_GROUP
 END
 
 148 DIALOG 0, 0, 236, 50
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 FONT 8, "MS Sans Serif"
 BEGIN
-    DEFPUSHBUTTON   "Best�tigen",1,74,32,44,14
+    DEFPUSHBUTTON   "Bestätigen",1,74,32,44,14
     DEFPUSHBUTTON   "Abbrechen",2,126,32,44,14
     LTEXT           "Nachricht",1128,35,13,183,8
     ICON            IDI_ICON,1129,4,7,21,20
     EDITTEXT        1117,35,0,183,12,ES_MULTILINE | ES_READONLY | NOT WS_VISIBLE | NOT WS_BORDER | NOT WS_TABSTOP
-    PUSHBUTTON      "Best�tigen",3,74,32,44,14
+    PUSHBUTTON      "Bestätigen",3,74,32,44,14
     PUSHBUTTON      "Abbrechen",4,126,32,44,14
 END
 
@@ -293,7 +293,7 @@ BEGIN
     LISTBOX         1050,126,20,100,315,LBS_SORT | LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Anbieten an:",-1,10,362,43,8
     EDITTEXT        1051,55,360,64,14,ES_AUTOHSCROLL | ES_READONLY | WS_GROUP | NOT WS_TABSTOP
-    DEFPUSHBUTTON   "Best�tigen",1,126,360,42,14,WS_GROUP
+    DEFPUSHBUTTON   "Bestätigen",1,126,360,42,14,WS_GROUP
     PUSHBUTTON      "Abbrechen",2,185,360,42,14,WS_GROUP
     LTEXT           "Warte auf ein Gegenangebot...",1055,10,345,218,9
 END
@@ -307,7 +307,7 @@ BEGIN
     LTEXT           "",1047,7,34,125,44
     PUSHBUTTON      "&Vordergrund",1044,140,9,54,14
     PUSHBUTTON      "&Hintergrund",1045,140,27,54,14
-    DEFPUSHBUTTON   "Best�tigen",1,140,54,54,14,WS_GROUP
+    DEFPUSHBUTTON   "Bestätigen",1,140,54,54,14,WS_GROUP
     PUSHBUTTON      "Abbrechen",2,140,71,54,14,WS_GROUP
 END
 
@@ -349,7 +349,7 @@ BEGIN
     LTEXT           "Sie k�nnen den Textfilter nach Ihrem eigenen W�nschen erweitern. Geben Sie dazu einfach oben rechts das zu filternde neue Wort ein. Der Filter �bernimmt es automatisch in seine schwarze Liste.",-1,10,104,300,26
     LTEXT           "Wir bitten alle Spieler, W�rter und Phrasen, die andere Menschen verletzen k�nnten, nicht zu verwenden.",-1,10,132,300,18
     LTEXT           "Wir behalten uns vor, Spieler zu verwarnen, suspendieren oder gar auszuschlie�en, die sich unkorrekt verhalten.",-1,10,152,300,18
-    DEFPUSHBUTTON   "Best�tigen",1,206,183,50,14
+    DEFPUSHBUTTON   "Bestätigen",1,206,183,50,14
     PUSHBUTTON      "Abbrechen",2,267,183,50,14
 END
 
@@ -410,7 +410,7 @@ BEGIN
     LTEXT           "Programm:",IDC_STATIC,13,293,45,8
     EDITTEXT        1155,59,292,242,12,ES_AUTOHSCROLL
     PUSHBUTTON      "&Durchsuchen",1162,309,292,49,12
-    DEFPUSHBUTTON   "Best�tigen",1,130,316,50,12,WS_GROUP
+    DEFPUSHBUTTON   "Bestätigen",1,130,316,50,12,WS_GROUP
     PUSHBUTTON      "Abbrechen",2,190,316,50,12,WS_GROUP
 END
 
@@ -419,7 +419,7 @@ STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSME
 CAPTION "Objektbeschreibung"
 FONT 8, "MS Sans Serif"
 BEGIN
-    DEFPUSHBUTTON   "Best�tigen",1,148,117,44,14,WS_GROUP
+    DEFPUSHBUTTON   "Bestätigen",1,148,117,44,14,WS_GROUP
     PUSHBUTTON      "&Aufheben",1140,208,117,44,14,NOT WS_TABSTOP
     PUSHBUTTON      "&Wegwerfen",1138,207,117,44,14
     PUSHBUTTON      "&�ffnen",1003,263,117,44,14,WS_GROUP
@@ -445,7 +445,7 @@ BEGIN
     LISTBOX         1076,137,19,28,355,LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | LBS_WANTKEYBOARDINPUT
     LTEXT           "Suche Gegenstand:",-1,169,122,33,8,NOT WS_VISIBLE | WS_DISABLED
     EDITTEXT        1042,170,135,52,16,ES_AUTOHSCROLL | NOT WS_VISIBLE
-    DEFPUSHBUTTON   "Best�tigen",1,169,21,53,14,WS_GROUP
+    DEFPUSHBUTTON   "Bestätigen",1,169,21,53,14,WS_GROUP
     PUSHBUTTON      "Abbrechen",2,168,40,54,14,WS_GROUP
     PUSHBUTTON      "&Alle ausw�hlen",1008,169,59,53,14,WS_GROUP
 END
@@ -458,7 +458,7 @@ BEGIN
     LISTBOX         1002,4,20,123,135,LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | LBS_WANTKEYBOARDINPUT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Suche Gegenstand:",-1,135,88,33,8,NOT WS_VISIBLE | WS_DISABLED
     EDITTEXT        1042,135,100,41,16,ES_AUTOHSCROLL | NOT WS_VISIBLE
-    DEFPUSHBUTTON   "Best�tigen",1,132,21,44,14,WS_GROUP
+    DEFPUSHBUTTON   "Bestätigen",1,132,21,44,14,WS_GROUP
     PUSHBUTTON      "Abbrechen",2,132,41,44,14,WS_GROUP
     LISTBOX         1076,143,118,22,20,LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | LBS_WANTKEYBOARDINPUT | NOT WS_VISIBLE | WS_TABSTOP
 END
@@ -468,7 +468,7 @@ STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Fehlermeldung!"
 FONT 8, "MS Sans Serif"
 BEGIN
-    DEFPUSHBUTTON   "&Best�tigen",1,40,103,50,14
+    DEFPUSHBUTTON   "&Bestätigen",1,40,103,50,14
     PUSHBUTTON      "&Abbrechen",2,106,103,50,14
     LTEXT           "Folgender Fehler ist aufgetreten:",-1,9,8,104,8
     LTEXT           "",1004,12,25,177,44
@@ -492,7 +492,7 @@ BEGIN
     EDITTEXT        1010,128,45,206,71,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY | ES_WANTRETURN | WS_VSCROLL
     EDITTEXT        1156,170,122,126,13,ES_AUTOHSCROLL | ES_READONLY
     PUSHBUTTON      "Gehe zu",1157,299,122,35,12
-    DEFPUSHBUTTON   "Best�tigen",1,127,139,207,14,WS_GROUP
+    DEFPUSHBUTTON   "Bestätigen",1,127,139,207,14,WS_GROUP
     LTEXT           "",1012,4,4,118,108,NOT WS_GROUP
     CONTROL         "",1011,"Button",BS_OWNERDRAW,128,4,206,24
     EDITTEXT        1013,128,32,206,12,ES_MULTILINE | ES_READONLY | NOT WS_BORDER | NOT WS_TABSTOP
@@ -507,7 +507,7 @@ BEGIN
     LISTBOX         1002,4,20,123,135,LBS_SORT | LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | LBS_WANTKEYBOARDINPUT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Suche Gegenstand:",-1,134,95,33,8,NOT WS_VISIBLE | WS_DISABLED
     EDITTEXT        1042,136,106,38,16,ES_AUTOHSCROLL | NOT WS_VISIBLE
-    DEFPUSHBUTTON   "Best�tigen",1,133,21,44,14,WS_GROUP
+    DEFPUSHBUTTON   "Bestätigen",1,133,21,44,14,WS_GROUP
     PUSHBUTTON      "Abbrechen",2,133,41,44,14,WS_GROUP
     LISTBOX         1076,144,127,28,12,LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | LBS_WANTKEYBOARDINPUT | NOT WS_VISIBLE | WS_TABSTOP
 END
@@ -646,7 +646,7 @@ BEGIN
     3                       "Kommunikationsfehler!"
     4                       "Die Nachricht des Servers ist zu lang!"
     5                       "Der Lesebuffer ist zu voll!"
-    9                       "Seit Deinem letzten Einloggen wurde das Spiel aktualisiert.\n Mit Best�tigen werden die neuen Dateien automatisch auf Deinen Rechner kopiert.\n Mit Abbrechen wird versucht, das Spiel mit der \nalten Version fortzusetzen. Jetzt Aktualisieren?\n"
+    9                       "Seit Deinem letzten Einloggen wurde das Spiel aktualisiert.\n Mit Bestätigen werden die neuen Dateien automatisch auf Deinen Rechner kopiert.\n Mit Abbrechen wird versucht, das Spiel mit der \nalten Version fortzusetzen. Jetzt Aktualisieren?\n"
     10                      "Die Datei  %s ist vermutlich defekt.\nVersuche als erstes durch eine Neuinstallation des Spiels das Problem zu beheben. Funktioniert dies nicht, wende Dich bitte an unseren Kundenservice."
     12                      "Doppelt vorhanden: #%d in Datei %s."
     13                      "Verbindung zum Server nicht m�glich (Port #%d an %s).\n\nDer Server k�nnte heruntergefahren sein; Bitte pr�fe den Status auf https://Meridian59.us."
@@ -729,7 +729,7 @@ BEGIN
     90                      "Entpacken ..."
     91                      "Meridian 59"
     92                      "meridian.ini"
-    93                      "&Best�tigen"
+    93                      "&Bestätigen"
     94                      "&Abbrechen"
     95                      "Kaufen"
 END

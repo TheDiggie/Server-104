@@ -247,9 +247,9 @@ resources:
    player_unbound_energy_wiped = "The volatile energy surrounding you "
       "dissipates in the violently twisting aether."
    player_unbound_energy_gained = "You gather ~B~t%i~v~B unbound energy "
-      "from your fallen enemy."
+      "from your fallen enemy. You have ~B~t%i~v~B unbound energy."
    player_unbound_energy_lost = "You channel ~B~t%i~v~B unbound energy "
-      "to shape your spell."
+      "to shape your spell. You have ~B~t%i~v~B unbound energy left."
    player_unbound_energy_wasted = "Your mind is too preoccupied with your "
       "recent encounter to make any use of the subtle energies dispersing "
       "before your eyes."
@@ -9467,12 +9467,12 @@ messages:
          if iAmount > 0
          {
             Send(self,@MsgSendUser,#message_rsc=player_unbound_energy_gained,
-                  #parm1=iAmount);
+                  #parm1=iAmount,#parm2=piUnbound_energy);
          }
          else if iAmount < 0
          {
             Send(self,@MsgSendUser,#message_rsc=player_unbound_energy_lost,
-                  #parm1=-iAmount);
+                  #parm1=-iAmount,#parm2=piUnbound_energy);
          }
       }
 

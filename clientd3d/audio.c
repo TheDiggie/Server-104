@@ -519,7 +519,7 @@ BOOL SoundSetListenerPosition(int x, int y, int angle)
       return FALSE;
 
    // remove full periods, convert pseudo degree (0-4096) to radian
-   // and then to degree (afterwards angle is 0-360∞)
+   // and then to degree (afterwards angle is 0-360ù)
    angle %= NUMDEGREES;
    angle = RADIANS_TO_DEGREES(DegToRad(angle));
    
