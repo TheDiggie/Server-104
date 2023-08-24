@@ -607,6 +607,7 @@ messages:
          {   
             if IsClass(each_obj,&Thrasher)
                AND NOT Send(each_obj,@IsIllusion)
+			   AND NOT IsClass(each_obj, &Reflection)
             {
                lTrapList = cons(each_obj,lTrapList);
 
@@ -903,6 +904,10 @@ messages:
                        ROTATE_NONE, DISTANCE_NORMAL ],plExits);
       plExits = Cons([ 30, 18, RID_MAR_CRYPT2, 37, 27,
                        ROTATE_NONE, DISTANCE_NORMAL ],plExits);
+      plExits = Cons([ 35, 26, RID_MAR_CRYPT4, 39, 6,
+                       ROTATE_225, DISTANCE_NORMAL ],plExits);
+      plExits = Cons([ 35, 27, RID_MAR_CRYPT4, 39, 6,
+                       ROTATE_225, DISTANCE_NORMAL ],plExits);
       //Gates
       plExits = Cons([ 22, 26, ROOM_LOCKED_DOOR,
                        marcrypt3a_cant_pass ],plExits);
@@ -980,7 +985,7 @@ messages:
 
    ReqSpellCast(who = $, oSpell = $, lItems = $)
    {
-      if oSpell = Send(SYS,@FindSpellByNum,#num=SID_EARTHQUAKE)
+      if oSpell = Send(SYS,@FindSpellByNum,#num=SID_EARTHQUAKE) AND NOT IsClass(who, &DM)
       {
          Send(who,@MsgSendUser,#message_rsc=marcrypt3a_no_earthquake);
 
@@ -1047,14 +1052,7 @@ messages:
 
       iNumPlayers = Send(self,@CountTrap,#trap=3,#what=COUNTTRAP_USER);
 
-      if iNumPlayers > 5
-      {
-         iNumPlayers = Random(3,5);
-      }
-      else
-      {
-         iNumPlayers = Random(1,iNumPlayers);
-      }
+      iNumPlayers = Random(1,iNumPlayers + 1);
 
       while iNumPlayers > 0
       {
@@ -1107,7 +1105,7 @@ messages:
    {
       // All chances (first number) should add up to 100.
       plTreasuresList = [ [ 1, TREASURE_OBJECT, &Rose, 1 ],
-						  [ 3, TREASURE_OBJECT, &NeruditeBow, 1 ],
+						        [ 3, TREASURE_OBJECT, &NeruditeBow, 1 ],
                           [ 2, TREASURE_WEAPON, &Scimitar, WA_BLINDER ],
                           [ 2, TREASURE_WEAPON, &Scimitar, WA_PURGER ],
                           [ 2, TREASURE_WEAPON, &Scimitar, WA_PARALYZER ],
@@ -1118,9 +1116,10 @@ messages:
                           [ 1, TREASURE_WEAPON, &MysticSword, WA_PURGER ],
                           [ 1, TREASURE_WEAPON, &MysticSword, WA_PARALYZER ],
                           [ 1, TREASURE_WEAPON, &NeruditeSword, WA_PURGER ],
+                          [ 1, TREASURE_WEAPON, &NeruditeSword, WA_PARALYZER ],
+                          [ 1, TREASURE_WEAPON, &NeruditeSword, WA_BLINDER ],
                           [ 3, TREASURE_WEAPON, &Axe, WA_BLINDER ],
                           [ 3, TREASURE_WEAPON, &Axe, WA_PARALYZER ],
-                          [ 6, TREASURE_OBJECT, &PlateArmor, 1 ],
                           [ 3, TREASURE_OBJECT, &OfferingKraanan, 1 ],
                           [ 3, TREASURE_OBJECT, &OfferingShalille, 1 ],
                           [ 3, TREASURE_OBJECT, &OfferingRiija, 1 ],
@@ -1129,14 +1128,14 @@ messages:
                           [ 2, TREASURE_OBJECT, &OfferingJala, 1 ],
                           [ 1, TREASURE_OBJECT, &Prism, 1 ],
                           [ 3, TREASURE_OBJECT, &TrueLute, 1 ],
-                          [ 5, TREASURE_OBJECT, &PurpleMushroom, 25 ],
-                          [ 7, TREASURE_OBJECT, &InkyCap, 20 ],
-                          [ 5, TREASURE_OBJECT, &BlueDragonScale, 20 ],
-                          [ 5, TREASURE_OBJECT, &DarkAngelFeather, 20 ],
-                          [ 5, TREASURE_OBJECT, &EntrootBerry, 50 ],
-                          [ 5, TREASURE_OBJECT, &Yrxlsap, 20 ],
-                          [ 6, TREASURE_OBJECT, &Ruby, 35 ],
-                          [ 3, TREASURE_OBJECT, &Shillings, 25000 ]
+                          [ 5, TREASURE_OBJECT, &PurpleMushroom, 500 ],
+                          [ 5, TREASURE_OBJECT, &InkyCap, 150 ],
+                          [ 5, TREASURE_OBJECT, &BlueDragonScale, 250 ],
+                          [ 5, TREASURE_OBJECT, &DarkAngelFeather, 250 ],
+                          [ 5, TREASURE_OBJECT, &EntrootBerry, 350 ],
+                          [ 5, TREASURE_OBJECT, &Yrxlsap, 150 ],
+                          [ 6, TREASURE_OBJECT, &Ruby, 250 ],
+                          [ 3, TREASURE_OBJECT, &Shillings, 50000 ]
                         ];
 
       return;
