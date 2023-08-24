@@ -7858,6 +7858,8 @@ messages:
          AND NOT IsClass(what,&Food)
          AND NOT IsClass(what,&Ammo)
          AND NOT IsClass(what,&Shillings)
+         AND NOT IsClass(what,&IronOre)
+         AND NOT IsClass(what,&NeruditeOre)
          AND NOT bFromReagentBag
          AND Send(self,@GetReagentBag) <> $
          AND (piPreferences & CF_REAGENTBAG)

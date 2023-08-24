@@ -84,6 +84,8 @@ messages:
          AND NOT IsClass(self,&Food)
          AND NOT IsClass(self,&Ammo)
          AND NOT IsClass(self,&Shillings)
+         AND NOT IsClass(what,&IronOre)
+         AND NOT IsClass(what,&NeruditeOre)
       {
          return TRUE;
       }
@@ -99,6 +101,8 @@ messages:
          AND NOT IsClass(self,&Food)
          AND NOT IsClass(self,&Ammo)
          AND NOT IsClass(self,&Shillings)
+         AND NOT IsClass(what,&IronOre)
+         AND NOT IsClass(what,&NeruditeOre)
       {
          Send(Send(what,@GetReagentBag),@NewHold,#what=self,
                #where=Send(what,@GetReagentBag),
