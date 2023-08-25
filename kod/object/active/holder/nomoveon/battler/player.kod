@@ -202,7 +202,7 @@ resources:
    player_temp_safe_end = \
       "~I~BYou feel your guardian angel has departed once more."
 
-   player_improved = "~I~BYou have improved in the art of %s."
+   player_improved = "~g~BYou have improved in the art of %s. It is now %i%."
    player_improved_wav_rsc = imp.ogg
    player_aggressor = "Shal'ille frowns upon your unprovoked attack."
    player_aggressor_minion = \
@@ -8078,7 +8078,7 @@ messages:
          if poOwner <> $
          {
             Post(self,@MsgSendUser,#message_rsc=player_improved,
-                  #parm1=spellName);
+                  #parm1=spellName,#parm2=newAbility);
             Send(poOwner,@SomethingWaveRoom,#what=self,
                   #wave_rsc=player_improved_wav_rsc);
 
@@ -8630,7 +8630,7 @@ messages:
          if poOwner <> $
          {
             Post(self,@MsgSendUser,#message_rsc=player_improved,
-                  #parm1=skillName);
+                  #parm1=skillName,#parm2=newability);
             Send(poOwner,@SomethingWaveRoom,#what=self,
                   #wave_rsc=player_improved_wav_rsc);
          }
