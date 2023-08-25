@@ -38,8 +38,8 @@ classvars:
 
    viVisionDistance = 12
 
-   viCashMin = 5000
-   viCashMax = 10000
+   viCashmin = 100
+   viCashmax = 500
 
    viDead_drawfx = DRAWFX_TRANSLUCENT_50
 

@@ -55,8 +55,8 @@ classvars:
    viAttackRange = 192
    viKarma = 0
    viDefault_behavior = AI_FIGHT_HYPERAGGRESSIVE | AI_FIGHT_SWITCHALOT
-   viCashmin = 5000
-   viCashmax = 10000
+   viCashmin = 100
+   viCashmax = 500
    vrSound_hit = Death_Mite_Soldier_sound_hit
    vrSound_miss = Death_Mite_Soldier_sound_miss
    vrSound_aware = Death_Mite_Soldier_sound_aware

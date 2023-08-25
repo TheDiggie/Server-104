@@ -146,7 +146,7 @@ messages:
       if NOT IsClass(what,&NumberItem)
          OR IsClass(what,&Food)
          OR IsClass(what,&Ammo)
-         OR IsClass(what,&Shillings)
+         OR IsClass(what,&Money)
       {
          return FALSE;
       }

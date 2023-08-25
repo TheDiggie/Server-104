@@ -20,6 +20,8 @@ classvars:
 
 properties:
 
+   poCurrency = &Souls
+
 messages:
 
     IsDeathRealmMonster()

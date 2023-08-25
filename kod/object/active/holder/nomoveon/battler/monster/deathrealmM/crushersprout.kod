@@ -59,8 +59,8 @@ classvars:
    viAttackRange = 192
    viKarma = 0
    viDefault_behavior = AI_FIGHT_HYPERAGGRESSIVE | AI_FIGHT_SWITCHALOT | MOB_NOMOVE
-   viCashmin = 5000
-   viCashmax = 10000
+   viCashmin = 100
+   viCashmax = 500
    vrSound_hit = crushersprout_sound_hit
    vrSound_miss = crushersprout_sound_miss
    vrSound_aware = crushersprout_sound_aware
