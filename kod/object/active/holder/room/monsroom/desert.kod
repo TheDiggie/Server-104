@@ -8,8 +8,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-
-DesertRoom is Room
+DesertRoom is MonsterRoom
 
 constants:
 
@@ -23,6 +22,9 @@ classvars:
 
 properties:
 
+   piMonster_count_max = 30
+   piInit_count_min = 5
+   piInit_count_max = 10
 
 messages:
 

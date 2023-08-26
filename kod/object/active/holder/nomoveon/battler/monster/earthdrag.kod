@@ -51,8 +51,8 @@ classvars:
    viDifficulty = 10
    viVisionDistance = 40
    viKarma = 0
-   viCashmin = 10000
-   viCashmax = 75000
+   viCashmin = 2000
+   viCashmax = 5000
  
    vrSound_hit = earth_dragon_sound_hit
    vrSound_miss = earth_dragon_sound_miss

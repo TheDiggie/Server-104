@@ -40,6 +40,26 @@ properties:
 
 messages:
 
+   Constructed()
+   {
+      plMonsters = [ [&XeoAcid, 10],
+                     [&XeoAir, 10],
+                     [&XeoEarth, 10],
+                     [&XeoFire, 10],
+                     [&XeoHoly, 10],
+                     [&XeoIll, 10],
+                     [&XeoUnholy, 10],
+                     [&XeoWater, 10],
+                     [&EarthElemental, 10],
+                     [&FireElemental, 10]
+                      ];
+      
+      plGenerators = [ [10, 10], [10, 70], [10, 35], [35, 10], [70, 10], 
+                      [35, 35], [35, 70], [70, 35], [70, 70], [20, 25],
+                      [20, 58], [59, 32], [59, 61] ];
+
+      propagate;
+   }
  
    CreateStandardExits()
    {

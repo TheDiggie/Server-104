@@ -50,8 +50,8 @@ classvars:
    viVisionDistance = 50
    viKarma = 0
    viDefault_behavior = AI_FIGHT_AGGRESSIVE | AI_FIGHT_SWITCHALOT
-   viCashmin = 15000
-   viCashmax = 110000
+   viCashmin = 2000
+   viCashmax = 5000
 
    vrSound_hit = BlackDragon_sound_hit
    vrSound_miss = BlackDragon_sound_miss

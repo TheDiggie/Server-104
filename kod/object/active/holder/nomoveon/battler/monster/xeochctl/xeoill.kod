@@ -48,6 +48,9 @@ resources:
 
    viTreasure_type = TID_XEO_ILL
 
+   viCashmin = 2000
+   viCashmax = 5000
+   
 properties:
 
    piAnimation = ANIM_NONE

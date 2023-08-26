@@ -43,6 +43,9 @@ classvars:
 
    viAttack_Spell = ATCK_SPELL_QUAKE
 
+   viCashmin = 2000
+   viCashmax = 5000
+
 properties:
 
    piAnimation = ANIM_NONE
