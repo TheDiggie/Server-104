@@ -34,7 +34,7 @@ classvars:
    viSpell_num = SID_CRAFTMAGICROBES
    viSpell_level = 6
    viCast_time = 10000
-   viSpellExertion = 15
+   viSpellExertion = 5
 
    vrGear = &DiscipleRobe
    viBench  = &Loom

@@ -32,7 +32,7 @@ classvars:
 
    viSpell_num = SID_CRAFTKNIGHTSHIELD
    viSpell_level = 5
-   viSpellExertion = 15
+   viSpellExertion = 5
 
    vrGear = &KnightShield
    voTool = &BlackSmithsHammer

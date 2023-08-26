@@ -32,7 +32,7 @@ classvars:
 
    viSpell_num = SID_CRAFTIVYCIRCLET
    viSpell_level = 2
-   viSpellExertion = 15
+   viSpellExertion = 5
 
    vrGear = &IvyCirclet
    viBench  = &SpinningWheel

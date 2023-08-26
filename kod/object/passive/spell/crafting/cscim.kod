@@ -32,7 +32,7 @@ classvars:
 
    viSpell_num = SID_CRAFTSCIMITAR
    viSpell_level = 6
-   viSpellExertion = 15
+   viSpellExertion = 5
 
    vrGear = &Scimitar
    voTool = &BlackSmithsHammer

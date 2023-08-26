@@ -16,9 +16,6 @@ constants:
 
 resources:
 
-   // TODO: German translation from Tyran
-   //include boatticket.lkod
-
    VaultContract_name_rsc     = "vault contract"
    VaultContract_icon_rsc     = scr06.bgf
 

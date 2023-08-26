@@ -33,7 +33,7 @@ classvars:
    viSpell_num = SID_CRAFTAPPAREL
    viSpell_level = 2
    viCast_time = 5000
-   viSpellExertion = 15
+   viSpellExertion = 5
 
    vrGear = &ShirtBase
    viBench  = &Loom

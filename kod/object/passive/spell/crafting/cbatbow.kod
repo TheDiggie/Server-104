@@ -32,7 +32,7 @@ classvars:
 
    viSpell_num = SID_CRAFTBATTLEBOW
    viSpell_level = 6
-   viSpellExertion = 15
+   viSpellExertion = 5
 
    vrGear = &BattleBow
    voTool = &DrawKnife
