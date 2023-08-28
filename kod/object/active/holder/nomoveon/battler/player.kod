@@ -831,9 +831,7 @@ resources:
    bad_line_of_sight = \
       "Your hindered line of sight makes a successful hit more difficult."
 
-   cant_fight_pickaxe   = "You can't fight with a pickaxe!"
-   cant_fight_sickle    = "You can't fight with a sickle!"
-   cant_fight_axe       = "You can't fight with a wood cutting axe!"
+   cant_fight_tool   = "You can't fight with a harvesting tool!"
    cant_Harvest         = "You can't harvest with this weapon!"
    killed_resource      = "You depleted this resource."
       
@@ -5059,29 +5057,12 @@ messages:
          }
       }
 
-      if IsClass(what,&Monster) AND NOT IsClass(what,&Ore)
+      if IsClass(what,&Monster) AND NOT IsClass(what,&Resource)
       {
-         if IsClass(oWeapon,&PickAxe)
+         if IsClass(oWeapon,&PickAxe) OR IsClass(oWeapon,&CuttingAxe)
+            OR IsClass(oWeapon,&sickle)
          {
-            Send(self,@MsgSendUser,#message_rsc=cant_fight_pickaxe);
-            return FALSE;
-         }
-      }
-
-      if IsClass(what,&Monster) AND NOT IsClass(what,&ResTree)
-      {
-         if IsClass(oWeapon,&CuttingAxe)
-         {
-            Send(self,@MsgSendUser,#message_rsc=cant_fight_axe);
-            return FALSE;
-         }
-      }
-
-      if IsClass(what,&Monster) AND NOT IsClass(what,&ResPlant)
-      {
-         if IsClass(oWeapon,&sickle)
-         {
-            Send(self,@MsgSendUser,#message_rsc=cant_fight_sickle);
+            Send(self,@MsgSendUser,#message_rsc=cant_fight_tool);
             return FALSE;
          }
       }
