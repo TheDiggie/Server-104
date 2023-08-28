@@ -1728,7 +1728,7 @@ messages:
    GetManaCost(who=$,iSpellPower=0,bItemCast=FALSE)
    "Returns number of magic points needed to cast spell"
    {
-      local iCost, oPrincessShield, oDukeShield;
+      local iCost, oPrincessShield
 
       if iSpellpower = 0
       {
@@ -1767,13 +1767,6 @@ messages:
       if oPrincessShield <> $
       {
          iCost = iCost - Send(oPrincessShield,@GetSpellManaReduction);
-      }
-
-      // Up to -2 for being a Princess soldier
-      oDukeShield = Send(who,@FindUsing,#class=&DukeShield);
-      if oDukeShield <> $
-      {
-         iCost = iCost - Send(oDukeShield,@GetSpellManaReduction);
       }
 	  
       return bound(iCost,1,$);
