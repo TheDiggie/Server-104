@@ -112,6 +112,11 @@ messages:
             return FALSE;
          }
       }
+      
+      if who = $
+      {
+         return FALSE;
+      }
 
       iSectorID = Send(who,@GetSectorIDAtObject);
 

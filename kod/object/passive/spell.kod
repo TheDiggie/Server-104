@@ -1728,7 +1728,7 @@ messages:
    GetManaCost(who=$,iSpellPower=0,bItemCast=FALSE)
    "Returns number of magic points needed to cast spell"
    {
-      local iCost, oPrincessShield
+      local iCost, oPrincessShield;
 
       if iSpellpower = 0
       {
