@@ -15146,13 +15146,24 @@ messages:
 
    GetBagContents()
    {
-      local oBag;
+      local i, oBag, lcontents;
 
-      oBag = GetListElemByClass(plPassive,&Bag);
-      if oBag <> $
+      //oBag = GetListElemByClass(plPassive,&Bag);
+      
+      foreach i in plPassive
       {
-         return Send(oBag,@GetBagContents);
+         if isClass(i,&Bag)
+         {
+            lcontents = Send(i,@GetBagContents);
+         }
+
+         return lcontents;
       }
+
+      //if oBag <> $
+      //{
+      //   return Send(oBag,@GetBagContents);
+      //}
 
       return $;
    }

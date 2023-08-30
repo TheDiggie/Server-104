@@ -724,7 +724,7 @@ messages:
          bFound = FALSE;
 
          lLists = [Send(who,@GetHolderActive),Send(who,@GetHolderPassive),
-                     Send(who,@GetReagentBagContents)];
+                     Send(who,@GetBagContents)];
 
          foreach lItems in lLists
          {
@@ -1399,7 +1399,7 @@ messages:
             }
             else
             {
-               lItems = Send(who,@GetReagentBagContents);
+               lItems = Send(who,@GetBagContents);
             }
 
             // Since spell is cast, we can be cavalier about deleting things

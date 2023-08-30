@@ -242,11 +242,18 @@ messages:
 
    ReqNewOwner(what=$)
    {
+      local i;
+
       if what <> $
          AND IsClass(what,&Player)
-         AND Send(what,@GetBag) <> $
       {
-         return FALSE;
+         foreach i in Send(what,@GetBag)
+         {
+            if GetClass(i) = GetClass(self)
+            {
+               return FALSE;
+            }
+         }
       }
 
       propagate;
