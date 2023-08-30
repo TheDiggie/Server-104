@@ -4151,6 +4151,20 @@ messages:
          return FALSE;
       }
 
+      if IsClass(what,&Bag)
+      {
+         if Send(what,@GetBagContents) = $
+         {
+            Send(self,@MsgSendUser,#message_rsc=player_regbag_empty);
+
+            return FALSE;
+         }
+
+         Send(self,@UserObjectContents,#what=what);
+
+         return TRUE;
+      }
+
       if IsClass(what,&ReagentBag)
       {
          if Send(what,@GetReagentBagContents) = $
@@ -15111,6 +15125,36 @@ messages:
    CanEvilTwin()
    {
       return TRUE;
+   }
+
+   GetBag()
+   {
+      local i, lBags;
+
+      lBags = $;
+
+      foreach i in plPassive
+      {
+         if isClass(i,&Bag)
+         {
+            lBags = Cons(i,lBags);
+         }
+      }
+
+      return lBags;
+   }
+
+   GetBagContents()
+   {
+      local oBag;
+
+      oBag = GetListElemByClass(plPassive,&Bag);
+      if oBag <> $
+      {
+         return Send(oBag,@GetBagContents);
+      }
+
+      return $;
    }
 
    GetReagentBag()

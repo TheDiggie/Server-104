@@ -1,0 +1,56 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+tempreg is Bag
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   tempreg_name_rsc = "tempreg"
+   tempreg_icon_rsc = baghold.bgf
+
+   tempreg_desc_rsc = "This lumpy tempreg is magical in nature, and able to "
+   "hold large amounts of objects that themselves have inherent power."
+
+   stash_in_tempreg1 = "You stash %d %s in your reagent tempreg."
+   get_from_tempreg1 = "You get %d %s from your reagent tempreg."
+
+classvars:
+
+   vrName = tempreg_name_rsc
+   vrIcon = tempreg_icon_rsc
+   vrDesc = tempreg_desc_rsc
+
+   viValue_average = 500
+   viBulk_hold_max = 12000
+   viWeight_hold_max = $
+
+properties:
+
+   plWhiteList = $
+   plBlackList = $
+
+messages:
+
+   Constructor(owner=$)
+   {
+      plWhiteList = [ &Reagent ];
+
+      plBlackList = [ &Emerald,
+                      &Sapphire ];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

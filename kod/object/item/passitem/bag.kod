@@ -1,0 +1,336 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Bag is PassiveItem
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Bag_name_rsc = "bag"
+   Bag_icon_rsc = baghold.bgf
+
+   Bag_desc_rsc = "This lumpy bag is magical in nature, and able to "
+   "hold large amounts of objects that themselves have inherent power."
+
+   stash_in_bag1 = "You stash %d %s in your reagent bag."
+   get_from_bag1 = "You get %d %s from your reagent bag."
+
+classvars:
+
+   vrName = Bag_name_rsc
+   vrIcon = Bag_icon_rsc
+   vrDesc = Bag_desc_rsc
+
+   viValue_average = 500
+   viBulk_hold_max = 12000
+   viWeight_hold_max = $
+
+properties:
+
+   plContents  = $
+   plWhiteList = $
+   plBlackList = $
+
+   viObject_flags = OF_CONTAINER | OF_GETTABLE
+
+messages:
+
+   Constructor(owner=$)
+   {
+      if owner <> $
+         AND IsClass(owner,&Player)
+         AND Send(owner,@GetBag) = $
+      {
+         Send(owner,@NewHold,#what=self);
+      }
+
+      propagate;
+   }
+
+   IsWhitelisted(what=$)
+   {
+      local i;
+
+      foreach i in plWhiteList
+      {
+         if isClass(what,i)
+         {
+            return TRUE;
+         }
+      }
+
+      return FALSE;
+   }
+
+   IsBlacklisted(what=$)
+   {
+      local i;
+
+      foreach i in plBlackList
+      {
+         if isClass(what,i)
+         {
+            return TRUE;
+         }
+      }
+      return FALSE;
+   }
+
+   Delete()
+   {
+      local i;
+
+      foreach i in plContents
+      {
+         Send(i,@Delete);
+      }
+
+      propagate;
+   }
+   
+   GetBagContents()
+   {
+      return plContents;
+   }
+
+   HolderExtractObject(data=$)
+   {
+      return data;
+   }
+
+   IsHolding(what=$)
+   {
+      local i,each_obj;
+
+      foreach i in plContents
+      {
+         if what = i
+         {
+            return TRUE;
+         }
+      }
+
+      return FALSE;
+   }
+
+   GetBulk()
+   {
+      local i, iSum;
+
+      iSum = 0;
+
+      foreach i in plContents
+      {
+         iSum = iSum + Send(i,@GetBulk);
+      }
+
+      return iSum;
+   }
+
+   GetWeight()
+   {
+      local i, iSum;
+
+      iSum = 0;
+
+      foreach i in plContents
+      {
+         iSum = iSum + Send(i,@GetWeight);
+      }
+
+      return iSum;
+   }
+
+   ReqTaker(what=$,taker=$)
+   {
+      if taker <> poOwner
+      {
+         return FALSE;
+      }
+
+      Send(poOwner,@MsgSendUser,#message_rsc=get_from_bag1,
+            #parm1=Send(what,@GetNumber),
+            #parm2=Send(what,@GetName));
+
+      return TRUE;
+   }
+
+   ReqNewHold(what=$,who=$)
+   {
+      local i;
+
+      if who <> poOwner
+      {
+         return FALSE;
+      }
+
+      foreach i in plWhiteList
+      {
+         if NOT isClass(what,i)
+         {
+            Debug(what,i);
+            return FALSE;
+         }
+      }
+
+      foreach i in plBlackList
+      {
+         if isClass(what,i)
+         {
+            Debug(what,i);
+            return FALSE;
+         }
+      }
+
+      return;
+   }
+
+   NewHold(what=$)
+   {
+      local i;
+
+      if what = $
+         OR what = self
+      {
+         return;
+      }
+
+      Send(poOwner,@MsgSendUser,#message_rsc=stash_in_bag1,
+            #parm1=Send(what,@GetNumber),
+            #parm2=Send(what,@GetName));
+
+      if IsClass(what,&NumberItem)
+      {
+         foreach i in plContents
+         {
+            if i <> what
+            {
+               if GetClass(what) = GetClass(i)
+               {
+                  // Should only be one of these, so can quit loop if found
+                  Send(i,@AddNumber,#number=Send(what,@GetNumber));
+                  Send(what,@Delete);
+
+                  return;
+               }
+            }
+         }
+      }
+
+      Send(what,@NewOwner,#what=self);
+      plContents = Cons(what,plContents);
+
+      // If our owner is a player, update the weight carried stat.
+      if poOwner <> $
+         AND IsClass(poOwner,&Player)
+      {
+         Post(poOwner,@DrawCapacity);
+      }
+
+      return;
+   }
+
+   ReqNewOwner(what=$)
+   {
+      if what <> $
+         AND IsClass(what,&Player)
+         AND Send(what,@GetBag) <> $
+      {
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+   ReqLeaveHold(what=$)
+   {
+      return TRUE;
+   }
+
+   LeaveHold(what=$)
+   {
+      local i;
+
+      foreach i in plContents
+      {
+         if i = what
+         {
+            plContents = DelListElem(plContents,i);
+         }
+      }
+
+      return;
+   }
+
+   ChangeBulkAndWeight()
+   {
+      return;
+   }
+
+   SendAnimation()
+   {
+      if poOwner <> $ AND IsClass(poOwner,&Room)
+      {
+         AddPacket(1,ANIMATE_NONE, 2,2);
+      }
+      else
+      {
+         AddPacket(1,ANIMATE_NONE, 2,1);
+      }
+
+      return;
+   }
+
+   CanBeGivenToNPC()
+   {
+      return FALSE;
+   }
+
+   CanSwap()
+   {
+      return FALSE;
+   }
+
+   CanShatter()
+   {
+      return FALSE;
+   }
+
+   ReqDMDelete()
+   "Keys are not deleted with the DM clear inventory command."
+   {
+      return FALSE;
+   }
+   
+   CanBeStoredInVault()
+   {
+      return FALSE;
+   }
+
+   DropOnDeath()
+   {
+      return FALSE;
+   }
+
+   GetWhiteList()
+   {
+      return plWhiteList;
+   }
+
+   GetBlackList()
+   {
+      return plBlackList;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,53 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Quiver is Bag
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Quiver_name_rsc = "Quiver"
+   Quiver_icon_rsc = baghold.bgf
+
+   Quiver_desc_rsc = "This lumpy Quiver is magical in nature, and able to "
+   "hold large amounts of objects that themselves have inherent power."
+
+   stash_in_Quiver1 = "You stash %d %s in your reagent Quiver."
+   get_from_Quiver1 = "You get %d %s from your reagent Quiver."
+
+classvars:
+
+   vrName = Quiver_name_rsc
+   vrIcon = Quiver_icon_rsc
+   vrDesc = Quiver_desc_rsc
+
+   viValue_average = 500
+   viBulk_hold_max = 12000
+   viWeight_hold_max = $
+
+properties:
+
+   plWhiteList = $
+   plBlackList = $
+
+messages:
+
+   Constructor(owner=$)
+   {
+      plWhiteList = [ &Ammo ];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

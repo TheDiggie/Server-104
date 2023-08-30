@@ -1,0 +1,53 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+LunchBox is Bag
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   LunchBox_name_rsc = "LunchBox"
+   LunchBox_icon_rsc = baghold.bgf
+
+   LunchBox_desc_rsc = "This lumpy LunchBox is magical in nature, and able to "
+   "hold large amounts of objects that themselves have inherent power."
+
+   stash_in_LunchBox1 = "You stash %d %s in your reagent LunchBox."
+   get_from_LunchBox1 = "You get %d %s from your reagent LunchBox."
+
+classvars:
+
+   vrName = LunchBox_name_rsc
+   vrIcon = LunchBox_icon_rsc
+   vrDesc = LunchBox_desc_rsc
+
+   viValue_average = 500
+   viBulk_hold_max = 12000
+   viWeight_hold_max = $
+
+properties:
+
+   plWhiteList = $
+   plBlackList = $
+
+messages:
+
+   Constructor(owner=$)
+   {
+      plWhiteList = [ &Food ];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

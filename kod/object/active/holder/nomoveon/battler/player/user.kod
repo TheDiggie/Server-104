@@ -4782,7 +4782,8 @@ messages:
    UserGet(what = $, report = TRUE)
    {
       local oOldOwner, i, lItem_pos, iRow, iCol, iRow_dist, iCol_dist,
-            iCan_hold, oSplit, oCorpse, bFromReagentBag, bFromMinersBag;
+            iCan_hold, oSplit, oCorpse, bFromReagentBag, bFromMinersBag,
+            bFromBag;
 
       if Send(self,@IsInCannotInteractMode)
       {
@@ -4807,6 +4808,16 @@ messages:
       if oOldOwner = self
       {
          return 0;
+      }
+
+      if oOldOwner <> $
+         AND IsClass(oOldOwner,&Bag)
+      {
+         bFromBag = TRUE;
+      }
+      else
+      {
+         bFromBag = FALSE;
       }
 
       if oOldOwner <> $
@@ -4958,7 +4969,7 @@ messages:
          Send(what,@PickedUp,#by=self);
       }
 
-      Send(self,@NewHold,#what=what,#bFromReagentBag=bFromReagentBag,#bFromMinersBag=bFromMinersBag);
+      Send(self,@NewHold,#what=what,#bFromReagentBag=bFromReagentBag,#bFromMinersBag=bFromMinersBag,#bFromBag=bFromBag);
 
       return 1;
    }
@@ -5129,6 +5140,7 @@ messages:
       }
 
       if NOT IsClass(where,&Holder)
+         AND NOT IsClass(where,&Bag)
          AND NOT IsClass(where,&ReagentBag)
          AND NOT IsClass(where,&MinersBag)
       {
@@ -5210,7 +5222,9 @@ messages:
       local i, iObjs, oThing, lHolding1, lHolding2;
 
       if (NOT IsClass(what,&Holder)
-         AND NOT (IsClass(what,&ReagentBag) OR (IsClass(what,&MinersBag))))
+         AND NOT (IsClass(what,&ReagentBag)
+         OR (IsClass(what,&Bag))
+         OR (IsClass(what,&MinersBag))))
          OR (IsClass(what,&User)
              AND NOT (what = self OR IsClass(self,&Admin)))
          OR IsClass(what,&Monster)
@@ -5254,6 +5268,11 @@ messages:
       if IsClass(what,&User)
       {
          lHolding1 = Send(what,@GetPlayerUsing);
+         lHolding2 = $;
+      }
+      else if IsClass(what,&Bag)
+      {
+         lHolding1 = Send(what,@GetBagContents);
          lHolding2 = $;
       }
       else if IsClass(what,&ReagentBag)
@@ -5905,6 +5924,13 @@ messages:
             Debug("User ",self," tried to look at non-object ",
                   what);
 
+            return;
+         }
+
+         if IsClass(what,&Bag)
+            AND Send(what,@GetBagContents) <> $
+         {
+            Send(self,@UserObjectContents,#what=what);
             return;
          }
 
@@ -7841,9 +7867,9 @@ messages:
       return;
    }
 
-   NewHold(what = $, bFromReagentBag = FALSE, bFromMinersBag = FALSE, check_combine = TRUE)
+   NewHold(what = $, bFromReagentBag = FALSE, bFromMinersBag = FALSE, bFromBag = FALSE, check_combine = TRUE)
    {
-      local i, oLastSpellItem;
+      local i, oLastSpellItem, lBags;
 
       if what = $
          OR what = self
@@ -7880,6 +7906,22 @@ messages:
                #where=Send(self,@GetMinersBag));
 
          return;
+      }
+
+      lbags = Send(self,@GetBag);
+
+      foreach i in lbags
+      {
+         if NOT bFromBag
+            AND i <> $
+            AND Send(i,@IsWhitelisted,#what=what) = TRUE
+            AND Send(i,@IsBlacklisted,#what=what) = FALSE
+            AND (piPreferences & CF_REAGENTBAG)
+         {
+            Post(i,@NewHold,#what=what,#where=i);
+
+            return;
+         }
       }
 
       if IsClass(what,&SpellItem)
