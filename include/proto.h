@@ -464,7 +464,7 @@ typedef enum {
 #define CF_GROUPING      0x0004  // Player is grouping
 #define CF_AUTOLOOT      0x0008  // Player is automatically picking up loot
 #define CF_AUTOCOMBINE   0x0010  // Player automatically combines spell items
-#define CF_REAGENTBAG    0x0020  // Player automatically puts items into reagent bag
+#define CF_BAGS    0x0020  // Player automatically puts items into reagent bag
 #define CF_SPELLPOWER    0x0040  // Player gets spellpower readout from cast spells
 
 // Lighting constants, used by D3D renderer for dynamic lighting

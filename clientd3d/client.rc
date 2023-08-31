@@ -1012,8 +1012,8 @@ BEGIN
     CONTROL         "Autoloot stackable items from kills",IDC_AUTOLOOT,
                     "Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,15,128,123,9
     CONTROL         "Autocombine spell items",IDC_AUTOCOMBINE,"Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,192,128,90,9
-    CONTROL         "Stash reagents into reagent bag automatically",IDC_REAGENTBAG,
-                    "Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,15,140,160,9
+    CONTROL         "Stash things into the appropriate bag automatically",IDC_BAGS,
+                    "Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,15,140,170,9
     CONTROL         "Display spellpower for spells cast",IDC_SPELLPOWER,
                     "Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,192,140,119,9
     GROUPBOX        "Audio Effects",IDC_STATIC,6,160,364,45,WS_GROUP

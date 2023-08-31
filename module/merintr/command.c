@@ -631,7 +631,7 @@ void CommandAutoCombineOff(char *args)
  */
 void CommandReagentBagOn(char *args)
 {
-   SendPreferences(cinfo->config->preferences |= CF_REAGENTBAG);
+   SendPreferences(cinfo->config->preferences |= CF_BAGS);
 }
 /************************************************************************/
 /*
@@ -639,7 +639,7 @@ void CommandReagentBagOn(char *args)
  */
 void CommandReagentBagOff(char *args)
 {
-   SendPreferences(cinfo->config->preferences &= ~CF_REAGENTBAG);
+   SendPreferences(cinfo->config->preferences &= ~CF_BAGS);
 }
 /************************************************************************/
 /*
