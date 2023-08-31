@@ -16,24 +16,10 @@ constants:
 
 resources:
 
-   Bag_name_rsc = "bag"
-   Bag_icon_rsc = baghold.bgf
-
-   Bag_desc_rsc = "This lumpy bag is magical in nature, and able to "
-   "hold large amounts of objects that themselves have inherent power."
-
-   stash_in_bag1 = "You stash %d %s in your reagent bag."
-   get_from_bag1 = "You get %d %s from your reagent bag."
+   stash_in_bag = "You stash %d %s in your %s."
+   get_from_bag = "You get %d %s from your %s."
 
 classvars:
-
-   vrName = Bag_name_rsc
-   vrIcon = Bag_icon_rsc
-   vrDesc = Bag_desc_rsc
-
-   viValue_average = 500
-   viBulk_hold_max = 12000
-   viWeight_hold_max = $
 
 properties:
 
@@ -158,9 +144,10 @@ messages:
          return FALSE;
       }
 
-      Send(poOwner,@MsgSendUser,#message_rsc=get_from_bag1,
+      Send(poOwner,@MsgSendUser,#message_rsc=get_from_bag,
             #parm1=Send(what,@GetNumber),
-            #parm2=Send(what,@GetName));
+            #parm2=Send(what,@GetName),
+            #parm3=vrName);
 
       return TRUE;
    }
@@ -205,9 +192,10 @@ messages:
          return;
       }
 
-      Send(poOwner,@MsgSendUser,#message_rsc=stash_in_bag1,
+      Send(poOwner,@MsgSendUser,#message_rsc=stash_in_bag,
             #parm1=Send(what,@GetNumber),
-            #parm2=Send(what,@GetName));
+            #parm2=Send(what,@GetName),
+            #parm3=vrName);
 
       if IsClass(what,&NumberItem)
       {

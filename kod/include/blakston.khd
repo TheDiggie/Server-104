@@ -83,7 +83,7 @@
    CF_GROUPING       = 0x0004
    CF_AUTOLOOT       = 0x0008
    CF_AUTOCOMBINE    = 0x0010
-   CF_REAGENTBAG     = 0x0020
+   CF_BAGS     = 0x0020
    CF_SPELLPOWER     = 0x0040
 
    // Drawing effects flags, separate from the boolean object flags.

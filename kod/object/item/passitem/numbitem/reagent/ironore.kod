@@ -48,30 +48,5 @@ properties:
    
 messages:   
 
-   ReqNewApply(what = $,apply_on = $)
-   {
-      if what = Send(self,@GetOwner)
-         AND apply_on <> $
-         AND IsClass(apply_on,&MinersBag)
-      {
-         return TRUE;
-      }
-
-      return FALSE;
-   }
-
-   NewApplied(what = $,apply_on = $)
-   {
-      if what = Send(self,@GetOwner)
-         AND apply_on <> $
-         AND IsClass(apply_on,&MinersBag)
-      {
-         Send(Send(what,@GetMinersBag),@NewHold,#what=self,
-               #where=Send(what,@GetMinersBag));
-      }
-
-      return;
-   }
-
 end
 ////////////////////////////////////////////////////////////////////////////////

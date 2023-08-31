@@ -5,6 +5,6 @@
 !include $(TOPDIR)\common.mak
 
 DEPEND = ..\bag.bof
-BOFS = quiver.bof lunchbox.bof tempreg.bof
+BOFS = quiver.bof lunchbox.bof reagentbag.bof minersbag.bof
 
 !include $(KODDIR)\kod.mak

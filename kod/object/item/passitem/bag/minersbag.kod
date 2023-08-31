@@ -8,7 +8,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-tempreg is Bag
+MinersBag is Bag
 
 constants:
 
@@ -16,20 +16,16 @@ constants:
 
 resources:
 
-   tempreg_name_rsc = "tempreg"
-   tempreg_icon_rsc = baghold.bgf
+   MinersBag_name_rsc = "miners bag"
+   MinersBag_icon_rsc = minersbag.bgf
 
-   tempreg_desc_rsc = "This lumpy tempreg is magical in nature, and able to "
-   "hold large amounts of objects that themselves have inherent power."
-
-   stash_in_tempreg1 = "You stash %d %s in your reagent tempreg."
-   get_from_tempreg1 = "You get %d %s from your reagent tempreg."
+   MinersBag_desc_rsc = "A hefty bag for carring various ores."
 
 classvars:
 
-   vrName = tempreg_name_rsc
-   vrIcon = tempreg_icon_rsc
-   vrDesc = tempreg_desc_rsc
+   vrName = MinersBag_name_rsc
+   vrIcon = MinersBag_icon_rsc
+   vrDesc = MinersBag_desc_rsc
 
    viValue_average = 500
    viBulk_hold_max = 12000
@@ -44,10 +40,8 @@ messages:
 
    Constructor(owner=$)
    {
-      plWhiteList = [ &Reagent ];
-
-      plBlackList = [ &Emerald,
-                      &Sapphire ];
+      plWhiteList = [ &IronOre,
+                      &NeruditeOre ];
 
       propagate;
    }

@@ -5678,10 +5678,8 @@ messages:
       plItemTemplates = cons(create(&WandSplitter),plItemTemplates);
       plItemTemplates = cons(create(&ScrollSplitter),plItemTemplates);
 
-      plItemTemplates = cons(create(&Bag),plItemTemplates);
       plItemTemplates = cons(create(&Quiver),plItemTemplates);
       plItemTemplates = cons(create(&LunchBox),plItemTemplates);
-      plItemTemplates = cons(create(&TempReg),plItemTemplates);
       plItemTemplates = cons(create(&ReagentBag),plItemTemplates);
       plItemTemplates = cons(create(&MinersBag),plItemTemplates);
 

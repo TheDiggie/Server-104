@@ -15,7 +15,7 @@ player_use_full_hands = de \
    "Deine Hände sind schon voll, deshalb kannst Du das nicht benutzen."
 player_not_using = de "Das benutzt Du momentan nicht."
 player_not_holding = de "%s%s?! So etwas besitzt Du gar nicht!"
-player_regbag_empty = de "Der Reagenzien-Beutel ist leer"
+player_bag_empty = de "Der %s ist leer"
 player_hit_color_red = de "~r"
 player_hit_color_blue = de "~b"
 player_hit_color_none = de ""

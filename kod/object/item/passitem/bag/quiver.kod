@@ -16,14 +16,11 @@ constants:
 
 resources:
 
-   Quiver_name_rsc = "Quiver"
+   Quiver_name_rsc = "quiver"
    Quiver_icon_rsc = baghold.bgf
 
-   Quiver_desc_rsc = "This lumpy Quiver is magical in nature, and able to "
-   "hold large amounts of objects that themselves have inherent power."
-
-   stash_in_Quiver1 = "You stash %d %s in your reagent Quiver."
-   get_from_Quiver1 = "You get %d %s from your reagent Quiver."
+   Quiver_desc_rsc = "A sturdy quiver made out of dense lumber from the Ko'catan island. "
+                     "This case can be used to hold a variety of arrows."
 
 classvars:
 
