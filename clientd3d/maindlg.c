@@ -193,7 +193,7 @@ BOOL CALLBACK PreferencesDialogProc(HWND hDlg, UINT message, UINT wParam, LONG l
       CheckDlgButton(hDlg, IDC_GROUPING, config.preferences & CF_GROUPING);
       CheckDlgButton(hDlg, IDC_AUTOLOOT, config.preferences & CF_AUTOLOOT);
       CheckDlgButton(hDlg, IDC_AUTOCOMBINE, config.preferences & CF_AUTOCOMBINE);
-      CheckDlgButton(hDlg, IDC_REAGENTBAG, config.preferences & CF_REAGENTBAG);
+      CheckDlgButton(hDlg, IDC_BAGS, config.preferences & CF_BAGS);
       CheckDlgButton(hDlg, IDC_SPELLPOWER, config.preferences & CF_SPELLPOWER);
       CheckDlgButton(hDlg, IDC_SHOWFPS, config.showFPS);
       CheckDlgButton(hDlg, IDC_BOUNCE, config.bounce);
@@ -311,10 +311,10 @@ BOOL CALLBACK PreferencesDialogProc(HWND hDlg, UINT message, UINT wParam, LONG l
          else
             config.preferences &= ~CF_AUTOCOMBINE;
 
-         if (IsDlgButtonChecked(hDlg, IDC_REAGENTBAG))
-            config.preferences |= CF_REAGENTBAG;
+         if (IsDlgButtonChecked(hDlg, IDC_BAGS))
+            config.preferences |= CF_BAGS;
          else
-            config.preferences &= ~CF_REAGENTBAG;
+            config.preferences &= ~CF_BAGS;
 
          if (IsDlgButtonChecked(hDlg, IDC_SPELLPOWER))
             config.preferences |= CF_SPELLPOWER;

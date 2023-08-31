@@ -275,13 +275,7 @@ messages:
       local i,each_obj;
 
       if Send(what,@GetOwner) <> $
-         AND IsClass(Send(what,@GetOwner),&ReagentBag)
-      {
-         return TRUE;
-      }
-
-      if Send(what,@GetOwner) <> $
-         AND IsClass(Send(what,@GetOwner),&MinersBag)
+         AND IsClass(Send(what,@GetOwner),&Bag)
       {
          return TRUE;
       }

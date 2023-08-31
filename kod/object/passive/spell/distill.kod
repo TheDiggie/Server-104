@@ -139,7 +139,7 @@ messages:
 
          lLists = [ Send(caster,@GetHolderActive),
                     Send(caster,@GetHolderPassive),
-                    Send(caster,@GetReagentBagContents)
+                    Send(caster,@GetBagContents)
                   ];
 
          // Count # of reagent that user has; complain if not enough
@@ -229,7 +229,7 @@ messages:
 
             if iLists = 3
             {
-               lItems = Send(caster,@GetReagentBagContents);
+               lItems = Send(caster,@GetBagContents);
             }
 
             // Since spell is cast, we can be cavalier about deleting things

@@ -433,8 +433,8 @@ resources:
 
    phased_out_cant_drop = "You can't drop items while phased out of existence."
                                
-   user_reagentbag_on = "You start putting new reagents in your bag."
-   user_reagentbag_off = "You stop putting new reagents in your bag."
+   user_bag_on = "You start using your bags."
+   user_bag_off = "You stop using your bags."
    user_spellpower_on = \
       "You will now see the power at which your spells are cast."
    user_spellpower_off = \
@@ -2314,17 +2314,17 @@ messages:
       return;
    }
 
-   UserCommandSetReagentBag(value = 0)
+   UserCommandSetBag(value = 0)
    {
       if value
       {
-         piPreferences |= CF_REAGENTBAG;
-         Send(self,@MsgSendUser,#message_rsc=user_reagentbag_on);
+         piPreferences |= CF_BAGS;
+         Send(self,@MsgSendUser,#message_rsc=user_bag_on);
       }
       else
       {
-         piPreferences &= ~CF_REAGENTBAG;
-         Send(self,@MsgSendUser,#message_rsc=user_reagentbag_off);
+         piPreferences &= ~CF_BAGS;
+         Send(self,@MsgSendUser,#message_rsc=user_bag_off);
       }
 
       return;
@@ -2370,9 +2370,9 @@ messages:
          Send(self,@UserCommandSetAutoLoot,#value=value & CF_AUTOLOOT);
       }
 
-      if (value & CF_REAGENTBAG) <> (piPreferences & CF_REAGENTBAG)
+      if (value & CF_BAGS) <> (piPreferences & CF_BAGS)
       {
-         Send(self,@UserCommandSetReagentBag,#value=value & CF_REAGENTBAG);
+         Send(self,@UserCommandSetBag,#value=value & CF_BAGS);
       }
 
       if (value & CF_AUTOCOMBINE) <> (piPreferences & CF_AUTOCOMBINE)
@@ -4782,7 +4782,7 @@ messages:
    UserGet(what = $, report = TRUE)
    {
       local oOldOwner, i, lItem_pos, iRow, iCol, iRow_dist, iCol_dist,
-            iCan_hold, oSplit, oCorpse, bFromReagentBag, bFromMinersBag;
+            iCan_hold, oSplit, oCorpse, bFromBag;
 
       if Send(self,@IsInCannotInteractMode)
       {
@@ -4810,23 +4810,13 @@ messages:
       }
 
       if oOldOwner <> $
-         AND IsClass(oOldOwner,&ReagentBag)
+         AND IsClass(oOldOwner,&Bag)
       {
-         bFromReagentBag = TRUE;
+         bFromBag = TRUE;
       }
       else
       {
-         bFromReagentBag = FALSE;
-      }
-
-      if oOldOwner <> $
-         AND IsClass(oOldOwner,&MinersBag)
-      {
-         bFromMinersBag = TRUE;
-      }
-      else
-      {
-         bFromMinersBag = FALSE;
+         bFromBag = FALSE;
       }
       
       // Make sure object still exists, etc, so we don't cause errors
@@ -4912,7 +4902,7 @@ messages:
                {
                   Send(self,@MsgSendUser,#message_rsc=user_got_some,#report=report,
                        #parm1=Send(what,@GetName));
-                  Send(self,@NewHold,#what=oSplit,#bFromReagentBag=bFromReagentBag);
+                  Send(self,@NewHold,#what=oSplit,#bFromBag=bFromBag);
 
                   return 3;
                }
@@ -4958,7 +4948,7 @@ messages:
          Send(what,@PickedUp,#by=self);
       }
 
-      Send(self,@NewHold,#what=what,#bFromReagentBag=bFromReagentBag,#bFromMinersBag=bFromMinersBag);
+      Send(self,@NewHold,#what=what,#bFromBag=bFromBag);
 
       return 1;
    }
@@ -5129,8 +5119,7 @@ messages:
       }
 
       if NOT IsClass(where,&Holder)
-         AND NOT IsClass(where,&ReagentBag)
-         AND NOT IsClass(where,&MinersBag)
+         AND NOT IsClass(where,&Bag)
       {
          Send(self,@MsgSendUser,#message_rsc=user_err_put,
                #parm1=Send(what,@GetDef),#parm2=Send(what,@GetName),
@@ -5210,7 +5199,7 @@ messages:
       local i, iObjs, oThing, lHolding1, lHolding2;
 
       if (NOT IsClass(what,&Holder)
-         AND NOT (IsClass(what,&ReagentBag) OR (IsClass(what,&MinersBag))))
+         AND NOT (IsClass(what,&Bag)))
          OR (IsClass(what,&User)
              AND NOT (what = self OR IsClass(self,&Admin)))
          OR IsClass(what,&Monster)
@@ -5256,14 +5245,9 @@ messages:
          lHolding1 = Send(what,@GetPlayerUsing);
          lHolding2 = $;
       }
-      else if IsClass(what,&ReagentBag)
+      else if IsClass(what,&Bag)
       {
-         lHolding1 = Send(what,@GetReagentBagContents);
-         lHolding2 = $;
-      }
-      else if IsClass(what,&MinersBag)
-      {
-         lHolding1 = Send(what,@GetMinersBagContents);
+         lHolding1 = Send(what,@GetBagContents);
          lHolding2 = $;
       }
       else
@@ -5908,15 +5892,8 @@ messages:
             return;
          }
 
-         if IsClass(what,&ReagentBag)
-            AND Send(what,@GetReagentBagContents) <> $
-         {
-            Send(self,@UserObjectContents,#what=what);
-            return;
-         }
-
-         if IsClass(what,&MinersBag)
-            AND Send(what,@GetMinersBagContents) <> $
+         if IsClass(what,&Bag)
+            AND Send(what,@GetBagContents) <> $
          {
             Send(self,@UserObjectContents,#what=what);
             return;
@@ -7841,9 +7818,9 @@ messages:
       return;
    }
 
-   NewHold(what = $, bFromReagentBag = FALSE, bFromMinersBag = FALSE, check_combine = TRUE)
+   NewHold(what = $, bFromBag = FALSE, check_combine = TRUE)
    {
-      local i, oLastSpellItem;
+      local i, oLastSpellItem, lBags;
 
       if what = $
          OR what = self
@@ -7854,32 +7831,20 @@ messages:
          return;
       }
 
-      if IsClass(what,&NumberItem)
-         AND NOT IsClass(what,&Food)
-         AND NOT IsClass(what,&Ammo)
-         AND NOT IsClass(what,&Money)
-         AND NOT IsClass(what,&IronOre)
-         AND NOT IsClass(what,&NeruditeOre)
-         AND NOT bFromReagentBag
-         AND Send(self,@GetReagentBag) <> $
-         AND (piPreferences & CF_REAGENTBAG)
-      {
-         Post(Send(self,@GetReagentBag),@NewHold,#what=what,
-               #where=Send(self,@GetReagentBag));
+      lbags = Send(self,@GetBag);
 
-         return;
-      }
-      
-      if (IsClass(what,&IronOre)
-         OR IsClass(what,&NeruditeOre))
-         AND NOT bFromMinersBag
-         AND Send(self,@GetMinersBag) <> $
-         AND (piPreferences & CF_REAGENTBAG)
+      foreach i in lbags
       {
-         Post(Send(self,@GetMinersBag),@NewHold,#what=what,
-               #where=Send(self,@GetMinersBag));
+         if NOT bFromBag
+            AND i <> $
+            AND Send(i,@IsWhitelisted,#what=what) = TRUE
+            AND Send(i,@IsBlacklisted,#what=what) = FALSE
+            AND (piPreferences & CF_BAGS)
+         {
+            Post(i,@NewHold,#what=what,#where=i);
 
-         return;
+            return;
+         }
       }
 
       if IsClass(what,&SpellItem)

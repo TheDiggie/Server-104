@@ -80,12 +80,9 @@ messages:
    {
       if what = Send(self,@GetOwner)
          AND apply_on <> $
-         AND IsClass(apply_on,&ReagentBag)
-         AND NOT IsClass(self,&Food)
-         AND NOT IsClass(self,&Ammo)
-         AND NOT IsClass(self,&Shillings)
-         AND NOT IsClass(what,&IronOre)
-         AND NOT IsClass(what,&NeruditeOre)
+         AND IsClass(apply_on,&Bag)
+         AND Send(apply_on,@IsWhitelisted,#what=self) = TRUE
+         AND Send(apply_on,@IsBlacklisted,#what=self) = FALSE
       {
          return TRUE;
       }
@@ -97,15 +94,12 @@ messages:
    {
       if what = Send(self,@GetOwner)
          AND apply_on <> $
-         AND IsClass(apply_on,&ReagentBag)
-         AND NOT IsClass(self,&Food)
-         AND NOT IsClass(self,&Ammo)
-         AND NOT IsClass(self,&Shillings)
-         AND NOT IsClass(what,&IronOre)
-         AND NOT IsClass(what,&NeruditeOre)
+         AND IsClass(apply_on,&Bag)
+         AND Send(apply_on,@IsWhitelisted,#what=self) = TRUE
+         AND Send(apply_on,@IsBlacklisted,#what=self) = FALSE
       {
-         Send(Send(what,@GetReagentBag),@NewHold,#what=self,
-               #where=Send(what,@GetReagentBag),
+         Send(Send(what,@GetBag),@NewHold,#what=self,
+               #where=Send(what,@GetBag),
                #number=Send(self,@GetNumber));
       }
 

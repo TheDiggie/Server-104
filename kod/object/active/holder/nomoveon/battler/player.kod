@@ -137,8 +137,7 @@ resources:
    player_use_full_hands = "Your hands are too full to use that."
    player_not_using = "You are not using that."
    player_not_holding = "You are not even holding %s%s."
-   player_regbag_empty = "The reagent bag is empty."
-   player_minersbag_empty = "The miners bag is empty."
+   player_bag_empty = "The %s is empty."
    
    player_hit_color_red = "~r"
    player_hit_color_blue = "~b"
@@ -4151,25 +4150,12 @@ messages:
          return FALSE;
       }
 
-      if IsClass(what,&ReagentBag)
+      if IsClass(what,&Bag)
       {
-         if Send(what,@GetReagentBagContents) = $
+         if Send(what,@GetBagContents) = $
          {
-            Send(self,@MsgSendUser,#message_rsc=player_regbag_empty);
-
-            return FALSE;
-         }
-
-         Send(self,@UserObjectContents,#what=what);
-
-         return TRUE;
-      }
-
-      if IsClass(what,&MinersBag)
-      {
-         if Send(what,@GetMinersBagContents) = $
-         {
-            Send(self,@MsgSendUser,#message_rsc=player_minersbag_empty);
+            Send(self,@MsgSendUser,#message_rsc=player_bag_empty,
+                      #parm1=send(what,@GetName));
 
             return FALSE;
          }
@@ -9608,7 +9594,7 @@ messages:
    {
       local lItems,i, j, amount, oBody, oSoldierShield, bNo_drop_death, oItemAtt,
             oRoom, iRow, iCol, iFine_Row, iFine_Col, iAngle, oItem,
-            iRoom, lInventoryContents, lReagentBagContents;
+            iRoom, lInventoryContents, lBagContents;
 
       // If this player has created any evil twins, delete them.
       Send(self,@RemoveAllCreatedEvilTwins);
@@ -9794,10 +9780,10 @@ messages:
             }
          }
 
-         lReagentBagContents = Send(self,@GetReagentBagContents);
-         if lReagentBagContents <> $
+         lBagContents = Send(self,@GetBagContents);
+         if lBagContents <> $
          {
-            lInventoryContents = [plActive,plPassive,lReagentBagContents];
+            lInventoryContents = [plActive,plPassive,lBagContents];
          }
          else
          {
@@ -15113,37 +15099,35 @@ messages:
       return TRUE;
    }
 
-   GetReagentBag()
+   GetBag()
    {
-      return GetListElemByClass(plPassive,&ReagentBag);
-   }
+      local i, lBags;
 
-   GetReagentBagContents()
-   {
-      local oBag;
+      lBags = $;
 
-      oBag = GetListElemByClass(plPassive,&ReagentBag);
-      if oBag <> $
+      foreach i in plPassive
       {
-         return Send(oBag,@GetReagentBagContents);
+         if isClass(i,&Bag)
+         {
+            lBags = Cons(i,lBags);
+         }
       }
 
-      return $;
+      return lBags;
    }
 
-   GetMinersBag()
+   GetBagContents()
    {
-      return GetListElemByClass(plPassive,&MinersBag);
-   }
-
-   GetMinersBagContents()
-   {
-      local oBag;
-
-      oBag = GetListElemByClass(plPassive,&MinersBag);
-      if oBag <> $
+      local i, lcontents;
+      
+      foreach i in plPassive
       {
-         return Send(oBag,@GetMinersBagContents);
+         if isClass(i,&Bag)
+         {
+            lcontents = Send(i,@GetBagContents);
+         }
+
+         return lcontents;
       }
 
       return $;

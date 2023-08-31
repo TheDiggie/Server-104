@@ -1,0 +1,58 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+ReagentBag is Bag
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include reagentbag.lkod
+
+   ReagentBag_name_rsc = "reagent bag"
+   ReagentBag_icon_rsc = baghold.bgf
+
+   ReagentBag_desc_rsc = "This lumpy reagent bag is magical in nature, and able to "
+   "hold large amounts of objects that themselves have inherent power."
+
+classvars:
+
+   vrName = ReagentBag_name_rsc
+   vrIcon = ReagentBag_icon_rsc
+   vrDesc = ReagentBag_desc_rsc
+
+   viValue_average = 500
+   viBulk_hold_max = 12000
+   viWeight_hold_max = $
+
+properties:
+
+   plWhiteList = $
+   plBlackList = $
+
+messages:
+
+   Constructor(owner=$)
+   {
+      plWhiteList = [ &Reagent ];
+
+      plBlackList = [ &Food,
+                      &Ammo,
+                      &Money,
+                      &IronOre,
+                      &NeruditeOre ];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

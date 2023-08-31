@@ -293,8 +293,8 @@ survival_err_cant_join = de \
    "Die Survival Arena hat bereits begonnen. Du kannst nicht mehr beitreten"
 phased_out_cant_drop = de \
    "Du kannst keine Gegenstände wegwerfen, während du ausgestiegen bist."
-user_reagentbag_on = de "Reagenzienbeutel AN"
-user_reagentbag_off = de "Reagenzienbeutel AUS"
+user_bag_on = de "Reagenzienbeutel AN"
+user_bag_off = de "Reagenzienbeutel AUS"
 user_spellpower_on = de \
    "Du siehst ab jetzt mit welcher Macht deine Zaubersprüche gewirkt werden."
 user_spellpower_off = de \
