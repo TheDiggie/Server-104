@@ -1,0 +1,53 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+IllusionaryFormPotion is Potion
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include pillufrm.lkod
+
+   illusionaryformpotion_already_enchanted = \
+   "You are already of another form, and the potion has no effect."
+
+   illusionaryformpotion_name_rsc = "brown potion"
+   illusionaryformpotion_icon_rsc = flask.bgf
+   illusionaryformpotion_desc_rsc = "This is a deep, dark, murky, chunky potion."
+
+   illusionaryformpotion_cant_use_on = "You can't serve %s%s."
+   illusionaryformpotion_gulp_sound =  drkptn.ogg
+
+classvars:
+
+   vrLabelName = illusionaryformpotion_name_rsc
+   vrDesc = illusionaryformpotion_desc_rsc
+
+   viUse_type = ITEM_SINGLE_USE
+   viItem_type = ITEMTYPE_POTION
+   
+   viSpellEffect = SID_ILLUSIONARY_FORM
+
+   viBulk = 20
+   viWeight = 20
+   viValue_average = 60
+
+properties:
+
+   vrIcon = illusionaryformpotion_icon_rsc
+   piItem_flags = PT_BLUE_TO_SKIN4
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

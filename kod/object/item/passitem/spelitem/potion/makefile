@@ -11,6 +11,6 @@ BOFS = purifyp.bof rmcursep.bof curepsnp.bof curedisp.bof \
 	resshckp.bof denialp.bof karaholp.bof nightvp.bof hastep.bof \
 	strengtp.bof detgoodp.bof detevilp.bof detinvip.bof feigndp.bof \
 	resacidp.bof cloakp.bof freeactp.bof rescuep.bof eageyep.bof \
-	minorhealp.bof
+	minorhealp.bof pillufrm.bof
 
 !include $(KODDIR)\kod.mak
