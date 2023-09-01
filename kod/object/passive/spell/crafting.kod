@@ -123,13 +123,17 @@ messages:
 
    CastSpell(who=$,lTargets=$)
    {
-      local oGear, iSpellPower, oItemAtt;
+      local oGear, iSpellPower, oItemAtt, oHits_Int, oHits;
 
       iSpellPower = Send(self,@GetSpellPower,#who=who);
-      oGear = Create(vrGear);
+      oGear     = Create(vrGear);
+      oHits_Int = Send(oGear,@GetMaxHits);
+      oHits     = Send(oGear,@GetHits);
 
       Send(oGear,@SetOffense,#number=((1+iSpellPower)/2));
       Send(oGear,@SetDefense,#number=((1+iSpellPower)/5));
+      Send(oGear,@SetMaxHits,#number=(oHits_Int+((1+iSpellPower)*5)));
+      Send(oGear,@SetHits,#number=(oHits+((1+iSpellPower)*5)));
 
       if Send(who,@ReqNewHold,#what=oGear)
       {
