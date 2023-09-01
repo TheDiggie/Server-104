@@ -12473,10 +12473,18 @@ messages:
             }
          }
 
-         if nLevel > iWeapon
+         if Send(nobj,@GetSchool) = SS_CRAFTING
+         {
+            if nLevel > iCrafting
+            {
+               iCrafting = nLevel;
+            }
+         }
+         else if nLevel > iWeapon
          {
             iWeapon = nLevel;
          }
+
       }
 
       foreach i in plSpells
