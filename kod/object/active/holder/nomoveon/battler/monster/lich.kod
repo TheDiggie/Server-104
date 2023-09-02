@@ -999,7 +999,7 @@ messages:
          return;
       }
 
-      oGuildh15 = Send(SYS,@FindRoomByNum,#num=RID_GUILDH15);
+      oGuildh15 = Send(SYS,@FindRoomByNum,#num=RID_INNERSAN);
 
       if poOwner = oGuildh15
       {

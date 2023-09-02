@@ -138,8 +138,8 @@ messages:
       plExits = Cons([ 1, 44, RID_NECROAREA5, 28, 32, ROTATE_NONE ],plExits);
       plExits = Cons([ 1, 45, RID_NECROAREA5, 28, 32, ROTATE_NONE ],plExits);
 
-      plExits = Cons([ 43, 27, RID_GUILDH15, 3, 4, ROTATE_NONE ],plExits);
-      plExits = Cons([ 43, 28, RID_GUILDH15, 3, 4, ROTATE_NONE ],plExits);
+      plExits = Cons([ 43, 27, RID_INNERSAN, 3, 4, ROTATE_NONE ],plExits);
+      plExits = Cons([ 43, 28, RID_INNERSAN, 3, 4, ROTATE_NONE ],plExits);
 
       propagate;
    }
@@ -203,7 +203,7 @@ messages:
 
       if IsClass(what,&User) AND NOT IsClass(what,&dm)
       {
-         oNecroGuild = Send(Send(SYS,@FindRoomByNum,#num=RID_GUILDH15),@GetGuildOwner);
+         oNecroGuild = $; //Send(Send(SYS,@FindRoomByNum,#num=RID_INNERSAN),@GetGuildOwner);
          if oNecroGuild <> $
          {
             if not Send(what,@IsUsingA,#Class=&NecromancerAmulet)

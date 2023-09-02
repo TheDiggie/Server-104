@@ -779,7 +779,7 @@ messages:
             return;
          }
 
-         oLich = Send(Send(SYS,@FindRoomByNum,#num=RID_GUILDH15),
+         oLich = Send(Send(SYS,@FindRoomByNum,#num=RID_INNERSAN),
                         @FindHoldingActive,#class=&Lich);
          if oLich <> $
          {

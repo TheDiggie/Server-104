@@ -142,7 +142,7 @@ messages:
 
       if IsClass(what,&User) AND NOT IsClass(what,&dm)
       {
-         oNecroGuild = send(send(SYS,@FindRoomByNum,#num=RID_GUILDH15),@GetGuildOwner);
+         oNecroGuild = $; //send(send(SYS,@FindRoomByNum,#num=RID_INNERSAN),@GetGuildOwner);
          if oNecroGuild <> $
          {
             if NOT send(what,@IsUsingA,#Class=&NecromancerAmulet)

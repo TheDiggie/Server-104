@@ -122,7 +122,7 @@ messages:
    Constructor()
    {
       ptMaintain = CreateTimer(self,@Maintain,MS_PER_DAY);
-      plAmuletLocations = [[RID_GUILDH15,13,14,29,22], [RID_LICH_MAZE,19,30,32,32],
+      plAmuletLocations = [[RID_INNERSAN,13,14,29,22], [RID_LICH_MAZE,19,30,32,32],
                            [RID_NECROAREA3a,02,08,59,55], [RID_NECROAREA3b,08,02,24,04],
                            [RID_NECROAREA2,19,08,32,32], [RID_G8,34,37,32,32]];
       plSwordLocations = [[RID_LICH_MAZE,24,19,62,20],[RID_LICH_MAZE,28,42,07,06],[RID_LICH_MAZE,17,42,12,10]];
@@ -142,7 +142,7 @@ messages:
       if plArchivedNKCounts = $ { plArchivedNKCounts = [ 8 ]; }
       if plArchivedHKCounts = $ { plArchivedHKCounts = [ 8 ]; }
       if plArchivedPkPercents = $ { plArchivedPkPercents = [ 80 ]; }
-      plAmuletLocations = [[RID_GUILDH15,13,14,29,22], [RID_LICH_MAZE,19,30,32,32],
+      plAmuletLocations = [[RID_INNERSAN,13,14,29,22], [RID_LICH_MAZE,19,30,32,32],
                            [RID_NECROAREA3a,02,08,59,55], [RID_NECROAREA3b,08,02,24,04],
                            [RID_NECROAREA2,19,08,32,32], [RID_G8,34,37,32,32]];
       plSwordLocations = [[RID_LICH_MAZE,24,19,62,20],[RID_LICH_MAZE,28,42,07,06],[RID_LICH_MAZE,17,42,12,10]];
@@ -150,11 +150,11 @@ messages:
 
       // Check if we have an active necro guild that isn't being tracked here.
       // If the hall does have an owner, it will recreate the correct lich.
-      if poNecromancerGuild = $
-      {
-         poNecromancerGuild = Send(Send(SYS,@FindRoomByNum,#num=RID_GUILDH15),
-                                    @GetGuildOwner);
-      }
+      //if poNecromancerGuild = $
+      //{
+      //   poNecromancerGuild = Send(Send(SYS,@FindRoomByNum,#num=RID_INNERSAN),
+      //                              @GetGuildOwner);
+      //}
 
       return;
    }
@@ -232,9 +232,9 @@ messages:
       }
 
       poNecromancerGuild = Create(&NecromancerGuild,#master=master);
-      Send(Send(SYS,@FindRoomByNum,#num=RID_GUILDH15),
-               @ClaimGuildHall,#oGuild=poNecromancerGuild,#rep=master,
-               #password=necbal_starting_password);
+      //Send(Send(SYS,@FindRoomByNum,#num=RID_INNERSAN),
+      //         @ClaimGuildHall,#oGuild=poNecromancerGuild,#rep=master,
+      //         #password=necbal_starting_password);
 
       Send(Send(SYS,@FindRoomByNum,#num=RID_LICH_MAZE),@RandomizeLeverEffects);
       Send(Send(SYS,@FindRoomByNum,#num=RID_G9),@RandomizeLeverEffects);
@@ -712,7 +712,7 @@ messages:
       piNumAmuletsGenerated = piNumAmuletsGenerated - 1;
       if piNumAmuletsGenerated < 0
       {
-         Debug("Miscounted amulets somehow;  count less than zero.");
+         Debug("Miscounted amulets somehow count less than zero.");
          piNumAmuletsGenerated = 0;
       }
 
@@ -731,7 +731,7 @@ messages:
       piNumSwordsGenerated = piNumSwordsGenerated - 1;
       if piNumSwordsGenerated < 0
       {
-         Debug("Miscounted swords somehow;  count less than zero.");
+         Debug("Miscounted swords somehow count less than zero.");
          piNumSwordsGenerated = 0;
       }
 
@@ -763,7 +763,7 @@ messages:
 
       ptPlaceNecromancerTreasure=$;
 
-      oGuildh15 = Send(SYS,@FindRoomByNum,#num=RID_GUILDH15);
+      oGuildh15 = Send(SYS,@FindRoomByNum,#num=RID_INNERSAN);
       if Send(oGuildh15,@CountHoldingHowMany,#Class=&Object) < piGuildh15ContentsLimit
       {
          Send(self,@StartPlacingNecromancerTreasure,#delay=10);
@@ -775,8 +775,8 @@ messages:
          return;
       }
 
-      iDropRow = Send(oGuildh15,@GetTreasureRow);
-      iDropCol = Send(oGuildh15,@GetTreasureCol);
+      iDropRow = 13;
+      iDropCol = 14;
 
       oTreasure = $;
       if plNecromancerTreasure <> $

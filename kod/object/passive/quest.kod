@@ -738,7 +738,7 @@ messages:
                return FALSE;
             }
 
-            //oLich = Send(Send(SYS,@FindRoomByNum,#num=RID_GUILDH15),
+            //oLich = Send(Send(SYS,@FindRoomByNum,#num=RID_INNERSAN),
             //              @FindHoldingActive,#class=&DeadLich);
             //if oLich = $ or Send(oLich,@GetNumAmulets) < Nth(iR2, 2) {
             //   if bDebug { Debug("failed Q_R2_NUM_AMULETS."); }
