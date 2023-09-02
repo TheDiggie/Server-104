@@ -83,6 +83,8 @@ resources:
    almost_broken  = "~B~yYour %s is almost broken!"
    very_broken    = "~B~yYour %s is about to break!"
 
+   item_weight    = "%i weight and %i bulk\n"
+   item_bulk      = "%i bulk\n"
 
 classvars:
 
@@ -670,7 +672,25 @@ messages:
             Send(oItemAtt,@AppendDescInfo,#oItem=self,#compound=First(i));
          }
       }
-      else
+      else if bFoundProperties
+      {
+         AddPacket(4,system_blank_resource);
+      }
+
+      if viWeight <> $
+      {
+         if bFoundProperties = FALSE
+         {
+            AddPacket(4,system_rsc_template_2, 4,special_properties_header);
+            AddPacket(4,item_weight,4,viWeight,4,viBulk);
+            bFoundProperties = TRUE;
+         }
+         else
+         {
+            AddPacket(4,item_weight,4,viWeight,4,viBulk);
+         }
+      }
+      else if bFoundProperties
       {
          AddPacket(4,system_blank_resource);
       }
