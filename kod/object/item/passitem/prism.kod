@@ -20,6 +20,7 @@ resources:
 
    prism_name_rsc = "prism"
 
+   prism_1_icon_rsc = prism1.bgf
    prism_3_icon_rsc = prism3.bgf
    prism_5_icon_rsc = prism5.bgf
    prism_7_icon_rsc = prism7.bgf
@@ -135,27 +136,26 @@ messages:
    {
       if numSides = 0
       {
-         piNumSides = ((random(0,2)*2)+3);
+         piNumSides = random(1,12);
       }
       else
       {
          piNumSides = numSides;
       }
 
-      if (piNumSides <> 3) AND (piNumSides <> 5) AND (piNumSides <> 7)
+      if piNumSides = 1
       {
-         piNumSides = 3;
+         vrIcon = prism_1_icon_rsc;
       }
-
-      if piNumSides = 3
+      else if piNumSides >= 2 AND piNumSides <= 3
       {
          vrIcon = prism_3_icon_rsc;
       }
-      else if piNumSides = 5
+      else if piNumSides >= 4 AND piNumSides <= 6
       {
          vrIcon = prism_5_icon_rsc;
       }
-      else if piNumSides = 7
+      else if piNumSides > 6 
       {
          vrIcon = prism_7_icon_rsc;
       }
@@ -165,7 +165,7 @@ messages:
 
    CanAcceptCasters()
    {
-      if piNumSides <> 3 AND piNumSides <> 5 AND piNumSides <> 7
+      if piNumSides <> 1 AND piNumSides <> 3 AND piNumSides <> 5 AND piNumSides <> 7
       {
          Send(self,@SetNumSides,#numSides=3);
       }
