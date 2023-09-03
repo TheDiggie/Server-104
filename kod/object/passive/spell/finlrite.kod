@@ -58,7 +58,7 @@ classvars:
    // This will disallow people from trucing, and then killing undead.
    viHarmful = TRUE   
 
-   viCast_time = 10000
+   viCast_time = 0
    viChance_To_Increase = 20
    viMeditate_ratio = 50
 
