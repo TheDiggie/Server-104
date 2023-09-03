@@ -36,7 +36,7 @@ resources:
 
    debuff_bad_location = "You cannot cast enchantments upon others here."
    debuff_display_duration = \
-      "Duration of ~k~B%s~n is ~k~B%i~n milliseconds."
+      "Duration of ~k~B%s~n is ~k~B%i~n seconds."
 
 classvars:
 
@@ -145,14 +145,14 @@ messages:
          }
 
          Send(what,@MsgSendUser,#message_rsc=debuff_display_duration,
-               #parm1=Send(self,@GetName),#parm2=iDuration);
+               #parm1=Send(self,@GetName),#parm2=(iDuration/1000));
 
          if oTarget <> $
             AND oTarget <> what
             AND IsClass(oTarget,&Player)
          {
             Send(oTarget,@MsgSendUser,#message_rsc=debuff_display_duration,
-               #parm1=Send(self,@GetName),#parm2=iDuration);
+               #parm1=Send(self,@GetName),#parm2=(iDuration/1000));
          }
       }
 
