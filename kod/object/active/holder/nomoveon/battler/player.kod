@@ -15126,9 +15126,11 @@ messages:
 
    GetBagContents()
    {
-      local i, lcontents;
-      
-      foreach i in plPassive
+      local i, lcontents, lBags;
+
+      lBags = send(self,@GetBag);      
+
+      foreach i in lBags
       {
          if isClass(i,&Bag)
          {
