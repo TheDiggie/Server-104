@@ -490,7 +490,7 @@ messages:
                bFoundProperties = TRUE;
             }
 
-            AddPacket(4,system_rsc_template_8);
+            AddPacket(4,system_rsc_template_7);
 
             if iFarenPower <> 0
             {

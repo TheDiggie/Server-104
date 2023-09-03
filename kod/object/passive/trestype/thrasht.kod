@@ -31,13 +31,12 @@ messages:
                      [ &DarkAngelFeather, 13],
                      [ &PurpleMushroom, 13],
                      [ &InkyCap, 13],
-                     [ &NightVisionPotion, 6],
-                     [ &FreeActionPotion, 6],
+                     [ &NightVisionPotion, 3],
                      [ &BerserkerRing, 6],
                      [ &Emerald, 10],
                      [ &RedMushroom, 10],
                      [ &MysticSword, 8],
-                     [ &FireArrow, 1],
+                     [ &FireArrow, 10],
                      [ &DaemonHelm, 1]
                    ];
 

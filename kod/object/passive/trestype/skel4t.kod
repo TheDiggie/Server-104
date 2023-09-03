@@ -31,19 +31,18 @@ messages:
    Constructed()
    {
       plTreasure = [ [ &Scimitar, 4 ],
-                     [ &BlueDragonScale, 35 ],
+                     [ &BlueDragonScale, 30 ],
                      [ &SilverArrow, 5 ],
-                     [ &DarkAngelFeather, 32 ],
+                     [ &DarkAngelFeather, 30 ],
                      [ &Circlet, 3 ],
                      [ &Gauntlet, 2 ],
                      [ &SimpleHelm, 2 ],
                      [ &InkyCap, 11 ],
                      [ &IdentifyWand, 1 ],
-                     [ &WindScroll, 1 ],
                      [ &KillingFieldScroll, 1 ],
                      [ &DementWand, 1 ],
 		             [ &DiscordScroll, 1 ],
-		             [ &FireArrow, 1 ]
+		             [ &FireArrow, 9 ]
                   ];
 
       propagate;
