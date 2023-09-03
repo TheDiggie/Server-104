@@ -8,7 +8,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-Flask is Healer
+Flask is Potion
 
 constants:
 
@@ -24,12 +24,16 @@ resources:
       "This flask, formed from clear glass and topped by a cork, contains a "
       "thick blue fluid.  It looks cool and refreshing."
 
+   healer_desc_rsc = "%s\n\nThis will help you feel better.%s"
+
+   healer_use = "You feel better."
+   healer_cant_use_on = "You can't heal %s%s."
+
    Flask_gulp_sound = drkptn.ogg
 
 classvars:
 
-   vrName = flask_name_rsc
-   vrIcon = flask_icon_rsc
+   vrLabelName = flask_name_rsc
    vrDesc = flask_desc_rsc
 
    viBulk = 25
@@ -37,43 +41,16 @@ classvars:
    viValue_average = 60
 
    viItem_type = ITEMTYPE_POTION | ITEMTYPE_SUNDRY
+   viUse_type = ITEM_SINGLE_USE
+   viSpellEffect = SID_MINOR_HEAL
 
    viFilling = 15
 
 properties:   
 
-   piHeal_min = 5
-   piHeal_max = 10
+   vrIcon = flask_icon_rsc
 
 messages:
-
-   ReqNewApply(apply_on=$)
-   {
-      if NOT Send(apply_on,@ReqEatSomething,#filling=viFilling)
-      {
-         return FALSE;
-      }
-
-      propagate;
-   }
-
-   NewApplied(apply_on=$)
-   {
-      if isClass(apply_on,&User) 
-      {
-         send(apply_on,@wavesenduser,#wave_rsc=Flask_gulp_sound);
-      }
-
-      Send(apply_on,@EatSomething,#nutrition=0,#filling=viFilling);
-
-      propagate;
-   }
-
-   IsBeverage()
-   {
-      return TRUE;
-   }
-
 
 end
 ////////////////////////////////////////////////////////////////////////////////
