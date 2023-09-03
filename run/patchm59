@@ -1,2 +1,0 @@
-#!/bin/bash
-cd /var/www/vhosts/update.meridian59.us/httpdocs/classicpatch && git pull && php make-patch.php

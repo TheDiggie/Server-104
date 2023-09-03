@@ -1,2 +1,0 @@
-#!/bin/bash
-sudo cp /meridian/run/server/savegame/lastsave.txt /meridian/run/server/savegame/lastlockedsave.txt

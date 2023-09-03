@@ -1,3 +1,0 @@
-#!/bin/bash
-php /var/www/vhosts/meridian59.us/httpdocs/blakserv.php "save"
-
