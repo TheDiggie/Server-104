@@ -3194,6 +3194,11 @@ messages:
          return MM_NONE;
       }
 
+      if IsClass(what,&Resource)
+      {
+         return MM_TEMPSAFE;
+      }
+
       // Choose our own line color on minimap.
       if (what = self)
       {
