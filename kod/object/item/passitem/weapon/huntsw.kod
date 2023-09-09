@@ -260,7 +260,7 @@ messages:
 
       // Don't let them pick it up unless they're worthy!
       if (NOT ((Send(what,@GetKarma) > piKarmaWorthyThreshold)
-            AND (Send(what,@GetBaseMaxHealth) > piHpWorthyThreshold)))
+            AND (Send(what,@GetBaseMaxHealth) >= piHpWorthyThreshold)))
          OR Send(what,@CheckPlayerFlag,#flag=PFLAG_OUTLAW)
          OR Send(what,@CheckPlayerFlag,#flag=PFLAG_MURDERER)
       {
