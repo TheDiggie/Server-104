@@ -44,6 +44,7 @@ classvars:
    vrShield_overlay = neruditeshield_icon_rsc
 
    viGround_group = 3
+   viBroken_group = 4
    viInventory_group = 1
 
    viDefense_base = 10
