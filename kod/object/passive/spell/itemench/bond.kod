@@ -60,6 +60,8 @@ classvars:
    viCast_time = 500
    viChance_To_Increase = 66
 
+   vbFree_Castable = FALSE
+
 properties:
 
    pbAccessible = TRUE
@@ -73,7 +75,7 @@ messages:
       plReagents = Cons([&PolishedSeraphym,50],plReagents);
       plReagents = Cons([&Diamond,50],plReagents);
       plReagents = Cons([&Heartstone,5],plReagents);
-	  plReagents = Cons([&YellowMushroom,15],plReagents);
+	   plReagents = Cons([&YellowMushroom,15],plReagents);
 
       return;
    }

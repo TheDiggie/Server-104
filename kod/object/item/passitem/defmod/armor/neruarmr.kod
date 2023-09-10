@@ -14,6 +14,8 @@ constants:
 
    include blakston.khd
 
+   DAMAGE_CHANCE = 75
+
 resources:
 
    include neruarmr.lkod
@@ -78,17 +80,12 @@ messages:
 
    DefendingHit(who = $,what = $)
    {
-      if Random(1,100) < 75
-      {
-         piHits = piHits - 1;
-      }
-
       if piHits <= 0
       {
          send(self,@ShatterToShards);
       }
 
-      return;
+      propagate;
    }
 
    DoShatter()
