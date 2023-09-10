@@ -113,6 +113,16 @@ resources:
    RentableRoom_heartstone_brown = \
       "I can now offer you a few items made from stone since I have this "
       "brown heartstone."
+   RentableRoom_heartstone_Green = \
+      "I can offer you a personal chest if you collect all nine heartstones."
+   RentableRoom_heartstone_Dark_Green = \
+      "I can offer you a personal chest if you collect all nine heartstones."
+   RentableRoom_heartstone_Purple = \
+      "I can offer you a personal chest if you collect all nine heartstones."
+   RentableRoom_heartstone_Black = \
+      "I can offer you a personal chest if you collect all nine heartstones."
+   RentableRoom_heartstone_White = \
+      "I can offer you a personal chest if you collect all nine heartstones."
    RentableRoom_heartstone_all = \
       "I am also impressed that you have all the heartstones.  I can make "
       "some rare objects that require them all."
@@ -1312,26 +1322,36 @@ messages:
       if IsClass(oStone,&GreenHeartStone)
       {
          piGreenHeartStone = piGreenHeartStone + ITEMS_FROM_HEARTSTONES;
+         Post(self,@SomeoneSaid,#type=SAY_RESOURCE,#what=oDecorator,
+               #string=RentableRoom_heartstone_Green);
       }
 
       if IsClass(oStone,&WhiteHeartStone)
       {
          piWhiteHeartStone = piWhiteHeartStone + ITEMS_FROM_HEARTSTONES;
+         Post(self,@SomeoneSaid,#type=SAY_RESOURCE,#what=oDecorator,
+               #string=RentableRoom_heartstone_White);
       }
 
       if IsClass(oStone,&BlackHeartStone)
       {
          piBlackHeartStone = piBlackHeartStone + ITEMS_FROM_HEARTSTONES;
+         Post(self,@SomeoneSaid,#type=SAY_RESOURCE,#what=oDecorator,
+               #string=RentableRoom_heartstone_Black);
       }
 
       if IsClass(oStone,&PurpleHeartStone)
       {
          piPurpleHeartStone = piPurpleHeartStone + ITEMS_FROM_HEARTSTONES;
+         Post(self,@SomeoneSaid,#type=SAY_RESOURCE,#what=oDecorator,
+               #string=RentableRoom_heartstone_Purple);
       }
 
       if IsClass(oStone,&DarkGreenHeartStone)
       {
          piDarkGreenHeartStone = piDarkGreenHeartStone + ITEMS_FROM_HEARTSTONES;
+         Post(self,@SomeoneSaid,#type=SAY_RESOURCE,#what=oDecorator,
+               #string=RentableRoom_heartstone_Dark_Green);
       }
 
       if (NOT bGotAll)
