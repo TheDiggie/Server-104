@@ -149,14 +149,17 @@ messages:
       }
       else if piNumSides >= 2 AND piNumSides <= 3
       {
+         piNumSides = 3;
          vrIcon = prism_3_icon_rsc;
       }
       else if piNumSides >= 4 AND piNumSides <= 6
       {
+         piNumSides = 5;
          vrIcon = prism_5_icon_rsc;
       }
       else if piNumSides > 6 
       {
+         piNumSides = 7;
          vrIcon = prism_7_icon_rsc;
       }
 

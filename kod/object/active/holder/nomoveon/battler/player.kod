@@ -5036,7 +5036,8 @@ messages:
       {
          oTool = Send(what,@GetTool);
 
-         if NOT IsClass(oWeapon,oTool)
+         if oWeapon = $
+            OR NOT IsClass(oWeapon,oTool)
          {
             Send(self,@MsgSendUser,#message_rsc=cant_Harvest);
             return FALSE;
@@ -5045,7 +5046,9 @@ messages:
 
       if IsClass(what,&Monster) AND NOT IsClass(what,&Resource)
       {
-         if IsClass(oWeapon,&PickAxe) OR IsClass(oWeapon,&CuttingAxe)
+         if oWeapon = $ 
+            OR IsClass(oWeapon,&PickAxe) 
+            OR IsClass(oWeapon,&CuttingAxe)
             OR IsClass(oWeapon,&sickle)
          {
             Send(self,@MsgSendUser,#message_rsc=cant_fight_tool);
