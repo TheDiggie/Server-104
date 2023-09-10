@@ -15126,7 +15126,7 @@ messages:
 
    GetBagContents()
    {
-      local i, lcontents, lBags;
+      local i, lContents, lBags, lItems;
 
       lBags = send(self,@GetBag);      
 
@@ -15134,13 +15134,14 @@ messages:
       {
          if isClass(i,&Bag)
          {
-            lcontents = Send(i,@GetBagContents);
+            foreach lItems in Send(i,@GetBagContents)
+            {
+               lContents = Cons(lItems,lContents);
+            }
          }
-
-         return lcontents;
       }
 
-      return $;
+      return lContents;
    }
 
    StartPhaseTimer()
