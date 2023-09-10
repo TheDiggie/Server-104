@@ -645,7 +645,6 @@ messages:
       if viHalf = FALSE AND pihits <= (piHits_init/2)
       {
          Send(poOwner,@MsgSendUser,#message_rsc=half_broken,#parm1=Send(self,@getname));
-         Debug("pihits   half");
 
          viHalf = TRUE;
 
@@ -655,7 +654,6 @@ messages:
       if viAlmost = FALSE AND pihits <= (piHits_init/4)
       {
          Send(poOwner,@MsgSendUser,#message_rsc=almost_broken,#parm1=Send(self,@getname));
-         Debug("pihits   almost");
          
          viAlmost = TRUE;
 
@@ -665,7 +663,6 @@ messages:
       if viVery = FALSE AND pihits <= (piHits_init/10)
       {
          Send(poOwner,@MsgSendUser,#message_rsc=very_broken,#parm1=Send(self,@getname));
-         Debug("pihits   very");
          
          viVery = TRUE;
 
