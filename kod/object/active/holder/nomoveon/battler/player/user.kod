@@ -6528,9 +6528,16 @@ messages:
       }
 
       if piFlags & PFLAG_TRANCE
-      {
-         Send(self,@BreakTrance,#event=EVENT_CAST,#what=oSpell);
-		   return;
+      {  
+         if piFlags & PFLAG_MANA_FOCUS AND IsClass(oSpell,&AttackSpell)
+         {
+            
+         }
+         else
+         {
+            Send(self,@BreakTrance,#event=EVENT_CAST,#what=oSpell);
+		      return;
+         }
       }
 
       if ((piFlags & PFLAG_NO_MAGIC)
