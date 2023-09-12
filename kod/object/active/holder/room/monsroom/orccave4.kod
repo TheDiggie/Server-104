@@ -56,13 +56,13 @@ messages:
    {
       plMonsters = [ [&Shadowbeast, 40],
                      [&Ogre, 39],
-                     [&Ore, 3],
-                     [&DiamondVein, 3],
-                     [&EmeraldVein, 3],
-                     [&NeruditeVein, 3],
-                     [&RubyVein, 3],
-                     [&SapphireVein, 3],
-                     [&UncutVein, 3] ];
+                     [&Ore, 6],
+                     [&DiamondVein, 2],
+                     [&EmeraldVein, 2],
+                     [&NeruditeVein, 5],
+                     [&RubyVein, 2],
+                     [&SapphireVein, 2],
+                     [&UncutVein, 2] ];
       plGenerators = [[43,07], [38,16], [41,29], [38,36], [35,48],
                       [45,23], [47,34], [55,24], [43,60], [55,54],
                       [68,48], [51,63], [64,58], [33,63], [25,76],
