@@ -2368,6 +2368,8 @@
    SID_TRANSFERENCE = 189
    
    SID_VAULT_LOADOUT = 200
+
+   SID_ICEWALL = 241
    
    //Crafting
    SID_CRAFTMACE           = 210

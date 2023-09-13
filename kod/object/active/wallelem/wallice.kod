@@ -1,0 +1,153 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+WallofIce is ActiveWallElement
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   WallofIce_name_rsc = "wall of ice"
+   WallofIce_icon_rsc = woice.bgf
+   WallofIce_desc_rsc = \
+      "The wall of ice raise from the ground freezing the air around it. "
+
+   WallofIce_damage0 = "You traverse the ice unscathed."
+   WallofIce_damage5 = "You feel a bit chilled from the ice."
+   WallofIce_damage10 = "The air around you chills, it;s hard to catch your breath."
+   WallofIce_damage15 = "You are freezing! Get away from the ice."
+   WallofIce_damage20 = "Ouch, thats really cold!"
+   WallofIce_dissipates = "A bit of the ice melts."
+
+   icewall_burn_snd = frying.ogg
+
+classvars:
+
+   vrName = WallofIce_name_rsc
+   vrIcon = WallofIce_icon_rsc
+   vrdesc = WallofIce_desc_rsc
+
+   viObject_flags = OF_NOEXAMINE
+
+   vrDissipateMessage = WallofIce_dissipates
+   vrUnaffectedMessage = WallofIce_damage0
+
+
+properties:
+
+   piMaxDamage = 0
+   
+messages:
+
+   Constructor(caster = $, duration=75, MaxDamage = 0)
+   {
+      piMaxDamage = MaxDamage;
+
+      propagate;
+   }
+
+   GetDuration(duration = 0)
+   {
+      local iDuration;
+
+      iDuration = Random(duration-20,duration+20);
+      iDuration = iDuration * 1000;
+      iDuration = bound(iDuration,30000,200000);
+
+      return iDuration;
+   }
+
+   DoEffect(what = $, periodic=FALSE)
+   {
+      local iDamage, iMaxDamage, oWatcher, rMessage;
+    
+      iDamage = 0;
+      iMaxDamage = piMaxDamage;
+      
+      iDamage = Send(what,@AssessDamage,#what=poCaster,#damage=Random(0,iMaxDamage),
+                     #aspell=ATCK_SPELL_ALL+ATCK_SPELL_COLD,#report=FALSE,#report_resistance=FALSE);
+
+      Send(poOwner,@SomethingAttacked,#what=poCaster,#victim=what,
+            #use_weapon=self,#stroke_obj=self);
+
+      if iDamage = $
+      {
+         Send(poCaster,@KilledSomething,#what=what,#use_weapon=self);
+      }
+
+      if IsClass(poCaster,&Player)
+      {
+         if iDamage = $
+         {
+            Send(poCaster,@SetPlayerFlag,#flag=PFLAG_DID_DAMAGE,#value=TRUE);
+
+            return;
+         }
+         else
+         {
+            if piMaxDamage > 0
+            {
+               Send(poCaster,@SetPlayerFlag,#flag=PFLAG_DID_DAMAGE,#value=TRUE);
+            }
+         }
+      }
+
+      if IsClass(what,&Player)
+      {
+         if iDamage = 0
+         {
+            rMessage = WallofIce_damage0;
+         }
+         else
+         {
+            // Damage is greater than 0
+            Send(what,@WaveSendUser,#wave_rsc=icewall_burn_snd);
+
+            if iDamage < 5
+            {
+               rMessage = WallofIce_damage5;
+            }
+            else
+            {
+               if iDamage < 10
+               {
+                  rMessage = WallofIce_damage10;
+               }
+               else
+               {
+                  if iDamage < 15
+                  {
+                     rMessage = WallofIce_damage15;
+                  }
+                  else
+                  {
+                     rMessage = WallofIce_damage20;
+                  }
+               }
+            }
+         }
+
+         Send(what,@MsgSendUser,#message_rsc=rMessage);
+      }
+      
+      propagate;
+   }
+
+   SendAnimation()
+   {
+      AddPacket(1,ANIMATE_ONCE, 4,600, 2,1, 2,2, 2,3);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

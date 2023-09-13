@@ -62,7 +62,7 @@ messages:
    {
       return [ [ATCK_WEAP_BLUDGEON,10],
                [ATCK_WEAP_PIERCE,10],
-			   [ATCK_WEAP_THRUST,5],
+			      [ATCK_WEAP_THRUST,5],
                [ATCK_WEAP_SLASH,30]
              ];
    }

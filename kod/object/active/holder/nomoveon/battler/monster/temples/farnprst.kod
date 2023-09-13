@@ -81,7 +81,8 @@ messages:
             SID_ICE_NOVA,
             SID_SAND_STORM,
             SID_FOG,
-            SID_MYSTIC_TOUCH
+            SID_MYSTIC_TOUCH,
+            SID_ICEWALL
          ],
       $];
 
