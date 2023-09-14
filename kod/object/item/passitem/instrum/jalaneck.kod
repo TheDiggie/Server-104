@@ -41,7 +41,7 @@ classvars:
 
    vrIcon = JalaNecklace_icon_rsc
    vrInstrument_overlay = $
-   viInstrument_strength = 5
+   viInstrument_strength = 20
 
    viUse_type = ITEM_USE_NECK
    viItem_type = ITEMTYPE_NECKLACE
