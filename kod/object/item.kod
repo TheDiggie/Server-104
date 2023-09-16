@@ -76,6 +76,7 @@ resources:
    item_stats_shal_sp = "%i Shal'ille spellpower\n"
    item_stats_qor_sp = "%i Qor spellpower\n"
    item_stats_jala_instrument_sp = "%i Jala instrument power\n"
+   item_stats_craft_sp = "%i Crafting spellpower\n"
    item_stats_resistance = "%i%% %s\n"
    item_stats_dmg_type = "Deals %s damage\n"
 
@@ -222,7 +223,7 @@ messages:
       local i, bFoundProperties, iHigh_level, n, iFarenPower, iRiijaPower,
             iKraananPower, iJalaPower, iShalPower, iQorPower, iInstrumentPower,
             iNum, iMinDamage, iMinDamageOwner, iAttackType, oItemAtt,
-            lResists, iLen;
+            lResists, iLen, iCraftingPower;
 
       // This message 'telescopes' resources into the 5th %r of
       // item_desc_template. There are 16 different stats we can add;
@@ -453,6 +454,8 @@ messages:
                         #oSpell=Send(SYS,@FindSpellByNum,#num=SID_SEANCE));
       iQorPower = Send(self,@GetSpellModifier,
                         #oSpell=Send(SYS,@FindSpellByNum,#num=SID_DARKNESS));
+      iCraftingPower = Send(self,@GetSpellModifier,
+                        #oSpell=Send(SYS,@FindSpellByNum,#num=SID_CRAFTAPPAREL));
 
       iInstrumentPower = 0;
       if IsClass(self,&Instrument)
@@ -467,12 +470,14 @@ messages:
          OR iShalPower <> 0
          OR iQorPower <> 0
          OR iInstrumentPower <> 0
+         OR iCraftingPower <> 0
       {
          if iFarenPower = iRiijaPower
             AND iRiijaPower = iKraananPower
             AND iKraananPower = iJalaPower
             AND iJalaPower = iShalPower
             AND iShalPower = iQorPower
+            AND iQorPower = iCraftingPower
             AND iFarenPower <> 0
          {
             if NOT bFoundProperties
@@ -535,6 +540,14 @@ messages:
             if iQorPower <> 0
             {
                AddPacket(4,item_stats_qor_sp, 4,iQorPower);
+            }
+            else
+            {
+               AddPacket(4,system_blank_resource);
+            }
+            if iCraftingPower <> 0
+            {
+               AddPacket(4,item_stats_craft_sp, 4,iCraftingPower);
             }
             else
             {

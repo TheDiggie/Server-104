@@ -29,18 +29,14 @@ messages:
    {
       plTreasure = [ [ &OrcTooth, 35 ],
                      [ &Scimitar, 12 ],
-                     [ &Arrow, 10 ],
-                     [ &IceArrow, 3 ],
+                     [ &CraftGloves, 5 ],
+                     [ &IceArrow, 18 ],
                      [ &NeruditeArmor, 10],
-                     [ &NeruditeSword, 10],
-                     [ &OreChunk, 4],
-                     [ &UncutSeraphym, 3],
-                     [ &Flask, 2],
+                     [ &UncutSeraphym, 10],
                      [ &OrcShield, 7],
                      [ &PlateArmor, 1],
                      [ &HoldWand, 1 ],
-                     [ &BlindWand, 1 ],
-                     [ &HeatScroll, 1]
+                     [ &BlindWand, 1 ]
                    ];
 
       propagate;

@@ -1,0 +1,90 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CraftGloves is Gauntlet
+
+constants:
+
+   include blakston.khd
+
+resources:
+  
+   CraftGloves_name_rsc = "crafting gloves"
+   CraftGloves_icon_rsc = gauntlet.bgf
+   CraftGloves_desc_rsc = \
+      "These crafting gloves protect you hands and help with precise crafting."
+
+   CraftGloves_condition_exc = " are in perfect condition."
+   CraftGloves_condition_exc_mended = \
+      " are in excellent condition, but have been patched before."
+   CraftGloves_condition_good = " are tarnished and scarred but still usable."
+   CraftGloves_condition_med = " have been harshly torn in several places."
+   CraftGloves_condition_poor = \
+      " are in danger of falling apart.  Large strands of leather "
+      "have been torn away during battle."
+   CraftGloves_condition_broken = " are ruined and offer no benefit."
+   CraftGloves_broken = "Your %s are a shredded mess fo leather."
+
+classvars:
+
+   vrName = CraftGloves_name_rsc
+   vrIcon = CraftGloves_icon_rsc
+   vrDesc = CraftGloves_desc_rsc
+   vrPoss_article = object_article_cap_these_rsc
+
+   vrItem_broken = CraftGloves_broken
+
+   viHits_init_min = 500
+   viHits_init_max = 750
+
+   viValue_average = 400
+   viBulk = 20
+   viWeight = 20
+
+   vrCondition_exc = CraftGloves_condition_exc 
+   vrCondition_exc_mended = CraftGloves_condition_exc_mended 
+   vrCondition_good = CraftGloves_condition_good 
+   vrCondition_med = CraftGloves_condition_med 
+   vrCondition_poor = CraftGloves_condition_poor 
+   vrCondition_broken = CraftGloves_condition_broken
+
+properties:
+
+   piItem_flags = 30
+
+messages:
+
+   GetBaseSpellModifier(oSpell=$)
+   {
+      if Send(oSpell,@GetSchool) = SS_CRAFTING
+      {
+         return 25;
+      }
+
+      return 0;
+   }
+
+   GetHitBonus()
+   {
+      return 0;
+   }
+
+   GetDefenseBonus()
+   {
+      return 0;
+   }
+
+   GetMeleeDamageBonus()
+   {
+      return 0;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////
