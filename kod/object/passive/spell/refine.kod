@@ -61,7 +61,7 @@ messages:
       local cResource, oBench, oSpell, oNeeded, target;
       
       target = First(lTargets);
-      if NOT IsClass(target, &PassiveItem)
+      if NOT IsClass(target, &Reagent)
       {
          Send(who,@MsgSendUser,#message_rsc=Cant_Refine);
 
