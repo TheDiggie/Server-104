@@ -39,7 +39,6 @@ classvars:
    viBulk = 70
    viWeight = 70
 
-   viBaseXLAT = PT_BLUE_TO_ASHEN
 
    viWeaponDamage = 2
    viRange = 75 * FINENESS
@@ -52,6 +51,7 @@ classvars:
 
 properties:
 
+   viBaseXLAT = PT_BLUE_TO_ASHEN
    piSchool = SS_SHALILLE
    
    piAttack_Type = ATCK_WEAP_MAGIC + ATCK_WEAP_PIERCE

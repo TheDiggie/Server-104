@@ -50,7 +50,6 @@ classvars:
    viBulk = 70
    viWeight = 70
 
-   viXLAT_BLUETOBLACK =  XLAT_BLUETOBLACK
 
    viWeaponDamage = 2
    viRange = 75 * FINENESS
@@ -67,6 +66,9 @@ properties:
    
    piAttack_Type = ATCK_WEAP_MAGIC + ATCK_WEAP_PIERCE
    piAttack_spell = ATCK_SPELL_UNHOLY
+
+   viBaseXLAT = $
+   piXLAT_BLUETOBLACK =  XLAT_BLUETOBLACK
 
 messages:
 
@@ -144,9 +146,12 @@ messages:
 
    UpdateColor()
    {
-      Send(self,@SetXLATTranslation,#translation=viXLAT_BLUETOBLACK);
+      if viBaseXLAT = $
+      {
+         Send(self,@SetXLATTranslation,#translation=piXLAT_BLUETOBLACK);
+      }
 
-      return;
+      propagate;
    }
 
    SetXLATTranslation(translation=$)
