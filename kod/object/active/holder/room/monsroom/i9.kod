@@ -81,7 +81,7 @@ messages:
 
    Constructed()
    {
-      local oNexusPortal;
+      local oNexusPortal, oNode;
 	  
       plMonsters = [ [&Troll, 100] ];
 
@@ -109,6 +109,10 @@ messages:
       // Just construct the Node.  We can find and place it later.
       Create(&ManaNode,#node_num=NODE_i9,#name_rsc=i9_node_name,
              #desc_rsc=i9_node_desc,#iRoomNum=piRoom_num);
+
+      poNode = Send(SYS,@FindNodeByNum,#num=NODE_I9);
+      Send(poNode,@NodeAppear,#where=self,#row=27,#col=61,
+            #fine_row=48,#fine_col=40);
 
    	  oNexusPortal = Create(&Portal,#dest_room_num=RID_CANYON2,#dest_row=3,#dest_col=64,
 		#dest_fine_row=37, #dest_fine_col=14);
@@ -235,14 +239,14 @@ messages:
    {
       local oNode;
 
-      oNode = Send(SYS,@FindNodeByNum,#num=NODE_I9);
-      if oNode <> $
-      {
-         // delete 'our' node
-         Send(oNode,@Delete);
-      }
-
-      poNode = $;
+      //oNode = Send(SYS,@FindNodeByNum,#num=NODE_I9);
+      //if oNode <> $
+      //{
+      //   // delete 'our' node
+      //   Send(oNode,@Delete);
+      //}
+//
+      //poNode = $;
       
       if ptDoorway <> $
       {
@@ -270,11 +274,11 @@ messages:
 
       Send(self,@SetSectorLight,#sector=2,#light_effect=iLight_effect);
 
-      if iHour = 0 AND poNode = $
+      if iHour = 0 //AND poNode = $
       {
-         poNode = Send(SYS,@FindNodeByNum,#num=NODE_I9);
-         Send(poNode,@NodeAppear,#where=self,#row=27,#col=61,
-               #fine_row=48,#fine_col=40);
+         //poNode = Send(SYS,@FindNodeByNum,#num=NODE_I9);
+         //Send(poNode,@NodeAppear,#where=self,#row=27,#col=61,
+         //      #fine_row=48,#fine_col=40);
 
          foreach i in plActive
          {
@@ -294,14 +298,14 @@ messages:
          propagate;
       }
 
-      if iHour = 1
-      {
-         if poNode <> $
-         {
-            Send(poNode,@NodeDisappear);
-            poNode = $;
-         }
-      }
+      //if iHour = 1
+      //{
+      //   if poNode <> $
+      //   {
+      //      Send(poNode,@NodeDisappear);
+      //      poNode = $;
+      //   }
+      //}
 
       piPortal_counter = piPortal_counter - 1;
       if (piPortal_counter <= 0)
