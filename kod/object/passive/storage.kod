@@ -353,26 +353,29 @@ messages:
       return TRUE;
    }
 
-   DestroyPlayersVault(who=$)
-   "This is called when a player suicides.  Note it does two things: "
-   "* Deletes the box (which deletes the items in 'em), "
-   "* Deletes the list nodes inside the box."
-   {
-      local i, j;
+   //This is diabled because when a toon suicides it deletes the vault which inturn
+   //means that any toon linked to that vault looses there stuff
 
-      foreach i in plStored
-      {
-         if i = send(who,@GetVault)
-         {
-            Send(i,@Delete);
-            plStored = DelListElem(plStored,i);
-
-            return;
-         }
-      }
-
-      return;
-   }
+   //DestroyPlayersVault(who=$)
+   //"This is called when a player suicides.  Note it does two things: "
+   //"* Deletes the box (which deletes the items in 'em), "
+   //"* Deletes the list nodes inside the box."
+   //{
+   //   local i, j;
+//
+   //   foreach i in plStored
+   //   {
+   //      if i = send(who,@GetVault)
+   //      {
+   //         Send(i,@Delete);
+   //         plStored = DelListElem(plStored,i);
+//
+   //         return;
+   //      }
+   //   }
+//
+   //   return;
+   //}
 
    OldGetPlayerSafeBox(who=$)
    {

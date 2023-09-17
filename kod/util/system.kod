@@ -4656,7 +4656,7 @@ messages:
    {
       Send(what,@EraseAllMail);
       SendList(plBanks,0,@WithdrawAccount,#what=what,#amount=$);
-      SendList(plVaults,0,@DestroyPlayersVault,#who=what);
+      //SendList(plVaults,0,@DestroyPlayersVault,#who=what);
 
       return;
    }
