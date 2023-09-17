@@ -1,0 +1,95 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+BrawlGloves is Gauntlet
+
+constants:
+
+   include blakston.khd
+
+resources:
+  
+   BrawlGloves_name_rsc = "brawling gloves"
+   BrawlGloves_icon_rsc = gauntlet.bgf
+   BrawlGloves_desc_rsc = \
+      "These brawling gloves protect you hands and pummel your enemies. "
+      "Can't have a good bar fight without these!"
+
+   BrawlGloves_condition_exc = " are in perfect condition."
+   BrawlGloves_condition_exc_mended = \
+      " are in excellent condition, but have been patched before."
+   BrawlGloves_condition_good = " are tarnished and scarred but still usable."
+   BrawlGloves_condition_med = " have been harshly torn in several places."
+   BrawlGloves_condition_poor = \
+      " are in danger of falling apart.  Large strands of leather "
+      "have been torn away during battle."
+   BrawlGloves_condition_broken = " are ruined and offer no benefit."
+   BrawlGloves_broken = "Your %s are a shredded mess fo leather."
+
+classvars:
+
+   vrName = BrawlGloves_name_rsc
+   vrIcon = BrawlGloves_icon_rsc
+   vrDesc = BrawlGloves_desc_rsc
+   vrPoss_article = object_article_cap_these_rsc
+
+   vrItem_broken = BrawlGloves_broken
+
+   viHits_init_min = 500
+   viHits_init_max = 750
+
+   viValue_average = 400
+   viBulk = 20
+   viWeight = 20
+
+   vrCondition_exc = BrawlGloves_condition_exc 
+   vrCondition_exc_mended = BrawlGloves_condition_exc_mended 
+   vrCondition_good = BrawlGloves_condition_good 
+   vrCondition_med = BrawlGloves_condition_med 
+   vrCondition_poor = BrawlGloves_condition_poor 
+   vrCondition_broken = BrawlGloves_condition_broken
+
+   viDefense_base = 50
+   viAttack_base = 250
+   viDamage_base = 8
+
+properties:
+
+   piDefense_bonus = 50
+   piAttack_bonus = 250
+   piDamage_bonus = 8
+
+   piItem_flags = 12
+
+messages:
+
+   ReqUseSomething(what = $)
+   {
+      if IsClass(what,&Weapon)
+         OR IsClass(what,&Lute)
+         OR IsClass(what,&JewelOfFroz)
+         OR IsClass(what,&Book)
+         OR IsClass(what,&Shield)
+      {
+         if Send(poOwner,@TryUnuseItem,#what=self)
+         {
+            propagate;
+         }
+         else
+         {
+            return FALSE;
+         }
+      }
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

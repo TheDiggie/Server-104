@@ -5675,6 +5675,7 @@ messages:
       plItemTemplates = cons(create(&Gauntlet),plItemTemplates);
       plItemTemplates = cons(create(&Torch),plItemTemplates);
       plItemTemplates = cons(create(&CraftGloves),plItemTemplates);
+      plItemTemplates = cons(create(&BrawlGloves),plItemTemplates);
 
       plItemTemplates = cons(create(&PotionSplitter),plItemTemplates);
       plItemTemplates = cons(create(&WandSplitter),plItemTemplates);

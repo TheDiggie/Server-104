@@ -151,6 +151,7 @@ messages:
          OR IsClass(what,&Lute))
          OR (IsClass(what,&JewelOfFroz) AND
             Send(poOwner,@IsUsingA,#class=&JewelOfFroz))
+         OR IsClass(what,&BrawlGloves)
       {
          if Send(poOwner,@TryUnuseItem,#what=self)
          {

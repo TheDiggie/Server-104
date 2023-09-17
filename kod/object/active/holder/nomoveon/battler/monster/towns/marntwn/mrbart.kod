@@ -182,7 +182,8 @@ messages:
             Create(&Meatpie),
             Create(&Bread),
             Create(&Mug,#number=4),
-            Create(&BeerMug)
+            Create(&BeerMug),
+            Create(&BrawlGloves)
          ],
          [
             SKID_LOGGING
