@@ -76,7 +76,8 @@ messages:
          OR IsClass(what,&Lute)
          OR IsClass(what,&JewelOfFroz)
          OR IsClass(what,&Book)
-         OR IsClass(what,&Shield)
+         OR (IsClass(what,&Shield)
+         AND NOT IsClass(what,&SoldierShield))
       {
          if Send(poOwner,@TryUnuseItem,#what=self)
          {
@@ -85,6 +86,26 @@ messages:
          else
          {
             return FALSE;
+         }
+      }
+
+      propagate;
+   }
+
+   NewUsed()
+   {
+      local oSoldierShield, iFaction, iTranslation;
+
+      if poOwner <> $
+         AND IsClass(poOwner,&User)
+      {
+         // Check for shield
+         oSoldierShield = Send(poOwner,@FindUsing,#class=&SoldierShield);
+         // Sling it on the back if it's there.
+         //  Also, record faction so we can set our bands if needed.
+         if oSoldierShield <> $
+         {
+            Send(oSoldierShield,@SlingOnBack);
          }
       }
 
