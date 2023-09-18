@@ -17,12 +17,12 @@ constants:
 resources:
 
    Sickle_name_rsc = "Sickle"
-   Sickle_icon_rsc = shswd.bgf
+   Sickle_icon_rsc = sickle.bgf
    Sickle_desc_rsc = \
    "Crafted by Colhorr this Sickle is made to slice plants.  "
 
-   Sickle_window_overlay_rsc = povshswd.bgf
-   Sickle_player_overlay = shswdov.bgf
+   Sickle_window_overlay_rsc = povsickle.bgf
+   Sickle_player_overlay = sickleov.bgf
 
 classvars:
 
@@ -58,7 +58,7 @@ properties:
 
    piGatheringPercent = $
 
-   piItem_flags = 30
+   //piItem_flags = 30
 
 messages:
 
