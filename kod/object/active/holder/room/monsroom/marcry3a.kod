@@ -1098,6 +1098,11 @@ messages:
          iNumPlayers = iNumPlayers - 1;
       }
 
+      foreach i in send(poChest,@Getholderpassive)
+      {
+         Debug("Thrasher chest loot", send(i,@getname));
+      }
+      
       return;
    }
 
