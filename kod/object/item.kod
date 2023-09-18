@@ -482,7 +482,7 @@ messages:
          {
             if NOT bFoundProperties
             {
-               AddPacket(4,system_rsc_template_7, 4,special_properties_header);
+               AddPacket(4,system_rsc_template_8, 4,special_properties_header);
                bFoundProperties = TRUE;
             }
             AddPacket(4,item_stats_gen_sp, 4,iFarenPower);
@@ -491,11 +491,11 @@ messages:
          {
             if NOT bFoundProperties
             {
-               AddPacket(4,system_rsc_template_7, 4,special_properties_header);
+               AddPacket(4,system_rsc_template_8, 4,special_properties_header);
                bFoundProperties = TRUE;
             }
 
-            AddPacket(4,system_rsc_template_7);
+            AddPacket(4,system_rsc_template_8);
 
             if iFarenPower <> 0
             {
