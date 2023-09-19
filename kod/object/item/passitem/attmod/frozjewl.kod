@@ -97,6 +97,7 @@ messages:
 
       if IsClass(what,&Weapon)
          OR IsClass(what,&Lute)
+         OR IsClass(what,&BrawlGloves)
       {
          if Send(poOwner,@TryUnuseItem,#what=self)
          {
@@ -419,5 +420,6 @@ messages:
 	  
 	  return;
    }
+   
 end
 ////////////////////////////////////////////////////////////////////////////////

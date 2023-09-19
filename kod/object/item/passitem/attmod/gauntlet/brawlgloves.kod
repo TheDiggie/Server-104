@@ -31,7 +31,7 @@ resources:
       " are in danger of falling apart.  Large strands of leather "
       "have been torn away during battle."
    BrawlGloves_condition_broken = " are ruined and offer no benefit."
-   BrawlGloves_broken = "Your %s are a shredded mess fo leather."
+   BrawlGloves_broken = "Your %s are a shredded mess of leather."
 
 classvars:
 
@@ -58,13 +58,13 @@ classvars:
 
    viDefense_base = 50
    viAttack_base = 250
-   viDamage_base = 8
+   viDamage_base = 0
 
 properties:
 
    piDefense_bonus = 50
    piAttack_bonus = 250
-   piDamage_bonus = 8
+   //piDamage_bonus = 8
 
    piItem_flags = 12
 
@@ -110,6 +110,35 @@ messages:
       }
 
       propagate;
+   }
+
+   ModifyDamage(who=$,what=$,damage=$,stroke_obj=$)
+   {
+      if IsClass(stroke_obj,&Stroke)
+      {
+         // Add a small amount of damage.
+         return damage + Random(6,8);
+      }
+
+      return damage;
+   }
+
+   GetMinDamage()
+   {
+      local iMinDamage;
+
+      iMinDamage = 6;
+
+      return iMinDamage;
+   }
+
+   GetMaxDamage()
+   {
+      local iMaxDamage;
+
+      iMaxDamage = 8;
+
+      return iMaxDamage;
    }
 
 end
