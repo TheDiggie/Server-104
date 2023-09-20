@@ -29,7 +29,8 @@ EXPORTS
 	InitMenuPopupHandler
 	GetHBitmapFromResource
 	GetAvailableLanguages
-
+	CacheGetObjectList
+	
 ; Keyboard handling
 	KeyAddTable
 	KeyRemoveTable
