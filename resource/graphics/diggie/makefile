@@ -20,7 +20,7 @@ BGFS = neeleme.bgf neelemeX.bgf iunholyt.bgf xeoneru.bgf xeoneruX.bgf \
        pecanpie.bgf indianhat.bgf indianhatF.bgf pilgrimhat.bgf pilgrimhatF.bgf \
        ogre.bgf ogreX.bgf wizardhat.bgf wizardhatF.bgf ring02.bgf minersbag.bgf \
        prism1.bgf nerushld.bgf woice.bgf iwallice.bgf sickle.bgf povsickle.bgf \
-       sickleov.bgf
+       sickleov.bgf woodaxeov.bgf povwoodaxe.bgf woodaxe.bgf
 
 !include $(RESOURCEDIR)\copy.mak
 

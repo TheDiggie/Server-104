@@ -17,12 +17,12 @@ constants:
 resources:
 
    CuttingAxe_name_rsc = "wood cutting axe"
-   CuttingAxe_icon_rsc = Axe.bgf
+   CuttingAxe_icon_rsc = woodAxe.bgf
    CuttingAxe_desc_rsc = \
    "Crafted by Colhorr this axe is made to chop down mature trees.  "
 
-   CuttingAxe_window_overlay_rsc = povAxe.bgf
-   CuttingAxe_player_overlay = Axeov.bgf
+   CuttingAxe_window_overlay_rsc = povwoodAxe.bgf
+   CuttingAxe_player_overlay = woodAxeov.bgf
 
 classvars:
 
