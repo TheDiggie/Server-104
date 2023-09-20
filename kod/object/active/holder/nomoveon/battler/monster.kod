@@ -132,7 +132,7 @@ resources:
    Lm_monster_healing = \
       "%s%s falls back to recover for a moment, then returns to the fight."
    
-   monster_desc_level = "This monster will take you to %i hitpoints."
+   monster_desc_level = "This monster will take you to %i hitpoints and has %i karma."
    Lm_condition_healthy = "%s\n\n%r"
    Lm_condition_good = \
       "%s\n\n%r\n\n%s%s is injured, but is still relatively strong."
@@ -5128,7 +5128,7 @@ messages:
          else
          {
             AddPacket(4,vrCondition_healthy, 4,vrDesc, 4,monster_desc_level,
-                      4,Bound(viLevel,20,150));
+                      4,Bound(viLevel,20,150), 4,viKarma);
          }
 
          return;
@@ -5159,7 +5159,7 @@ messages:
       {
          AddPacket(4,rMonster_Condition, 4,vrDesc, 4,monster_desc_level,
                    4,Bound(viLevel,20,150), 4,Send(self,@GetCapDef),
-                   4,Send(self,@GetName));
+                   4,Send(self,@GetName), 4,viKarma);
       }
 
       return;
