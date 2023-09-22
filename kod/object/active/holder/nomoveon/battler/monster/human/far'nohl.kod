@@ -5,8 +5,6 @@
 // the LICENSE file that accompanies it.
 //
 // Meridian is a registered trademark.
-
-
 ////////////////////////////////////////////////////////////////////////////////
 Farnohl is Human
 
@@ -14,13 +12,10 @@ constants:
 
    include blakston.khd
 
-   EQUIPMENT_DROP_PERCENT = 100
-
 resources:
 
    Farnohl_name_rsc = "King Far'Nohl"
-   Farnohl_desc_rsc = \
-   "This is a poor lost soul. "
+   Farnohl_desc_rsc = "This is a poor lost soul. "
    Farnohl_dead_name_rsc = "dead Farnohl"
 
 classvars:
@@ -44,17 +39,17 @@ classvars:
    viDead_drawfx = DRAWFX_TRANSLUCENT_50
 
    viColorTranslate1 = XLAT_TO_RED
+
 properties:
 
    piBaseLevel = 200
    piBaseDifficulty = 8
 
-   //Here so they can be set
    vrIcon = human_male_icon_rsc
    vrDead_Icon = human_dead_male_icona_rsc
    vrDead_Legs = human_dead_male_iconb_rsc
-   viLevel = 150         // piBaseLevel
-   viDifficulty = 8    // piBaseDifficulty
+   viLevel = 150
+   viDifficulty = 8
    piGender = GENDER_MALE
    viKarma = 0
    piLevel = 5
@@ -95,48 +90,26 @@ messages:
       return;
    }
 
-
    // Override from monster superclass
    // We drop some of our carried items when we die.
    CreateTreasure(who = $, corpse = $)
    {
       local oUsedItem, oItemAtt, iPercentDrop, oKey;
 	  
-	  iPercentDrop = EQUIPMENT_DROP_PERCENT;
+	  iPercentDrop = 100;
 	  
       oItemAtt = Send(SYS,@FindItemAttByNum,#num=IA_CORPSEPOINTER);
 
       foreach oUsedItem in plUsing
       {
-         // Weapon Wands should only have a 1% chance to drop.
-		 if IsClass(oUsedItem, &ApprenticeWand)
-		 {
-		    iPercentDrop = 1;
-		 }
-		 else
-		 {
-		    iPercentDrop = EQUIPMENT_DROP_PERCENT;
-		 }
-		 
-         // Only a percentage chance to drop each item.  Too much stuff otherwise.
-         // Don't drop the shield!  It's a quest/special item!
-		 if (Random(1,100) <= iPercentDrop)
-            AND (NOT IsClass(oUsedItem,vcShieldClass))
-            AND NOT pbIllusion
+         if (oItemAtt <> $) AND Send(oItemAtt,@ReqAddToItem,#oItem=oUsedItem)
          {
-            if (oItemAtt <> $) AND Send(oItemAtt,@ReqAddToItem,#oItem=oUsedItem)
-            {
-               Send(oItemAtt,@AddToItem,#oItem=oUsedItem,#state1=corpse);
-            }
+            Send(oItemAtt,@AddToItem,#oItem=oUsedItem,#state1=corpse);
+         }
 
-            Send(poOwner,@NewHold,#what=oUsedItem,
-                  #new_row=piRow,#new_col=piCol,
-                  #fine_row=piFine_row,#fine_col=piFine_col);
-         }
-         else
-         {
-            Send(oUsedItem,@Delete);
-         }
+         Send(poOwner,@NewHold,#what=oUsedItem,
+               #new_row=piRow,#new_col=piCol,
+               #fine_row=piFine_row,#fine_col=piFine_col);
       }
 
 
@@ -156,7 +129,6 @@ messages:
    }
 
    SetHair()
-   // Sets the hairdo, color.
    {
       return;
    }
