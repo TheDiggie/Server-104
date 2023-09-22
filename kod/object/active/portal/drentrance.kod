@@ -44,7 +44,40 @@ properties:
    piDest_room = RID_DTEMPLE
    piDrawFx = DRAWFX_TRANSLUCENT_75
 
+   ptExpire = $
+
 messages:
+
+   Constructor(Corpse = $, SpellPower = 20)
+   {
+      local iDuration;
+
+      iDuration = 300000;
+
+      ptExpire = CreateTimer(self,@Expire,iDuration);
+
+      propagate;
+   }
+
+   Expire()
+   {
+      ptExpire = $;
+
+      Send(self,@Delete);
+
+      return;
+   }
+
+   Delete()
+   {
+      if ptExpire <> $
+      {
+         DeleteTimer(ptExpire);
+         ptExpire = $;
+      }
+
+      propagate;
+   }
 
    TeleportSomething(what=$)
    "Called when something walks on top of us."

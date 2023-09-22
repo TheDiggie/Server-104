@@ -94,7 +94,8 @@ resources:
    dm_get_spells_command = "get spells"
    dm_get_skills_command = "get skills"
    dm_get_money_command = "get money"
-   dm_get_CRAFTING = "get crafting"
+   dm_get_crafting_command = "get crafting"
+   dm_get_offerings_command = "get offerings"
    dm_boost_stats_command = "boost stats"
    dm_PK_enable_command = "PK enable"
    dm_PK_disable_command = "PK disable"
@@ -2819,7 +2820,7 @@ messages:
       {
          Send(self,@GetOneOfEach,#type=ITEMTYPE_MONEY);
       }
-      else if StringEqual(string,dm_get_CRAFTING)
+      else if StringEqual(string,dm_get_crafting_command)
       {
          Send(self,@NewHold,#what=Create(&DenseLumber,#number=200));
          Send(self,@NewHold,#what=Create(&DenseWood,#number=200));
@@ -2841,6 +2842,15 @@ messages:
          Send(self,@NewHold,#what=Create(&Pickaxe));
          Send(self,@NewHold,#what=Create(&BlacksmithsHammer));
          Send(self,@NewHold,#what=Create(&DrawKnife));
+      }
+      else if StringEqual(string,dm_get_offerings_command)
+      {
+         Send(self,@NewHold,#what=Create(&OfferingFaren));
+         Send(self,@NewHold,#what=Create(&OfferingJala));
+         Send(self,@NewHold,#what=Create(&OfferingKraanan));
+         Send(self,@NewHold,#what=Create(&OfferingQor));
+         Send(self,@NewHold,#what=Create(&OfferingRiija));
+         Send(self,@NewHold,#what=Create(&OfferingShalille));
       }
       else
       {
