@@ -30,9 +30,7 @@ messages:
    {
       plTreasure = [ [ &InkyCap, 10],
                      [ &PurpleMushroom, 10 ],
-                     [ &Sapphire, 9 ],
-                     [ &Diamond, 9 ],
-                     [ &Ruby, 7 ],
+                     [ &KnightsHelm, 25 ],
                      [ &BlueDragonScale, 15],
                      [ &DarkAngelFeather, 15],
                      [ &HoldWand, 1],
