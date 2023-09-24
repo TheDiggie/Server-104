@@ -49,13 +49,5 @@ properties:
 
 messages:
 
-   SetColor(iColor=XLAT_TO_SKIN4)
-   {
-      viBaseXLAT = iColor;
-      Send(self,@UpdateColor);
-
-      return;
-   }
-
 end
 ////////////////////////////////////////////////////////////////////////////////

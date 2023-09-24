@@ -67,8 +67,7 @@ properties:
    piAttack_Type = ATCK_WEAP_MAGIC + ATCK_WEAP_PIERCE
    piAttack_spell = ATCK_SPELL_UNHOLY
 
-   viBaseXLAT = $
-   piXLAT_BLUETOBLACK =  XLAT_BLUETOBLACK
+   piXLAT =  XLAT_BLUETOBLACK
 
 messages:
 
@@ -142,26 +141,6 @@ messages:
       Send(self,@ExplodesToAcid);
 
       propagate;
-   }
-
-   UpdateColor()
-   {
-      if viBaseXLAT = $
-      {
-         Send(self,@SetXLATTranslation,#translation=piXLAT_BLUETOBLACK);
-      }
-
-      propagate;
-   }
-
-   SetXLATTranslation(translation=$)
-   {
-      local skin_color, XLAT;
-
-      XLAT = Send(SYS,@EncodeTwoColorXLAT,#color1=translation,#color2=skin_color);
-      Send(self,@SetPaletteTranslation,#translation=XLAT);
-
-      return;
    }
 
 end

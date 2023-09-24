@@ -61,8 +61,6 @@ classvars:
 
    viSpell_modifier = -20
 
-   // What's the basic color of the wood?
-   viBaseXLAT = XLAT_TO_SKIN4
 
 properties:
 
@@ -72,6 +70,11 @@ properties:
 
    vrWeapon_window_overlay = bow_window_overlay_rsc
    vrWeapon_overlay = bow_bottom
+
+   // What's the basic color of the wood?
+   viBaseXLAT = $
+   
+   piXLAT =  $
 
 messages:
 
@@ -302,17 +305,34 @@ messages:
    {
       local iTranslation, iBaseXLATColor;
       
-	  if iBaseXLAT = $
-	  {
-	     iBaseXLATColor = viBaseXLAT;
-	  }
-	  else
-	  {
-	     iBaseXLATColor = iBaseXLAT;
-	  }
-	  
-      iTranslation = Send(SYS,@EncodeTwoColorXlat,#color1=iFactionColor,#color2=iBaseXLATColor);
-      Send(self,@SetPaletteTranslation,#translation=iTranslation);
+      if piXLAT <> $
+      {
+         Send(self,@SetXLATTranslation,#translation=piXLAT);
+      }
+      else
+      {
+	      if iBaseXLAT = $
+	      {
+	         iBaseXLATColor = viBaseXLAT;
+	      }
+	      else
+	      {
+	         iBaseXLATColor = iBaseXLAT;
+	      }
+   
+         iTranslation = Send(SYS,@EncodeTwoColorXlat,#color1=iFactionColor,#color2=iBaseXLATColor);
+         Send(self,@SetPaletteTranslation,#translation=iTranslation);
+      }
+
+      return;
+   }
+
+   SetXLATTranslation(translation=$)
+   {
+      local skin_color, XLAT;
+
+      XLAT = Send(SYS,@EncodeTwoColorXLAT,#color1=translation,#color2=skin_color);
+      Send(self,@SetPaletteTranslation,#translation=XLAT);
 
       return;
    }

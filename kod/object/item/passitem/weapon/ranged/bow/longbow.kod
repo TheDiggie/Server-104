@@ -38,11 +38,12 @@ classvars:
 
    viSpell_modifier = -15
 
-   // What's the basic color of the wood?
-   viBaseXLAT = XLAT_TO_SKIN2
 
 properties:
 
+   // What's the basic color of the wood?
+   viBaseXLAT = XLAT_TO_SKIN2
+   
 messages:
 
 end

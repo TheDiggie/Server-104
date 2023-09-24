@@ -49,13 +49,14 @@ classvars:
 
    viSpell_modifier = -10
 
-   // What's the basic color of the bow?
-   viBaseXLAT = XLAT_TO_GREEN
 
 properties:
 
    piAttack_Type = ATCK_WEAP_NERUDITE + ATCK_WEAP_PIERCE
 
+   // What's the basic color of the bow?
+   viBaseXLAT = XLAT_TO_GREEN
+   
 messages:
 
    DoShatter()
