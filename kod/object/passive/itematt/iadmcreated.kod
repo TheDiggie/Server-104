@@ -57,14 +57,14 @@ messages:
 
    AppendDesc(oItem=$,who=$,lData=$)
    {
-      if (IsClass(who,&DM))
-      {
-         AddPacket(4,vrDesc,4,Send(oItem,@GetName),6,Send(Nth(lData,3),@GetTrueName));
-      }
-      else
-      {
+      //if (IsClass(who,&DM))
+      //{
+      //   AddPacket(4,vrDesc,4,Send(oItem,@GetName),6,Send(Nth(lData,3),@GetTrueName));
+      //}
+      //else
+      //{
          AddPacket(4,system_blank_resource);
-      }
+      //}
 
       return;
    }
