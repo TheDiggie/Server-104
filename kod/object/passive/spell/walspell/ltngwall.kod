@@ -45,7 +45,7 @@ classvars:
    viSpellExertion = 3
 
    viChance_To_Increase = 25
-   viMeditate_ratio = 75
+   viMeditate_ratio = 60
    viCast_time = 1000
    vrSucceed_wav = LightningWall_sound
 

@@ -65,6 +65,7 @@ classvars:
    viSpellExertion = 1
    viSpell_level = 2
    viMana = 4
+   viMeditate_ratio = 20
 
    viMin_Damage = 5         /// touch spells typically do good damage    
    viMax_Damage = 8         /// but are unaffected by weapon or strength bonuses

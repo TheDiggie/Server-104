@@ -72,6 +72,7 @@ classvars:
    viSpellExertion = 1
    viSpell_level = 1
    viMana = 4
+   viMeditate_ratio = 10
 
    // While Unholy Touch seems to have similar base damages to other spells,
    // it does not get any proficiency damage bonuses. Instead, it

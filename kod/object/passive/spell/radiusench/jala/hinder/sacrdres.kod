@@ -39,6 +39,7 @@ classvars:
 
    viSchool = SS_JALA
    viSpell_level = 3
+   viMeditate_ratio = 30
 
    viHinderedSchool = SS_QOR
 

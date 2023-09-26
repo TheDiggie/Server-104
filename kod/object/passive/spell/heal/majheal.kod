@@ -45,7 +45,7 @@ classvars:
    viSchool = SS_SHALILLE
    viSpell_level = 5
    viChance_To_Increase = 15
-   viMeditate_ratio = 75
+   viMeditate_ratio = 50
 
 properties:
 

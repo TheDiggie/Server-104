@@ -55,7 +55,7 @@ classvars:
    viMana = 15
 
    viChance_to_increase = 15
-   viMeditate_ratio = 75
+   viMeditate_ratio = 50
    vrSucceed_wav = icenova_sound
 
    viAttack_spell = ATCK_SPELL_ALL+ATCK_SPELL_COLD

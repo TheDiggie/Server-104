@@ -48,7 +48,7 @@ classvars:
    viMana = 6
 
    viChance_To_Increase = 35
-   viMeditate_ratio = 10
+   viMeditate_ratio = 30
 
    viFlash = FLASH_GOOD_SELF
 

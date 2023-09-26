@@ -71,6 +71,7 @@ classvars:
    viManaDrain = 1
    // Drain some mana every viDrainTime milliseconds
    viDrainTime = 1000
+   viMeditate_ratio = 50
 
 properties:
 

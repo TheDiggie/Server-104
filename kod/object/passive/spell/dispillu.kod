@@ -44,7 +44,7 @@ classvars:
    viSpell_level = 4
    viMana = 20
    viSpellExertion = 3
-   viMeditate_ratio = 30
+   viMeditate_ratio = 40
 
    vbIsAreaEffect = TRUE
 

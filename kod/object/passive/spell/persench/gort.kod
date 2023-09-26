@@ -72,7 +72,7 @@ classvars:
    viSchool = SS_KRAANAN
 
    viChance_To_Increase = 20
-   viMeditate_ratio = 75
+   viMeditate_ratio = 50
    viFlash = FLASH_GOOD_SELF
 
    viDefensive = TRUE

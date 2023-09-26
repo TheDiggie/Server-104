@@ -63,6 +63,7 @@ classvars:
 
    // 10 minutes for worst case, 2.3 mins for best case.
    viMultiCast_Spellpower = 3000
+   viMeditate_ratio = 50
 
 properties:
 

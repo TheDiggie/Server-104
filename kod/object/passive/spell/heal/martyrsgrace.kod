@@ -58,7 +58,7 @@ classvars:
    viSpell_num = SID_MARTYRS_GRACE
    viMana = 0
    viSpell_level = 6
-   viMeditate_ratio = 100
+   viMeditate_ratio = 60
    viPostCast_time = 4
 
    vbIsAreaEffect = TRUE

@@ -65,7 +65,7 @@ classvars:
 
    viSchool = SS_JALA
    viSpell_level = 2
-   viMeditate_ratio = 35
+   viMeditate_ratio = 20
 
    viHarmful = TRUE
 

@@ -53,7 +53,7 @@ classvars:
 
    viCast_time = 0
    viChance_To_Increase = 15
-   viMeditate_ratio = 20
+   viMeditate_ratio = 10
 
    vrSucceed_wav = HolySymbol_sound
 

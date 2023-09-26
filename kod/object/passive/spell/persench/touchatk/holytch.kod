@@ -69,6 +69,7 @@ classvars:
    viSpellExertion = 1
    viSpell_level = 2
    viMana = 4
+   viMeditate_ratio = 20
 
    // It's alright if Holy Touch has high base damage.
    // It gets no intrinsic proficiency damage, instead doing double base against undead.

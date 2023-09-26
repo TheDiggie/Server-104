@@ -46,6 +46,7 @@ classvars:
    viSchool = SS_SHALILLE
    viSpell_level = 3
    viMana = 3
+   viMeditate_ratio = 30
 
    viChance_To_Increase = 35
    viFlash = FLASH_GOOD_SELF

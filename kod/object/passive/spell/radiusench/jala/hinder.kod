@@ -42,7 +42,7 @@ classvars:
    viManaDrain = 3     // Drain is amount used every viDrainTime milliseconds
    viDrainTime = 5000    // Drain some mana every viDrainTime milliseconds
    viChance_To_Increase = 10
-   viMeditate_ratio = 40
+   viMeditate_ratio = 20
 
    viHinderedSchool = SS_JALA  // What school does this song hinder?
 

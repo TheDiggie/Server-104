@@ -64,6 +64,7 @@ classvars:
    viSpellExertion = 50
    viCast_time = 2000
    viChance_To_Increase = 50
+   viMeditate_ratio = 60
 
    viManaDrain = 1       // Drain is amount used every viDrainTime milliseconds
    viDrainTime = 1000    // Drain some mana every viDrainTime milliseconds

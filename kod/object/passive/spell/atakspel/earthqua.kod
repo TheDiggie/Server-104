@@ -63,8 +63,8 @@ classvars:
    viMana = 12
 
    viCast_time = 5000
-   viChance_to_increase = 15
-   viMeditate_ratio = 75
+   viChance_to_increase = 25
+   viMeditate_ratio = 50
 
    viAttack_spell = ATCK_SPELL_ALL + ATCK_SPELL_QUAKE
    viOutlaw = TRUE

@@ -59,7 +59,7 @@ classvars:
 
 
    viCast_time = 2000
-   viMeditate_ratio = 10
+   viMeditate_ratio = 20
 
    vrSpell_intro = Haste_spell_intro
    vrSucceed_wav = Haste_sound

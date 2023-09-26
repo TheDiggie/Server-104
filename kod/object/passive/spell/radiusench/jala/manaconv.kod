@@ -58,7 +58,7 @@ classvars:
 
    viSchool = SS_JALA
    viSpell_level = 5
-   viMeditate_ratio = 75
+   viMeditate_ratio = 50
 
    viAffectsGuildmates = TRUE
    viAffectsEnemies = TRUE

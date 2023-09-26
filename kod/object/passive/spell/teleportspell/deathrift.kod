@@ -64,7 +64,7 @@ classvars:
    viCast_time = 15000
 
    viChance_To_Increase = 10
-   viMeditate_ratio = 100
+   viMeditate_ratio = 60
 
    vrSucceed_wav = DeathRift_sound
 

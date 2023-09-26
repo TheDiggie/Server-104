@@ -62,7 +62,7 @@ classvars:
    viSpellExertion = 15
 
    viChance_To_Increase = 10
-   viMeditate_ratio = 50
+   viMeditate_ratio = 60
 
    vrSucceed_wav = Elusion_sound
    viFlash = FLASH_GOOD
