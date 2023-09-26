@@ -88,6 +88,7 @@ classvars:
    viMana = 0
    viSpellExertion = 0
    viChance_To_Increase = 5
+   viMeditate_ratio = 10
 
 properties:
 
