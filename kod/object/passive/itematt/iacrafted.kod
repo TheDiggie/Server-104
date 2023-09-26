@@ -23,7 +23,7 @@ constants:
 
 resources:
 
-   itematt_crafted_desc = " This piece of gear was crafted."
+   itematt_crafted_desc = " This piece of gear was crafted by %s."
 
 classvars:
 
@@ -34,8 +34,23 @@ classvars:
 
 properties:
 
+   poCrafter = $
+
 messages:
 
+   AppendDesc()
+   {
+      AddPacket(4,vrDesc,4,send(poCrafter,@getname));
+
+      return;
+   }
+
+   SetCrafter(who=$)
+   {
+      poCrafter = who;
+
+      return;
+   }
 
    InitiallyIdentified()
    {
