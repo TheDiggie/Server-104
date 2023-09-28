@@ -5158,8 +5158,8 @@ messages:
       else
       {
          AddPacket(4,rMonster_Condition, 4,vrDesc, 4,monster_desc_level,
-                   4,Bound(viLevel,20,150), 4,Send(self,@GetCapDef),
-                   4,Send(self,@GetName), 4,viKarma);
+                   4,Bound(viLevel,20,150), 4,viKarma,
+                   4,Send(self,@GetCapDef),4,Send(self,@GetName));
       }
 
       return;
