@@ -42,7 +42,43 @@ properties:
 
    piAnimation = ANIM_NONE
 
+   ptExpire = $
+
 messages:
+
+   Constructor(Corpse = $, SpellPower = 20)
+   {
+      local iDuration;
+
+      iDuration = 300000;
+
+      ptExpire = CreateTimer(self,@Expire,iDuration);
+
+      propagate;
+   }
+
+   Expire()
+   {
+      ptExpire = $;
+      
+      if piHit_points = (pimax_hit_points*100)
+      {
+         Send(self,@Delete);
+      }
+
+      return;
+   }
+
+   Delete()
+   {
+      if ptExpire <> $
+      {
+         DeleteTimer(ptExpire);
+         ptExpire = $;
+      }
+
+      propagate;
+   }
 
    SendLookAnimation()
    {

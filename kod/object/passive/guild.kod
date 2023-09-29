@@ -1432,7 +1432,7 @@ messages:
 
             // No rejoining the same guild for 72 hours.  This is the number of
             //  six-minute periods to wait.
-            plFormerMembers = cons([who,CANNOT_REJOIN_TIME*3],plFormerMembers);
+            plFormerMembers = cons([who,CANNOT_REJOIN_TIME],plFormerMembers);
 
             plMembers = DelListElem(plMembers,i);
             bFound = TRUE;
