@@ -48,7 +48,7 @@ resources:
    viSpell_level = 4
    viMana = 6
    viChance_To_Increase = 30
-   viMeditate_ratio = 30
+   viMeditate_ratio = 40
 
    vrSucceed_wav = dement_sound
 
