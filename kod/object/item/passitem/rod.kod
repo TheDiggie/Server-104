@@ -243,7 +243,7 @@ messages:
 
    AppendDesc()
    {
-      AddPacket(4,rod_charges_left_rsc, 4,piHits, 4,viStartMaxHits);
+      AddPacket(4,rod_charges_left_rsc, 4,piHits, 4,piHits_init);
 
       return;
    }
