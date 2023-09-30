@@ -779,28 +779,28 @@ messages:
             return;
          }
 
-         oLich = Send(Send(SYS,@FindRoomByNum,#num=RID_INNERSAN),
-                        @FindHoldingActive,#class=&Lich);
-         if oLich <> $
-         {
-            // Lich will handle guild cleanup.
-            if piRentCounter = 1
-               OR piThreePersonWarning = 0
-            {
-               // We got here through nonpayment of rent or insufficient membership.
-               Post(oLich,@Killed,#what=self,#resetScenario=FALSE,
-                     #guildDisbandDeath=TRUE);
-            }
-            else
-            {
-               Post(oLich,@Killed,#what=killer);
-            }
-         }
-         else
-         {
-            Debug("The Order of Necromancers somehow ended up without a lich.");
-            Send(self,@Delete);
-         }
+         //oLich = Send(Send(SYS,@FindRoomByNum,#num=RID_INNERSAN),
+         //               @FindHoldingActive,#class=&Lich);
+         //if oLich <> $
+         //{
+         //   // Lich will handle guild cleanup.
+         //   if piRentCounter = 1
+         //      OR piThreePersonWarning = 0
+         //   {
+         //      // We got here through nonpayment of rent or insufficient membership.
+         //      Post(oLich,@Killed,#what=self,#resetScenario=FALSE,
+         //            #guildDisbandDeath=TRUE);
+         //   }
+         //   else
+         //   {
+         //      Post(oLich,@Killed,#what=killer);
+         //   }
+         //}
+         //else
+         //{
+         //   Debug("The Order of Necromancers somehow ended up without a lich.");
+         //   Send(self,@Delete);
+         //}
 
          return;
       }

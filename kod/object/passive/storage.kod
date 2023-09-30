@@ -345,10 +345,10 @@ messages:
          }
       }
 
-      if Send(oBox,@GetHolderPassive) = $
-      { 
-         Send(self,@DestroyPlayersVault,#who=who);
-      }
+      //if Send(oBox,@GetHolderPassive) = $
+      //{ 
+      //   Send(self,@DestroyPlayersVault,#who=who);
+      //}
 
       return TRUE;
    }

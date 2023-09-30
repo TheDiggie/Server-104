@@ -1,0 +1,42 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+GuildHall15 is GuildHall
+
+constants:
+       
+   include blakston.khd
+
+resources:
+
+classvars:
+
+properties:
+
+   piRoom_num = RID_GUILDH15
+
+messages:
+
+   Constructor()
+   {
+      return;
+   }
+
+   GetPurchaseValue(who=$)
+   "This returns the value that the GuildCreator will sell the guild to."
+   "When the guild has been conquered, he will only sell the guild hall to "
+   "someone in the Conquering guild."
+   "return -1 if this player cannot rent this guild hall."
+   {
+      return -1;   /// A player can never normally rent this guild hall.
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

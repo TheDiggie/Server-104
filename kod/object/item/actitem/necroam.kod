@@ -1110,70 +1110,70 @@ messages:
       return iAmountDrained;
    }
 
-   NecromancerRosterRequest(oLich = $)
-   {
-      if pbIn_Use
-         AND poOwner <> $
-         AND IsClass(poOwner,&User)
-         AND oLich <> $
-      {
-         Send(oLich,@NecromancerRosterReply,#oNecro=poOwner);
-      }
+   //NecromancerRosterRequest(oLich = $)
+   //{
+   //   if pbIn_Use
+   //      AND poOwner <> $
+   //      AND IsClass(poOwner,&User)
+   //      AND oLich <> $
+   //   {
+   //      Send(oLich,@NecromancerRosterReply,#oNecro=poOwner);
+   //   }
+//
+   //   return;
+   //}
 
-      return;
-   }
-
-   LichKilled()
-   {
-      Post(self,@PostLichKilled);
-
-      return;
-   }
-
-   PostLichKilled()
-   {
-      local oNecro, iDropIndex, oGuildh15, iDropRow, iDropCol, oNecBal,
-            oTreasure, iTeleportThresholdValue;
-
-      if pbIn_Use
-         AND poOwner <> $
-         AND IsClass(poOwner,&User)
-      {
-         oNecro = poOwner;
-         oNecBal = Send(SYS,@GetNecromancerBalance);
-
-         foreach oTreasure in Send(oNecro,@GetHolderActive)
-         {
-            if oTreasure <> self
-               AND Send(oTreasure,@DropOnDeath)
-            {
-               Send(oNecBal,@PutObjectInNecromancerTreasure,#what=oTreasure);
-            }
-         }
-
-         foreach oTreasure in Send(oNecro,@GetHolderPassive)
-         {
-            if Send(oTreasure,@DropOnDeath)
-            {
-               Send(oNecBal,@PutObjectInNecromancerTreasure,#what=oTreasure);
-            }
-         }
-
-         Send(oNecBal,@StartPlacingNecromancerTreasure);
-
-         // Mow kill the necromancer.
-         if Send(oNecro,@GetOwner) <> $
-         {
-            Send(Send(oNecro,@GetOwner),@SomethingKilled,
-                  #what=self,#victim=oNecro);
-         }
-         Send(oNecro,@Killed,#what=self);
-      }
-
-      Send(self,@Delete);
-
-      return;
-   }
+   //LichKilled()
+   //{
+   //   Post(self,@PostLichKilled);
+//
+   //   return;
+   //}
+//
+   //PostLichKilled()
+   //{
+   //   local oNecro, iDropIndex, oGuildh15, iDropRow, iDropCol, oNecBal,
+   //         oTreasure, iTeleportThresholdValue;
+//
+   //   if pbIn_Use
+   //      AND poOwner <> $
+   //      AND IsClass(poOwner,&User)
+   //   {
+   //      oNecro = poOwner;
+   //      oNecBal = Send(SYS,@GetNecromancerBalance);
+//
+   //      foreach oTreasure in Send(oNecro,@GetHolderActive)
+   //      {
+   //         if oTreasure <> self
+   //            AND Send(oTreasure,@DropOnDeath)
+   //         {
+   //            Send(oNecBal,@PutObjectInNecromancerTreasure,#what=oTreasure);
+   //         }
+   //      }
+//
+   //      foreach oTreasure in Send(oNecro,@GetHolderPassive)
+   //      {
+   //         if Send(oTreasure,@DropOnDeath)
+   //         {
+   //            Send(oNecBal,@PutObjectInNecromancerTreasure,#what=oTreasure);
+   //         }
+   //      }
+//
+   //      Send(oNecBal,@StartPlacingNecromancerTreasure);
+//
+   //      // Mow kill the necromancer.
+   //      if Send(oNecro,@GetOwner) <> $
+   //      {
+   //         Send(Send(oNecro,@GetOwner),@SomethingKilled,
+   //               #what=self,#victim=oNecro);
+   //      }
+   //      Send(oNecro,@Killed,#what=self);
+   //   }
+//
+   //   Send(self,@Delete);
+//
+   //   return;
+   //}
 
    OrderOfNecromancersDisbanded()
    {
