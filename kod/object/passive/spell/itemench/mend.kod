@@ -44,6 +44,7 @@ classvars:
    viMana = 9
    viChance_To_Increase = 10
 
+   viMeditate_ratio = 40
    vrSucceed_wav = mend_sound
 
 properties:

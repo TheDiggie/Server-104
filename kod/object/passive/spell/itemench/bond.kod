@@ -62,6 +62,8 @@ classvars:
 
    vbFree_Castable = FALSE
 
+   viMeditate_ratio = 60
+
 properties:
 
    pbAccessible = TRUE
