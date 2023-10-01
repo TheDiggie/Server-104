@@ -342,13 +342,13 @@ BEGIN
     CONTROL         "",IDC_CHAR_GRAPH6,"BlakGraph",WS_TABSTOP | 0xb,42,120,102,14
     GROUPBOX        "Suggestions for newcomers",IDC_STATIC,24,139,269,68
     PUSHBUTTON      "&Mage",IDC_MAGE,43,150,50,11
-    LTEXT           "Learn spells from many schools -- with sufficent study",IDC_STATIC,98,150,168,8
+    LTEXT           "Pure mage",IDC_STATIC,98,150,168,8
     PUSHBUTTON      "&Warrior",IDC_WARRIOR,43,164,50,11
-    LTEXT           "Master weaponcraft and ranged combat",IDC_STATIC,98,164,167,8
+    LTEXT           "Pure fighter",IDC_STATIC,98,164,167,8
     PUSHBUTTON      "&Hybrid",IDC_HYBRID,43,178,50,11
-    LTEXT           "Learn weaponcraft and two schools of magic",IDC_STATIC,98,178,161,8
-    PUSHBUTTON      "&Favorites",IDC_FAVORITES,43,192,50,11
-    LTEXT           "Player submitted and recommended builds",IDC_STATIC,98,192,133,8
+    LTEXT           "Three school bower",IDC_STATIC,98,178,161,8
+    PUSHBUTTON      "&Trickster",IDC_TRICKSTER,43,192,50,11
+    LTEXT           "Riija pure fighter",IDC_STATIC,98,192,133,8
     LTEXT           "Stat points left",IDC_STATIC,24,215,46,8
     CONTROL         "",IDC_POINTSLEFT,"BlakGraph",0x8,87,214,98,11
     PUSHBUTTON      "&<< Prev",IDC_PREVIOUS_PAGE,231,214,34,12

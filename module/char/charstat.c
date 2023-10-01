@@ -32,10 +32,10 @@ static Stat stats[] = {
 #define NUM_STATS (sizeof stats / sizeof stats[0])
 
 static int suggested_stats[][NUM_STATS] = {
-   { 40, 10, 50, 40, 10, 50 },  // Pure Fighter (Weaponcraft/Kraanan)
-   { 40, 25, 50, 15, 35, 35 },  // Shal'ille/Qor Warrior
-   { 40, 35, 50, 25, 15, 35 },  // Riija Warrior
-   { 40, 50, 45, 15, 45, 5  },  // Pure mage
+   { 40, 10, 50, 50, 20, 50 },  // Pure Fighter (Weaponcraft/Kraanan)
+   { 35, 25, 40, 30, 45, 45 },  // Shal'ille/Qor Warrior
+   { 35, 35, 40, 30, 30, 50 },  // Riija Warrior
+   { 40, 50, 45, 15, 45, 25 },  // Pure mage
 };
 
 static int  stat_points = STAT_POINTS_INITIAL;   // # of stat points remaining
@@ -227,8 +227,8 @@ void CharStatsCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
       SetStatSliders(hwnd, suggested_stats[1]);
       break;
       
-   case IDC_FAVORITES:
-	   WebLaunchBrowser(GetString(hInst, IDS_FAVORITES));
+   case IDC_TRICKSTER:
+      SetStatSliders(hwnd, suggested_stats[2]);
       break; 
 	  
    case IDC_MAGE:
