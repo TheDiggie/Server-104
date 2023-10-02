@@ -173,7 +173,7 @@ properties:
    ptHoldingDamage = $
    piHoldingDamageInterval = 10 * 1000     // ten seconds
    piHpWorthyThreshold = 50
-   piKarmaWorthyThreshold = 0
+   piKarmaWorthyThreshold = 1
 
    pbIllusioned = TRUE
    piSavedSkinColor = $

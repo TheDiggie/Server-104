@@ -138,7 +138,7 @@ properties:
    ptHoldingDamage = $
    piHoldingDamageInterval = 10 * 1000     // Ten seconds.
    piHpWorthyThreshold = 60
-   piKarmaWorthyThreshold = 0
+   piKarmaWorthyThreshold = -1
 
    piAttack_type = ATCK_WEAP_SLASH
    piAttack_Spell = ATCK_SPELL_HUNTERSWORD
