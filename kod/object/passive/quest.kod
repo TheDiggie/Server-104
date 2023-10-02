@@ -173,39 +173,39 @@ messages:
             }
          }
 
-         iKarma = Send(quester_wannabe,@GetKarma);
-         if ((iRestrict = Q_PLAYER_KARMA_GOOD)
-            AND (iKarma < 10))
-         {
-            if bDebug
-            {
-               Debug("failed Q_PLAYER_KARMA_GOOD.");
-            }
-
-            return FALSE;
-         }
-
-         if ((iRestrict = Q_PLAYER_KARMA_EVIL)
-            AND (iKarma > -10))
-         {
-            if bDebug
-            {
-               Debug("failed Q_PLAYER_KARMA_EVIL.");
-            }
-
-            return FALSE;
-         }
-
-         if ((iRestrict = Q_PLAYER_KARMA_NEUTRAL)
-            AND (Abs(iKarma) > 10))
-         {
-            if bDebug
-            {
-               Debug("failed Q_PLAYER_KARMA_NEUTRAL.");
-            }
-
-            return FALSE;
-         }
+         //iKarma = Send(quester_wannabe,@GetKarma);
+         //if ((iRestrict = Q_PLAYER_KARMA_GOOD)
+         //   AND (iKarma < 10))
+         //{
+         //   //if bDebug
+         //   //{
+         //      Debug("failed Q_PLAYER_KARMA_GOOD.");
+         //   //}
+//
+         //   return FALSE;
+         //}
+//
+         //if ((iRestrict = Q_PLAYER_KARMA_EVIL)
+         //   AND (iKarma > -10))
+         //{
+         //   //if bDebug
+         //   //{
+         //      Debug("failed Q_PLAYER_KARMA_EVIL.");
+         //   //}
+//
+         //   return FALSE;
+         //}
+//
+         //if ((iRestrict = Q_PLAYER_KARMA_NEUTRAL)
+         //   AND (Abs(iKarma) > 10))
+         //{
+         //   if bDebug
+         //   {
+         //      Debug("failed Q_PLAYER_KARMA_NEUTRAL.");
+         //   }
+//
+         //   return FALSE;
+         //}
       }
 
       // Are there faction restrictions?

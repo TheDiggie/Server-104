@@ -36,6 +36,8 @@ resources:
    chalice_combine = "You pour the water from one Chalice into the other."
    chalice_cant_use_pkill = "Only innocents may partake of the chalice."
 
+   chalice_cant_use_dr = "This realm blocks the chalices magic!"
+
 classvars:
 
    vrName = chalice_name_rsc
@@ -133,6 +135,13 @@ messages:
          {
             return FALSE;
          }
+      }
+
+      if isClass(send(what,@GetOwner),&DeathRealm)
+      {
+         Send(what, @MsgSendUser, #message_rsc = chalice_cant_use_dr);
+
+         return FALSE;
       }
 
       return TRUE;

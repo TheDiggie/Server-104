@@ -62,13 +62,13 @@ messages:
    "Return False only if you want user.kod to Send its own error message to "
    "user."
    {
-      if (piKarma = AVARNODE_GOOD and (Send(who,@GetKarma) < 0))
-         OR (piKarma = AVARNODE_EVIL and (Send(who,@GetKarma) > 0))
-      {
-         Send(who,@MsgSendUser,#message_rsc=AvarNode_rejected);
-
-         return TRUE;
-      }
+      //if (piKarma = AVARNODE_GOOD and (Send(who,@GetKarma) < 0))
+      //   OR (piKarma = AVARNODE_EVIL and (Send(who,@GetKarma) > 0))
+      //{
+      //   Send(who,@MsgSendUser,#message_rsc=AvarNode_rejected);
+//
+      //   return TRUE;
+      //}
 
       propagate;
    }

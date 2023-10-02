@@ -31,6 +31,8 @@ resources:
       "You try to grab the handle of the shield, but it insistently "
       "slips out of your fingers."
 
+   orc_not_qor = "Only a follower of Qor can wield this shield."
+
    OrcShield_window_overlay_rsc = povosh.bgf
 
 classvars:
@@ -63,12 +65,36 @@ messages:
 
    ReqUse()
    {
-      if Send(poOwner,@GetKarma) > -50
-      {
-         Send(poOwner,@MsgSendUser,#message_rsc=orcshield_cant);
+      local i, oSpell, oFound;
 
-         return FALSE;
+      if Send(poOwner,@PlayerIsImmortal)
+         OR IsClass(poOwner,&EscapedConvict)
+      {
+         return TRUE;
       }
+
+      oFound = FALSE;
+
+      if poOwner <> $
+      {
+         foreach i in Send(poOwner,@GetSpellList)
+         {
+            oSpell = Send(SYS,@FindSpellByNum,
+                           #num=Send(poOwner,@DecodeSpellNum,#compound=i));
+            if Send(oSpell,@GetSchool) = SS_QOR
+            {
+               oFound = TRUE;
+
+               break;
+            }
+         }
+
+         if oFound = FALSE
+         {
+            Send(poOwner, @MsgSendUser, #message_rsc = orc_not_qor);
+            return FALSE;
+         }
+		}
 
       propagate;
    }

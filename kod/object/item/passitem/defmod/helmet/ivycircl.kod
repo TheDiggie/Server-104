@@ -27,6 +27,8 @@ resources:
    ivycirclet_cant = \
       "The ivy circlet stubbornly resists your attempts to place it on your brow."
 
+   ivy_not_shal = "Only a follower of Shal'ille can wear this circlet."
+
    IvyCirclet_overlay_rsc = IvyCirov.bgf
 
 classvars:
@@ -75,12 +77,36 @@ messages:
 
    ReqUse()
    {
-      if Send(poOwner,@GetKarma) < 50
-      {
-         Send(poOwner,@MsgSendUser,#message_rsc=ivycirclet_cant);
+      local i, oSpell, oFound;
 
-         return FALSE;
+      if Send(poOwner,@PlayerIsImmortal)
+         OR IsClass(poOwner,&EscapedConvict)
+      {
+         return TRUE;
       }
+
+      oFound = FALSE;
+
+      if poOwner <> $
+      {
+         foreach i in Send(poOwner,@GetSpellList)
+         {
+            oSpell = Send(SYS,@FindSpellByNum,
+                           #num=Send(poOwner,@DecodeSpellNum,#compound=i));
+            if Send(oSpell,@GetSchool) = SS_SHALILLE
+            {
+               oFound = TRUE;
+
+               break;
+            }
+         }
+
+         if oFound = FALSE
+         {
+            Send(poOwner, @MsgSendUser, #message_rsc = ivy_not_shal);
+            return FALSE;
+         }
+		}
 
       propagate;
    }

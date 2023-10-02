@@ -2813,16 +2813,16 @@ messages:
       // give him a favorable karma to start from. However, if he chose both,
       // or if he chose neither, do nothing.
 
-      piKarma = 0;
-      if bQor AND NOT bShalille
-      {
-         piKarma = -2000;
-      }
-
-      if bShalille AND NOT bQor
-      {
-         piKarma = 2000;
-      }
+      //piKarma = 0;
+      //if bQor AND NOT bShalille
+      //{
+      //   piKarma = -2000;
+      //}
+//
+      //if bShalille AND NOT bQor
+      //{
+      //   piKarma = 2000;
+      //}
 
       Send(self,@SetInitialHomeroom);
       Send(self,@TeleportToInitialLocation);
@@ -6116,13 +6116,13 @@ messages:
                ++piKill_count_decay;
             }
 
-            if NOT bReflection
-               AND NOT Send(what,@IsIllusion)
-            {
-               Send(self,@AddKarma,#amount=Send(self,@CalculateKarmaChangeFromKill,
-                     #karma_killer=Send(self,@GetKarma),
-                     #karma_victim=Send(what,@GetKarma)));
-            }
+            //if NOT bReflection
+            //   AND NOT Send(what,@IsIllusion)
+            //{
+            //   Send(self,@AddKarma,#amount=Send(self,@CalculateKarmaChangeFromKill,
+            //         #karma_killer=Send(self,@GetKarma),
+            //         #karma_victim=Send(what,@GetKarma)));
+            //}
 
             if NOT Send(what,@CheckPlayerFlag,#flag=PFLAG_MURDERER)
                AND NOT Send(what,@CheckPlayerFlag,#flag=PFLAG_OUTLAW)
@@ -6203,15 +6203,15 @@ messages:
          }
       }
 
-      if IsClass(what,&Monster)
-         AND NOT bReflection
-         AND NOT Send(what,@IsIllusion)
-      {
-         Send(self,@AddKarma,#amount=Send(self,@CalculateKarmaChangeFromKill,
-               #karma_victim=Send(what,@GetKarma),
-               #karma_killer=Send(self,@GetKarma)),
-               #bIsMob=TRUE);
-      }
+      //if IsClass(what,&Monster)
+      //   AND NOT bReflection
+      //   AND NOT Send(what,@IsIllusion)
+      //{
+      //   Send(self,@AddKarma,#amount=Send(self,@CalculateKarmaChangeFromKill,
+      //         #karma_victim=Send(what,@GetKarma),
+      //         #karma_killer=Send(self,@GetKarma)),
+      //         #bIsMob=TRUE);
+      //}
 
       Send(what,@Killed,#what=self,#stroke_obj=stroke_obj);
       Send(self,@DrawXP);
@@ -6400,7 +6400,7 @@ messages:
       // People with greater absolute Karma have a greater chance to produce
       // a revenant.  Being a good person, in general, decreases your chance.
       // Even if you are murderous scum.
-      oChance = oChance + (Abs(Send(target,@GetKarma)-piKarma/100))/20;
+      //oChance = oChance + (Abs(Send(target,@GetKarma)-piKarma/100))/20;
 
       // Punish them more if they walked away with more health.
       oChance = oChance + bound(piHealth/(5 * iMaxHealth),0,20);
@@ -7703,7 +7703,7 @@ messages:
    GetKarma()
    "Returns karma in natural units"
    {
-      return piKarma/100;
+      return 0;
    }
 
    GetVigor()
@@ -7714,7 +7714,7 @@ messages:
    AddKarma(amount = 0)
    "Adds argument (which must be in hundredths of karma units) to karma"
    {
-      piKarma = piKarma + amount;
+      //piKarma = piKarma + amount;
       Send(self,@NewKarma);
 
       return;
@@ -7722,7 +7722,7 @@ messages:
 
    LoseKarma(amount = 0)
    {
-      piKarma = piKarma - 100 * amount;
+      //piKarma = piKarma - 100 * amount;
       Send(self,@NewKarma);
 
       return;
@@ -7730,7 +7730,7 @@ messages:
 
    GainKarma(amount = 0)
    {
-      piKarma = piKarma + 100 * amount;
+      //piKarma = piKarma + 100 * amount;
       Send(self,@NewKarma);
 
       return;
@@ -7756,7 +7756,7 @@ messages:
    SetKarma(value = 0)
    "Changes karma to specified amount"
    {
-     piKarma = value;
+     //piKarma = value;
      Send(self,@NewKarma);
 
      return;

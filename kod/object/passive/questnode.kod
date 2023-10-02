@@ -1301,7 +1301,7 @@ messages:
                Send(oQuester,@GainMana,#amount=iAmount);
                break;
             case QN_PRIZE_STAT_KARMA:
-               Send(oQuester,@GainKarma,#amount=iAmount);
+               //Send(oQuester,@GainKarma,#amount=iAmount);
                break;
             }
          }

@@ -134,7 +134,6 @@ messages:
             Send(oTarget,@EffectSendUser,#what=self,#effect=EFFECT_BLIND_ON);
          }
 
-         Send(oTarget,@EffectSendUserDuration,#effect=EFFECT_BLUR,#duration=iDuration+2000);
       }
       else
       {

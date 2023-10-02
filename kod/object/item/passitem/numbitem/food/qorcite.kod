@@ -38,20 +38,18 @@ classvars:
 properties:
 
    viFilling = 1
-   viNutrition = 1
+   viNutrition = 10
    piNumber = 3
 
 messages:
 
    NewApplied(what = $,apply_on = $)
    {
-      local iKarma_change;
+      local oMana;
 
-      // User moves toward (-80) karma.
-      iKarma_change=Send(poOwner,@CalculateKarmaChangeFromAct,#karma_act=-80,
-         #karma_doer=Send(poOwner,@GetKarma),#swing_factor=10);
-      Send(apply_on,@AddKarma,#amount=iKarma_Change);
+      oMana = Random(1,20);
 
+      send(apply_on,@GainMana,#Amount=oMana);
       propagate;
    }
 

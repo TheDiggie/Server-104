@@ -173,7 +173,7 @@ properties:
    ptHoldingDamage = $
    piHoldingDamageInterval = 10 * 1000     // ten seconds
    piHpWorthyThreshold = 50
-   piKarmaWorthyThreshold = -30
+   piKarmaWorthyThreshold = 0
 
    pbIllusioned = TRUE
    piSavedSkinColor = $
@@ -193,10 +193,23 @@ messages:
 
    ReqNewOwner(what = $)
    {
+      local i;
+      
       if IsClass(what,&StorageBox)
          OR IsClass(what,&SafetyDepositBox)
       {
          return FALSE;
+      }
+
+      if what <> $ AND IsClass(what,&Player)
+      {
+         foreach i in send(what,@GetholderPassive)
+         {
+            if isClass(i,&HunterSword) OR isClass(i,&NecromancerAmulet)
+            {
+               return FALSE;
+            }
+         }
       }
 
       // This is to prevent us from being dropped in a cheap death.
@@ -297,7 +310,7 @@ messages:
             {
                Send(poOwner,@MsgSendUser,#message_rsc=necamulet_holding_damage);
             }
-            Send(poOwner,@LoseKarma,#amount=(1 + (pbIn_Use*3)));
+            //Send(poOwner,@LoseKarma,#amount=(1 + (pbIn_Use*3)));
          }
          if Send(poOwner,@AssessDamage,#what=self,
                   #damage=(Random(1,3)+pbIn_Use*8),#report=FALSE) = $

@@ -110,13 +110,13 @@ messages:
    "Return False only if you want user.kod to Send its own error message to "
    "user."
    {
-      if (piKarma = FEYNODE_GOOD AND (Send(who,@GetKarma) < 0))
-         OR (piKarma = FEYNODE_EVIL AND (Send(who,@GetKarma) > 0))
-      {
-         Send(self,@LashOut,#who=who);
-
-         return TRUE;
-      }
+      //if (piKarma = FEYNODE_GOOD AND (Send(who,@GetKarma) < 0))
+      //   OR (piKarma = FEYNODE_EVIL AND (Send(who,@GetKarma) > 0))
+      //{
+      //   Send(self,@LashOut,#who=who);
+//
+      //   return TRUE;
+      //}
 
       propagate;
    }

@@ -15,9 +15,6 @@ constants:
 
    include blakston.khd
    
-   // minimum karma to hold this bow
-   QOR_BOW_KARMA_MIN = -60
-   
    // duration of poison when the bow explodes
    POISON_DURATION = 30000
    
@@ -38,6 +35,8 @@ resources:
 	   "The qor bow explodes into a splash of acid!"
 	QorBow_evil_obtained = \
 	   "Your veigns fill with the blood of Queen Venya'cyr."
+
+   QorBow_not_qor = "Only a follower of Qor can wield this bow."
 	   
 classvars:
 
@@ -90,24 +89,42 @@ messages:
 
    ReqUse()
    {
-      if Send(poOwner,@GetKarma) > QOR_BOW_KARMA_MIN
+      local i, oSpell, oFound;
+
+      if Send(poOwner,@PlayerIsImmortal)
+         OR IsClass(poOwner,&EscapedConvict)
       {
-		Send(poOwner,@MsgSendUser,#message_rsc=QorBow_not_evil_enough);
-			
-			// Trying to use such a powerful weapon without having proper karma may kill you.
-			if Send(poOwner,@AssessDamage,#what=self,#damage=Random(1,15),
-				#report=FALSE,#atype=ATCK_SPELL_ACID) = $
-			{
-				Send(Send(poOwner,@GetOwner),@SomethingKilled,#what=self,#victim=poOwner);
-				Send(poOwner,@Killed,#what=self);
-			}
-			
-			return FALSE;
+         return TRUE;
+      }
+
+      oFound = FALSE;
+
+      if poOwner <> $
+      {
+         foreach i in Send(poOwner,@GetSpellList)
+         {
+            oSpell = Send(SYS,@FindSpellByNum,
+                           #num=Send(poOwner,@DecodeSpellNum,#compound=i));
+            if Send(oSpell,@GetSchool) = SS_QOR
+            {
+               oFound = TRUE;
+
+               break;
+            }
+         }
+
+         if oFound = FALSE
+         {
+            Send(poOwner, @MsgSendUser, #message_rsc = QorBow_not_qor);
+
+            return FALSE;
+         }
 		}
 		else
 		{
 			Send(poOwner,@MsgSendUser,#message_rsc=QorBow_evil_obtained);
 		}
+
       propagate;
    }
    
@@ -123,7 +140,7 @@ messages:
       local oSpell;
 	  
 	  oSpell = Send(SYS,@FindSpellByNum,#num=SID_POISON);
-	  Send(oSpell,@MakePoisoned,#who=self,#lossrate=POISON_LOSSRATE,
+	  Send(oSpell,@MakePoisoned,#what=self,#lossrate=POISON_LOSSRATE,
 	     #duration=POISON_DURATION);
 
 	  if Send(poOwner,@AssessDamage,#what=self,#damage=Random(55,65),

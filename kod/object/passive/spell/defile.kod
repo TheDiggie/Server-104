@@ -129,9 +129,9 @@ messages:
             iKarmaAct = Abs(Send(who,@GetKarma));
          }
 
-         Send(who,@AddKarma,#amount=Send(who,@CalculateKarmaChangeFromAct,
-               #karma_act=-iKarmaAct,
-               #karma_doer=Send(who,@GetKarma),#swing_factor=4));
+         //Send(who,@AddKarma,#amount=Send(who,@CalculateKarmaChangeFromAct,
+         //      #karma_act=-iKarmaAct,
+         //      #karma_doer=Send(who,@GetKarma),#swing_factor=4));
       }
 
       Send(who,@MsgSendUser,#message_rsc=defile_cast_rsc);

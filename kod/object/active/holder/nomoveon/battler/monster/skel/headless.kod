@@ -48,7 +48,7 @@ classvars:
    viDifficulty = 4
    viAmountofLoot = 3
    viVisionDistance = 7
-   viKarma = -70
+   viKarma = 0
    viDefault_behavior = \
       AI_FIGHT_AGGRESSIVE | AI_FIGHT_SWITCHALOT | AI_MOVE_FLEE_FRIGHTENERS
    viCashmin = 50

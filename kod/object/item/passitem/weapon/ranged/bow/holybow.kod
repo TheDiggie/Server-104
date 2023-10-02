@@ -14,9 +14,6 @@ HolyBow is Bow
 constants:
 
    include blakston.khd
-   
-   // minimum karma to hold this bow
-   HOLY_BOW_KARMA_MIN = 60
 
 resources:
 
@@ -29,6 +26,8 @@ resources:
 	   "You are not worthy of this divine weapon."
 	HolyBow_good_obtained = \
 	   "Your soul fills with light and courage as you prepare for battle."
+
+   HolyBow_not_shal = "Only a follower of Shal'ille can wield this bow."
 	   
 classvars:
 
@@ -71,11 +70,36 @@ messages:
 
    ReqUse()
    {
-      if Send(poOwner,@GetKarma) < HOLY_BOW_KARMA_MIN
+      local i, oSpell, oFound;
+
+      if Send(poOwner,@PlayerIsImmortal)
+         OR IsClass(poOwner,&EscapedConvict)
       {
-			Send(poOwner,@MsgSendUser,#message_rsc=HolyBow_not_good_enough);
-			
-			return FALSE;
+         return TRUE;
+      }
+
+      oFound = FALSE;
+
+      if poOwner <> $
+      {
+         foreach i in Send(poOwner,@GetSpellList)
+         {
+            oSpell = Send(SYS,@FindSpellByNum,
+                           #num=Send(poOwner,@DecodeSpellNum,#compound=i));
+            if Send(oSpell,@GetSchool) = SS_SHALILLE
+            {
+               oFound = TRUE;
+
+               break;
+            }
+         }
+
+         if oFound = FALSE
+         {
+            Send(poOwner,@MsgSendUser, #message_rsc = HolyBow_not_shal);
+
+            return FALSE;
+         }
 		}
 		else
 		{

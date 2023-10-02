@@ -138,7 +138,7 @@ properties:
    ptHoldingDamage = $
    piHoldingDamageInterval = 10 * 1000     // Ten seconds.
    piHpWorthyThreshold = 60
-   piKarmaWorthyThreshold = -30
+   piKarmaWorthyThreshold = 0
 
    piAttack_type = ATCK_WEAP_SLASH
    piAttack_Spell = ATCK_SPELL_HUNTERSWORD
@@ -208,7 +208,7 @@ messages:
 
    ReqNewOwner(what = $)
    {
-      local iDamage;
+      local i, iDamage;
 
       if IsClass(what,&StorageBox)
          OR IsClass(what,&SafetyDepositBox)
@@ -216,24 +216,17 @@ messages:
          return FALSE;
       }
 
-      if what <> $
-         AND IsClass(what,&User)
+      if what <> $ AND IsClass(what,&Player)
       {
-         if Send(what,@FindHoldingActive,#class=&HunterSword) <> $
+         foreach i in send(what,@GetholderPassive)
          {
-            return FALSE;
-         }
-         if Send(what,@IsUsingA,#class=&NecromancerAmulet)
-         {
-            return FALSE;
-         }
-         if NOT Send(what,@CanAdvance)
-         {
-            Send(what,@DontInterfere);
-
-            return FALSE;
+            if isClass(i,&HunterSword) OR isClass(i,&NecromancerAmulet)
+            {
+               return FALSE;
+            }
          }
       }
+
       // This is to prevent us from being dropped in a cheap death.
       if poOwner <> $
          AND IsClass(poOwner,&User)

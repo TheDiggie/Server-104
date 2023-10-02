@@ -31,7 +31,7 @@ resources:
    Spellitem_Broken = "This is the generic broken message."
    Spellitem_fails = "Generic failure message."
    Spellitem_bad_item_rsc = "generic bad item message"
-   Spellitem_bad_karma = "Your karma cannot unleash the spell within %s%s."
+   Spellitem_bad_karma = "Your god refuses to let you unleash the spell within %s%s."
    Spellitem_has_karma_requirement = \
      "\n\nTo use this, you must have sufficient karma to cast the spell inside."
    spellitem_append_hits = "\n\nThis potion contains %i %s."

@@ -52,10 +52,10 @@ messages:
    {
       local iKarma_change;
 
-      // User moves toward (-80) karma.
-      iKarma_change=Send(poOwner,@CalculateKarmaChangeFromAct,#karma_act=-80,
-         #karma_doer=Send(poOwner,@GetKarma),#swing_factor=10);
-      Send(poOwner,@AddKarma,#amount=iKarma_Change);
+      //// User moves toward (-80) karma.
+      //iKarma_change=Send(poOwner,@CalculateKarmaChangeFromAct,#karma_act=-80,
+      //   #karma_doer=Send(poOwner,@GetKarma),#swing_factor=10);
+      //Send(poOwner,@AddKarma,#amount=iKarma_Change);
 
       propagate;
    }

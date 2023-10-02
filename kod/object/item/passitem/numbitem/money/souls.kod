@@ -42,7 +42,7 @@ classvars:
    viUse_type = ITEM_CANT_USE
    viItem_type = ITEMTYPE_MONEY
 
-   viGround_group = 2
+   viGround_group = 1
    viInventory_group = 1
 
 properties:

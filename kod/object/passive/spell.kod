@@ -532,6 +532,8 @@ messages:
    
    KarmaCheck(who=$)
    {
+      local i, oSpell, oFound;
+
       if Send(who,@PlayerIsImmortal)
          OR IsClass(who,&EscapedConvict)
       {
@@ -540,14 +542,38 @@ messages:
 
       if viSchool = SS_SHALILLE
       {
-         if Send(who,@GetKarma) < (10*viSpell_level)
+         foreach i in Send(who,@GetSpellList)
+         {
+            oSpell = Send(SYS,@FindSpellByNum,
+                           #num=Send(who,@DecodeSpellNum,#compound=i));
+            if Send(oSpell,@GetSchool) = SS_QOR
+            {
+               oFound = TRUE;
+
+               break;
+            }
+         }
+
+         if oFound = TRUE
          {
             return FALSE;
          }
       }
       else if viSchool = SS_QOR
       {
-         if Send(who,@GetKarma) > -(10*viSpell_level)
+         foreach i in Send(who,@GetSpellList)
+         {
+            oSpell = Send(SYS,@FindSpellByNum,
+                           #num=Send(who,@DecodeSpellNum,#compound=i));
+            if Send(oSpell,@GetSchool) = SS_SHALILLE
+            {
+               oFound = TRUE;
+
+               break;
+            }
+         }
+
+         if oFound = TRUE
          {
             return FALSE;
          }
