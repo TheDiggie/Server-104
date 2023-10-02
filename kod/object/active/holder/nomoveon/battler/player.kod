@@ -7738,15 +7738,17 @@ messages:
 
    NewKarma()
    {
-      if piKarma < -10000
-      {
-         piKarma = -10000;
-      }
+      //if piKarma < -10000
+      //{
+      //   piKarma = -10000;
+      //}
+//
+      //if piKarma > 10000
+      //{
+      //   piKarma = 10000;
+      //}
 
-      if piKarma > 10000
-      {
-         piKarma = 10000;
-      }
+      piKarma = 0;
 
       Send(self,@DrawKarma);
 
