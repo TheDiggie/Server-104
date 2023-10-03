@@ -2861,6 +2861,7 @@ messages:
          Send(self,@NewHold,#what=Create(&DuskRatMask));
          Send(self,@NewHold,#what=Create(&DaemonMask));
          Send(self,@NewHold,#what=Create(&FeyMask));
+         Send(self,@NewHold,#what=Create(&FeyMaskEvil));
          Send(self,@NewHold,#what=Create(&FrontMask));
          Send(self,@NewHold,#what=Create(&IndianHat));
          Send(self,@NewHold,#what=Create(&KriipaMask));

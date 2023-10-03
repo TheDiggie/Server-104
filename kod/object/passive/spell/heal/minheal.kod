@@ -63,8 +63,7 @@ messages:
          return 1;
       }
 
-      return Bound(Random(100,500) + ((iSpellPower + 1) * 5)
-               + (Send(oTarget,@GetKarma) * 5),0,1000);
+      return Random(100,500) + ((iSpellPower + 1) * 8);
    }
 
    GetPotionClass()

@@ -218,12 +218,14 @@ messages:
 
       if what <> $ AND IsClass(what,&Player)
       {
-         foreach i in send(what,@GetholderPassive)
+         if Send(what,@FindHoldingActive,#class=&HunterSword) <> $
          {
-            if isClass(i,&HunterSword) OR isClass(i,&NecromancerAmulet)
-            {
-               return FALSE;
-            }
+            return FALSE;
+         }
+
+         if Send(what,@FindHoldingActive,#class=&NecromancerAmulet) <> $
+         {
+            return FALSE;
          }
       }
 
@@ -328,7 +330,7 @@ messages:
 
       // Karma mod is bilinear -  rises fast from  0 at -30 to  75 at +30
       //                          rises slow from 75 at +30 to 100 at 100
-      iKarma = Send(poOwner,@GetKarma);
+      iKarma = 10000;
 
       if iKarma < (-piKarmaWorthyThreshold)
       {
@@ -983,6 +985,13 @@ messages:
       }
 
       return TRUE;
+   }
+
+   setnewkarma()
+   {
+      piKarmaWorthyThreshold = -1;
+
+      return;
    }
 
 end

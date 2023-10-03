@@ -8,7 +8,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-FeyMask is FaceMask
+FeyMaskEvil is FaceMask
 
 constants:
 
@@ -16,24 +16,22 @@ constants:
 
 resources:
 
-   include feymask.lkod
-
-   FeyMask_name_rsc = "fey elhai mask"
-   FeyMask_good_icon_male_rsc = res0002g.bgf
-   FeyMask_good_icon_female_rsc = res0002i.bgf
-   FeyMask_desc_rsc = \
-      "This is a fey elhai mask."
+   FeyMask_evil_name_rsc = "fey derhai mask"
+   FeyMask_evil_icon_male_rsc = res0002h.bgf
+   FeyMask_evil_icon_female_rsc = res0002j.bgf
+   FeyMask_evil_desc_rsc = \
+      "This is a fey derhai mask."
 
 classvars:
 
-   vrName = FeyMask_name_rsc
-   vrDesc = FeyMask_desc_rsc
+   vrName = FeyMask_evil_name_rsc
+   vrDesc = FeyMask_evil_desc_rsc
 
 properties:
 
-   vrIcon = FeyMask_good_icon_male_rsc
-   vrMaleGoodIcon = FeyMask_good_icon_male_rsc
-   vrFemaleGoodIcon = FeyMask_good_icon_female_rsc
+   vrIcon = FeyMask_evil_icon_male_rsc
+   vrMaleEvilIcon = FeyMask_evil_icon_male_rsc
+   vrFemaleEvilIcon = FeyMask_evil_icon_female_rsc
 
 messages:
 
@@ -41,10 +39,10 @@ messages:
    {
       if Send(poOwner,@GetGender) = GENDER_FEMALE
       {
-         return vrFemaleGoodIcon;
+         return vrFemaleEvilIcon;
       }
 
-      return vrMaleGoodIcon;
+      return vrMaleEvilIcon;
    }
 
 end

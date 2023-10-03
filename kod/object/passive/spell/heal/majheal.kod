@@ -54,7 +54,7 @@ messages:
    ResetReagents()
    {
       plReagents = $;
-      plReagents = Cons([&Herbs,4],plReagents);
+      plReagents = Cons([&Emerald,4],plReagents);
 
       return;
    }
@@ -68,8 +68,7 @@ messages:
          return 1;
       }
 
-      return Bound(Random(700,1300) + ((iSpellPower + 1) * 20)
-               + (Send(oTarget,@GetKarma) * 20),0,5000);
+      return Random(500,1500) + ((iSpellPower + 1) * 20);
    }
 
 end

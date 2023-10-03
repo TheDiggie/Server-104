@@ -201,14 +201,17 @@ messages:
          return FALSE;
       }
 
+
       if what <> $ AND IsClass(what,&Player)
       {
-         foreach i in send(what,@GetholderPassive)
+         if Send(what,@FindHoldingActive,#class=&HunterSword) <> $
          {
-            if isClass(i,&HunterSword) OR isClass(i,&NecromancerAmulet)
-            {
-               return FALSE;
-            }
+            return FALSE;
+         }
+         
+         if Send(what,@FindHoldingActive,#class=&NecromancerAmulet) <> $
+         {
+            return FALSE;
          }
       }
 
@@ -406,7 +409,7 @@ messages:
          return;
       }
 
-      iKarmaFactor =  (100 * (Send(poOwner,@GetKarma) - piKarmaWorthyThreshold))
+      iKarmaFactor =  (100 * (-10000 - piKarmaWorthyThreshold))
                            / (-100 - piKarmaWorthyThreshold);
 
       // iHungerFactor =( 100 * (piHunger- HUNGER_5))/(-HUNGER_5 - HUNGER_5);
@@ -1385,6 +1388,13 @@ messages:
       }
 
       return TRUE;
+   }
+
+   setnewkarma()
+   {
+      piKarmaWorthyThreshold = 1;
+
+      return;
    }
 
 end

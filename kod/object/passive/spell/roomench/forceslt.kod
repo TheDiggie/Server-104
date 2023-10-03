@@ -96,7 +96,7 @@ messages:
    StartEnchantment(who = $)
    "Starts enchantment effect on one player"
    {
-      if Send(who,@GetKarma) > 0
+      if Send(self,@KarmaCheck,#who=who)
       {
          Send(who,@AddAttackModifier,#what=self);
          Send(who,@MsgSendUser,#message_rsc=forcesoflight_player_on);

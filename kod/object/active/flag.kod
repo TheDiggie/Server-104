@@ -362,6 +362,17 @@ messages:
       return TRUE;
    }
 
+   SomethingPhasedOut(what=$, iHealth=$, iMaxHealth=$)
+   "Faster override for Room, don't need to propagate to Holder."
+   {
+      if what = poClaimer
+      {
+         Send(self,@ClaimFailed);
+      }
+
+      return;
+   }
+
    CheckClaimerFlag()
    {
       if poClaimer <> $

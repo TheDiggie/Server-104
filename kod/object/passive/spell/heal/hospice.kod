@@ -64,8 +64,7 @@ messages:
          return 1;
       }
 
-      return Bound(Random(-300,300) + ((iSpellPower + 1) * 20)
-               + (Send(oTarget,@GetKarma) * 10),0,2500);
+      return Random(300,1000) + ((iSpellPower + 1) * 10);
    }
 
 end
