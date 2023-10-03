@@ -151,7 +151,6 @@ messages:
          OR IsClass(oSpell,&NightVision)
          OR IsClass(oSpell,&MartyrsBattleground)
          OR IsClass(oSpell,&Anonymity)
-         OR IsClass(oSpell,&ForcesOfLight)
          OR IsClass(oSpell,&QorBane)
          OR IsClass(oSpell,&PortalofLife)
          OR IsClass(oSpell,&FinalRites)

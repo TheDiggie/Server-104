@@ -146,6 +146,8 @@ properties:
    pbCounted = FALSE
    pbCheapDeath = FALSE
 
+   piKarma = 100
+
 messages:
 
    Constructor()
@@ -330,7 +332,7 @@ messages:
 
       // Karma mod is bilinear -  rises fast from  0 at -30 to  75 at +30
       //                          rises slow from 75 at +30 to 100 at 100
-      iKarma = 10000;
+      iKarma = piKarma;
 
       if iKarma < (-piKarmaWorthyThreshold)
       {

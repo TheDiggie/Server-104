@@ -181,6 +181,8 @@ properties:
    pbOrderDisbanded = FALSE
    pbCounted = FALSE
 
+   piKarma = -100
+
 messages:
 
    Constructor()
@@ -409,7 +411,9 @@ messages:
          return;
       }
 
-      iKarmaFactor =  (100 * (-10000 - piKarmaWorthyThreshold))
+      iKarma = piKarma;
+
+      iKarmaFactor =  (100 * (iKarma - piKarmaWorthyThreshold))
                            / (-100 - piKarmaWorthyThreshold);
 
       // iHungerFactor =( 100 * (piHunger- HUNGER_5))/(-HUNGER_5 - HUNGER_5);
