@@ -31,6 +31,7 @@ resources:
    Bond_sound = sbond.ogg
 
    bond_bad_target = "You can't bond that."
+   bond_bad_person = "You can't cast bond on players!"
    bond_failed = \
       "You feel the magical bond begin to reach out in vain for one of its targets, "
       "but finding nothing it dissipates."
@@ -87,6 +88,12 @@ messages:
       local oTarget;
 
       oTarget = First(lTargets);
+
+      if IsClass(oTarget,&User)
+      {
+         Send(who,@MsgSendUser,#message_rsc=bond_bad_person);
+         return FALSE;
+      }
 
       if NOT Send(oTarget,@CanMend)
 	     AND NOT IsClass(oTarget,&Item)

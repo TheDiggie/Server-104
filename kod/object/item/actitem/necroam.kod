@@ -402,7 +402,7 @@ messages:
 
    AdjustStats()
    {
-      local iKarmaFactor, iHungerFactor, iLichFactor, iModifier, iStatMod;
+      local iKarma, iKarmaFactor, iHungerFactor, iLichFactor, iModifier, iStatMod;
 
       if poOwner = $
       {
