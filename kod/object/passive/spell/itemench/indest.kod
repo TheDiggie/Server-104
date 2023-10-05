@@ -1,0 +1,101 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Indestructible is ItemEnchantment
+
+constants:
+   include blakston.khd
+
+resources:
+   
+   Indestructible_name_rsc = "Indestructible"
+   Indestructible_icon_rsc = light.bgf
+   Indestructible_desc_rsc = \
+      "Makes a item indestructible."
+
+   Indestructible_cast  = "You make the %s indestructible."
+   Indestructible_fails = "You can't cast indestructible on %s%s."
+
+classvars:
+
+   vrName = Indestructible_name_rsc
+   vrIcon = Indestructible_icon_rsc
+   vrDesc = Indestructible_desc_rsc
+
+   viSpell_num = SID_INDEST
+   viSchool = SS_DM_COMMAND
+
+   viSpell_level = 3
+   viMana = 10
+   viSpellExertion = 3
+   viCast_time = 0
+
+   viChance_To_Increase = 25
+   viMeditate_ratio = 30
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&Mushroom,5],plReagents);
+      plReagents = Cons([&Elderberry,5],plReagents);
+
+      return;
+   }
+
+   CanPayCosts(who=$,lTargets=$)
+   {
+      local oWeapon, oTarget;
+
+      if lTargets = $
+      {
+         return FALSE;
+      }
+
+      oTarget = First(lTargets);
+
+      // Check that target is an item
+      if NOT IsClass(oTarget,&PassiveItem)
+      OR IsClass(oTarget,&NumberItem)
+      OR IsClass(oTarget,&SpellItem)
+      {
+         Send(who,@MsgSendUser,#message_rsc=Indestructible_fails,
+               #parm1=Send(oTarget,@GetCapDef),#parm2=Send(oTarget,@GetName));
+
+        return FALSE;
+      }
+
+      propagate;
+   }
+
+   CastSpell(who=$,lTargets=$,iSpellPower=0)
+   {
+      local iCurrentSpell, oItem, oItemAtt;
+
+      oItem = First(lTargets);
+
+      oItemAtt = Send(SYS,@FindItemAttByNum,#num=IA_INDESTRUCTIBLE);
+      iCurrentSpell = Send(oItem,@GetAttributeData,#ItemAtt=IA_INDESTRUCTIBLE);
+      
+      Send(oItemAtt,@AddtoItem,#oItem=oItem);
+
+      Send(who,@MsgSendUser,#message_rsc=Indestructible_cast,
+            #parm1=Send(oItem,@GetName));
+      
+      Send(oItem,@SetIndestructible);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

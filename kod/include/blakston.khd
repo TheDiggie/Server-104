@@ -2004,6 +2004,7 @@
    IA_DM_CREATED           = 21
    IA_XP_KILL_BONUS        = 22
    IA_CRAFTED              = 23
+   IA_INDESTRUCTIBLE       = 24
 
    // Weapon Attributes.  These are attributes only applied to weapons.
    WA_TRAINING             = 51
@@ -2375,6 +2376,7 @@
    SID_VAULT_LOADOUT = 200
 
    SID_ICEWALL = 241
+   SID_INDEST  = 242
    
    //Crafting
    SID_CRAFTMACE           = 210

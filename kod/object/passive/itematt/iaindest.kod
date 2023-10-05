@@ -8,7 +8,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-ItemAttCrafted is ItemAttribute
+ItemAttIndestructible is ItemAttribute
 
 ///////////////////////////////////////////////////////////////////////
 //
@@ -23,31 +23,22 @@ constants:
 
 resources:
 
-   itematt_crafted_desc = " This piece of gear was crafted by %s."
+   itematt_Indestructible_desc = " This piece of gear is indestructible."
 
 classvars:
 
-   viItem_Att_Num = IA_CRAFTED
-   vrDesc = itematt_crafted_desc
+   viItem_Att_Num = IA_INDESTRUCTIBLE
+   vrDesc = itematt_Indestructible_desc
 
    viDifficulty = 5
 
 properties:
 
-   poCrafter = $
-
 messages:
 
    AppendDesc()
    {
-      AddPacket(4,vrDesc,4,send(poCrafter,@getname));
-
-      return;
-   }
-
-   SetCrafter(who=$)
-   {
-      poCrafter = who;
+      AddPacket(4,vrDesc);
 
       return;
    }

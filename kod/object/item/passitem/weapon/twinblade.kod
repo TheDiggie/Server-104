@@ -20,8 +20,7 @@ resources:
    TwinBlade_icon_rsc = twnblad.bgf
 
    TwinBlade_desc_rsc = \
-      "A intimidating blade to all, this sword bears two blades for double the  "
-      "carnage!"
+      "A intimidating blade to all, this sword bears two blades for double the carnage!"
       
    TwinBlade_window_overlay_rsc = povtwnblad.bgf
    TwinBlade_player_overlay = twnbladov.bgf
