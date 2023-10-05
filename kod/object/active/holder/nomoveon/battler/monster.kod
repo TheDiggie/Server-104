@@ -152,29 +152,29 @@ resources:
 
    Lm_only_receiver = "%s%s says, \"I don't buy things, but I do take gifts.\""
    Lm_buyer_offer_busy = "%s is busy right now with another customer." 
-   Lm_buyer_no_value = "I can't even give you a shilling for that."
+   Lm_buyer_no_value = "I can't even give you any %r for that."
    Lm_buyer_timeout = \
       "Can't make up your mind?  Think on it and come back when you are ready."
    Lm_buyer_unwanted = "I'm not interested."
-   Lm_bnkr_balance = "You have %i shillings in your account."
+   Lm_bnkr_balance = "You have %i %r in your account."
    Lm_bnkr_did_deposit = \
-      "Thank you for your deposit.  You now have %i shillings in your account."
-   Lm_bnkr_no_account = "You have no money to withdraw!"
+      "Thank you for your deposit.  You now have %i %r in your account."
+   Lm_bnkr_no_account = "You have no %r to withdraw!"
    Lm_bnkr_acct_full = \
-      "You have so many shillings stored here, that I'm afraid I have no "
+      "You have so many %r stored here, that I'm afraid I have no "
       "space to store any more!"
    Lm_bnkr_acct_almost_full = \
-      "You have so many shillings stored here, that I'm afraid I can only "
+      "You have so many %r stored here, that I'm afraid I can only "
       "store %i more."
    Lm_bnkr_not_enough_withdraw = \
-      "But you only have %i shillings in your account!"
+      "But you only have %i %r in your account!"
    Lm_bnkr_not_enough_deposit = \
-      "But you only have %i shillings in your possession!"
+      "But you only have %i %r in your possession!"
    Lm_bnkr_did_withdraw = \
-      "Here are your %i shillings. Thank you for your business."
+      "Here are your %i %r. Thank you for your business."
    Lm_bnkr_player_full = \
-      "I swear, if I gave you a shilling more than %i you'd topple right over!"
-   Lm_bnkr_player_all_full = "You can't hold even a single shilling more!"
+      "I swear, if I gave you a %r more than %i you'd topple right over!"
+   Lm_bnkr_player_all_full = "You can't hold more %r!"
 
    vaultman_nogold = "You may not use my services to store %s%s."
    vaultman_nocursed = "I cannot take %s%s from you."
@@ -182,7 +182,7 @@ resources:
       "Your vault cannot hold that much stuff!  Perhaps you should try "
       "offering items in smaller quantities."
    vaultman_thanks_amount = \
-      "That will cost %i shillings.  Thank you for trusting me to "
+      "That will cost %i %r.  Thank you for trusting me to "
       "quartermaster your gear."
    vaultman_dont_have = "Hmmm, I can't seem to find %s%s in your vault."
    vaultman_no_room = \
@@ -197,7 +197,7 @@ resources:
    vaultman_nowithdraw_cash = \
       "You currently cannot pay the exit fee to get your stuff out."
    vaultman_nodeposit_cash = \
-      "Storing these items would cost %i shillings - which I see you do not "
+      "Storing these items would cost %i %r - which I see you do not "
       "have."
    vaultman_cant_part = \
       "Wow... I couldn't feel responsible if your %s were to disappear - I "
@@ -213,7 +213,7 @@ resources:
    monster_koc_name = "moch"
 
    monster_report_balance = \
-      "~B~g[~n~k%s%s tells you, \"%q has %i shillings in this bank.\"~B~g]"
+      "~B~g[~n~k%s%s tells you, \"%q has %i %r in this bank.\"~B~g]"
    Monster_Sweep_Reward = \
       "Hmm... that looks a bit cleaner.  Here, take this as payment, %s%s."
 
@@ -221,13 +221,8 @@ resources:
    minion_trouble = \
       "You sense your minion has gotten you into some trouble..."
 
-   autolooted_all = "You loot the corpse clean, and find %d shillings."
    autolooted_all_no_money = "You loot the corpse clean."
-   autolooted_some = "You loot some of the items from your fallen kill, and "
-      "find %d shillings."
    autolooted_some_no_money = "You loot some of the items from your fallen enemy."
-   autolooted_only_money = "You find nothing easily lootable on your slain "
-      "enemy other than %d shillings."
    autolooted_none = "You find nothing easily lootable on your slain enemy."
      
    autoloot_too_far_away = "You're too far away to loot your fallen enemy!"
@@ -235,8 +230,14 @@ resources:
       "loot, but find yourself too encumbered to get it all."
    autoloot_got_nothing_because_full= "You can't carry any more, so you loot "
       "nothing from your fallen enemy."
+
+   autolooted_all = "You loot the corpse clean, and find %d %r."
+   autolooted_only_money = "You find nothing easily lootable on your slain "
+      "enemy other than %d %r."
+   autolooted_some = "You loot some of the items from your fallen kill, and "
+      "find %d %r."
    autoloot_got_only_shillings_because_full = "You can't carry any more, so you "
-      "loot nothing from your fallen enemy, but you do find %d shillings."
+      "loot nothing from your fallen enemy, but you do find %d %r."
 
    monster_faction_negative_msg = \
       "Your standing with The %s has decreased"
@@ -2920,7 +2921,7 @@ messages:
    "Return TRUE if the offer should go through, meaning that the monster will "
    "offer the value of the items in return."
    {
-      local i,j, lArgList, iValueOffered, oQuestNode, bIsBuyer, bWarnAboutUnwantedItems;
+      local i,j, lArgList, iValueOffered, oQuestNode, bIsBuyer, bWarnAboutUnwantedItems, oMoney;
 
       if item_list = $
       {
@@ -3023,9 +3024,11 @@ messages:
             iValueOffered = iValueOffered + Send(i,@GetValue);
          }
 
+         oMoney = Send(SYS,@FindTemplateItemByClass,#cClass=poCurrency);
+
          if iValueOffered = 0
          {
-            Send(self,@SayToOne,#target=what,#message_rsc=Lm_buyer_no_value);
+            Send(self,@SayToOne,#target=what,#message_rsc=Lm_buyer_no_value,#parm1=Send(oMoney,@GetName));
 
             return FALSE;
          }
@@ -4083,7 +4086,7 @@ messages:
       if iCash < iFee AND iFee <> 0
       {
          Send(self,@SayToOne,#target=who,#message_rsc=vaultman_nodeposit_cash,
-              #parm1=iFee);
+              #parm1=iFee,#parm2=Send(oMoney,@GetName));
 
          return;
       }               
@@ -4103,7 +4106,7 @@ messages:
       {
          Send(oMoney,@SubtractNumber,#number=iFee);  
          Send(self,@SayToOne,#message_rsc=vaultman_Thanks_amount,#target=who,
-              #parm1=iFee);
+              #parm1=iFee,#parm2=Send(oMoney,@GetName));
       }
       else
       {
@@ -4284,7 +4287,7 @@ messages:
          else
          {
             Send(self,@SayToOne,#message_rsc=vaultman_Thanks_amount,#target=what,
-              #parm1=iFee);
+              #parm1=iFee,#parm2=Send(oMoney,@GetName));
          }
       }
       else
@@ -4304,7 +4307,7 @@ messages:
 
    BankBalance(who=$)
    {
-      local oBank, oFunds;
+      local oBank, oMoney;
 
       if NOT Send(self,@MobIsBanker)
       {
@@ -4319,16 +4322,17 @@ messages:
       }
 
       oBank = Send(SYS,@FindBankByNum,#num=Send(self,@GetBankNum));
-      oFunds = poCurrency;
+      oMoney = Send(SYS,@FindTemplateItemByClass,#cClass=poCurrency);
+
       Post(who,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
-           #string=vrLm_bnkr_balance,#parm1=Send(oBank,@GetAccount,#what=who));
+           #string=vrLm_bnkr_balance,#parm1=Send(oBank,@GetAccount,#what=who),#parm2=Send(oMoney,@GetName));
 
       return;
    }
 
    ReportBankBalance(who=$,number=0)
    {
-      local oBank, lTops, oSnoop;
+      local oBank, lTops, oSnoop, oMoney;
 
       if NOT Send(self,@MobIsBanker)
       {
@@ -4360,17 +4364,19 @@ messages:
          Send(oSnoop,@MsgSendUser,#message_rsc=monster_report_balance,
               #parm1=Send(self,@GetCapDef),#parm2=Send(self,@GetName),
               #parm3=Send(who,@GetUserName),#type3=STRING_RESOURCE,
-              #parm4=Send(oBank,@GetAccount,#what=who));
+              #parm4=Send(oBank,@GetAccount,#what=who),#parm5=Send(oMoney,@GetName));
       }
       else
       {
+         oMoney = Send(SYS,@FindTemplateItemByClass,#cClass=poCurrency);
+
          lTops = Send(oBank,@FindTopAccounts,#number=number);
          foreach who in lTops
          {
             Send(oSnoop,@MsgSendUser,#message_rsc=monster_report_balance,
                #parm1=Send(self,@GetCapDef),#parm2=Send(self,@GetName),
                #parm3=Send(who,@GetUserName),#type3=STRING_RESOURCE,
-               #parm4=Send(oBank,@GetAccount,#what=who));
+               #parm4=Send(oBank,@GetAccount,#what=who),#parm5=Send(oMoney,@GetName));
          }
       }
 
@@ -4401,10 +4407,11 @@ messages:
       }
 
       oMoney = Send(who,@GetMoneyObject,#type=funds);
+
       if oMoney = $
       {
          Post(poOwner,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
-              #string=vrLm_bnkr_not_enough_deposit,#parm1=0);
+              #string=vrLm_bnkr_not_enough_deposit,#parm1=0,#parm2=Send(oMoney,@GetName));
 
          return;
       }
@@ -4413,7 +4420,7 @@ messages:
       {
          Post(poOwner,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
               #string=vrLm_bnkr_not_enough_deposit,
-              #parm1=Send(oMoney,@GetValue));
+              #parm1=Send(oMoney,@GetValue),#parm2=Send(oMoney,@GetName));
 
          return;
       }
@@ -4425,7 +4432,7 @@ messages:
       if (iBankAmt = MAX_KOD_INT)
       {
          Post(poOwner,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
-              #string=vrLm_bnkr_acct_full);
+              #string=vrLm_bnkr_acct_full,#parm1=Send(oMoney,@GetName));
 
          return;
       }
@@ -4442,7 +4449,7 @@ messages:
          }
 
          Post(poOwner,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
-               #string=vrLm_bnkr_acct_almost_full,#parm1=amount);
+               #string=vrLm_bnkr_acct_almost_full,#parm1=Send(oMoney,@GetName),#parm2=amount);
       }
 
       Send(oMoney,@SubtractNumber,#number=amount);
@@ -4450,7 +4457,7 @@ messages:
 
       Post(who,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
            #string=vrLm_bnkr_did_deposit,
-           #parm1=Send(oBank,@GetAccount,#what=who));
+           #parm1=Send(oBank,@GetAccount,#what=who),#parm2=Send(oMoney,@GetName));
 
       Send(self,@AffectMood,#why=MOODMOD_BANK_DEPOSIT);
 
@@ -4489,7 +4496,7 @@ messages:
       if iBankAmt = 0
       {
          Post(who,@SomeoneSaid,#what=self,#string=vrLm_bnkr_no_account,
-              #type=SAY_RESOURCE);
+              #type=SAY_RESOURCE,#parm1=Send(oMoney,@GetName));
 
          return;
       }
@@ -4498,7 +4505,7 @@ messages:
       {
          Send(oBank,@DepositAccount,#what=who,#amount=iBankAmt);
          Post(who,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
-              #string=vrLm_bnkr_not_enough_withdraw,#parm1=iBankAmt);
+              #string=vrLm_bnkr_not_enough_withdraw,#parm1=iBankAmt,#parm2=Send(oMoney,@GetName));
 
          return;
       }
@@ -4518,7 +4525,7 @@ messages:
          {
             Send(oBank,@DepositAccount,#what=who,#amount=iBankAmt);
             Post(who,@SomeoneSaid,#what=self,#string=vrLm_bnkr_player_all_full,
-                  #type=SAY_RESOURCE);
+                  #type=SAY_RESOURCE,#parm1=Send(oMoney,@GetName));
 
             return;
          }
@@ -4526,7 +4533,7 @@ messages:
          {
             amount = MAX_KOD_INT - iPlayerAmt;
             Post(who,@SomeoneSaid,#what=self,#string=vrLm_bnkr_player_full,
-                  #type=SAY_RESOURCE,#parm1=amount);
+                  #type=SAY_RESOURCE,#parm1=Send(oMoney,@GetName),#parm2=amount);
 
             if amount > iBankAmt
             {
@@ -4548,7 +4555,7 @@ messages:
       // Send this message even if we gave the almost full one - players are
       // used to seeing this message on a successful transaction.
       Post(who,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
-            #string=vrLm_bnkr_did_withdraw,#parm1=amount);
+            #string=vrLm_bnkr_did_withdraw,#parm1=amount,#parm2=Send(oMoney,@GetName));
 
       Send(self,@AffectMood,#why=MOODMOD_BANK_WITHDRAWAL);
 
@@ -6244,7 +6251,7 @@ messages:
                if iRandomCashAmount > 0
                {
                   Send(who,@MsgSendUser,#message_rsc=autoloot_got_only_shillings_because_full,
-                        #parm1=Send(oMoney,@GetNumber));
+                        #parm1=Send(oMoney,@GetNumber),#parm2=Send(oMoney,@GetName));
                }
                else
                {
@@ -6262,7 +6269,7 @@ messages:
                if iRandomCashAmount > 0
                {
                   Send(who,@MsgSendUser,#message_rsc=autolooted_all,
-                        #parm1=Send(oMoney,@GetNumber));
+                        #parm1=Send(oMoney,@GetNumber),#parm2=Send(oMoney,@GetName));
                }
                else
                {
@@ -6274,7 +6281,7 @@ messages:
                if iRandomCashAmount > 0
                {
                   Send(who,@MsgSendUser,#message_rsc=autolooted_some,
-                        #parm1=Send(oMoney,@GetNumber));
+                        #parm1=Send(oMoney,@GetNumber),#parm2=Send(oMoney,@GetName));
                }
                else
                {
@@ -6287,7 +6294,7 @@ messages:
             if iRandomCashAmount > 0
             {
                Send(who,@MsgSendUser,#message_rsc=autolooted_only_money,
-                     #parm1=Send(oMoney,@GetNumber));
+                     #parm1=Send(oMoney,@GetNumber),#parm2=Send(oMoney,@GetName));
             }
             else if iRandomCashAmount <= 0
             {
