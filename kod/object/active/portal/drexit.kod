@@ -26,7 +26,6 @@ resources:
       "~B~rA voice from the goddess Shal'ille speaks to you ''You've done it!! "
       "You've slain Far'nohl and defeated his master Qor!! You must be one of the "
       "strongest adventurers in the land. If only Kraanan was around to see this..."
-   Remove_souls = "Your contained souls have been released from there prison. "
 
 classvars:
 
@@ -45,17 +44,6 @@ messages:
    TeleportSomething(what=$)
    "Called when something walks on top of us."
    {
-      local i, each_obj, oRoom;
-
-      foreach i in Send(what,@GetHolderPassive)
-      {
-         each_obj = Send(what,@HolderExtractObject,#data=i);
-         if IsClass(each_obj,&Souls)
-         {
-            Send(each_obj,@Delete);
-            Send(what,@MsgSendUser,#message_rsc=Remove_souls);
-         }
-      }
 
       Send(what,@MsgSendUser,#message_rsc=DeathRealm_exit_enter);
       Post(what,@AdminGoToSafety);
