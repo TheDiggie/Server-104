@@ -14,7 +14,7 @@ monster_teach_quest_needed = de \
    "Ich könnte Dir %s beibringen, jedoch musst Du zuerst Deinen Wert als "
    "Schüler unter Beweis stellen."
 monster_teach_base = de \
-   "Du bist auf dem richtigen Weg und mit %sFortschritt im vorherigen %s-Zirkel "
+   "Du bist auf dem richtigen Weg und mit %i im vorherigen %s-Zirkel "
    "kannst Du das lernen.%s$0"
 monster_teach_success = de \
    "Gratuliere! Du hast alle Voraussetzungen erfüllt, um diesen Zirkel zu "
@@ -106,33 +106,33 @@ Lm_only_receiver = de \
    "%s%s sagt, \"Ich kaufe keine Sachen, aber ich nehme Geschenke entgegen.\""
 Lm_buyer_offer_busy = de "%s kümmert sich gerade um einen anderen Kunden."
 Lm_buyer_no_value = de \
-   "Ich kann Dir nicht mal einen einzigen Schilling dafür geben."
+   "Ich kann Dir nicht mal einen einzigen %r dafür geben."
 Lm_buyer_timeout = de \
    "Du kannst Dich wohl nicht entscheiden?! Überlege es Dir noch einmal und "
    "komme dann wieder..."
 Lm_buyer_unwanted = de "Kein Interesse."
-Lm_bnkr_balance = de "Dein Kontostand beträgt ~b~B%i~n Schillinge."
+Lm_bnkr_balance = de "Dein Kontostand beträgt ~b~B%i~n %r."
 Lm_bnkr_did_deposit = de \
-   "Danke für Deine Einzahlung. Dein Kontostand beträgt nun ~b~B%i~n Schillinge."
+   "Danke für Deine Einzahlung. Dein Kontostand beträgt nun ~b~B%i~n %r."
 Lm_bnkr_no_account = de \
    "Tja, Du hast Deine Ersparnisse leider verschleudert - Kredit bekommst "
-   "Du von mir nicht!"
+   "Du hast kein %r!"
 Lm_bnkr_acct_full = de \
-   "Du hast so viele Schillinge hier gelagert, so dass ich keinen "
+   "Du hast so viele %r hier gelagert, so dass ich keinen "
    "Platz für mehr habe."
 Lm_bnkr_acct_almost_full = de \
-   "Du hast so viele Schillinge hier gelagert, so dass ich nur noch "
+   "Du hast so viele %r hier gelagert, so dass ich nur noch "
    "Platz für %i habe."
 Lm_bnkr_not_enough_withdraw = de \
-   "Aber Du hast doch nur ~b~B%i~n Schillinge auf Deinem Konto!"
+   "Aber Du hast doch nur ~b~B%i~n %r auf Deinem Konto!"
 Lm_bnkr_not_enough_deposit = de \
-   "Aber es befinden sich nur ~b~B%i~n Schillinge in Deinem Besitz!"
-Lm_bnkr_did_withdraw = de "Hier sind Deine ~b~B%i~n Schillinge. Vielen Dank."
+   "Aber es befinden sich nur ~b~B%i~n %r in Deinem Besitz!"
+Lm_bnkr_did_withdraw = de "Hier sind Deine ~b~B%i~n %r. Vielen Dank."
 Lm_bnkr_player_full = de \
-   "Wenn ich Dir mehr als ~b~B%i~n Schillinge geben würde, wäre mein Ruf "
+   "Wenn ich Dir mehr als ~b~B%i~n %r geben würde, wäre mein Ruf "
    "in Gefahr!"
 Lm_bnkr_player_all_full = de \
-   "Du kannst nicht einmal mehr einen einzigen Schilling halten!"
+   "Du kannst nicht einmal mehr einen einzigen %r halten!"
 vaultman_nogold = de \
    "Du brauchst meine Dienste nicht in Anspruch zu nehmen, um %s%s zu verwahren."
 vaultman_nocursed = de "Ich kann keine %s%s von Dir nehmen."
@@ -140,7 +140,7 @@ vaultman_fullvault = de \
    "Dein Lager kann nicht soviel Kram aufnehmen! Vielleicht solltest Du Sachen "
    "in kleineren Mengen anbieten."
 vaultman_thanks_amount = de \
-   "Das kostet %i Schillinge. Danke, dass Du mir Deine Ausrüstung anvertraust."
+   "Das kostet %i %r. Danke, dass Du mir Deine Ausrüstung anvertraust."
 vaultman_dont_have = de \
    "Hmmm, ich scheine Deine %s%s nicht in Deinem Lager finden zu können."
 vaultman_no_room = de \
@@ -154,7 +154,7 @@ vaultman_withdraw_failed = de \
 vaultman_nowithdraw_cash = de \
    "Im Moment kannst Du die Ablösegebühr nicht zahlen, um Deine Sachen mitzunehmen."
 vaultman_nodeposit_cash = de \
-   "Die Verwahrung dieser Gegenstände würde %i Schillinge kosten - ich sehe, "
+   "Die Verwahrung dieser Gegenstände würde %i %r kosten - ich sehe, "
    "dass Du sie nicht hast."
 vaultman_cant_part = de \
    "Wow... ich könnte nicht die Verantwortung übernehmen, wenn dir %s verschwinden "
@@ -168,19 +168,19 @@ monster_iteach = de \
 monster_teachnothing = de "Ich lehre keine Fertigkeiten ab diesem Zirkel."
 monster_koc_name = de "Der Moch"
 monster_report_balance = de \
-   "~B~g[~n~w%s%s sagt zu Dir, \"%q hat ~b~B%i~w~B Schillinge auf dieser Bank.\"~B~g]"
+   "~B~g[~n~w%s%s sagt zu Dir, \"%q hat ~b~B%i~w~B %r auf dieser Bank.\"~B~g]"
 Monster_Sweep_Reward = de \
    "Hmm... das sieht ein wenig sauberer aus, %s%s. Hier, nimm dies als Belohnung!"
 monster_default_attack = de "der Attacke"
 minion_trouble = de "Du bemerkst, dass dein Diener dir Ärger gebracht hat..."
-autolooted_all = de "Du plünderst die Leiche und findest %d Schillinge."
+autolooted_all = de "Du plünderst die Leiche und findest %d %r."
 autolooted_all_no_money = de "Du plünderst die Leiche leer."
 autolooted_some = de \
-   "Du plünderst einige Dinge von der Leiche, und findest %d Schillinge."
+   "Du plünderst einige Dinge von der Leiche, und findest %d %r."
 autolooted_some_no_money = de "Du plünderst einige Gegenstände von der Leiche."
 autolooted_only_money = de \
    "Du findest nichts besonderes was du plündern kannst, erhältst dafür aber "
-   "%d Schillinge."
+   "%d %r."
 autolooted_none = de "Du findest nichts besonderes, was du plündern kannst."
 autoloot_too_far_away = de "Du bist zu weit weg um die Leiche zu plündern!"
 autoloot_got_some_but_full_now = de \
@@ -190,7 +190,7 @@ autoloot_got_nothing_because_full = de \
    "Du kannst nicht alles plündern, da du schon zu vollgepackt bist."
 autoloot_got_only_shillings_because_full = de \
    "Du kannst nichts mehr von der Leiche plündern da du zu vollgepackt bist, und "
-   "nimmst nur die %d Schillinge."
+   "nimmst nur die %d %r."
 monster_faction_negative_msg = de \
       "Dein Ansehen bei %s hat sich verringgert"
 monster_faction_positive_msg = de \

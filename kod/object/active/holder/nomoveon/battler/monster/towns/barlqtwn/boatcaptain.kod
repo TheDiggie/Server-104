@@ -152,8 +152,8 @@ messages:
          if oRoom <> $
          {
             Send(oRoom, @Teleport, #what=who);
-			Send(who, @AdminGotoBlink);
-			Send(who,@MsgSendUser,#message_rsc=captain_got_wanted_rsc);
+			   Send(who, @AdminGotoBlink);
+			   Send(who,@MsgSendUser,#message_rsc=captain_got_wanted_rsc);
          }
 		 
 	     return TRUE;

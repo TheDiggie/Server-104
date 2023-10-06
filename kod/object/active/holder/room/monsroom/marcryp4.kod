@@ -46,6 +46,10 @@ resources:
    "for a true ritual. You must recite the phrase, \n'Hear me Qor, accept my offer. Open "
    "your realm and lend me your strength.'"
 
+   DeathRealm_champion = "~B~rA voice from the goddess Shal'ille speaks to you ''You have returned to this place "
+                         "again mortal? Why do you humans seek out danger! Regardless, find your way out again "
+                         "and stop coming to this place! I can't protect you from Qor's influence!''"
+
    room_mar_crypt4 = marcrypt4.roo
 
    mar_crypt4_music = castle2.ogg
@@ -123,64 +127,75 @@ messages:
 
    SomeoneSaid(what=$,string=$)
    {
-      local i, bShal, bQor, bRiija, bKran, bFaren, bJala;
+      local i, oRoom, bShal, bQor, bRiija, bKran, bFaren, bJala;
 
       if StringEqual(string,Ritual_1)
       {
-         bShal  = FALSE;
-         bQor   = FALSE;
-         bRiija = FALSE;
-         bKran  = FALSE;
-         bFaren = FALSE;
-         bJala  = FALSE;
-
-         foreach i in plPassive
+         if send(what,@HasBeatDR)
          {
-            if IsClass(First(i),&OfferingShalille)
-               AND Send(self,@CheckShal,#what=First(i))
-            {
-               bShal = TRUE;
-            }
-            if IsClass(First(i),&OfferingQor)
-               AND Send(self,@CheckQor,#what=First(i))
-            {
-               bQor = TRUE;
-            }
-            if IsClass(First(i),&OfferingRiija)
-               AND Send(self,@CheckRiija,#what=First(i))
-            {
-               bRiija = TRUE;
-            }
-            if IsClass(First(i),&OfferingKraanan)
-               AND Send(self,@CheckKran,#what=First(i))
-            {
-               bKran = TRUE;
-            }
-            if IsClass(First(i),&OfferingFaren)
-               AND Send(self,@CheckFaren,#what=First(i))
-            {
-               bFaren = TRUE;
-            }
-            if IsClass(First(i),&OfferingJala)
-               AND Send(self,@CheckJala,#what=First(i))
-            {
-               bJala = TRUE;
-            }
-         }
+            oRoom = Send(SYS,@FindRoomByNum,#num=RID_DTEMPLE);
 
-         if NOT bShal
-            OR NOT bQor
-            OR NOT bRiija
-            OR NOT bKran
-            OR NOT bFaren
-            OR NOT bJala
+            Send(oRoom,@Teleport,#what=what);
+			   Send(what,@AdminGotoBlink);
+            Send(what,@MsgSendUser,#message_rsc=DeathRealm_champion);
+         }
+         else
          {
-            propagate;
-         }
+            bShal  = FALSE;
+            bQor   = FALSE;
+            bRiija = FALSE;
+            bKran  = FALSE;
+            bFaren = FALSE;
+            bJala  = FALSE;
 
-         // Okay, all the tokens should be here and in stonehenge.
-         // Open the portals.
-         Send(self,@OpenPortalToDeathRealm);
+            foreach i in plPassive
+            {
+               if IsClass(First(i),&OfferingShalille)
+                  AND Send(self,@CheckShal,#what=First(i))
+               {
+                  bShal = TRUE;
+               }
+               if IsClass(First(i),&OfferingQor)
+                  AND Send(self,@CheckQor,#what=First(i))
+               {
+                  bQor = TRUE;
+               }
+               if IsClass(First(i),&OfferingRiija)
+                  AND Send(self,@CheckRiija,#what=First(i))
+               {
+                  bRiija = TRUE;
+               }
+               if IsClass(First(i),&OfferingKraanan)
+                  AND Send(self,@CheckKran,#what=First(i))
+               {
+                  bKran = TRUE;
+               }
+               if IsClass(First(i),&OfferingFaren)
+                  AND Send(self,@CheckFaren,#what=First(i))
+               {
+                  bFaren = TRUE;
+               }
+               if IsClass(First(i),&OfferingJala)
+                  AND Send(self,@CheckJala,#what=First(i))
+               {
+                  bJala = TRUE;
+               }
+            }
+
+            if NOT bShal
+               OR NOT bQor
+               OR NOT bRiija
+               OR NOT bKran
+               OR NOT bFaren
+               OR NOT bJala
+            {
+               propagate;
+            }
+
+            // Okay, all the tokens should be here and in stonehenge.
+            // Open the portals.
+            Send(self,@OpenPortalToDeathRealm);
+         }
       }
 
       propagate;

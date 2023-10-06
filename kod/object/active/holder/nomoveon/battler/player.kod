@@ -336,7 +336,7 @@ resources:
    player_dot = "."
 
    // Master fixed info resource.
-   player_fixed_info = "%r%r%s%s%r%s%q%r"
+   player_fixed_info = "%r%r%r%s%s%r%s%q%r"
 
    // Hometown strings.
    player_hometown_rsc = "%s%s%s%q%s\n"
@@ -360,6 +360,7 @@ resources:
    player_donation_title = "Noble benefactor of Meridian in %q."
    player_donation_separator = ", "
    player_is_justicar = "Elected Royal Justicar of the Meridian.\n"
+   player_won_death_realm = "Has defeated Far'Nolh of the Death Realm.\n"
 
    player_known_for_mastery = "Known far and wide for mastery of "
    player_and = " and "
@@ -1149,6 +1150,8 @@ properties:
 
    viVault = $
    viOriginalVault = $
+
+   poWonDR = FALSE
 
 messages:
 
@@ -2111,6 +2114,15 @@ messages:
          {
             AddPacket(4,system_blank_resource);
          }
+      }
+
+      if poWonDR
+      {
+         AddPacket(4,player_won_death_realm);
+      }
+      else
+      {
+         AddPacket(4,system_blank_resource);
       }
 
       //
@@ -15468,6 +15480,18 @@ messages:
       viOriginalVault = oSafeBox;
       
       return;
+   }
+   
+   BeatDR()
+   {
+      poWonDR = TRUE;
+
+      return;
+   }
+
+   HasBeatDR()
+   {
+      return poWonDR;
    }
    
 end

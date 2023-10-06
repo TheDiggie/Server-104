@@ -42,13 +42,13 @@ classvars:
 
 properties:
 
-   piBaseLevel = 200
-   piBaseDifficulty = 8
+   piBaseLevel = 300
+   piBaseDifficulty = 9
 
    vrIcon = human_male_icon_rsc
    vrDead_Icon = human_dead_male_icona_rsc
    vrDead_Legs = human_dead_male_iconb_rsc
-   viLevel = 150
+   viLevel = 200
    viDifficulty = 8
    piGender = GENDER_MALE
    viKarma = 0
@@ -119,6 +119,16 @@ messages:
             #fine_row=piFine_row,#fine_col=piFine_col);
 
       plUsing = $;
+
+      propagate;
+   }
+
+   Killed(what=$)
+   {
+      if IsClass(what,&player)
+      {
+         send(what,@BeatDR);
+      }
 
       propagate;
    }
