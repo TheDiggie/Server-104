@@ -51,8 +51,8 @@ resources:
    monster_teach_quest_needed = \
       "I can teach you %s, but first you must prove your worth as a pupil."
    monster_teach_base = \
-      "Your mind is focused properly, and with %sfurther progress in the "
-      "previous %s levels you can learn %s." 
+      "Your mind is focused properly, and with %i improvements in the "
+      "previous %s level you can learn %s." 
    monster_teach_success = \
       "You are currently qualified to learn %s.  Congratulations."
    monster_teach_already = "You have already been taught %s."
@@ -5706,7 +5706,7 @@ messages:
       
       iReason = iVal % 10;
       iAmount = iVal/10;     
-      rAmount = Send(self,@LearnHowMuchFurther,#iAmount = iAmount);
+      rAmount = iAmount;
       
       if iReason = PLAYER_LEARN_BASE
       {
