@@ -360,7 +360,7 @@ resources:
    player_donation_title = "Noble benefactor of Meridian in %q."
    player_donation_separator = ", "
    player_is_justicar = "Elected Royal Justicar of the Meridian.\n"
-   player_won_death_realm = "Has defeated Far'Nolh of the Death Realm.\n"
+   player_won_death_realm = "Has defeated King Far'Nohl of the Death Realm.\n"
 
    player_known_for_mastery = "Known far and wide for mastery of "
    player_and = " and "
