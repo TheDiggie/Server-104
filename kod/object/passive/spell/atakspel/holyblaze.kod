@@ -79,7 +79,9 @@ messages:
 
    CanPayCosts(who = $, lTargets = $, bItemCast = FALSE)
    {
-      local oTarget;
+      local oTarget, oFound, i, oSpell;
+                  
+      oFound = FALSE;
 
       if (Length(lTargets) <> 1)
       {
@@ -88,29 +90,31 @@ messages:
 
       oTarget = First(lTargets);
 
-      if (IsClass(oTarget,&User)
-         AND Send(oTarget,@GetKarma) >= 0)
+      if IsClass(oTarget,&User)
       {
-         if Send(oTarget,@GetHealth) >= Send(oTarget,@GetMaxHealth)
-         {
-            if NOT bItemCast
+            foreach i in Send(oTarget,@GetSpellList)
             {
-               Send(who,@MsgSendUser,#message_rsc=holyblaze_unnecessary_rsc,
-                     #parm1=Send(oTarget,@GetCapDef),
-                     #parm2=Send(oTarget,@GetName));
+               oSpell = Send(SYS,@FindSpellByNum,
+                              #num=Send(oTarget,@DecodeSpellNum,#compound=i));
+               if Send(oSpell,@GetSchool) = SS_QOR
+               {
+                  oFound = TRUE;
+
+                  break;
+               }
             }
 
-            return FALSE;
-         }
-
-         viHarmful = FALSE;
-         viOutlaw = FALSE;
-         Post(self,@RestoreProperties);
-      }
-      else
-      {
-         viHarmful = TRUE;
-         viOutlaw = TRUE;
+            if oFound = TRUE
+            {
+               viHarmful = TRUE;
+               viOutlaw = TRUE;
+               Post(self,@RestoreProperties);
+            }
+            else
+            {
+               viHarmful = FALSE;
+               viOutlaw = FALSE;
+            }
       }
 
       propagate;
