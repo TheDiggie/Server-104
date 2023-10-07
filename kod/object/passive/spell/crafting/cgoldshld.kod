@@ -16,10 +16,10 @@ constants:
 
 resources:
 
-   CraftGoldShield_name_rsc = "craft gold shield"
+   CraftGoldShield_name_rsc = "craft gold round shield"
    CraftGoldShield_icon_rsc = icraftgoldshld.bgf
    CraftGoldShield_desc_rsc = \
-      "Craft a gold shield at a anvil with a blacksmith's hammer. "
+      "Craft a gold round shield at a anvil with a blacksmith's hammer. "
       "Requires 10 iron ingots and 5 lumber. "
 
    CraftGoldShield_sound = kraanan.ogg

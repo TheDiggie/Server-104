@@ -16,10 +16,10 @@ constants:
 
 resources:
 
-   CraftHelmet_name_rsc = "craft helmet"
+   CraftHelmet_name_rsc = "craft helm"
    CraftHelmet_icon_rsc = icrafthelm.bgf
    CraftHelmet_desc_rsc = \
-      "Craft a helmet at a anvil with a blacksmith's hammer. "
+      "Craft a helm at a anvil with a blacksmith's hammer. "
       "Requires 15 iron ingots and 10 leather. "
 
    CraftHelmet_sound = kraanan.ogg

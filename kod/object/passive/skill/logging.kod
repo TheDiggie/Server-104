@@ -21,7 +21,7 @@ resources:
    Logging_name_rsc = "logging"
    Logging_icon_rsc = ilogging.bgf
    Logging_desc_rsc = "This skill allows you to chop down mature trees and "
-                     "recover precious minerals. Requires a wood cutting axe."
+                     "harvest wood. Requires a wood cutting axe."
    Logging_skill_intro = \
       "Crafting Lv. 1: This skill allows you to chop down mature trees and recover precious minerals."
                         
