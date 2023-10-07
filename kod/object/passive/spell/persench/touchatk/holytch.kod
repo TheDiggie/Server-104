@@ -139,11 +139,9 @@ messages:
                   }
                }
                
-                  Debug(iDamage);
                if oFound = TRUE
                {
                   iDamage = iDamage + Random(500,1500);
-                  Debug(iDamage);
                }
             }
             else
@@ -153,7 +151,6 @@ messages:
             }
          }
       }
-                  Debug(iDamage);
 
       return iDamage;
    }
