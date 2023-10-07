@@ -36,6 +36,19 @@ properties:
 
 messages:
 
+   NewUsed()
+   {
+      Send(poOwner,@RemoveHair,#what=self);
+
+      propagate;
+   }
+
+   NewUnused()
+   {
+      Send(poOwner,@ResetHair,#what=self);
+
+      propagate;
+   }
 
 end
 ////////////////////////////////////////////////////////////////////////////////
