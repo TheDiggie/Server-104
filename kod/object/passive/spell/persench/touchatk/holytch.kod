@@ -106,9 +106,11 @@ messages:
    "Holy Touch gets no punch or mysticism proficiency damage. Instead, "
    "it is intrinsically effective versus undead."
    {
-      local iDamage, iKarma;
+      local iDamage, iKarma, i, oSpell, oFound;
 
       iDamage = damage;
+
+      oFound = FALSE;
 
       // Avoid the condition of checking damage on a nil victim (like when
       //  just querying average damage).
@@ -123,10 +125,35 @@ messages:
          {
             // Reduce/increase damage by 50// depending on opponent's Karma.
             // Use the detect option in case we're hitting an event monster.
-            iKarma = Send(victim,@GetKarma,#detect=TRUE);
-            iDamage = iDamage + ((-iKarma)*iDamage/200);
+            if IsClass(victim,&Player)
+            {
+               foreach i in Send(victim,@GetSpellList)
+               {
+                  oSpell = Send(SYS,@FindSpellByNum,
+                                 #num=Send(victim,@DecodeSpellNum,#compound=i));
+                  if Send(oSpell,@GetSchool) = SS_QOR
+                  {
+                     oFound = TRUE;
+
+                     break;
+                  }
+               }
+               
+                  Debug(iDamage);
+               if oFound = TRUE
+               {
+                  iDamage = iDamage + Random(500,1500);
+                  Debug(iDamage);
+               }
+            }
+            else
+            {
+               iKarma = Send(victim,@GetKarma,#detect=TRUE);
+               iDamage = iDamage + ((-iKarma)*iDamage/200);
+            }
          }
       }
+                  Debug(iDamage);
 
       return iDamage;
    }
