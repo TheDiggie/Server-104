@@ -26,8 +26,6 @@ classvars:
    viTeleport_row = 13
    viTeleport_col = 2
 
-   viTerrain_Type = TERRAIN_SEWERS | TERRAIN_CASTLE
-
 properties:
 
    piRoom_num = RID_DCASTLE2

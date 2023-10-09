@@ -21,8 +21,6 @@ resources:
 
 classvars:
 
-   viTerrain_Type = TERRAIN_CASTLE | TERRAIN_FOUNTAIN
-
    viTeleport_row = 8
    viTeleport_col = 13
 

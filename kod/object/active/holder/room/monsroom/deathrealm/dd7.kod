@@ -23,8 +23,6 @@ classvars:
    viTeleport_row = 15
    viTeleport_col = 29
 
-   viTerrain_type = TERRAIN_FOREST
-
    viWeatherZone = WEATHER_ZONE_JASPER
 
 properties:

@@ -23,8 +23,6 @@ classvars:
    viTeleport_row = 13
    viTeleport_col = 7
 
-   viTerrain_type = TERRAIN_CITY | TERRAIN_NECROPOLIS
-
 properties:
 
    prRoom = room_DeathRealm_toscrypt

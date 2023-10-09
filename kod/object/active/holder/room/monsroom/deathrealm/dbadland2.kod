@@ -23,8 +23,6 @@ classvars:
    viTeleport_row = 8
    viTeleport_col = 20
 
-   viTerrain_Type = TERRAIN_BADLANDS | TERRAIN_FOREST | TERRAIN_MOUNTAIN
-
 properties:
 
    prRoom = room_DeathRealm_badland2

@@ -23,8 +23,6 @@ classvars:
    viTeleport_row = 10
    viTeleport_col = 5
 
-   viTerrain_type = TERRAIN_LAIR | TERRAIN_CASTLE
-
 properties:
 
    prRoom = DeathRealm_room_throne1

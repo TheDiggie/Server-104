@@ -23,9 +23,6 @@ classvars:
    viTeleport_row = 34
    viTeleport_col = 43
 
-   // Not technically a beach, but we want the ocean-type sounds.
-   viTerrain_Type = TERRAIN_CITY | TERRAIN_ROAD | TERRAIN_BEACH
-
    viWeatherMask = WEATHER_MASK_DEFAULT
 
 properties:

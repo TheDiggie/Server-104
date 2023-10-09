@@ -25,9 +25,6 @@ classvars:
    viTeleport_row = 56
    viTeleport_col = 39
 
-   viTerrain_type = \
-      TERRAIN_CITY | TERRAIN_ROAD | TERRAIN_FIELDS | TERRAIN_FOREST
-
    viWeatherMask = WEATHER_MASK_DEFAULT
 
 properties:

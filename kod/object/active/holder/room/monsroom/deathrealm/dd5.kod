@@ -22,7 +22,6 @@ classvars:
 
    viTeleport_row = 24
    viTeleport_col = 63
-   viTerrain_type = TERRAIN_FOREST | TERRAIN_RIVER | TERRAIN_ROAD | TERRAIN_HILLS | TERRAIN_WATERFALL
 
    viWeatherZone = WEATHER_ZONE_MARION
 

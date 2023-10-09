@@ -23,8 +23,6 @@ classvars:
    viTeleport_row = 20
    viTeleport_col = 66
 
-   viTerrain_type = TERRAIN_MOUNTAIN | TERRAIN_MYSTICAL
-
    viWeatherZone = WEATHER_ZONE_CV
    viWeatherMask = WEATHER_MASK_MOUNTAINS
 

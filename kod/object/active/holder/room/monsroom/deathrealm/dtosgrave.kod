@@ -34,7 +34,6 @@ properties:
    piRoom_num = RID_DTOS_GRAVEYARD
 
    plTombstones = $
-   viTerrain_type = TERRAIN_CITY | TERRAIN_MYSTICAL
 
 messages:
 

@@ -20,8 +20,6 @@ resources:
 
 classvars:
 
-   viTerrain_Type = TERRAIN_CITY | TERRAIN_ROAD
-
    viTeleport_row = 27
    viTeleport_col = 16
 

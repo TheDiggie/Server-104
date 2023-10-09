@@ -121,6 +121,8 @@ messages:
                          ];
       }
 
+      plLooping_sounds = [[ DeathRealm_music, 1, 1, 30000, 500 ]];
+
       propagate;
    }
    

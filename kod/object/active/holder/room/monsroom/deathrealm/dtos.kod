@@ -28,8 +28,6 @@ classvars:
    viTeleport_Row = 60
    viTeleport_Col = 18
 
-   viTerrain_type = TERRAIN_CITY | TERRAIN_ROAD | TERRAIN_FOUNTAIN
-
    viWeatherMask = WEATHER_MASK_DEFAULT
 
 properties:
