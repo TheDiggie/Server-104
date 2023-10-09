@@ -126,6 +126,10 @@ messages:
          // Immortals heal items back up to full.
          iMultiplier = 100;
       }
+      else if iSpellPower = 99
+      {
+         iMultiplier = 100;
+      }
       else
       {
          // Multiplier is a number from 75// to 95//.
