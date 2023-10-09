@@ -33,22 +33,9 @@ classvars:
 
    vrName_plural = souls_name_plural_rsc
 
-   viBulk = 0
-   viWeight = 0
-
-   viValue_average = 1
-   viValue_multiplier = 1
-
-   viUse_type = ITEM_CANT_USE
-   viItem_type = ITEMTYPE_MONEY
-
    viGround_group = 1
-   viInventory_group = 1
 
 properties:
-
-   viObject_flags = OF_GETTABLE
-   piNumber = 1
 
 messages:
 
