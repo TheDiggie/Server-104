@@ -32,6 +32,9 @@ classvars:
    viIndefinite = ARTICLE_THE
 
    viGround_group = 1
+   
+   viValue_average = 10000
+
 properties:  
 
 messages:   

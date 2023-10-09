@@ -33,6 +33,8 @@ classvars:
 
    viGround_group = 2
 
+   viValue_average = 10000
+
 properties:  
 
 messages:   

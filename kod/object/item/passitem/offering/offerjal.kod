@@ -31,6 +31,8 @@ classvars:
 
    vrAllegiance = SS_JALA
    
+   viValue_average = 10000
+
 properties:
 
 messages:

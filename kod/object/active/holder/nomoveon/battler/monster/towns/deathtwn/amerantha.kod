@@ -29,7 +29,7 @@ resources:
       "~k%s%s tells you, \"How convenient.~n~k\""
    Amerantha_unwanted_give = \
       "~k%s%s tells you, \"Most material goods are of little consequence "
-      "to an old man like me.~n~k\""
+      "to an old lady like me.~n~k\""
 
 classvars:
 
@@ -59,7 +59,8 @@ messages:
       plFor_sale = [
          [
             Create(&CorNothKey),
-            Create(&Maul)
+            Create(&Maul),
+            Create(&OfferingShalille)
          ],
       $,$,$];
 

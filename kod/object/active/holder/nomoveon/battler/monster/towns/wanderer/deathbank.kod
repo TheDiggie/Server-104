@@ -77,6 +77,22 @@ messages:
       propagate;
    }
 
+   SetForSale()
+   {
+      plFor_sale = [
+         [
+            Create(&OfferingRiija)
+         ],
+      $,$,$];
+
+      return;
+   }
+
+   CanAcceptOffer()
+   {
+      return TRUE;
+   }
+
    CreateDestinationList()
    {
       plDestinations = [ [RID_DH4, 24, 29],             
@@ -158,102 +174,6 @@ messages:
    {
       return viBank;
    }
-   
-   //BankWithdraw(who = $, amount = 0)
-   //{
-   //   local iPlayerAmt, iBankAmt, oSouls, oBank;
-//
-   //   if NOT Send(self,@MobIsBanker)
-   //   {
-   //      return;
-   //   }
-//
-   //   if amount < 0
-   //   {
-   //      return;
-   //   }
-//
-   //   if Send(self,@GetBankNum) = $
-   //   {
-   //      Debug("BAD: Banker has no bankID",vrname,self);
-//
-   //      return;
-   //   }
-//
-   //   oBank = Send(SYS,@FindBankByNum,#num=Send(self,@GetBankNum));
-   //   iBankAmt = Send(oBank,@WithdrawAccount,#what=who);
-//
-   //   if iBankAmt = 0
-   //   {
-   //      Post(who,@SomeoneSaid,#what=self,#string=Lm_bnkr_no_account,
-   //           #type=SAY_RESOURCE);
-//
-   //      return;
-   //   }
-//
-   //   if amount > iBankAmt
-   //   {
-   //      Send(oBank,@DepositAccount,#what=who,#amount=iBankAmt);
-   //      Post(who,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
-   //           #string=Lm_bnkr_not_enough_withdraw,#parm1=iBankAmt);
-//
-   //      return;
-   //   }
-//
-   //   oSouls = Send(who,@GetSoulsObject);
-   //   if oSouls = $
-   //   {
-   //      oSouls = Create(&Souls,#number=amount);
-   //      Send(who,@NewHold,#what=oSouls);
-   //   }
-   //   else if (Send(oSouls,@GetNumber) + amount) <= 0
-   //   {
-   //      iPlayerAmt = Send(oSouls,@GetNumber);
-   //      if iPlayerAmt = MAX_KOD_INT
-   //      {
-   //         Send(oBank,@DepositAccount,#what=who,#amount=iBankAmt);
-   //         Post(who,@SomeoneSaid,#what=self,#string=Lm_bnkr_player_all_full,
-   //               #type=SAY_RESOURCE);
-//
-   //         return;
-   //      }
-   //      else if (iPlayerAmt + amount) <= 0
-   //      {
-   //         amount = MAX_KOD_INT - iPlayerAmt;
-   //         Post(who,@SomeoneSaid,#what=self,#string=Lm_bnkr_player_full,
-   //               #type=SAY_RESOURCE,#parm1=amount);
-//
-   //         if amount > iBankAmt
-   //         {
-   //            Debug("Error giving player ",Send(who,@GetTrueName),amount,
-   //               " shillings from total ",iBankAmt,"!. Player has ",iPlayerAmt);
-   //            Send(oBank,@DepositAccount,#what=who,#amount=iBankAmt);
-//
-   //            return;
-   //         }
-   //      }
-   //   }
-   //   else
-   //   {
-   //      Send(oSouls,@AddNumber,#number=amount);
-   //   }
-//
-   //   Send(oBank,@DepositAccount,#what=who,#amount=iBankAmt-amount);
-//
-   //   // Send this message even if we gave the almost full one - players are
-   //   // used to seeing this message on a successful transaction.
-   //   Post(who,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
-   //         #string=Lm_bnkr_did_withdraw_souls,#parm1=amount);
-//
-   //   Send(self,@AffectMood,#why=MOODMOD_BANK_WITHDRAWAL);
-//
-   //   if Send(SYS,@IsSuspect,#who=who)
-   //   {
-   //      Send(self,@ReportBankBalance,#who=who);
-   //   }
-//
-   //   return;
-   //}
 
    TeleportTimerTrigger(timer = $)
    {

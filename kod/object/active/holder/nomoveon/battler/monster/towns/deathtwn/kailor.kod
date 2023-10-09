@@ -29,7 +29,7 @@ resources:
       "~k%s%s tells you, \"How convenient.~n~k\""
    Kailor_unwanted_give = \
       "~k%s%s tells you, \"Most material goods are of little consequence "
-      "to an old man like me.~n~k\""
+      "to an old duke like me.~n~k\""
 
    Kailor_stat_window_trigger = "change stats"
 
@@ -61,7 +61,8 @@ messages:
       plFor_sale = [
          [
             Create(&Throne2Key),
-            Create(&TwinBlade)
+            Create(&TwinBlade),
+            Create(&OfferingKraanan)
          ],
       $,$,$];
 

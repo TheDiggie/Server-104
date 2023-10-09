@@ -30,6 +30,9 @@ classvars:
    viIndefinite = ARTICLE_NONE
 
    vrAllegiance = SS_FAREN  
+
+   viValue_average = 10000
+
 properties:  
 
 messages:   

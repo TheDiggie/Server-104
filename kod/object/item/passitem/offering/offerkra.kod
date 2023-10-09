@@ -31,6 +31,8 @@ classvars:
    vrAllegiance = SS_KRAANAN
    viIndefinite = ARTICLE_THE
 
+   viValue_average = 10000
+
 properties:  
 
    viGround_group = 2

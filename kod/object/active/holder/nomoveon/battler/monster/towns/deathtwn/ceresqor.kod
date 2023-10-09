@@ -31,7 +31,7 @@ resources:
       "~k%s%s tells you, \"How convenient.~n~k\""
    CeresofQor_unwanted_give = \
       "~k%s%s tells you, \"Most material goods are of little consequence "
-      "to an old man like me.~n~k\""
+      "to an old thing like me.~n~k\""
 
    CeresofQor_stat_window_trigger = "change stats"
 
@@ -63,7 +63,8 @@ messages:
       plFor_sale = [
          [
             Create(&BarloqueKey),
-            Create(&NeruditeAxe)
+            Create(&NeruditeAxe),
+            Create(&OfferingQor)
          ],
       $,$,$];
 
