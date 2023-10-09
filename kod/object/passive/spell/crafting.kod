@@ -23,8 +23,12 @@ resources:
    Crafting_icon_rsc = icremace.bgf
    Crafting_desc_rsc = \
       "The study of crafting gear from various materials"
+
    Need_Tool = "You dont have the required tool to craft this."
+
    No_Work_Bench ="You need the appropriate work bench!"
+
+   Crafted_Indestructible = "~B~gYou crafted a indestructible %s!"
 
    Crafting_sound = kraanan.ogg
 
@@ -124,7 +128,7 @@ messages:
 
    CastSpell(who=$,lTargets=$)
    {
-      local oGear, iSpellPower, oItemAtt, oHits_Int, oHits;
+      local oGear, iSpellPower, oItemAtt, oHits_Int, oHits, iChance, iCurrentSpell;
 
       iSpellPower = Send(self,@GetSpellPower,#who=who);
       oGear     = Create(vrGear);
@@ -136,11 +140,35 @@ messages:
       Send(oGear,@SetMaxHits,#number=(oHits_Int+((1+iSpellPower)*5)));
       Send(oGear,@SetHits,#number=(oHits+((1+iSpellPower)*5)));
 
+      if iSpellPower = 99
+      {
+         iChance = Random(1,100);
+
+         Debug(iChance);
+
+         if iChance = 1
+         {
+            oItemAtt = Send(SYS,@FindItemAttByNum,#num=IA_INDESTRUCTIBLE);
+            iCurrentSpell = Send(oGear,@GetAttributeData,#ItemAtt=IA_INDESTRUCTIBLE);
+
+            Send(oItemAtt,@AddtoItem,#oItem=oGear);
+
+            Send(who,@MsgSendUser,#message_rsc=Crafted_Indestructible,
+                  #parm1=Send(oGear,@GetName));
+
+            Send(oGear,@SetIndestructible);
+         }
+      }
+
       if Send(who,@ReqNewHold,#what=oGear)
       {
          Send(who,@NewHold,#what=oGear);
-         Send(who,@MsgSendUser,#message_rsc=Crafting_cast_rsc,
-               #parm1=Send(oGear,@GetCapIndef),#parm2=Send(oGear,@GetName));
+
+         if NOT send(oGear,@IsIndestructible)
+         {
+            Send(who,@MsgSendUser,#message_rsc=Crafting_cast_rsc,
+                  #parm1=Send(oGear,@GetCapIndef),#parm2=Send(oGear,@GetName));
+         }
       }
       else
       {

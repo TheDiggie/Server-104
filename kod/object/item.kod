@@ -2799,5 +2799,10 @@ messages:
       return;
    }
 
+   IsIndestructible()
+   {
+      return piIndestructible;
+   }
+
 end
 ////////////////////////////////////////////////////////////////////////////////
