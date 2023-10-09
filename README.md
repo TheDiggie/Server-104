@@ -25,22 +25,9 @@ When a client connects to your server, this key is checked. If the keys do not m
 
 Play Meridian 59
 --------------
-This repository is for the "Server 105" version of Meridian 59.
+This repository is for the "Server 104" version of Meridian 59.
 You can create an account for this server and download the client on
-the [server 105 website] (https://www.meridiannext.com/play/). Note that this
-repository is for the "classic" version of the client, the Ogre client
-repository is at https://github.com/cyberjunk/meridian59-dotnet. A list of known
-servers is kept on the [105 website](https://www.meridiannext.com/community/).
-
-
-Contribute to Meridian 59 development
---------------
-This is a volunteer project under active development. New contributors are
-always welcome, and you can read about how to get started contributing to the
-game on the [OpenMeridian105 GitHub wiki page](https://github.com/OpenMeridian105/Meridian59/wiki).
-No experience is required or assumed, and there are many different ways to
-contribute (coding, art, 3D model creation, room building, documentation).
-
+the [server 104 website] (https://meridian59.us/).
 
 License
 --------------
@@ -67,8 +54,6 @@ for Meridian 59 must be downloaded with the game client.
 
 Build Instructions
 --------------
-These build instructions can also be found on the Server 105 GitHub
-[wiki](https://github.com/OpenMeridian105/Meridian59/wiki/Build-Instructions).
 
 0. Install [Microsoft Visual Studio 2015 Community Edition](https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs.aspx).
 During installation you will need to choose "Custom" installation and add the
@@ -113,8 +98,8 @@ account.
 Getting Started: Client
 --------------
 You will need to obtain the client graphics before you can run the
-client locally, which can be done by installing the server 105 classic client
-from the [105 website] (https://www.meridiannext.com/play/).
+client locally, which can be done by installing the server 104 classic client
+from the [104 website] (https://meridian59.us/).
 When this is installed, building the client (via makefile or VS
 solution) will automatically copy the needed resources to the
 appropriate directory. If for some reason this isn't done, copy
@@ -147,13 +132,4 @@ Meridian uses the third party libraries zlib, libarchive, libpng and jansson.
 Each of these is built from source which is included in the appropriately-named
 directories (libzlib, libarchive, libpng and libjansson).
 
-Contact Information
---------------
-For further information please join the #Meridian59de channel on
-irc.esper.net. You can also join us on the [forums](https://www.meridiannext.com/phpbb3/)
-where you can ask any questions about the game or the codebase.
-
-Forked from the [OpenMeridian codebase](https://github.com/OpenMeridian/Meridian59),
-which was forked from the [original Meridian 59 codebase]
-(https://github.com/Meridian59/Meridian59). Original codebase
 README file included as README.old.
