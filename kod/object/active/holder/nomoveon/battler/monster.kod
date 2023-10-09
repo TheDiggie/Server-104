@@ -4072,7 +4072,7 @@ messages:
          iFee = iFee + Send(self,@GetVaultDepositFee,#what=i,#who=who);
       }
 
-      oMoney = Send(who,@GetMoneyObject,#type=funds);
+      oMoney = Send(self,@GetMoneyObject,#type=funds);
       if oMoney = $
       {
          // No cash.
@@ -4142,7 +4142,7 @@ messages:
          return;
       }
 
-      oMoney = Send(what,@GetMoneyObject,#type=funds);
+      oMoney = Send(self,@GetMoneyObject,#type=funds);
       if oMoney = $
       {
          // No cash.
@@ -4406,7 +4406,7 @@ messages:
          return;
       }
 
-      oMoney = Send(who,@GetMoneyObject,#type=funds);
+      oMoney = Send(self,@GetMoneyObject,#type=funds);
 
       if oMoney = $
       {
@@ -4611,7 +4611,7 @@ messages:
          // up.
 
          // Get the amount of money for standard amount
-         oMoney = Send(what,@GetMoneyObject,#type=funds);
+         oMoney = Send(self,@GetMoneyObject,#type=funds);
 
          // Get the price for that amount
          iPriceOne = Send(self,@GetPrice,#what=i,#who=what);
