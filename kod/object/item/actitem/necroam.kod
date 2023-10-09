@@ -183,6 +183,8 @@ properties:
 
    piKarma = -100
 
+   poLastEnemyToAttack = $
+
 messages:
 
    Constructor()
@@ -1408,5 +1410,34 @@ messages:
       return;
    }
    
+   IsEnemyAttack(what=$,damage=FALSE)
+   {
+      local oHunterSword;
+
+      if what <> $
+         AND IsClass(what,&Player)
+         AND what <> poOwner
+      {
+         oHunterSword = Send(what,@FindHoldingActive,#class=&HunterSword);
+
+         // Gotta have a shield, and it can't be the same faction as us.
+         if oHunterSword <> $
+         {
+            Send(oHunterSword,@AttackedByEnemy,#who=what);
+
+            return TRUE;
+         }
+      }
+
+      return FALSE;
+   }
+
+   AttackedByEnemy(who=$)
+   {
+      poLastEnemyToAttack = who;
+
+      return;
+   }
+
 end
 ////////////////////////////////////////////////////////////////////////////////

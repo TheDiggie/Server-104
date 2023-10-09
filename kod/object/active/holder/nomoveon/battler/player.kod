@@ -4789,7 +4789,7 @@ messages:
    "CF_SAFETY_OFF prevents accidental attacks. You can always successfully "
    "hit a murderer or outlaw, though."
    {
-      local oEnemyGuild, oSoldierShield;
+      local oEnemyGuild, oSoldierShield, oNecromancerAmulet, oHunterSword;
 
       // Don't care about monsters.
       // And, free attacks on token holders.
@@ -4846,6 +4846,28 @@ messages:
          }
 
          return TRUE;
+      }
+
+      oNecromancerAmulet = Send(self,@FindHoldingActive,#class=&NecromancerAmulet);
+      oHunterSword = Send(victim,@FindHoldingActive,#class=&HunterSword);
+
+      if oNecromancerAmulet <> $
+      {
+         if oHunterSword <> $
+         {
+            return TRUE;
+         }
+      }
+
+      oNecromancerAmulet = Send(victim,@FindHoldingActive,#class=&NecromancerAmulet);
+      oHunterSword = Send(self,@FindHoldingActive,#class=&HunterSword);
+
+      if oHunterSword <> $
+      {
+         if oNecromancerAmulet <> $
+         {
+            return TRUE;
+         }
       }
 
       // Check to see if we deserve to be an outlaw.
@@ -6041,7 +6063,7 @@ messages:
    "Called when the player killed something."
    {
       local bReflection, i, oSoldierShield, monstkarma, iChance, oEnemyGuild,
-            oVictimRoom, oObject;
+            oVictimRoom, oObject, oHunterSword, oNecromancerAmulet;
 
       // If we killed someone or something, we did damage.
       Send(self,@SetPlayerFlag,#flag=PFLAG_DID_DAMAGE,#value=TRUE);
@@ -6148,6 +6170,8 @@ messages:
                // they can whack on each other freely, without murderer or
                // faction penalty.
                oEnemyGuild = Send(what,@GetGuild);
+               oNecromancerAmulet = Send(self,@FindUsing,#class=&NecromancerAmulet);
+               oHunterSword = Send(self,@FindUsing,#class=&HunterSword);
 
                // Check for various murderer things if any are true:
                // We're not in a guild, opponent wasn't in a guild, we're
@@ -6159,6 +6183,12 @@ messages:
                    OR NOT Send(poGuild,@IsMutualEnemy,#otherguild=oEnemyGuild))
                   AND (oSoldierShield = $
                        OR NOT Send(oSoldierShield,@IsEnemyAttack,
+                                    #what=what,#damage=TRUE))
+                  AND (oNecromancerAmulet = $
+                       OR NOT Send(oNecromancerAmulet,@IsEnemyAttack,
+                                    #what=what,#damage=TRUE))
+                  AND (oHunterSword = $
+                       OR NOT Send(oHunterSword,@IsEnemyAttack,
                                     #what=what,#damage=TRUE))
                {
                   // SUBTLE BUG: Somehow, the faction check is missed when you
