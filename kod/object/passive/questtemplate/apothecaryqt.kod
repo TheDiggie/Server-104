@@ -163,8 +163,7 @@ messages:
                               [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 750 ],
                               [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 800 ],
                               [ QN_PRIZETYPE_ITEMCLASS, &DetectInvisibilityPotion, 1 ],
-                              [ QN_PRIZETYPE_ITEMCLASS, &NightVisionPotion, 1 ],
-                              [ QN_PRIZETYPE_ITEMCLASS, &VampireWand, 1 ] ] ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &NightVisionPotion, 1 ]] ],
                #penaltylist=[ [ QN_PRIZETYPE_OUTLAW ] ],
                #timelimit=2 * 3600,#quest_node_index=QNT_ID_APOTHECARY_TWO)
       {

@@ -179,7 +179,6 @@ messages:
                               [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 1500 ],
                               [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 2000 ],
                               [ QN_PRIZETYPE_ITEMCLASS, &Longsword, 1 ],
-                              [ QN_PRIZETYPE_ITEMCLASS, &VampireWand, 1 ],
                               [ QN_PRIZETYPE_ITEMCLASS, &InkyCap, 5 ] ],
                             [ [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 1000 ],
                               [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 1000 ],

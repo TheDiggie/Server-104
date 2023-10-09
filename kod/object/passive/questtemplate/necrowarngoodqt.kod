@@ -188,8 +188,6 @@ messages:
                               [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 1200 ],
                               [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 1400 ],
                               [ QN_PRIZETYPE_ITEMCLASS, &Shillings, 1600 ],
-                              [ QN_PRIZETYPE_ITEMCLASS, &VampireWand, 1 ],
-                              [ QN_PRIZETYPE_ITEMCLASS, &VampireWand, 1 ],
                               [ QN_PRIZETYPE_ITEMCLASS, &Prism, 1 ] ] ],
                #timelimit=4 * 3600,#quest_node_index=QNT_ID_NECRO_WARN_GOOD_THREE)
       {
