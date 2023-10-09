@@ -63,7 +63,12 @@ messages:
          [
             Create(&TosKey),
             Create(&LightSword),
-            Create(&OfferingFaren)
+            Create(&OfferingFaren),
+            Create(&RedMushroom),
+            Create(&BlueMushroom),
+            Create(&Solagh),
+            Create(&WebMoss),
+            Create(&FireSand)
          ],
       $,$,$];
 

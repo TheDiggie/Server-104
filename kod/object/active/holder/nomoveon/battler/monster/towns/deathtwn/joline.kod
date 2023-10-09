@@ -65,7 +65,12 @@ messages:
          [
             Create(&CastleKey),
             Create(&BerserkerAxe),
-            Create(&OfferingJala)
+            Create(&OfferingJala),
+            Create(&Fairywing),
+            Create(&Sapphire),
+            Create(&Ruby),
+            Create(&Diamond),
+            Create(&KriipaClaw)
          ],
       $,$,$];
 

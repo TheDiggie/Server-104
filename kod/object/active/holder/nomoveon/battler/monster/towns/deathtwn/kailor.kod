@@ -62,7 +62,12 @@ messages:
          [
             Create(&Throne2Key),
             Create(&TwinBlade),
-            Create(&OfferingKraanan)
+            Create(&OfferingKraanan),
+            Create(&Elderberry),
+            Create(&Mushroom),
+            Create(&PurpleMushroom),
+            Create(&OrcTooth),
+            Create(&BlueDragonScale)
          ],
       $,$,$];
 

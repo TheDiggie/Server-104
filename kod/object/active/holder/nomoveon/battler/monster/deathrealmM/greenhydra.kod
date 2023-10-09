@@ -45,24 +45,10 @@ classvars:
 
    viTreasure_type = TID_GREEN_HYDRA
 
-   viSpeed = SPEED_FAST
-   viAttributes = 0
-   viLevel = 300
-   viDifficulty = 9
-   viAmountofLoot = 9
-   viVisionDistance = 18
-   viAttackRange = 256
-   viKarma = 0
-   viDefault_behavior = AI_FIGHT_HYPERAGGRESSIVE | AI_FIGHT_SWITCHALOT
-   viCashmin = 100
-   viCashmax = 500
    vrSound_hit = greenhydra_sound_hit
    vrSound_miss = greenhydra_sound_miss
    vrSound_aware = greenhydra_sound_aware
    vrSound_death = greenhydra_sound_death
-
-   viBonusXP = 900
-   viBonusTP = 3
 
 properties:
 

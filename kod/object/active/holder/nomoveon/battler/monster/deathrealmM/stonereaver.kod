@@ -45,25 +45,11 @@ classvars:
    viAttack_type = ATCK_WEAP_BLUDGEON
 
    viTreasure_type = TID_STONE_REAVER
-   
-   viSpeed = SPEED_FAST
-   viAttributes = 0
-   viLevel = 300
-   viDifficulty = 9
-   viAmountofLoot = 9
-   viVisionDistance = 18
-   viAttackRange = 192
-   viKarma = 0
-   viDefault_behavior = AI_FIGHT_HYPERAGGRESSIVE | AI_FIGHT_SWITCHALOT
-   viCashmin = 100
-   viCashmax = 500
+
    vrSound_hit = Stone_Reaver_sound_hit
    vrSound_miss = Stone_Reaver_sound_miss
    vrSound_aware = Stone_Reaver_sound_aware
    vrSound_death = Stone_Reaver_sound_death
-
-   viBonusXP = 900
-   viBonusTP = 3
 
 properties:
 

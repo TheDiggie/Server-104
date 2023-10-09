@@ -44,6 +44,7 @@ resources:
       "The revenant makes a mystical motion... you feel drained."
 
 classvars:
+
    vrName = revenantb_name_rsc
    vrIcon = revenantb_icon_rsc
    vrDesc = revenantb_desc_rsc
@@ -51,25 +52,8 @@ classvars:
    viTreasure_type = TID_REVENANT_B
 
    viAttack_type = ATCK_WEAP_SLASH
-   
-   viDefault_behavior = \
-      AI_FIGHT_AGGRESSIVE | AI_MOVE_WALKTHROUGH_WALLS | AI_FIGHT_THROUGH_WALLS
 
 properties:
-
-   viTreasure_type = TID_GREEN_SEEKER
-
-   viSpeed = SPEED_VERY_FAST
-   viLevel = 300               /// These are reset in constructor
-   viDifficulty = 7
-   viAmountofLoot = 8
-   viVisionDistance = 100
-   
-   viAttackRange = 192
-   viKarma = 0
-   viCashmin = 100
-   viCashmax = 500
-   // our private data
 
    piAnimation = ANIM_NONE
    piDrawFx = DRAWFX_INVISIBLE

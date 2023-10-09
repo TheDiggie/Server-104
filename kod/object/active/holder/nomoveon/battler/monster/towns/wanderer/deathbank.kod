@@ -44,7 +44,7 @@ classvars:
    vrName = Deathbanker_name_rsc
    vrIcon = Deathbanker_icon_rsc
    vrDesc = Deathbanker_desc_rsc
-   viMerchant_markup = MERCHANT_EXPENSIVE
+   viMerchant_markup = MERCHANT_FLAT
 
    vrLm_bnkr_balance                = DR_bnkr_balance
    vrLm_bnkr_did_deposit            = DR_bnkr_did_deposit
@@ -81,7 +81,12 @@ messages:
    {
       plFor_sale = [
          [
-            Create(&OfferingRiija)
+            Create(&OfferingRiija),
+            Create(&GrayMushroom),
+            Create(&CyanMushroom),
+            Create(&YellowMushroom),
+            Create(&GreenMushroom),
+            Create(&InkyCap)
          ],
       $,$,$];
 

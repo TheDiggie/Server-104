@@ -42,27 +42,11 @@ classvars:
    vrDead_name = dulahan_dead_name_rsc
 
    viTreasure_type = TID_DULAHAN
-   
-   viSpeed = SPEED_FAST
 
-   viAttributes = 0
-   viLevel = 300
-   viDifficulty = 9
-   viAmountofLoot = 9
-   viVisionDistance = 18
-   
-   viAttackRange = 192
-   viKarma = 0
-   viDefault_behavior = AI_FIGHT_HYPERAGGRESSIVE | AI_FIGHT_SWITCHALOT
-   viCashmin = 100
-   viCashmax = 500
    vrSound_hit = dulahan_sound_hit
    vrSound_miss = dulahan_sound_miss
    vrSound_aware = dulahan_sound_aware
    vrSound_death = dulahan_sound_death
-
-   viBonusXP = 900
-   viBonusTP = 3
 
 properties:
 

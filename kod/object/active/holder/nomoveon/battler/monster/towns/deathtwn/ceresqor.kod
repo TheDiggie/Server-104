@@ -64,7 +64,12 @@ messages:
          [
             Create(&BarloqueKey),
             Create(&NeruditeAxe),
-            Create(&OfferingQor)
+            Create(&OfferingQor),
+            Create(&EntrootBerry),
+            Create(&DarkAngelFeather),
+            Create(&DragonflyEye),
+            Create(&ShamanBlood),
+            Create(&YrxlSap)
          ],
       $,$,$];
 

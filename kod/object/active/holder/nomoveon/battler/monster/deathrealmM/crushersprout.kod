@@ -47,27 +47,12 @@ classvars:
    vrDead_name = crushersprout_dead_name_rsc
 
    viTreasure_type = TID_CRUSHER_SPROUT
-
    viSpeed = SPEED_NONE
 
-   viAttributes = 0
-   viLevel = 300
-   viDifficulty = 9
-   viAmountofLoot = 9
-   viVisionDistance = 18
-   
-   viAttackRange = 192
-   viKarma = 0
-   viDefault_behavior = AI_FIGHT_HYPERAGGRESSIVE | AI_FIGHT_SWITCHALOT | MOB_NOMOVE
-   viCashmin = 100
-   viCashmax = 500
    vrSound_hit = crushersprout_sound_hit
    vrSound_miss = crushersprout_sound_miss
    vrSound_aware = crushersprout_sound_aware
    vrSound_death = crushersprout_sound_death
-
-   viBonusXP = 900
-   viBonusTP = 3
 
 properties:
 

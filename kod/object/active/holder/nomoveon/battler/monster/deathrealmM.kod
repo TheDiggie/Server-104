@@ -18,6 +18,24 @@ resources:
 
 classvars:
 
+   viSpeed = SPEED_FAST
+
+   viAttributes = 0
+   viLevel = 300
+   viDifficulty = 9
+   viAmountofLoot = 9
+   viVisionDistance = 40
+   
+   viAttackRange = 256
+   viKarma = -100
+   viDefault_behavior = AI_FIGHT_HYPERAGGRESSIVE | AI_FIGHT_SWITCHALOT | AI_CAN_PATROL
+
+   viCashmin = 200
+   viCashmax = 600
+
+   viBonusXP = 1000
+   viBonusTP = 5
+
 properties:
 
    poCurrency = &Souls

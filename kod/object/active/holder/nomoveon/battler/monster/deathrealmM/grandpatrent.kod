@@ -45,25 +45,12 @@ classvars:
    viAttack_type = ATCK_WEAP_SLASH
 
    viTreasure_type = TID_GRANDPA_TRENT
-
    viSpeed = SPEED_NONE
-   viAttributes = 0
-   viLevel = 300
-   viDifficulty = 9
-   viAmountofLoot = 9
-   viVisionDistance = 18
-   viAttackRange = 320
-   viKarma = 0
-   viDefault_behavior = AI_FIGHT_HYPERAGGRESSIVE | AI_FIGHT_SWITCHALOT | MOB_NOMOVE
-   viCashmin = 100
-   viCashmax = 500
+
    vrSound_hit = grandpatrent_sound_hit
    vrSound_miss = grandpatrent_sound_miss
    vrSound_aware = grandpatrent_sound_aware
    vrSound_death = grandpatrent_sound_death
-
-   viBonusXP = 1600
-   viBonusTP = 12
 
 properties:
 

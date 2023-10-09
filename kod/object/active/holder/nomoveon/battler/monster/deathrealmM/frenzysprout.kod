@@ -41,29 +41,14 @@ classvars:
    vrDesc = frenzysprout_desc_rsc
    vrDead_icon = frenzysprout_dead_icon_rsc
    vrDead_name = frenzysprout_dead_name_rsc
+   viSpeed = SPEED_NONE
 
    viTreasure_type = TID_FRENZY_SPROUT
 
-   viSpeed = SPEED_FAST
-   
-   viAttributes = 0
-   viLevel = 300
-   viDifficulty = 9
-   viAmountofLoot = 9
-   viVisionDistance = 18
-   
-   viAttackRange = 192
-   viKarma = 0
-   viDefault_behavior = AI_FIGHT_HYPERAGGRESSIVE | AI_FIGHT_SWITCHALOT | MOB_NOMOVE
-   viCashmin = 100
-   viCashmax = 500
    vrSound_hit = frenzysprout_sound_hit
    vrSound_miss = frenzysprout_sound_miss
    vrSound_aware = frenzysprout_sound_aware
    vrSound_death = frenzysprout_sound_death
-
-   viBonusXP = 900
-   viBonusTP = 3
 
 properties:
 

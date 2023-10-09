@@ -41,26 +41,11 @@ classvars:
    vrDead_name = BrownSeeker_dead_name_rsc
 
    viTreasure_type = TID_BROWN_SEEKER
-   viSpeed = SPEED_FAST
 
-   viAttributes = 0
-   viLevel = 300
-   viDifficulty = 9
-   viAmountofLoot = 9
-   viVisionDistance = 18
-   
-   viAttackRange = 256
-   viKarma = 0
-   viDefault_behavior = AI_FIGHT_HYPERAGGRESSIVE | AI_FIGHT_SWITCHALOT
-   viCashmin = 100
-   viCashmax = 500
    vrSound_hit = BrownSeeker_sound_hit
    vrSound_miss = BrownSeeker_sound_miss
    vrSound_aware = BrownSeeker_sound_aware
    vrSound_death = BrownSeeker_sound_death
-
-   viBonusXP = 900
-   viBonusTP = 3
 
 properties:
 

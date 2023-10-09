@@ -60,7 +60,12 @@ messages:
          [
             Create(&CorNothKey),
             Create(&Maul),
-            Create(&OfferingShalille)
+            Create(&OfferingShalille),
+            Create(&Herbs),
+            Create(&Emerald),
+            Create(&PolishedSeraphym),
+            Create(&UncutSeraphym),
+            Create(&RainbowFern)
          ],
       $,$,$];
 

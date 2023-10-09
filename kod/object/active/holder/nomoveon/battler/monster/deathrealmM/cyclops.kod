@@ -45,27 +45,11 @@ classvars:
    vrDead_name = cyclops_dead_name_rsc
 
    viTreasure_type = TID_CYCLOPS
-   
-   viSpeed = SPEED_SLOW
 
-   viAttributes = 0
-   viLevel = 300
-   viDifficulty = 9
-   viAmountofLoot = 9
-   viVisionDistance = 18
-   
-   viAttackRange = 192
-   viKarma = 0
-   viDefault_behavior = AI_FIGHT_HYPERAGGRESSIVE | AI_FIGHT_SWITCHALOT
-   viCashmin = 100
-   viCashmax = 500
    vrSound_hit = cyclops_sound_hit
    vrSound_miss = cyclops_sound_miss
    vrSound_aware = cyclops_sound_aware
    vrSound_death = cyclops_sound_death
-
-   viBonusXP = 900
-   viBonusTP = 3
 
 properties:
 
