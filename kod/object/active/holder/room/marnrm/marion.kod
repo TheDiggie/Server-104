@@ -151,7 +151,7 @@ messages:
          if NOT Send(who,@IsEnchanted,#what=oBoon)
          {
             Send(who,@MsgSendUser,#message_rsc=mimosa_rose_offering);
-            Send(oBoon,@AddBoon,#target=who,#days=1,#amount=5);
+            Send(oBoon,@AddBoon,#target=who,#days=3,#amount=5);
          }
          else
          {
