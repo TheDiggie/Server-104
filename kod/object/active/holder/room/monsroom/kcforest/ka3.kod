@@ -61,7 +61,9 @@ messages:
    Constructed()
    {
       plMonsters = [ [&Dragonfly, 90], [&DenseTree, 10] ];
-      plGenerators = [ [65,20], [7,34], [60,61] ];
+      plGenerators = [ [65,20], [7,34], [60,61], 
+                       [45,19], [48,41], [53,67],
+                       [16,13], [32,7], [24,53] ];
 
       propagate;
    }
