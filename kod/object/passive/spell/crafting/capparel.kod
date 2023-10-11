@@ -57,7 +57,7 @@ messages:
 
    SomethingSaidDuringTrance(who=$,string=$)
    {
-      local i, iCount, iNum, isGearCreateable, oGear, oItemAtt, iSpellPower, oColor;
+      local i, iCount, iNum, isGearCreateable, oGear, oItemAtt, iSpellPower, oColor, iChance, iCurrentSpell;
 
       oColor = XLAT_TO_RED;
       iCount = 0;
@@ -149,15 +149,37 @@ messages:
       }
 
       if(isGearCreateable = true)
-      {
+      {  
+         if iSpellPower = 99
+         {
+            iChance = Random(1,100);
+
+            if iChance = 1
+            {
+               oItemAtt = Send(SYS,@FindItemAttByNum,#num=IA_INDESTRUCTIBLE);
+               iCurrentSpell = Send(oGear,@GetAttributeData,#ItemAtt=IA_INDESTRUCTIBLE);
+
+               Send(oItemAtt,@AddtoItem,#oItem=oGear);
+
+               Send(who,@MsgSendUser,#message_rsc=Crafted_Indestructible,
+                     #parm1=Send(oGear,@GetName));
+
+               Send(oGear,@SetIndestructible);
+            }
+         }
+
          Send(who,@BreakTrance,#event=EVENT_STEER);
          Send(oGear,@SetDefense,#number=((1+iSpellPower)/5));
 
          if Send(who,@ReqNewHold,#what=oGear)
          {
             Send(who,@NewHold,#what=oGear);
-            Send(who,@MsgSendUser,#message_rsc=Crafting_cast_rsc,
-                  #parm1=Send(oGear,@GetCapIndef),#parm2=Send(oGear,@GetName));
+            
+            if NOT send(oGear,@IsIndestructible)
+            {
+               Send(who,@MsgSendUser,#message_rsc=Crafting_cast_rsc,
+                     #parm1=Send(oGear,@GetCapIndef),#parm2=Send(oGear,@GetName));
+            }
          }
          else
          {

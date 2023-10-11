@@ -144,8 +144,6 @@ messages:
       {
          iChance = Random(1,100);
 
-         Debug(iChance);
-
          if iChance = 1
          {
             oItemAtt = Send(SYS,@FindItemAttByNum,#num=IA_INDESTRUCTIBLE);
