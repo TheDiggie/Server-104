@@ -3745,6 +3745,7 @@ messages:
        Send(self,@CreateOneSKillIfNew,#num=SKID_MINING,#class=&Mining);
        Send(self,@CreateOneSKillIfNew,#num=SKID_LOGGING,#class=&Logging);
        Send(self,@CreateOneSKillIfNew,#num=SKID_GATHERING,#class=&Gathering);
+       Send(self,@CreateOneSKillIfNew,#num=SKID_SKINNING,#class=&Skinning);
 
        return;
    }
@@ -4102,6 +4103,10 @@ messages:
 
       //Plants
       Create(&ResPlantTreasure);
+
+      //Corpse
+      Create(&TrollCorpseTreasure);
+      Create(&KriipaCorpseTreasure);
 
       // Death Realm
       Create(&IceReaverTreasure);
@@ -5559,6 +5564,10 @@ messages:
       //Plants
       plMonsterTemplates = cons(create(&ResPlant),plMonsterTemplates);
 
+      //Corpse
+      plMonsterTemplates = cons(create(&TrollCorpse),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&KriipaCorpse),plMonsterTemplates);
+
       //DeathRealm
       plMonsterTemplates = cons(create(&BlackHydra),plMonsterTemplates);
       plMonsterTemplates = cons(create(&BrownSeeker),plMonsterTemplates);
@@ -6014,14 +6023,17 @@ messages:
       plItemTemplates = cons(create(&Axe),plItemTemplates);
       plItemTemplates = cons(create(&Hammer),plItemTemplates);
       plItemTemplates = cons(create(&Mace),plItemTemplates);
-      plItemTemplates = cons(create(&PickAxe),plItemTemplates);
-      plItemTemplates = cons(create(&CuttingAxe),plItemTemplates);
-      plItemTemplates = cons(create(&Sickle),plItemTemplates);
       plItemTemplates = cons(create(&BerserkerAxe),plItemTemplates);
       plItemTemplates = cons(create(&LightSword),plItemTemplates);
       plItemTemplates = cons(create(&Maul),plItemTemplates);
       plItemTemplates = cons(create(&NeruditeAxe),plItemTemplates);
       plItemTemplates = cons(create(&TwinBlade),plItemTemplates);
+
+      //Tools
+      plItemTemplates = cons(create(&PickAxe),plItemTemplates);
+      plItemTemplates = cons(create(&CuttingAxe),plItemTemplates);
+      plItemTemplates = cons(create(&Sickle),plItemTemplates);
+      plItemTemplates = cons(create(&SkinningKnife),plItemTemplates);
 
       plItemTemplates = cons(create(&ShieldRod),plItemTemplates);
       plItemTemplates = cons(create(&DamageRod),plItemTemplates);

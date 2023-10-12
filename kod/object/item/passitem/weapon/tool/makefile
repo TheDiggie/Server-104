@@ -4,7 +4,7 @@
 
 !include $(TOPDIR)\common.mak
 
-DEPEND = ..\resource.bof
-BOFS  = ore.bof restree.bof resplant.bof rescorpse.bof \
+DEPEND = ..\tool.bof
+BOFS = pickaxe.bof sickle.bof cuttingaxe.bof skinknife.bof
 
 !include $(KODDIR)\kod.mak

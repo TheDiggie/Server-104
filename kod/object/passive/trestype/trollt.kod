@@ -27,16 +27,15 @@ messages:
 
    Constructed()
    {
-      plTreasure = [ [ &MeatPie, 1],
+      plTreasure = [ [ &MeatPie, 10],
                      [ &GoldShield, 8 ],
                      [ &Gauntlet, 8 ],
                      [ &Longsword, 1],
                      [ &BlueMushroom, 15 ],
                      [ &ScaleArmor, 8 ],
-                     [ &HealWand, 1 ],
-                     [ &TrollHide, 35 ],
-                     [ &Scepter, 4 ],
-                     [ &DarkAngelFeather, 5 ],
+                     [ &HealWand, 10 ],
+                     [ &Scepter, 9 ],
+                     [ &DarkAngelFeather, 15 ],
                      [ &BlueDragonScale, 10 ],
                      [ &FreeActionPotion, 3]
                    ];

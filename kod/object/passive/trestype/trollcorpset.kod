@@ -8,7 +8,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-KriipaTreasure is TreasureType
+TrollCorpseTreasure is TreasureType
 
 constants:
 
@@ -16,19 +16,15 @@ constants:
 
 classvars:
 
-   viTreasure_num = TID_KRIIPA
+   viTreasure_num = TID_TROLL_CORPSE
 
 properties:
-
-   piItem_att_chance = 6
-   piDiff_seed = 6
 
 messages:
 
    Constructed()
    {
-      plTreasure = [ [ &KriipaClaw, 60 ],
-                     [ &Yrxlsap, 40 ]
+      plTreasure = [ [ &TrollHide, 100 ]
                    ];
 
       propagate;

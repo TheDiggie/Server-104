@@ -40,6 +40,7 @@ messages:
       Send(poApply_target,@RemoveSkill,#num=SKID_MINING);
       Send(poApply_target,@RemoveSkill,#num=SKID_LOGGING);
       Send(poApply_target,@RemoveSkill,#num=SKID_GATHERING);
+      Send(poApply_target,@RemoveSkill,#num=SKID_SKINNING);
 
       Send(poApply_target,@MsgSendUser,
             #message_rsc=ForgetPotionCrafting_forget_skill);

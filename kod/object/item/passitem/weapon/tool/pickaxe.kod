@@ -8,7 +8,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-PickAxe is Weapon
+PickAxe is Tool
 
 constants:
 
@@ -35,56 +35,15 @@ classvars:
 
    viProficiency_Needed = SKID_MINING
 
-   viValue_average = 5000
-   viWeight = 60
-   viBulk = 60
-   viHits_init_min = 500
-   viHits_init_max = 1500
+   voResource = &Ore
 
    vrWeapon_window_overlay = PickAxe_window_overlay_rsc
 
    vrWeapon_overlay = PickAxe_player_overlay
 
-   viGround_group = 1
-   viInventory_group = 3
-   viBroken_group = 2
-
-   viDamage_min = 4
-   viDamage_max = 5
-
 properties:
 
-   piAttack_type = ATCK_WEAP_NONMAGIC+ATCK_WEAP_PIERCE
-
-   piMiningPercent = $
-
 messages:
-
-   GetMiningPercent(who=$)
-   {
-      piMiningPercent = Send(who,@GetSkillAbility,#Skill_num=SKID_MINING);
-
-      return piMiningPercent;
-   }
-
-   ModifyDamage(who=$,what=$,damage=$)
-   {
-      local iDamage;
-
-      iDamage = damage;
-
-      if who <> $ AND what <> $ AND IsClass(what,&Ore) AND Send(self,@GetMiningPercent,#who=who) <> $
-      {
-         iDamage += Bound(Send(self,@GetMiningPercent,#who=who), 1, 75);
-      } else {
-         if who <> $ AND what <> $ AND (IsClass(what,&Orc) OR IsClass(what,&OrcWizard) OR IsClass(what,&CaveOrc) OR IsClass(what,&OrcPitBoss))
-         {
-            iDamage += Bound(Send(self,@GetMiningPercent,#who=who), 1, 60);
-         }
-      }
-
-      return iDamage;
-   }
 
 end
 ////////////////////////////////////////////////////////////////////////////////

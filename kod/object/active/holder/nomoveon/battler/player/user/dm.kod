@@ -2833,6 +2833,7 @@ messages:
          Send(self,@NewHold,#what=Create(&CuttingAxe));
          Send(self,@NewHold,#what=Create(&Sickle));
          Send(self,@NewHold,#what=Create(&Pickaxe));
+         Send(self,@NewHold,#what=Create(&SkinningKnife));
          Send(self,@NewHold,#what=Create(&BlacksmithsHammer));
          Send(self,@NewHold,#what=Create(&DrawKnife));
       }

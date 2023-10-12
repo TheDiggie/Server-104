@@ -47,8 +47,8 @@ resources:
       "the deadly grinning lizards have been known to decapitate a grown man "
       "in a single blow with their dagger-sharp claws."
 
-   Kriipa_dead_icon_rsc = kriipaX.bgf
-   Kriipa_dead_name_rsc = "slain Kriipa"
+   //Kriipa_dead_icon_rsc = kriipaX.bgf
+   //Kriipa_dead_name_rsc = "slain Kriipa"
 
    Kriipa_sound_hit = kr_atkm.ogg
    Kriipa_sound_miss = kr_atkm.ogg
@@ -62,8 +62,8 @@ classvars:
    vrName = Kriipa_name_rsc
    vrIcon = Kriipa_icon_rsc
    vrDesc = Kriipa_desc_rsc
-   vrDead_icon = Kriipa_dead_icon_rsc
-   vrDead_name = Kriipa_dead_name_rsc
+   //vrDead_icon = Kriipa_dead_icon_rsc
+   //vrDead_name = Kriipa_dead_name_rsc
  
    viTreasure_type = TID_KRIIPA
    viAttack_type = ATCK_WEAP_SLASH
@@ -362,6 +362,15 @@ messages:
    CanMorphTo()
    {
       return FALSE;
+   }
+
+   CreateDeadBody(killer=$)
+   {
+      local oBody;
+
+      oBody = Create(&KriipaCorpse);
+
+      return oBody;
    }
 
 end

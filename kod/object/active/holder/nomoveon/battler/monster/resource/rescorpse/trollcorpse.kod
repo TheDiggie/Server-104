@@ -8,31 +8,31 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-KriipaTreasure is TreasureType
+TrollCorpse is ResCorpse
 
 constants:
 
    include blakston.khd
 
+resources:
+
+   TrollCorpse_name_rsc = "corpse of a troll"
+   TrollCorpse_icon_rsc = trollx.bgf
+   TrollCorpse_desc_rsc = \
+      "A dead troll you can harvest hides from. "
+
 classvars:
 
-   viTreasure_num = TID_KRIIPA
+   vrName = TrollCorpse_name_rsc
+   vrIcon = TrollCorpse_icon_rsc
+   vrDesc = TrollCorpse_desc_rsc
+
+   viTreasure_type   = TID_TROLL_CORPSE
+   vcResource        = &TrollHide
 
 properties:
 
-   piItem_att_chance = 6
-   piDiff_seed = 6
-
 messages:
-
-   Constructed()
-   {
-      plTreasure = [ [ &KriipaClaw, 60 ],
-                     [ &Yrxlsap, 40 ]
-                   ];
-
-      propagate;
-   }
 
 end
 ////////////////////////////////////////////////////////////////////////////////

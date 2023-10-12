@@ -163,6 +163,7 @@ properties:
    viMiningBonus     = 0
    viGatheringBonus  = 0
    viLoggingBonus    = 0
+   viSkinningBonus   = 0
 
    viHalf   = FALSE
    viAlmost = FALSE
@@ -2753,6 +2754,11 @@ messages:
    GetGatheringBonus()
    {
       return viGatheringBonus;
+   }
+
+   GetSkinningBonus()
+   {
+      return viSkinningBonus;
    }
    
    SetDefense(number = $)

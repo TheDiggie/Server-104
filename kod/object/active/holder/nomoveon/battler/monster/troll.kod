@@ -25,8 +25,8 @@ resources:
       "powerful arms and razor sharp talons."
    troll_koc_name_rsc = "humoch"
 
-   troll_dead_icon_rsc = trollX.bgf
-   troll_dead_name_rsc = "dead troll"
+   //troll_dead_icon_rsc = trollX.bgf
+   //troll_dead_name_rsc = "dead troll"
 
    troll_sound_hit = trl_atkh.ogg
    troll_sound_miss = trl_atkm.ogg
@@ -39,8 +39,8 @@ classvars:
    vrName = troll_name_rsc
    vrIcon = troll_icon_rsc
    vrDesc = troll_desc_rsc
-   vrDead_icon = troll_dead_icon_rsc
-   vrDead_name = troll_dead_name_rsc
+   //vrDead_icon = troll_dead_icon_rsc
+   //vrDead_name = troll_dead_name_rsc
 
    viTreasure_type = TID_TROLL
    viSpeed = SPEED_AVERAGE
@@ -117,6 +117,15 @@ messages:
 
       // if no body animation
       propagate;
+   }
+
+   CreateDeadBody(killer=$)
+   {
+      local oBody;
+
+      oBody = Create(&TrollCorpse);
+
+      return oBody;
    }
 
 end

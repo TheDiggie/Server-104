@@ -5082,9 +5082,7 @@ messages:
       {
          if oWeapon <> $
          {
-            if    IsClass(oWeapon,&PickAxe) 
-               OR IsClass(oWeapon,&CuttingAxe)
-               OR IsClass(oWeapon,&sickle)
+            if IsClass(oWeapon,&Tool)
             {
                Send(self,@MsgSendUser,#message_rsc=cant_fight_tool);
                return FALSE;

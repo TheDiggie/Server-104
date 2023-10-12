@@ -118,6 +118,11 @@ messages:
          {
             iBonus = iBonus + Send(i,@GetGatheringBonus);
          }
+
+         if viSkill = SKID_SKINNING
+         {
+            iBonus = iBonus + Send(i,@GetSkinningBonus);
+         }
       } 
 
       if cSkillAbility <> $

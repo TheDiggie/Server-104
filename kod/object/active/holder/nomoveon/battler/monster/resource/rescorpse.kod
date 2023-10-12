@@ -8,31 +8,35 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-KriipaTreasure is TreasureType
+ResCorpse is Resource
 
 constants:
 
    include blakston.khd
 
+resources:
+
+   ResCorpse_name_rsc = "dead thing"
+   ResCorpse_icon_rsc = trollx.bgf
+   ResCorpse_desc_rsc = \
+      "A dead thing you may harvest hides from. "
+
 classvars:
 
-   viTreasure_num = TID_KRIIPA
+   vrName = ResCorpse_name_rsc
+   vrIcon = ResCorpse_icon_rsc
+   vrDesc = ResCorpse_desc_rsc
+
+   viLevel = 200
+
+   viTreasure_type   = $
+   vcResource        = $
+   viSkill           = SKID_SKINNING
+   viTool            = &SkinningKnife
 
 properties:
 
-   piItem_att_chance = 6
-   piDiff_seed = 6
-
 messages:
-
-   Constructed()
-   {
-      plTreasure = [ [ &KriipaClaw, 60 ],
-                     [ &Yrxlsap, 40 ]
-                   ];
-
-      propagate;
-   }
 
 end
 ////////////////////////////////////////////////////////////////////////////////

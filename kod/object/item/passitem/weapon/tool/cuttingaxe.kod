@@ -8,7 +8,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-CuttingAxe is Weapon
+CuttingAxe is Tool
 
 constants:
 
@@ -35,53 +35,17 @@ classvars:
 
    viProficiency_Needed = SKID_LOGGING
 
-   viValue_average = 2000
-   viWeight = 40
-   viBulk = 40
-   viHits_init_min = 500
-   viHits_init_max = 1500
+   voResource = &ResTree
 
    vrWeapon_window_overlay = CuttingAxe_window_overlay_rsc
 
    vrWeapon_overlay = CuttingAxe_player_overlay
 
-   viGround_group = 1
-   viInventory_group = 3
-   viBroken_group = 2
-
-   viDamage_min = 4
-   viDamage_max = 5
-
 properties:
 
-   piAttack_type = ATCK_WEAP_NONMAGIC+ATCK_WEAP_SLASH
-
-   piLoggingPercent = $
-
-   piItem_flags = 30
+   piAttack_type = ATCK_WEAP_NONMAGIC + ATCK_WEAP_SLASH
 
 messages:
-
-   GetLoggingPercent(who=$)
-   {
-      piLoggingPercent = Send(who,@GetSkillAbility,#Skill_num=SKID_LOGGING);
-
-      return piLoggingPercent;
-   }
-
-   ModifyDamage(who=$,what=$,damage=$)
-   {
-      local iDamage;
-
-      iDamage = damage;
-
-      if who <> $ AND what <> $ AND IsClass(what,&ResTree) AND Send(self,@GetLoggingPercent,#who=who) <> $
-      {
-         iDamage += Bound(Send(self,@GetLoggingPercent,#who=who), 1, 75);
-      }
-
-      return iDamage;
-   }
 
 end
 ////////////////////////////////////////////////////////////////////////////////

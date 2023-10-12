@@ -1927,6 +1927,9 @@
    TID_FRENZY_SPROUT = 121
    TID_HELL_WASP = 122
    TID_REVENANT_B = 123
+
+   TID_TROLL_CORPSE = 124
+   TID_KRIIPA_CORPSE = 125
    
    // English articles
 
@@ -2156,6 +2159,7 @@
    SKID_MINING = 407
    SKID_LOGGING = 408
    SKID_GATHERING = 409
+   SKID_SKINNING = 410
 
    // Melee weapon strokes start here.
    SKID_DEFAULT = 420

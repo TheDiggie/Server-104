@@ -1,0 +1,80 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+// A ranged weapon is a weapon which you equip in your hand, type Ctrl to use, 
+// then a target icon comes up a la apply() with which you choose your victim.
+// Well, at least ideally.  At this point there is no good way to code that,
+// so ranged weapons are like normal weapons with a range of 13 (the max range
+// for weapons).
+// Ranged weapons do not break as often as melee weapons (not as much wear and
+// tear).
+//
+// code by Justin Houk, 98jsh@williams.edu
+
+Tool is Weapon
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+classvars:
+
+   viProficiency_Needed = $
+
+   voResource = $
+
+   viValue_average = 5000
+
+   viWeight = 60
+   viBulk = 60
+
+   viHits_init_min = 500
+   viHits_init_max = 1500
+
+   viGround_group = 1
+   viInventory_group = 3
+   viBroken_group = 2
+
+   viDamage_min = 4
+   viDamage_max = 5
+
+properties:
+
+   piAttack_type = ATCK_WEAP_NONMAGIC + ATCK_WEAP_SLASH
+
+   piSkillPercent = $
+
+messages:
+
+   GetSkillPercent(who=$)
+   {
+      piSkillPercent = Send(who,@GetSkillAbility,#Skill_num=viProficiency_Needed);
+
+      return piSkillPercent;
+   }
+
+   ModifyDamage(who=$,what=$,damage=$)
+   {
+      local iDamage;
+
+      iDamage = damage;
+
+      if IsClass(what,voResource) AND Send(self,@GetSkillPercent,#who=who) <> $
+      {
+         iDamage += Bound(Send(self,@GetSkillPercent,#who=who), 1, 75);
+      }
+
+      return iDamage;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

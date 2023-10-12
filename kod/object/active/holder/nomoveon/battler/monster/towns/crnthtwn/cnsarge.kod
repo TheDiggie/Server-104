@@ -94,7 +94,8 @@ messages:
             Create(&LeatherArmor),
             Create(&LongSword),
             Create(&ShortSword),
-            Create(&Mace)
+            Create(&Mace),
+            Create(&SkinningKnife)
          ],
          [
             SKID_DODGE,
@@ -106,7 +107,8 @@ messages:
             SKID_PROFICIENCY_SHORTSWORD,
             SKID_PROFICIENCY_MACE,
             SKID_PROFICIENCY_SWORD,
-            SKID_PARRY 
+            SKID_PARRY,
+            SKID_SKINNING
          ],
       $,$];
 

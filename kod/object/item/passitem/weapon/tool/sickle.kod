@@ -8,7 +8,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-Sickle is Weapon
+Sickle is Tool
 
 constants:
 
@@ -35,53 +35,15 @@ classvars:
 
    viProficiency_Needed = SKID_GATHERING
 
-   viValue_average = 2000
-   viWeight = 40
-   viBulk = 40
-   viHits_init_min = 500
-   viHits_init_max = 1500
+   voResource = &ResPlant
 
    vrWeapon_window_overlay = Sickle_window_overlay_rsc
 
    vrWeapon_overlay = Sickle_player_overlay
 
-   viGround_group = 1
-   viInventory_group = 3
-   viBroken_group = 2
-
-   viDamage_min = 4
-   viDamage_max = 5
-
 properties:
 
-   piAttack_type = ATCK_WEAP_NONMAGIC+ATCK_WEAP_SLASH
-
-   piGatheringPercent = $
-
-   //piItem_flags = 30
-
 messages:
-
-   GetGatheringPercent(who=$)
-   {
-      piGatheringPercent = Send(who,@GetSkillAbility,#Skill_num=SKID_GATHERING);
-
-      return piGatheringPercent;
-   }
-
-   ModifyDamage(who=$,what=$,damage=$)
-   {
-      local iDamage;
-
-      iDamage = damage;
-
-      if who <> $ AND what <> $ AND IsClass(what,&ResPlant) AND Send(self,@GetGatheringPercent,#who=who) <> $
-      {
-         iDamage += Bound(Send(self,@GetGatheringPercent,#who=who), 1, 75);
-      }
-
-      return iDamage;
-   }
 
 end
 ////////////////////////////////////////////////////////////////////////////////
