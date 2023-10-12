@@ -39,7 +39,7 @@ classvars:
    vrIcon = StatsResetToken_icon_rsc
    vrDesc = StatsResetToken_desc_rsc
    viIndefinite = ARTICLE_AN
-   viValue_average = 0
+   viValue_average = 200000
    viWeight = 0
    viBulk = 0
 
@@ -52,7 +52,7 @@ properties:
 
 messages:
 
-   Constructor(temporary=TRUE,lifetime=-1,tradeable=FALSE)
+   Constructor(temporary=TRUE,lifetime=-1,tradeable=TRUE)
    {
       pbTradeable = tradeable;
       pbTemporary = temporary;

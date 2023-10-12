@@ -45,6 +45,7 @@ classvars:
    vrName = MarionElder_name_rsc
    vrIcon = MarionElder_icon_rsc
    vrDesc = MarionElder_desc_rsc
+   viMerchant_Markup = MERCHANT_FLAT
    viAttributes = \
       MOB_RANDOM | MOB_LISTEN | MOB_NOFIGHT | MOB_NOMOVE \
       | MOB_TEACHER | MOB_RECEIVE | MOB_COND_SELLER
@@ -95,7 +96,10 @@ messages:
    SetForSale()
    {
       plFor_sale = [
-         $,$,
+         [  
+            Create(&StatsResetToken) 
+         ],
+         $,
          [
             SID_TRUCE
          ],
