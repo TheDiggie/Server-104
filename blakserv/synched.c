@@ -369,11 +369,48 @@ void SynchedAcceptLogin(session_node *s,char *name,char *password)
    account_node *a;
    int now = GetTime();
 
-   a = AccountLoginByName(name); /* maps the GUEST_ACCOUNT_NAME into a real account */
+   a = AccountLoginByName(name);
 
    /* bad username, bad password, or suspended? */
-   if (a == NULL ||
-       (a->type != ACCOUNT_GUEST && strcmp(a->password,password) != 0))
+   if (a == NULL)
+   {
+   //lprintf("0.Account password %s attempting create\n",passwordhex);
+   aprintf("1.Attempting new character creation.\n");
+   /* create account and num_slots users for it */
+   int num_slots = 5;
+   int account_id = NULL;
+   user_node *u;
+   //char *name,*password,*email;
+   char *email;
+   //name = (char *)parms[0];
+   //password = (char *)parms[1];
+   email = name;
+   lprintf("0.Account password attempting create\n");
+   account_id=CreateAccountSecurePassword(name,password,email,ACCOUNT_NORMAL);
+   
+   if ( account_id == NULL )
+   {
+      aprintf("Account name %s already exists\n",name);
+
+      return;
+   }
+
+   num_slots = ConfigInt(ACCOUNT_NUM_SLOTS);
+
+   // Put an upper limit on number of slots
+   if (num_slots > 10)
+      num_slots = 10;
+
+   // Automated, so don't display users.
+   for (int i = 0; i < num_slots; ++i)
+      u = CreateNewUser(account_id, USER_CLASS);
+   eprintf("Created account %i.\n", account_id);
+   aprintf("Created account %i.\n", account_id);
+   a = GetAccountByID(account_id);
+   SetAccountPasswordAlreadyEncrypted(a, password);
+   }
+
+   if (strcmp(a->password, password) != 0)
    {
       s->syn->failed_tries++;
       if (s->syn->failed_tries == ConfigInt(LOGIN_MAX_ATTEMPTS))
@@ -383,30 +420,9 @@ void SynchedAcceptLogin(session_node *s,char *name,char *password)
          HangupSession(s);
          return;
       }
-      if (!stricmp(name,ConfigStr(GUEST_ACCOUNT)))
-      {
-         AddByteToPacket(AP_GUEST);
-         AddByteToPacket(1); /* we're hanging 'em up */
-         AddIntToPacket(ConfigInt(GUEST_SERVER_MIN));
-         AddIntToPacket(ConfigInt(GUEST_SERVER_MAX));
-         
-         /*
-           char *too_many_str;
-           
-           too_many_str = ConfigStr(GUEST_TOO_MANY);
-           AddByteToPacket(AP_MESSAGE);
-           AddStringToPacket(strlen(too_many_str),too_many_str);
-           AddByteToPacket(LA_LOGOFF);
-         */
-         
-         SendPacket(s->session_id);
-         HangupSession(s);
-      }
-      else
-      {
-         AddByteToPacket(AP_LOGINFAILED);
-         SendPacket(s->session_id);
-      }
+
+      AddByteToPacket(AP_LOGINFAILED);
+      SendPacket(s->session_id);
       return;
    }
 
@@ -444,18 +460,9 @@ void SynchedAcceptLogin(session_node *s,char *name,char *password)
    /* suspension lifted naturally? */
    if (a->suspend_time)
       SuspendAccountAbsolute(a, 0);
-   
-   /* tell guest client what other servers may be available */
-   if (!stricmp(name,ConfigStr(GUEST_ACCOUNT)))
-   {
-      AddByteToPacket(AP_GUEST);
-      AddByteToPacket(0); /* we're letting 'em stay, give 'em the new range */
-      AddIntToPacket(ConfigInt(GUEST_SERVER_MIN));
-      AddIntToPacket(ConfigInt(GUEST_SERVER_MAX));
-      SendPacket(s->session_id);
-   }
-   
+
    /* check if anyone already logged in on same account */
+   /* Can we allow users to login with all their chars?*/
    other = GetSessionByAccount(a);
    if (other != NULL)
    {
@@ -476,6 +483,7 @@ void SynchedAcceptLogin(session_node *s,char *name,char *password)
          SendPacket(s->session_id);
       }
    }
+/* not really that way we want to*/
 
    /* check if we're too busy, if not an admin. */
    if (a->type != ACCOUNT_ADMIN && a->type != ACCOUNT_DM && !s->active)

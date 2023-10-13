@@ -91,7 +91,7 @@ config_table_type config_table[] =
      "Too many guests are logged on right now; please try again later." },
 
 { ACCOUNT_GROUP,          T, "[Account]",     CONFIG_GROUP, "" },
-{ ACCOUNT_NUM_SLOTS,      T, "NumSlots",      CONFIG_INT,   "3" },
+{ ACCOUNT_NUM_SLOTS,      T, "NumSlots",      CONFIG_INT,   "2" },
 
 { LOGIN_GROUP,            F, "[Login]",       CONFIG_GROUP, "" },
 { LOGIN_MAX_ATTEMPTS,     F, "MaxAttempts",   CONFIG_INT,   "3" },
