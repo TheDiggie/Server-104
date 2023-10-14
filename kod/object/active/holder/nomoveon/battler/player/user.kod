@@ -2050,8 +2050,10 @@ messages:
       if liClient_cmd = BP_CHANGED_STATS
       {
       
-         if Length(client_msg) <> 14
+         if Length(client_msg) <> 15
          {
+            Debug(self, " sent invalid number of params ", Length(client_msg),
+               " for BP_CHANGED_STATS (expected 15)");
             return;
          }
 
@@ -2063,7 +2065,7 @@ messages:
             }
          }
 
-         Send(self,@UserChangedStats, #might=Nth(client_msg,2),
+         Send(self,@UserChangedStats,  #might=Nth(client_msg,2),
                                        #intellect=Nth(client_msg,3),
                                        #stamina=Nth(client_msg,4),
                                        #agility=Nth(client_msg,5),
@@ -2075,7 +2077,8 @@ messages:
                                        #faren_lvl=Nth(client_msg,11),
                                        #riija_lvl=Nth(client_msg,12),
                                        #jala_lvl=Nth(client_msg,13),
-                                       #weaponcraft_lvl=Nth(client_msg,14));
+                                       #weaponcraft_lvl=Nth(client_msg,14),
+                                       #crafting_lvl=Nth(client_msg,15));
          return;
       }
 
@@ -10705,7 +10708,7 @@ messages:
 
    UserChangedStats(might=25,intellect=25,stamina=25,agility=25,mysticism=25,
                      aim=25,shallile_lvl=0,qor_lvl=0,kraanan_lvl=0,faren_lvl=0,
-                     riija_lvl=0,jala_lvl=0,weaponcraft_lvl=0)
+                     riija_lvl=0,jala_lvl=0,weaponcraft_lvl=0,crafting_lvl=0)
    "Processes a stat change request from the client"
    {
       local i, lSpellLevels, lSkillLevels, lSpellLevels_new, lSkillLevels_new,
@@ -10732,7 +10735,7 @@ messages:
       lSpellLevels_new = [shallile_lvl,qor_lvl,kraanan_lvl,
                           faren_lvl,riija_lvl,jala_lvl];
       lSkillLevels = Send(self, @GetSkillSchoolLevels);
-      lSkillLevels_new = [weaponcraft_lvl];
+      lSkillLevels_new = [weaponcraft_lvl, crafting_lvl];
    
       // Range Checks, no client hacking negative stats funny business!
       if (might < 1 OR might > 50)
@@ -10754,6 +10757,7 @@ messages:
          OR (riija_lvl < 0 OR riija_lvl > 6)
          OR (jala_lvl < 0 OR jala_lvl > 6)
          OR (weaponcraft_lvl < 0 OR weaponcraft_lvl > 6)
+         OR (crafting_lvl < 0 OR crafting_lvl > 6)
       {
          Debug("School Range Check: Failed!");
          return FALSE;
