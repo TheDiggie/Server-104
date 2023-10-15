@@ -102,7 +102,8 @@ Bool HandleStatChangeRequest(char *ptr, long len)
    Extract(&ptr, &crafting_level, 1);
 
    int myStats[] = {might, intellect, stamina, agility, mysticism, aim};
-   int myLevels[] = {shalille_level, qor_level, kraanan_level, faren_level, riija_level, jala_level, weaponcraft_level, crafting_level};
+   int myLevels[] = {shalille_level, qor_level, kraanan_level, faren_level, 
+      riija_level, jala_level, weaponcraft_level, crafting_level};
 
    MakeStats(myStats, myLevels);
 

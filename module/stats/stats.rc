@@ -219,8 +219,8 @@ BEGIN
     LTEXT           "Faren",IDC_STATIC,154,205,19,8
     LTEXT           "Riija",IDC_STATIC,154,224,14,8
     LTEXT           "Jala",IDC_STATIC,154,245,42,8
-    LTEXT           "Weaponcraft",IDC_STATIC,154,263,42,8
-    LTEXT           "Crafting",IDC_STATIC,21,263,30,8
+    LTEXT           "Crafting",IDC_STATIC,154,263,42,8
+    LTEXT           "Weaponcraft",IDC_STATIC,21,263,30,8
     LTEXT           "NOTE: To reduce intellect, you may have to forfeit school levels below.",IDC_STATIC,44,170,224,8
 END
 
