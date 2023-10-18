@@ -169,6 +169,8 @@ properties:
    viAlmost = FALSE
    viVery   = FALSE
 
+   poCrafter      = $
+
 messages:
 
    Constructor(corpse=$, oDMCreator=$)
@@ -2808,6 +2810,18 @@ messages:
    IsIndestructible()
    {
       return piIndestructible;
+   }
+
+   SetCrafter(Crafter=$)
+   {
+      poCrafter = Crafter;
+
+      return;
+   }
+
+   GetCrafter()
+   {
+      return poCrafter;
    }
 
 end

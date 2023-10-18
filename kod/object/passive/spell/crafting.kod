@@ -179,7 +179,7 @@ messages:
       }
 
       oItemAtt = Send(SYS,@FindItemAttByNum,#num=IA_CRAFTED);
-      Send(oItemAtt,@SetCrafter,#who=who);
+      Send(oGear,@SetCrafter,#Crafter=who);
       Send(oItemAtt,@AddtoItem,#oItem=oGear);
 
       if IsClass(oGear,&GuildShield)

@@ -34,20 +34,15 @@ classvars:
 
 properties:
 
-   poCrafter = $
-
 messages:
 
-   AppendDesc()
+   AppendDesc(oItem =$)
    {
-      AddPacket(4,vrDesc,4,send(poCrafter,@getname));
+      local oCrafter;
 
-      return;
-   }
+      oCrafter = Send(oItem,@GetCrafter);
 
-   SetCrafter(who=$)
-   {
-      poCrafter = who;
+      AddPacket(4,vrDesc,4,send(oCrafter,@getname));
 
       return;
    }
