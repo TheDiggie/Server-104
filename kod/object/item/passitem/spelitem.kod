@@ -592,12 +592,12 @@ messages:
 
    GetBulk()
    {
-      return viBulk * piHits;
+      return viBulk;
    }
 
    GetWeight()
    {
-      return viWeight * piHits;
+      return viWeight;
    }
 
    GetInitValue()
