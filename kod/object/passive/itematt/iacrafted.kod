@@ -24,11 +24,13 @@ constants:
 resources:
 
    itematt_crafted_desc = " This piece of gear was crafted by %s."
+   itematt_crafted_old_desc = " This piece of gear was crafted."
 
 classvars:
 
    viItem_Att_Num = IA_CRAFTED
    vrDesc = itematt_crafted_desc
+   vrDesc2 = itematt_crafted_old_desc
 
    viDifficulty = 5
 
@@ -41,8 +43,15 @@ messages:
       local oCrafter;
 
       oCrafter = Send(oItem,@GetCrafter);
-
-      AddPacket(4,vrDesc,4,send(oCrafter,@getname));
+   
+      if oCrafter <> $
+      {
+         AddPacket(4,vrDesc,4,send(oCrafter,@getname));
+      }
+      else 
+      {
+         AddPacket(4,vrDesc2);
+      }
 
       return;
    }
