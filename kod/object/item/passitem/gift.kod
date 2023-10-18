@@ -28,9 +28,6 @@ resources:
    gift_desc_name = \
       "This is a neatly wrapped present.  A tag attached to the bow reads, "
       "'From %q with love'."
-   gift_bonded_wrapped = "You sense that your %s has been giftwrapped."
-   gift_bonded_unwrapped = \
-      "You sense that your gift has been unwrapped to reveal %s%s."
 
 classvars:
 
@@ -49,35 +46,28 @@ classvars:
 properties:
 
    poGiftGiver = $     /// if poGiftGIver = $, then it's from the gods.
-   poContents = $
+   plContents  = $
+   poContents  = $
+   poColor     = $
+   plItematt   = $
+   poItematt   = $
 
 messages:
 
    Constructor(contents = $, giver = $)
    {
-      local oBondee;
-
       if contents <> $
       {
-         if Send(contents,@HasAttribute,#ItemAtt=IA_BONDED)
-         {
-            oBondee = Nth(Send(contents,@GetAttributeData,#ItemAtt=IA_BONDED),2);
-            Send(oBondee,@ClearBondedItem);
-            Send(oBondee,@BondItem,#what=self);
-            if Send(contents,@GetOwner) <> oBondee
-            {
-               Send(oBondee,@MsgSendUser,#message_rsc=gift_bonded_wrapped,
-                     #parm1=Send(contents,@GetName));
-            }
-         }
          if Send(contents,@GetOwner) <> $
          {
             Send(Send(contents,@GetOwner),@LeaveHold,#what=contents);
             Send(contents,@NewOwner,#what=$);
          }
+
+         poGiftGiver = giver;
+         poContents = contents;
       }
-      poGiftGiver = giver;
-      poContents = contents;
+
 
       propagate;
    }
@@ -104,7 +94,6 @@ messages:
 
    GetValue()
    {
-      // Can't really tell the value of an item in a box.
       return 10;
    }
 
@@ -129,46 +118,50 @@ messages:
 
    NewApplied(what = $)
    {
-      local rand, bAny, oBondee, oldOwner;
+      local oldOwner, oItemAtt, iChance;
 
-      bAny = FALSE;
-      if Length(Send(what,@GetSpellList)) < 5
+      if poContents = $
       {
-         bAny = TRUE;
+         poContents = Nth(plContents,Random(1,length(plContents)));
+      }
+      
+      if IsClass(poContents,&GuildShield)
+      {
+         Send(poContents,@Randomize);
       }
 
-      while poContents = $
+      iChance = Random(1,100);
+
+      if iChance < 31
+      AND NOT IsClass(poContents,&GuildShield)
+      AND NOT IsClass(poContents,&Bow)
+      AND NOT IsClass(poContents,&Necklace)
+      AND NOT IsClass(poContents,&Instrument)
       {
-         // Give one of the five amulets.
-         rand = Random(1,9);
+         poColor = send(self,@GetColor);
+         Send(poContents,@SetItemColor,#flags=poColor);
+      }
 
-         if rand <= 2
-            AND (bAny OR Send(what,@GetNumSpellsInSchool,#school=SS_QOR) > 1)
+      if plItematt <> $
+      {
+         if IsClass(poContents,&Necklace)
          {
-            poContents = Create(&QorCharm);
+            iChance = Random(1,100);
+
+            if iChance < 10
+            {
+               poItematt = Nth(plItematt,Random(1,length(plItematt)));
+               oItemAtt = Send(SYS,@FindItemAttByNum,#num=poItematt);
+               Send(oItemAtt,@AddtoItem,#oItem=poContents,#iPower=random(1,9));
+               send(poContents,@RevealHiddenAttributes);
+            }
          }
-
-         if (rand = 3 OR rand = 4)
-            AND (bAny OR Send(what,@GetNumSpellsInSchool,#school=SS_KRAANAN) > 1)
+         else
          {
-            poContents = Create(&KraananCharm);
-         }
-
-         if (rand = 5 or rand = 6)
-            AND (bAny OR Send(what,@GetNumSpellsInSchool,#school=SS_FAREN) > 1)
-         {
-            poContents = Create(&FarenCharm);
-         }
-
-         if (rand = 7 or rand = 8)
-            AND (bAny OR Send(what,@GetNumSpellsInSchool,#school=SS_SHALILLE) > 1)
-         {
-            poContents = Create(&ShalilleCharm);
-         }
-
-         if rand = 9
-         {
-            poContents = Create(&RiijaCharm);
+            poItematt = Nth(plItematt,Random(1,length(plItematt)));
+            oItemAtt = Send(SYS,@FindItemAttByNum,#num=poItematt);
+            Send(oItemAtt,@AddtoItem,#oItem=poContents,#iPower=random(1,9));
+            send(poContents,@RevealHiddenAttributes);
          }
       }
 
@@ -180,27 +173,34 @@ messages:
       Send(self,@NewOwner,#what=$);
       Send(oldOwner,@NewHold,#what=poContents);
 
-      // Note that this RecalcBulkAndWeight is entirely superfluous,
-      // but we'll leave it here as a safeguard against future wierdness.
-      Send(oldOwner,@RecalcBulkAndWeight);
-      if Send(self,@HasAttribute,#ItemAtt=IA_BONDED)
-      {
-         oBondee = nth(Send(self,@GetAttributeData,#ItemAtt=IA_BONDED),2);
-         Send(oBondee,@ClearBondedItem);
-         Send(oBondee,@BondItem,#what=poContents);
-         if oldOwner <> oBondee
-         {
-            Send(oBondee,@MsgSendUser,#message_rsc=gift_bonded_unwrapped,
-                  #parm1=Send(poContents,@GetIndef),
-                  #parm2=Send(poContents,@GetName));
-         }
-      }
-
       poContents = $;
 
       Send(self,@Delete);
 
       return;
+   }
+   
+   GetColor()
+   {
+      local lColors;
+
+      if IsClass(poContents,&NeruditeArmor)
+      OR IsClass(poContents,&LeatherArmor)
+      OR IsClass(poContents,&GoldShield)
+      OR IsClass(poContents,&Circlet)
+      OR IsClass(poContents,&IvyCirclet)
+      OR IsClass(poContents,&SimpleHelm)
+      {
+         lColors = [ 1111,1112,1110,1109,69,78,57,1335 ];
+      }
+      else
+      {
+         lColors = [ 40,33,86,2158,44,48,29,13,15 ];
+      }
+
+      poColor = Nth(lColors,Random(1,length(lColors)));
+
+      return poColor;
    }
 
    Delete()

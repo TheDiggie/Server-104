@@ -5762,7 +5762,19 @@ messages:
       plItemTemplates = cons(create(&KraananCharm),plItemTemplates);
       plItemTemplates = cons(create(&ShalilleCharm),plItemTemplates);
       plItemTemplates = cons(create(&QorCharm),plItemTemplates);
+
+      //Gifts
       plItemTemplates = cons(create(&Gift),plItemTemplates);
+      plItemTemplates = cons(create(&ArmorGift),plItemTemplates);
+      plItemTemplates = cons(create(&WeaponGift),plItemTemplates);
+      plItemTemplates = cons(create(&GodsGift),plItemTemplates);
+      plItemTemplates = cons(create(&BowGift),plItemTemplates);
+      plItemTemplates = cons(create(&ShieldGift),plItemTemplates);
+      plItemTemplates = cons(create(&MageGift),plItemTemplates);
+      plItemTemplates = cons(create(&DeathRealmWeaponGift),plItemTemplates);
+      plItemTemplates = cons(create(&DeathRealmArmorGift),plItemTemplates);
+      plItemTemplates = cons(create(&MaskGift),plItemTemplates);
+      plItemTemplates = cons(create(&InstrumentGift),plItemTemplates);
 
       // Scrolls
       plItemTemplates = cons(create(&DarknessScroll),plItemTemplates);

@@ -7,6 +7,3 @@ gift_open = de \
 gift_desc_name = de \
    "Dies ist ein niedlich verpacktes Geschenk. Auf einem kleinen Zettelchen "
    "steht geschrieben: 'Von %q in Liebe'."
-gift_bonded_wrapped = de \
-   "Du fühlst, dass Du vergiftet wurdest %s wurde mit Geschenkpapier umwickelt."
-gift_bonded_unwrapped = de "Dein Geschenk ist nun unverpackt. Es ist: %s%s."

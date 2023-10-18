@@ -311,14 +311,7 @@ messages:
       }
       else
       {
-	      if iBaseXLAT = $
-	      {
-	         iBaseXLATColor = viBaseXLAT;
-	      }
-	      else
-	      {
-	         iBaseXLATColor = iBaseXLAT;
-	      }
+	      iBaseXLATColor = viBaseXLAT;
    
          iTranslation = Send(SYS,@EncodeTwoColorXlat,#color1=iFactionColor,#color2=iBaseXLATColor);
          Send(self,@SetPaletteTranslation,#translation=iTranslation);

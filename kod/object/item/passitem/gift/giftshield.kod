@@ -1,0 +1,51 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+ShieldGift is Gift
+
+constants:
+
+   include blakston.khd
+   include protocol.khd
+
+resources:
+
+   ShieldGift_name_rsc = "shield box"
+   ShieldGift_desc_rsc = \
+      "This is a gift from the gods, it contains a strong shield!"
+
+classvars:
+
+   vrName = ShieldGift_name_rsc
+   vrDesc = ShieldGift_desc_rsc
+
+properties:
+
+messages:
+
+   Constructor()
+   {
+      plContents = [ Create(&GuildShield), Create(&OrcShield), Create(&KnightShield), 
+                     Create(&GoldShield), Create(&MetalShield), Create(&BeerMug) ];
+
+      plItematt = [ IA_TRANSCENDANT, IA_DURABLE, IA_INDESTRUCTIBLE, IA_XP_KILL_BONUS ];
+
+      propagate;
+   }
+
+   DoBaseDesc()
+   {
+      AddPacket(4, vrDesc);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

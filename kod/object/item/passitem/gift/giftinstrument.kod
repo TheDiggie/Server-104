@@ -1,0 +1,50 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+InstrumentGift is Gift
+
+constants:
+
+   include blakston.khd
+   include protocol.khd
+
+resources:
+
+   InstrumentGift_name_rsc = "instrument box"
+   InstrumentGift_desc_rsc = \
+      "This is a gift from the gods, it contains a random instrument!"
+
+classvars:
+
+   vrName = InstrumentGift_name_rsc
+   vrDesc = InstrumentGift_desc_rsc
+
+properties:
+
+messages:
+
+   Constructor()
+   {
+      plContents = [ Create(&JalaNecklace), Create(&FineLute), Create(&TrueLute), Create(&Lute) ];
+
+      plItematt = [ IA_TRANSCENDANT, IA_XP_KILL_BONUS ];
+
+      propagate;
+   }
+
+   DoBaseDesc()
+   {
+      AddPacket(4, vrDesc);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

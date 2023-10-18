@@ -1,0 +1,54 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+WeaponGift is Gift
+
+constants:
+
+   include blakston.khd
+   include protocol.khd
+
+resources:
+
+   WeaponGift_name_rsc = "weapon box"
+   WeaponGift_desc_rsc = \
+      "This is a gift from the gods, it contains a strong weapon!"
+
+classvars:
+
+   vrName = WeaponGift_name_rsc
+   vrDesc = WeaponGift_desc_rsc
+
+properties:
+
+messages:
+
+   Constructor()
+   {
+      plContents = [ Create(&NeruditeSword), Create(&MysticSword), Create(&Scimitar), 
+                     Create(&LongSword), Create(&ShortSword), Create(&Axe), 
+                     Create(&Hammer), Create(&Mace) ];
+
+      plItematt = [ IA_TRANSCENDANT, IA_DURABLE, IA_INDESTRUCTIBLE, IA_XP_KILL_BONUS,
+                    WA_BLINDER, WA_PARALYZER, WA_VAMPER, WA_BONKER, WA_FACTION,
+                    WA_TWISTER, WA_PURGER, WA_SIPHON, WA_GLOWING, WA_PUNISHER ];
+
+      propagate;
+   }
+
+   DoBaseDesc()
+   {
+      AddPacket(4, vrDesc);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

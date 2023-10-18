@@ -1,0 +1,51 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+GodsGift is Gift
+
+constants:
+
+   include blakston.khd
+   include protocol.khd
+
+resources:
+
+   GodsGift_name_rsc = "gods box"
+   GodsGift_desc_rsc = \
+      "This is a gift from the gods, it contains a random god's gift!"
+
+classvars:
+
+   vrName = GodsGift_name_rsc
+   vrDesc = GodsGift_desc_rsc
+
+properties:
+
+messages:
+
+   Constructor()
+   {
+      plContents = [ Create(&QorCharm), Create(&KraananCharm), Create(&FarenCharm), 
+                     Create(&ShalilleCharm), Create(&RiijaCharm) ];
+
+      plItematt = [ IA_TRANSCENDANT, IA_XP_KILL_BONUS ];
+
+      propagate;
+   }
+
+   DoBaseDesc()
+   {
+      AddPacket(4, vrDesc);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

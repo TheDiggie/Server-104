@@ -1,0 +1,56 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+MaskGift is Gift
+
+constants:
+
+   include blakston.khd
+   include protocol.khd
+
+resources:
+
+   MaskGift_name_rsc = "mask box"
+   MaskGift_desc_rsc = \
+      "This is a gift from the gods, it contains a random mask!"
+
+classvars:
+
+   vrName = MaskGift_name_rsc
+   vrDesc = MaskGift_desc_rsc
+
+properties:
+
+messages:
+
+   Constructor()
+   {
+      plContents = [ Create(&KriipaMask),    Create(&StoneTrollMask),   Create(&TrollMask), 
+                     Create(&AntMask),       Create(&DuskRatMask),      Create(&RatMask),
+                     Create(&SkullMask),     Create(&RiceMask),         Create(&WolfMask),
+                     Create(&TriangleMask),  Create(&SquareMask),       Create(&FrontMask),
+                     Create(&CircleMask),    Create(&CowMask),          Create(&ShrunkenHeadMask),
+                     Create(&FeyMaskEvil),   Create(&FeyMask),          Create(&MummyMask),
+                     Create(&DaemonMask),    Create(&XeoMask) ];
+
+      plItematt = [ IA_TRANSCENDANT, IA_XP_KILL_BONUS ];
+
+      propagate;
+   }
+
+   DoBaseDesc()
+   {
+      AddPacket(4, vrDesc);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

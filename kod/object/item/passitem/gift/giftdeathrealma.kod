@@ -1,0 +1,50 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeathRealmArmorGift is Gift
+
+constants:
+
+   include blakston.khd
+   include protocol.khd
+
+resources:
+
+   DeathRealmArmorGift_name_rsc = "death realm armor box"
+   DeathRealmArmorGift_desc_rsc = \
+      "This is a gift from the gods, it contains a strong armor item from the Death Realm!"
+
+classvars:
+
+   vrName = DeathRealmArmorGift_name_rsc
+   vrDesc = DeathRealmArmorGift_desc_rsc
+
+properties:
+
+messages:
+
+   Constructor()
+   {
+      plContents = [ Create(&LegionHelm), Create(&SteelHelm), Create(&WarHelm), Create(&NeruditeShield) ];
+
+      plItematt = [ IA_TRANSCENDANT, IA_DURABLE, IA_INDESTRUCTIBLE, IA_XP_KILL_BONUS ];
+
+      propagate;
+   }
+
+   DoBaseDesc()
+   {
+      AddPacket(4, vrDesc);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

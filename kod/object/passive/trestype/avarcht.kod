@@ -36,10 +36,10 @@ messages:
                            [ &TeloFruit, 5],
                            [ &NeruditeArmor, 4],
                            [ &KillingFieldScroll, 4],
-		                   [ &ShadowFormPotion, 5 ],
-		                   [ &NeruditeArrow, 5 ],
-		                   [ &DetectInvisibilityPotion, 3],
-		                   [ &SeduceWand, 1 ]
+		                     [ &ShadowFormPotion, 5 ],
+		                     [ &NeruditeArrow, 5 ],
+		                     [ &DetectInvisibilityPotion, 3],
+		                     [ &SeduceWand, 1 ]
                    ];
       propagate;
    }

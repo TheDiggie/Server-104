@@ -1,0 +1,53 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeathRealmWeaponGift is Gift
+
+constants:
+
+   include blakston.khd
+   include protocol.khd
+
+resources:
+
+   DeathRealmWeaponGift_name_rsc = "death realm weapon box"
+   DeathRealmWeaponGift_desc_rsc = \
+      "This is a gift from the gods, it contains a strong weapon from the Death Realm!"
+
+classvars:
+
+   vrName = DeathRealmWeaponGift_name_rsc
+   vrDesc = DeathRealmWeaponGift_desc_rsc
+
+properties:
+
+messages:
+
+   Constructor()
+   {
+      plContents = [ Create(&TwinBlade), Create(&NeruditeAxe), Create(&Maul), 
+                     Create(&LightSword), Create(&BerserkerAxe), Create(&MasterWand) ];
+
+      plItematt = [ IA_TRANSCENDANT, IA_DURABLE, IA_INDESTRUCTIBLE, IA_XP_KILL_BONUS,
+                    WA_BLINDER, WA_PARALYZER, WA_VAMPER, WA_BONKER, WA_FACTION,
+                    WA_TWISTER, WA_PURGER, WA_SIPHON, WA_GLOWING, WA_PUNISHER ];
+
+      propagate;
+   }
+
+   DoBaseDesc()
+   {
+      AddPacket(4, vrDesc);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////
