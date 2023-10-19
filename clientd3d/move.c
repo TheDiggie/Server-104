@@ -1109,7 +1109,7 @@ void PlayerChangeHeight(int dz)
    int dt;
    static DWORD last_time = 0;
 
-   dz = SGN(dz) * HEIGHT_INCREMENT;
+   dz = SGN(dz) * HEIGHT_INCREMENT / 8;
 
    now = timeGetTime();
    dt = now - last_time;
