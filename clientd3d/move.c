@@ -1126,16 +1126,16 @@ void PlayerChangeHeight(int dz)
    last_time = now;
 
    height_offset += dz;
-   height_offset = min(height_offset, HEIGHT_MAX_OFFSET / 2);
-   height_offset = max(height_offset, - (HEIGHT_MAX_OFFSET / 2));
+   height_offset = min(height_offset, HEIGHT_MAX_OFFSET / 4);
+   height_offset = max(height_offset, - (HEIGHT_MAX_OFFSET / 4));
    RedrawAll();
 }
 
 void PlayerChangeHeightMouse(int dz)
 {
    height_offset += dz;
-   height_offset = min(height_offset, HEIGHT_MAX_OFFSET / 2);
-   height_offset = max(height_offset, - (HEIGHT_MAX_OFFSET / 2));
+   height_offset = min(height_offset, HEIGHT_MAX_OFFSET / 4);
+   height_offset = max(height_offset, - (HEIGHT_MAX_OFFSET / 4));
 }
 /************************************************************************/
 /*
