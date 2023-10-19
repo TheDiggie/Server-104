@@ -64,5 +64,11 @@ messages:
       return;
    }
 
+   ReqDMDelete()
+   "By default this item can be removed."
+   {
+      return FALSE;
+   }
+
 end
 ////////////////////////////////////////////////////////////////////////////////
