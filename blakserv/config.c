@@ -154,7 +154,7 @@ config_table_type config_table[] =
 
 { AUTO_GROUP,             F, "[Auto]",        CONFIG_GROUP, "" },
 { AUTO_SAVE_TIME,         F, "SaveTime",      CONFIG_INT,   "0", }, /* minutes */
-{ AUTO_SAVE_PERIOD,       F, "SavePeriod",    CONFIG_INT,   "180", }, /* minutes */
+{ AUTO_SAVE_PERIOD,       F, "SavePeriod",    CONFIG_INT,   "60", }, /* minutes */
 { AUTO_KOD_TIME,          F, "KodTime",       CONFIG_INT,   "0", },
 { AUTO_KOD_PERIOD,        F, "KodPeriod",     CONFIG_INT,   "5", },
 { AUTO_INTERFACE_UPDATE,  F, "InterfaceUpdate",CONFIG_INT,  "5", },
