@@ -32,19 +32,12 @@ messages:
 
    Constructor()
    {
-      plContents = [ Create(&LightDiscipleRobe), Create(&DiscipleRobe), Create(&Wizardhat), 
-                     Create(&ApprenticeWand), Create(&Circlet), Create(&IvyCirclet) ];
+      plContents = [ &LightDiscipleRobe, &DiscipleRobe, &Wizardhat, 
+                     &ApprenticeWand, &Circlet, &IvyCirclet ];
 
       plItematt = [ IA_TRANSCENDANT, IA_DURABLE, IA_INDESTRUCTIBLE, IA_XP_KILL_BONUS ];
 
       propagate;
-   }
-
-   DoBaseDesc()
-   {
-      AddPacket(4, vrDesc);
-
-      return;
    }
 
 end

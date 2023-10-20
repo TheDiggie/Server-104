@@ -32,19 +32,12 @@ messages:
 
    Constructor()
    {
-      plContents = [ Create(&QorCharm), Create(&KraananCharm), Create(&FarenCharm), 
-                     Create(&ShalilleCharm), Create(&RiijaCharm) ];
+      plContents = [ &QorCharm, &KraananCharm, &FarenCharm, 
+                     &ShalilleCharm, &RiijaCharm ];
 
       plItematt = [ IA_TRANSCENDANT, IA_XP_KILL_BONUS ];
 
       propagate;
-   }
-
-   DoBaseDesc()
-   {
-      AddPacket(4, vrDesc);
-
-      return;
    }
 
 end

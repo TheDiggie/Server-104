@@ -101,7 +101,7 @@ messages:
    {
       if poGiftGiver = $
       {
-         AddPacket(4, gift_desc_rsc);
+         AddPacket(4, vrDesc);
 
          return;
       }
@@ -123,6 +123,8 @@ messages:
       if poContents = $
       {
          poContents = Nth(plContents,Random(1,length(plContents)));
+
+         poContents = Create(poContents);
       }
       
       if IsClass(poContents,&GuildShield)

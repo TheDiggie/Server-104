@@ -32,19 +32,12 @@ messages:
 
    Constructor()
    {
-      plContents = [ Create(&GuildShield), Create(&OrcShield), Create(&KnightShield), 
-                     Create(&GoldShield), Create(&MetalShield), Create(&BeerMug) ];
+      plContents = [ &GuildShield, &OrcShield, &KnightShield, 
+                     &GoldShield, &MetalShield, &BeerMug ];
 
       plItematt = [ IA_TRANSCENDANT, IA_DURABLE, IA_INDESTRUCTIBLE, IA_XP_KILL_BONUS ];
 
       propagate;
-   }
-
-   DoBaseDesc()
-   {
-      AddPacket(4, vrDesc);
-
-      return;
    }
 
 end

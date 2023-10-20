@@ -32,20 +32,13 @@ messages:
 
    Constructor()
    {
-      plContents = [ Create(&LeatherArmor), Create(&ChainArmor), Create(&ScaleArmor), 
-                     Create(&NeruditeArmor), Create(&PlateArmor), Create(&Gauntlet), 
-                     Create(&BrawlGloves), Create(&SimpleHelm), Create(&KnightsHelm) ];
+      plContents = [ &LeatherArmor, &ChainArmor, &ScaleArmor, 
+                     &NeruditeArmor, &PlateArmor, &Gauntlet, 
+                     &BrawlGloves, &SimpleHelm, &KnightsHelm ];
 
       plItematt = [ IA_TRANSCENDANT, IA_DURABLE, IA_INDESTRUCTIBLE, IA_XP_KILL_BONUS ];
 
       propagate;
-   }
-
-   DoBaseDesc()
-   {
-      AddPacket(4, vrDesc);
-
-      return;
    }
 
 end

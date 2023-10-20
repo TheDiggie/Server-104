@@ -32,18 +32,11 @@ messages:
 
    Constructor()
    {
-      plContents = [ Create(&JalaNecklace), Create(&FineLute), Create(&TrueLute), Create(&Lute) ];
+      plContents = [ &JalaNecklace, &FineLute, &TrueLute, &Lute ];
 
       plItematt = [ IA_TRANSCENDANT, IA_XP_KILL_BONUS ];
 
       propagate;
-   }
-
-   DoBaseDesc()
-   {
-      AddPacket(4, vrDesc);
-
-      return;
    }
 
 end

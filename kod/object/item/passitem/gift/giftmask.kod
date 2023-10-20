@@ -32,24 +32,17 @@ messages:
 
    Constructor()
    {
-      plContents = [ Create(&KriipaMask),    Create(&StoneTrollMask),   Create(&TrollMask), 
-                     Create(&AntMask),       Create(&DuskRatMask),      Create(&RatMask),
-                     Create(&SkullMask),     Create(&RiceMask),         Create(&WolfMask),
-                     Create(&TriangleMask),  Create(&SquareMask),       Create(&FrontMask),
-                     Create(&CircleMask),    Create(&CowMask),          Create(&ShrunkenHeadMask),
-                     Create(&FeyMaskEvil),   Create(&FeyMask),          Create(&MummyMask),
-                     Create(&DaemonMask),    Create(&XeoMask) ];
+      plContents = [ &KriipaMask,    &StoneTrollMask,   &TrollMask, 
+                     &AntMask,       &DuskRatMask,      &RatMask,
+                     &SkullMask,     &RiceMask,         &WolfMask,
+                     &TriangleMask,  &SquareMask,       &FrontMask,
+                     &CircleMask,    &CowMask,          &ShrunkenHeadMask,
+                     &FeyMaskEvil,   &FeyMask,          &MummyMask,
+                     &DaemonMask,    &XeoMask ];
 
       plItematt = [ IA_TRANSCENDANT, IA_XP_KILL_BONUS ];
 
       propagate;
-   }
-
-   DoBaseDesc()
-   {
-      AddPacket(4, vrDesc);
-
-      return;
    }
 
 end

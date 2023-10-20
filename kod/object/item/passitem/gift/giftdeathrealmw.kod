@@ -32,21 +32,14 @@ messages:
 
    Constructor()
    {
-      plContents = [ Create(&TwinBlade), Create(&NeruditeAxe), Create(&Maul), 
-                     Create(&LightSword), Create(&BerserkerAxe), Create(&MasterWand) ];
+      plContents = [ &TwinBlade, &NeruditeAxe, &Maul, 
+                     &LightSword, &BerserkerAxe, &MasterWand ];
 
       plItematt = [ IA_TRANSCENDANT, IA_DURABLE, IA_INDESTRUCTIBLE, IA_XP_KILL_BONUS,
                     WA_BLINDER, WA_PARALYZER, WA_VAMPER, WA_BONKER, WA_FACTION,
                     WA_TWISTER, WA_PURGER, WA_SIPHON, WA_GLOWING, WA_PUNISHER ];
 
       propagate;
-   }
-
-   DoBaseDesc()
-   {
-      AddPacket(4, vrDesc);
-
-      return;
    }
 
 end

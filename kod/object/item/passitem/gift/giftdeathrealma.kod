@@ -32,18 +32,11 @@ messages:
 
    Constructor()
    {
-      plContents = [ Create(&LegionHelm), Create(&SteelHelm), Create(&WarHelm), Create(&NeruditeShield) ];
+      plContents = [ &LegionHelm, &SteelHelm, &WarHelm, &NeruditeShield ];
 
       plItematt = [ IA_TRANSCENDANT, IA_DURABLE, IA_INDESTRUCTIBLE, IA_XP_KILL_BONUS ];
 
       propagate;
-   }
-
-   DoBaseDesc()
-   {
-      AddPacket(4, vrDesc);
-
-      return;
    }
 
 end
