@@ -16,6 +16,7 @@ constants:
 
    DOOR_DELAY = 6000
    LIFT_DELAY = 60000
+   SECRET_DOOR_DELAY = 20000
 
 resources:
 
@@ -332,10 +333,17 @@ messages:
 
       if poGuild_Owner <> $
          AND StringEqual(string,Send(poGuild_owner,@GetPassword))
-         AND Send(self,@InGMOffice,#who=what) AND pbSecretDoorOpen = FALSE
+         AND pbSecretDoorOpen = FALSE
          AND type <> SAY_EMOTE
       {
          Send(self,@OpenSecretDoor);
+      }
+
+      if IsClass(what,&Admin) AND stringEqual(string,"shatterlock")
+      {
+         Send(self,@OpenEntranceDoor);
+
+         propagate;
       }
 
       return;
@@ -363,8 +371,8 @@ messages:
       {
          Send(self,@SomethingWaveRoom,#wave_rsc=guildhall5_sound);
          Send(self,@SetSector,#sector=1,#animation=ANIMATE_CEILING_LIFT,
-              #height=168,#speed=50);
-         ptSecret = CreateTimer(self,@CloseSecretDoor,LIFT_DELAY);
+              #height=166,#speed=50);
+         ptSecret = CreateTimer(self,@CloseSecretDoor,SECRET_DOOR_DELAY);
          Send(self,@OpenSecretDoorSound);
          pbChestAvailable = TRUE;
       }
@@ -386,7 +394,7 @@ messages:
 
       Send(self,@SomethingWaveRoom,#wave_rsc=guildhall5_sound);
       Send(self,@SetSector,#sector=1,#animation=ANIMATE_CEILING_LIFT,
-            #height=50,#speed=50);
+            #height=54,#speed=50);
       Send(self,@CloseSecretDoorSound);
       pbChestAvailable = FALSE;
 
