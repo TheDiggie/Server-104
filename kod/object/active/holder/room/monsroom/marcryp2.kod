@@ -154,7 +154,7 @@ messages:
    
       if pbSecondaryDoorEnabled
       {           
-         Send(self,@CloseSecondaryDoorDown);
+         Send(self,@OpenSecondaryDoorDown);
       }
 
       propagate;
