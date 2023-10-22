@@ -6117,12 +6117,12 @@ messages:
          string = psPlayerDescription;
       }
 
-      if StringContain(psPlayerDescription,"ï¿½")
+      if StringContain(psPlayerDescription,"¶")
       {
          iCount = 0;
-         while StringContain(psPlayerDescription,"ï¿½")
+         while StringContain(psPlayerDescription,"¶")
          {
-            StringSubstitute(psPlayerDescription,"ï¿½","");
+            StringSubstitute(psPlayerDescription,"¶","");
             if ++iCount > 10
             {
                // At this point, it's malicious.
