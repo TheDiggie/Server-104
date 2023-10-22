@@ -2049,7 +2049,6 @@ messages:
 
       if liClient_cmd = BP_CHANGED_STATS
       {
-      
          if Length(client_msg) <> 15
          {
             Debug(self, " sent invalid number of params ", Length(client_msg),
@@ -6118,12 +6117,12 @@ messages:
          string = psPlayerDescription;
       }
 
-      if StringContain(psPlayerDescription,"¶")
+      if StringContain(psPlayerDescription,"ï¿½")
       {
          iCount = 0;
-         while StringContain(psPlayerDescription,"¶")
+         while StringContain(psPlayerDescription,"ï¿½")
          {
-            StringSubstitute(psPlayerDescription,"¶","");
+            StringSubstitute(psPlayerDescription,"ï¿½","");
             if ++iCount > 10
             {
                // At this point, it's malicious.
@@ -10675,7 +10674,7 @@ messages:
    SendStatChange()
    "Sends a stat change request to the client"
    {
-      local lSpellLevels, lSkillLevels;
+      local lSpellLevels, lSkillLevels, iCrafting;
 
       // if stats reset is turned off, ignore the request
       if NOT Send(SETTINGS_OBJECT,@GetStatsResetEnabled)
@@ -10692,6 +10691,13 @@ messages:
 
       lSpellLevels = Send(self, @GetSpellSchoolLevels);
       lSkillLevels = Send(self, @GetSkillSchoolLevels);
+      
+      //Crafting lvl should be the highest among skills/spells
+      iCrafting = Nth(lSkillLevels,2);
+      
+      if(Nth(lSkillLevels,2) < Nth(lSpellLevels,7)){
+         iCrafting = Nth(lSpellLevels,7);
+      }
 
       // TODO: don't load module if it is already loaded
       Send(self,@UserLoadModule,#module=user_statchange_module);
@@ -10701,7 +10707,7 @@ messages:
                 1,Nth(lSpellLevels,2), 1,Nth(lSpellLevels,3),
                 1,Nth(lSpellLevels,4), 1,Nth(lSpellLevels,5),
                 1,Nth(lSpellLevels,6), 1,First(lSkillLevels),
-                1,Nth(lSkillLevels,2));
+                1,iCrafting);
       SendPacket(poSession);
 
       return;
@@ -10713,7 +10719,7 @@ messages:
    "Processes a stat change request from the client"
    {
       local i, lSpellLevels, lSkillLevels, lSpellLevels_new, lSkillLevels_new,
-            iPrimaryStat, oAbility, iAbilityPct, iAbilityNum, iTotalLearnPoints;
+            iPrimaryStat, oAbility, iAbilityPct, iAbilityNum, iTotalLearnPoints, current_crafting_lvl_spells;
 
       // if stats reset is turned off, ignore the request
       if NOT Send(SETTINGS_OBJECT,@GetStatsResetEnabled)
@@ -10730,8 +10736,17 @@ messages:
       iTotalLearnPoints = 0;
       lSpellLevels = Send(self, @GetSpellSchoolLevels);
       lSpellLevels_new = [shallile_lvl,qor_lvl,kraanan_lvl,
-                          faren_lvl,riija_lvl,jala_lvl];
+                          faren_lvl,riija_lvl,jala_lvl, crafting_lvl];
+      
+      current_crafting_lvl_spells=Nth(lSpellLevels,7);
+
       lSkillLevels = Send(self, @GetSkillSchoolLevels);
+
+      //Current Crafting highest lvl depends on both skill and spells, overwrite skills with spells if it's higher
+      if(Nth(lSkillLevels,2) < current_crafting_lvl_spells){
+        lSkillLevels = [Nth(lSkillLevels,1),current_crafting_lvl_spells];
+      }
+
       lSkillLevels_new = [weaponcraft_lvl, crafting_lvl];
    
       // Range Checks, no client hacking negative stats funny business!
@@ -10822,8 +10837,7 @@ messages:
       }
       
       // Strip Spell Levels
-      i = 1;
-      while (i < NUM_SCHOOLS)
+      for (i = 1; i <= NUM_SCHOOLS; ++i)
       {
          if (Nth(lSpellLevels,i) > 0 )
          {
@@ -10834,28 +10848,30 @@ messages:
                SetNth(lSpellLevels,i,Nth(lSpellLevels,i) - 1);
             }
          }
-         ++i;
       }
 
-      Debug("Spell Schools Stripped");
       // Strip Skills (Skill schools start at 10)
-      i = 1;
-      while (i <= NUM_SKILL_SCHOOLS)
+      if (Nth(lSkillLevels,1) > 0)
       {
-         if (Nth(lSkillLevels,i) > 0)
+         while(Nth(lSkillLevels,1) > Nth(lSkillLevels_new,1))
          {
-            while(Nth(lSkillLevels,i) > Nth(lSkillLevels_new,i))
-            {
-               // have to add 9 to i to get the proper school id
-               Send(self,@StripSkillsOfSchoolByLevel,#school=i+9,
-                     #level=Nth(lSkillLevels,i));
-               SetNth(lSkillLevels,i,Nth(lSkillLevels,i) - 1);
-            }
+            // SS_FENCING id is 10
+            Send(self,@StripSkillsOfSchoolByLevel,#school=10,
+                  #level=Nth(lSkillLevels,1));
+            SetNth(lSkillLevels,1,Nth(lSkillLevels,1) - 1);
          }
-         ++i;
       }
-      Debug("Skill Schools Stripped");
-
+         if (Nth(lSkillLevels,2) > 0)
+      {
+         while(Nth(lSkillLevels,2) > Nth(lSkillLevels_new,2))
+         {
+            // SS_CRAFTING id is 7
+            Send(self,@StripSkillsOfSchoolByLevel,#school=7,
+                  #level=Nth(lSkillLevels,2));
+            SetNth(lSkillLevels,2,Nth(lSkillLevels,2) - 1);
+         }
+      }
+     
       // Now iterate through the player's spells and strip 2// per stat loss
       foreach i in plSpells
       {
