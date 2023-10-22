@@ -82,7 +82,7 @@ Bool WINAPI EventServerMessage(char *message, long len)
 /********************************************************************/
 Bool HandleStatChangeRequest(char *ptr, long len)
 {
-   BYTE might, intellect, stamina, agility, mysticism, aim = 0;
+   BYTE might, intellect, stamina, agility, mysticism, aim;
    BYTE shalille_level, qor_level, kraanan_level, faren_level, riija_level, jala_level;
    BYTE weaponcraft_level, crafting_level;
 
