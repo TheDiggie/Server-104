@@ -12313,7 +12313,6 @@ messages:
    CountKnownAtLevel(school=$,level=$)
    {
       local i, count, nSID, nObj;
-
       count = 0;
       foreach i in plSkills
       {
@@ -12359,6 +12358,18 @@ messages:
       return count;
    }
 
+   GetMaxLearnPoints(intellect=$)
+   "Returns the number of learn points this player has with their raw "
+   "intellect, or with the intellect value passed in."
+   {
+      if (intellect = $)
+      {
+         intellect = Send(self,@GetRawIntellect);
+      }
+
+      return Send(SETTINGS_OBJECT,@GetMaxLearnPoints) + intellect * 2 / 5;
+   }
+   
    PlayerCanLearn(spell_num=0,skill_num=0,scryer=$)
    "New routine as of 14 June 97. Intended to allow for more schools, "
    "odd numbers of spells at a spell level and easier understanding."
@@ -12887,19 +12898,30 @@ messages:
          }
       }
 
-      if except <> SKS_FENCING
+      foreach iSpell in plSkills
       {
-         foreach iSpell in plSkills
+         iSID = Send(self,@DecodeSkillNum,#compound=iSpell);
+         oSpellObj = Send(SYS,@FindSkillByNum,#num=iSID);
+
+         iSchool = Send(oSpellObj,@GetSchool);
+         iLevel = Send(oSpellObj,@GetLevel);
+
+         if iSchool <> $
          {
-            iSID = Send(self,@DecodeSkillNum,#compound=iSpell);
-            oSpellObj = Send(SYS,@FindSkillByNum,#num=iSID);
-
-            iLevel = Send(oSpellObj,@GetLevel);
-
-            if iLevel > iWeapon
-               AND iLevel < 50       // Catch DM only skills
+            switch (iSchool)
             {
-               iWeapon = iLevel;
+            case SKS_FENCING:
+               if iLevel > iWeapon
+               {
+                  iWeapon = iLevel;
+               }
+               break;
+            case SS_CRAFTING:
+               if iLevel > iCrafting
+               {
+                  iCrafting = iLevel;
+               }
+               break;
             }
          }
       }
@@ -13996,9 +14018,11 @@ messages:
    // is added later and this needs to be extended.
    GetSkillSchoolLevels()
    {
-      local i, lSchoolLevels, oSkill, iLevel, weaponcraft_level;
+      local i, lSchoolLevels, oSkill, iLevel, iSchool, weaponcraft_level,
+            crafting_level;
 
       weaponcraft_level = 0;
+      crafting_level = 0;
       iLevel = 0;
 
       foreach i in plSkills
@@ -14006,14 +14030,24 @@ messages:
          oSkill = Send(SYS,@FindSkillByNum,#num=Send(self,@DecodeSkillNum,
                                                       #compound=i));
          iLevel = Send(oSkill,@GetLevel);
-
-         if iLevel > weaponcraft_level
+         iSchool = Send(oSkill,@GetSchool);
+         if (iSchool = SKS_FENCING)
          {
-            weaponcraft_level = iLevel;
+            if iLevel > weaponcraft_level
+            {
+               weaponcraft_level = iLevel;
+            }
+         }
+         else if (iSchool = SS_CRAFTING)
+         {
+            if iLevel > crafting_level
+            {
+               crafting_level = iLevel;
+            }
          }
       }
 
-      lSchoolLevels = [weaponcraft_level];
+      lSchoolLevels = [weaponcraft_level, crafting_level];
 
       return lSchoolLevels;
    }
@@ -14101,7 +14135,7 @@ messages:
 
       // Order matters here, they appear in the order listed in blakston.khd.
       lSchoolLevels = [shalille_level,qor_level,kraanan_level,
-                       faren_level,riija_level,jala_level];
+                       faren_level,riija_level,jala_level,crafting_level];
 
       return lSchoolLevels;
    }

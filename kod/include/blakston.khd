@@ -2461,7 +2461,7 @@
    SPELL_INDEFINITE_DURATION = 0
 
    // Skill Schools
-   NUM_SKILL_SCHOOLS=1
+   NUM_SKILL_SCHOOLS=2
    NUM_SKILL_SCHOOL_LEVELS = 6
    
    // Spell Schools
@@ -2472,17 +2472,17 @@
    SS_INACCESSIBLE = -1
 
    // Normal spell schools
-   SS_SHALILLE = 1
-   SS_QOR = 2
-   SS_KRAANAN = 3
-   SS_FAREN = 4
-   SS_RIIJA = 5
-   SS_JALA = 6
-   SS_DM_COMMAND = 7
-   SS_CRAFTING    = 8
+   SS_SHALILLE    = 1
+   SS_QOR         = 2
+   SS_KRAANAN     = 3
+   SS_FAREN       = 4
+   SS_RIIJA       = 5
+   SS_JALA        = 6
+   SS_CRAFTING    = 7
+   SS_DM_COMMAND  = 8
 
    // We may use skill an spell schools in the same routines, thus no overlap.
-   SKS_FENCING = 10
+   SKS_FENCING  = 10
    SKS_BRAWLING = 11
    SKS_THIEVERY = 12
 

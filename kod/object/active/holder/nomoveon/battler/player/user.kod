@@ -2049,9 +2049,10 @@ messages:
 
       if liClient_cmd = BP_CHANGED_STATS
       {
-      
-         if Length(client_msg) <> 14
+         if Length(client_msg) <> 15
          {
+            Debug(self, " sent invalid number of params ", Length(client_msg),
+               " for BP_CHANGED_STATS (expected 15)");
             return;
          }
 
@@ -2063,7 +2064,7 @@ messages:
             }
          }
 
-         Send(self,@UserChangedStats, #might=Nth(client_msg,2),
+         Send(self,@UserChangedStats,  #might=Nth(client_msg,2),
                                        #intellect=Nth(client_msg,3),
                                        #stamina=Nth(client_msg,4),
                                        #agility=Nth(client_msg,5),
@@ -2075,7 +2076,8 @@ messages:
                                        #faren_lvl=Nth(client_msg,11),
                                        #riija_lvl=Nth(client_msg,12),
                                        #jala_lvl=Nth(client_msg,13),
-                                       #weaponcraft_lvl=Nth(client_msg,14));
+                                       #weaponcraft_lvl=Nth(client_msg,14),
+                                       #crafting_lvl=Nth(client_msg,15));
          return;
       }
 
@@ -3808,7 +3810,7 @@ messages:
    {
       local num_schools;
 
-      num_schools = 6;
+      num_schools = 7;
       if viDM
       {
          ++num_schools;
@@ -6115,12 +6117,12 @@ messages:
          string = psPlayerDescription;
       }
 
-      if StringContain(psPlayerDescription,"¶")
+      if StringContain(psPlayerDescription,"ï¿½")
       {
          iCount = 0;
-         while StringContain(psPlayerDescription,"¶")
+         while StringContain(psPlayerDescription,"ï¿½")
          {
-            StringSubstitute(psPlayerDescription,"¶","");
+            StringSubstitute(psPlayerDescription,"ï¿½","");
             if ++iCount > 10
             {
                // At this point, it's malicious.
@@ -10672,7 +10674,7 @@ messages:
    SendStatChange()
    "Sends a stat change request to the client"
    {
-      local lSpellLevels, lSkillLevels;
+      local lSpellLevels, lSkillLevels, iCrafting;
 
       // if stats reset is turned off, ignore the request
       if NOT Send(SETTINGS_OBJECT,@GetStatsResetEnabled)
@@ -10689,6 +10691,13 @@ messages:
 
       lSpellLevels = Send(self, @GetSpellSchoolLevels);
       lSkillLevels = Send(self, @GetSkillSchoolLevels);
+      
+      //Crafting lvl should be the highest among skills/spells
+      iCrafting = Nth(lSkillLevels,2);
+      
+      if(Nth(lSkillLevels,2) < Nth(lSpellLevels,7)){
+         iCrafting = Nth(lSpellLevels,7);
+      }
 
       // TODO: don't load module if it is already loaded
       Send(self,@UserLoadModule,#module=user_statchange_module);
@@ -10697,7 +10706,8 @@ messages:
                 1,piAgility, 1,piMysticism, 1,piAim, 1,First(lSpellLevels),
                 1,Nth(lSpellLevels,2), 1,Nth(lSpellLevels,3),
                 1,Nth(lSpellLevels,4), 1,Nth(lSpellLevels,5),
-                1,Nth(lSpellLevels,6), 1,First(lSkillLevels));
+                1,Nth(lSpellLevels,6), 1,First(lSkillLevels),
+                1,iCrafting);
       SendPacket(poSession);
 
       return;
@@ -10705,12 +10715,11 @@ messages:
 
    UserChangedStats(might=25,intellect=25,stamina=25,agility=25,mysticism=25,
                      aim=25,shallile_lvl=0,qor_lvl=0,kraanan_lvl=0,faren_lvl=0,
-                     riija_lvl=0,jala_lvl=0,weaponcraft_lvl=0)
+                     riija_lvl=0,jala_lvl=0,weaponcraft_lvl=0,crafting_lvl=0)
    "Processes a stat change request from the client"
    {
       local i, lSpellLevels, lSkillLevels, lSpellLevels_new, lSkillLevels_new,
-            totalLevels, totalSchools, totalLvlOnes, iPrimaryStat, oSpell,
-            iSpellAbility, iSpellNum, oSkill, iSkillAbility, iSkillNum;
+            iPrimaryStat, oAbility, iAbilityPct, iAbilityNum, iTotalLearnPoints, current_crafting_lvl_spells;
 
       // if stats reset is turned off, ignore the request
       if NOT Send(SETTINGS_OBJECT,@GetStatsResetEnabled)
@@ -10724,15 +10733,21 @@ messages:
          return;
       }
       
-      i = 1;
-      totallevels = 0;
-      totalLvlOnes = 0;
-      totalSchools = 0;
+      iTotalLearnPoints = 0;
       lSpellLevels = Send(self, @GetSpellSchoolLevels);
       lSpellLevels_new = [shallile_lvl,qor_lvl,kraanan_lvl,
-                          faren_lvl,riija_lvl,jala_lvl];
+                          faren_lvl,riija_lvl,jala_lvl, crafting_lvl];
+      
+      current_crafting_lvl_spells=Nth(lSpellLevels,7);
+
       lSkillLevels = Send(self, @GetSkillSchoolLevels);
-      lSkillLevels_new = [weaponcraft_lvl];
+
+      //Current Crafting highest lvl depends on both skill and spells, overwrite skills with spells if it's higher
+      if(Nth(lSkillLevels,2) < current_crafting_lvl_spells){
+        lSkillLevels = [Nth(lSkillLevels,1),current_crafting_lvl_spells];
+      }
+
+      lSkillLevels_new = [weaponcraft_lvl, crafting_lvl];
    
       // Range Checks, no client hacking negative stats funny business!
       if (might < 1 OR might > 50)
@@ -10754,6 +10769,7 @@ messages:
          OR (riija_lvl < 0 OR riija_lvl > 6)
          OR (jala_lvl < 0 OR jala_lvl > 6)
          OR (weaponcraft_lvl < 0 OR weaponcraft_lvl > 6)
+         OR (crafting_lvl < 0 OR crafting_lvl > 6)
       {
          Debug("School Range Check: Failed!");
          return FALSE;
@@ -10772,56 +10788,41 @@ messages:
       // Count schools above level 1
       
       // Spell Levels - skipping DM school (7)
-      while (i < NUM_SCHOOLS)
+      for (i = 1; i < NUM_SCHOOLS; ++i)
       {
-         if (Nth(lSpellLevels_new,i) = 1)
+         if (Nth(lSpellLevels_new,i) > 0)
          {
-            ++totalLvlOnes;
-         }
-         if (Nth(lSpellLevels_new,i) > 1)
-         {
-            ++totalSchools;
-            totalLevels += Nth(lSpellLevels_new,i);
+            iTotalLearnPoints += Send(SYS,@GetLevelLearnPoints,
+                                       #level=Nth(lSpellLevels_new,i));
          }
          if (Nth(lSpellLevels_new,i) > Nth(lSpellLevels,i))
          {
-            Debug("School Not Increased Check: FAIL!");
-            return FALSE;
+            Debug("School Not Increased Check: Failed for ", self, vrName);
+
+            return;
          }
-         ++i;
       }
-      
+
       // skill levels
-      i = 1;
-      while (i <= NUM_SKILL_SCHOOLS)
+      for (i = 1; i <= NUM_SKILL_SCHOOLS; ++i)
       {
-         if (Nth(lSkillLevels_new,i) = 1)
+         if (Nth(lSkillLevels_new,i) > 0)
          {
-            ++totalLvlOnes;
-         }
-         if (Nth(lSkillLevels,i) > 1)
-         {
-            ++totalSchools;
-            totalLevels += Nth(lSkillLevels_new,i);
+            iTotalLearnPoints += Send(SYS,@GetLevelLearnPoints,
+                                       #level=Nth(lSkillLevels_new,i));
          }
          if (Nth(lSkillLevels_new,i) > Nth(lSkillLevels,i))
          {
-            Debug("School Not Increased Check: FAIL!");
-            return FALSE;
+            Debug("School Not Increased Check: Failed for ", self, vrName);
+
+            return;
          }
-         ++i;
       }
 
-      // treat level 1s as level 2s
-      totalLevels += totalLvlOnes;
-
       // See if the player has enough int to support their levels
-      if ((totalLevels - totalSchools > 8)
-               AND (((totalLevels - totalSchools - 8) * 5) > intellect))
+      if (Send(self,@GetMaxLearnPoints,#intellect=intellect) < iTotalLearnPoints)
       {
          Debug("Int Check: FAIL!");
-         //Debug("total levels",totalLevels,"intellect",intellect,"needed",
-         //      (totalLevels - totalSchools - 8) * 5);
          return FALSE;
       }
       
@@ -10836,8 +10837,7 @@ messages:
       }
       
       // Strip Spell Levels
-      i = 1;
-      while (i < NUM_SCHOOLS)
+      for (i = 1; i <= NUM_SCHOOLS; ++i)
       {
          if (Nth(lSpellLevels,i) > 0 )
          {
@@ -10848,62 +10848,64 @@ messages:
                SetNth(lSpellLevels,i,Nth(lSpellLevels,i) - 1);
             }
          }
-         ++i;
       }
 
-      Debug("Spell Schools Stripped");
       // Strip Skills (Skill schools start at 10)
-      i = 1;
-      while (i <= NUM_SKILL_SCHOOLS)
+      if (Nth(lSkillLevels,1) > 0)
       {
-         if (Nth(lSkillLevels,i) > 0)
+         while(Nth(lSkillLevels,1) > Nth(lSkillLevels_new,1))
          {
-            while(Nth(lSkillLevels,i) > Nth(lSkillLevels_new,i))
-            {
-               // have to add 9 to i to get the proper school id
-               Send(self,@StripSkillsOfSchoolByLevel,#school=i+9,
-                     #level=Nth(lSkillLevels,i));
-               SetNth(lSkillLevels,i,Nth(lSkillLevels,i) - 1);
-            }
+            // SS_FENCING id is 10
+            Send(self,@StripSkillsOfSchoolByLevel,#school=10,
+                  #level=Nth(lSkillLevels,1));
+            SetNth(lSkillLevels,1,Nth(lSkillLevels,1) - 1);
          }
-         ++i;
       }
-      Debug("Skill Schools Stripped");
-
+         if (Nth(lSkillLevels,2) > 0)
+      {
+         while(Nth(lSkillLevels,2) > Nth(lSkillLevels_new,2))
+         {
+            // SS_CRAFTING id is 7
+            Send(self,@StripSkillsOfSchoolByLevel,#school=7,
+                  #level=Nth(lSkillLevels,2));
+            SetNth(lSkillLevels,2,Nth(lSkillLevels,2) - 1);
+         }
+      }
+     
       // Now iterate through the player's spells and strip 2// per stat loss
       foreach i in plSpells
       {
-         iSpellNum = Send(self,@DecodeSpellNum,#compound=i);
-         oSpell = Send(SYS,@FindSpellByNum,#num=iSpellNum);
-         iPrimaryStat = Send(oSpell,@GetPrimaryStat);
-         iSpellAbility = Send(self,@DecodeSpellAbility,#compound=i);
+         iAbilityNum = Send(self,@DecodeSpellNum,#compound=i);
+         oAbility = Send(SYS,@FindSpellByNum,#num=iAbilityNum);
+         iPrimaryStat = Send(oAbility,@GetPrimaryStat);
+         iAbilityPct = Send(self,@DecodeSpellAbility,#compound=i);
 
          if (iPrimaryStat = STAT_ID_STAMINA)
          {
-            if (iSpellAbility > (stamina * 2)) AND (stamina < piStamina)
-               OR (iSpellAbility = 99 AND piStamina = 50 AND stamina < 50)
+            if (iAbilityPct > (stamina * 2)) AND (stamina < piStamina)
+               OR (iAbilityPct = 99 AND piStamina = 50 AND stamina < 50)
             {
-               Send(self,@ChangeSpellAbility,#spell_num=iSpellNum,
+               Send(self,@ChangeSpellAbility,#spell_num=iAbilityNum,
                      #amount=((piStamina - stamina)
                      * Send(SETTINGS_OBJECT,@GetStatsResetPenalty)));
             }
          }
          else if (iPrimaryStat = STAT_ID_INTELLECT)
          {
-            if (iSpellAbility > (intellect * 2)) AND (intellect < piIntellect)
-               OR (iSpellAbility = 99 AND piIntellect = 50 AND intellect < 50)
+            if (iAbilityPct > (intellect * 2)) AND (intellect < piIntellect)
+               OR (iAbilityPct = 99 AND piIntellect = 50 AND intellect < 50)
             {
-               Send(self,@ChangeSpellAbility,#spell_num=iSpellNum,
+               Send(self,@ChangeSpellAbility,#spell_num=iAbilityNum,
                      #amount=((piIntellect - intellect)
                      * Send(SETTINGS_OBJECT,@GetStatsResetPenalty)));
             }
          }
          else if (iPrimaryStat = STAT_ID_MYSTICISM)
          {
-            if (iSpellAbility > (mysticism * 2)) AND (mysticism < piMysticism)
-               OR (iSpellAbility = 99 AND piMysticism = 50 AND mysticism < 50)
+            if (iAbilityPct > (mysticism * 2)) AND (mysticism < piMysticism)
+               OR (iAbilityPct = 99 AND piMysticism = 50 AND mysticism < 50)
             {
-               Send(self,@ChangeSpellAbility,#spell_num=iSpellNum,
+               Send(self,@ChangeSpellAbility,#spell_num=iAbilityNum,
                      #amount=((piMysticism - mysticism)
                      * Send(SETTINGS_OBJECT,@GetStatsResetPenalty)));
             }
@@ -10913,44 +10915,44 @@ messages:
       
       foreach i in plSkills
       {
-         iSkillNum = Send(self,@DecodeSkillNum,#compound=i);
-         oSkill = Send(SYS,@FindSkillByNum,#num=iSkillNum);
-         iPrimaryStat = Send(oSkill,@GetPrimaryStat);
-         iSkillAbility = Send(self,@DecodeSkillAbility,#compound=i);
+         iAbilityNum = Send(self,@DecodeSkillNum,#compound=i);
+         oAbility = Send(SYS,@FindSkillByNum,#num=iAbilityNum);
+         iPrimaryStat = Send(oAbility,@GetPrimaryStat);
+         iAbilityPct = Send(self,@DecodeSkillAbility,#compound=i);
          
          if (iPrimaryStat = STAT_ID_AGILITY)
          {
-            if (iSkillAbility > (agility * 2)) AND (agility < piAgility)
-               OR (iSkillAbility = 99 AND piAgility = 50 AND agility < 50)
+            if (iAbilityPct > (agility * 2)) AND (agility < piAgility)
+               OR (iAbilityPct = 99 AND piAgility = 50 AND agility < 50)
             {
-               Send(self,@ChangeSkillAbility,#skill_num=iSkillNum,
+               Send(self,@ChangeSkillAbility,#skill_num=iAbilityNum,
                      #amount=((piAgility - agility) * -2));
             }
          }
          else if (iPrimaryStat = STAT_ID_AIM)
          {
-            if (iSkillAbility > (aim * 2)) AND (aim < piAim)
-               OR (iSkillAbility = 99 AND piAim = 50 AND aim < 50)
+            if (iAbilityPct > (aim * 2)) AND (aim < piAim)
+               OR (iAbilityPct = 99 AND piAim = 50 AND aim < 50)
             {
-               Send(self,@ChangeSkillAbility,#skill_num=iSkillNum,
+               Send(self,@ChangeSkillAbility,#skill_num=iAbilityNum,
                      #amount=((piAim - aim) * -2));
             }
          }
          else if (iPrimaryStat = STAT_ID_MIGHT)
          {
-            if (iSkillAbility > (might * 2)) AND (might < piMight)
-               OR (iSkillAbility = 99 AND piMight = 50 AND might < 50)
+            if (iAbilityPct > (might * 2)) AND (might < piMight)
+               OR (iAbilityPct = 99 AND piMight = 50 AND might < 50)
             {
-               Send(self,@ChangeSkillAbility,#skill_num=iSkillNum,
+               Send(self,@ChangeSkillAbility,#skill_num=iAbilityNum,
                      #amount=((piMight - might) * -2));
             }
          }
          else if (iPrimaryStat = STAT_ID_STAMINA)
          {
-            if (iSkillAbility > (stamina * 2)) AND (stamina < piStamina)
-               OR (iSkillAbility = 99 AND piStamina = 50 AND stamina < 50)
+            if (iAbilityPct > (stamina * 2)) AND (stamina < piStamina)
+               OR (iAbilityPct = 99 AND piStamina = 50 AND stamina < 50)
             {
-               Send(self,@ChangeSkillAbility,#skill_num=iSkillNum,
+               Send(self,@ChangeSkillAbility,#skill_num=iAbilityNum,
                      #amount=((piStamina - stamina) * -2));
             }
          }

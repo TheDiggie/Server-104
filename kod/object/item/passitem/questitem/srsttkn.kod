@@ -79,6 +79,11 @@ messages:
 
    ReqNewOwner(what = $)
    {
+      if IsClass(what,&Player)
+      {
+         return TRUE;
+      }
+
       if IsClass(poOwner,&Room)
       {
          return TRUE;
