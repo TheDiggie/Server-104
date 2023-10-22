@@ -12313,7 +12313,6 @@ messages:
    CountKnownAtLevel(school=$,level=$)
    {
       local i, count, nSID, nObj;
-
       count = 0;
       foreach i in plSkills
       {
@@ -14136,7 +14135,7 @@ messages:
 
       // Order matters here, they appear in the order listed in blakston.khd.
       lSchoolLevels = [shalille_level,qor_level,kraanan_level,
-                       faren_level,riija_level,jala_level];
+                       faren_level,riija_level,jala_level,crafting_level];
 
       return lSchoolLevels;
    }
