@@ -193,7 +193,7 @@ messages:
 
       if Send(self,@ReqAddToItem,#oItem=oItem)
       {
-         Send(self,@AddToItem,#oItem=oItem,#iPower = 9,#diff_seed=diff_seed);
+         Send(self,@AddToItem,#oItem=oItem,#iPower = 4,#diff_seed=diff_seed);
 
          return TRUE;
       }
