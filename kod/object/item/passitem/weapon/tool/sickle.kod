@@ -33,7 +33,7 @@ classvars:
    viWeaponType = WEAPON_TYPE_SLASH
    viWeaponQuality = WEAPON_QUALITY_LOW
 
-   viProficiency_Needed = SKID_SKINNING
+   viProficiency_Needed = SKID_GATHERING
 
    voResource = &ResPlant
 
