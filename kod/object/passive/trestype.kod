@@ -445,14 +445,12 @@ messages:
 
       iCount = 0;
       iRnd = Random(0,100);
-
       foreach lItem_info in plTreasure
       {
          iCount += Nth(lItem_info,2);
          if iRnd <= iCount
          {
             if IsClass(who,&Monster)
-               OR IsClass(corpse,&OrcPitBossBody)
             {
                oObj = Create(First(lItem_info));
             }
