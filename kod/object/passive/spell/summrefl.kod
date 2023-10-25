@@ -30,7 +30,7 @@ resources:
       "There is too much summoning magic focused here to summon a reflection."
    
    summonreflection_limit_rsc = \
-      "You are already maintaining the maximum number of reflections."
+      "You pull your reflections to you."
 
    reflection_cannot_cast_here = \
       "You are not allowed to create a reflection here."
@@ -69,6 +69,8 @@ messages:
 
    CanPayCosts(who=$)
    {
+      local lRefs, i, oRoom;
+
       // Limit reflections.
       if (Send(self,@CountPlayerReflections,#who=who)
          >= Send(SETTINGS_OBJECT,@GetPlayerReflectionLimit))
@@ -76,6 +78,16 @@ messages:
             AND Send(who,@PlayerIsImmortal))
       {
          Send(who,@MsgSendUser,#message_rsc=summonreflection_limit_rsc);
+         lRefs = Send(who,@GetControlledMinions);
+
+         foreach i in lRefs
+         {
+            oRoom = Send(who,@GetOwner);
+
+            Send(oRoom,@NewHold,#what=i,#new_row=Send(who,@GetRow),
+                  #new_col=Send(who,@GetCol),#fine_row=Send(who,@GetFineRow),
+                  #fine_col=Send(who,@GetFineCol));
+         }
 
          return FALSE;
       }
