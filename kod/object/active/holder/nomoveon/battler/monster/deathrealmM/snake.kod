@@ -44,7 +44,7 @@ classvars:
 
    viAttack_type = ATCK_WEAP_BITE
 
-   viTreasure_type = TID_REVENANT_B
+   viTreasure_type = TID_HELL_WASP
 
    vrSound_hit = Snake_sound_hit
    vrSound_miss = Snake_sound_miss
@@ -64,6 +64,27 @@ messages:
       propagate;
    }
 
+   HitSideEffect(what = $, who = $)
+   {
+      local oSpell;
+
+      if Random(1,POISON_CHANCE) = 1
+      {
+         oSpell = Send(SYS,@FindSpellByNum,#num=SID_POISON);
+         Send(oSpell,@MakePoisoned,#who=what,
+               #lossrate=POISON_LOSSRATE,#duration=POISON_DURATION);
+      
+         if who <> $
+         {
+            Send(who,@MsgSendUser,#message_rsc=dspider_illusion_poisoned,
+                  #parm1=Send(what,@GetDef),#parm2=Send(what,@GetName),
+                  #parm3=Send(what,@GetHisHer));
+         }
+      }
+
+      return;
+   }
+   
    DoSpasm()
    {
       local roll;
