@@ -6019,12 +6019,23 @@ messages:
       }
 
       piWeaponSwings = piWeaponSwings + times;
-      if (piWeaponSwings % Send(SETTINGS_OBJECT,
-                                 @GetSwingsPerImproveCheck)) = 0
+
+      if IsClass(oWeapon,&Tool)
       {
-         // Increase this number. Allows us to advance, and
-         // get bonuses for advancement.
-         piWeaponInfo = piWeaponInfo + 1000;
+         if (piWeaponSwings % 5) = 0
+         {
+            piWeaponInfo = piWeaponInfo + 1000;
+         }
+      }
+      else
+      {
+         if (piWeaponSwings % Send(SETTINGS_OBJECT,
+                                    @GetSwingsPerImproveCheck)) = 0
+         {
+            // Increase this number. Allows us to advance, and
+            // get bonuses for advancement.
+            piWeaponInfo = piWeaponInfo + 1000;
+         }
       }
 
       return;
