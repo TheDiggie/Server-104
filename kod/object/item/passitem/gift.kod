@@ -139,6 +139,7 @@ messages:
       AND NOT IsClass(poContents,&Bow)
       AND NOT IsClass(poContents,&Necklace)
       AND NOT IsClass(poContents,&Instrument)
+      AND NOT IsClass(poContents,&AttackModifier)
       {
          poColor = send(self,@GetColor);
          Send(poContents,@SetItemColor,#flags=poColor);
@@ -197,7 +198,7 @@ messages:
       }
       else
       {
-         lColors = [ 40,33,86,2158,44,48,29,13,15 ];
+         lColors = [ 40,33,86,2158,44,48,29,13,15,42,77,78,79 ];
       }
 
       poColor = Nth(lColors,Random(1,length(lColors)));
