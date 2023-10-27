@@ -148,6 +148,7 @@ messages:
       if plItematt <> $
       {
          if IsClass(poContents,&Necklace)
+         OR IsClass(poContents,&Mask)
          {
             iChance = Random(1,100);
 
