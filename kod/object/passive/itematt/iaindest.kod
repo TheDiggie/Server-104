@@ -36,6 +36,13 @@ properties:
 
 messages:
 
+   AddEffects(oItem=$)
+   {
+      Send(oItem,@SetIndestructible);
+
+      return;
+   }
+
    AppendDesc()
    {
       AddPacket(4,vrDesc);
