@@ -117,7 +117,7 @@ messages:
 
    AddSelfToRandomItem(oItem=$,who=$,iFact=FACTION_NEUTRAL)
    {
-      if oItem = $ OR who = $
+      if oItem = $
       {
          Debug("BAD BAD BAD");
 
@@ -129,19 +129,7 @@ messages:
 
       if iFact = FACTION_NEUTRAL
       {
-         if Random(1,100) < 70
-         {
-            // Choose the faction that the player is allied with
-            iFact = Send(who,@GetFaction);
-         }
-
-         if iFact = FACTION_NEUTRAL
-         {
-            // Choose a random faction, because either the weapatt 
-            //  failed the random check, or the player isn't allied with either.
-
-            iFact = Random(FACTION_NEUTRAL + 1, FACTION_NORMAL_MAX);
-         }
+         iFact = Random(FACTION_NEUTRAL + 1, FACTION_NORMAL_MAX);
       }
 
       if Send(self,@ReqAddToItem,#state1=iFact,#oItem=oItem)
@@ -152,6 +140,18 @@ messages:
       }
 
       return FALSE;
+   }
+
+   AddtoItem(oItem=$,state1=$)
+   {
+      if state1 = $
+      {
+         Send(self,@AddSelfToRandomItem,#oItem=oItem);
+
+         return;
+      }
+
+      propagate;
    }
 
 ////////////////////////////////////////////////
@@ -165,7 +165,7 @@ messages:
       // Use FACTION_MAX rather than FACTION_NORMAL_MAX here, since we can
       // manually add faction attributes not normally available in-game.
       if state1 <= FACTION_NEUTRAL
-         OR state1 > FACTION_MAX
+         OR state1 > FACTION_NORMAL_MAX
       {
          Debug("Illegal faction chosen.  No attribute added.");
 
