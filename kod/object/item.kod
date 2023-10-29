@@ -1257,8 +1257,11 @@ messages:
       if (piItem_flags & ITEM_PALETTE_MASK) <> 0
       {
          AddPacket(1,ANIMATE_TRANSLATION, 1,piItem_flags&ITEM_PALETTE_MASK);
-
-	      pbColored = TRUE;
+         
+         if NOT IsClass(self,&RobeBase)
+         { 
+	         pbColored = TRUE;
+         }
       }
 
       if piHits > 0 OR viBroken_group = $
@@ -1279,7 +1282,10 @@ messages:
       {
          AddPacket(1,ANIMATE_TRANSLATION, 1,piItem_flags&ITEM_PALETTE_MASK);
 
-	      pbColored = TRUE;
+         if NOT IsClass(self,&RobeBase)
+         { 
+	         pbColored = TRUE;
+         }
       }
       
       if piHits > 0 OR viBroken_group = $
