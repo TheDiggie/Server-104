@@ -77,8 +77,8 @@ classvars:
    viVisionDistance = 20
    viKarma = -50
    viWimpy = 2
-   viCashmin = 500
-   viCashmax = 1150
+   viCashmin = 1500
+   viCashmax = 2500
    vrSound_hit = Kriipa_sound_hit
    vrSound_miss = Kriipa_sound_miss
    vrSound_aware = Kriipa_sound_aware

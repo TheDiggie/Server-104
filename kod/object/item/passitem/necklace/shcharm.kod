@@ -28,7 +28,10 @@ resources:
    ShalilleCharm_icon_rsc = shcharm.bgf
    ShalilleCharm_desc_rsc = \
    "Made of carefully cut diamonds set in finely worked copper, this pendant "
-   "would be anyone's best friend."
+   "would be anyone's best friend.\n\n"
+      "Bonus Stats:\n"
+      "+10 Intellect\n"
+      "+4  Stamina"
 
    ShalilleCharm_whisper = \
       "A voice whispers, \"~I...calm only prevails if it learns from "

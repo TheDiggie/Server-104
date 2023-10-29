@@ -28,7 +28,10 @@ resources:
    RiijaCharm_icon_rsc = rjcharm.bgf
    RiijaCharm_desc_rsc = \
    "Unorthodox and ornate, this choker is wondrous to look at, but it doesn't "
-   "look like much fun to wear."
+   "look like much fun to wear.\n\n"
+      "Bonus Stats:\n"
+      "+10 Agility\n"
+      "+4  Intellect"
 
    RiijaCharm_whisper = \
       "A voice whispers, \"~I...the key to making mischief is being smart "

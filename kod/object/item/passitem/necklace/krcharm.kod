@@ -29,7 +29,10 @@ resources:
    KraananCharm_icon_rsc = krcharm.bgf
    KraananCharm_desc_rsc = \
       "Made not for ornamentation but for protection, this torc looks more "
-      "than suitable for stopping any blow headed towards the throat."
+      "than suitable for stopping any blow headed towards the throat.\n\n"
+      "Bonus Stats:\n"
+      "+10 Might\n"
+      "+4  Agility"
    KraananCharm_whisper = \
       "You hear a voice whisper, \"~I...dodge all they want, a mighty "
       "warrior need only hit them once...\""

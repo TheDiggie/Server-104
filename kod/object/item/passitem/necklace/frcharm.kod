@@ -29,7 +29,10 @@ resources:
    FarenCharm_desc_rsc = \
       "This necklace is a long string of brass medallions carefully crafted "
       "together.  In the largest of the medallions, the image of a storm "
-      "has been delicately engraved."
+      "has been delicately engraved.\n\n"
+      "Bonus Stats:\n"
+      "+10 Stamina\n"
+      "+4  Aim"
 
    FarenCharm_whisper = \
       "A voice whispers, \"~I...the master of the storm must withstand his "
