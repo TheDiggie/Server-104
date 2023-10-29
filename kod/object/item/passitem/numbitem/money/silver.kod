@@ -21,7 +21,7 @@ resources:
    
    Silver_icon_rsc = platinum.bgf
    Silver_desc_rsc = \
-      "A pure silver coin. Used for buying powerful items."
+      "A pure silver coin. This is the currency used by pirates."
 
 classvars:
 
