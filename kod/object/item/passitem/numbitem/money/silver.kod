@@ -1,0 +1,39 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Silver is Money
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Silver_name_one_rsc = "silver"
+   Silver_name_many_rsc = "silver"
+   
+   Silver_icon_rsc = platinum.bgf
+   Silver_desc_rsc = \
+      "A pure silver coin. Used for buying powerful items."
+
+classvars:
+
+   vrName = Silver_name_one_rsc
+   vrIcon = Silver_icon_rsc
+   vrDesc = Silver_desc_rsc
+
+   vrName_plural = Silver_name_many_rsc
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

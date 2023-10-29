@@ -2985,7 +2985,7 @@
 
    // Number of a single item you can buy at one time
    MIN_BUY_AMOUNT = 1
-   MAX_BUY_AMOUNT = 500
+   MAX_BUY_AMOUNT = 10000
 
    // Ornamental Objects
 

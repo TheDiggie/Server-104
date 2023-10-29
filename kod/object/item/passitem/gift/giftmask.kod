@@ -18,13 +18,26 @@ constants:
 resources:
 
    MaskGift_name_rsc = "mask box"
+   MaskGift_icon_rsc = lootboxes.bgf
    MaskGift_desc_rsc = \
-      "This is a gift from the gods, it contains a random mask!"
+      "This is a gift from the gods, it contains a random mask!\n\n"
+      "MASK  ONLY HAVE 10% CHANCE TO HAVE A ENCHANTMENT.\n\n"
+      "Items have a 30% chance to be colored.\n\n"
+      "This box has a chance to contain the following items : \n"
+      "kriipa mask, stone troll mask, troll mask, ant mask, dusk rat mask, "
+      "rat mask, skull mask, rice hat mask, wolf mask, soldier mask, "
+      "manager mask, worker mask, front man mask, cow mask, mummy mask, "
+      "shrunken head mask, fey elhai mask, fey derhai mask, daemon skeleton mask, "
+      "xeochicatl mask.\n\n"
+      "These items have a chance to be enchanted with :\n bond, bonus xp."
 
 classvars:
 
    vrName = MaskGift_name_rsc
+   vrIcon = MaskGift_icon_rsc
    vrDesc = MaskGift_desc_rsc
+   
+   viValue_average = 3000
 
 properties:
 

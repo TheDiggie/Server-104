@@ -62,6 +62,10 @@ resources:
       "~Moxal ix'Hanak tells you, \"Oh, yes. I can get rid of this key for "
       "you.  No problem.\""
 
+   KocatanInkeeper_silver = \
+      "Ah dealing with those pirates are you? Sure I have some "
+      "silver but it will cost you a arm and a leg!"
+
    KoIk_room_command = "room"
    KoIk_rent_command = "rent"
    KoIk_cost_command = "cost"
@@ -73,7 +77,7 @@ classvars:
    vrIcon = Kocataninnkeeper_icon_rsc
    vrDesc = Kocataninnkeeper_desc_rsc
 
-   viMerchant_markup = MERCHANT_EXPENSIVE
+   viMerchant_markup = MERCHANT_FLAT
 
    viAttributes = \
       MOB_NOFIGHT | MOB_SELLER | MOB_RANDOM | MOB_LISTEN \
@@ -208,13 +212,18 @@ messages:
 
    InitCondSale()
    {
-      local oObj;
+      local oObj, oObj2;
 
       oObj = Create(&PurpleMushroom,#number=2);
       Send(Send(SYS,@GetLibrary),@AddToMobLib,#mob=self,
             #triggers=[Send(oObj,@GetName)],
             #action=[LIBACT_CONDITIONAL,oObj,1250,
             KocatanInkeeper_purplemushroom_sale]);
+
+      oObj2 = Create(&Silver,#number=500);
+      Send(Send(SYS,@GetLibrary),@AddToMobLib,#mob=self,
+            #triggers=[Send(oObj2,@GetName)],
+            #action=[LIBACT_CONDITIONAL,oObj2,1000,KocatanInkeeper_silver]);
 
       return;
    }

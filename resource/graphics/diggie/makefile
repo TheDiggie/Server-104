@@ -21,7 +21,7 @@ BGFS = neeleme.bgf neelemeX.bgf iunholyt.bgf xeoneru.bgf xeoneruX.bgf \
        ogre.bgf ogreX.bgf wizardhat.bgf wizardhatF.bgf ring02.bgf minersbag.bgf \
        prism1.bgf nerushld.bgf woice.bgf iwallice.bgf sickle.bgf povsickle.bgf \
        sickleov.bgf woodaxeov.bgf povwoodaxe.bgf woodaxe.bgf skinknife.bgf \
-       povskinknife.bgf skinknifeov.bgf iskinning.bgf
+       povskinknife.bgf skinknifeov.bgf iskinning.bgf lootboxes.bgf lootmaster.bgf 
 
 !include $(RESOURCEDIR)\copy.mak
 

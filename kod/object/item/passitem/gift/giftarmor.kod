@@ -18,13 +18,23 @@ constants:
 resources:
 
    ArmorGift_name_rsc = "armor box"
+   ArmorGift_icon_rsc = lootboxes.bgf
    ArmorGift_desc_rsc = \
-      "This is a gift from the gods, it contains a strong piece of armor!"
+      "This is a gift from the gods, it contains a strong piece of armor!\n\n"
+      "Items have a 30% chance to be colored.\n\n"
+      "This box has a chance to contain the following items : \n"
+      "leather armor, chain armor, scale armor, nerudite armor, plate armor, "
+      "gauntlets, brawlers gloves, helm, knight's helm. \n\n"
+      "These items have a chance to be enchanted with :\n bond, extra durability,"
+      " indestructible, bonus xp."
 
 classvars:
 
    vrName = ArmorGift_name_rsc
+   vrIcon = ArmorGift_icon_rsc
    vrDesc = ArmorGift_desc_rsc
+
+   viValue_average = 2000
 
 properties:
 

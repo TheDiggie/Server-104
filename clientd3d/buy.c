@@ -11,7 +11,7 @@
 
 #include "client.h"
 
-#define MAX_PURCHASE 500
+#define MAX_PURCHASE 10000
 
 static BuyDialogStruct *info = NULL;
 

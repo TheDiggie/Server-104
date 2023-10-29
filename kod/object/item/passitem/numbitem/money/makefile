@@ -5,6 +5,6 @@
 !include $(TOPDIR)\common.mak
 
 DEPEND = ..\money.bof
-BOFS = shillings.bof souls.bof
+BOFS = shillings.bof souls.bof silver.bof
 
 !include $(KODDIR)\kod.mak

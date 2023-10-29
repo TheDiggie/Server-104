@@ -5705,6 +5705,7 @@ messages:
 
       plItemTemplates = cons(create(&Shillings),plItemTemplates);
       plItemTemplates = cons(create(&Souls),plItemTemplates);
+      plItemTemplates = cons(create(&Silver),plItemTemplates);
 
       plItemTemplates = cons(create(&StatsResetToken,#temporary=FALSE),
                               plItemTemplates);
@@ -6102,6 +6103,7 @@ messages:
       plMoneyTemplates = $;
       plMoneyTemplates = Cons(create(&Shillings),plMoneyTemplates);
       plMoneyTemplates = Cons(create(&Souls),plMoneyTemplates);
+      plMoneyTemplates = Cons(create(&Silver),plMoneyTemplates);
 
       return;
    }

@@ -36,6 +36,10 @@ resources:
       "see, I know where their burial grounds are, and you could say that "
       "I’m a bit of a ~Icollector~I."
 
+   Ran_silver = \
+      "Ah dealing with those pirates are you? Sure I have some "
+      "silver but it will cost you a arm and a leg!"
+
    MrEl_stat_window_trigger = "change stats"
 
 classvars:
@@ -97,7 +101,7 @@ messages:
    {
       plFor_sale = [
          [  
-            Create(&StatsResetToken) 
+            Create(&StatsResetToken)
          ],
          $,
          [
@@ -110,12 +114,17 @@ messages:
 
    InitCondSale()
    {
-      local oObj;
+      local oObj, oObj2;
 
       oObj = Create(&OrcTooth,#number=4);
       Send(Send(SYS,@GetLibrary),@AddToMobLib,#mob=self,
             #triggers=[Send(oObj,@GetName)],
             #action=[LIBACT_CONDITIONAL,oObj,350,ran_orctooth]);
+
+      oObj2 = Create(&Silver,#number=500);
+      Send(Send(SYS,@GetLibrary),@AddToMobLib,#mob=self,
+            #triggers=[Send(oObj2,@GetName)],
+            #action=[LIBACT_CONDITIONAL,oObj2,1000,ran_silver]);
 
       return;
    }

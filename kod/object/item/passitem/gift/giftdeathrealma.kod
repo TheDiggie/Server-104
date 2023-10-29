@@ -18,13 +18,22 @@ constants:
 resources:
 
    DeathRealmArmorGift_name_rsc = "death realm armor box"
+   DeathRealmArmorGift_icon_rsc = lootboxes.bgf
    DeathRealmArmorGift_desc_rsc = \
-      "This is a gift from the gods, it contains a strong armor item from the Death Realm!"
+      "This is a gift from the gods, it contains a strong armor item from the Death Realm!\n\n"
+      "Items have a 30% chance to be colored.\n\n"
+      "This box has a chance to contain the following items : \n"
+      "legion helm, steel helm, war helm, nerudite shield. \n\n"
+      "These items have a chance to be enchanted with :\n bond, extra durability,"
+      " indestructible, bonus xp."
 
 classvars:
 
    vrName = DeathRealmArmorGift_name_rsc
+   vrIcon = DeathRealmArmorGift_icon_rsc
    vrDesc = DeathRealmArmorGift_desc_rsc
+   
+   viValue_average = 3000
 
 properties:
 

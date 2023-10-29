@@ -18,13 +18,22 @@ constants:
 resources:
 
    GodsGift_name_rsc = "gods box"
+   GodsGift_icon_rsc = lootboxes.bgf
    GodsGift_desc_rsc = \
-      "This is a gift from the gods, it contains a random god's gift!"
+      "This is a gift from the gods, it contains a random god's gift!\n\n"
+      "GOD GIFTS ONLY HAVE 10% CHANCE TO HAVE A ENCHANTMENT.\n\n"
+      "This box has a chance to contain the following items : \n"
+      "brass medallion, steel torc, monocle, feathered choker, diamond pendant. \n\n"
+      "These items have a chance to be enchanted with :\n bond, extra durability,"
+      " indestructible, bonus xp."
 
 classvars:
 
    vrName = GodsGift_name_rsc
+   vrIcon = GodsGift_icon_rsc
    vrDesc = GodsGift_desc_rsc
+   
+   viValue_average = 3000
 
 properties:
 

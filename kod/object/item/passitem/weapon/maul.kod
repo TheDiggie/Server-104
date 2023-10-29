@@ -16,7 +16,7 @@ constants:
 
 resources:
 
-   Maul_name_rsc = "Maul"
+   Maul_name_rsc = "maul"
    Maul_icon_rsc = maul.bgf
    Maul_desc_rsc = \
    "Heavy and blunt, this Maul is a powerful blunt weapon. Prefect for smashing "

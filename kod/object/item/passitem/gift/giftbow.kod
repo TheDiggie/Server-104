@@ -18,13 +18,22 @@ constants:
 resources:
 
    BowGift_name_rsc = "bow box"
+   BowGift_icon_rsc = lootboxes.bgf
    BowGift_desc_rsc = \
-      "This is a gift from the gods, it contains a strong bow!"
+      "This is a gift from the gods, it contains a strong bow!\n\n"
+      "This box has a chance to contain the following items : \n"
+      "magic bow, nerudite bow, holy bow, qor bow, long bow, battle bow, pratice bow. \n\n"
+      "These items have a chance to be enchanted with :\n bond, extra durability,"
+      " indestructible, bonus xp, blind, hold, vampiric drain, bonk, faction, "
+      "GMT, purge, mana siphon, glow, justice."
 
 classvars:
 
    vrName = BowGift_name_rsc
+   vrIcon = BowGift_icon_rsc
    vrDesc = BowGift_desc_rsc
+   
+   viValue_average = 7000
 
 properties:
 

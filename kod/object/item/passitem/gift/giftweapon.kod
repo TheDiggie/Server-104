@@ -18,13 +18,23 @@ constants:
 resources:
 
    WeaponGift_name_rsc = "weapon box"
+   WeaponGift_icon_rsc = lootboxes.bgf
    WeaponGift_desc_rsc = \
-      "This is a gift from the gods, it contains a strong weapon!"
+      "This is a gift from the gods, it contains a strong weapon!\n\n"
+      "Items have a 30% chance to be colored.\n\n"
+      "This box has a chance to contain the following items : \n"
+      "nerudite sword, mystic sword, scimitar, long sword, short sword, axe, hammer, mace. \n\n"
+      "These items have a chance to be enchanted with :\n bond, extra durability,"
+      " indestructible, bonus xp, blind, hold, vampiric drain, bonk, faction, "
+      "GMT, purge, mana siphon, glow, justice."
 
 classvars:
 
    vrName = WeaponGift_name_rsc
+   vrIcon = WeaponGift_icon_rsc
    vrDesc = WeaponGift_desc_rsc
+   
+   viValue_average = 2000
 
 properties:
 

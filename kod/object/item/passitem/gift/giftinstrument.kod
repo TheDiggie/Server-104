@@ -18,14 +18,20 @@ constants:
 resources:
 
    InstrumentGift_name_rsc = "instrument box"
+   InstrumentGift_icon_rsc = lootboxes.bgf
    InstrumentGift_desc_rsc = \
-      "This is a gift from the gods, it contains a random instrument!"
+      "This is a gift from the gods, it contains a random instrument!\n\n"
+      "This box has a chance to contain the following items : \n"
+      "necklace of Jala, lute, fine lute, true lute. \n\n"
+      "These items have a chance to be enchanted with :\n bond, bonus xp."
 
 classvars:
 
    vrName = InstrumentGift_name_rsc
+   vrIcon = InstrumentGift_icon_rsc
    vrDesc = InstrumentGift_desc_rsc
-
+   
+   viValue_average = 2000
 properties:
 
 messages:

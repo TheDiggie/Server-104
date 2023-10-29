@@ -6758,7 +6758,11 @@ messages:
    GetMoneyObject(type= $)
    {
 
-      if (type = &Souls)
+      if (type = &Silver)
+      {
+         return GetListElemByClass(plPassive,&Silver);
+      }
+      else if (type = &Souls)
       {
          return GetListElemByClass(plPassive,&Souls);
       }

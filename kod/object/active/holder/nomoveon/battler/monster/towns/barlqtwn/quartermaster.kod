@@ -1,0 +1,63 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+QuarterMaster is BarloqueTown
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   quartermaster_name_rsc = "Quartermaster"
+   quartermaster_icon_rsc = lootmaster.bgf
+   quartermaster_desc_rsc = \
+      "As the quartermaster of the ship he keeps a log of all the boats treasures. "
+      "If you have the coin perhaps you can take some of his hands. Altho pirates only deal "
+      "in silver. Ran er'Hoth or Moxal ix'Hanak are know for selling rare metals."
+classvars:
+
+   vrName = quartermaster_name_rsc
+   vrIcon = quartermaster_icon_rsc
+   vrDesc = quartermaster_desc_rsc
+   viAttributes = \
+      MOB_NOFIGHT | MOB_SELLER | MOB_NOMOVE | MOB_RANDOM | MOB_LISTEN \
+      | MOB_RECEIVE
+   viOccupation = MOB_ROLE_MERCHANT
+   viMerchant_markup = MERCHANT_FLAT
+
+properties:
+
+   poCurrency = &Silver
+
+messages:
+
+   SetForSale()
+   {
+      plFor_sale = [
+         [
+            Create(&ArmorGift),
+            Create(&WeaponGift),
+            Create(&GodsGift),
+            Create(&BowGift),
+            Create(&ShieldGift),
+            Create(&MageGift),
+            Create(&DeathRealmWeaponGift),
+            Create(&DeathRealmArmorGift),
+            Create(&MaskGift),
+            Create(&InstrumentGift)
+         ],
+      $,$,$];
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

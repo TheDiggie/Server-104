@@ -18,13 +18,23 @@ constants:
 resources:
 
    DeathRealmWeaponGift_name_rsc = "death realm weapon box"
+   DeathRealmWeaponGift_icon_rsc = lootboxes.bgf
    DeathRealmWeaponGift_desc_rsc = \
-      "This is a gift from the gods, it contains a strong weapon from the Death Realm!"
+      "This is a gift from the gods, it contains a strong weapon from the Death Realm!\n\n"
+      "Items have a 30% chance to be colored.\n\n"
+      "This box has a chance to contain the following items : \n"
+      "master wand, berserker axe, sword of light, maul, nerudite axe, twin blade. \n\n"
+      "These items have a chance to be enchanted with :\n bond, extra durability,"
+      " indestructible, bonus xp, blind, hold, vampiric drain, bonk, faction, "
+      "GMT, purge, mana siphon, glow, justice."
 
 classvars:
 
    vrName = DeathRealmWeaponGift_name_rsc
+   vrIcon = DeathRealmWeaponGift_icon_rsc
    vrDesc = DeathRealmWeaponGift_desc_rsc
+   
+   viValue_average = 4000
 
 properties:
 

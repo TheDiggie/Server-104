@@ -72,6 +72,9 @@ messages:
       Send(self,@NewHold,#what=Create(&BoatCaptain),
          #new_row=68,#new_col=30,#fine_row=44,#fine_col=45,#new_angle=ANGLE_NORTH);
 
+      Send(self,@NewHold,#what=Create(&QuarterMaster),
+         #new_row=69,#new_col=33,#fine_row=19,#fine_col=33,#new_angle=ANGLE_NORTH);
+
       propagate;
    }
 

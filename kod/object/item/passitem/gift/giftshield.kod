@@ -18,13 +18,22 @@ constants:
 resources:
 
    ShieldGift_name_rsc = "shield box"
+   ShieldGift_icon_rsc = lootboxes.bgf
    ShieldGift_desc_rsc = \
-      "This is a gift from the gods, it contains a strong shield!"
+      "This is a gift from the gods, it contains a strong shield!\n\n"
+      "Items have a 30% chance to be colored.\n\n"
+      "This box has a chance to contain the following items : \n"
+      "mug of beer, gold round shield, herald shield, knight's shield, small round shield. \n\n"
+      "These items have a chance to be enchanted with :\n bond, extra durability,"
+      " indestructible, bonus xp."
 
 classvars:
 
    vrName = ShieldGift_name_rsc
+   vrIcon = ShieldGift_icon_rsc
    vrDesc = ShieldGift_desc_rsc
+   
+   viValue_average = 2000
 
 properties:
 
@@ -32,8 +41,7 @@ messages:
 
    Constructor()
    {
-      plContents = [ &GuildShield, &OrcShield, &KnightShield, 
-                     &GoldShield, &MetalShield, &BeerMug ];
+      plContents = [ &GuildShield, &KnightShield, &GoldShield, &MetalShield, &BeerMug ];
 
       plItematt = [ IA_TRANSCENDANT, IA_DURABLE, IA_INDESTRUCTIBLE, IA_XP_KILL_BONUS ];
 
