@@ -246,7 +246,6 @@ properties:
    piBlackHeartstone = 4
    piWhiteHeartstone = 4
    piPurpleHeartstone = 4
-   piDarkGreenHeartstone = 4
 
 messages:
 
@@ -1271,8 +1270,7 @@ messages:
             AND (piGreenHeartStone >= ITEMS_FROM_HEARTSTONES)
             AND (piWhiteHeartStone >= ITEMS_FROM_HEARTSTONES)
             AND (piBlackHeartStone >= ITEMS_FROM_HEARTSTONES)
-            AND (piPurpleHeartStone >= ITEMS_FROM_HEARTSTONES)
-            AND (piDarkGreenHeartStone >= ITEMS_FROM_HEARTSTONES))
+            AND (piPurpleHeartStone >= ITEMS_FROM_HEARTSTONES))
       {
          return TRUE;
       }
@@ -1287,8 +1285,7 @@ messages:
       bGotAll = (piRedHeartStone AND piBlueHeartStone
                  AND piSkyHeartStone AND piBrownHeartStone
                  AND piGreenHeartStone AND piWhiteHeartStone
-                 AND piBlackHeartStone AND piPurpleHeartStone
-                 AND piDarkGreenHeartStone);
+                 AND piBlackHeartStone AND piPurpleHeartStone);
 
       // Increment appropriate type of heartstone.
       if IsClass(oStone,&RedHeartStone)
@@ -1347,19 +1344,11 @@ messages:
                #string=RentableRoom_heartstone_Purple);
       }
 
-      if IsClass(oStone,&DarkGreenHeartStone)
-      {
-         piDarkGreenHeartStone = piDarkGreenHeartStone + ITEMS_FROM_HEARTSTONES;
-         Post(self,@SomeoneSaid,#type=SAY_RESOURCE,#what=oDecorator,
-               #string=RentableRoom_heartstone_Dark_Green);
-      }
-
       if (NOT bGotAll)
          AND (piRedHeartStone AND piBlueHeartStone
                  AND piSkyHeartStone AND piBrownHeartStone
                  AND piGreenHeartStone AND piWhiteHeartStone
-                 AND piBlackHeartStone AND piPurpleHeartStone
-                 AND piDarkGreenHeartStone)
+                 AND piBlackHeartStone AND piPurpleHeartStone)
       {
          Post(self,@SomeoneSaid,#type=SAY_RESOURCE,#what=oDecorator,
                #string=RentableRoom_heartstone_all);
@@ -1403,15 +1392,14 @@ messages:
 
       if iCategory = 6
       {
-         piBrownHeartStone = piBrownHeartStone - ITEMS_FROM_HEARTSTONES;
-         piRedHeartStone = piRedHeartStone - ITEMS_FROM_HEARTSTONES;
-         piSkyHeartStone = piSkyHeartStone - ITEMS_FROM_HEARTSTONES;
-         piBlueHeartStone = piBlueHeartStone - ITEMS_FROM_HEARTSTONES;
-         piGreenHeartstone = piGreenHeartstone - ITEMS_FROM_HEARTSTONES;
-         piDarkGreenHeartstone = piDarkGreenHeartstone - ITEMS_FROM_HEARTSTONES;
-         piBlackHeartstone = piBlackHeartstone - ITEMS_FROM_HEARTSTONES;
-         piWhiteHeartstone = piWhiteHeartstone - ITEMS_FROM_HEARTSTONES;
-         piPurpleHeartstone = piPurpleHeartstone - ITEMS_FROM_HEARTSTONES;
+         piBrownHeartStone    = piBrownHeartStone  - ITEMS_FROM_HEARTSTONES;
+         piRedHeartStone      = piRedHeartStone    - ITEMS_FROM_HEARTSTONES;
+         piSkyHeartStone      = piSkyHeartStone    - ITEMS_FROM_HEARTSTONES;
+         piBlueHeartStone     = piBlueHeartStone   - ITEMS_FROM_HEARTSTONES;
+         piGreenHeartstone    = piGreenHeartstone  - ITEMS_FROM_HEARTSTONES;
+         piBlackHeartstone    = piBlackHeartstone  - ITEMS_FROM_HEARTSTONES;
+         piWhiteHeartstone    = piWhiteHeartstone  - ITEMS_FROM_HEARTSTONES;
+         piPurpleHeartstone   = piPurpleHeartstone - ITEMS_FROM_HEARTSTONES;
       }
 
       return;
