@@ -36,6 +36,8 @@ classvars:
 
 properties:  
 
+   piItem_flags = 9
+
 messages:   
 
 end
