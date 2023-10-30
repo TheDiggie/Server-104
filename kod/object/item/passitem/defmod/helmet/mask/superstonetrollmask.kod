@@ -47,7 +47,7 @@ NewUsed(what = $)
   
   if NOT Send(what,@IsEnchanted,#what=oAog)
   {
-	   Send(oAog,@CastSpell,#who=what,#lTargets=[what],#iSpellPower=99,#bItemCast=TRUE);
+	   Send(oAog,@CastSpell,#who=what,#iSpellPower=99,#bItemCast=TRUE,#SpecialItem=TRUE);
   }
 
   propagate;
