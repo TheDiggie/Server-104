@@ -136,29 +136,14 @@ messages:
 
    GetDuration(iSpellPower=0,caster=$,target=$)
    {
-      local iDuration, iKarmaDif, iKarma, iTargetKarma;
+      local iDuration;
 
       // 1-8 seconds based on spellpower. Recommended 3-7.
       iDuration = piBaseDuration + iSpellPower * piSpellPowerMultiplier;
 
-      if IsClass(caster,&Battler)
-      {
-         iKarma = Send(caster,@GetKarma);
-      }
-      else
-      {
-         // Non battlers, like the sun
-         iKarma = Random(30,90);
-      }
-
-      iTargetKarma = Send(target,@GetKarma,#detect=TRUE);
-
-      iKarmaDif = iKarma - iTargetKarma;
-
       // Add 1-10 seconds based on karma difference.
-      iDuration = Bound(iDuration + (iKarmaDif * piKarmaPowerMultiplier),
-                        piMinDazzle,piMaxDazzle);
-
+      iDuration = Bound(iDuration + Random(1000,10000),piMinDazzle,piMaxDazzle);
+     
       // Add any random duration.
       iDuration = Random(iDuration * (100 - piDeviation) / 100,iDuration);
 
