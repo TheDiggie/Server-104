@@ -23,8 +23,8 @@ constants:
 
 resources:
 
-   itematt_crafted_desc = " This piece of gear was crafted by %s."
-   itematt_crafted_old_desc = " This piece of gear was crafted."
+   itematt_crafted_desc = "\n\nThis piece of gear was crafted by %s."
+   itematt_crafted_old_desc = "\n\nThis piece of gear was crafted."
 
 classvars:
 

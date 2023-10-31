@@ -35,16 +35,16 @@ resources:
    include wafactn.lkod
 
    weapatt_faction_princess = \
-      " The princess' sigil is embossed on the weapon, promising %s "
+      "\n\nThe princess' sigil is embossed on the weapon, promising %s "
       "advantage in the defense of her honor."
    weapatt_faction_duke = \
-      " The duke's family crest is embossed on the weapon, offering %s "
+      "\n\nThe duke's family crest is embossed on the weapon, offering %s "
       "advantage in his quest for the throne."
    weapatt_faction_rebel = \
-      " The rebel army flag is embossed on the weapon, giving %s "
+      "\n\nThe rebel army flag is embossed on the weapon, giving %s "
       "advantage for the rebellion."
    weapatt_faction_necro = \
-      " The dark symbol of the necromancers is embossed on this weapon, "
+      "\n\nThe dark symbol of the necromancers is embossed on this weapon, "
       "giving %s advantage for the undead army."
 
    weapatt_faction_duke_name = "%s of the duke"

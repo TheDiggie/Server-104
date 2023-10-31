@@ -33,7 +33,7 @@ resources:
 
    include iashroud.lkod
 
-   itematt_shroud_desc = " A cloak of magic surrounds it."
+   itematt_shroud_desc = "\n\nA cloak of magic surrounds it."
    iashroud_gone = "The mystical cloak slips away from your %s."
    iashroud_name = "shrouded %s"
 

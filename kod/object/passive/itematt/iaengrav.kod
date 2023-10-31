@@ -31,7 +31,7 @@ resources:
    include iaengrav.lkod
 
     ItemAtt_Engraved_desc = \
-      "  The words '%q' are delicately engraved on the edge."
+      "\n\nThe words '%q' are delicately engraved on the edge."
 
 classvars:
 

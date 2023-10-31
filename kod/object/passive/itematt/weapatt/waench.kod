@@ -38,7 +38,7 @@ resources:
    include waench.lkod
 
    waEnchant_gone = "Your %s suddenly seems a little more... ordinary."
-   waEnchanted = " This weapon has been dedicated to Kraanan's glory."
+   waEnchanted = "\n\nThis weapon has been dedicated to Kraanan's glory."
    waEnchanted_name = "enchanted %s"
    enchanted_dm = "enchanted"
 

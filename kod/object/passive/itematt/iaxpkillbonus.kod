@@ -32,7 +32,7 @@ resources:
    itematt_xpkillbonus_name = "adventuring %s"
    xpkillbonus_dm = "adventuring"
    itematt_xpkillbonus_desc = \
-      " This %s is exceptionally well made, and would be of benefit to "
+      "\n\nThis %s is exceptionally well made, and would be of benefit to "
       "any adventurer seeking to gain experience."
    xpkillbonus_info_desc = "%i bonus XP per kill\n"
 

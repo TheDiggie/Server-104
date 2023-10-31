@@ -30,7 +30,7 @@ resources:
    include wablindr.lkod
 
    weapattblinder_desc = \
-      " Q's insignia is emblazoned on the metal of the weapon."
+      "\n\nQ's insignia is emblazoned on the metal of the weapon."
    blinder_fail_use = "You are not yet ready to use %s%s."
    blinder_worked = "%s%s stumbles away, screaming and clutching %s eyes!"
    blinder_dm = "blinder"

@@ -34,7 +34,7 @@ resources:
    include waghall.lkod
 
    weapattguildhalldesc = \
-      "  The crest of %s is inscribed on the hilt of the weapon, suggesting "
+      "\n\nThe crest of %s is inscribed on the hilt of the weapon, suggesting "
       "%s bonus in the defense of that hall."
    weapattdefender_name = "%s of the defender"
 

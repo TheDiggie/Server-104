@@ -31,7 +31,7 @@ resources:
    include wacerem.lkod
 
    weapattcerem_desc = \
-      "  Beautiful and ornate, this weapon is obviously unsuitable for blood "
+      "\n\nBeautiful and ornate, this weapon is obviously unsuitable for blood "
       "combat, though it might provide %s edge in games and tourneys."
    weapatt_ceremonial_name = "ceremonial %s"
    ceremonial_dm = "ceremonial"

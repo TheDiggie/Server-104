@@ -28,7 +28,7 @@ resources:
 
    include waspell.lkod
 
-   WeapAttSpellCaster_desc = "  Mystical energy flits about this weapon."
+   WeapAttSpellCaster_desc = "\n\nMystical energy flits about this weapon."
    WeapAttSpellCaster_desc_target = \
       "  Mystical energy flits about this weapon.  This weapon will cast "
       "the %s spell on your target."

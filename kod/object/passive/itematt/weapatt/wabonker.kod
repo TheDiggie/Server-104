@@ -29,7 +29,7 @@ resources:
    include wabonker.lkod
 
    weapattbonker_desc = \
-      " Mocker's signature flamboyantly emblazons the pommel."
+      "\n\nMocker's signature flamboyantly emblazons the pommel."
    bonker_dm = "bonker"
    bonker_info_desc = "8%% chance to cast Bonk on hit\n"
 

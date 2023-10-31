@@ -34,7 +34,7 @@ resources:
 
    include iamade.lkod
 
-   itematt_made_desc = "  It shimmers insubstantially."
+   itematt_made_desc = "\n\nIt shimmers insubstantially."
    iaMade_gone = "Your %s disappears in a puff of smoke."
 
 classvars:

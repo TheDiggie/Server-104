@@ -23,7 +23,7 @@ constants:
 
 resources:
 
-   itematt_Indestructible_desc = " This item is indestructible."
+   itematt_Indestructible_desc = "\n\nThis item is indestructible."
 
 classvars:
 
