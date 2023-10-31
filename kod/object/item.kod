@@ -87,6 +87,8 @@ resources:
    item_weight    = "%i weight and %i bulk\n"
    item_bulk      = "%i bulk\n"
 
+   item_cast_spell = "\n\nThis item will maintain %s on its user."
+
 classvars:
 
    vrItem_broken = item_broken_battle
@@ -895,7 +897,18 @@ messages:
 
    AppendDesc()
    {
-      AddPacket(4,system_blank_resource);
+      local oSpell;
+
+      if poSpell <> $
+      {
+         oSpell = Send(SYS,@FindSpellByNum,#Num=poSpell);
+         // Add information about the maker to the desc.
+         AddPacket(4,system_rsc_template_2, 4,item_cast_spell, 4,Send(oSpell,@GetName));
+      }
+      else
+      {
+         AddPacket(4,system_blank_resource);
+      }
 
       return;
    }
