@@ -37,35 +37,9 @@ properties:
    piItem_flags = 49
    piDrawFX = DRAWFX_SECONDTRANS
 
+   poSpell = SID_ARMOR_OF_GORT
+
 messages:
-
-NewUsed(what = $)
-{
-  local oAog;
-
-  oAog = Send(SYS,@FindSpellByNum,#Num=SID_ARMOR_OF_GORT);
-  
-  if NOT Send(what,@IsEnchanted,#what=oAog)
-  {
-	   Send(oAog,@CastSpell,#who=what,#iSpellPower=99,#bItemCast=TRUE,#SpecialItem=TRUE);
-  }
-
-  propagate;
-}
-
-NewUnused(what = $)
-{
-  local oAog;
-
-  oAog = Send(SYS,@FindSpellByNum,#Num=SID_ARMOR_OF_GORT);
-  
-  if Send(what,@IsEnchanted,#what=oAog)
-  {
-   Send(what,@RemoveEnchantment,#what=oAog);
-  }
-
-  propagate;
-}
 
 end
 ////////////////////////////////////////////////////////////////////////////////

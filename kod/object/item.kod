@@ -170,6 +170,7 @@ properties:
    viVery   = FALSE
 
    poCrafter      = $
+   poSpell        = $
 
 messages:
 
@@ -1098,9 +1099,9 @@ messages:
       return TRUE;
    }
 
-   NewUsed(iSpecial = $)
+   NewUsed(what=$, iSpecial = $)
    {
-      local oRoom;
+      local oRoom, oSpell;
 
       iSpecial = piSpecial;
 
@@ -1116,6 +1117,16 @@ messages:
       {
          oRoom = Send(poOwner, @GetOwner);
          Send(poOwner,@SetPlayerFlag,#flag=iSpecial,#value=TRUE);
+      }
+
+      if poSpell <> $
+      {
+         oSpell = Send(SYS,@FindSpellByNum,#Num=poSpell);
+
+         if NOT Send(what,@IsEnchanted,#what=oSpell)
+         {
+	            Send(oSpell,@CastSpell,#who=what,#iSpellPower=99,#bItemCast=TRUE,#SpecialItem=TRUE);
+         }
       }
 
       return;
@@ -1171,8 +1182,10 @@ messages:
       return TRUE;
    }
 
-   NewUnused(iSpecial = $)
+   NewUnused(what=$, iSpecial = $)
    {
+      local oSpell;
+
       iSpecial = piSpecial;
 
       pbIn_use = FALSE;
@@ -1182,6 +1195,16 @@ messages:
       if(piSpecial <> $)
       {
          Send(poOwner,@SetPlayerFlag,#flag=piSpecial,#value=FALSE);
+      }
+
+      if poSpell <> $
+      {
+         oSpell = Send(SYS,@FindSpellByNum,#Num=poSpell);
+
+         if Send(what,@IsEnchanted,#what=oSpell)
+         {
+            Send(what,@RemoveEnchantment,#what=oSpell);
+         }
       }
 
       return;
