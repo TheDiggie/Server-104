@@ -32,7 +32,7 @@ resources:
       "has been delicately engraved.\n\n"
       "Bonus Stats:\n"
       "+10 Stamina\n"
-      "+4  Aim"
+      "+4  Aim\n\n"
 
    FarenCharm_whisper = \
       "A voice whispers, \"~I...the master of the storm must withstand his "

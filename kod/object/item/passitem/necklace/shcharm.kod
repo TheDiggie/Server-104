@@ -31,7 +31,7 @@ resources:
    "would be anyone's best friend.\n\n"
       "Bonus Stats:\n"
       "+10 Intellect\n"
-      "+4  Stamina"
+      "+4  Stamina\n\n"
 
    ShalilleCharm_whisper = \
       "A voice whispers, \"~I...calm only prevails if it learns from "

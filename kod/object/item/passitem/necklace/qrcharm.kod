@@ -37,7 +37,7 @@ resources:
       "cool in your hand.\n\n"
       "Bonus Stats:\n"
       "+10 Aim\n"
-      "+4  Might"
+      "+4  Might\n\n"
    qorcharm_whisper = \
       "A voice whispers, \"~I...the vile's aim must be true, for assassins "
       "rarely get second chances...\""

@@ -4543,7 +4543,7 @@ messages:
          return;
       }
 
-      oMoney = Send(self,@GetMoneyObject,#type=funds);
+      oMoney = $;
       if oMoney = $
       {         
          funds = poCurrency;

@@ -32,7 +32,7 @@ resources:
       "than suitable for stopping any blow headed towards the throat.\n\n"
       "Bonus Stats:\n"
       "+10 Might\n"
-      "+4  Agility"
+      "+4  Agility\n\n"
    KraananCharm_whisper = \
       "You hear a voice whisper, \"~I...dodge all they want, a mighty "
       "warrior need only hit them once...\""
