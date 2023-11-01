@@ -30,10 +30,10 @@ resources:
 
    WeapAttSpellCaster_desc = "\n\nMystical energy flits about this weapon."
    WeapAttSpellCaster_desc_target = \
-      "  Mystical energy flits about this weapon.  This weapon will cast "
+      "\n\nMystical energy flits about this weapon.  This weapon will cast "
       "the %s spell on your target."
    WeapAttSpellCaster_desc_self = \
-      "  Mystical energy flits about this weapon. This weapon will cast "
+      "\n\nMystical energy flits about this weapon. This weapon will cast "
       "the %s spell on the wielder."
    WeapAttSpellCaster_dm = "spellcaster"
 
@@ -61,10 +61,14 @@ messages:
    Constructor()
    {
       // Used to have swap here.
-      plSpells = [ [SID_DEMENT, 14], [SID_ENFEEBLE, 14],
-                   [SID_VERTIGO, 14], [SID_FORGET, 15],
-                   [SID_EVIL_TWIN, 14], [SID_MARK_OF_DISHONOR, 15],
-                   [SID_INVISIBILITY, 14]
+      plSpells = [ [SID_DEMENT, 12],
+                   [SID_ENFEEBLE, 12],
+                   [SID_VERTIGO, 12],
+                   [SID_EVIL_TWIN, 12],
+                   [SID_INVISIBILITY, 13],
+                   [SID_DAZZLE, 13],
+                   [SID_FORGET, 13],
+                   [SID_MARK_OF_DISHONOR, 13]
                  ];
 
       propagate;
