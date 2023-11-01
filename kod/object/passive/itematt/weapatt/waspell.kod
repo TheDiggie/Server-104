@@ -61,14 +61,15 @@ messages:
    Constructor()
    {
       // Used to have swap here.
-      plSpells = [ [SID_DEMENT, 12],
-                   [SID_ENFEEBLE, 12],
-                   [SID_VERTIGO, 12],
-                   [SID_EVIL_TWIN, 12],
-                   [SID_INVISIBILITY, 13],
-                   [SID_DAZZLE, 13],
-                   [SID_FORGET, 13],
-                   [SID_MARK_OF_DISHONOR, 13]
+      plSpells = [ [SID_DEMENT, 11],
+                   [SID_ENFEEBLE, 11],
+                   [SID_VERTIGO, 11],
+                   [SID_EVIL_TWIN, 11],
+                   [SID_INVISIBILITY, 11],
+                   [SID_DAZZLE, 12],
+                   [SID_FORGET, 11],
+                   [SID_MARK_OF_DISHONOR, 11],
+                   [SID_SHADOW_FORM, 11]
                  ];
 
       propagate;
@@ -96,7 +97,7 @@ messages:
          oSpell = Send(SYS,@FindSpellByNum,#num=Nth(lData,2));
 
          // Handle self-target spells separately.
-         if Nth(lData,2) = SID_INVISIBILITY
+         if Nth(lData,2) = SID_INVISIBILITY OR Nth(lData,2) = SID_SHADOW_FORM
          {
             if Send(oSpell,@CanPayCosts,#who=self,#lTargets=[wielder],
                   #ispellpower=Nth(lData,3))
@@ -234,7 +235,7 @@ messages:
       }
 
       // Special case for spell cast on self.
-      if Nth(lData,2) = SID_INVISIBILITY
+      if Nth(lData,2) = SID_INVISIBILITY OR Nth(lData,2) = SID_SHADOW_FORM
       {
          AddPacket(4,vrDesc3, 4,Send(Send(SYS,@FindSpellByNum,
                                     #num=Nth(lData,2)),@GetName));
