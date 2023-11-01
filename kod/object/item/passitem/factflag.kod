@@ -61,7 +61,7 @@ messages:
 
    ReqNewOwner(what=$)
    {
-      local oSoldierShield;
+      local oSoldierShield, oFlag;
 
       if IsClass(what,&StorageBox)
       {
@@ -70,6 +70,13 @@ messages:
 
       if IsClass(what,&Player)
       {
+         oFlag = Send(what,@FindHolding,#class=&FactionFlag);
+
+         if oFlag <> $
+         {
+            return FALSE;
+         }
+
          oSoldierShield = Send(what,@FindUsing,#class=&SoldierShield);
 
          if oSoldierShield = $
