@@ -2031,7 +2031,8 @@
    WA_GLOWING              = 69
    WA_PURGER               = 70
    WA_SIPHON               = 71
-
+   WA_DAZZLER              = 72
+   
    // Herald shields
 
    SHIELDSHAPE_SLASH   = 1
