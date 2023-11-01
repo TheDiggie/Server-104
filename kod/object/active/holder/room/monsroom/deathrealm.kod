@@ -141,10 +141,15 @@ messages:
    ReqSpellCast(who = $, oSpell = $, lItems = $)
    {
       if IsClass(who, &DM)
-	  {
-	     return TRUE;
-	  }
+	   {
+	      return TRUE;
+	   }
 	  
+      if send(who,@HasBeatDR)
+	   {
+	      propagate;
+	   }
+
       if IsClass(oSpell,&Elusion)
          OR IsClass(oSpell,&Rescue)
          OR IsClass(oSpell,&DeathRift)
