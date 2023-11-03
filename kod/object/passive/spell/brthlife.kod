@@ -128,12 +128,12 @@ messages:
 
    CastSpell(who = $, lTargets = $, iSpellPower=0)
    {
-      local iPercent, iKarmaSum, oTarget, iHpAmount, iTransfer;
+      local iPercent, oTarget, iHpAmount, iTransfer;
 
       oTarget = First(lTargets);
       
       // Amount of life transferred depends on the Karma of our target.
-      iPercent = bound(send(oTarget,@GetKarma),10,80);
+      iPercent = random(10,80);
       iHpAmount = (Send(who,@GetExactHealth) * iPercent) / 100;
 
       // Don't drain caster below 10 hps,
