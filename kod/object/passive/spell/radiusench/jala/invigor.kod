@@ -86,7 +86,7 @@ messages:
    {
       if who <> $ AND NOT IsClass(who, &Monster)
       {
-         Send(who,@RestAddExertion,#amount=-10000);
+         Send(who,@RestAddExertion,#amount=-10000,#Bonus=TRUE);
       }
 
       return;

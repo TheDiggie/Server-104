@@ -1629,10 +1629,10 @@ messages:
       return;
    }
 
-   RestAddExertion(amount = 0)
+   RestAddExertion(amount = 0, Bonus = FALSE)
    "Gives inns a bonus as resting places."
    {
-      local iAmount;
+      local iAmount, iVigor_rest_threshold;
 
       // If we cannot gain vigor (probably due to Second Wind), return
       // out if trying to take away exertion
@@ -1640,9 +1640,16 @@ messages:
       //   OR Send(self,@IsInCannotInteractMode)
       //{
       //   return;
-      //}
+      //}  
+      
+      iVigor_rest_threshold  = piVigor_rest_threshold;
 
-      if piVigor > piVigor_rest_threshold
+      if Bonus
+      {
+         iVigor_rest_threshold  = piVigor_rest_threshold + 40;
+      }
+
+      if piVigor > iVigor_rest_threshold
       {
          return;
       }
@@ -1662,9 +1669,9 @@ messages:
       if abs(piExertion) > MIN_VIGOR_CHANGE
       {    
          piVigor = piVigor - piExertion / 10000;
-         if piVigor > piVigor_rest_threshold
+         if piVigor > iVigor_rest_threshold
          {
-            piVigor = piVigor_rest_threshold;
+            piVigor = iVigor_rest_threshold;
          }
 
          piExertion = 0;
