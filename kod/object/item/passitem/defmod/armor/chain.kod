@@ -60,7 +60,9 @@ messages:
    {
       return [ [ATCK_WEAP_THRUST,5],
                [ATCK_WEAP_PIERCE,30],
-               [ATCK_WEAP_SLASH,10]
+               [ATCK_WEAP_SLASH,10],
+               [-ATCK_SPELL_FIRE,-10],
+               [-ATCK_SPELL_COLD,-10]
              ];
    }
 

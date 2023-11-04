@@ -146,7 +146,8 @@ messages:
    GetResistanceModifiers()
    {
       return [ [ ATCK_WEAP_ALL, -10],
-               [-ATCK_SPELL_FIRE,-10]
+               [-ATCK_SPELL_FIRE,-10],
+               [-ATCK_SPELL_COLD,10]
              ];
    }
 
