@@ -32,7 +32,7 @@ messages:
                      [&KnightShield, 10],
                      [&KnightsHelm, 10],
                      [&GoldHydraHead, 20],
-                     [&GoldHydraScale, 20]
+                     [&GoldenHydraScale, 20]
                   ];
       propagate;
    }

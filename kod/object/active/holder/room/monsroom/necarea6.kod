@@ -215,6 +215,9 @@ messages:
       Send(self,@NewHold,#what=Create(&GlowTree),
          #new_row=22,#new_col=13,#fine_row=48,#fine_col=48,#angle=ANGLE_EAST);
 
+      Send(self,@NewHold,#what=Create(&GoadsAnvil),
+            #new_row=23,#new_col=13,#fine_row=54,#fine_col=46,#new_angle=ANGLE_NORTH);
+
       propagate;
    }
 

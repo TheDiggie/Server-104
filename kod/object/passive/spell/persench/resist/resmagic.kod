@@ -80,7 +80,7 @@ messages:
       local iDuration;	   
       
       // .6 to 4 minutes
-      iDuration = 40 + (iSpellPower * 2); 
+      iDuration = 80 + (iSpellPower * 2); 
       // translate to milliseconds
       iDuration = iDuration * 1000;	  
       

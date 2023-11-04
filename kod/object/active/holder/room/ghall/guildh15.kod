@@ -16,9 +16,13 @@ constants:
 
 resources:
 
+   room_GuildHall15 = GuildH15.roo
+
 classvars:
 
 properties:
+
+   prRoom = room_GuildHall15
 
    piRoom_num = RID_GUILDH15
 

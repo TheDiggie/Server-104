@@ -191,8 +191,6 @@ messages:
             #new_row=3,#new_col=10,
             #fine_row=16,#fine_col=24,
             #new_angle=ANGLE_SOUTH_EAST);
-      Send(self,@NewHold,#what=Create(&GoadsAnvil),
-            #new_row=13,#new_col=14,#new_angle=ANGLE_NORTH);
       
       // Create either lich body or lich herself.
       Send(self,@NewHold,#what=Create(&DeadLich),
