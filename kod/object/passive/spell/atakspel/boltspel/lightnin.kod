@@ -23,7 +23,7 @@ resources:
    lightning_hit_rsc = "Lightning strikes %s%s!"
    lightning_desc_rsc = \
       "Hurls a bolt of lightning at the target.  "
-      "Requires blue mushrooms and orc teeth to cast."
+      "Requires two blue mushrooms and two orc teeth to cast."
 
    lightning_sound = fbolt.ogg
 
@@ -70,7 +70,7 @@ messages:
 
       plReagents = $;
       plReagents = Cons([&BlueMushroom,2],plReagents);
-      plReagents = Cons([&OrcTooth,1],plReagents);
+      plReagents = Cons([&OrcTooth,2],plReagents);
 
       return;
    }
