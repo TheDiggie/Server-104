@@ -336,22 +336,15 @@ messages:
       if plChaosNightLoot = $
       {
          plChaosNightLoot = [
-                              Create(&KarmaPotion,#karma=10000),
-                              Create(&KarmaPotion,#karma=-10000),
                               Create(&Chaosfood,#number=100),
                               Create(&Mint,#number=100),
                               Create(&Scimitar),
                               Create(&Longsword),
                               Create(&Longbow),
                               Create(&BattleBow),
-                              Create(&BerserkerRing),
-                              Create(&BerserkerRing),
-                              Create(&Arrow,#number=150),
                               Create(&NeruditeArrow,#number=150),
                               Create(&JewelOfFroz),
                               Create(&JewelOfFroz),
-                              Create(&Gift),
-                              Create(&Gift),
                               Create(&NeruditeBow),
                               Create(&Platearmor),
                               Create(&Guildshield),
@@ -419,6 +412,17 @@ messages:
       foreach oPlayer in lGiveList
       {
          oMoney = Create(&Shillings,#number=piFrenzyMoneyAmount);
+
+         Send(oPlayer,@NewHold,#what=oMoney);
+
+            if Send(oPlayer,@IsLoggedOn)
+            {
+               Send(oPlayer,@MsgSendUser,#Message_rsc=chaos_gift,
+                     #parm1=Send(oMoney,@GetIndef),
+                     #parm2=Send(oMoney,@GetName));
+            }
+            
+         oMoney = Create(&Silver,#number=piFrenzyMoneyAmount);
 
          Send(oPlayer,@NewHold,#what=oMoney);
 
