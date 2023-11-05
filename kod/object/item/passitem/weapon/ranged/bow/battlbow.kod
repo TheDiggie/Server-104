@@ -39,7 +39,6 @@ classvars:
 
    viSpell_modifier = -25
 
-
 properties:
 
    // What's the basic color of the wood?

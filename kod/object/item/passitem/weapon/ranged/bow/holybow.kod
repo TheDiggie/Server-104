@@ -64,6 +64,10 @@ messages:
       {
          return 10;
       }
+      else 
+      {
+         return -25;
+      }
 
       return 0;
    }

@@ -79,9 +79,13 @@ messages:
 
    GetBaseSpellModifier(oSpell=$)
    {
-      if Send(oSpell,@GetSchool) = piSchool
+      if Send(oSpell,@GetSchool) = SS_QOR
       {
          return 10;
+      }
+      else 
+      {
+         return -25;
       }
 
       return 0;
