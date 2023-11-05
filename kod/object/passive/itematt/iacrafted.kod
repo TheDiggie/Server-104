@@ -23,7 +23,7 @@ constants:
 
 resources:
 
-   itematt_crafted_desc = "\n\nThis piece of gear was crafted by %s."
+   itematt_crafted_desc = "\n\nThis piece of gear was crafted by %q."
    itematt_crafted_old_desc = "\n\nThis piece of gear was crafted."
 
 classvars:
@@ -46,7 +46,7 @@ messages:
    
       if oCrafter <> $
       {
-         AddPacket(4,vrDesc,4,send(oCrafter,@getname));
+         AddPacket(4,vrDesc,6,send(oCrafter,@getname));
       }
       else 
       {
