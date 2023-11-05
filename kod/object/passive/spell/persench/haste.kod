@@ -58,7 +58,7 @@ classvars:
    viSpellExertion = 0
 
 
-   viCast_time = 2000
+   viCast_time = 0
    viMeditate_ratio = 20
 
    vrSpell_intro = Haste_spell_intro

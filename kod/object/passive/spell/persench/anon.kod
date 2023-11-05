@@ -51,7 +51,7 @@ classvars:
    viSpellExertion = 1
    viChance_To_Increase = 40
    viMeditate_ratio = 10
-   viCast_time = 5000
+   viCast_time = 0
 
    viFlash = FLASH_GOOD_SELF
    vrSucceed_wav = anonymity_sound
