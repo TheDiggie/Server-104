@@ -98,9 +98,7 @@ messages:
          AND Send(apply_on,@IsWhitelisted,#what=self) = TRUE
          AND Send(apply_on,@IsBlacklisted,#what=self) = FALSE
       {
-         Send(Send(what,@GetBag),@NewHold,#what=self,
-               #where=Send(what,@GetBag),
-               #number=Send(self,@GetNumber));
+         Send(apply_on,@NewHold,#what=self,#where=apply_on,#number=Send(self,@GetNumber));
       }
 
       return;
