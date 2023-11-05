@@ -891,8 +891,7 @@ messages:
       if poSpell <> $
       {
          oSpell = Send(SYS,@FindSpellByNum,#Num=poSpell);
-         // Add information about the maker to the desc.
-         AddPacket(4,system_rsc_template_2, 4,item_cast_spell, 4,Send(self,@GetName), 4,Send(oSpell,@GetName));
+         AddPacket(4,item_cast_spell, 4,Send(self,@GetName), 4,Send(oSpell,@GetName));
       }
       else
       {
