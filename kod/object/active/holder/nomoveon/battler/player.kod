@@ -5644,7 +5644,7 @@ messages:
          oWeapon = use_weapon;
       }
 
-      if oWeapon = $
+      if oWeapon = $ OR IsClass(oWeapon,&FistWeapons)
       {
          // No weapon means we are punching
          return ATCK_WEAP_UNARMED+ATCK_WEAP_PUNCH;

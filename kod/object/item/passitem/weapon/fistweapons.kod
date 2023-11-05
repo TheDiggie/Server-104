@@ -8,92 +8,93 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-Gauntlet is AttackModifier
+FistWeapons is Weapon
 
 constants:
 
    include blakston.khd
 
 resources:
-
-   include gauntlet.lkod
-
   
-   gauntlet_name_rsc = "gauntlets"
-   gauntlet_icon_rsc = gauntlet.bgf
-   gauntlet_desc_rsc = \
-      "These polished steel gauntlets offer protection for "
+   FistWeapons_name_rsc = "Fist Weapons"
+   FistWeapons_icon_rsc = gauntlet.bgf
+   FistWeapons_desc_rsc = \
+      "These polished steel FistWeaponss offer protection for "
       "hands and forearms allowing you to strike with "
       "greater confidence and force."
 
-   gauntlet_condition_exc = " shine with the glint of perfection."
-   gauntlet_condition_exc_mended = \
+   FistWeapons_condition_exc = " shine with the glint of perfection."
+   FistWeapons_condition_exc_mended = \
       " are in excellent condition, but have been patched before."
-   gauntlet_condition_good = " are tarnished and scarred but still usable."
-   gauntlet_condition_med = " have been harshly dented in several places."
-   gauntlet_condition_poor = \
+   FistWeapons_condition_good = " are tarnished and scarred but still usable."
+   FistWeapons_condition_med = " have been harshly dented in several places."
+   FistWeapons_condition_poor = \
       " are in danger of falling apart.  Large plates of metal "
       "have been torn away during battle."
-   gauntlet_condition_broken = " are ruined and offer no benefit."
-   gauntlet_broken = "Your %s are a tangled mess of metal."
+   FistWeapons_condition_broken = " are ruined and offer no benefit."
+   FistWeapons_broken = "Your %s are a tangled mess of metal."
 
-   standardshirt_rightarm_gauntlet_male = bre.bgf
-   standardshirt_rightarm_gauntlet_female =brf.bgf
-   standardshirt_leftarm_gauntlet_male = ble.bgf
-   standardshirt_leftarm_gauntlet_female = blf.bgf
+   standardshirt_rightarm_FistWeapons_male = bre.bgf
+   standardshirt_rightarm_FistWeapons_female =brf.bgf
+   standardshirt_leftarm_FistWeapons_male = ble.bgf
+   standardshirt_leftarm_FistWeapons_female = blf.bgf
 
-   barearm_rightarm_gauntlet_male = bri.bgf
-   barearm_rightarm_gauntlet_female =brj.bgf
-   barearm_leftarm_gauntlet_male = bli.bgf
-   barearm_leftarm_gauntlet_female = blj.bgf
+   barearm_rightarm_FistWeapons_male = bri.bgf
+   barearm_rightarm_FistWeapons_female =brj.bgf
+   barearm_leftarm_FistWeapons_male = bli.bgf
+   barearm_leftarm_FistWeapons_female = blj.bgf
 
 classvars:
 
-   vrName = gauntlet_name_rsc
-   vrIcon = gauntlet_icon_rsc
-   vrDesc = gauntlet_desc_rsc
+   vrName = FistWeapons_name_rsc
+   vrIcon = FistWeapons_icon_rsc
+   vrDesc = FistWeapons_desc_rsc
    vrPoss_article = object_article_cap_these_rsc
 
-   vrItem_broken = gauntlet_broken
+   vrItem_broken = FistWeapons_broken
 
    viUse_type = ITEM_USE_GAUNTLET
-   viItem_type = ITEMTYPE_ARMOR
+   viItem_type = ITEMTYPE_WEAPON
    viUse_amount = 1
 
-   viHits_init_min = 300
-   viHits_init_max = 450
+   viHits_init_min = 500
+   viHits_init_max = 1000
 
-   viValue_average = 400
-   viBulk = 50
-   viWeight = 50
+   viValue_average = 1500
+   viBulk = 20
+   viWeight = 20
 
    viGround_group = 1
    viInventory_group = 2
    viBroken_group = 3
 
-   vbShow_condition = TRUE
-   vrCondition_exc = gauntlet_condition_exc 
-   vrCondition_exc_mended = gauntlet_condition_exc_mended 
-   vrCondition_good = gauntlet_condition_good 
-   vrCondition_med = gauntlet_condition_med 
-   vrCondition_poor = gauntlet_condition_poor 
-   vrCondition_broken = gauntlet_condition_broken
+   viRange = 2 * FINENESS
 
-   viDefense_base = 15
-   viAttack_base = 20
-   viDamage_base = 1
+   vbShow_condition = TRUE
+
+   vrCondition_exc = FistWeapons_condition_exc 
+   vrCondition_exc_mended = FistWeapons_condition_exc_mended 
+   vrCondition_good = FistWeapons_condition_good 
+   vrCondition_med = FistWeapons_condition_med 
+   vrCondition_poor = FistWeapons_condition_poor 
+   vrCondition_broken = FistWeapons_condition_broken
+
+   viWeaponType = WEAPON_TYPE_BLUDGEON
+   viWeaponQuality = WEAPON_QUALITY_HIGH
+   viProficiency_Needed = SKID_BRAWLING
 
 properties:
 
-   piDefense_bonus = 15
-   piAttack_bonus = 20
-   piDamage_bonus = 1
+   piDamageBonus = 8
+   piHitBonus = 125
+
+   piAttack_type = ATCK_WEAP_UNARMED+ATCK_WEAP_PUNCH
 
 messages:
 
    ReqUseSomething(what = $)
    {
-      if IsClass(what,&Gauntlet) OR IsClass(what,&FistWeapons)
+      if IsClass(what,&Gauntlet)
       {
          if Send(poOwner,@TryUnuseItem,#what=self)
          {
@@ -186,15 +187,6 @@ messages:
       propagate;
    }
 
-   DefaultValues()
-   {
-      piDefense_bonus = viDefense_base;
-      piAttack_bonus = viAttack_base;
-      piDamage_bonus = viDamage_base;
-
-      propagate;
-   }
-
    OverrideArms()
    {
       return TRUE;
@@ -219,18 +211,18 @@ messages:
       {
          if Send(who,@GetGender) = GENDER_MALE
          {
-            return barearm_rightarm_gauntlet_male;
+            return barearm_rightarm_FistWeapons_male;
          }
       
-         return barearm_rightarm_gauntlet_female;
+         return barearm_rightarm_FistWeapons_female;
       }
 
       if Send(who,@GetGender) = GENDER_MALE
       {
-         return standardshirt_rightarm_gauntlet_male;
+         return standardshirt_rightarm_FistWeapons_male;
       }
 
-      return standardshirt_rightarm_gauntlet_female;
+      return standardshirt_rightarm_FistWeapons_female;
    }
 
    GetOverrideLeftArm(who=$)
@@ -252,63 +244,18 @@ messages:
       {
          if Send(who,@GetGender) = GENDER_MALE
          {
-            return barearm_leftarm_gauntlet_male;
+            return barearm_leftarm_FistWeapons_male;
          }
       
-         return barearm_leftarm_gauntlet_female;
+         return barearm_leftarm_FistWeapons_female;
       }
 
       if Send(who,@GetGender) = GENDER_MALE
       {
-         return standardshirt_leftarm_gauntlet_male;
+         return standardshirt_leftarm_FistWeapons_male;
       }
 
-      return standardshirt_leftarm_gauntlet_female;
-   }
-
-   // No alterations when we hit the target....
-   WeaponHitTarget()
-   {
-      return;
-   }
-
-   ModifyHitRoll(who = $,what = $,hit_roll = $)
-   {
-      local oWeapon;
-
-      oWeapon = Send(who,@GetWeapon);
-      if (oWeapon = $)
-         or (not IsClass(oWeapon,&RangedWeapon))
-      {
-         return hit_roll + piAttack_bonus;
-      }
-
-      return hit_roll;
-   }
-
-   ModifyDamage(who = $,what = $,damage = $)
-   {
-      local oWeapon;
-      
-      // Add damage to non-ranged weapons (and punch)
-      oWeapon = Send(who,@GetWeapon);
-      if oWeapon = $
-         OR NOT IsClass(oWeapon,&RangedWeapon)
-      {
-         return damage + piDamage_bonus;
-      }
-
-      return damage;
-   }
-
-   ModifyDefensePower(defense_power=$)
-   {
-      return defense_power + piDefense_bonus;
-   }
-
-   ModifyDefenseDamage(who = $,what = $,damage = $)
-   {
-      return damage;
+      return standardshirt_leftarm_FistWeapons_female;
    }
 
    CanMend()
@@ -334,20 +281,18 @@ messages:
 
       return TRUE;
    }
-
-   GetHitBonus()
+   
+   ModifyDamage(damage = $)
    {
-      return piAttack_bonus;
+      return damage;
    }
 
-   GetDefenseBonus()
+   WeaponAttack(what=$)
+   "Called by ReqWeaponAttack when the weapon is actually used in an attack."
    {
-      return piDefense_bonus;
-   }
+      send(poOwner,@DoFistAttack);
 
-   GetMeleeDamageBonus()
-   {
-      return piDamage_bonus;
+      propagate;
    }
 
 end

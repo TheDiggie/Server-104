@@ -8,7 +8,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-BrawlGloves is Gauntlet
+BrawlGloves is FistWeapons
 
 constants:
 
@@ -42,13 +42,6 @@ classvars:
 
    vrItem_broken = BrawlGloves_broken
 
-   viHits_init_min = 500
-   viHits_init_max = 750
-
-   viValue_average = 400
-   viBulk = 20
-   viWeight = 20
-
    vrCondition_exc = BrawlGloves_condition_exc 
    vrCondition_exc_mended = BrawlGloves_condition_exc_mended 
    vrCondition_good = BrawlGloves_condition_good 
@@ -56,90 +49,12 @@ classvars:
    vrCondition_poor = BrawlGloves_condition_poor 
    vrCondition_broken = BrawlGloves_condition_broken
 
-   viDefense_base = 50
-   viAttack_base = 250
-   viDamage_base = 0
 
 properties:
 
-   piDefense_bonus = 50
-   piAttack_bonus = 250
-   //piDamage_bonus = 8
-
    piItem_flags = 12
-
+   
 messages:
-
-   ReqUseSomething(what = $)
-   {
-      if IsClass(what,&Weapon)
-         OR IsClass(what,&Lute)
-         OR IsClass(what,&JewelOfFroz)
-         OR IsClass(what,&Book)
-         OR (IsClass(what,&Shield)
-         AND NOT IsClass(what,&SoldierShield))
-      {
-         if Send(poOwner,@TryUnuseItem,#what=self)
-         {
-            propagate;
-         }
-         else
-         {
-            return FALSE;
-         }
-      }
-
-      propagate;
-   }
-
-   NewUsed()
-   {
-      local oSoldierShield, iFaction, iTranslation;
-
-      if poOwner <> $
-         AND IsClass(poOwner,&User)
-      {
-         // Check for shield
-         oSoldierShield = Send(poOwner,@FindUsing,#class=&SoldierShield);
-         // Sling it on the back if it's there.
-         //  Also, record faction so we can set our bands if needed.
-         if oSoldierShield <> $
-         {
-            Send(oSoldierShield,@SlingOnBack);
-         }
-      }
-
-      propagate;
-   }
-
-   ModifyDamage(who=$,what=$,damage=$,stroke_obj=$)
-   {
-      if IsClass(stroke_obj,&Stroke)
-      {
-         // Add a small amount of damage.
-         return damage + Random(6,8);
-      }
-
-      return damage;
-   }
-
-   GetMinDamage()
-   {
-      local iMinDamage;
-
-      iMinDamage = 6;
-
-      return iMinDamage;
-   }
-
-   GetMaxDamage()
-   {
-      local iMaxDamage;
-
-      iMaxDamage = 8;
-
-      return iMaxDamage;
-   }
 
 end
 ////////////////////////////////////////////////////////////////////////////////

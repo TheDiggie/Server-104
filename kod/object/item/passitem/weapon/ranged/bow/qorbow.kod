@@ -85,7 +85,7 @@ messages:
       }
       else 
       {
-         return -25;
+         return -10;
       }
 
       return 0;

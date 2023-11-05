@@ -1316,7 +1316,7 @@ messages:
          oWeapon = use_weapon;
       }
 
-      if oWeapon = $
+      if oWeapon = $ OR IsClass(oWeapon,&FistWeapons)
       {
          rWeaponName = battler_punch;
       }
@@ -1364,7 +1364,7 @@ messages:
          if Send(self,@CheckPlayerFlag,#flag=PFLAG_MORPHED)
          {
             // Don't use "punch" if we're morphed, use a more generic term.
-            if oWeapon = $
+            if oWeapon = $ 
             {
                rWeaponName = battler_attack;
             }

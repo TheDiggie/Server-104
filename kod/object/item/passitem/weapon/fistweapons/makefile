@@ -4,7 +4,7 @@
 
 !include $(TOPDIR)\common.mak
 
-DEPEND = ..\gauntlet.bof
-BOFS = craftgloves.bof
+DEPEND = ..\fistweapons.bof
+BOFS = brawlgloves.bof
 
 !include $(KODDIR)\kod.mak
