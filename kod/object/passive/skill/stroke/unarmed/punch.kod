@@ -54,8 +54,6 @@ classvars:
 
    viSkill_level = 1
 
-   viSkill_Num = SKID_PUNCH
-
    viMin_Damage = 2         // Damage_min here replaces a weapon    
    viMax_Damage = 11        // Damage_max replaces the weapon's stats.
 

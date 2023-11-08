@@ -5370,7 +5370,7 @@ messages:
          // proficiency (advanced) skills, aim and max hps.
          oWeapon = Send(self,@GetWeapon);
 
-         if oWeapon <> $
+         if oWeapon <> $ AND NOT IsClass(oWeapon,&FistWeapons)
          {
             // Get weapon's numbers.
             iStroke = Send(oWeapon,@GetStroke,#who=self);

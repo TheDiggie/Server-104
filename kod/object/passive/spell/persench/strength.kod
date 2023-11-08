@@ -125,11 +125,15 @@ messages:
    {
       local oTarget;
 	  
-	  oTarget = First(lTargets);
-	  
-      Send(oTarget,@RemoveEnchantment,#what=Send(SYS,@FindSpellByNum,#num=SID_ENFEEBLE));
+      if lTargets <> $
+      {
+	      oTarget = First(lTargets);
+
+         Send(oTarget,@RemoveEnchantment,#what=Send(SYS,@FindSpellByNum,#num=SID_ENFEEBLE));
+      }
 
       propagate;
    }
+
 end
 ////////////////////////////////////////////////////////////////////////////////

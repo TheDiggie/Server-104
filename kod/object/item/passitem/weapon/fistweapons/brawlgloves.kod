@@ -46,11 +46,16 @@ classvars:
    vrCondition_exc_mended = BrawlGloves_condition_exc_mended 
    vrCondition_good = BrawlGloves_condition_good 
    vrCondition_med = BrawlGloves_condition_med 
-   vrCondition_poor = BrawlGloves_condition_poor 
+   vrCondition_poor = BrawlGloves_condition_poor
    vrCondition_broken = BrawlGloves_condition_broken
 
 
 properties:
+
+   piDamageBonus = 3
+   piHitBonus = 125
+
+   piAttack_type = ATCK_WEAP_UNARMED+ATCK_WEAP_PUNCH
 
    piItem_flags = 12
    

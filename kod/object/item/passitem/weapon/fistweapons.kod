@@ -287,12 +287,22 @@ messages:
       return damage;
    }
 
+   ModifyDefenseDamage(who = $,what = $,damage = $)
+   {
+      return damage;
+   }
+
    WeaponAttack(what=$)
    "Called by ReqWeaponAttack when the weapon is actually used in an attack."
    {
       send(poOwner,@DoFistAttack);
 
       propagate;
+   }
+
+   GetDefaultStrokeNumber()
+   {
+      return SKID_PUNCH;
    }
 
 end
