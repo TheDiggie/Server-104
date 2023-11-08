@@ -94,7 +94,7 @@ messages:
    ShowDesc()
    {
 
-      AddPacket(4,vrDesc,STRING_RESOURCE,prPlayer_name,STRING_RESOURCE,prKiller_Name);
+      AddPacket(4,vrDesc,6,prPlayer_name,6,prKiller_Name);
 
       return;
    }
