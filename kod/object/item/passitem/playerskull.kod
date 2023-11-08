@@ -1,0 +1,103 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+PlayerSkull is PassiveItem
+
+constants:
+
+   include blakston.khd
+   include protocol.khd
+
+resources:
+
+   include playerskull.lkod
+   playerskull_desc_rsc = "The skull of %q, slain by %q."
+   playerskull_player_desc_rsc = \
+      "A human skull."
+   
+classvars:
+
+   vrDesc = playerskull_desc_rsc
+   vrPlayer_desc = playerskull_player_desc_rsc
+   viIndefinite = ARTICLE_A
+
+properties:
+
+   vrIcon = skull_icon_rsc
+   vrName = playerskull_player_desc_rsc
+   vrDesc = playerskull_desc_rsc
+   ptDelete = $
+   ptNoSteal = $
+
+   prKiller_Name = $
+   prPlayer_name = $
+
+   viValue_average = 1
+   viWeight = 1
+   viBulk = 1
+   viGround_group = 1
+
+messages:
+
+   Constructor(victim = $,killer = $,oRoom = $)
+   {
+
+      prPlayer_name = Send(victim,@GetTrueName);
+      prKiller_Name = Send(killer,@GetTrueName);
+
+      propagate;
+   }
+
+   NoStealTimer()
+   {
+      ptNoSteal = $;
+
+      return;
+   }
+
+   CanGetMe(what=$)
+   {
+      if ptNoSteal = $
+      {
+         return TRUE;
+      }
+
+      if Send(what,@GetTrueName) = prPlayer_name
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   DeleteTimerMessage()
+   {
+      ptDelete = $;
+
+      Send(self,@Delete);
+
+      return;
+   }
+
+   DestroyDisposable()
+   {
+      return;
+   }
+
+   ShowDesc()
+   {
+
+      AddPacket(4,vrDesc,6,prPlayer_name,6,prKiller_Name);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////
