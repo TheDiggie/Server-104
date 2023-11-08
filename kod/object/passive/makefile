@@ -6,7 +6,7 @@
 
 DEPEND = ..\passive.bof
 BOFS = tree.bof spell.bof boulder.bof news.bof trestype.bof arsign01.bof \
-   throne.bof pillar.bof chandelr.bof skull.bof body.bof \
+   throne.bof pillar.bof chandelr.bof skull.bof body.bof playerskull.bof \
    fountain.bof tombston.bof stool.bof table.bof shrub.bof sngltree.bof \
    bank.bof sign-ar.bof sign-ar2.bof barstool.bof sign.bof \
    skill.bof treeoak.bof treepine.bof newslink.bof decoitem.bof \
