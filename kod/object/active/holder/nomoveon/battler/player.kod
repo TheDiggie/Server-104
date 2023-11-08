@@ -9663,7 +9663,7 @@ messages:
    {
       local lItems,i, j, amount, oBody, oSoldierShield, bNo_drop_death, oItemAtt,
             oRoom, iRow, iCol, iFine_Row, iFine_Col, iAngle, oItem,
-            iRoom, lInventoryContents, lBagContents;
+            iRoom, lInventoryContents, lBagContents, oSkull;
 
       // If this player has created any evil twins, delete them.
       Send(self,@RemoveAllCreatedEvilTwins);
@@ -9818,8 +9818,15 @@ messages:
 
       // Create the corpse.
       oBody = Send(self,@CreateCorpse);
+
+      //Create a player skull;
+      oSkull = Send(self,@CreatePlayerSkull,#killer=what);
+
       Send(oRoom,@NewHold,#what=oBody,#new_row=iRow,#new_col=iCol,
             #fine_row=iFine_Row,#fine_col=iFine_Col,#new_angle=iAngle);
+
+      Send(oRoom,@NewHold,#what=oSkull,#new_row=iRow,#new_col=iCol,
+      #fine_row=iFine_Row,#fine_col=iFine_Col,#new_angle=iAngle);
 
       // Start losing stuff if applicable.
       if NOT bNo_drop_death
@@ -10164,6 +10171,27 @@ messages:
    GetDeathCost()
    {
       return piDeathCost;
+   }
+
+   CreatePlayerSkull(killer = $)
+   {
+      local oRoom, pSkull;
+
+      if pbLogged_on
+      {
+         oRoom = Send(self,@GetOwner);
+      }
+      else
+      {
+         oRoom = Send(SYS,@FindRoomByNum,#num=Send(self,@GetSaveRoom));
+      }
+
+      pSkull= Create(&PlayerSkull,
+                          #victim=self,
+                          #killer=killer,
+                          #oRoom=oRoom);
+
+      return pSkull;
    }
 
    CreateCorpse(Assassinated=FALSE)

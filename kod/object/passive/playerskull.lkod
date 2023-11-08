@@ -1,0 +1,4 @@
+playerskull_desc_rsc = de \
+   "Dies ist ein verwesender Schädel von %s, getötet von %q."
+playerskull_player_desc_rsc = de \
+   "Der Schädel."
