@@ -4081,6 +4081,7 @@ messages:
       Create(&LupoggTreasure);
       Create(&NecroTreasure);
       Create(&EarthDragonTreasure);
+      Create(&BlackDragonTreasure);
 
       Create(&MimicTreasure);
       Create(&MinotaurTreasure);
@@ -5933,6 +5934,7 @@ messages:
       plItemTemplates = cons(create(&GoldenHydraScale),plItemTemplates);
       plItemTemplates = cons(create(&GreenHydraScale),plItemTemplates);
       plItemTemplates = cons(create(&RedHydraScale),plItemTemplates);
+      plItemTemplates = cons(create(&BlackDragonScale),plItemTemplates);
 
       // Edibles
       plItemTemplates = cons(create(&KocatanMug),plItemTemplates);

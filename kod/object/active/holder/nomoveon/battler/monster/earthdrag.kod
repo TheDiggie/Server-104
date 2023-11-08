@@ -268,5 +268,25 @@ messages:
       return;
    }
 
+   Killed()
+   {
+      local oLoot;
+
+      if poOwner <> $
+      {
+         oLoot = Create(&BlueDragonScale,#number=150);
+         Send(poOwner,@NewHold,#what=oLoot,
+               #new_row=piRow,#new_col=piCol,
+               #fine_row=piFine_row,#fine_col=piFine_col);
+               
+         oLoot = Create(&BrownDragonScale,#number=75);
+         Send(poOwner,@NewHold,#what=oLoot,
+               #new_row=piRow,#new_col=piCol,
+               #fine_row=piFine_row,#fine_col=piFine_col);
+      }
+
+      propagate;
+   }
+
 end
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

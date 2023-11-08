@@ -40,7 +40,7 @@ classvars:
    vrDead_icon = BlackDragon_dead_icon_rsc
    vrDead_name = BlackDragon_dead_name_rsc
 
-   viTreasure_type = TID_LUPOGG_KING
+   viTreasure_type = TID_BLACK_DRAGON
 
    viSpeed = SPEED_FAST
    viAttack_type = ATCK_WEAP_CLAW
@@ -137,6 +137,26 @@ messages:
       }
    
       return FALSE;
+   }
+
+   Killed()
+   {
+      local oLoot;
+
+      if poOwner <> $
+      {
+         oLoot = Create(&BlueDragonScale,#number=150);
+         Send(poOwner,@NewHold,#what=oLoot,
+               #new_row=piRow,#new_col=piCol,
+               #fine_row=piFine_row,#fine_col=piFine_col);
+               
+         oLoot = Create(&BlackDragonScale,#number=75);
+         Send(poOwner,@NewHold,#what=oLoot,
+               #new_row=piRow,#new_col=piCol,
+               #fine_row=piFine_row,#fine_col=piFine_col);
+      }
+
+      propagate;
    }
 
 end

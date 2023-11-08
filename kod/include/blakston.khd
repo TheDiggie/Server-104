@@ -1930,6 +1930,8 @@
 
    TID_TROLL_CORPSE = 124
    TID_KRIIPA_CORPSE = 125
+
+   TID_BLACK_DRAGON = 126
    
    // English articles
 

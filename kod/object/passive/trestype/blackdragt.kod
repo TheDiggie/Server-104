@@ -8,7 +8,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-EarthDragonTreasure is TreasureType
+BlackDragonTreasure is TreasureType
 
 constants:
 
@@ -16,7 +16,7 @@ constants:
 
 classvars:
 
-   viTreasure_num = TID_EARTH_DRAGON
+   viTreasure_num = TID_BLACK_DRAGON
 
 properties:
 
@@ -28,7 +28,7 @@ messages:
    Constructed()
    {
             plTreasure = [ [ &BlueDragonScale, 50 ],
-                           [ &BrownDragonScale, 50 ]
+                           [ &BlackDragonScale, 50 ]
                    ];
       propagate;
    }

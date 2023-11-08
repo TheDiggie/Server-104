@@ -41,8 +41,8 @@ messages:
                      [ &IdentifyWand, 1 ],
                      [ &KillingFieldScroll, 1 ],
                      [ &DementWand, 1 ],
-		             [ &DiscordScroll, 1 ],
-		             [ &FireArrow, 9 ]
+		               [ &DiscordScroll, 1 ],
+		               [ &FireArrow, 9 ]
                   ];
 
       propagate;
