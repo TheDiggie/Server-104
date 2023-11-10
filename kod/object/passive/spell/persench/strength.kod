@@ -131,6 +131,10 @@ messages:
 
          Send(oTarget,@RemoveEnchantment,#what=Send(SYS,@FindSpellByNum,#num=SID_ENFEEBLE));
       }
+      else 
+      {
+         Send(who,@RemoveEnchantment,#what=Send(SYS,@FindSpellByNum,#num=SID_ENFEEBLE));
+      }
 
       propagate;
    }
