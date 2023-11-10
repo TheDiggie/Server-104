@@ -18,7 +18,7 @@ constants:
 resources:
 
    include playerskull.lkod
-   playerskull_desc_rsc = "The skull of %q, slain by %q."
+   playerskull_desc_rsc = "This is the skull of %q, who was slain by %q."
    playerskull_player_desc_rsc = \
       "A human skull."
    
