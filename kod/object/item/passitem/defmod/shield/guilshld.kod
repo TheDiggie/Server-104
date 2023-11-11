@@ -77,16 +77,16 @@ resources:
    guildshield_half = " astride "
    guildshield_horiz = " tierced in feld by "
    guildshield_checker = " quartered with "
-   guildshield_insig_riija = "The unblinking eye of Riija stares from its center. "
-   guildshield_insig_qor = "The skull insignia of Qor is upon it. "
-   guildshield_insig_kraanan = "The weapons of Kraanan are crossed acenter. "
-   guildshield_insig_faren = "The power of Faren arcs across it. "
-   guildshield_insig_jala = "The lute of Jala is depicted upon it. "
-   guildshield_insig_princess = "It is emblazoned with the Royal Crown of Kateriina. "
-   guildshield_insig_old_duke = "The bold seal of Kalior is affixed. "
-   guildshield_insig_duke = "The bold seal of Akardius is affixed. "
-   guildshield_insig_shalille = "The ankh of Shal'ille's blessing is afaced. "
-   guildshield_insig_rebel = "The rebel flag of Jonas is displayed proudly. "
+   guildshield_insig_riija = "\n\nThe unblinking eye of Riija stares from its center. "
+   guildshield_insig_qor = "\n\nThe skull insignia of Qor is upon it. "
+   guildshield_insig_kraanan = "\n\nThe weapons of Kraanan are crossed acenter. "
+   guildshield_insig_faren = "\n\nThe power of Faren arcs across it. "
+   guildshield_insig_jala = "\n\nThe lute of Jala is depicted upon it. "
+   guildshield_insig_princess = "\n\nIt is emblazoned with the Royal Crown of Kateriina. "
+   guildshield_insig_old_duke = "\n\nThe bold seal of Kalior is affixed. "
+   guildshield_insig_duke = "\n\nThe bold seal of Akardius is affixed. "
+   guildshield_insig_shalille = "\n\nThe ankh of Shal'ille's blessing is afaced. "
+   guildshield_insig_rebel = "\n\nThe rebel flag of Jonas is displayed proudly. "
    guildshield_insig_none = ""
 
 classvars:
@@ -662,22 +662,34 @@ messages:
       iSchool = Send(oSpell,@GetSchool);
       
       // Give a bonus to certain spells if the shield has the proper insignia
-      if (piInsigniaType = INSIG_FAREN AND iSchool = SS_FAREN)
-         OR (piInsigniaType = INSIG_KRAANAN AND iSchool = SS_KRAANAN)
-         OR (piInsigniaType = INSIG_QOR AND iSchool = SS_QOR)
+      if    (piInsigniaType = INSIG_FAREN    AND iSchool = SS_FAREN)
+         OR (piInsigniaType = INSIG_KRAANAN  AND iSchool = SS_KRAANAN)
+         OR (piInsigniaType = INSIG_QOR      AND iSchool = SS_QOR)
          OR (piInsigniaType = INSIG_SHALILLE AND iSchool = SS_SHALILLE)
-         OR (piInsigniaType = INSIG_RIIJA AND iSchool = SS_RIIJA)
-         OR (piInsigniaType = INSIG_JALA AND iSchool = SS_JALA)
+         OR (piInsigniaType = INSIG_RIIJA    AND iSchool = SS_RIIJA)
+         OR (piInsigniaType = INSIG_JALA     AND iSchool = SS_JALA)
       {
          return 10;
       }
 
-      // Allow faction insignias to give a small random bonus.
-      if piInsigniaType = INSIG_DUKE
-         OR piInsigniaType = INSIG_PRINCESS
-         OR piInsigniaType = INSIG_REBEL
+      if    (piInsigniaType = INSIG_DUKE AND iSchool = SS_KRAANAN)
+         OR (piInsigniaType = INSIG_DUKE AND iSchool = SS_QOR)
+         OR (piInsigniaType = INSIG_DUKE AND iSchool = SS_RIIJA)
       {
-         return random(3,7);
+         return 6;
+      }
+
+      if    (piInsigniaType = INSIG_PRINCESS AND iSchool = SS_FAREN)
+         OR (piInsigniaType = INSIG_PRINCESS AND iSchool = SS_SHALILLE)
+         OR (piInsigniaType = INSIG_PRINCESS AND iSchool = SS_JALA)
+      {
+         return 6;
+      }
+      
+      if    (piInsigniaType = INSIG_REBEL AND iSchool = SS_CRAFTING)
+         OR (piInsigniaType = INSIG_REBEL AND iSchool = SS_KRAANAN)
+      {
+         return 6;
       }
 
       return 0;
