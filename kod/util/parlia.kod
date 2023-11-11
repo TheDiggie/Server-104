@@ -1256,7 +1256,7 @@ messages:
          }
    
          if (iFaction <> FACTION_NEUTRAL)
-            AND (((iFaction = FACTION_REBEL) AND (iSchool<>$))
+            AND (((iFaction = FACTION_REBEL) AND (iSchool<>$) AND (iSchool<>SS_CRAFTING))
                   OR ((iFaction = FACTION_DUKE) AND ((iSchool <> SS_QOR) AND (iSchool <> SS_RIIJA) AND (iSchool <> SS_KRAANAN)))
                   OR ((iFaction = FACTION_PRINCESS)
                       AND ((iSchool <> SS_SHALILLE) AND (iSchool <> SS_FAREN) AND (iSchool <> SS_JALA))))
