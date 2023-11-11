@@ -91,8 +91,8 @@ typedef enum {
    SS_FAREN = 4,
    SS_RIIJA = 5,
    SS_JALA = 6,
-   SS_DM_COMMAND = 7,
-   SS_CRAFTING = 8,
+   SS_CRAFTING = 7,
+   SS_DM_COMMAND = 8,
    SKS_FENCING = 10,
    SKS_BRAWLING = 11,
    SKS_THIEVERY = 12,
@@ -116,6 +116,7 @@ typedef struct {
    ID   desc_res;       // Resource ID of skill description string
    int  cost;           // Cost of choosing skill
    Bool chosen;         // True when user has chosen skill
+   School skill_school; // School for skill
    char *list_str;      // School + level + name in list
 } Skill;
 
