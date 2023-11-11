@@ -1,0 +1,55 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CraftWoodAxe is Crafting
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   CraftWoodAxe_name_rsc = "craft wood cutting axe"
+   CraftWoodAxe_icon_rsc = iCraftWoodAxe.bgf
+   CraftWoodAxe_desc_rsc = \
+      "Craft a wood cutting axe at a anvil with a blacksmith's hammer. "
+      "Requires 20 iron ingots and 5 lumber. "
+
+   CraftWoodAxe_sound = kraanan.ogg
+
+classvars:
+
+   vrName = CraftWoodAxe_name_rsc
+   vrIcon = CraftWoodAxe_icon_rsc
+   vrDesc = CraftWoodAxe_desc_rsc
+
+   viSpell_num       = SID_CRAFTWOODAXE
+   viSpell_level     = 2
+   viSpellExertion   = 5
+
+   vrGear   = &CuttingAxe
+   voTool   = &BlackSmithsHammer
+   viBench  = &CraftingAnvil
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&IronIngot,20],plReagents);
+      plReagents = Cons([&Lumber,5],plReagents);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

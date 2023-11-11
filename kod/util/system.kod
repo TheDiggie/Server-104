@@ -3478,7 +3478,7 @@ messages:
       Send(self,@CreateOneSpellIfNew,#num=SID_SET,#class=&Set);
       Send(self,@CreateOneSpellIfNew,#num=SID_LOADOUT,#class=&Loadout);
       Send(self,@CreateOneSpellIfNew,#num=SID_CONVEYANCE,#class=&Conveyance);
-	  Send(self,@CreateOneSpellIfNew,#num=SID_TRANSFERENCE,#class=&Transference);
+	   Send(self,@CreateOneSpellIfNew,#num=SID_TRANSFERENCE,#class=&Transference);
       Send(self,@CreateOneSpellIfNew,#num=SID_PHASE,#class=&Phase);
 	  
       Send(self,@CreateOneSpellIfNew,#num=SID_VAULT_LOADOUT,#class=&VaultLoadout);
@@ -3518,6 +3518,13 @@ messages:
       Send(self,@CreateOneSpellIfNew,#num=SID_SPINNING,#class=&Spinning);
       Send(self,@CreateOneSpellIfNew,#num=SID_HEWING,#class=&Hewing);
       Send(self,@CreateOneSpellIfNew,#num=SID_TANNING,#class=&Tanning);
+      Send(self,@CreateOneSpellIfNew,#num=SID_CRAFTPICKAXE,#class=&CraftPickAxe);
+      Send(self,@CreateOneSpellIfNew,#num=SID_CRAFTWOODAXE,#class=&CraftWoodAxe);
+      Send(self,@CreateOneSpellIfNew,#num=SID_CRAFTSICKLE,#class=&CraftSickle);
+      Send(self,@CreateOneSpellIfNew,#num=SID_CRAFTSKINKNIFE,#class=&CraftSkinningKnife);
+      Send(self,@CreateOneSpellIfNew,#num=SID_CRAFTMSH,#class=&CraftMahicSpiritHelm);
+      Send(self,@CreateOneSpellIfNew,#num=SID_CRAFTNERUBOW,#class=&CraftNeruditeBow);
+      Send(self,@CreateOneSpellIfNew,#num=SID_CRAFTBRAWL,#class=&CraftBrawlingGloves);
 
       return;
    }

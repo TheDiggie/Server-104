@@ -132,7 +132,9 @@ messages:
             SID_CRAFTKNIGHTSHIELD,
             SID_CRAFTMYSTICSWORD,
             SID_CRAFTSCIMITAR,
-            SID_CRAFTGAUNTLETS
+            SID_CRAFTGAUNTLETS,
+            SID_CRAFTPICKAXE,
+            SID_CRAFTSKINKNIFE
          ],
          $];
 

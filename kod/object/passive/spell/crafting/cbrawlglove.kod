@@ -1,0 +1,55 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CraftBrawlingGloves is Crafting
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   CraftBrawlingGloves_name_rsc = "craft brawling gloves"
+   CraftBrawlingGloves_icon_rsc = iCraftBrawl.bgf
+   CraftBrawlingGloves_desc_rsc = \
+      "Craft a brawling at a anvil with a blacksmith's hammer. "
+      "Requires 10 iron ingots and 20 leather. "
+
+   CraftBrawlingGloves_sound = kraanan.ogg
+
+classvars:
+
+   vrName = CraftBrawlingGloves_name_rsc
+   vrIcon = CraftBrawlingGloves_icon_rsc
+   vrDesc = CraftBrawlingGloves_desc_rsc
+
+   viSpell_num       = SID_CRAFTBRAWL
+   viSpell_level     = 4
+   viSpellExertion   = 5
+
+   vrGear   = &BrawlGloves
+   voTool   = &BlackSmithsHammer
+   viBench  = &CraftingAnvil
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&IronIngot,10],plReagents);
+      plReagents = Cons([&Leather,20],plReagents);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

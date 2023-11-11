@@ -1,0 +1,57 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CraftNeruditeBow is Crafting
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   CraftNeruditeBow_name_rsc = "craft nerudite bow"
+   CraftNeruditeBow_icon_rsc = iCraftNeruBow.bgf
+   CraftNeruditeBow_desc_rsc = \
+      "Craft a nerudite bow at a Ko'catan anvil with a blacksmith's hammer. "
+      "Requires 40 nerudite ingots, 10 iron ingots, 30 silk threads and 3 green heartstones. "
+
+   CraftNeruditeBow_sound = kraanan.ogg
+
+classvars:
+
+   vrName = CraftNeruditeBow_name_rsc
+   vrIcon = CraftNeruditeBow_icon_rsc
+   vrDesc = CraftNeruditeBow_desc_rsc
+
+   viSpell_num       = SID_CRAFTNERUBOW
+   viSpell_level     = 2
+   viSpellExertion   = 5
+
+   vrGear   = &NeruditeBow
+   voTool   = &BlackSmithsHammer
+   viBench  = &KocatanAnvil
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&NeruditeIngot,40],plReagents);
+      plReagents = Cons([&SilkThread,30],plReagents);
+      plReagents = Cons([&IronIngot,10],plReagents);
+      plReagents = Cons([&GreenHeartStone,3],plReagents);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

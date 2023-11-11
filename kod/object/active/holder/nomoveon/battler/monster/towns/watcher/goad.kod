@@ -296,7 +296,8 @@ messages:
          $,$,
          [
             SID_CRAFTCIRCLET,
-            SID_CRAFTDAEMONHELM
+            SID_CRAFTDAEMONHELM,
+            SID_CRAFTMSH
          ],
          $];
 
@@ -307,6 +308,7 @@ messages:
    {
       if sid = SID_CRAFTCIRCLET
          OR sid = SID_CRAFTDAEMONHELM
+         OR sid = SID_CRAFTMSH
       {
          if NOT Send(self,@SpecialTeachChecks,#report=TRUE,#who=who,#num=sid)
          {
@@ -366,6 +368,11 @@ messages:
       }
 
       if num = SID_CRAFTDAEMONHELM
+      {
+         iSchoolRequired = SS_KRAANAN;
+      }
+      
+      if num = SID_CRAFTMSH
       {
          iSchoolRequired = SS_KRAANAN;
       }

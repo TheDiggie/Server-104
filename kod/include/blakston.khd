@@ -2381,8 +2381,6 @@
    
    SID_VAULT_LOADOUT = 200
 
-   SID_ICEWALL = 241
-   SID_INDEST  = 242
    
    //Crafting
    SID_CRAFTMACE           = 210
@@ -2416,6 +2414,16 @@
    SID_HEWING              = 238
    SID_TANNING             = 239
    SID_SPINNING            = 240
+   SID_CRAFTPICKAXE        = 243
+   SID_CRAFTWOODAXE        = 244
+   SID_CRAFTSICKLE         = 245
+   SID_CRAFTSKINKNIFE      = 246
+   SID_CRAFTMSH            = 247
+   SID_CRAFTNERUBOW        = 248
+   SID_CRAFTBRAWL        = 249
+
+   SID_ICEWALL = 241
+   SID_INDEST  = 242
 
    // Depreciated spell IDs
    SID_LIGHTNING = 1                   // use SID_LIGHTNING_BOLT

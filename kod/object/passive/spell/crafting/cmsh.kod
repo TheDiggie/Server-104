@@ -1,0 +1,57 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CraftMahicSpiritHelm is Crafting
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   CraftMahicSpiritHelm_name_rsc = "craft magic spirit helm"
+   CraftMahicSpiritHelm_icon_rsc = iCraftMSH.bgf
+   CraftMahicSpiritHelm_desc_rsc = \
+      "Craft a magic spirit helm at a anvil with a blacksmith's hammer. "
+      "Requires 30 iron ingots, 20 leather, 20 black dragon scales, and a black heartstone. "
+
+   CraftMahicSpiritHelm_sound = kraanan.ogg
+
+classvars:
+
+   vrName = CraftMahicSpiritHelm_name_rsc
+   vrIcon = CraftMahicSpiritHelm_icon_rsc
+   vrDesc = CraftMahicSpiritHelm_desc_rsc
+
+   viSpell_num       = SID_CRAFTMSH
+   viSpell_level     = 6
+   viSpellExertion   = 5
+
+   vrGear   = &Helm
+   voTool   = &BlackSmithsHammer
+   viBench  = &GoadsAnvil
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&IronIngot,30],plReagents);
+      plReagents = Cons([&Leather,20],plReagents);
+      plReagents = Cons([&BlackDragonScale,20],plReagents);
+      plReagents = Cons([&BlackHeartStone,1],plReagents);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

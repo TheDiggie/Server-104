@@ -138,6 +138,7 @@ messages:
    {
       if sid = SID_CRAFTBATTLEBOW
          OR sid = SID_CRAFTLONGBOW
+         OR Sid = SID_CRAFTNERUBOW
       {
          if NOT Send(self,@SpecialTeachChecks,#report=TRUE,#who=who,#num=sid)
          {
@@ -197,6 +198,11 @@ messages:
       }
 
       if num = SID_CRAFTLONGBOW
+      {
+         iSchoolRequired = SKS_FENCING;
+      }
+
+      if num = SID_CRAFTNERUBOW
       {
          iSchoolRequired = SKS_FENCING;
       }

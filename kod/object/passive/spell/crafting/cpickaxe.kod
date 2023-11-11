@@ -1,0 +1,55 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CraftPickAxe is Crafting
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   CraftPickAxe_name_rsc = "craft pickaxe"
+   CraftPickAxe_icon_rsc = icraftpickaxe.bgf
+   CraftPickAxe_desc_rsc = \
+      "Craft a pickaxe at a anvil with a blacksmith's hammer. "
+      "Requires 20 iron ingots and 5 lumber. "
+
+   CraftPickAxe_sound = kraanan.ogg
+
+classvars:
+
+   vrName = CraftPickAxe_name_rsc
+   vrIcon = CraftPickAxe_icon_rsc
+   vrDesc = CraftPickAxe_desc_rsc
+
+   viSpell_num       = SID_CRAFTPICKAXE
+   viSpell_level     = 2
+   viSpellExertion   = 5
+
+   vrGear   = &PickAxe
+   voTool   = &BlackSmithsHammer
+   viBench  = &CraftingAnvil
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&IronIngot,20],plReagents);
+      plReagents = Cons([&Lumber,5],plReagents);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

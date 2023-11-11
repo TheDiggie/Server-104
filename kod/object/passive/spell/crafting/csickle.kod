@@ -1,0 +1,55 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CraftSickle is Crafting
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   CraftSickle_name_rsc = "craft sickle"
+   CraftSickle_icon_rsc = iCraftSickle.bgf
+   CraftSickle_desc_rsc = \
+      "Craft a sickle at a anvil with a blacksmith's hammer. "
+      "Requires 20 iron ingots and 5 lumber. "
+
+   CraftSickle_sound = kraanan.ogg
+
+classvars:
+
+   vrName = CraftSickle_name_rsc
+   vrIcon = CraftSickle_icon_rsc
+   vrDesc = CraftSickle_desc_rsc
+
+   viSpell_num       = SID_CRAFTSICKLE
+   viSpell_level     = 2
+   viSpellExertion   = 5
+
+   vrGear   = &Sickle
+   voTool   = &BlackSmithsHammer
+   viBench  = &CraftingAnvil
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&IronIngot,20],plReagents);
+      plReagents = Cons([&Lumber,5],plReagents);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

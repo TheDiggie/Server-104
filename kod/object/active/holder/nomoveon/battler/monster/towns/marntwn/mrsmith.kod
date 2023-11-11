@@ -100,7 +100,10 @@ messages:
             SID_CRAFTAXE,
             SID_CRAFTLONGSWORD,
             SID_CRAFTCHAINARMOR,
-            SID_CRAFTGOLDSHIELD
+            SID_CRAFTGOLDSHIELD,
+            SID_CRAFTSICKLE,
+            SID_CRAFTWOODAXE,
+            SID_CRAFTBRAWL
          ],
       $];
 
