@@ -18,7 +18,7 @@ resources:
 
 classvars:
 
-   viSpeed = SPEED_VERY_FAST
+   viSpeed = SPEED_FAST
 
    viAttributes = 0
    viLevel = 300
