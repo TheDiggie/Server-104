@@ -114,7 +114,8 @@ messages:
          $,
          [
             SID_CRAFTBATTLEBOW,
-            SID_CRAFTLONGBOW
+            SID_CRAFTLONGBOW,
+            SID_CRAFTNERUBOW
          ],
          $];
 
