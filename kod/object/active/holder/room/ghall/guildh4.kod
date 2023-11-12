@@ -19,7 +19,7 @@ constants:
    ASSISTDOOR = 7
    STORAGEDOOR = 8
 
-   RESET_TIME = 10000
+   RESET_TIME = 5000
    NEXT_TIME = 1000
    RESET_TIME_LONG = 20000
 
@@ -446,6 +446,33 @@ messages:
       Send(self,@NewHold,#what=Create(&Chest),
             #new_row=43,#new_col=18,#fine_row=16,#fine_col=16,
             #new_angle=ANGLE_NORTH_WEST);
+
+      Send(self,@NewHold,#what=Create(&SpinningWheel),
+           #new_row=6,#new_col=6,#fine_row=0,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&Loom),
+           #new_row=7,#new_col=5,#fine_row=0,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&Forge),
+           #new_row=9,#new_col=4,#fine_row=0,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&KocatanForge),
+           #new_row=12,#new_col=4,#fine_row=0,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&CraftingAnvil),
+           #new_row=14,#new_col=5,#fine_row=0,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&ShaveHorse),
+           #new_row=15,#new_col=6,#fine_row=32,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&TanningRack),
+           #new_row=6,#new_col=44,#fine_row=0,#fine_col=0,
+            #new_angle=ANGLE_SOUTH_WEST);
+      Send(self,@NewHold,#what=Create(&KocatanTanningRack),
+           #new_row=7,#new_col=45,#fine_row=0,#fine_col=0,
+            #new_angle=ANGLE_SOUTH_WEST);
+      Send(self,@NewHold,#what=Create(&SplittingStump),
+           #new_row=9,#new_col=46,#fine_row=0,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&KocatanSplittingStump),
+           #new_row=12,#new_col=46,#fine_row=0,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&GoadsAnvil),
+           #new_row=14,#new_col=45,#fine_row=0,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&KocatanAnvil),
+           #new_row=15,#new_col=43,#fine_row=32,#fine_col=32);
 
       propagate;
    }
