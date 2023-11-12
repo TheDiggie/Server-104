@@ -62,10 +62,13 @@ resources:
    iaspelltype_holy_DM = "holy"
    iaspelltype_unholy_DM = "unholy"
    iaspelltype_acid_DM = "acid"
+   
+   WeapAttSpell_dm = "elemental"
 
 classvars:
 
    viItem_Att_Num = WA_ATTACKSPELLTYPE
+   vrDM_trigger = WeapAttSpell_dm
 
 properties:
 
@@ -160,7 +163,6 @@ messages:
    {
       local iSpellType;
 
-
       if who = $ OR string= $ OR oWeapon = $
       {
          Debug("BAD data sent to DMCreateItemAtt!");
@@ -176,13 +178,13 @@ messages:
       {
          iSpelltype = ATCK_SPELL_COLD;
       }
-      else if StringContain(string,iaspelltype_holy_DM)
-      {
-         iSpelltype = ATCK_SPELL_HOLY;
-      }
       else if StringContain(string,iaspelltype_unholy_DM)
       {
          iSpelltype = ATCK_SPELL_UNHOLY;
+      }
+      else if StringContain(string,iaspelltype_holy_DM)
+      {
+         iSpelltype = ATCK_SPELL_HOLY;
       }
       else if StringContain(string,iaspelltype_acid_DM)
       {
@@ -205,7 +207,7 @@ messages:
       if Send(self,@ReqAddToItem,#state1=iSpellType,#oItem=oWeapon)
       {
          Send(self,@AddToItem,#oItem=oWeapon,#state1=iSpellType,
-              #timer_duration=Random(3600000,86400000),#random_gen=TRUE);
+              #timer_duration=random(3600000,86400000),#random_gen=TRUE);
 
          return TRUE;
       }
@@ -223,20 +225,6 @@ messages:
       }
 
       iSpellType = 0;
-
-      // 40% chance the weapon will choose to be karma allied with whoever found it.
-      if Random(1,100) > 40
-      {
-         iKarma = Send(who,@GetKarma);
-         if iKarma > 0
-         {
-            iSpellType = ATCK_SPELL_HOLY;
-         }
-         else if iKarma < 0
-         {
-            iSpellType = ATCK_SPELL_UNHOLY;
-         }
-      }
 
       if iSpellType = 0
       {
@@ -293,10 +281,6 @@ messages:
 
    TimerExpired(oItem=$,lData=$)
    {
-      // Timer is gone, now remove reference.
-      SetNth(lData,2,$);
-      Send(self,@RemoveFromItem,#oItem=oItem,#lData=lData);
-
       return;
    }
 
@@ -343,7 +327,14 @@ messages:
          return FALSE;
       }
 
-      iSpellType = Nth(lData,3);
+      if Send(self,@HasTimer,#lData=lData)
+      {
+         iSpellType = Nth(lData,3);
+      }
+      else
+      {
+         iSpellType = Nth(lData,2);
+      }
 
       if NOT Send(oItem,@CheckSpellFlag,#flag=iSpellType)
       {
@@ -452,6 +443,84 @@ messages:
    IsMagicalEffect()
    {
       return TRUE;
+   }
+
+   ModifyDamage(damage=0,target=$,wielder=$,lData=$)
+   { 
+      local oFound, i, oSpell, iSpellType;
+      
+      if target = $
+         OR wielder = $
+      {
+         return damage;
+      }
+
+      if Send(self,@HasTimer,#lData=lData)
+      {
+         iSpellType = Nth(lData,3);
+      }
+      else
+      {
+         iSpellType = Nth(lData,2);
+      }
+      
+      oFound = FALSE;
+      
+      if iSpellType = ATCK_SPELL_HOLY
+      {
+         foreach i in Send(target,@GetSpellList)
+         {
+            oSpell = Send(SYS,@FindSpellByNum,
+                           #num=Send(target,@DecodeSpellNum,#compound=i));
+            if Send(oSpell,@GetSchool) = SS_QOR
+            {
+               oFound = TRUE;
+
+               break;
+            }
+         }
+         
+         if oFound = TRUE
+         {
+            damage = damage + Random(1,5);
+            return damage;
+         }
+         else
+         {
+            return damage;
+         }
+      }
+      else if iSpellType = ATCK_SPELL_UNHOLY
+      {
+         foreach i in Send(target,@GetSpellList)
+         {
+            oSpell = Send(SYS,@FindSpellByNum,
+                           #num=Send(target,@DecodeSpellNum,#compound=i));
+            if Send(oSpell,@GetSchool) = SS_SHALILLE
+            {
+               oFound = TRUE;
+
+               break;
+            }
+         }
+         
+         if oFound = TRUE
+         {
+            damage = damage + Random(1,5);
+            return damage;
+         }
+         else
+         {
+            return damage;
+         }
+      }
+      else
+      {
+         damage = damage + Random(1,5);
+         return damage;
+      }
+
+      return damage;
    }
 
 end
