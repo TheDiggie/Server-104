@@ -172,7 +172,7 @@ properties:
    ptHungerTimer = $
    ptHoldingDamage = $
    piHoldingDamageInterval = 10 * 1000     // ten seconds
-   piHpWorthyThreshold = 50
+   piHpWorthyThreshold = 49
    piKarmaWorthyThreshold = 1
 
    pbIllusioned = TRUE
