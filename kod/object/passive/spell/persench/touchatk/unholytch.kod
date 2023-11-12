@@ -145,9 +145,11 @@ messages:
    DamageFactors(damage=0, who=$, victim=$)
    "Damage for attack spells is determined largely by expertise in the spell."
    {
-      local iDamage, iKarma;
+      local iDamage, iKarma, i, oSpell, oFound;
 
       iDamage = damage;
+
+      oFound = FALSE;
 
       // Avoid the condition of checking damage on a nil victim (like when
       //  just querying average damage).
@@ -155,15 +157,37 @@ messages:
       {
          if Send(victim,@IsUndead)
          {
-            // Automatically do 50// of damage to undead.
-            iDamage = iDamage/2;
+            // Automatically do extra half damage to undead.
+            iDamage = 2/iDamage;
          }
          else
          {
-            // Inncrease damage by 50// on opponent's with good Karma.
+            // Reduce/increase damage by 50// depending on opponent's Karma.
             // Use the detect option in case we're hitting an event monster.
-            iKarma = Send(victim,@GetKarma,#detect=TRUE);
-            iDamage = iDamage + ((iKarma)*iDamage/200);
+            if IsClass(victim,&Player)
+            {
+               foreach i in Send(victim,@GetSpellList)
+               {
+                  oSpell = Send(SYS,@FindSpellByNum,
+                                 #num=Send(victim,@DecodeSpellNum,#compound=i));
+                  if Send(oSpell,@GetSchool) = SS_SHALILLE
+                  {
+                     oFound = TRUE;
+
+                     break;
+                  }
+               }
+               
+               if oFound = TRUE
+               {
+                  iDamage = iDamage + Random(500,1500);
+               }
+            }
+            else
+            {
+               iKarma = Send(victim,@GetKarma,#detect=TRUE);
+               iDamage = iDamage + ((iKarma/10)*100);
+            }
          }
       }
 

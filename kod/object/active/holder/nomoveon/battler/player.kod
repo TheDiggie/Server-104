@@ -6027,7 +6027,7 @@ messages:
 
       piWeaponSwings = piWeaponSwings + times;
 
-      if IsClass(oWeapon,&Tool)
+      if oWeapon <> $ AND IsClass(oWeapon,&Tool)
       {
          if (piWeaponSwings % 5) = 0
          {

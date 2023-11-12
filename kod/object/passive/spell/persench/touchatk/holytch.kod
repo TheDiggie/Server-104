@@ -147,7 +147,7 @@ messages:
             else
             {
                iKarma = Send(victim,@GetKarma,#detect=TRUE);
-               iDamage = iDamage + ((-iKarma)*iDamage/200);
+               iDamage = iDamage + ((-iKarma/10)*100);
             }
          }
       }
