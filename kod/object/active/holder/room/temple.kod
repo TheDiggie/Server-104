@@ -56,6 +56,8 @@ classvars:
 
 properties:
 
+   viPermanent_flags = ROOM_NO_COMBAT
+   
    prRoom = room_temple
    piRoom_num = RID_TEMPLE
 
