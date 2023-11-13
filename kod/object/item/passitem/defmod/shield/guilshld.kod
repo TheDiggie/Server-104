@@ -52,12 +52,12 @@ resources:
    guildshield_jala_over = gshjaov.bgf
    guildshield_window_overlay_rsc = povshldE.bgf
    guildshield_desc_rsc = \
-      "Heavy metal shields of this style are decorated in the standards "
+      "\n\nHeavy metal shields of this style are decorated in the standards "
       "of its owner guild.  "
    guildshield_herald_guild_master = \
-      "The pattern on this shield is %s%s%s: the mark of the %q.  %s"
+      "\n\nThe pattern on this shield is %s%s%s: the mark of the %q.  %s"
    guildshield_herald_noguild_master = \
-      "The pattern on this shield is %s%s%s.  %s"
+      "\n\nThe pattern on this shield is %s%s%s.  %s"
    guildshield_red = "rose"
    guildshield_skin1 = "sand"
    guildshield_skin2 = "bronze"
