@@ -27,6 +27,7 @@ classvars:
 
    vrName = Tanning_name_rsc
    vrIcon = Tanning_icon_rsc
+   vrDesc = Tanning_desc_rsc
 
    viSpell_num       = SID_TANNING
    viBench           = &TanningRack

@@ -27,6 +27,7 @@ classvars:
 
    vrName = Smelting_name_rsc
    vrIcon = Smelting_icon_rsc
+   vrDesc = Smelting_desc_rsc
 
    viSpell_num       = SID_SMELTING
    viBench           = &Forge

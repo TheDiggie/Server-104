@@ -27,6 +27,7 @@ classvars:
 
    vrName = Spinning_name_rsc
    vrIcon = Spinning_icon_rsc
+   vrDesc = Spinning_desc_rsc
 
    viSpell_num       = SID_SPINNING
    viBench           = &SpinningWheel

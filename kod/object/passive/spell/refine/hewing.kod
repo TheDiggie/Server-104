@@ -27,6 +27,7 @@ classvars:
 
    vrName = Hewing_name_rsc
    vrIcon = Hewing_icon_rsc
+   vrDesc = Hewing_desc_rsc
 
    viSpell_num       = SID_HEWING
    viBench           = &SplittingStump
