@@ -61,7 +61,7 @@ messages:
       }
 
       // Player can't use if no-pvp flagged.
-      if (Send(who,@CheckPlayerFlag,#flag=PFLAG_PERMA_NO_PVP))
+      if (Send(who,@CheckPlayerFlag,#flag=PFLAG_PERMA_NO_PVP)) AND NOT IsClass(Send(who,@GetOwner),&GuildHall)
       {
          Send(who,@MsgSendUser,#message_rsc=spell_no_pvp_flag);
 

@@ -105,7 +105,7 @@ messages:
          return FALSE;
       }
 
-      if NOT Send(Send(who,@GetOwner),@CheckRoomFlag,#flag=ROOM_NO_COMBAT)
+      if NOT Send(Send(who,@GetOwner),@CheckRoomFlag,#flag=ROOM_NO_COMBAT) AND NOT IsClass(Send(who,@GetOwner),&GuildHall)
       {
          Send(who,@MsgSendUser,#message_rsc=loadout_not_safe);
 
