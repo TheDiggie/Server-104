@@ -101,7 +101,8 @@ messages:
                              RID_MARSMITH,
                              RID_MARELDER,
                              RID_SEWKING,
-                             RID_TEMPLE_RIIJA];
+                             RID_TEMPLE_RIIJA,
+                             RID_INNERSAN];
 
       return;
    }
