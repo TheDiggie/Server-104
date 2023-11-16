@@ -227,7 +227,7 @@ messages:
 
    GetLocations(iSpellpower=$,target=$)
    {
-      local lLocations, lAvailable, iNumLocations, oRoom, sLocations;
+      local lLocations, lAvailable, iNumLocations, oRoom, sLocations, oGuild;
 
       lLocations = [Send(SYS,@FindRoomByNum,#num=RID_TOS),
                     Send(SYS,@FindRoomByNum,#num=RID_MARION),
@@ -247,6 +247,19 @@ messages:
          lAvailable = Cons(Send(SYS,@FindRoomByNum,
                            #num=RID_KOC_INN),lAvailable);
          --iNumLocations;
+      }
+
+      oGuild = Send(target,@GetGuild);
+
+      if oGuild <> $
+      {  
+         if Send(oGuild,@GetGuildHall) <> $
+         {
+            oGuild = Send(Send(oGuild,@GetGuildHall),@GetRoomNum);
+
+            lAvailable = Cons(Send(SYS,@FindRoomByNum,#num=oGuild),lAvailable);
+            --iNumLocations;
+         }
       }
 
       while iNumLocations > 0
