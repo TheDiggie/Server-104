@@ -2991,6 +2991,9 @@ messages:
       Send(self,@AddSpell,#num=SID_TRANSFERENCE,#initial=TRUE);
       Send(self,@AddSpell,#num=SID_PHASE,#initial=TRUE);
       Send(self,@AddSpell,#num=SID_MEDITATE,#initial=TRUE,#iability=1);
+      Send(self,@AddSpell,#num=SID_VAULT_LOADOUT,#initial=TRUE);
+      Send(self,@AddSpell,#num=SID_LOADOUT,#initial=TRUE);
+      Send(self,@AddSpell,#num=SID_SET,#initial=TRUE);
 
       return;
    }
