@@ -249,19 +249,19 @@ messages:
          return FALSE;
       }
       
-      if Send(self,@IsUserInArea,#who=who,#lArea=plChestArea1)
-      {
-         return TRUE;
-      }
+      //if Send(self,@IsUserInArea,#who=who,#lArea=plChestArea1)
+      //{
+      //   return TRUE;
+      //}
 
       // If they fail the above check, they're probably too far away.
-      Debug("ALERT!  ",Send(who,@GetTrueName),who,
-            "tried to use Guild Hall chest in GH ",
-            Send(self,@GetName)," player coordinates ",
-            Send(who,@GetRow),Send(who,@GetCol),
-            Send(who,@GetFineRow),Send(who,@GetFineCol));
+      //Debug("ALERT!  ",Send(who,@GetTrueName),who,
+      //      "tried to use Guild Hall chest in GH ",
+      //      Send(self,@GetName)," player coordinates ",
+      //      Send(who,@GetRow),Send(who,@GetCol),
+      //      Send(who,@GetFineRow),Send(who,@GetFineCol));
 
-      return FALSE;
+      return TRUE;
    }
 
 end

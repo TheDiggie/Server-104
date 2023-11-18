@@ -133,8 +133,9 @@ void UserPickup(void)
  */
 void GotObjectContents(ID object_id, list_type contents)
 {
-   list_type sel_list, l;
+   list_type sel_list, l, sorted_list;
    room_contents_node *r;
+   sorted_list = NULL;
 
    r = GetRoomObjectById(object_id);
 
@@ -143,14 +144,21 @@ void GotObjectContents(ID object_id, list_type contents)
       if (r != NULL)
 	 GameMessagePrintf(GetString(hInst, IDS_EMPTY), LookupNameRsc(r->obj.name_res));
       return;
+   }   
+   
+   // Separate contents into number items and other items and alpha sort
+   for (l = contents; l != NULL; l = l->next)
+   {
+      sorted_list = list_add_sorted_item(sorted_list, (l->data), CompareObjectNameAndNumber);
    }
 
-   sel_list = DisplayLookList(hMain, GetString(hInst, IDS_GET), contents, LD_MULTIPLESEL);   
+   sel_list = DisplayLookList(hMain, GetString(hInst, IDS_GET), sorted_list, LD_MULTIPLESEL | LD_AMOUNTS);   
 
    for (l = sel_list; l != NULL; l = l->next)
-      RequestPickup(((room_contents_node *) (l->data))->obj.id);
+      RequestPickupFromContainer(((room_contents_node *) (l->data)));
 
    ObjectListDestroy(sel_list);
+   ObjectListDestroy(sorted_list);
 }
 /************************************************************************/
 /*

@@ -239,6 +239,7 @@ resources:
    user_not_item = "You cannot pick that up."
 
    user_not_have_number = "You don't have that amount of %s to drop."
+   user_pickup_too_many = "You can't find that amount of %s to pick up."
    user_cant_deal_number = "You can't do anything with %i items."
    user_cant_attack_non_battler = "You can't attack %s%s."
    user_no_say_guild = \
@@ -1678,6 +1679,14 @@ messages:
          {
             Send(self,@MsgSendUser,#message_rsc=user_not_item);
          }
+
+         return;
+      }
+
+      if liClient_cmd = BP_REQ_GET_FROM_CONTAINER
+      {
+         oWhat = Nth(client_msg,2);
+         Send(self,@UserGet,#what=oWhat,#number=number_stuff);
 
          return;
       }
@@ -4786,10 +4795,10 @@ messages:
       return;
    }
 
-   UserGet(what = $, report = TRUE)
+   UserGet(what = $, report = TRUE,number = $)
    {
       local oOldOwner, i, lItem_pos, iRow, iCol, iRow_dist, iCol_dist,
-            iCan_hold, oSplit, oCorpse, bFromBag;
+            iCan_hold, oSplit, oCorpse, bFromBag, iNumber;
 
       if Send(self,@IsInCannotInteractMode)
       {
@@ -4897,27 +4906,50 @@ messages:
          return 0;
       }
 
-      if NOT Send(self,@ReqNewHold,#what=what)
+      //Either we pass in a number or we didn't but can't hold it all
+      if number <> $
+         OR NOT Send(self,@ReqNewHold,#what=what)
       {
          if IsClass(what,&NumberItem)
          {
             iCan_hold = Send(self,@GetNumberCanHold,#what=what);
-            if iCan_hold > 0
+            if iCan_hold = $
             {
-               oSplit = Send(what,@Split,#number=iCan_hold);
+               iCan_hold = number;
+            }
+
+            iNumber = bound(iCan_hold,$,number);
+
+            if iNumber > 0
+            {
+               oSplit = Send(what,@Split,#number=iNumber);
+
+               if oSplit = $
+               {
+                  Send(self,@MsgSendUser,#message_rsc=user_pickup_too_many, 
+                     #parm1=Send(what,@GetName));
+                  return;
+               }
+
                if Send(what,@ReqNewOwner,#what=oSplit)
                {
-                  Send(self,@MsgSendUser,#message_rsc=user_got_some,#report=report,
-                       #parm1=Send(what,@GetName));
+                  if iCan_hold < number
+                  {
+                     Send(self,@MsgSendUser,#message_rsc=user_got_some,
+                        #parm1=Send(what,@GetName));
+                  }
+
                   Send(self,@NewHold,#what=oSplit,#bFromBag=bFromBag);
 
-                  return 3;
+                  return;
                }
                else
                {
-                  Send(what,@AddNumber,#number=iCan_hold);
+                  Send(what,@AddNumber,#number=iNumber);
+
                   Send(self,@MsgSendUser,#message_rsc=user_disallow_get,#report=report,
                        #parm1=Send(what,@GetDef),#parm2=Send(what,@GetName));
+
                   Send(self,@WaveSendUser,#what=self,
                        #wave_rsc=user_cant_pickup_item_wav_rsc);
 
@@ -4928,6 +4960,7 @@ messages:
             {
                Send(self,@MsgSendUser,#message_rsc=user_disallow_get,#report=report,
                     #parm1=Send(what,@GetDef),#parm2=Send(what,@GetName));
+                    
                Send(self,@WaveSendUser,#what=self,
                     #wave_rsc=user_cant_pickup_item_wav_rsc);
 
