@@ -1,0 +1,85 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+NapalmSlime is Slime
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   nap_slime_koc_name_rsc = "napkinachot"
+   nap_slime_name_rsc = "napalm slime"
+   nap_slime_icon_rsc = amoeba.bgf
+   nap_slime_desc_rsc = \
+   "A mass of quivering goo, the ooz has a strange "
+   "scent stinging my nose.  The smell seems familiar "
+   "yet im unable to decipher what it is."
+
+   nap_slime_dead_icon_rsc = amoebaX.bgf
+
+classvars:
+
+   vrKocName = nap_slime_koc_name_rsc
+   vrName = nap_slime_name_rsc
+   vrIcon = nap_slime_icon_rsc
+   vrDesc = nap_slime_desc_rsc
+
+   viTreasure_type = TID_WIMPY_MEDIUM
+   viLevel = 150
+   viDifficulty = 8
+   viCashmin = 1000
+   viCashmax = 3000
+
+properties:
+
+   piColor_translation = PT_GRAY_TO_ORANGE
+
+messages:
+
+   Constructed()
+   {
+      plResistances = [ [-ATCK_SPELL_SHOCK, 45 ],
+                        [-ATCK_SPELL_UNHOLY, 45 ],
+                        [-ATCK_SPELL_HOLY, 45 ],
+                        [-ATCK_SPELL_ACID, 45 ],
+                        [ATCK_WEAP_ALL, 45 ],
+                        [ATCK_WEAP_BLUDGEON, 10 ],
+                        [-ATCK_SPELL_FIRE, -45 ] ];
+      
+	  propagate;
+   }
+   
+   AssessDamage(what=$,atype=$,aspell=$)
+   {
+
+      if aspell = ATCK_SPELL_FIRE 
+      {
+         send(self,@killed,#what=what);
+      }
+
+      propagate;
+   }
+
+   killed(what=$)
+   {
+      local ospell, lTargets;
+
+      oSpell = Send(SYS,@FindSpellByNum,#num=SID_EARTHQUAKE);
+      lTargets = Send(oSpell,@GetTargets,#who=poOwner);
+      Post(oSpell,@CastSpell,#who=poOwner,#iSpellPower=99,
+            #lTargets=lTargets);
+      
+      propagate;
+   }
+
+end
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

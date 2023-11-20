@@ -63,6 +63,8 @@ properties:
 
    piAnimation = ANIM_NONE
 
+   piColor_translation = PT_GRAY_TO_LGREEN
+
    //transparency disabled, the color translation doesnt apply to the description when it is on
    //piDrawfx = DRAWFX_TRANSLUCENT_75
 
@@ -77,8 +79,6 @@ messages:
                         [ATCK_WEAP_ALL, 45 ],
                         [ATCK_WEAP_BLUDGEON, 10 ],
                         [-ATCK_SPELL_COLD, -25 ] ];
-
-      Send(self,@ChangeColor);
 
       propagate;
    }
@@ -132,19 +132,6 @@ messages:
       }
 
       propagate;
-   }
-
-   ChangeColor()
-   {
-
-      piColor_translation = (PT_GRAY_TO_LGREEN);
-
-      if poOwner <> $
-      {
-         Send(poOwner,@SomethingChanged,#what=self);
-      }
-
-      return;
    }
 
 end

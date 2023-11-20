@@ -76,12 +76,12 @@ classvars:
 properties:
 
    piAnimation = ANIM_NONE
-   piDrawfx = DRAWFX_TRANSLUCENT_75
+   piColor_translation = PT_GRAY_TO_BLACK
 
-   pbFirstStage = FALSE
-   pbSecondStage = FALSE
-   pbThirdStage = FALSE
-   pbFourthStage = FALSE
+   pbFirstStage   = FALSE
+   pbSecondStage  = FALSE
+   pbThirdStage   = FALSE
+   pbFourthStage  = FALSE
 
    poIllusion_set = $
 
@@ -170,6 +170,10 @@ messages:
 
    SendLookAnimation()
    {
+      if piColor_translation <> 0
+      {
+         AddPacket(1,ANIMATE_TRANSLATION,1,piColor_translation);
+      }
 
       AddPacket(1,ANIMATE_CYCLE);
       AddPacket(4,400,2,2,2,5);
@@ -188,6 +192,11 @@ messages:
 
    SendAnimation()
    {
+
+      if piColor_translation <> 0
+      {
+         AddPacket(1,ANIMATE_TRANSLATION,1,piColor_translation);
+      }
 
       if poIllusion_set <> $
       {
@@ -213,13 +222,13 @@ messages:
       local oSpell;
 
       oSpell = Send(SYS,@FindSpellByNum,#num=SID_ILLUSIONARY_FORM);
-      if oSpell = $
-      {  DEBUG(self,"CAN'T FIND SID_ILLUSIONARY_FORM"); 
 
+      if oSpell = $
+      {
          return;
       }
 
-         Send(oSpell,@PerformIllusionaryForm,#caster=self,#victim=self,#iSpellPower=random(50,99));
+      Send(oSpell,@PerformIllusionaryForm,#caster=self,#victim=self,#iSpellPower=random(50,99));
 
       return;
    }
@@ -237,6 +246,9 @@ messages:
       }
       else
       {
+         
+         piColor_translation = 0;
+
          if iHPLevel = 3
             AND NOT pbFirstStage
          {

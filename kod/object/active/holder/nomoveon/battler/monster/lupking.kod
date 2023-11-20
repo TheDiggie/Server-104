@@ -95,8 +95,8 @@ classvars:
    vrSound_aware = lupoggking_sound_aware
    vrSound_death = lupoggking_sound_death
 
-   viHoldDurationMax = 28000  // Milliseconds.
-   viHoldDurationMin = 17000  // Milliseconds.
+   viHoldDurationMax = 15000  // Milliseconds.
+   viHoldDurationMin = 5000  // Milliseconds.
 
    viBonusXP = 0
    viBonusTP = 0
@@ -108,8 +108,8 @@ properties:
 
    piHoldAttackChance = 13 // Chance he'll attack with a hold
    piHoldCounterChance = 6 // Chance he'll counter a spell or arrow with a hold
-   piHoldDurationMax = 28000  // Milliseconds.
-   piHoldDurationMin = 17000  // Milliseconds.
+   piHoldDurationMax = 15000  // Milliseconds.
+   piHoldDurationMin = 5000  // Milliseconds.
 
 messages:
 
