@@ -1,0 +1,56 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+SteakMeal is Food
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   SteakMeal_name_rsc = "steak meal"
+   SteakMeal_name_plural_rsc = "steak meals"
+   SteakMeal_icon_rsc = steakmeal.bgf
+   SteakMeal_desc_rsc = \
+      "A beautiful steak dinner sure to be both delicious and filling!  "
+   SteakMeal_use = \
+      "The steak melts in your mouth. Now thats a meal!"
+
+classvars:
+
+   vrName = SteakMeal_name_rsc
+   vrName_plural = SteakMeal_name_plural_rsc
+   vrIcon = SteakMeal_icon_rsc
+   vrDesc = SteakMeal_desc_rsc
+
+   viIndefinite = ARTICLE_AN
+
+   viBulk = 5
+   viWeight = 4
+   viValue_average = 520
+
+properties:
+
+   viFilling = 40                
+   viNutrition = 70              
+   piNumber = 1
+
+messages:
+
+   SendTaste(what = $,apply_on = $)
+   {
+      Send(apply_on,@MsgSendUser,#message_rsc=SteakMeal_use);
+      return;
+   }
+
+
+end
+////////////////////////////////////////////////////////////////////////////////

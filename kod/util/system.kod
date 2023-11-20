@@ -5974,6 +5974,8 @@ messages:
 
       plItemTemplates = cons(create(&EasterEgg),plItemTemplates);
       plItemTemplates = cons(create(&TikiTribute),plItemTemplates);
+      plItemTemplates = cons(create(&Qorcite),plItemTemplates);
+      plItemTemplates = cons(create(&SteakMeal),plItemTemplates);
 
       // Head
       plItemTemplates = cons(create(&Helm),plItemTemplates);
@@ -6090,7 +6092,6 @@ messages:
       plItemTemplates = cons(create(&KriipaLeather),plItemTemplates);
       plItemTemplates = cons(create(&IronOre),plItemTemplates);
       plItemTemplates = cons(create(&NeruditeOre),plItemTemplates);
-      plItemTemplates = cons(create(&Qorcite),plItemTemplates);
       
       //Crafting tools
       plItemTemplates = cons(create(&DrawKnife),plItemTemplates);
