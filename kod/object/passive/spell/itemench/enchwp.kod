@@ -21,6 +21,7 @@ resources:
    enchantedweapon_cast_rsc = "Your %s is now dedicated to Kraanan."
    enchantweapon_no_can = "You may not enchant %s%s."
    enchantweapon_fails = "The %s is strangely unaffected by the spell."
+   enchantweapon_fails2 = "The %s is already effected by magic."
    enchantweapon_already_done = \
       "This weapon is already dedicated to Kraanan."
 
@@ -95,6 +96,14 @@ messages:
          AND Send(oWeapon,@GetAttributeData,#ItemAtt=WA_ATTACKSPELLTYPE) = $
       {
          Send(who,@MsgSendUser,#message_rsc=enchantweapon_already_done,
+               #parm1=Send(oWeapon,@GetName));
+
+         return FALSE;
+      }
+
+      if Send(oWeapon,@GetAttackSpell) <> 0
+      {
+         Send(who,@MsgSendUser,#message_rsc=enchantweapon_fails2,
                #parm1=Send(oWeapon,@GetName));
 
          return FALSE;

@@ -207,7 +207,7 @@ messages:
       if Send(self,@ReqAddToItem,#state1=iSpellType,#oItem=oWeapon)
       {
          Send(self,@AddToItem,#oItem=oWeapon,#state1=iSpellType,
-              #timer_duration=random(3600000,86400000),#random_gen=TRUE);
+              #timer_duration=random(5000,10000),#random_gen=TRUE);
 
          return TRUE;
       }
@@ -242,7 +242,7 @@ messages:
       if Send(self,@ReqAddToItem,#state1=iSpellType,#oItem=oItem)
       {
          Send(self,@AddToItem,#oItem=oItem,#state1=iSpellType,
-              #timer_duration=random(3600000,86400000),#random_gen=TRUE);
+              #timer_duration=random(5000,10000),#random_gen=TRUE);
 
          return TRUE;
       }
@@ -281,6 +281,13 @@ messages:
 
    TimerExpired(oItem=$,lData=$)
    {
+      SetNth(lData,2,$);
+      if Send(oItem,@GetAttackSpell) = ATCK_SPELL_HOLY
+      OR Send(oItem,@GetAttackSpell) = ATCK_SPELL_UNHOLY
+      {
+         Send(self,@RemoveFromItem,#oItem=oItem,#lData=lData);
+      }
+      
       return;
    }
 
@@ -327,14 +334,7 @@ messages:
          return FALSE;
       }
 
-      if Send(self,@HasTimer,#lData=lData)
-      {
-         iSpellType = Nth(lData,3);
-      }
-      else
-      {
-         iSpellType = Nth(lData,2);
-      }
+      iSpellType = Nth(lData,3);
 
       if NOT Send(oItem,@CheckSpellFlag,#flag=iSpellType)
       {

@@ -21,6 +21,7 @@ resources:
    holyweapon_cast_rsc = "Your %s is now dedicated to Shal'ille."
    holyweapon_no_can = "You cannot dedicate %s%s to Shal'ille."
    holyweapon_fails = "The %s is strangely unaffected by the spell."
+   holyweapon_fails2 = "The %s is already effected by magic."
    holyweapon_already_done = \
       "This weapon is already dedicated to Shal'ille."
 
@@ -86,7 +87,7 @@ messages:
          Send(who,@MsgSendUser,#message_rsc=holyweapon_no_can,
                #parm1=Send(oWeapon,@GetDef),#parm2=Send(oWeapon,@GetName));
 
-         return False;
+         return FALSE;
       }
 
       if Send(oWeapon,@CheckTypeFlag,#flag=ATCK_WEAP_MAGIC) <> 0
@@ -96,7 +97,15 @@ messages:
          Send(who,@MsgSendUser,#message_rsc=holyweapon_fails,
                #parm1=Send(oWeapon,@GetName));
 
-         return False;
+         return FALSE;
+      }
+
+      if Send(oWeapon,@GetAttackSpell) <> 0
+      {
+         Send(who,@MsgSendUser,#message_rsc=holyweapon_fails2,
+               #parm1=Send(oWeapon,@GetName));
+
+         return FALSE;
       }
 
       propagate;   // Check other things higher up
@@ -114,7 +123,7 @@ messages:
          Send(who,@MsgSendUser,#message_rsc=holyweapon_no_can,
                #parm1=Send(oWeapon,@GetDef),#parm2=Send(oWeapon,@GetName));
 
-         return False;
+         return FALSE;
       }
 
       if NOT Send(oWeapon,@CanEnchant,#oSpell=self)
@@ -130,7 +139,7 @@ messages:
          Send(who,@MsgSendUser,#message_rsc=spell_out_of_range,
                #parm1=Send(oWeapon,@GetCapDef),#parm2=Send(oWeapon,@GetName));
 
-         return False;
+         return FALSE;
       }
 
       oWeapAtt = Send(SYS,@FindItemAttByNum,#num=WA_ATTACKSPELLTYPE);

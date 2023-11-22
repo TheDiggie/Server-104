@@ -23,6 +23,7 @@ resources:
    unholyweapon_cast_rsc = "Your %s is now dedicated to Qor."
    unholyweapon_no_can = "You cannot dedicate %s%s to Qor."
    unholyweapon_fails = "The %s is strangely unaffected by the spell."
+   unholyweapon_fails2 = "The %s is already effected by magic."
    unholyweapon_already_done = \
       "This weapon is already dedicated to Qor."
 
@@ -101,6 +102,14 @@ messages:
          return False;
       }
 
+      if Send(oWeapon,@GetAttackSpell) <> 0
+      {
+         Send(who,@MsgSendUser,#message_rsc=unholyweapon_fails2,
+               #parm1=Send(oWeapon,@GetName));
+
+         return FALSE;
+      }
+      
       propagate;   // Check other things higher up
    }
 
