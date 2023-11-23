@@ -282,6 +282,7 @@ messages:
    TimerExpired(oItem=$,lData=$)
    {
       SetNth(lData,2,$);
+      
       if Send(oItem,@GetAttackSpell) = ATCK_SPELL_HOLY
       OR Send(oItem,@GetAttackSpell) = ATCK_SPELL_UNHOLY
       {
