@@ -103,12 +103,12 @@ messages:
       //iDelay = 1000 * Send(SETTINGS_OBJECT, @RescueBaseDelaySec);
       iDelay = 5000;
       iDelay = iDelay - ((iSpellPower + 1) * 40);
-      Debug(iDelay);
+
       // Add a little delay in sometimes.
-      //if Random(1,2) = 1
-      //{
-      //   iDelay = iDelay + Random(2000, 4000);
-      //}
+      if Random(1,2) = 1
+      {
+         iDelay = iDelay + Random(2000, 4000);
+      }
 
       Send(who,@StartRescueTimer,#time=iDelay);
       Send(who,@MsgSendUser,#message_rsc=Rescue_Start);
