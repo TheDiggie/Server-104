@@ -20,7 +20,6 @@ resources:
    RiceMask_icon_male_rsc = ricehat.bgf
    RiceMask_icon_female_rsc = ricehat.bgf
    RiceMask_desc_rsc = \
-      "This is a rice hat.  It will surely keep the sun out of"
       "This is a rice hat.  It will surely keep the sun out of "
       "your eyes."
 
