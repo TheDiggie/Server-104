@@ -467,7 +467,7 @@ messages:
       
       oFound = FALSE;
       
-      if iSpellType = ATCK_SPELL_HOLY
+      if iSpellType = ATCK_SPELL_HOLY AND IsClass(target,&Player)
       {
          foreach i in Send(target,@GetSpellList)
          {
@@ -491,7 +491,7 @@ messages:
             return damage;
          }
       }
-      else if iSpellType = ATCK_SPELL_UNHOLY
+      else if iSpellType = ATCK_SPELL_UNHOLY AND IsClass(target,&Player)
       {
          foreach i in Send(target,@GetSpellList)
          {
