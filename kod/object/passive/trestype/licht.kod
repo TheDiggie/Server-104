@@ -37,7 +37,7 @@ messages:
                      [ &RingInvisibility, 5 ],
                      [ &FireRing, 5 ],
                      [ &SeduceWand, 5 ],
-		             [ &GoldenArrow, 5 ],
+		               [ &GoldenArrow, 5 ],
                      [ &BlindWand, 5 ]
                    ];
 
