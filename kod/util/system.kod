@@ -8363,15 +8363,15 @@ messages:
       return Length(lUserIPList);
    }
 
-   SortItemsByType(lItems = $, lClassOrder=$)
+   SortItemsByType(lItems = $, lClassOrder=$, forVault=FALSE)
    {
-      local lBaseList, lSortedItems, oItem, lSuperClass, cClass,
+      local lBaseList, lSortedItems, lSortedItemsVault, oItem, lSuperClass, cClass,
             lTempClassOrder;
 
       if lItems = $
       {
          return $;
-      }
+      } 
 
       if lClassOrder = $
       {
@@ -8412,6 +8412,15 @@ messages:
          Debug("SortItemsByType attempted without handling all items.");
 
          return lItems;
+      }
+
+      if forVault
+      {
+         foreach oItem in lSortedItems
+         {
+            lSortedItemsVault = Cons(oItem,lSortedItemsVault);
+         }
+         return lSortedItemsVault;
       }
 
       return lSortedItems;

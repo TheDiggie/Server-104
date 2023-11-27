@@ -5514,7 +5514,7 @@ messages:
 
    UserSayInventory(string = $)
    {
-      local i, lSortInfo, oTemplateItem, n, bFound;
+      local i, lSortInfo, oTemplateItem, n, bFound, ptempVault, vaultListToSort, vaultListSorted;
 
       if StringEqual(string,user_say_inv_sort_clear)
       {
@@ -5616,6 +5616,12 @@ messages:
 
       if StringEqual(string,user_say_inv_sort)
       {
+         ptempVault = Send(self,@GetVault);
+         vaultListToSort = Send(ptempVault,@GetHolderPassive);
+         vaultListSorted = Send(SYS, @SortItemsByType,#lItems=vaultListToSort,
+                                #lClassOrder=plClassOrderPreferences,#forVault=TRUE);
+         Send(ptempVault,@SetHolderPassive,#newPassive=vaultListSorted);
+
          plPassive = Send(SYS,@SortItemsByType,#lItems=plPassive,
                            #lClassOrder=plClassOrderPreferences);
          Send(self,@ToCliInventory);

@@ -992,6 +992,12 @@ messages:
       return plPassive;
    }
 
+   SetHolderPassive(newPassive = $)
+   {
+      plPassive = newPassive;
+      return plPassive;
+   }
+
    HolderExtractObject(data = $)
    {
       return data;
