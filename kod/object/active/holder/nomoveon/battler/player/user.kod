@@ -4912,7 +4912,15 @@ messages:
       {
          if IsClass(what,&NumberItem)
          {
-            iCan_hold = Send(self,@GetNumberCanHold,#what=what);
+            if bFromBag
+            {
+               iCan_hold = number;
+            }
+            else
+            {
+               iCan_hold = Send(self,@GetNumberCanHold,#what=what);
+            }
+            
             if iCan_hold = $
             {
                iCan_hold = number;
