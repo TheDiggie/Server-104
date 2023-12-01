@@ -229,6 +229,8 @@ messages:
    {
       local lLocations, lAvailable, iNumLocations, oRoom, sLocations, oGuild;
 
+      oGuild = Send(target,@GetGuild);
+
       lLocations = [Send(SYS,@FindRoomByNum,#num=RID_TOS),
                     Send(SYS,@FindRoomByNum,#num=RID_MARION),
                     Send(SYS,@FindRoomByNum,#num=RID_BARLOQUE),
@@ -239,17 +241,23 @@ messages:
       lAvailable = $;
 
       // 84 spellpower for Island (7 locations, divide by 12)
-      iNumLocations = Bound(iSpellPower/11,1,8);
+      if oGuild
+      {
+         iNumLocations = Bound(iSpellPower/12,1,8);
+      }
+      else
+      {
+         iNumLocations = Bound(iSpellPower/12,1,7);
+      }
+      
 
       if Send(Send(target,@GetOwner),@GetRegion) = RID_KOCATAN
-         OR iNumLocations = 8
+         OR iNumLocations > 6
       {
          lAvailable = Cons(Send(SYS,@FindRoomByNum,
                            #num=RID_KOC_INN),lAvailable);
          --iNumLocations;
       }
-
-      oGuild = Send(target,@GetGuild);
 
       if oGuild <> $
       {  
@@ -321,7 +329,7 @@ messages:
 
       // If we didn't add enough location resources, make up for it
       // with blank ones.
-      while iNumRsc++ < 14
+      while iNumRsc++ < 16
       {
          AddPacket(4,elusion_loc_list_blank);
       }
