@@ -398,6 +398,7 @@ resources:
    user_say_inv_sort_add = "inventory sort add "
    user_say_inv_sort_help = "inventory sort help"
    user_say_inv_sort = "sort inventory"
+   user_say_vault_sort = "sort vault"
 
    // Survival arena user say commands.
    user_say_survival = "survival"
@@ -454,8 +455,9 @@ resources:
       "Say 'inventory sort add scimitar' to add a scimitar, for example, to "
       "your preferences. Any item will work; you may also use item types, "
       "such as weapons, armors, helmets, shields, rings, potions, scrolls, "
-      "wands, rods, reagents, ammo, and food. Say 'sort inventory' to "
-      "instantly sort your inventory at any time. Say 'inventory sort clear' "
+      "wands, rods, reagents, ammo, money, and food. Say 'sort inventory' to "
+      "instantly sort your inventory at any time. Say 'sort vault' to "
+      "instantly sort your vault at any time. Say 'inventory sort clear' "
       "to delete your current preferences. Say 'inventory sort report' to "
       "see your current preferences."
    inventory_sort_report_header = \
@@ -5352,7 +5354,7 @@ messages:
             }
          }
 
-         if StringContain(string,user_say_inventory)
+         if StringContain(string,user_say_inventory) OR StringContain(string,user_say_vault_sort)
          {
             // If UserSayInventory handles the string, don't keep checking.
             if Send(self,@UserSayInventory,#string=string)
@@ -5522,7 +5524,7 @@ messages:
 
    UserSayInventory(string = $)
    {
-      local i, lSortInfo, oTemplateItem, n, bFound;
+      local i, lSortInfo, oTemplateItem, n, bFound, ptempVault, vaultListToSort, vaultListSorted;
 
       if StringEqual(string,user_say_inv_sort_clear)
       {
@@ -5628,6 +5630,17 @@ messages:
                            #lClassOrder=plClassOrderPreferences);
          Send(self,@ToCliInventory);
          Send(self,@ToCliUseList);
+
+         return TRUE;
+      }
+
+      if StringEqual(string,user_say_vault_sort)
+      {
+         ptempVault = Send(self,@GetVault);
+         vaultListToSort = Send(ptempVault,@GetHolderPassive);
+         vaultListSorted = Send(SYS, @SortItemsByType,#lItems=vaultListToSort,
+                                #lClassOrder=plClassOrderPreferences,#forVault=TRUE);
+         Send(ptempVault,@SetHolderPassive,#newPassive=vaultListSorted);
 
          return TRUE;
       }

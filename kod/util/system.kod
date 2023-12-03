@@ -322,6 +322,7 @@ resources:
    inventory_wand_class_name = "wands"
    inventory_scroll_class_name = "scrolls"
    inventory_ring_class_name = "rings"
+   inventory_money_class_name = "money"
 
    system_guild_rsc = "guild"
 
@@ -8363,15 +8364,15 @@ messages:
       return Length(lUserIPList);
    }
 
-   SortItemsByType(lItems = $, lClassOrder=$)
+   SortItemsByType(lItems = $, lClassOrder=$, forVault=FALSE)
    {
-      local lBaseList, lSortedItems, oItem, lSuperClass, cClass,
+      local lBaseList, lSortedItems, lSortedItemsVault, oItem, lSuperClass, cClass,
             lTempClassOrder;
 
       if lItems = $
       {
          return $;
-      }
+      } 
 
       if lClassOrder = $
       {
@@ -8414,6 +8415,15 @@ messages:
          return lItems;
       }
 
+      if forVault
+      {
+         foreach oItem in lSortedItems
+         {
+            lSortedItemsVault = Cons(oItem,lSortedItemsVault);
+         }
+         return lSortedItemsVault;
+      }
+
       return lSortedItems;
    }
 
@@ -8432,7 +8442,8 @@ messages:
                    [inventory_potion_class_name,&Potion],
                    [inventory_wand_class_name,&Wand],
                    [inventory_scroll_class_name,&Scroll],
-                   [inventory_ring_class_name,&Ring]];
+                   [inventory_ring_class_name,&Ring],
+                   [inventory_money_class_name,&Money]];
       
       return lSortInfo;
    }
