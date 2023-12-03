@@ -2479,8 +2479,15 @@ messages:
          iSpellpower -= iAbilityLoss;
       }
 
+      //kraanan spellpower is lacking for some reason, adding this as a bandaid fix -Diggie
+      if viSchool = SS_KRAANAN
+      {
+         iSpellPower = iSpellPower + 20;
+      }
+
       // Bound the result.
       iSpellPower = Bound(iSpellPower,SPELLPOWER_MINIMUM,SPELLPOWER_MAXIMUM);
+
 
       return iSpellPower;
    }
