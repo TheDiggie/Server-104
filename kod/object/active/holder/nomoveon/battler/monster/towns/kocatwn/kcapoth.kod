@@ -43,7 +43,7 @@ resources:
    kocatanapoth_already_have_spell = \
       "You already have knowledge of the %s spell.  You waste my time."
    kocatanapoth_not_ready = \
-      "Your not ready to learn how to craft an ivy circlet.  "
+      "You are not ready to learn how to craft an ivy circlet.  "
 
 classvars:
 

@@ -36,7 +36,7 @@ resources:
    Batail_already_have_spell = \
       "You already have knowledge of the %s spell.  You waste my time."
    Batail_not_ready = \
-      "Your not ready to learn how to craft magic robes.  "
+      "You are not ready to learn how to craft magic robes.  "
 
 classvars:
 
