@@ -322,6 +322,7 @@ resources:
    inventory_wand_class_name = "wands"
    inventory_scroll_class_name = "scrolls"
    inventory_ring_class_name = "rings"
+   inventory_money_class_name = "money"
 
    system_guild_rsc = "guild"
 
@@ -8441,7 +8442,8 @@ messages:
                    [inventory_potion_class_name,&Potion],
                    [inventory_wand_class_name,&Wand],
                    [inventory_scroll_class_name,&Scroll],
-                   [inventory_ring_class_name,&Ring]];
+                   [inventory_ring_class_name,&Ring],
+                   [inventory_money_class_name,&Money]];
       
       return lSortInfo;
    }
