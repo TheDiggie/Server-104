@@ -145,6 +145,11 @@ messages:
 	      return TRUE;
 	   }
 	  
+      if isClass(who,&Monster)
+      {
+	      propagate;
+      }
+
       if send(who,@HasBeatDR)
 	   {
 	      propagate;
