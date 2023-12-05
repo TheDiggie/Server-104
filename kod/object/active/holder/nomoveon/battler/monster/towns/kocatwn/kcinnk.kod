@@ -177,7 +177,8 @@ messages:
             Create(&VaultResign),
             Create(&Meatpie,#number=4),
             Create(&Cheese,#number=6),
-            Create(&Bread,#number=4)
+            Create(&Bread,#number=4),
+            Create(&Gingermen)
          ],
       $,$,$];
 

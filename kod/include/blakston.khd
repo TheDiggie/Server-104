@@ -2054,7 +2054,8 @@
    INSIG_DUKE = 7
    INSIG_SHALILLE = 8
    INSIG_REBEL = 9
-   INSIG_NONE = 10
+   INSIG_QORMAS = 10
+   INSIG_NONE = 11
 
    // Weapons
 

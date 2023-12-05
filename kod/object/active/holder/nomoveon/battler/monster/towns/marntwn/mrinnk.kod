@@ -236,7 +236,8 @@ messages:
             Create(&PantsC,#translation=PT_GRAY_TO_KORANGE),
             Create(&Elderberry,#number=4),
             Create(&Herbs,#number=5),
-            Create(&Torch)
+            Create(&Torch),
+            Create(&Gingermen)
          ],
          $,
          [

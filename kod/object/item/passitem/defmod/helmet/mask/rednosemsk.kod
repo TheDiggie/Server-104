@@ -1,0 +1,49 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+RedNoseMask is FaceMask
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   RedNoseMask_name_rsc = "red nose"
+   RedNoseMask_icon_male_rsc = mmrednose.bgf
+   RedNoseMask_icon_female_rsc = mfrednose.bgf
+   RedNoseMask_desc_rsc = \
+      "A big red nose, your not sure what it's suppose to be for "
+      "but it sure feels festive! "
+
+classvars:
+
+   vrName = RedNoseMask_name_rsc
+   vrDesc = RedNoseMask_desc_rsc
+   vrIcon = RedNoseMask_icon_male_rsc
+
+   vrMaleIcon = RedNoseMask_icon_male_rsc
+   vrFemaleIcon = RedNoseMask_icon_female_rsc
+
+properties:
+
+
+messages:
+
+   Constructed(translation = $)
+   {
+      Send(self,@SetPaletteTranslation,#translation=PT_GRAY_TO_LRED);
+
+      propagate;
+   }
+
+
+end
+////////////////////////////////////////////////////////////////////////////////

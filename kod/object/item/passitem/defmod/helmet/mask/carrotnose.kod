@@ -1,0 +1,49 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CarrotNoseMask is FaceMask
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   CarrotNoseMask_name_rsc = "carrot nose"
+   CarrotNoseMask_icon_male_rsc = mmcarnose.bgf
+   CarrotNoseMask_icon_female_rsc = mfcarnose.bgf
+   CarrotNoseMask_desc_rsc = \
+      "A carrot fitted for your face. Run around looking like the "
+      "most fective snowman!  "
+
+classvars:
+
+   vrName = CarrotNoseMask_name_rsc
+   vrDesc = CarrotNoseMask_desc_rsc
+   vrIcon = CarrotNoseMask_icon_male_rsc
+
+   vrMaleIcon = CarrotNoseMask_icon_male_rsc
+   vrFemaleIcon = CarrotNoseMask_icon_female_rsc
+
+properties:
+
+
+messages:
+
+   Constructed(translation = $)
+   {
+      Send(self,@SetPaletteTranslation,#translation=PT_GRAY_TO_ORANGE);
+
+      propagate;
+   }
+
+
+end
+////////////////////////////////////////////////////////////////////////////////

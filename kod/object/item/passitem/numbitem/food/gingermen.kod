@@ -1,0 +1,67 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Gingermen is Food
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Gingermen_name_rsc = "gingerbread men"
+   Gingermen_icon_rsc = Gingermen.bgf
+   Gingermen_desc_rsc = \
+      "A few delicious gingerbread men baked by the cooks of  "
+      "Bourgeois Castle only during the celebration of Qormas.  "
+
+   Gingermen_name_plural_rsc = "gingerbread men"
+
+   Gingermen_disp_name = "a gingerbread house"
+   Gingermen_disp_icon = gingerhouse.bgf
+   Gingermen_disp_desc = "A gingerbread house containing helpless "
+   "gingerbread men full of delectable flavor! "
+   Gingermen_got_one   = "You pluck a few unsuspecting "
+   "gingerbread men from there home. "
+
+classvars:
+
+   vrName = Gingermen_name_rsc
+   vrIcon = Gingermen_icon_rsc
+   vrDesc = Gingermen_desc_rsc
+
+   vrDisp_name = Gingermen_disp_name
+   vrDisp_Icon = Gingermen_disp_icon
+   vrDisp_Desc = Gingermen_disp_desc
+
+   vrName_plural = Gingermen_name_plural_rsc
+
+   viBulk = 9
+   viWeight = 9
+   viValue_average = 300
+   viGround_group = 2
+
+properties:
+
+   viFilling = 10   
+   viNutrition = 30
+   piNumber = 5
+
+messages:
+
+   NewHoldMessage(who=$,disp=$)
+   "Called whenever a number item is created from a dispenser."
+   {
+      send(who,@msgsenduser,#message_rsc=Gingermen_got_one);
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

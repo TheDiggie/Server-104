@@ -81,7 +81,8 @@ messages:
          [ 
             Create(&VaultContract),
             Create(&VaultResign),
-            Create(&Stew,#number=4)
+            Create(&Stew,#number=4),
+            Create(&Gingermen)
          ],
          $,
          [ 

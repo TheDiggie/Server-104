@@ -50,6 +50,8 @@ resources:
    guildshield_kraanan_over = gshkrov.bgf
    guildshield_jala = gshja.bgf
    guildshield_jala_over = gshjaov.bgf
+   guildshield_qormas = gshqm.bgf
+   guildshield_qormas_over = gshqmov.bgf
    guildshield_window_overlay_rsc = povshldE.bgf
    guildshield_desc_rsc = \
       "\n\nHeavy metal shields of this style are decorated in the standards "
@@ -87,6 +89,7 @@ resources:
    guildshield_insig_duke = "\n\nThe bold seal of Akardius is affixed. "
    guildshield_insig_shalille = "\n\nThe ankh of Shal'ille's blessing is afaced. "
    guildshield_insig_rebel = "\n\nThe rebel flag of Jonas is displayed proudly. "
+   guildshield_insig_qormas = "This shield is decorated with a festive reath for Qormas. "
    guildshield_insig_none = ""
 
 classvars:
@@ -307,6 +310,7 @@ messages:
       else if piInsigniaType = INSIG_DUKE { AddPacket(4,guildshield_insig_duke); }
       else if piInsigniaType = INSIG_SHALILLE { AddPacket(4,guildshield_insig_shalille); }
       else if piInsigniaType = INSIG_REBEL { AddPacket(4, guildshield_insig_rebel); }
+      else if piInsigniaType = INSIG_QORMAS { AddPacket(4, guildshield_insig_qormas); }
       else { AddPacket(4,guildshield_insig_none); }
 
       return;
@@ -400,6 +404,12 @@ messages:
       {
          prShield_emblem_held = guildshield_rebel_over;
          prShield_emblem_drop = guildshield_rebel;
+      }
+
+      if insignia = INSIG_QORMAS
+      {
+         prShield_emblem_held = guildshield_qormas_over;
+         prShield_emblem_drop = guildshield_qormas;
       }
 
       piInsigniaType = insignia;
@@ -692,8 +702,21 @@ messages:
          return 6;
       }
 
+      if piInsigniaType = INSIG_QORMAS
+      {
+         return 10;
+      }
+
       return 0;
    }
 
+   SetQormas()
+   {
+      Send(self,@ChangeGuildShieldColor,#color1=XLAT_TO_GREEN,#color2=XLAT_TO_RED,#override=TRUE);
+      Send(self,@ChangeGuildInsignia,#insignia=INSIG_QORMAS);
+
+      return;
+   }
+   
 end
 ////////////////////////////////////////////////////////////////////////////////

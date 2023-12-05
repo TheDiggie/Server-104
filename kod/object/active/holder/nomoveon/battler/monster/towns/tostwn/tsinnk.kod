@@ -114,7 +114,8 @@ messages:
             Create(&VaultResign),
             Create(&Cheese,#number=3),
             Create(&Mug),
-            Create(&BeerMug)
+            Create(&BeerMug),
+            Create(&Gingermen)
          ],
       $,$,$];
 

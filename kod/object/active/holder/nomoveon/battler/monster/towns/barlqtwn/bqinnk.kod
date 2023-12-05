@@ -163,7 +163,8 @@ messages:
             Create(&PantsC,#translation=PT_GRAY_TO_KGRAY),
             Create(&PantsC,#translation=PT_GRAY_TO_BLACK),
             Create(&TurkeyLeg),
-            Create(&SteakMeal)
+            Create(&SteakMeal),
+            Create(&Gingermen)
          ],
       $,$,$];
 

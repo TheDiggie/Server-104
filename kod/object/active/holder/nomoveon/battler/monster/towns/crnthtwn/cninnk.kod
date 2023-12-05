@@ -54,7 +54,8 @@ messages:
       plFor_sale = [
          [ 
             Create(&VaultContract),
-            Create(&VaultResign)
+            Create(&VaultResign),
+            Create(&Gingermen)
          ],
          $,
          [
