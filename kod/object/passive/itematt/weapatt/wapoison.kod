@@ -1,0 +1,110 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+WeapAttPoison is WeaponAttribute
+
+///////////////////////////////////////////////////////////////////////
+//
+//  This weapon has a chance to blind the opponent every time it does
+//     damage.
+//
+//  Form is:
+//
+//      [ WA_POISON]
+//
+///////////////////////////////////////////////////////////////////////
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   weapattPoison_desc = \
+      "\n\nD's mark is ooz's a pungent toxin that seeps down the metal of the weapon."
+   Poison_fail_use = "You are not yet ready to use %s%s."
+   Poison_worked = "%s%s grasp the wound, screaming as the venom enters!"
+   Poison_dm = "Poison"
+   Poison_info_desc = "15%% chance to cast poison on hit\n"
+
+classvars:
+
+   vrDesc = weapattPoison_desc
+   vrInfoDesc = Poison_info_desc
+   viItem_Att_Num = WA_POISON
+
+   viDifficulty = 9
+   vrDM_trigger = Poison_dm
+   vbAllowSpecialAttributes = FALSE
+
+properties:
+
+   piValue_modifier = 200   /// modify the object's price by 100//
+   piValue_power_modifier = 10
+   piEffect_percent = 15
+
+messages:
+
+   ItemReqUse(oItem=$,oPlayer=$)
+   {
+      /// This person needs 50// in the weapon's proficiency to use
+      if Send(oItem,@GetProf,#who=oPlayer) < 50
+      {
+         Send(oPlayer,@MsgSendUser,#message_rsc=Poison_fail_use,
+               #parm1=Send(oItem,@GetDef),#parm2=Send(oItem,@GetName));
+
+         return FALSE;
+      }
+
+      return TRUE;
+   }
+
+////////////////////////////////////////////////
+///
+///  Effect Functions
+///
+////////////////////////////////////////////////
+
+   ModifyDamage(damage=0,target=$,wielder=$,lData=$)
+   "Wielder has a 1% chance of blinding target with any hit."
+   {
+      local oSpell, iduration, iamount;
+
+      if target = $
+         OR wielder = $
+      {
+         return damage;
+      }
+
+      if Random(1,100) < piEffect_percent
+      {
+         iamount     = Random(2500,6500);
+         iduration   = Random(80000,180000);
+
+         oSpell = Send(SYS,@FindSpellByNum,#num=SID_POISON);
+            
+         send(oSpell,@MakePoisoned,#who=target,
+               #lossrate=iamount,#duration=iduration);
+
+            Send(wielder,@MsgSendUser,#message_rsc=Poison_worked,
+                 #parm1=Send(target,@GetCapDef),#parm2=Send(target,@GetName),
+                 #parm3=Send(target,@GetHisher));
+      }
+
+      return Damage;
+   }
+
+   IsMagicalEffect()
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////
