@@ -4804,6 +4804,7 @@ messages:
 
       if Send(self,@IsInCannotInteractMode)
       {
+               Debug("4");
          Send(self,@MsgSendUser,#message_rsc=user_disallow_get,#report=report,
                #parm1=Send(what,@GetDef),#parm2=Send(what,@GetName));
          Send(self,@WaveSendUser,#what=self,
@@ -4892,6 +4893,7 @@ messages:
       if oOldOwner <> $
          AND NOT Send(oOldOwner,@ReqTaker,#what=what,#taker=self)
       {
+               Debug("5");
          Send(self,@MsgSendUser,#message_rsc=user_disallow_get,#report=report,
               #parm1=Send(what,@GetDef),#parm2=Send(what,@GetName));
          Send(self,@WaveSendUser,#what=self,#wave_rsc=user_cant_pickup_item_wav_rsc);
@@ -4901,6 +4903,7 @@ messages:
 
       if NOT Send(what,@ReqNewOwner,#what=self)
       {
+               Debug("6");
          Send(self,@MsgSendUser,#message_rsc=user_disallow_get,#report=report,
               #parm1=Send(what,@GetDef),#parm2=Send(what,@GetName));
          Send(self,@WaveSendUser,#what=self,#wave_rsc=user_cant_pickup_item_wav_rsc);
@@ -4921,14 +4924,16 @@ messages:
             else
             {
                iCan_hold = Send(self,@GetNumberCanHold,#what=what);
+               Debug(iCan_hold); 
             }
             
-            if iCan_hold = $
+            if iCan_hold = $ or iCan_hold = -1
             {
                iCan_hold = number;
             }
 
             iNumber = bound(iCan_hold,$,number);
+               Debug(iNumber);
 
             if iNumber > 0
             {
@@ -4955,6 +4960,7 @@ messages:
                }
                else
                {
+               Debug("7");
                   Send(what,@AddNumber,#number=iNumber);
 
                   Send(self,@MsgSendUser,#message_rsc=user_disallow_get,#report=report,
@@ -4968,6 +4974,7 @@ messages:
             }
             else
             {
+               Debug("8");
                Send(self,@MsgSendUser,#message_rsc=user_disallow_get,#report=report,
                     #parm1=Send(what,@GetDef),#parm2=Send(what,@GetName));
                     
