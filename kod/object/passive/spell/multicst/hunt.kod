@@ -107,15 +107,6 @@ messages:
 
       oTarget = First(lTargets);
 
-      if NOT Send(oTarget,@CheckPlayerFlag,#flag=PFLAG_MURDERER)
-      {
-         foreach i in Send(oPrism,@GetCasters)
-         {
-            Send(i,@MsgSendUser,#message_rsc=hunt_must_be_murderer);
-         }
-         return;
-      }
-
       foreach i in Send(oPrism,@GetCasters)
       {
          if i = oTarget
