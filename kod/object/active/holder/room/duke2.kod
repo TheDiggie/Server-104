@@ -298,8 +298,8 @@ messages:
             #animation=ANIMATE_FLOOR_LIFT,#height=356,#speed=0);
       Send(self,@SetSector,#sector=FEAST_DOOR_OPEN,
             #animation=ANIMATE_FLOOR_LIFT,#height=419,#speed=0);
-      Send(Send(SYS,@FindRoomByNum,#num=RID_DUKE4),@SetLocked,
-            #value=0);
+      //Send(Send(SYS,@FindRoomByNum,#num=RID_DUKE4),@SetLocked,
+      //      #value=0);
             
       return;
    }

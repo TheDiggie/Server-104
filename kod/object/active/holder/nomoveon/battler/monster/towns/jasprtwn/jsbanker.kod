@@ -32,6 +32,10 @@ resources:
 
    JasperBanker_entry_welcome = "Hello %s%s, and welcome."
 
+   Jasperbanker_unwanted_give = \
+      "~k%s%s tells you, \"~IGuh~I I don't have any place to put "
+      "that.  Now if it were shillings...~n~k\""
+
 classvars:
 
    vrName = JasperBanker_name_rsc
@@ -40,8 +44,12 @@ classvars:
    viAttributes = \
       MOB_NOFIGHT | MOB_BANKER | MOB_NOMOVE | MOB_LISTEN \
       | MOB_RANDOM | MOB_RECEIVE | MOB_TEACHER
+
    viOccupation = MOB_ROLE_BANKER
+
    viBank = BID_TOS
+
+   vrUnwanted_give = Jasperbanker_unwanted_give
 
 properties:
 

@@ -39,12 +39,7 @@ resources:
       "you can use the + and - keys to zoom in/out.  Other players will show "
       "up as blue dots, monsters as red dots, and NPCs as black dots.  "
       "You can add comments to the map by RIGHT CLICKING on the map, and then "
-      "entering your reminder to yourself.\n\n"
-      "-------------------\n\n"
-      "After you experiment a bit, you should head towards the blacksmith's "
-      "shop, which is housed in the south wing of the stone building at the "
-      "east end of the pond. The shop has the hammer and anvil sign next to "
-      "the door."
+      "entering your reminder to yourself."
 
    raza_signname2 = "Entering the world"
    raza_sign2 = \
@@ -72,6 +67,15 @@ resources:
    raza_locked_tavern = \
       "The door to Eric D'Jorn's living quarters is locked."
 
+   raza_info = \
+      "The town of Raza offers almost everything a fresh adventurer could "
+      "possibly wish for.  Equipment, capable trainers and - of course - "
+      "quests!  Take your time and look around for yourself.  I'll tell you "
+      "a bit more about the town as we walk around."
+      "\n~I[Hint: Interact with NPCs and objects with a right click.  "
+      "In Ogre, target the NPC or object with a left click instead, then "
+      "use the symbols in the target window to interact.]~I"
+
 classvars:
 
    vrName = room_name_raza
@@ -87,6 +91,11 @@ classvars:
    viFlag_col = 6
 
    vrWading_Sound = raza_wading_sound
+
+   vrInfo = raza_info
+
+   // Tutorial messages are only displayed once unless asked about.
+   viInfo_time = FALSE
 
 properties:
 
@@ -108,9 +117,11 @@ messages:
       plExits = Cons([ 7, 62, ROOM_LOCKED_DOOR, raza_locked_stable ],plExits); // Stable
       plExits = Cons([ 23, 31, ROOM_LOCKED_DOOR, raza_locked_clock ],plExits); // Temple
       plExits = Cons([ 23, 32, ROOM_LOCKED_DOOR, raza_locked_clock ],plExits); // Temple
-      plExits = Cons([ 15, 50, ROOM_LOCKED_DOOR, raza_locked_townhall ],plExits); // Townhall
-      plExits = Cons([ 14, 50, ROOM_LOCKED_DOOR, raza_locked_townhall ],plExits); // Townhall
-      plExits = Cons([ 12, 11, ROOM_LOCKED_DOOR, raza_locked_tavern ],plExits); // Tavern
+
+      plExits = Cons([ 12, 11, RID_RAZA_VAULT, 5, 7, ROTATE_NONE ],plExits); // Vault
+
+      plExits = Cons([ 15, 50, RID_RAZA_BANK, 5, 2, ROTATE_NONE ],plExits); // RID_RAZA_BANK
+      plExits = Cons([ 14, 50, RID_RAZA_BANK, 5, 2, ROTATE_NONE ],plExits); // RID_RAZA_BANK
 
       plExits = Cons([ 7, 26, RID_RAZA_INN, 8, 6, ROTATE_NONE ],plExits); // RID_RAZA_INN (Inn)
       plExits = Cons([ 7, 27, RID_RAZA_INN, 8, 6, ROTATE_NONE ],plExits); // RID_RAZA_INN (Inn)
@@ -144,9 +155,12 @@ messages:
       plExits = Cons([ 7, 10, RID_RAZA_HALL, 5, 8, ROTATE_NONE ],plExits); // Adventurer's Hall
       plExits = Cons([ 7, 11, RID_RAZA_HALL, 5, 8, ROTATE_NONE ],plExits); // Adventurer's Hall
 
-      plExits = Cons([ 3, 37, RID_RAZA_FOREST, 43, 41, ROTATE_NONE ],plExits);
-      plExits = Cons([ 3, 38, RID_RAZA_FOREST, 43, 41, ROTATE_NONE ],plExits);
-      plExits = Cons([ 3, 39, RID_RAZA_FOREST, 43, 41, ROTATE_NONE ],plExits);
+      //plExits = Cons([ 3, 37, RID_RAZA_FOREST, 43, 41, ROTATE_NONE ],plExits);
+      //plExits = Cons([ 3, 38, RID_RAZA_FOREST, 43, 41, ROTATE_NONE ],plExits);
+      //plExits = Cons([ 3, 39, RID_RAZA_FOREST, 43, 41, ROTATE_NONE ],plExits);
+
+      plEdge_Exits = $;
+      plEdge_Exits = Cons([LEAVE_NORTH, RID_RAZA_FOREST, 43, 41, ROTATE_NONE], plEdge_exits);
 
       propagate;
    }
@@ -159,20 +173,20 @@ messages:
       Send(self,@NewHold,#what=oSign,#new_row=12,#new_col=27,
             #fine_row=10,#fine_col=16);
       oSign=Create(&Sign,#desc=raza_sign2,#newbie=TRUE,#name=raza_signname2);
-      Send(self,@NewHold,#what=oSign,#new_row=3,#new_col=40,
-            #fine_row=37,#fine_col=8);
+      Send(self,@NewHold,#what=oSign,#new_row=5,#new_col=40,
+            #fine_row=16,#fine_col=0);
 
-      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_MIDTREE2),
             #new_row=24,#new_col=36,#fine_row=0,#fine_col=0,#new_angle=ANGLE_EAST); // Mausoleum
-      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_MIDTREE2),
             #new_row=29,#new_col=5,#fine_row=32,#fine_col=32,#new_angle=ANGLE_EAST); // Museum
-      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_MIDTREE2),
             #new_row=28,#new_col=7,#fine_row=32,#fine_col=32,#new_angle=ANGLE_EAST); // Museum
-      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_MIDTREE2),
             #new_row=26,#new_col=6,#fine_row=32,#fine_col=32,#new_angle=ANGLE_EAST); // Museum
-      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_MIDTREE2),
             #new_row=26,#new_col=8,#fine_row=32,#fine_col=32,#new_angle=ANGLE_EAST); // Museum
-      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_MIDTREE2),
             #new_row=24,#new_col=5,#fine_row=32,#fine_col=32,#new_angle=ANGLE_EAST); // Museum
 
       Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Apple),
@@ -181,28 +195,28 @@ messages:
       Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Apple),
             #new_row=4,#new_col=13,#fine_row=56,#fine_col=04,#new_angle=ANGLE_EAST); // Tavern
 
-      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_MIDTREE2),
             #new_row=6,#new_col=30,#fine_row=0,#fine_col=32,#new_angle=ANGLE_EAST); // Inn
-      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_MIDTREE2),
             #new_row=6,#new_col=33,#fine_row=0,#fine_col=0,#new_angle=ANGLE_EAST); // Inn
-      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_MIDTREE2),
             #new_row=6,#new_col=21,#fine_row=0,#fine_col=56,#new_angle=ANGLE_EAST); // Inn
-      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_MIDTREE2),
             #new_row=23,#new_col=21,#fine_row=0,#fine_col=32,#new_angle=ANGLE_EAST); // Mausoleum
-      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_MIDTREE2),
             #new_row=13,#new_col=49,#fine_row=10,#fine_col=10,#new_angle=ANGLE_EAST); // Apothecary
-      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
-            #new_row=23,#new_col=27,#fine_row=32,#fine_col=32,#new_angle=ANGLE_EAST); // Mausoleum
-      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_MIDTREE2),
+            #new_row=23,#new_col=25,#fine_row=32,#fine_col=32,#new_angle=ANGLE_EAST); // Mausoleum
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_MIDTREE2),
             #new_row=19,#new_col=46,#fine_row=48,#fine_col=32,#new_angle=ANGLE_EAST); // Blacksmith
-      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_MIDTREE2),
             #new_row=6,#new_col=43,#fine_row=0,#fine_col=0,#new_angle=ANGLE_EAST); // Gate
-      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_TREE1),
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_MIDTREE2),
             #new_row=16,#new_col=48,#fine_row=56,#fine_col=20,#new_angle=ANGLE_EAST); // Blacksmith
-      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_SHRUB),
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_SHRUBEE1),
             #new_row=28,#new_col=5,#fine_row=32,#fine_col=0,#new_angle=ANGLE_EAST); // Museum
 
-      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_RAZA_SHRUB),
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_SHRUBEE1),
             #new_row=30,#new_col=54,#fine_row=24,#fine_col=56,#new_angle=ANGLE_EAST); // Farmland
       Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_NESTOBJ2),
             #new_row=27,#new_col=50,#fine_row=56,#fine_col=32,#new_angle=ANGLE_EAST); // Farmland
@@ -315,6 +329,18 @@ messages:
       Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_CORN),
             #new_row=6,#new_col=57,#fine_row=56,#fine_col=8,#new_angle=ANGLE_EAST); // Outside farm
 
+      Send(self,@NewHold,#what=Create(&Lamp),
+            #new_row=4,#new_col=36,#fine_row=8,#fine_col=40,#new_angle=ANGLE_EAST); // To Forrest
+      Send(self,@NewHold,#what=Create(&Lamp),
+            #new_row=4,#new_col=40,#fine_row=8,#fine_col=8,#new_angle=ANGLE_EAST); // To Forrest
+
+      Send(self,@NewHold,#what=Create(&WoodenBox),
+            #new_row=31,#new_col=26,#fine_row=8,#fine_col=32,#new_angle=ANGLE_NORTH);
+      Send(self,@NewHold,#what=Create(&Brazier),
+            #new_row=29,#new_col=24,#fine_row=14,#fine_col=16,#new_angle=ANGLE_NORTH);
+      Send(self,@NewHold,#what=Create(&Brazier),
+            #new_row=26,#new_col=24,#fine_row=48,#fine_col=16,#new_angle=ANGLE_NORTH);
+
       Send(self,@NewHold,#what=Create(&Cow),#new_row=27,#new_col=48);
       Send(self,@NewHold,#what=Create(&Cow),#new_row=29,#new_col=47);
       Send(self,@NewHold,#what=Create(&Cow),#new_row=30,#new_col=45);
@@ -338,6 +364,27 @@ messages:
 
    AvailableTombstone()
    {
+      return;
+   }
+
+   // Excluding the inn.
+   GetMercenaryInfoObject(who=$)
+   {
+      local iRow, iCol, i;
+
+      iRow = Send(who,@GetRow);
+      iCol = Send(who,@GetCol);
+
+      foreach i in plExits
+      {
+         if (Nth(i,3) <> RID_RAZA_INN)
+            AND (Abs(iRow - First(i)) < 3)
+            AND (Abs(iCol - Nth(i,2)) < 3)
+         {
+            return Send(SYS,@FindRoomByNum,#num=Nth(i,3));
+         }
+      }
+
       return;
    }
 

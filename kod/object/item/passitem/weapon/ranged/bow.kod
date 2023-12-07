@@ -109,9 +109,9 @@ messages:
    {
       // Checks for using other weapons in weapon superclass.
       // Here we are just concerned with shields and lutes.
-      if IsClass(what,&Spirit)
+      if IsClass(poOwner,&Spirit)
       {
-         return FALSE;
+         return;
       }
       else
       if (IsClass(what,&Shield)

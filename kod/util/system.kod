@@ -2504,6 +2504,8 @@ messages:
       Send(self,@CreateOneRoomIfNew,#num=RID_RAZA_BAR,#class=&RazaBar);
       Send(self,@CreateOneRoomIfNew,#num=RID_RAZA_MUSEUM,#class=&RazaMuseum);
       Send(self,@CreateOneRoomIfNew,#num=RID_RAZA_HALL,#class=&RazaHall);
+      Send(self,@CreateOneRoomIfNew,#num=RID_RAZA_BANK,#class=&RazaBank);
+      Send(self,@CreateOneRoomIfNew,#num=RID_RAZA_VAULT,#class=&RazaVault);
 
       Send(self,@CreateOneRoomIfNew,#num=RID_FAROL_WEST,#class=&FarolWest);
       Send(self,@CreateOneRoomIfNew,#num=RID_RAZA_FOREST,#class=&RazaForest);
@@ -2748,11 +2750,11 @@ messages:
       }
 
       // Restore state of Duke's feast hall
-      oFeast_Hall = Send(self, @FindRoomByNum, #num = RID_DUKE4);
-      if oFeast_Hall <> $
-      {
-         Send(oFeast_Hall, @SetLocked, #value = bFeast_Hall_Locked);
-      }
+      //oFeast_Hall = Send(self, @FindRoomByNum, #num = RID_DUKE4);
+      //if oFeast_Hall <> $
+      //{
+      //   Send(oFeast_Hall, @SetLocked, #value = bFeast_Hall_Locked);
+      //}
 
       // Fix up old Raza RIDs
       foreach i in plUsers

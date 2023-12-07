@@ -29,9 +29,10 @@ resources:
    kocatanbanker_entry_welcome = \
       "Greetings.  We hope to serve you well, your valuables will be "
       "safe with us."
+
    kocatanbanker_unwanted_give = \
-      "~k%s%s tells you, \"You mistake me for my brother.  He will "
-      "store your items.~n~k\""
+      "~k%s%s tells you, \"~IGuh~I I don't have any place to put "
+      "that.  Now if it were shillings...~n~k\""
 
 classvars:
 

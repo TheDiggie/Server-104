@@ -39,6 +39,10 @@ resources:
    DR_bnkr_player_full           = "The wieght of %i souls is to much for your mortal body to bear."
    DR_bnkr_player_all_full       = "The wieght of a single other souls is to much for your mortal body to bear."
 
+   DR_Banker_not_Shils = \
+      "~k%s%s tells you, \"~IGuh~I I don't have any place to put "
+      "that.  Now if it were shillings...~n~k\""
+
 classvars:
 
    vrName = Deathbanker_name_rsc
@@ -60,9 +64,12 @@ classvars:
    viAttributes = \
       MOB_NOFIGHT | MOB_SELLER | MOB_RANDOM | MOB_LISTEN \
       | MOB_NOMOVE | MOB_RECEIVE | MOB_BANKER
+
    viOccupation = MOB_ROLE_BANKER
 
    viBank = BID_DR
+
+   vrUnwanted_give = DR_Banker_not_Shils
 
 properties:
 

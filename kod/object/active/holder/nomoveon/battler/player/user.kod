@@ -4927,7 +4927,7 @@ messages:
                Debug(iCan_hold); 
             }
             
-            if iCan_hold = $ or iCan_hold = -1
+            if iCan_hold = $ OR iCan_hold = -1
             {
                iCan_hold = number;
             }

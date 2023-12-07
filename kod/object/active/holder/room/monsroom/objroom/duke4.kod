@@ -41,12 +41,12 @@ properties:
    piBaseLight = LIGHT_NICE
    piOutside_factor = OUTDOORS_SOME
    
-   pbLocked = TRUE
+   pbLocked = FALSE
    prMusic = duke4_music
 
 messages:
 
-   SetLocked(value = TRUE)
+   SetLocked(value = FALSE)
    {
       pbLocked = value;
 

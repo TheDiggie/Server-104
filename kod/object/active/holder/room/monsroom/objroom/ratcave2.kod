@@ -437,7 +437,7 @@ messages:
                           [ 7, TREASURE_OBJECT, &DarkAngelFeather, 15 ],
                           [ 7, TREASURE_OBJECT, &EntrootBerry, 30 ],
                           [ 7, TREASURE_OBJECT, &Ruby, 25 ],
-                          [ 7, TREASURE_OBJECT, &Money, 5000 ]
+                          [ 7, TREASURE_OBJECT, &Shillings, 5000 ]
                         ];
 
       return;
