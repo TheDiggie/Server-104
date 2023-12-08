@@ -5951,6 +5951,7 @@ messages:
       plItemTemplates = cons(create(&GreenHydraScale),plItemTemplates);
       plItemTemplates = cons(create(&RedHydraScale),plItemTemplates);
       plItemTemplates = cons(create(&BlackDragonScale),plItemTemplates);
+      plItemTemplates = cons(create(&TyrantHorns),plItemTemplates);
 
       // Edibles
       plItemTemplates = cons(create(&KocatanMug),plItemTemplates);

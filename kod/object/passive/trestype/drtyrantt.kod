@@ -31,7 +31,7 @@ messages:
                      [&Emerald, 10],
                      [&Mushroom, 10],
                      [&PurpleMushroom, 20],
-                     [&InkyCap, 20],
+                     [&TyrantHorns, 20],
                      [&GreenMushroom, 10]
                   ];
 
