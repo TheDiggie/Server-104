@@ -266,14 +266,30 @@ messages:
          return;
       }
 
-      if IsClass(apply_on,&Weapon)
-      OR IsClass(apply_on,&FaceMask)
-      OR IsClass(apply_on,&Armor)
+      if IsClass(apply_on,&LeatherArmor)
+      OR IsClass(apply_on,&RangedWeapon)
+      OR IsClass(apply_on,&FistWeapons)
+      OR IsClass(apply_on,&BaseWand)
+      OR IsClass(apply_on,&RobeBase)
+      OR IsClass(apply_on,&Circlet)
+      OR IsClass(apply_on,&IvyCirclet)
+      OR IsClass(apply_on,&Wizardhat)
       {
          Send(what,@MsgSendUser,#message_rsc=cant_dye);
 
+         return;
+      }
+
+      if IsClass(apply_on,&Weapon)
+      OR IsClass(apply_on,&FaceMask)
+      OR IsClass(apply_on,&Armor)
+      OR IsClass(apply_on,&Shield)
+      OR IsClass(apply_on,&Helmet)
+      {
          return TRUE;
       }
+
+      Send(what,@MsgSendUser,#message_rsc=cant_dye);
 
       return;
    }
