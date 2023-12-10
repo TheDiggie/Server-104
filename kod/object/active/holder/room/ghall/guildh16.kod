@@ -225,6 +225,33 @@ messages:
       Send(self,@NewHold,#what=Create(&Chest),
             #new_row=9,#new_col=8,#new_angle=ANGLE_NORTH);
 
+      Send(self,@NewHold,#what=Create(&SpinningWheel),
+           #new_row=27,#new_col=7,#fine_row=52,#fine_col=52);
+      Send(self,@NewHold,#what=Create(&Loom),
+           #new_row=29,#new_col=7,#fine_row=60,#fine_col=49);
+      Send(self,@NewHold,#what=Create(&Forge),
+           #new_row=32,#new_col=7,#fine_row=14,#fine_col=28);
+      Send(self,@NewHold,#what=Create(&KocatanForge),
+           #new_row=32,#new_col=9,#fine_row=15,#fine_col=6);
+      Send(self,@NewHold,#what=Create(&CraftingAnvil),
+           #new_row=32,#new_col=12,#fine_row=28,#fine_col=60);
+      Send(self,@NewHold,#what=Create(&ShaveHorse),
+           #new_row=32,#new_col=14,#fine_row=32,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&TanningRack),
+           #new_row=30,#new_col=15,#fine_row=40,#fine_col=51,
+            #new_angle=ANGLE_NORTH_WEST);
+      Send(self,@NewHold,#what=Create(&KocatanTanningRack),
+           #new_row=29,#new_col=17,#fine_row=59,#fine_col=48,
+            #new_angle=ANGLE_NORTH);
+      Send(self,@NewHold,#what=Create(&SplittingStump),
+           #new_row=26,#new_col=11,#fine_row=49,#fine_col=45);
+      Send(self,@NewHold,#what=Create(&KocatanSplittingStump),
+           #new_row=25,#new_col=11,#fine_row=6,#fine_col=43);
+      Send(self,@NewHold,#what=Create(&GoadsAnvil),
+           #new_row=23,#new_col=11,#fine_row=49,#fine_col=55);
+      Send(self,@NewHold,#what=Create(&KocatanAnvil),
+           #new_row=23,#new_col=14,#fine_row=47,#fine_col=23);
+
       propagate;
    }
 
