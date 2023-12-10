@@ -1,0 +1,115 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+BlackDust is PigmentDust
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   BlackDust_name_one_rsc = "black pigment dust"
+   BlackDust_name_many_rsc = "black pigment dust"
+   
+   BlackDust_icon_rsc = colordust.bgf
+   BlackDust_desc_rsc = "This is a pile black pigment dust. \n\nCan be mixed with following : "
+   "\n\nPurple pigment dust to make dark purple pigment dust"
+   "\nRed pigment dust to make dark red pigment dust"
+   "\nBlue pigment dust to make dark blue pigment dust"
+   "\nGreen pigment dust to make dark green pigment dust"
+   "\nPink pigment dust to make red pigment dust"
+   "\nLight green pigment dust to make green pigment dust"
+   "\nLight blue pigment dust to make blue pigment dust"
+   "\nLight purple pigment dust to make purple pigment dust"
+   "\nLight orange pigment dust to make orange pigment dust"
+   "\nLight yellow pigment dust to make yellow pigment dust"
+
+classvars:
+
+   vrName = BlackDust_name_one_rsc
+   vrIcon = BlackDust_icon_rsc
+   vrDesc = BlackDust_desc_rsc
+
+   vrName_plural = BlackDust_name_many_rsc
+
+properties:
+
+   piItem_flags = 44
+
+messages:
+
+   CanMix(what=$)
+   {
+      if IsClass(what,&RedDust)
+      OR IsClass(what,&PurpleDust)
+      OR IsClass(what,&BlueDust)
+      OR IsClass(what,&GreenDust)
+      OR IsClass(what,&LightBlueDust)
+      OR IsClass(what,&LightGreenDust)
+      OR IsClass(what,&PinkDust)
+      OR IsClass(what,&LightPurpleDust)
+      OR IsClass(what,&LightOrangeDust)
+      OR IsClass(what,&LightYellowDust)
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   GetNewColor(what=$)
+   {
+      if IsClass(what,&RedDust)
+      {
+         return &DarkRedDust;
+      }
+      else if IsClass(what,&PurpleDust)
+      {
+         return &DarkPurpleDust;
+      }
+      else if IsClass(what,&BlueDust)
+      {
+         return &DarkBlueDust;
+      }
+      else if IsClass(what,&GreenDust)
+      {
+         return &DarkGreenDust;
+      }
+      else if IsClass(what,&LightBlueDust)
+      {
+         return &BlueDust;
+      }
+      else if IsClass(what,&LightGreenDust)
+      {
+         return &GreenDust;
+      }
+      else if IsClass(what,&PinkDust)
+      {
+         return &RedDust;
+      }
+      else if IsClass(what,&LightPurpleDust)
+      {
+         return &PurpleDust;
+      }
+      else if IsClass(what,&LightOrangeDust)
+      {
+         return &OrangeDust;
+      }
+      else if IsClass(what,&LightYellowDust)
+      {
+         return &YellowDust;
+      }
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

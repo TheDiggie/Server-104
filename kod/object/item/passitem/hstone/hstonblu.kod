@@ -35,8 +35,11 @@ classvars:
 
    viColor = XLAT_TO_BLUE
 
+   viDustColor = &BlueDust
+   
 properties:
 
+   
 messages:
 
    CreateXeo()

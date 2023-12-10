@@ -6111,6 +6111,34 @@ messages:
       plItemTemplates = cons(create(&VaultContract),plItemTemplates);
       plItemTemplates = cons(create(&VaultResign),plItemTemplates);
       
+      //Dye Stuff
+      plItemTemplates = cons(create(&DyeBottle),plItemTemplates);
+
+      plItemTemplates = cons(create(&BlackDust),plItemTemplates);
+      plItemTemplates = cons(create(&WhiteDust),plItemTemplates);
+
+      plItemTemplates = cons(create(&RedDust),plItemTemplates);
+      plItemTemplates = cons(create(&BlueDust),plItemTemplates);
+      plItemTemplates = cons(create(&PurpleDust),plItemTemplates);
+      plItemTemplates = cons(create(&GreenDust),plItemTemplates);
+      plItemTemplates = cons(create(&OrangeDust),plItemTemplates);
+      plItemTemplates = cons(create(&YellowDust),plItemTemplates);
+      plItemTemplates = cons(create(&BrownDust),plItemTemplates);
+
+      plItemTemplates = cons(create(&LightBlueDust),plItemTemplates);
+      plItemTemplates = cons(create(&LightGreenDust),plItemTemplates);
+      plItemTemplates = cons(create(&LightPurpleDust),plItemTemplates);
+      plItemTemplates = cons(create(&LightOrangeDust),plItemTemplates);
+      plItemTemplates = cons(create(&LightYellowDust),plItemTemplates);
+      plItemTemplates = cons(create(&PinkDust),plItemTemplates);
+
+      plItemTemplates = cons(create(&DarkGreenDust),plItemTemplates);
+      plItemTemplates = cons(create(&DarkBlueDust),plItemTemplates);
+      plItemTemplates = cons(create(&DarkPurpleDust),plItemTemplates);
+      plItemTemplates = cons(create(&DarkRedDust),plItemTemplates);
+      plItemTemplates = cons(create(&DarkOrangeDust),plItemTemplates);
+      plItemTemplates = cons(create(&DarkBrownDust),plItemTemplates);
+
       return;
    }
 

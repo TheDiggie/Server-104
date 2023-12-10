@@ -1,0 +1,295 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DyeBottle is PassiveItem
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   DyeBottle_name_rsc = "dye bottle"
+   DyeBottle_icon_rsc = dyebottle.bgf
+   DyeBottle_desc_rsc = "This is a bottle of "
+   TempColor          = "clear liquid. You can mix in colored powders to make dye."
+
+   no_dye             = "There no dye in the bottle!"
+   cant_dye           = "You can't dye that!"
+   dyed_item          = "You dyed the %s %s!"
+
+   color_black_dec    = "black dye."
+   color_black        = "black"
+
+   color_white_dec    = "white dye."
+   color_white        = "white"
+
+   color_pink_dec     = "pink dye."
+   color_pink         = "pink"
+
+   color_red_dec      = "red dye."
+   color_red          = "red"
+
+   color_dred_dec     = "dark red dye."
+   color_dred         = "dark red"
+
+   color_blue_dec     = "blue dye."
+   color_blue         = "blue"
+
+   color_dblue_dec    = "dark blue dye."
+   color_dblue        = "dark blue"
+
+   color_lblue_dec    = "light blue dye."
+   color_lblue        = "light blue"
+
+   color_purple_dec   = "purple dye."
+   color_purple       = "purple"
+
+   color_dpurp_dec    = "dark purple dye."
+   color_dpurp        = "dark purple"
+
+   color_lpurple_dec  = "light purple dye."
+   color_lpurple      = "light purple"
+
+   color_brown_dec    = "brown dye."
+   color_brown        = "brown"
+
+   color_dbrown_dec    = "down brown dye."
+   color_dbrown        = "down brown"
+
+   color_yellow_dec   = "yellow dye."
+   color_yellow       = "yellow"
+
+   color_lyellow_dec   = "light yellow dye."
+   color_lyellow       = "light yellow"
+
+   color_dgreen_dec   = "dark green dye."
+   color_dgreen       = "dark green"
+
+   color_green_dec    = "green dye."
+   color_green        = "green"
+
+   color_lgreen_dec   = "light green dye."
+   color_lgreen       = "light green"
+
+   color_orange_dec   = "orange dye."
+   color_orange       = "orange"
+
+   color_lorange_dec   = "light orange dye."
+   color_lorange       = "light orange"
+
+   color_dorange_dec   = "dark orange dye."
+   color_dorange       = "dark orange"
+
+classvars:
+
+   vrName  = DyeBottle_name_rsc
+   vrIcon = DyeBottle_icon_rsc
+
+   viBulk = 1
+   viWeight = 1
+   viValue_average = 35000
+
+   viGround_group = 1
+   viInventory_group = 1
+
+   viUse_type = ITEM_SINGLE_USE
+   viItem_type = ITEMTYPE_ROD
+
+properties:
+
+   vrDesc  = DyeBottle_desc_rsc
+   vrColorDec = TempColor
+   vrColor = TempColor
+
+   viObject_flags = OF_APPLYABLE | OF_GETTABLE
+
+messages:
+
+   Constructor(Color = $)
+   {
+      if Color <> $
+      {
+         send(self,@SetColor,#Color=Color);
+      }
+
+      propagate;
+   }
+
+   SetColor(Color = $)
+   {
+      piItem_flags = Color;
+
+      if Color = 44
+      {
+         vrColorDec = color_black_dec;
+         vrColor    = color_black;
+      }
+      else if Color = 32
+      {
+         vrColorDec = color_blue_dec;
+         vrColor    = color_blue;
+      }
+      else if Color = 23
+      {
+         vrColorDec = color_lblue_dec;
+         vrColor    = color_lblue;
+      }
+      else if Color = 41
+      {
+         vrColorDec = color_dblue_dec;
+         vrColor    = color_dblue;
+      }
+      else if Color = 28
+      {
+         vrColorDec = color_brown_dec;
+         vrColor    = color_brown;
+      }
+      else if Color = 29
+      {
+         vrColorDec = color_dbrown_dec;
+         vrColor    = color_dbrown;
+      }
+      else if Color = 36
+      {
+         vrColorDec = color_dgreen_dec;
+         vrColor    = color_dgreen;
+      }
+      else if Color = 12
+      {
+         vrColorDec = color_green_dec;
+         vrColor    = color_green;
+      }
+      else if Color = 21
+      {
+         vrColorDec = color_lgreen_dec;
+         vrColor    = color_lgreen;
+      }
+      else if Color = 15
+      {
+         vrColorDec = color_purple_dec;
+         vrColor    = color_purple;
+      }
+      else if Color = 39
+      {
+         vrColorDec = color_dpurp_dec;
+         vrColor    = color_dpurp;
+      }
+      else if Color = 24
+      {
+         vrColorDec = color_lpurple_dec;
+         vrColor    = color_lpurple;
+      }
+      else if Color = 68
+      {
+         vrColorDec = color_pink_dec;
+         vrColor    = color_pink;
+      }
+      else if Color = 33
+      {
+         vrColorDec = color_red_dec;
+         vrColor    = color_red;
+      }
+      else if Color = 42
+      {
+         vrColorDec = color_dred_dec;
+         vrColor    = color_dred;
+      }
+      else if Color = 48
+      {
+         vrColorDec = color_white_dec;
+         vrColor    = color_white;
+      }
+      else if Color = 16
+      {
+         vrColorDec = color_yellow_dec;
+         vrColor    = color_yellow;
+      }
+      else if Color = 25
+      {
+         vrColorDec = color_lyellow_dec;
+         vrColor    = color_lyellow;
+      }
+      else if Color = 47
+      {
+         vrColorDec = color_orange_dec;
+         vrColor    = color_orange;
+      }
+      else if Color = 19
+      {
+         vrColorDec = color_lorange_dec;
+         vrColor    = color_lorange;
+      }
+      else if Color = 10
+      {
+         vrColorDec = color_dorange_dec;
+         vrColor    = color_dorange;
+      }
+
+      if poOwner <> $
+      {
+         Send(poOwner,@SomethingChanged,#what=self);
+      }
+      return;
+   }
+
+   GetColor()
+   {
+      return piItem_flags;
+   }
+
+   AppendDesc()
+   {
+      AddPacket(4,vrColorDec);
+
+      return;
+   }
+
+   ReqNewApply(what = $,apply_on = $)
+   {
+      if NOT IsClass(poOwner,&User)
+      {
+         return;
+      }
+      
+      if piItem_flags = 0
+      {
+         Send(what,@MsgSendUser,#message_rsc=no_dye);
+
+         return;
+      }
+
+      if IsClass(apply_on,&Weapon)
+      OR IsClass(apply_on,&FaceMask)
+      OR IsClass(apply_on,&Armor)
+      {
+         Send(what,@MsgSendUser,#message_rsc=cant_dye);
+
+         return TRUE;
+      }
+
+      return;
+   }
+
+   NewApplied(what = $,apply_on = $)
+   {
+      Send(apply_on,@SetItemColor,#flags=piItem_flags);
+
+      Send(what,@MsgSendUser,#message_rsc=dyed_item,#parm1=send(apply_on,@GetName),#parm2=vrColor);
+
+      Send(poOwner,@SomethingChanged,#what=apply_on);
+
+      Send(self,@Delete);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

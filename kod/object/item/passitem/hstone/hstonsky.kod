@@ -35,6 +35,8 @@ classvars:
 
    viColor = XLAT_TO_SKY
 
+   viDustColor = &LightBlueDust
+   
 properties:
 
 messages:

@@ -35,6 +35,8 @@ classvars:
 
    viColor = XLAT_TO_SKIN4
 
+   viDustColor = &BrownDust
+
 properties:
 
 messages:

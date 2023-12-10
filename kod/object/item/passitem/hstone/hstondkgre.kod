@@ -34,6 +34,9 @@ classvars:
    viBulk = 10
 
    viColor = PT_REDTODGREEN3
+   
+   viDustColor = &DarkGreenDust
+   
 properties:
 
 messages:

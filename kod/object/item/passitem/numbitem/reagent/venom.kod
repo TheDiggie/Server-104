@@ -19,10 +19,13 @@ resources:
    VialOfVenom_name_rsc = "vial of venom"
    VialOfVenom_icon_rsc = venom.bgf
    VialOfVenom_desc_rsc = \
-      "A vial of deadly venom. "
+      "A vial of corrosive venom. Can be applied to heartstones to make pigments. "
    VialOfVenom_name_plural_rsc = "vials of venom"
    VialOfVenom_vial_name_plural_rsc = "vials of venom"
    VialOfVenom_vial_name_rsc = "vial of venom"
+
+   Not_Enough_Venom = "You need 50 venom to break down a heartstone!"
+   Made_Dust  = "You turn the heartstone into %s."
 
 classvars:
 
@@ -32,13 +35,17 @@ classvars:
 
    vrName_plural = VialOfVenom_name_plural_rsc
 
+   viUse_type = ITEM_SINGLE_USE
+
    viValue_average = 70
    viWeight = 4
    viBulk = 5
 
 properties:
 
-   piNumber = 2
+   viObject_flags = OF_GETTABLE | OF_APPLYABLE
+
+   piNumber = 3
    pbGathered = TRUE
 
 messages:
@@ -135,6 +142,44 @@ messages:
          }
       }
 
+      propagate;
+   }
+
+   ReqNewApply(what = $, apply_on = $)
+   {
+      if IsClass(apply_on,&Heartstone)
+      {
+         if piNumber < 50
+         {
+            Send(what,@MsgSendUser,#message_rsc=Not_Enough_Venom);
+
+            propagate;
+         }
+
+	      return TRUE;
+      }
+
+      propagate;
+   }
+
+   NewApplied(what = $,apply_on = $)
+   {
+      local NewDust;
+      
+      if IsClass(apply_on,&HeartStone)
+      {
+         NewDust = Create(Send(apply_on,@GetDustColor));
+
+         Send(poOwner,@NewHold,#what=NewDust);
+
+         Send(what,@MsgSendUser,#message_rsc=Made_Dust,#parm1=send(NewDust,@GetName));
+
+         Send(apply_on,@Delete);
+
+         Send(self,@SubtractNumber,#number=50);
+
+      }
+      
       propagate;
    }
 

@@ -39,6 +39,8 @@ classvars:
 
    viColor = 0
 
+   viDustColor = $
+
 properties:
 
    ptRespawn = $           // Time until dropped stone respawns.
@@ -146,6 +148,11 @@ messages:
    DestroyDisposable()
    {
       return FALSE;
+   }
+
+   GetDustColor()
+   {
+      return viDustColor;
    }
 
 end

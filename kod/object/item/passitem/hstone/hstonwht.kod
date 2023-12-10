@@ -35,6 +35,8 @@ classvars:
 
    viColor = PT_BLBLK_REDWHT
 
+   viDustColor = &WhiteDust
+   
 properties:
 
 messages:

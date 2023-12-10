@@ -1,0 +1,73 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+LightYellowDust is PigmentDust
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   LightYellowDust_name_one_rsc = "light yellow pigment dust"
+   LightYellowDust_name_many_rsc = "light yellow pigment dust"
+   
+   LightYellowDust_icon_rsc = colordust.bgf
+   LightYellowDust_desc_rsc = "This is a pile light yellow pigment dust. \n\nCan be mixed with following : "
+   "\n\nBlack pigment dust to make yellow pigment dust"
+   "\n\nLight blue pigment dust to make light green pigment dust"
+   "\n\nPink pigment dust to make light orange pigment dust"
+
+classvars:
+
+   vrName = LightYellowDust_name_one_rsc
+   vrIcon = LightYellowDust_icon_rsc
+   vrDesc = LightYellowDust_desc_rsc
+
+   vrName_plural = LightYellowDust_name_many_rsc
+
+properties:
+
+   piItem_flags = 25
+
+messages:
+
+   CanMix(what=$)
+   {
+      if IsClass(what,&BlackDust)
+      OR IsClass(what,&PinkDust)
+      OR IsClass(what,&LightBlueDust)
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   GetNewColor(what=$)
+   {
+      if IsClass(what,&BlackDust)
+      {
+         return &YellowDust;
+      }
+      else if IsClass(what,&PinkDust)
+      {
+         return &LightOrangeDust;
+      }
+      else if IsClass(what,&LightBlueDust)
+      {
+         return &LightGreenDust;
+      }
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

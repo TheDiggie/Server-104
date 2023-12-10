@@ -1,0 +1,117 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+PigmentDust is NumberItem
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   PigmentDust_name_one_rsc = "pigment dust"
+   PigmentDust_name_many_rsc = "pigment dust"
+   
+   PigmentDust_icon_rsc = colordust.bgf
+   PigmentDust_desc_rsc = "This is a pile pigment dust. "
+
+   Cant_mix    = "You can't mix these colors!"
+   Already_Dye = "This bottle already contains dye."
+   Made_Dye    = "You mix the two dyes and made %s."
+
+classvars:
+
+   vrName = PigmentDust_name_one_rsc
+   vrIcon = PigmentDust_icon_rsc
+   vrDesc = PigmentDust_desc_rsc
+
+   vrName_plural = PigmentDust_name_many_rsc
+
+   viBulk = 0
+   viWeight = 0
+
+   viValue_average = 1
+
+   viUse_type = ITEM_SINGLE_USE
+
+   viGround_group = 1
+   viInventory_group = 1
+
+properties:
+
+   viObject_flags = OF_GETTABLE | OF_APPLYABLE
+
+   piItem_flags = 0
+
+messages:
+
+   ReqNewApply(what = $,apply_on = $)
+   {
+      if IsClass(apply_on,&DyeBottle)
+      {
+         if send(apply_on,@GetColor) = 0
+         {
+            return TRUE;
+         }
+
+	      Send(what,@MsgSendUser,#message_rsc=Already_Dye);
+
+	      return;
+      }
+
+      if IsClass(apply_on,&PigmentDust)
+      {
+         if NOT Send(apply_on,@CanMix,#what=self)
+         {
+	         Send(what,@MsgSendUser,#message_rsc=Cant_mix);
+
+            return FALSE;
+         }
+
+	      return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   NewApplied(what = $,apply_on = $)
+   {
+      local newcolor, newdust;
+
+      if IsClass(apply_on,&DyeBottle)
+      {
+         Send(apply_on,@SetColor,#Color=piItem_flags);
+      }
+      
+      if IsClass(apply_on,&PigmentDust)
+      {
+         newcolor = Send(apply_on,@GetNewColor,#what=self);
+
+         newdust = Create(newcolor);
+
+         Send(poOwner,@NewHold,#what=newdust);
+
+         Send(what,@MsgSendUser,#message_rsc=Made_Dye,#parm1=send(newdust,@GetName));
+
+         Send(apply_on,@SubtractNumber,#number=1);
+      }
+
+      Send(self,@SubtractNumber,#number=1);
+      
+      return;
+   }
+
+   CanMix()
+   {
+      return FALSE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

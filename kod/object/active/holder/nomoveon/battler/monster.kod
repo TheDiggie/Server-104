@@ -4731,6 +4731,10 @@ messages:
             {
                oBuy = Create(GetClass(i),#number=iAmount);
             }
+            else if IsClass(i,&DyeBottle)
+            {
+               oBuy = Create(GetClass(i),#Color=send(i,@GetColor));
+            }
             else
             {
                // Selling the item itself, or a copy?

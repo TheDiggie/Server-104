@@ -33,7 +33,6 @@ constants:
    COLOR_GREEN = 2
    COLOR_YELLOW = 3
 
-
 resources:
 
    include ladyphen.lkod

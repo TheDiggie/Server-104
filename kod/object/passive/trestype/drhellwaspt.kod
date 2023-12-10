@@ -30,8 +30,8 @@ messages:
                      [&Diamond, 10],
                      [&Emerald, 10],
                      [&Mushroom, 10],
-                     [&PurpleMushroom, 20],
-                     [&VialofVenom, 30]
+                     [&PurpleMushroom, 10],
+                     [&VialofVenom, 40]
                   ];
 
       propagate;

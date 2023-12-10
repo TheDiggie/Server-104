@@ -1,0 +1,67 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+BrownDust is PigmentDust
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   BrownDust_name_one_rsc = "brown pigment dust"
+   BrownDust_name_many_rsc = "brown pigment dust"
+   
+   BrownDust_icon_rsc = colordust.bgf
+   BrownDust_desc_rsc = "This is a pile brown pigment dust.\n\nCan be mixed with following : "
+   "\n\nWhite pigment dust to make orange pigment dust"
+   "\n\nBlack pigment dust to make dark brown pigment dust"
+
+classvars:
+
+   vrName = BrownDust_name_one_rsc
+   vrIcon = BrownDust_icon_rsc
+   vrDesc = BrownDust_desc_rsc
+
+   vrName_plural = BrownDust_name_many_rsc
+
+properties:
+
+   piItem_flags = 28
+
+messages:
+
+   CanMix(what=$)
+   {
+      if IsClass(what,&WhiteDust)
+      OR IsClass(what,&BlackDust)
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   GetNewColor(what=$)
+   {
+      if IsClass(what,&WhiteDust)
+      {
+         return &OrangeDust;
+      }
+      else if IsClass(what,&BlackDust)
+      {
+         return &DarkBrownDust;
+      }
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

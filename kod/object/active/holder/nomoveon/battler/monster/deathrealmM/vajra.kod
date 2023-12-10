@@ -22,9 +22,7 @@ resources:
       "Spiked from head-to-toe, nearly colorless, Vajra is ready "
       "to impale, crush and then devour your body while you take your last breath. "
       "Its favorite meal is Dark Angels, but he'll settle for you if its belly "
-      "is growling. This dark creature traveled from a place unlike this, far away, "
-      "and excessively EVIL! Tread carefully, you may suffer a painful death by its "
-      "spiked shield if you aren't paying attention."
+      "is growling."
 
    Vajra_dead_icon_rsc = vajraX.bgf
    Vajra_dead_name_rsc = "conquored Vajra"

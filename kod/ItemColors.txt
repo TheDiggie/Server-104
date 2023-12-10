@@ -1,0 +1,97 @@
+10      -   Dark Yellow
+1035    =   green
+11      -   Medium Mint Green
+110     -   purple
+1108    =   swimming cap
+1109    =   blunt blue
+111     -   light blue
+1110    =   blunt green
+1111    =   blunt red
+1112    =   bright blue
+1113    =   bright green
+113     -   grey
+1135    =   yellow
+114     -   grey
+115     -   grey
+12      -   Green Metallic
+121     -   PURE white
+13      -   Teal
+1335    =   silver
+1358    =   blue
+14      -   Flag Blue
+15      -   Purple
+1558    =   lightest blue
+16      -   Yellow
+1632    =   light blue
+17      -   Dark Sky Blue
+18      -   Dark Red
+1858    =   reddish brown / golden
+19      -   Orange
+20      -   Light Forest Green
+2058    =   orange
+21      -   Kelly Green
+2135    =   red
+2158    =   purple
+22      -   Light Aqua
+23      -   Light Blue
+24      -   Light Purple
+25      -   Lemon yellow
+26      -   Very Light Metallic Brown
+27      -   Light Metallic Brown
+28      -   Light Brown
+29      -   Brown
+30      -   Dark Brown
+32      -   Medium Blue
+33      -   Red
+34      -   Dark Gold
+35      -   Dark Forest Green
+36      -   Dark Green
+37      -   Dark Sea Green
+38      -   Dark Blue Aqua
+39      -   Dark Purple
+40      -   Yellow
+41      -   Patriot Blue
+42      -   Blood Red
+43      -   Dark Grey
+44      -   Black
+45      -   Caramel Brown
+46      =   light orange tint
+47      =   medium orange tint
+48      -   Pearl White
+49      -   Silver
+50      -   medium grey
+51      -   Solid Dark Grey
+54      -   pale grey
+55      -   pale grey
+56      -   Solid Silver Metallic
+57      -   dark mustard
+60      -   Reg with pewter blade
+6007    -   Solid cool white
+61      -   Normal
+65      -   Very light pink
+66      -   Light Metallic Beige
+66-73       Varying shades of brightness on red
+67      -   Light Pink
+68      -   Pink
+69      =   funky red
+70      -   Ugly Metallic Pink/Brown
+71      -   Vague Metallic Reddish Pink
+72      -   Vague Metallic Red
+73      -   Solid Flat Bright Red
+74      =   solid dark red
+77      =   metallic dark red
+78      -   metallic blue
+79      -   Green Metallic
+7990    -   Silver chrome
+81      =   orange tint
+82      -   Blue/Purple Combo
+82      =   strange blue tint
+83      -   Mint Green
+85      -   Warm Blue
+86      -   Light Green
+87      -   Bright Reds
+88      -   Periwinkle Blue
+89      -   neon green
+9       -   Red
+96      -   skin 1
+97      -   skin 2

@@ -35,8 +35,11 @@ classvars:
 
    viColor = PT_REDTODKBLACK1
 
+   viDustColor = &BlackDust
+   
 properties:
 
+   
 messages:
 
    CreateXeo()

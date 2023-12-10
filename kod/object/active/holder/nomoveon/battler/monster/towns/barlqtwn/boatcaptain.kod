@@ -44,9 +44,6 @@ classvars:
    viAttributes = MOB_NOFIGHT | MOB_NOMOVE | MOB_SELLER | MOB_RECEIVE
    viOccupation = MOB_ROLE_MERCHANT
    viMerchant_markup = MERCHANT_FLAT
-
-   // Boat captain only sells boat tickets.
-   vbSellFromInventory = FALSE
    
    vrUnwanted_give = captain_Not_Interested
 
