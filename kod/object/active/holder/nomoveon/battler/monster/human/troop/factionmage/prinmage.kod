@@ -54,7 +54,8 @@ messages:
 
    Constructor()
    {
-      plSpellBook = [ [SID_LIGHTNING_BOLT,5,100] ];
+      plSpellBook = [ [SID_LIGHTNING_BOLT,5,100], [SID_BLAST_OF_FIRE,6,70],
+                      [SID_PURGE,10,100] ];
 
       propagate;
    }

@@ -49,7 +49,8 @@ messages:
 
    Constructor()
    {
-      plSpellBook = [ [SID_SPLASH_OF_ACID,5,100] ];
+      plSpellBook = [ [SID_SPLASH_OF_ACID,5,100], [SID_BLIND,6,70],
+                      [SID_HOLD,10,100] ];
 
       propagate;
    }
