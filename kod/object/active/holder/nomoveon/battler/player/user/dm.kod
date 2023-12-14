@@ -97,6 +97,9 @@ resources:
    dm_get_crafting_command = "get crafting"
    dm_get_offerings_command = "get offerings"
    dm_get_mask_command = "get mask"
+   dm_get_dye_command = "get dye"
+   dm_get_heartstones_command = "get heartstones"
+   dm_get_prisms_command = "get prism"
    dm_boost_stats_command = "boost stats"
    dm_PK_enable_command = "PK enable"
    dm_PK_disable_command = "PK disable"
@@ -2871,6 +2874,56 @@ messages:
          Send(self,@NewHold,#what=Create(&TrollMask));
          Send(self,@NewHold,#what=Create(&WolfMask));
          Send(self,@NewHold,#what=Create(&XeoMask));
+         Send(self,@NewHold,#what=Create(&CarrotNoseMask));
+      }
+      else if StringEqual(string,dm_get_dye_command)
+      {
+         Send(self,@NewHold,#what=Create(&VialOfVenom,#number=2000));
+         Send(self,@NewHold,#what=Create(&DyeBottle));
+         Send(self,@NewHold,#what=Create(&DyeBottle));
+         Send(self,@NewHold,#what=Create(&DyeBottle));
+         Send(self,@NewHold,#what=Create(&DyeBottle));
+         Send(self,@NewHold,#what=Create(&DyeBottle));
+         Send(self,@NewHold,#what=Create(&BlackDust,#number=20));
+         Send(self,@NewHold,#what=Create(&WhiteDust,#number=20));
+         Send(self,@NewHold,#what=Create(&RedDust,#number=20));
+         Send(self,@NewHold,#what=Create(&BlueDust,#number=20));
+         Send(self,@NewHold,#what=Create(&PurpleDust,#number=20));
+         Send(self,@NewHold,#what=Create(&GreenDust,#number=20));
+         Send(self,@NewHold,#what=Create(&OrangeDust,#number=20));
+         Send(self,@NewHold,#what=Create(&YellowDust,#number=20));
+         Send(self,@NewHold,#what=Create(&BrownDust,#number=20));
+         Send(self,@NewHold,#what=Create(&LightBlueDust,#number=20));
+         Send(self,@NewHold,#what=Create(&LightGreenDust,#number=20));
+         Send(self,@NewHold,#what=Create(&LightPurpleDust,#number=20));
+         Send(self,@NewHold,#what=Create(&LightOrangeDust,#number=20));
+         Send(self,@NewHold,#what=Create(&LightYellowDust,#number=20));
+         Send(self,@NewHold,#what=Create(&PinkDust,#number=20));
+         Send(self,@NewHold,#what=Create(&DarkGreenDust,#number=20));
+         Send(self,@NewHold,#what=Create(&DarkBlueDust,#number=20));
+         Send(self,@NewHold,#what=Create(&DarkPurpleDust,#number=20));
+         Send(self,@NewHold,#what=Create(&DarkRedDust,#number=20));
+         Send(self,@NewHold,#what=Create(&DarkOrangeDust,#number=20));
+         Send(self,@NewHold,#what=Create(&DarkBrownDust,#number=20));
+      }
+      else if StringEqual(string,dm_get_heartstones_command)
+      {
+         Send(self,@NewHold,#what=Create(&RedHeartStone));
+         Send(self,@NewHold,#what=Create(&SkyHeartStone));
+         Send(self,@NewHold,#what=Create(&BlueHeartStone));
+         Send(self,@NewHold,#what=Create(&BrownHeartStone));
+         Send(self,@NewHold,#what=Create(&GreenHeartStone));
+         Send(self,@NewHold,#what=Create(&BlackHeartStone));
+         Send(self,@NewHold,#what=Create(&WhiteHeartStone));
+         Send(self,@NewHold,#what=Create(&DarkGreenHeartStone));
+         Send(self,@NewHold,#what=Create(&PurpleHeartStone));
+      }
+      else if StringEqual(string,dm_get_prisms_command)
+      {
+         Send(self,@NewHold,#what=Create(&Prism,#numSides=1));
+         Send(self,@NewHold,#what=Create(&Prism,#numSides=3));
+         Send(self,@NewHold,#what=Create(&Prism,#numSides=5));
+         Send(self,@NewHold,#what=Create(&Prism,#numSides=7));
       }
       else
       {
