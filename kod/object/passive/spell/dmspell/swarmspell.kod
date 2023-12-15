@@ -1,0 +1,82 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+SwarmSpell is DMSpell
+
+constants:
+   include blakston.khd
+
+resources:
+
+   SwarmSpell_name_rsc = "make swarm"
+   SwarmSpell_icon_rsc = lightnin.bgf
+
+   SwarmSpell_desc_rsc = "This will set a mob to the swarm brain ignoring the agro limit .  "
+
+classvars:
+   vrName = SwarmSpell_name_rsc
+   vrIcon = SwarmSpell_icon_rsc
+   vrDesc = SwarmSpell_desc_rsc
+
+   viSpell_num = SID_SWARMSPELL
+
+   viMana = 0
+
+properties:
+
+messages:
+
+   GetNumSpellTargets()
+   {
+      return 1;
+   }
+
+   SuccessChance(who=$)
+   "DMs are always successful with their spells."
+   {
+      return TRUE;
+   }
+
+   ResetReagents()
+   {
+      plReagents = $;
+
+      return;
+   }
+
+   CanPayCosts(who=$,lTargets=$)
+   {
+      local oTarget;
+
+      oTarget = First(lTargets);
+
+      if NOT isClass(oTarget,&Monster)
+      {
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+   CastSpell(who=$,lTargets=$,bItemCast=FALSE)
+   {
+      local oTarget, oBrain;
+
+      oTarget = First(lTargets);
+
+      oBrain = Send(SYS,@FindBrainByNum,#num=2);
+
+      Send(oTarget,@SetBrainNum,#oBrain=oBrain);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

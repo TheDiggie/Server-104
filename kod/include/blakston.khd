@@ -2458,6 +2458,7 @@
    SID_MANA_BOON =    196
    SID_HP_BOON =      197
    SID_VIGOR_BOON =      198
+   SID_SWARMSPELL = 199
    // No sids above 400 to keep spell IDs unique from skill IDs!
 
    // Stats

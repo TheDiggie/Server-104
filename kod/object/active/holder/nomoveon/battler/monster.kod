@@ -7397,5 +7397,12 @@ messages:
       return;
    }
 
+   SetBrainNum(oBrain=$)
+   {
+      poBrain = oBrain;
+
+      return;
+   }
+
 end
 ////////////////////////////////////////////////////////////////////////////////

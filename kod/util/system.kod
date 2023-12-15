@@ -3363,6 +3363,7 @@ messages:
       Send(self,@CreateOneSpellIfNew,#num=SID_ILLUSIONARY_FORM,#class=&Illusionaryform);
 
       Send(self,@CreateOneSpellIfNew,#num=SID_BONK,#class=&Bonk);
+      Send(self,@CreateOneSpellIfNew,#num=SID_SWARMSPELL,#class=&SwarmSpell);
       Send(self,@CreateOneSpellIfNew,#num=SID_ARMAGEDDON,#class=&Armageddon);
 
       Send(self,@CreateOneSpellIfNew,#num=SID_VILLIFY,#class=&Villify);
