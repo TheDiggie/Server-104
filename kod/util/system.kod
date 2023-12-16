@@ -6140,6 +6140,11 @@ messages:
       plItemTemplates = cons(create(&DarkOrangeDust),plItemTemplates);
       plItemTemplates = cons(create(&DarkBrownDust),plItemTemplates);
 
+      plItemTemplates = cons(create(&PotentBlueDust),plItemTemplates);
+      plItemTemplates = cons(create(&PotentGreenDust),plItemTemplates);
+      plItemTemplates = cons(create(&PotentRedDust),plItemTemplates);
+      plItemTemplates = cons(create(&PotentWhiteDust),plItemTemplates);
+
       return;
    }
 

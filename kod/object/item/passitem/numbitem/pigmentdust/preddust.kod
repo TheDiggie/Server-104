@@ -1,0 +1,50 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+PotentRedDust is PigmentDust
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   PotentRedDust_name_one_rsc = "potent red pigment dust"
+   PotentRedDust_name_many_rsc = "potent red pigment dust"
+   
+   PotentRedDust_icon_rsc = colordust.bgf
+   PotentRedDust_desc_rsc = "This is a pile potent red pigment dust. Can't be mixed with other colors. "
+
+classvars:
+
+   vrName = PotentRedDust_name_one_rsc
+   vrIcon = PotentRedDust_icon_rsc
+   vrDesc = PotentRedDust_desc_rsc
+
+   vrName_plural = PotentRedDust_name_many_rsc
+
+properties:
+
+   piItem_flags = 77
+
+messages:
+
+   CanMix(what=$)
+   {
+      return FALSE;
+   }
+
+   GetNewColor(what=$)
+   {
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////
