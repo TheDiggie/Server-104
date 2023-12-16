@@ -127,7 +127,7 @@ messages:
    {
       if IsClass(what,&player)
       {
-         send(what,@BeatDR);
+         send(what,@BeatDR,#won=TRUE);
       }
 
       propagate;

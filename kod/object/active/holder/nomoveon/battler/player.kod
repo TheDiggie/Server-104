@@ -15597,9 +15597,9 @@ messages:
       return;
    }
    
-   BeatDR()
+   BeatDR(won=$)
    {
-      poWonDR = TRUE;
+      poWonDR = won;
 
       return;
    }
