@@ -101,7 +101,7 @@ messages:
    {
       local iDuration;
 
-      iDuration = (40 + iSpellPower / 2) * 1000;
+      iDuration = (100 + iSpellPower * 2) * 1000;
 
       return iDuration;
    }
