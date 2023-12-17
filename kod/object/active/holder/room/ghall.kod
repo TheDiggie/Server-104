@@ -1315,15 +1315,15 @@ messages:
    ReqSpellCast(oSpell=$,who=$)
    {
       // Cannot conveyance inside a hall.
-      if IsClass(oSpell,&Conveyance)
-      {
-         if who <> $
-            AND IsClass(who,&Player)
-         {
-            Send(who,@MsgSendUser,#message_rsc=cannot_conveyance_msg);
-         }
-         return FALSE;
-      }
+      //if IsClass(oSpell,&Conveyance)
+      //{
+      //   if who <> $
+      //      AND IsClass(who,&Player)
+      //   {
+      //      Send(who,@MsgSendUser,#message_rsc=cannot_conveyance_msg);
+      //   }
+      //   return FALSE;
+      //}
 
       propagate;
    }
