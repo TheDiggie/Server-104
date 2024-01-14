@@ -33,11 +33,15 @@ properties:
    ptMaintenance = $
    piMaintenanceInterval = 1000
 
+   ptInvasionTimer = $
+
 messages:
 
    Constructor()
    {
       Send(self,@Recreate);
+
+      ptInvasionTimer = CreateTimer(self,@StartEnvasion,Random(10800000,21600000));
 
       return;
    }
@@ -471,7 +475,7 @@ messages:
 
    EventStart(parm1=$,parm2=$,parm3=$,parm4=$,parm5=$,parm6=$,parm7=$,
               parm8=$,parm9=$,parm10=$,parm11=$,parm12=$,parm13=$,
-              parm14=$,parm15=$)
+              parm14=$,parm15=$,what=$)
    "parm1 should be the class of an event."
    {
       local i, oEvent;
@@ -504,7 +508,7 @@ messages:
             #parm1=parm1,#parm2=parm2,#parm3=parm3,#parm4=parm4,#parm5=parm5,
             #parm6=parm6,#parm7=parm7,#parm8=parm8,#parm9=parm9,#parm10=parm10,
             #parm11=parm11,#parm12=parm12,#parm13=parm13,#parm14=parm14,
-            #parm15=parm15);
+            #parm15=parm15,#what=what);
       }
 
       if oEvent <> $
@@ -587,6 +591,13 @@ messages:
                   piActiveEventsFlagLo | GAMEEVENT_LOBYTE_QORMAS;
                break;
                
+            case &TriggeredInvasion:
+               piActiveEventsFlagHi = 
+                  piActiveEventsFlagHi | GAMEEVENT_HIBYTE_QORMAS;
+               piActiveEventsFlagLo = 
+                  piActiveEventsFlagLo | GAMEEVENT_LOBYTE_QORMAS;
+               break;
+
             default:
                break;
          }
@@ -891,5 +902,21 @@ messages:
       return;
    }
    
+   StartEnvasion()
+   {
+      ptInvasionTimer = $;
+
+      Send(SYS,@StartEvent,#event_type=&TriggeredInvasion);
+
+      return;
+   }
+
+   ReschedualEvent()
+   {
+      ptInvasionTimer = CreateTimer(self,@StartEnvasion,Random(10800000,21600000));
+
+      return;
+   }
+
 end
 ////////////////////////////////////////////////////////////////////////////////

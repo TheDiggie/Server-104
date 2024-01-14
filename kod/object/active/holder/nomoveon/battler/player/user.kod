@@ -3322,6 +3322,11 @@ messages:
 
       if IsClass(what,&Monster)
       {
+         if Send(what,@IsLeader)
+         {
+            return MM_BOSS;
+         }
+         
          if Send(what,@GetMaster) <> $
          {
             if (Send(what,@GetMaster) = self)

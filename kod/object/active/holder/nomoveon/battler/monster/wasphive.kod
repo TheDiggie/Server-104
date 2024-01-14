@@ -1,0 +1,127 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+WaspHive is Monster
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   WaspHive_name_rsc = "wasp hive"
+   WaspHive_icon_rsc = wasphive.bgf
+   WaspHive_desc_rsc = \
+   "A huge mound of a unknown substance, it seems to hum or buzz with danger. "
+
+   WaspHive_dead_icon_rsc = dirtpile.bgf
+   WaspHive_dead_name_rsc = "empty destroyed hive"
+
+classvars:
+
+   vrName = WaspHive_name_rsc
+   vrIcon = WaspHive_icon_rsc
+   vrDesc = WaspHive_desc_rsc
+   vrDead_icon = WaspHive_dead_icon_rsc
+   vrDead_name = WaspHive_dead_name_rsc
+
+   viAttributes = 0
+   viLevel = 250
+   viDifficulty = 5
+   viKarma = 0
+   viDefault_behavior = MOB_NOMOVE
+   viCashmin = 0
+   viCashmax = 0
+
+properties:
+
+   piAnimation = ANIM_NONE
+
+   ptMakeWasp = $
+
+messages:
+
+   Constructor()
+   {
+      ptMakeWasp = CreateTimer(self,@MakeWasp,60000);
+
+      propagate;
+   }
+
+   MakeWasp()
+   {
+      ptMakeWasp = $;
+
+      ptMakeWasp = CreateTimer(self,@MakeWasp,60000);
+
+      Send(self,@SpawnWasp);
+
+      return;
+   }
+
+   SendLookAnimation()
+   {
+      AddPacket(1,ANIMATE_ONCE);
+      AddPacket(4,400,2,1,2,1,2,1);
+
+      return;
+   }
+
+   SpawnWasp()
+   {
+      local oWasp, oBrain;
+
+      if poOwner <> $
+      {
+         oWasp = Create(&Hellwasp);
+
+         Send(poOwner,@NewHold,#what=oWasp,#new_row=Send(self,@GetRow),
+               #new_col=Send(self,@GetCol));
+
+         oBrain = Send(SYS,@FindBrainByNum,#num=2);
+         Send(oWasp,@SetBrainNum,#oBrain=oBrain);
+         Send(oWasp,@SetMonsterFlag,#flag=MFLAG_INVADER_MOB | MFLAG_DONT_DISPOSE,
+               #value=TRUE);
+      }
+
+      return;
+   }
+
+   AssessDamage()
+   "This is called when something causes damage to us."
+   {
+      local iChance;
+
+      iChance = Random(1,20);
+
+      if iChance <= 5
+      {
+         Send(self,@SpawnWasp);
+      }
+
+      propagate;
+   }
+
+   CanMorphTo()
+   {
+      return FALSE;
+   }
+   
+   Delete()
+   {
+      DeleteTimer(ptMakeWasp);
+
+      ptMakeWasp = $;
+      
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

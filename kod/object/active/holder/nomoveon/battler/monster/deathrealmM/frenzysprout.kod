@@ -41,7 +41,7 @@ classvars:
    vrDesc = frenzysprout_desc_rsc
    vrDead_icon = frenzysprout_dead_icon_rsc
    vrDead_name = frenzysprout_dead_name_rsc
-   viSpeed = SPEED_NONE
+   viSpeed = SPEED_AVERAGE
 
    viTreasure_type = TID_FRENZY_SPROUT
 
@@ -84,7 +84,7 @@ messages:
 
    SendMoveAnimation()
    {
-      AddPacket(1,ANIMATE_CYCLE,4,200,2,2,2,5);
+      AddPacket(1,ANIMATE_CYCLE,4,200,2,1,2,3);
 
       return;
    }

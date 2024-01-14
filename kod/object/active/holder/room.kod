@@ -1202,6 +1202,13 @@ messages:
       return prBackground;
    }
 
+   SetRoomBackground(Background = $)
+   {  
+      prBackground = Background;
+
+      return;
+   }
+
    SafePlayerAttack()
    // Should be called GetCanAttackPlayers
    "Used to determine whether or not a player can attack another player"
@@ -5452,6 +5459,42 @@ messages:
    PrintMobGenerators()
    "Override which prints nothing for non-monsterrooms."
    {
+      return;
+   }
+
+   CountMonstersWithMonsterFlag(flag=0)
+   {
+      local n, i, each_obj;
+
+      n = 0;
+
+      foreach i in plActive
+      {
+         each_obj = First(i);
+         if (IsClass(each_obj, &Monster)
+            AND Send(each_obj,@CheckMonsterFlag,#flag=flag))
+         {
+            ++n;
+         }
+      }
+
+      return n;
+   }
+   
+   EndEventEarly()
+   {
+      local i, each_obj;
+
+      foreach i in plActive
+      {
+         each_obj = First(i);
+         if (IsClass(each_obj, &Monster)
+            AND Send(each_obj,@CheckMonsterFlag,#flag=MFLAG_INVADER_MOB))
+         {
+            send(each_obj,@Delete);
+         }
+      }
+
       return;
    }
 

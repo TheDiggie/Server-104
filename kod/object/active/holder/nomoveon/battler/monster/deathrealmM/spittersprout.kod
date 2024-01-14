@@ -42,7 +42,7 @@ classvars:
 
    viTreasure_type = TID_SPITTER_SPROUT
 
-   viSpeed = SPEED_NONE
+   viSpeed = SPEED_AVERAGE
 
    vrSound_hit = spittersprout_sound_hit
    vrSound_miss = spittersprout_sound_miss
@@ -83,7 +83,7 @@ messages:
 
    SendMoveAnimation()
    {
-      AddPacket(1,ANIMATE_CYCLE,4,200,2,2,2,5);
+      AddPacket(1,ANIMATE_CYCLE,4,200,2,1,2,3);
 
       return;
    }

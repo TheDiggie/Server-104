@@ -507,6 +507,7 @@ properties:
 
    plAttackTypes = $
    plSpellTypes = $
+
 messages:
 
    GetName()
@@ -5300,7 +5301,7 @@ messages:
       return;
    }
 
-   StartEvent(event_type=$)
+   StartEvent(event_type=$,what=$)
    "event_type should be the class type of an event"
    {
       if (event_type = $)
@@ -5308,7 +5309,7 @@ messages:
          return;
       }
 
-      return Send(EVENTENGINE_OBJECT,@EventStart,#parm1=event_type);
+      return Send(EVENTENGINE_OBJECT,@EventStart,#parm1=event_type,#what=what);
    }
 
    EndEvent(event_obj=$)
@@ -5619,6 +5620,7 @@ messages:
       plMonsterTemplates = cons(create(&Snake),plMonsterTemplates);
       plMonsterTemplates = cons(create(&Farnohl),plMonsterTemplates);
       plMonsterTemplates = cons(create(&Spirit),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&WaspHive),plMonsterTemplates);
 
       return;
    }

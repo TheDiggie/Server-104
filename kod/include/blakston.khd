@@ -2554,6 +2554,11 @@
    SPELLPOWER_MINIMUM = 1
    SPELLPOWER_MAXIMUM = 99
 
+   // Monster flags (piMonsterFlags in monster.kod)
+   // Set if a monster is part of a invader's army.
+   MFLAG_INVADER_MOB  = 0x001
+   MFLAG_DONT_DISPOSE   = 0x002
+
    // Player flags
 
    PKILL_ENABLE_HP = 50
@@ -3815,6 +3820,7 @@
    GAMEEVENT_HIBYTE_SPIDER_INVASION   = 0x1
    GAMEEVENT_HIBYTE_SKELETON_INVASION = 0x1
    GAMEEVENT_HIBYTE_QORMAS            = 0x1
+   GAMEEVENT_HIBYTE_TRIGGEREDINVASION = 0x1
    
    // Game Event Low Byte
    GAMEEVENT_LOBYTE_CHAOS             = 0x1
@@ -3830,6 +3836,7 @@
    GAMEEVENT_LOBYTE_QORMAS            = 0x400
    GAMEEVENT_LOBYTE_SPIDER_INVASION   = 0x800
    GAMEEVENT_LOBYTE_SKELETON_INVASION = 0x1000
+   GAMEEVENT_LOBYTE_TRIGGEREDINVASION = 0x2000
    
    // Game Event Time Scale Constants
    GAMEEVENT_SCALE_SECONDS          = 0

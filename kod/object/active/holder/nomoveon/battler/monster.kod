@@ -379,7 +379,7 @@ classvars:
       
    viBonusXP = 0
    viBonusTP = 0
-	  
+
 properties:
 
    piVisionDistance
@@ -514,6 +514,13 @@ properties:
    poEventMob = FALSE
 
    poCurrency = &Shillings
+
+   piMonsterFlags = 0
+
+   piEventHealthFactor = 15
+   poInvasionLeader = $
+   pbAttackMode = TRUE
+   poEventObject = $
 
 messages:
 
@@ -2319,6 +2326,12 @@ messages:
    {
       local iDamage, iResist, iPercentClass, i, each_obj;
 
+      // Only possible to do damage while it is in "attack mode"
+      if NOT pbAttackMode
+      {
+         return 0;
+      }
+
       if NOT precision
       {
          damage = damage * 100;
@@ -3760,7 +3773,7 @@ messages:
    Killed(what=$)
    "The mob was just killed."
    {
-      local i,val,oBody,hReputation;
+      local i, val, oBody, hReputation, oTreasure, lTreasure, bComma, oItemAtt;
 
       // If the monster was just killed, assume it did itself in.
       if what = $
@@ -3875,7 +3888,47 @@ messages:
                   
             Send(self,@CreateTreasure,#who=what,#corpse=oBody);
          }
+         
+         if poInvasionLeader = self
+         {
+            oItemAtt = Send(SYS,@FindItemAttByNum,#num=IA_CORPSEPOINTER);
 
+            Debug("Leader killed! Reward is: ");
+            ClearTempString();
+            bComma = FALSE;
+            foreach lTreasure in [plActive, plPassive]
+            {
+               foreach oTreasure in lTreasure
+               {
+                  if Send(oTreasure,@DropOnDeath)
+                  {
+                     if (bComma)
+                     {
+                        AppendTempString(", ");
+                     }
+                     else
+                     {
+                        bComma = TRUE;
+                     }
+                     if IsClass(oTreasure,&NumberItem)
+                     {
+                        AppendTempString(Send(oTreasure,@GetNumber));
+                        AppendTempString(" ");
+                     }
+                     AppendTempString(Send(oTreasure,@GetName));
+
+                     // Only allow event participants to grab loot for the 1st minute.
+                     Send(oItemAtt,@AddToItem,#oItem=oTreasure,#timer_duration=60000,
+                           #state1=Send(poEventObject,@GetParticipants));
+
+                     Send(poOwner,@NewHold,#what=oTreasure,
+                        #new_row=piRow,#new_col=piCol,
+                        #fine_row=piFine_row,#fine_col=piFine_col,
+                        #new_angle=Send(self,@GetAngle));
+                  }
+               }
+            }
+         }
          // Delete here so we don't accidentally "kill" then delete system
          //  template monsters.
          Send(self,@Delete);
@@ -6456,6 +6509,7 @@ messages:
    {
       if (viAttributes & MOB_LISTEN)
          OR (piBehavior & AI_NPC)
+         OR (piMonsterFlags & MFLAG_DONT_DISPOSE)
          OR poMaster <> $
          OR pbDontDispose
       {
@@ -6485,7 +6539,7 @@ messages:
          iFlags = iFlags & ~OF_ATTACKABLE;
       }
 
-      if Send(Self,@MobIsSeller)
+      if Send(self,@MobIsSeller)
       {
          iFlags = iFlags | OF_BUYABLE;
       }
@@ -6495,6 +6549,13 @@ messages:
          OR what <> $ AND IsClass(what,&DM))
       {
          iFlags = iFlags | OF_OFFERABLE;
+      }
+
+      if Send(self,@IsLeader)
+      {
+         iFlags = iFlags | OF_DISPLAY_NAME ;
+
+         piNameColor = NC_KILLER;
       }
 
       return iFlags;
@@ -6544,6 +6605,11 @@ messages:
    // TRUE if mob can have evil twin cast on it
    CanEvilTwin()
    {
+      if poInvasionLeader = self
+      {
+         return FALSE;
+      }
+      
       return TRUE;
    }
 
@@ -7211,6 +7277,11 @@ messages:
 
    DMCanArmageddon()
    {
+      if poInvasionLeader = Self
+      {
+         return FALSE;
+      }
+
       return TRUE;
    }
 
@@ -7400,6 +7471,65 @@ messages:
    SetBrainNum(oBrain=$)
    {
       poBrain = oBrain;
+
+      return;
+   }
+
+   CheckMonsterFlag(flag=0)
+   {
+      return piMonsterflags & flag;
+   }
+
+   SetMonsterFlag(flag=0,value=FALSE)
+   "This always requires the POSITIVE flag name.  Default unsets the flag."
+   {
+      if (value)
+      {
+         piMonsterflags |= flag;
+      }
+      else
+      {
+         piMonsterflags &= ~flag;
+      }
+
+      return;
+   }
+   
+   SetInvasionLeaderObject(what=$)
+   {
+      pbAttackMode = FALSE;
+
+      poInvasionLeader = self;
+
+      poEventMob = TRUE;
+
+      poCurrency = &Shillings;
+      
+      poEventObject = what;
+
+      if (piEventHealthFactor > 0)
+      {
+         piMax_hit_points *= piEventHealthFactor;
+      }
+
+      piHit_points = piMax_hit_points * 100;
+
+      return;
+   }
+
+   IsLeader()
+   {
+      if poInvasionLeader <> $
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+   
+   EnableAttackMode(bEnabled=$)
+   {
+      pbAttackMode = bEnabled;
 
       return;
    }

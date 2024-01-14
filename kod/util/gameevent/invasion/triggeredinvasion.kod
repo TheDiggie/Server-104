@@ -1,0 +1,599 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+TriggeredInvasion is Invasion
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   TriggeredInvasion_start_msg = \
+      "~B~k[Event]~n ~B~v A %s has appeared at %s, summoning its empowered minons."
+
+   TriggeredInvasion_end_msg = \
+      "~B~k[Event]~n ~B~v The army of the %s has been defeated! "
+   TriggeredInvasion_end_msg2 = \
+      "~B~k[Event]~n ~B~v The army of the %s has left the area! "
+
+   Next_Wave   = "~B~k[Event]~n ~B~v The next wave of enemies has spawned!"
+   Final_Wave  = "~B~k[Event]~n ~B~v The final wave of enemies has spawned!"
+   Boss        = "~B~k[Event]~n ~B~v His minions are gone! Now is the time to take out leader!"
+
+   redbackground = redsky.bgf
+
+   // Same as shrine qor dedication sound.
+   TriggeredInvasion_Qor_sound = qor.ogg
+   TriggeredInvasion_Shalille_sound = shalille.ogg
+
+classvars:
+   vrbackground   = redbackground
+   vrStartMessage = TriggeredInvasion_start_msg
+   vrEndMessage   = TriggeredInvasion_end_msg
+   vrEnd2Message  = TriggeredInvasion_end_msg2
+   vrStartSound   = TriggeredInvasion_Qor_sound
+   vrEndSound     = TriggeredInvasion_Shalille_sound
+   vrNextWave     = Next_Wave
+   vrFinalWave    = Final_Wave
+   vrBoss         = Boss
+   vbAnnounce     = TRUE
+
+properties:
+
+   plEventRooms    = $
+   plEventMonsters = $
+   plEventBoss     = $
+   poLeader        = $
+
+   plRewards_High    = $
+   plRewards_Medium  = $
+   plRewards_Common  = $
+   plRewards_Super   = $
+   plRewards_Special = $
+
+   piActiveRoom = 0
+   piPhase = 0
+
+   plParticipants = $ 
+   piMaxParticipants = 10
+   poOriginal = $
+   plScore = $ 
+
+   ptCancelEvent= $
+   pvEarly = FALSE
+   piRewardAmount = $
+   pcLeaderClass = $
+
+messages:
+
+   Constructor()
+   {
+      plRewards_Super = [ &ShamanBlood,  &YrxlSap,      &PolishedSeraphym, &UncutSeraphym,
+                          &KriipaClaw,   &Ruby,         &BlueDragonScale,  &DarkAngelFeather,
+                          &GrayMushroom, &CyanMushroom, &YellowMushroom,   &GreenMushroom ];
+
+      plRewards_High = [ &ShamanBlood, &YrxlSap, &PolishedSeraphym, &UncutSeraphym,
+                         &KriipaClaw,  &Ruby,    &BlueDragonScale,  &DarkAngelFeather ];
+
+      plRewards_Medium = [ &PurpleMushroom, &BlueMushroom, &RainbowFern, &InkyCap,
+                           &DragonflyEye,   &WebMoss,      &Fairywing,   &OrcTooth, &Solagh,
+                           &DenseWood,      &TrollHide,    &Wood,        &RawSilk,  &KriipaHide ];
+
+      plRewards_Common = [ &Mushroom, &EntrootBerry, &Elderberry, &Herbs,       &Emerald, 
+                           &Sapphire, &Diamond,      &InkyCap,    &RedMushroom, &IronOre,
+                           &NeruditeOre ];
+
+      plRewards_Special = [ &LongSword,  &NeruditeSword, &Scimitar, &Hammer, &Axe,
+                            &ShortSword, &MysticSword,   &Maul,     &BerserkerAxe ];
+
+      plEventBoss = [ &GrandpaTrent, &Lich, &SpiderQueen, &AvarChieftain, &Yeti, &OrcPitBoss, &XeoNeru, &GiantRatKing ];
+
+      plEventRooms = [ RID_E2,    RID_F2,   RID_F3,       RID_H3,     RID_D5, 
+                       RID_CAVE2, RID_F8,   RID_G9,       RID_H7,     RID_D4, 
+                       RID_G6,    RID_VALE, RID_CASTLE2B, RID_DUNGEON ];
+
+      if piActiveRoom = 0
+      {
+         piActiveRoom = Nth(plEventRooms, Random(1,Length(plEventRooms)));
+      }
+      else
+      {
+         piActiveRoom = piActiveRoom;
+      }
+
+      if piActiveRoom = RID_E2
+      {
+         plSpawnRects = [ [[34,4],[58,52]], [[16,29],[41,68]] ];
+      }
+      else if piActiveRoom = RID_F2
+      {
+         plSpawnRects = [ [[6,2],[20,93]] ];
+      }
+      else if piActiveRoom = RID_F3
+      {
+         plSpawnRects = [ [[15,28],[27,72]] ];
+      }
+      else if piActiveRoom = RID_H3
+      {
+         plSpawnRects = [ [[30,17],[41,47]] ];
+      }
+      else if piActiveRoom = RID_D5
+      {
+         plSpawnRects = [ [[6,7],[29,81]] ];
+      }
+      else if piActiveRoom = RID_CAVE2
+      {
+         plSpawnRects = [ [[21,13],[25,20]], [[31,19],[49,25]] ];
+      }
+      else if piActiveRoom = RID_F8
+      {
+         plSpawnRects = [ [[10,11],[42,12]] ];
+      }
+      else if piActiveRoom = RID_G9
+      {
+         plSpawnRects = [ [[10,42],[30,68]] ];
+      }
+      else if piActiveRoom = RID_H7
+      {
+         plSpawnRects = [ [[20,5],[23,17]], [[21,31],[24,37]], [[25,33],[33,37]] ];
+      }
+      else if piActiveRoom = RID_D4
+      {
+         plSpawnRects = [ [[39,10],[54,29]] ];
+      }
+      else if piActiveRoom = RID_G6
+      {
+         plSpawnRects = [ [[100,22],[124,47]] ];
+      }
+      else if piActiveRoom = RID_VALE
+      {
+         plSpawnRects = [ [[15,12],[27,44]] ];
+      }
+      else if piActiveRoom = RID_CASTLE2B
+      {
+         plSpawnRects = [ [[4,26],[10,60]], [[15,33],[26,39]] ];
+      }
+      else if piActiveRoom = RID_DUNGEON
+      {
+         plSpawnRects = [ [[16,5],[26,24  ]] ];
+      }
+
+      propagate;
+   }
+
+   StartEvent(what=$)
+   {
+      local oRoom;
+
+      pcLeaderClass = Nth(plEventBoss,Random(1,length(plEventBoss)));
+      poLeader = Create(pcLeaderClass);
+
+      Send(self,@SetMinions);
+
+      oRoom = Send(SYS,@FindRoomByNum,#num=piActiveRoom);
+
+      Send(poLeader,@SetInvasionLeaderObject,#what=self);
+
+      Send(oRoom,@NewHold,#what=poLeader,
+               #new_row=Send(oRoom,@GetTeleportRow)+1,
+               #new_col=Send(oRoom,@GetTeleportCol)+1);
+
+      if IsClass(oRoom,&MonsterRoom)
+      {
+         Send(oRoom,@SetMonsterGeneration,#bValue=FALSE);
+      }
+
+      if vbAnnounce
+      {
+         Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,#string=vrStartMessage,
+            #parm1=Send(poLeader,@GetName),#parm2=Send(oRoom,@GetName));
+      }
+
+      poOriginal = send(oRoom,@GetRoomBackground);
+      Send(oRoom,@SetRoomBackground,#background=vrbackground);
+      Send(oRoom,@BackgroundChanged);
+
+      ptCancelEvent = CreateTimer(self,@CheckForPlayers,7200000);
+
+      return piActiveRoom;
+   }
+
+   EndEvent()
+   {
+      local oRoom;
+
+      oRoom = Send(SYS,@FindRoomByNum,#num=piActiveRoom);
+
+      if IsClass(oRoom,&MonsterRoom)
+      {
+         Send(oRoom,@SetMonsterGeneration,#bValue=TRUE);
+      }
+
+      if vbAnnounce
+      {
+         if pvEarly = FALSE
+         {
+            Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,#string=vrEndMessage,
+            #parm1=Send(poLeader,@GetName));
+         }
+         else
+         {
+            Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,#string=vrEnd2Message,
+            #parm1=Send(poLeader,@GetName));
+         }
+      }
+
+      Send(oRoom,@SetRoomBackground,#background=poOriginal);
+      Send(oRoom,@BackgroundChanged);
+
+      Send(EVENTENGINE_OBJECT,@ReschedualEvent);
+
+      return;
+   }
+
+   Update()
+   {
+      local oRoom, iDebug;
+
+      oRoom = Send(SYS,@FindRoomByNum,#num=piActiveRoom);
+
+      if (oRoom = $)
+      {
+         propagate;
+      }
+
+      if piPhase = 0
+      {
+         Send(self,@SpawnMonsters,#iWave=1);
+         piPhase++;
+      }
+      else if piPhase = 1
+       AND Send(oRoom,@CountMonstersWithMonsterFlag,#flag=MFLAG_INVADER_MOB) = 0
+      {
+         Send(oRoom,@Rumble);
+         
+         Send(self,@RestartTimer);
+         Send(self,@AddToLeaderTreasure);
+         Send(self,@SpawnMonsters,#iWave=1);
+         Send(self,@SpawnMonsters,#iWave=2);
+         piPhase++;
+         Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,#string=vrNextWave);
+      }
+      else if piPhase = 2
+         AND Send(oRoom,@CountMonstersWithMonsterFlag,#flag=MFLAG_INVADER_MOB) = 0
+      {
+         Send(oRoom,@Rumble);
+
+         Send(self,@RestartTimer);
+         Send(self,@AddToLeaderTreasure);
+         Send(self,@SpawnMonsters,#iWave=1);
+         Send(self,@SpawnMonsters,#iWave=2);
+         Send(self,@SpawnMonsters,#iWave=3);
+         piPhase++;
+         Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,#string=vrNextWave);
+      }
+      else if piPhase = 3
+         AND Send(oRoom,@CountMonstersWithMonsterFlag,#flag=MFLAG_INVADER_MOB) = 0
+      {
+         Send(oRoom,@Rumble);
+
+         Send(self,@RestartTimer);
+         Send(self,@AddToLeaderTreasure);
+         Send(self,@SpawnMonsters,#iWave=3);
+         Send(self,@SpawnMonsters,#iWave=4);
+         piPhase++;
+         Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,#string=vrFinalWave);
+      }
+      else if piPhase = 4
+         AND Send(oRoom,@CountMonstersWithMonsterFlag,#flag=MFLAG_INVADER_MOB) = 0
+      {
+         Send(oRoom,@Rumble);
+
+         Send(self,@RestartTimer);
+         Send(self,@AddToLeaderTreasure);
+         Send(poLeader,@EnableAttackMode,#bEnabled=TRUE);
+         piPhase++;
+         Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,#string=vrBoss);
+      }
+      else if poLeader = $
+         OR Send(oRoom,@CountHoldingHowMany,#class=pcLeaderClass) = 0
+      {
+         DeleteTimer(ptCancelEvent);
+         Send(self,@PrintParticipantsToDebug);
+         Send(self,@NotifyEngineEndEvent);
+      }
+
+      propagate;
+   }
+
+   SpawnMonsters(iWave=0)
+   {
+      local oMonster, lSpawnPoint, i, oRoom;
+
+      if iWave = 0
+         OR iWave > 4
+      {
+         return FALSE;
+      }
+
+      i = Nth(Nth(plEventMonsters,iWave),2);
+      oRoom = Send(SYS,@FindRoomByNum,#num=piActiveRoom);
+
+      while (i > 0)
+      {
+         oMonster = Create(First(Nth(plEventMonsters,iWave)));
+         // Flag used to identify harbinger army mobs.
+         Send(oMonster,@SetMonsterFlag,#flag=MFLAG_INVADER_MOB | MFLAG_DONT_DISPOSE,
+               #value=TRUE);
+         lSpawnPoint = Send(self,@MakeSpawnPoint);
+
+         Send(oRoom,@NewHold,
+            #what=oMonster,#new_row=Nth(lSpawnPoint,1),#new_col=Nth(lSpawnPoint,2));
+
+         i--;
+      }
+
+      return TRUE;
+   }
+
+   MonsterKilled(dead_monster=$,killing_player=$,corpse=$)
+   {
+      local oRoom, oReward, iAmount, lRewards;
+
+      // When each event monster is killed, add common reagents to the Leader's treasure drop.
+      // Scale this with the number of participants in the room. This is also capped by piMaxParticipants.
+      if Send(dead_monster,@CheckMonsterFlag,#flag=MFLAG_INVADER_MOB)
+      {
+         if piPhase = 1
+         {
+            lRewards = plRewards_Common;
+         }
+         else
+         {
+            lRewards = plRewards_Medium;
+         }
+
+         oReward = Create(Nth(lRewards,Random(1,Length(lRewards))));
+
+         if isClass(oReward,&NumberItem)
+         {
+            iAmount = piRewardAmount;
+            Send(oReward,@AddNumber,#number=iAmount);
+         }
+
+         Send(poLeader,@NewHold,#what=oReward);
+
+         if plParticipants <> $
+            AND (FindListElem(plParticipants,killing_player) > 0)
+         {
+            // Don't do this if they're already at the top
+            if NOT (First(plParticipants) = killing_player)
+            {
+               plParticipants = DelListElem(plParticipants,killing_player);
+               plParticipants = Cons(killing_player,plParticipants);
+            }
+         }
+         else if (Length(plParticipants) < piMaxParticipants)
+         {
+            // Player not already in list, check size and delete if needed.
+            plParticipants = Cons(killing_player,plParticipants);
+         }
+         else
+         {
+            plParticipants = DelListElem(plParticipants,Last(plParticipants));
+            plParticipants = Cons(killing_player,plParticipants);
+         }
+      }
+
+      return;
+   }
+
+   AddToLeaderTreasure()
+   {
+      local oRoom, oParticipant, oReward, lRewards, iAmount, ItemAtt;
+
+      if plParticipants = $
+      {
+         return;
+      }
+
+      // Rewards scale based on number of number of participants in the room.
+      // Treasure is added after the completion of a wave
+      foreach oParticipant in plParticipants
+      {
+         oRoom = Send(oParticipant,@GetOwner);
+         if oRoom = $
+            OR oRoom <> piActiveRoom
+         {
+            continue;
+         }
+
+         if piPhase = 1
+         {
+            lRewards = plRewards_Medium;
+         }
+         else if piPhase = 2
+         {
+            lRewards = plRewards_High;
+         }
+         else
+         {
+            lRewards = plRewards_Super;
+         }
+
+         oReward = Create(Nth(lRewards,Random(1,Length(lRewards))));
+
+         if isClass(oReward,&NumberItem)
+         {
+            iAmount = ((piPhase * 10) + Length(plParticipants)) * piRewardAmount / 3;
+
+            Send(oReward,@AddNumber,#number=iAmount);
+         }
+
+         Send(poLeader,@NewHold,#what=oReward);
+      }
+
+      if piPhase > 4
+      {
+         oReward = Create(Nth(plRewards_Special,Random(1,Length(plRewards_Special))));
+
+         if IsClass(oReward,&Weapon)
+         {
+            switch(Random(1,7))
+            {
+               case 1: ItemAtt = WA_BLINDER; break;
+               case 2: ItemAtt = WA_PARALYZER; break;
+               case 3: ItemAtt = WA_VAMPER; break;
+               case 4: ItemAtt = WA_SPELLCASTER; break;
+               case 5: ItemAtt = WA_PURGER; break;
+               case 6: ItemAtt = WA_SIPHON; break;
+               case 7: ItemAtt = WA_POISON; break;
+               default: ItemAtt = WA_CURSED;
+            }
+
+            Send(Send(SYS,@FindItemAttByNum,#Num=ItemAtt),@AddToItem,#oItem=oReward);
+         }
+
+         Send(poLeader,@NewHold,#what=oReward);
+      }
+
+      return;
+   }
+
+   GetParticipants()
+   {
+      return plParticipants;
+   }
+
+   PrintParticipantsToDebug()
+   {
+      local i, bComma;
+
+      ClearTempString();
+      bComma = FALSE;
+      foreach i in plParticipants
+      {
+         if (bComma)
+         {
+            AppendTempString(", ");
+         }
+         else
+         {
+            bComma = TRUE;
+         }
+         AppendTempString(Send(i,@GetTrueName));
+      }
+
+      return;
+   }
+
+   CheckForPlayers()
+   {
+      local oRoom;
+
+      oRoom = Send(SYS,@FindRoomByNum,#num=piActiveRoom);
+
+      if Send(oRoom,@CountHoldingHowMany,#class=&Player) = 0
+      {
+         pvEarly = TRUE;
+
+         Send(self,@NotifyEngineEndEvent);
+         send(oRoom,@EndEventEarly);
+         send(poLeader,@Delete);
+      }
+      else
+      {
+         send(self,@RestartTimer);
+      }
+
+      return;
+   }
+
+   RestartTimer()
+   {
+      DeleteTimer(ptCancelEvent);
+
+      ptCancelEvent = CreateTimer(self,@CheckForPlayers,7200000);
+
+      return;
+   }
+
+   SetMinions()
+   {
+      if isClass(poLeader,&GrandpaTrent)
+      {
+         plEventMonsters = [ [&CrusherSprout, 15], [&FrenzySprout, 15], 
+                             [&SpitterSprout, 15], [&WaspHive, 4] ];
+
+         piRewardAmount = 20;
+      }
+      else if isClass(poLeader,&Lich)
+      {
+         plEventMonsters = [ [&TuskedSkeleton, 15],   [&GiantDaemonSkeleton, 15], 
+                             [&NecromancerTroop, 15], [&DarkAngel, 5] ];
+                             
+         piRewardAmount = 15;
+      }
+      else if isClass(poLeader,&SpiderQueen)
+      {
+         plEventMonsters = [ [&Spiderbaby, 15],  [&Spider, 15], 
+                             [&DeathSpider, 15], [&SpiderQueen, 5] ];
+                             
+         piRewardAmount = 7;
+      }
+      else if isClass(poLeader,&AvarChieftain)
+      {
+         plEventMonsters = [ [&avar, 15],       [&Kriipa, 15], 
+                             [&avarshaman, 15], [&avarchieftain, 10] ];
+                             
+         piRewardAmount = 7;
+      }
+      else if isClass(poLeader,&Yeti)
+      {
+         plEventMonsters = [ [&SnowRat, 15], [&Scorpion, 15], 
+                             [&Troll, 15],   [&IceElemental, 10] ];
+                             
+         piRewardAmount = 7;
+      }
+      else if isClass(poLeader,&OrcPitBoss)
+      {
+         plEventMonsters = [ [&Orc, 15],       [&CaveOrc, 15], 
+                             [&OrcWizard, 15], [&Ogre, 10] ];
+                             
+         piRewardAmount = 8;
+      }
+      else if isClass(poLeader,&XeoNeru)
+      {
+         plEventMonsters = [ [&XeoFire, 15], [&XeoIll, 15], 
+                             [&XeoHoly, 15], [&XeoUnholy, 10] ];
+                             
+         piRewardAmount = 15;
+      }
+      else if isClass(poLeader,&GiantRatKing)
+      {
+         plEventMonsters = [ [&SmallRat, 15],        [&GiantRat, 15], 
+                             [&GiantRatSoldier, 15], [&DuskRat, 10] ];
+                             
+         piRewardAmount = 3;
+      }
+      else if isClass(poLeader,&Ghost)
+      {
+         plEventMonsters = [ [&Zombie, 15],   [&BatteredSkeleton, 15], 
+                             [&Skeleton, 15], [&TuskedSkeleton, 10] ];
+                             
+         piRewardAmount = 5;
+      }
+      
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

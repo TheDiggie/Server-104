@@ -44,6 +44,9 @@ classvars:
    vrDead_icon = hellwasp_dead_icon_rsc
    vrDead_name = hellwasp_dead_name_rsc
 
+   viLevel = 220
+   viDifficulty = 7
+
    viTreasure_type = TID_HELL_WASP
 
    viSpeed = SPEED_VERY_FAST

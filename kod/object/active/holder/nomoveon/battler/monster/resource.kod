@@ -26,7 +26,6 @@ classvars:
    viAttributes = 0
    viLevel = 400
    viDifficulty = 10
-   viAmountofLoot = 20
    viKarma = 0
    viDefault_behavior = MOB_NOMOVE
    viCashmin = 0

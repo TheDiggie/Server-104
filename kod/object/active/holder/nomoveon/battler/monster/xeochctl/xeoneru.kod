@@ -43,9 +43,9 @@ resources:
    vrKocName = XeoNeru_koc_name_rsc
 
    viAttack_type = ATCK_WEAP_MAGIC
-   viLevel = 700
-   viDifficulty = 9
-   viSpeed = SPEED_VERY_FAST
+   viLevel = 300
+   viDifficulty = 7
+   viSpeed = SPEED_FAST
    vrSound_aware = XeoNeru_sound_aware
 
    vrIcon = XeoNeru_icon_rsc
