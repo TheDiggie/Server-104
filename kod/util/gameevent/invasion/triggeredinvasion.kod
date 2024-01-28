@@ -92,7 +92,9 @@ messages:
                            &NeruditeOre ];
 
       plRewards_Special = [ &LongSword,  &NeruditeSword, &Scimitar, &Hammer, &Axe,
-                            &ShortSword, &MysticSword,   &Maul,     &BerserkerAxe ];
+                            &ShortSword, &MysticSword,   &Maul,     &BerserkerAxe, 
+                            &BlueDragonScale,  &DarkAngelFeather,   &PolishedSeraphym,
+                            &GrayMushroom, &CyanMushroom, &YellowMushroom,   &GreenMushroom  ];
 
       plEventBoss = [ &GrandpaTrent, &Lich, &SpiderQueen, &AvarChieftain, &Yeti, &OrcPitBoss, &XeoNeru, &GiantRatKing ];
 
@@ -102,7 +104,7 @@ messages:
 
       if piActiveRoom = 0
       {
-         piActiveRoom = Nth(plEventRooms, Random(1,Length(plEventRooms)));
+         piActiveRoom = RID_DUNGEON; //Nth(plEventRooms, Random(1,Length(plEventRooms)));
       }
       else
       {
@@ -201,7 +203,7 @@ messages:
       Send(oRoom,@SetRoomBackground,#background=vrbackground);
       Send(oRoom,@BackgroundChanged);
 
-      ptCancelEvent = CreateTimer(self,@CheckForPlayers,7200000);
+      ptCancelEvent = CreateTimer(self,@CheckForPlayers,2*60*60*1000);
 
       return piActiveRoom;
    }
@@ -346,7 +348,7 @@ messages:
 
    MonsterKilled(dead_monster=$,killing_player=$,corpse=$)
    {
-      local oRoom, oReward, iAmount, lRewards;
+      local oRoom, oReward, iAmount, lRewards, ItemAtt;
 
       // When each event monster is killed, add common reagents to the Leader's treasure drop.
       // Scale this with the number of participants in the room. This is also capped by piMaxParticipants.
@@ -354,11 +356,19 @@ messages:
       {
          if piPhase = 1
          {
-            lRewards = plRewards_Common;
-         }
-         else
-         {
             lRewards = plRewards_Medium;
+         }
+         else if piPhase = 2
+         {
+            lRewards = plRewards_High;
+         }
+         else if piPhase = 3
+         {
+            lRewards = plRewards_Super;
+         }
+         else if piPhase = 4
+         {
+            lRewards = plRewards_Special;
          }
 
          oReward = Create(Nth(lRewards,Random(1,Length(lRewards))));
@@ -367,6 +377,23 @@ messages:
          {
             iAmount = piRewardAmount;
             Send(oReward,@AddNumber,#number=iAmount);
+         }
+
+         if IsClass(oReward,&Weapon)
+         {
+            switch(Random(1,7))
+            {
+               case 1: ItemAtt = WA_BLINDER; break;
+               case 2: ItemAtt = WA_PARALYZER; break;
+               case 3: ItemAtt = WA_VAMPER; break;
+               case 4: ItemAtt = WA_SPELLCASTER; break;
+               case 5: ItemAtt = WA_PURGER; break;
+               case 6: ItemAtt = WA_SIPHON; break;
+               case 7: ItemAtt = WA_POISON; break;
+               default: ItemAtt = WA_CURSED;
+            }
+
+            Send(Send(SYS,@FindItemAttByNum,#Num=ItemAtt),@AddToItem,#oItem=oReward);
          }
 
          Send(poLeader,@NewHold,#what=oReward);
@@ -441,7 +468,7 @@ messages:
          Send(poLeader,@NewHold,#what=oReward);
       }
 
-      if piPhase > 4
+      if piPhase = 3
       {
          oReward = Create(Nth(plRewards_Special,Random(1,Length(plRewards_Special))));
 
@@ -521,7 +548,7 @@ messages:
    {
       DeleteTimer(ptCancelEvent);
 
-      ptCancelEvent = CreateTimer(self,@CheckForPlayers,7200000);
+      ptCancelEvent = CreateTimer(self,@CheckForPlayers,2*60*60*1000);
 
       return;
    }

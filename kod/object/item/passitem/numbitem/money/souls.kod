@@ -21,7 +21,7 @@ resources:
    souls_desc_rsc = \
    "This is a vial of contained souls captured by the creatures of this land. "
    "We don't know what they want with them, unsure if there food or just "
-   "a trinket of there cruelty. I'm sure there valuable regardless.  "
+   "a trinket of there cruelty. I'm sure they're valuable regardless.  "
 
    souls_name_plural_rsc = "contained souls"
 

@@ -6194,8 +6194,8 @@ messages:
    {
       local i, j, oReagent, iNumberItems, oTreasure, oTreasure_type,
             lTreasureItems, iNumberOfItemsDropped, iNumberOfItemsLooted,
-            iRandomCashAmount, oMoney, iGetResult, bCapacityFailure,
-            bRangeFailure, iSurvivalLoot, oAttacker, lTreasure, lInventory;
+            iRandomCashAmount, oMoney, iGetResult, bCapacityFailure, oItemAtt, iNum,
+            bRangeFailure, iSurvivalLoot, oAttacker, lTreasure, lInventory, lAttributes;
 
       funds = poCurrency;
 
@@ -6230,13 +6230,11 @@ messages:
 
       if poEventMob
       {
-         Debug("do event loot");
          lInventory = [plActive, plPassive];
 
          // Autogive loot to all players in plAttackers that are present
          foreach oAttacker in plAttackers
          {
-            Debug(send(oAttacker,@getname));
             if Send(self,@GetOwner) <> Send(oAttacker,@GetOwner)
             {
                continue;
@@ -6246,7 +6244,6 @@ messages:
             {
                foreach oTreasure in lTreasure
                {
-                  Debug(oTreasure);
                   if Send(oTreasure,@DropOnDeath)
                   {
                      // Numbered item, include value in creation
@@ -6257,7 +6254,19 @@ messages:
                      }
                      else
                      {
-                        Send(oAttacker,@NewHold,#what=Create(GetClass(oTreasure)));
+                        lAttributes = Send(oTreasure,@GetAttributes);
+
+                        if lAttributes <> $
+                        {
+                           foreach i in lAttributes
+                           {
+                              iNum = Send(oTreasure,@GetNumFromCompound,#compound=First(i));
+                              oItemAtt = Send(SYS,@FindItemAttByNum,#num=iNum);
+                              oTreasure = Create(GetClass(oTreasure));
+                              Send(oItemAtt,@AddToItem,#oItem=oTreasure,#iPower=Random(1,9));
+                              Send(oAttacker,@NewHold,#what=oTreasure);
+                           }
+                        }
                      }
                   }
                }

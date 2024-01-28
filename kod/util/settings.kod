@@ -79,7 +79,7 @@ properties:
    piLogonBonus = 120
 
    // The maximum amount of unbound energy we can absorb
-   piUnboundMax = 500
+   piUnboundMax = 5000
 
    // The maximum percentage of XP we can absorb as unbound energy.
    piUnboundAbsorption = 100

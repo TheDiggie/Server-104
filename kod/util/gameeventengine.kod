@@ -41,7 +41,7 @@ messages:
    {
       Send(self,@Recreate);
 
-      ptInvasionTimer = CreateTimer(self,@StartEnvasion,Random(10800000,21600000));
+      ptInvasionTimer = CreateTimer(self,@StartEnvasion,(2*60*60*1000));
 
       return;
    }
@@ -913,7 +913,7 @@ messages:
 
    ReschedualEvent()
    {
-      ptInvasionTimer = CreateTimer(self,@StartEnvasion,Random(10800000,21600000));
+      ptInvasionTimer = CreateTimer(self,@StartEnvasion,(2*60*60*1000));
 
       return;
    }
