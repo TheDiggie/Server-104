@@ -2453,7 +2453,7 @@ messages:
 
       if iTimespan > 16*60*60
       {
-         if piTraining_points >= 1000
+         if piTraining_points >= 10000
          {
             return;
          }
@@ -6767,8 +6767,11 @@ messages:
 
    GetMoneyObject(type= $)
    {
-
-      if (type = &Silver)
+      if (type = &Doubloon)
+      {
+         return GetListElemByClass(plPassive,&Doubloon);
+      }
+      else if (type = &Silver)
       {
          return GetListElemByClass(plPassive,&Silver);
       }
@@ -9295,7 +9298,7 @@ messages:
          // and also got the killing blow (no double points from single mobs).
          if iXP > 0
             AND killing_blow
-            AND piTraining_points < 1000
+            AND piTraining_points < 10000
          {
             piTraining_points = piTraining_points + 1
                + (Send(what,@GetBoostedLevel)
@@ -9324,7 +9327,7 @@ messages:
 
          // Let the player know how many training points they have, if they
          // either reached the max, or a multiple of 100.
-         if piTraining_points > 999 AND 
+         if piTraining_points > 9999 AND 
          (what = $ OR (what <> $ AND NOT IsClass(what, &Resource)))
          {
             if piInform
@@ -9594,9 +9597,9 @@ messages:
 
       if bCap
       {
-         if piTraining_points <= 1000
+         if piTraining_points <= 10000
          {
-            points = bound(points,-piTraining_points,1000 - piTraining_points);
+            points = bound(points,-piTraining_points,10000 - piTraining_points);
          }
          else if points > 0
          {
@@ -9621,7 +9624,7 @@ messages:
 
       piTraining_points = piTraining_points + points;
 
-      if piTraining_points < 1000
+      if piTraining_points < 10000
          OR NOT bCap
       {
          piInform = TRUE;
@@ -9644,7 +9647,7 @@ messages:
 
       ptReward_timer = CreateTimer(self,@GetDailyTrainingReward,24*60*60*1000);
 
-      if piTraining_points >= 1000
+      if piTraining_points >= 10000
       {
          return;
       }

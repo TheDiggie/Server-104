@@ -88,7 +88,7 @@ properties:
    piUnboundDecay = 20
 
    // Delay between receiving unbound energy and decay setting in in ms.
-   piUnboundDelay = 60000
+   piUnboundDelay = 180000
 
    // Players can't absorb unbound energy from monsters while engaged in PvP or
    // a short while thereafter. Default of 4 minutes.

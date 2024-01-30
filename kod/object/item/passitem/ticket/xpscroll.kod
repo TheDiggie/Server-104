@@ -1,0 +1,83 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+XPScroll is Ticket
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   // TODO: German translation from Tyran
+   //include XPScroll.lkod
+
+   XPScroll_name_rsc = "experience scroll"
+   XPScroll_icon_rsc = scr06.bgf
+   XPScroll_desc_rsc = "This is a experience scroll. Using it will grant you 10,0000 experience. "   
+
+   XPScroll_warning = "~r~BWarning using this scroll will consume it and grant the player 10,000 experience. "
+
+classvars:
+
+   vrName = XPScroll_name_rsc
+   vrIcon = XPScroll_icon_rsc
+   vrDesc = XPScroll_desc_rsc
+
+   viUse_type = ITEM_SINGLE_USE
+
+   viBulk = 1
+   viWeight = 1
+   viValue_average = 100
+   
+properties:
+
+   pbIn_use = FALSE
+   pbWarned = FALSE
+
+   piExperience = 10000
+   
+messages:
+   
+   ReqNewApply(what = $,use_item = $)
+   {
+
+      if pbWarned = FALSE
+      {
+         Send(what,@MsgSendUser,#message_rsc=XPScroll_warning);
+
+         pbWarned = TRUE;
+
+         return FALSE;
+      }
+      else
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   NewApplied(what = $)
+   {
+      Send(what,@AddXP,#iAmount=piExperience);
+
+      send(self,@delete);
+
+      return;
+   }
+
+   CanBeStoredInVault()
+   {
+      return TRUE;
+   }
+   
+end
+////////////////////////////////////////////////////////////////////////////////

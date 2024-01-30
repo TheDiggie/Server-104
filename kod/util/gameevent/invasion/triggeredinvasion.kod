@@ -104,7 +104,7 @@ messages:
 
       if piActiveRoom = 0
       {
-         piActiveRoom = RID_DUNGEON; //Nth(plEventRooms, Random(1,Length(plEventRooms)));
+         piActiveRoom = Nth(plEventRooms, Random(1,Length(plEventRooms)));
       }
       else
       {
@@ -243,7 +243,7 @@ messages:
 
    Update()
    {
-      local oRoom, iDebug;
+      local oRoom, iDebug, oDoubloon;
 
       oRoom = Send(SYS,@FindRoomByNum,#num=piActiveRoom);
 
@@ -304,6 +304,9 @@ messages:
          Send(poLeader,@EnableAttackMode,#bEnabled=TRUE);
          piPhase++;
          Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,#string=vrBoss);
+         
+         oDoubloon = Create(&Doubloon,#number=piRewardAmount);
+         Send(poLeader,@NewHold,#what=oDoubloon);
       }
       else if poLeader = $
          OR Send(oRoom,@CountHoldingHowMany,#class=pcLeaderClass) = 0
@@ -466,6 +469,7 @@ messages:
          }
 
          Send(poLeader,@NewHold,#what=oReward);
+
       }
 
       if piPhase = 3

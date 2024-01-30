@@ -5724,6 +5724,7 @@ messages:
       plItemTemplates = cons(create(&Shillings),plItemTemplates);
       plItemTemplates = cons(create(&Souls),plItemTemplates);
       plItemTemplates = cons(create(&Silver),plItemTemplates);
+      plItemTemplates = cons(create(&Doubloon),plItemTemplates);
 
       plItemTemplates = cons(create(&StatsResetToken,#temporary=FALSE),
                               plItemTemplates);
@@ -6113,6 +6114,9 @@ messages:
       plItemTemplates = cons(create(&BoatTicket),plItemTemplates);
       plItemTemplates = cons(create(&VaultContract),plItemTemplates);
       plItemTemplates = cons(create(&VaultResign),plItemTemplates);
+      plItemTemplates = cons(create(&XPScroll),plItemTemplates);
+      plItemTemplates = cons(create(&UBScroll),plItemTemplates);
+      plItemTemplates = cons(create(&TPScroll),plItemTemplates);
       
       //Dye Stuff
       plItemTemplates = cons(create(&DyeBottle),plItemTemplates);
@@ -6161,6 +6165,7 @@ messages:
       plMoneyTemplates = Cons(create(&Shillings),plMoneyTemplates);
       plMoneyTemplates = Cons(create(&Souls),plMoneyTemplates);
       plMoneyTemplates = Cons(create(&Silver),plMoneyTemplates);
+      plMoneyTemplates = cons(create(&Doubloon),plMoneyTemplates);
 
       return;
    }

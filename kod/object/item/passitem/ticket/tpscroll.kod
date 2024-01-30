@@ -1,0 +1,83 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+TPScroll is Ticket
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   // TODO: German translation from Tyran
+   //include TPScroll.lkod
+
+   TPScroll_name_rsc = "training points scroll"
+   TPScroll_icon_rsc = scr06.bgf
+   TPScroll_desc_rsc = "This is a training points scroll. Using it will grant you 2000 training points. "   
+
+   TPScroll_warning = "~r~BWarning using this scroll will consume it and grant the player 2000 training points. "
+
+classvars:
+
+   vrName = TPScroll_name_rsc
+   vrIcon = TPScroll_icon_rsc
+   vrDesc = TPScroll_desc_rsc
+
+   viUse_type = ITEM_SINGLE_USE
+
+   viBulk = 1
+   viWeight = 1
+   viValue_average = 150
+   
+properties:
+
+   pbIn_use = FALSE
+   pbWarned = FALSE
+
+   piPoints = 2000
+   
+messages:
+   
+   ReqNewApply(what = $,use_item = $)
+   {
+
+      if pbWarned = FALSE
+      {
+         Send(what,@MsgSendUser,#message_rsc=TPScroll_warning);
+
+         pbWarned = TRUE;
+
+         return FALSE;
+      }
+      else
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   NewApplied(what = $)
+   {
+      Send(what,@AddTrainingPoints,#points=piPoints);
+
+      send(self,@delete);
+
+      return;
+   }
+
+   CanBeStoredInVault()
+   {
+      return TRUE;
+   }
+   
+end
+////////////////////////////////////////////////////////////////////////////////

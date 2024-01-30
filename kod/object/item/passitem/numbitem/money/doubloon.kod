@@ -1,0 +1,39 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Doubloon is Money
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Doubloon_name_one_rsc = "doubloon"
+   Doubloon_name_many_rsc = "doubloon"
+   
+   Doubloon_icon_rsc = doubloon.bgf
+   Doubloon_desc_rsc = \
+      "A old doubloon coin. This was used by pirates ages ago."
+
+classvars:
+
+   vrName = Doubloon_name_one_rsc
+   vrIcon = Doubloon_icon_rsc
+   vrDesc = Doubloon_desc_rsc
+
+   vrName_plural = Doubloon_name_many_rsc
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,83 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+UBScroll is Ticket
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   // TODO: German translation from Tyran
+   //include UBScroll.lkod
+
+   UBScroll_name_rsc = "unbound enery scroll"
+   UBScroll_icon_rsc = scr06.bgf
+   UBScroll_desc_rsc = "This is a unbound enery scroll. Using it will grant you 1000 unbound enery. "   
+
+   UBScroll_warning = "~r~BWarning using this scroll will consume it and grant the player 1000 unbound enery. "
+
+classvars:
+
+   vrName = UBScroll_name_rsc
+   vrIcon = UBScroll_icon_rsc
+   vrDesc = UBScroll_desc_rsc
+
+   viUse_type = ITEM_SINGLE_USE
+
+   viBulk = 1
+   viWeight = 1
+   viValue_average = 10
+   
+properties:
+
+   pbIn_use = FALSE
+   pbWarned = FALSE
+
+   piEnergy = 1000
+   
+messages:
+   
+   ReqNewApply(what = $,use_item = $)
+   {
+
+      if pbWarned = FALSE
+      {
+         Send(what,@MsgSendUser,#message_rsc=UBScroll_warning);
+
+         pbWarned = TRUE;
+
+         return FALSE;
+      }
+      else
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   NewApplied(what = $)
+   {
+      Send(what,@AddUnboundEnergy,#iAmount=piEnergy);
+
+      send(self,@delete);
+
+      return;
+   }
+
+   CanBeStoredInVault()
+   {
+      return TRUE;
+   }
+   
+end
+////////////////////////////////////////////////////////////////////////////////

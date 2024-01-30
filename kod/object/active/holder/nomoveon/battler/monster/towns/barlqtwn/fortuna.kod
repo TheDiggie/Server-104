@@ -1,0 +1,56 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Fortuna is BarloqueTown
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Fortuna_name_rsc = "Fortuna"
+   Fortuna_icon_rsc = fortuna.bgf
+   Fortuna_desc_rsc = \
+      "Fortuna spends her time collecting ancient coins lost by other pirates. "
+      "If you find any ancient doubloons I'm sure she will give you something "
+      "useful in return. "
+classvars:
+
+   vrName = Fortuna_name_rsc
+   vrIcon = Fortuna_icon_rsc
+   vrDesc = Fortuna_desc_rsc
+   viAttributes = \
+      MOB_NOFIGHT | MOB_SELLER | MOB_NOMOVE | MOB_RANDOM | MOB_LISTEN \
+      | MOB_RECEIVE
+   viOccupation = MOB_ROLE_MERCHANT
+   viMerchant_markup = MERCHANT_FLAT
+
+properties:
+
+   poCurrency = &Doubloon
+
+messages:
+
+   SetForSale()
+   {
+      plFor_sale = [
+         [
+            Create(&Xpscroll),
+            Create(&Ubscroll),
+            Create(&Tpscroll)
+         ],
+      $,$,$];
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

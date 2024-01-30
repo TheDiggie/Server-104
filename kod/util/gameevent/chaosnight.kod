@@ -432,6 +432,17 @@ messages:
                      #parm1=Send(oMoney,@GetIndef),
                      #parm2=Send(oMoney,@GetName));
             }
+
+         oMoney = Create(&Doubloon,#number=piFrenzyMoneyAmount);
+
+         Send(oPlayer,@NewHold,#what=oMoney);
+
+            if Send(oPlayer,@IsLoggedOn)
+            {
+               Send(oPlayer,@MsgSendUser,#Message_rsc=chaos_gift,
+                     #parm1=Send(oMoney,@GetIndef),
+                     #parm2=Send(oMoney,@GetName));
+            }
       }
 
       return Send(SYS, @GetSuccessRsc);
