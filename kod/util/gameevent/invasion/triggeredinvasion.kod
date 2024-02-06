@@ -94,7 +94,8 @@ messages:
       plRewards_Special = [ &LongSword,  &NeruditeSword, &Scimitar, &Hammer, &Axe,
                             &ShortSword, &MysticSword,   &Maul,     &BerserkerAxe, 
                             &BlueDragonScale,  &DarkAngelFeather,   &PolishedSeraphym,
-                            &GrayMushroom, &CyanMushroom, &YellowMushroom,   &GreenMushroom  ];
+                            &GrayMushroom, &CyanMushroom, &YellowMushroom,   &GreenMushroom,
+                            &ShamanBlood, &YrxlSap, &PolishedSeraphym, &PurpleMushroom ];
 
       plEventBoss = [ &GrandpaTrent, &Lich, &SpiderQueen, &AvarChieftain, &Yeti, &OrcPitBoss, &XeoNeru, &GiantRatKing ];
 
@@ -177,6 +178,8 @@ messages:
 
       pcLeaderClass = Nth(plEventBoss,Random(1,length(plEventBoss)));
       poLeader = Create(pcLeaderClass);
+
+      Send(poLeader,@SetMonsterFlag,#flag=MFLAG_DONT_DISPOSE,#value=TRUE);
 
       Send(self,@SetMinions);
 

@@ -489,7 +489,6 @@ messages:
       // Sanity checks.
       if poOwner = $
       {
-         Debug("Unreachable. Null Owner");
          Send(self,@EnterStateLimbo);
 
          return;
@@ -497,7 +496,6 @@ messages:
 
       if poTarget = $
       {
-         Debug("Unreachable. Null poTarget","monster",self); 
          Send(self,@EnterStateWait);
 
          return;
@@ -565,7 +563,6 @@ messages:
                AND (iRandom < 10 OR iDistance < iBestDistance)
                AND NOT Send(self,@isAlly,#target=each_obj)
             {
-               Debug("Lich target change:",each_obj);
                iBestDistance = iDistance;
                Send(self,@TargetSwitch,#what=each_obj,#iHatred=60);
 
