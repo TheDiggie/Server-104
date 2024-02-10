@@ -108,7 +108,7 @@ messages:
 
       if piActiveRoom = 0
       {
-         piActiveRoom = RID_DUNGEON; //Nth(plEventRooms, Random(1,Length(plEventRooms)));
+         piActiveRoom = Nth(plEventRooms, Random(1,Length(plEventRooms)));
       }
       else
       {
@@ -179,7 +179,7 @@ messages:
    {
       local oRoom;
 
-      pcLeaderClass = &AvarChieftain;//Nth(plEventBoss,Random(1,length(plEventBoss)));
+      pcLeaderClass = Nth(plEventBoss,Random(1,length(plEventBoss)));
       poLeader = Create(pcLeaderClass);
 
       Send(poLeader,@SetMonsterFlag,#flag=MFLAG_DONT_DISPOSE,#value=TRUE);
