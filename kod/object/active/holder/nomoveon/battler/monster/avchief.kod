@@ -182,12 +182,10 @@ messages:
 
    ChooseClan()
    {
-      if poOwner = $ OR NOT IsClass(poOwner,&KCForest)
+      if poOwner = $
+         OR NOT IsClass(poOwner,&KCForest)
       {
-         if Random (1,5) > 1
-         {
-            Send(self,@SetClan,#clan=random(PT_PURPLETOBLUE,PT_PURPLETOYELLOW));
-         }
+         Send(self,@SetClan,#clan=PT_PURPLETOBLUE);
 
          return;
       }

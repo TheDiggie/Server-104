@@ -108,7 +108,7 @@ messages:
 
       if piActiveRoom = 0
       {
-         piActiveRoom = Nth(plEventRooms, Random(1,Length(plEventRooms)));
+         piActiveRoom = RID_DUNGEON; //Nth(plEventRooms, Random(1,Length(plEventRooms)));
       }
       else
       {
@@ -179,7 +179,7 @@ messages:
    {
       local oRoom;
 
-      pcLeaderClass = Nth(plEventBoss,Random(1,length(plEventBoss)));
+      pcLeaderClass = &AvarChieftain;//Nth(plEventBoss,Random(1,length(plEventBoss)));
       poLeader = Create(pcLeaderClass);
 
       Send(poLeader,@SetMonsterFlag,#flag=MFLAG_DONT_DISPOSE,#value=TRUE);
@@ -569,7 +569,7 @@ messages:
          plEventMonsters = [ [&CrusherSprout, 15], [&FrenzySprout, 15], 
                              [&SpitterSprout, 15], [&WaspHive, 4] ];
 
-         piRewardAmount = 20;
+         piRewardAmount = 30;
       }
       else if isClass(poLeader,&Lich)
       {

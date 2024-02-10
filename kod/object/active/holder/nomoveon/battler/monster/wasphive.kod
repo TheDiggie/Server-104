@@ -76,7 +76,7 @@ messages:
 
    SpawnWasp()
    {
-      local oWasp, oBrain;
+      local oWasp;
 
       if poOwner <> $
       {
@@ -85,8 +85,6 @@ messages:
          Send(poOwner,@NewHold,#what=oWasp,#new_row=Send(self,@GetRow),
                #new_col=Send(self,@GetCol));
 
-         oBrain = Send(SYS,@FindBrainByNum,#num=2);
-         Send(oWasp,@SetBrainNum,#oBrain=oBrain);
          Send(oWasp,@SetMonsterFlag,#flag=MFLAG_INVADER_MOB | MFLAG_DONT_DISPOSE,
                #value=TRUE);
       }
