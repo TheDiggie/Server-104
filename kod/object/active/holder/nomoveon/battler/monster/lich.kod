@@ -159,8 +159,8 @@ properties:
    pbIllusioned = TRUE
    ptGoIllusioned = $
 
-   piBlindAttackChance = 10    // Chance she'll attack with blind
-   piBlindCounterChance = 5    // Chance she'll counter a spell or arrow with blind
+   piBlindAttackChance = 25    // Chance she'll attack with blind
+   piBlindCounterChance = 25    // Chance she'll counter a spell or arrow with blind
    piBlindDurationMin = 5000  // Milliseconds.
    piBlindDurationMax = 10000  // Milliseconds.
 

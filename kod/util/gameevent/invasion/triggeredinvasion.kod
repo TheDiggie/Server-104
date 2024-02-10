@@ -27,6 +27,7 @@ resources:
    Next_Wave   = "~B~k[Event]~n ~B~v The next wave of enemies has spawned!"
    Final_Wave  = "~B~k[Event]~n ~B~v The final wave of enemies has spawned!"
    Boss        = "~B~k[Event]~n ~B~v His minions are gone! Now is the time to take out leader!"
+   Alert       = "~B~k[Event]~n ~B~v The %s is still roaming around %s!"
 
    redbackground = redsky.bgf
 
@@ -44,6 +45,7 @@ classvars:
    vrNextWave     = Next_Wave
    vrFinalWave    = Final_Wave
    vrBoss         = Boss
+   vrAlert        = Alert
    vbAnnounce     = TRUE
 
 properties:
@@ -68,6 +70,7 @@ properties:
    plScore = $ 
 
    ptCancelEvent= $
+   ptAlertPlayers= $
    pvEarly = FALSE
    piRewardAmount = $
    pcLeaderClass = $
@@ -207,6 +210,8 @@ messages:
       Send(oRoom,@BackgroundChanged);
 
       ptCancelEvent = CreateTimer(self,@CheckForPlayers,2*60*60*1000);
+
+      ptAlertPlayers = CreateTimer(self,@AlertPlayers,31*60*1000);
 
       return piActiveRoom;
    }
@@ -387,15 +392,22 @@ messages:
 
          if IsClass(oReward,&Weapon)
          {
-            switch(Random(1,7))
+            switch(Random(1,14))
             {
-               case 1: ItemAtt = WA_BLINDER; break;
-               case 2: ItemAtt = WA_PARALYZER; break;
-               case 3: ItemAtt = WA_VAMPER; break;
-               case 4: ItemAtt = WA_SPELLCASTER; break;
-               case 5: ItemAtt = WA_PURGER; break;
-               case 6: ItemAtt = WA_SIPHON; break;
-               case 7: ItemAtt = WA_POISON; break;
+               case 1:  ItemAtt = WA_BLINDER; break;
+               case 2:  ItemAtt = WA_PARALYZER; break;
+               case 3:  ItemAtt = WA_VAMPER; break;
+               case 4:  ItemAtt = WA_SPELLCASTER; break;
+               case 5:  ItemAtt = WA_PURGER; break;
+               case 6:  ItemAtt = WA_SIPHON; break;
+               case 7:  ItemAtt = WA_POISON; break;
+               case 8:  ItemAtt = WA_BONKER; break;
+               case 9:  ItemAtt = WA_TWISTER; break;
+               case 10: ItemAtt = WA_GLOWING; break;
+               case 11: ItemAtt = WA_EXPERT; break;
+               case 12: ItemAtt = WA_ATTACKSPELLTYPE; break;
+               case 13: ItemAtt = WA_CEREMONIAL; break;
+               case 14: ItemAtt = WA_PUNISHER; break;
                default: ItemAtt = WA_CURSED;
             }
 
@@ -475,30 +487,6 @@ messages:
 
       }
 
-      if piPhase = 3
-      {
-         oReward = Create(Nth(plRewards_Special,Random(1,Length(plRewards_Special))));
-
-         if IsClass(oReward,&Weapon)
-         {
-            switch(Random(1,7))
-            {
-               case 1: ItemAtt = WA_BLINDER; break;
-               case 2: ItemAtt = WA_PARALYZER; break;
-               case 3: ItemAtt = WA_VAMPER; break;
-               case 4: ItemAtt = WA_SPELLCASTER; break;
-               case 5: ItemAtt = WA_PURGER; break;
-               case 6: ItemAtt = WA_SIPHON; break;
-               case 7: ItemAtt = WA_POISON; break;
-               default: ItemAtt = WA_CURSED;
-            }
-
-            Send(Send(SYS,@FindItemAttByNum,#Num=ItemAtt),@AddToItem,#oItem=oReward);
-         }
-
-         Send(poLeader,@NewHold,#what=oReward);
-      }
-
       return;
    }
 
@@ -548,6 +536,20 @@ messages:
          send(self,@RestartTimer);
       }
 
+      return;
+   }
+
+   AlertPlayers()
+   {
+      local oRoom;
+
+      oRoom = Send(SYS,@FindRoomByNum,#num=piActiveRoom);
+
+      Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,#string=vrAlert,
+            #parm1=Send(poLeader,@GetName),#parm2=Send(oRoom,@GetName));
+
+      ptAlertPlayers = CreateTimer(self,@AlertPlayers,31*60*1000);
+      
       return;
    }
 
