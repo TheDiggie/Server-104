@@ -42,7 +42,7 @@ properties:
    pbIn_use = FALSE
    pbWarned = FALSE
 
-   piExperience = 10000
+   piExperience = 35000
    
 messages:
    

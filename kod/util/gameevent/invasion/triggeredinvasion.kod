@@ -69,8 +69,8 @@ properties:
    poOriginal = $
    plScore = $ 
 
-   ptCancelEvent= $
-   ptAlertPlayers= $
+   ptCancelEvent = $
+   ptAlertPlayers = $
    pvEarly = FALSE
    piRewardAmount = $
    pcLeaderClass = $
@@ -221,6 +221,9 @@ messages:
       local oRoom;
 
       oRoom = Send(SYS,@FindRoomByNum,#num=piActiveRoom);
+
+      DeleteTimer(ptAlertPlayers);
+      ptAlertPlayers = $;
 
       if IsClass(oRoom,&MonsterRoom)
       {
@@ -392,7 +395,7 @@ messages:
 
          if IsClass(oReward,&Weapon)
          {
-            switch(Random(1,14))
+            switch(Random(1,12))
             {
                case 1:  ItemAtt = WA_BLINDER; break;
                case 2:  ItemAtt = WA_PARALYZER; break;
@@ -405,9 +408,7 @@ messages:
                case 9:  ItemAtt = WA_TWISTER; break;
                case 10: ItemAtt = WA_GLOWING; break;
                case 11: ItemAtt = WA_EXPERT; break;
-               case 12: ItemAtt = WA_ATTACKSPELLTYPE; break;
-               case 13: ItemAtt = WA_CEREMONIAL; break;
-               case 14: ItemAtt = WA_PUNISHER; break;
+               case 12: ItemAtt = WA_PUNISHER; break;
                default: ItemAtt = WA_CURSED;
             }
 
