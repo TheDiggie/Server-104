@@ -23,7 +23,7 @@ resources:
    Bond_icon_rsc = ibond.bgf
    Bond_desc_rsc = \
       "Infuses an item with a soft white light.  However, the "
-      "bond requires terrific amounts of energy to form.  Requires 5 heartstones, "
+      "bond requires terrific amounts of energy to form.  Requires 5 white heartstones, "
       "50 polished serphym, 50 diamonds and 15 yellow mushrooms crushed to amplify "
       "the caster's mystical energy. The item to be bonded must be targetted. "
       "Once the casting is complete the item will follow its owner to hell itself."
@@ -77,7 +77,7 @@ messages:
       plReagents = $;
       plReagents = Cons([&PolishedSeraphym,50],plReagents);
       plReagents = Cons([&Diamond,50],plReagents);
-      plReagents = Cons([&Heartstone,5],plReagents);
+      plReagents = Cons([&WhiteHeartstone,5],plReagents);
 	   plReagents = Cons([&YellowMushroom,15],plReagents);
 
       return;

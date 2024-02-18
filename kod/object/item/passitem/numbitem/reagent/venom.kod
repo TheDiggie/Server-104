@@ -24,7 +24,7 @@ resources:
    VialOfVenom_vial_name_plural_rsc = "vials of venom"
    VialOfVenom_vial_name_rsc = "vial of venom"
 
-   Not_Enough_Venom = "You need 50 venom to break down a heartstone!"
+   Not_Enough_Venom = "You need 30 venom to break down a heartstone!"
    Made_Dust  = "You turn the heartstone into %s."
 
 classvars:
@@ -149,7 +149,7 @@ messages:
    {
       if IsClass(apply_on,&Heartstone)
       {
-         if piNumber < 50
+         if piNumber < 30
          {
             Send(what,@MsgSendUser,#message_rsc=Not_Enough_Venom);
 
@@ -174,7 +174,7 @@ messages:
 
          Send(what,@MsgSendUser,#message_rsc=Made_Dust,#parm1=send(NewDust,@GetName));
 
-         Send(apply_on,@Delete);
+         Send(apply_on,@SubtractNumber,#number=1);
 
          Send(self,@SubtractNumber,#number=50);
 

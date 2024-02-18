@@ -7,7 +7,7 @@
 DEPEND = ..\passitem.bof
 BOFS = arsenic.bof attmod.bof betap.bof bosshead.bof \
    chalice.bof defmod.bof factflag.bof gem.bof gift.bof \
-   hstone.bof inscript.bof instrum.bof junk.bof karmapotion.bof key.bof \
+   inscript.bof instrum.bof junk.bof karmapotion.bof key.bof \
    manacrys.bof minigame.bof necklace.bof nerudore.bof numbitem.bof \
    offering.bof orecheap.bof orechunk.bof pforget.bof \
    prism.bof questitem.bof ring.bof rod.bof roomkeyc.bof bag.bof \

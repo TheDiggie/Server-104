@@ -8,7 +8,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-HeartStone is PassiveItem
+HeartStone is NumberItem
 
 constants:
 
@@ -43,6 +43,7 @@ classvars:
 
 properties:
 
+   piNumber = 1
    ptRespawn = $           // Time until dropped stone respawns.
 
 messages:
