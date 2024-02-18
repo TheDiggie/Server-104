@@ -15590,12 +15590,7 @@ messages:
 
    SetOriginalVault()
    {
-      local oVault, oSafeBox;
-
-      oVault = Send(SYS,@FindVaultByNum,#num=1);
-      oSafeBox = Send(oVault,@OldGetPlayerSafeBox,#who=self);
-
-      viOriginalVault = oSafeBox;
+      viVault = viOriginalVault;
       
       return;
    }

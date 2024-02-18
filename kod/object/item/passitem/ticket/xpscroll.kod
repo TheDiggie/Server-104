@@ -21,9 +21,9 @@ resources:
 
    XPScroll_name_rsc = "experience scroll"
    XPScroll_icon_rsc = scr06.bgf
-   XPScroll_desc_rsc = "This is a experience scroll. Using it will grant you 10,0000 experience. "   
+   XPScroll_desc_rsc = "This is a experience scroll. Using it will grant you 35,0000 experience. "   
 
-   XPScroll_warning = "~r~BWarning using this scroll will consume it and grant the player 10,000 experience. "
+   XPScroll_warning = "~r~BWarning using this scroll will consume it and grant the player 35,000 experience. "
 
 classvars:
 
