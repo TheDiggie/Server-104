@@ -2,3 +2,7 @@ room_name_JasperInn = de "Zum Zwergenhammer"
 jasnews_god_name = de "Designer Nachrichten"
 jasnews_god_desc = de \
    "Schaue hier hinein um Nachrichten der Administratoren zu lesen"
+
+room_name_JasperInn = pt "Estalagem Além de Jasper"
+jasnews_god_name = pt "Notícias dos Designers"
+jasnews_god_desc = pt "Verifique aqui informações dos administradores do jogo."

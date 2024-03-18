@@ -1,2 +1,5 @@
 room_name_OutdoorsKA1 = de "Klippen"
 KA1_GO_KA0 = de "Du betrittst die dunkle, feuchte Höhle."
+
+room_name_OutdoorsKA1 = pt "Colmeia do Penhasco"
+KA1_GO_KA0 = pt "Você entra na caverna escura e úmida."

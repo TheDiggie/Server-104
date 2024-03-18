@@ -3,3 +3,8 @@ guild_charter_ball = de "Nachrichten der Gilden"
 guild_charter_desc = de "Hier stehen aktuelle Nachrichten der Gilden."
 gwarkills_name = de "Gildenkrieg Nachrichten"
 gwarkills_desc = de "Nachrichten über Gildenkriege und Allianzen."
+
+room_name_GM_Hall = pt "Sala do Mestre da Guilda"
+guild_charter_ball = pt "Cartas da Guilda"
+gwarkills_name = pt "Notícias de Guerras de Guilda"
+gwarkills_desc = pt "Notícias de Guerras de Guilda e Alianças."

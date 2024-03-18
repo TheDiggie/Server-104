@@ -2,3 +2,8 @@ room_name_OutdoorsKD4 = de "Die Lichtung des Handelspostens"
 OutdoorsKD4_outbuilding_locked = de "Du darfst nicht eintreten."
 OutdoorsKD4_smokehouse_locked = de "Das Räucherhaus ist verschlossen."
 OutdoorsKD4_guardshack_locked = de "Die Wachhütte ist verschlossen."
+
+room_name_OutdoorsKD4 = pt "O Claro do Posto de Troca"
+OutdoorsKD4_outbuilding_locked = pt "Você não pode entrar no anexo."
+OutdoorsKD4_smokehouse_locked = pt "A defumadora está trancada."
+OutdoorsKD4_guardshack_locked = pt "A cabana do guarda está trancada."

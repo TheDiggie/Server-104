@@ -9,3 +9,8 @@ KLangMaster_entry_welcome = de \
    "Sei Gegrüßt. Bist du gekommen um nach mehr Wissen zu suchen?"
 KocatanLanguageMaster_unwanted_give = de \
    "~k%s%s teilt dir mit, \"Sehr interessant, aber ich benötige das nicht.~n~k\""
+
+KocatanLanguageMaster_name_rsc = pt "Quetzal"
+KocatanLanguageMaster_desc_rsc = pt "Brilhante, mas ressentido pela maioria da ilha por sua idade, este jovem de voz aguda passou de um chato rato de biblioteca para um dos indivíduos mais procurados devido ao seu extenso conhecimento de idiomas. Ele considera a maioria dos adultos ao seu redor como intelectuais inferiores que não conseguem apreciar sua mente."
+KLangMaster_entry_welcome = pt "Saudações, você veio em busca de conhecimento?"
+KocatanLanguageMaster_unwanted_give = pt "~k%s%s diz-lhe: \"Muito interessante, mas eu não preciso disso.~n~k\""

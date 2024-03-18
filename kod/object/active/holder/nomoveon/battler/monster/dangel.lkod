@@ -5,3 +5,11 @@ DarkAngel_desc_rsc = de \
    "den Seelen der Menschen. Diese Ausgeburten der Hölle gehen auf jeden "
    "los, der ihnen zu nahe kommt. Sie sind wahrlich Handlanger Qors!"
 DarkAngel_dead_name_rsc = de "Der tote Dunkle Engel"
+
+DarkAngel_koc_name_rsc = pt "ozangelis"
+DarkAngel_name_rsc = pt "anjo sombrio"
+DarkAngel_desc_rsc = pt \
+   "Viajando sob a cobertura da escuridão, os Anjos Sombrios buscam as almas "
+   "das pessoas para consumir. Eles são pura maldade, atacando qualquer um "
+   "que se aproxime deles. Certamente essas bestas são os servos da mão de Qor!"
+DarkAngel_dead_name_rsc = pt "anjo sombrio morto"

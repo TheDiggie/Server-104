@@ -27,3 +27,29 @@ room_door_was_opened = de "Du öffnest die Tür und gehst hindurch."
 room_silenced_rsc = de \
    "Deine Worte bleiben Dir im Halse stecken. Du kannst nicht sprechen."
 no_use_jig = de "Du kannst das nicht tragen - Es würde Deinen Rhythmus stören!"
+
+room_try_light_unlit = pt \
+   "Ao passar a mão pelo braseiro frio, uma chama quente se acende."
+room_try_light_lit = pt \
+   "Você passa a mão sobre o braseiro aceso, e as chamas lambem "
+   "suas pontas dos dedos."
+room_brazier_turn_off = pt \
+   "Você passa a mão sobre o braseiro aceso, e com um último sopro "
+   "de fumaça, o braseiro se apaga."
+room_name_rsc = pt "Sala"
+room_door_is_locked = pt "Esta porta está trancada."
+room_move_req_no = pt "Você não consegue mudar de sala."
+room_no_attack = pt "Você não pode lutar aqui."
+room_no_harmful = pt \
+   "Você não pode conjurar magias prejudiciais aqui quando outra pessoa está presente."
+room_no_pk_allowed = pt "Você não pode atacar outro jogador aqui."
+room_guild_combat = pt "Apenas membros de guildas podem se atacar aqui."
+room_no_mob_attack = pt "Você não pode atacar monstros aqui."
+room_no_magic_allowed = pt "Você não pode conjurar magias aqui."
+room_no_spell = pt "Você não pode conjurar magias aqui."
+room_no_combat_magic = pt "Você não pode conjurar magias ofensivas aqui."
+room_no_teleport = pt "Esta sala ainda não possui suporte para teleporte."
+room_door_was_opened = pt "Você abre a porta e atravessa."
+room_silenced_rsc = pt "Suas palavras ficam presas em sua garganta e você não consegue falar."
+no_use_jig = pt \
+   "Você não pode empunhar isso - isso interferiria nos seus movimentos malucos!"

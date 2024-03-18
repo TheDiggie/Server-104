@@ -2,5 +2,8 @@ cnmuseumguard_name_rsc = de "Mychel"
 cnmuseumguard_desc_rsc = de \
    "Mychel betreibt und pflegt sein Museum mit sehr viel Liebe zum Detail "
    "und hat immer ein offenes Ohr für seine Besucher."
-
 CnMuseum_entry_welcome = de "Schön dich zu sehen, %s%s! Willkommen im Museum von Meridian 59."
+
+cnmuseumguard_name_rsc = pt "Mychel"
+cnmuseumguard_desc_rsc = pt "Mychel, o curador do museu, possui boa atenção aos detalhes e às preocupações de seus visitantes."
+CnMuseum_entry_welcome = pt "Prazer em vê-lo, %s%s! Bem-vindo ao grande museu de Meridian 59."

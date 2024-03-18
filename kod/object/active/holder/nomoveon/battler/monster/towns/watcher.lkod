@@ -181,3 +181,153 @@ watcher_guild_vs_guild_command = de "gilde gegen gilde"
 watcher_battle_royale_command = de "königlicher kampf"
 watcher_fight_command = de "fight"
 watcher_clear_all_command = de "clear all"
+
+watcher_ad_need_champion = pt \
+   "Não temos nenhum guerreiro que seria nosso campeão?"
+watcher_ad_need_challenger = pt "Nenhum guerreiro ousaria desafiar %s%s?"
+watcher_ad_good_fight = pt "Vamos ver um pouco de sangue!"
+watcher_no_need = pt "Não precisamos de novos combatentes neste momento."
+watcher_need_champion = pt \
+   "Ainda não temos um Campeão! Você seria essa alma corajosa?"
+watcher_dont_need_challenger = pt \
+   "Não precisamos de desafiantes neste momento."
+watcher_fight_in_progress = pt \
+   "Uma partida está em andamento. Tente novamente após esta batalha terminar."
+watcher_already_combatant = pt "Mas você já é um combatente!"
+watcher_already_champion = pt "Mas você já é nosso campeão!"
+watcher_already_have_champion = pt \
+   "Já temos um campeão: %s%s. Você ousaria desafiar %s?"
+watcher_challenge_offered = pt \
+   "%s%s desafiou você. Você trocará golpes com %s?"
+watcher_must_accept = pt \
+   "Você só tem %i segundos para aceitar o desafio de %s%s."
+watcher_cant_renege = pt "Você não pode recuar a menos que seja um combatente!"
+watcher_commence_fight = pt "Lutar!!!!"
+watcher_last_minute = pt "Resta apenas um minuto nesta partida."
+watcher_draw = pt "Esta partida é um empate. Ninguém vence."
+watcher_victor = pt "~BTemos um vencedor!~B"
+watcher_new_champion = pt "~BTodos saúdem %s%s, o novo Campeão de Kraanan!~B"
+watcher_killed_champion = pt "%s%s matou o Campeão de Kraanan, %s%s!"
+watcher_retain_title = pt \
+   "%s%s, Campeão de Kraanan, defendeu valentemente o título de %s!"
+watcher_champion_killed = pt "O Campeão matou %s%s!"
+watcher_someone_killed = pt "%s%s matou %s%s!"
+watcher_champ_reneges = pt \
+   "%s%s, Campeão de Kraanan, renunciou ao título de %s."
+watcher_ready_to_fight = pt \
+   "%s%s vs %s%s. Prepare-se para lutar ao meu comando."
+watcher_combatant_reneges = pt "%s%s escolheu não lutar mais."
+watcher_cant_leave = pt \
+   "Os combatentes não podem simplesmente sair no meio de uma partida!"
+watcher_pitifully_fled = pt \
+   "%s%s fugiu covardemente do campo de batalha."
+watcher_fled_reconnect = pt \
+   "%s%s fugiu covardemente do campo de batalha. Darei a %s%s 30 segundos para mudar de ideia."
+watcher_wont_fight = pt \
+   "Aparentemente, %s%s não lutará por nós hoje afinal."
+watcher_only_combatants = pt \
+   "Apenas combatentes podem trocar golpes aqui!"
+watcher_no_fighting_yet = pt \
+   "Aguarde; a batalha ainda não começou!"
+watcher_only_combatants_cast = pt \
+   "Apenas combatentes podem lançar magias aqui!"
+watcher_only_target_combatants = pt \
+   "Você só pode alvejar outros combatentes com seus ataques místicos!"
+watcher_spell_banned = pt \
+   "O feitiço %s foi proibido na Arena de Kraanan; é a tática de um covarde."
+watcher_must_choose_style = pt \
+   "Um estilo de combate deve ser escolhido antes de podermos escolher os combatentes."
+watcher_cant_switch = pt \
+   "Você não pode mudar de estilos de combate até que todos os combatentes atuais tenham sido derrotados ou desistido."
+watcher_new_combat_style = pt \
+   "O nome do jogo é: %s. Agora, algum guerreiro seria nosso campeão?"
+watcher_style_one_on_one = pt "tradicional"
+watcher_style_last_man_standing = pt "último homem em pé"
+watcher_style_guild_vs_guild = pt "guilda vs guilda"
+watcher_style_battle_royale = pt "batalha real"
+watcher_new_combatant = pt "%s%s também será um combatente nesta partida!"
+watcher_more_combatants = pt \
+   "Combatentes adicionais têm apenas %i segundos para se juntar a esta partida."
+watcher_ready_last_man = pt \
+   "O jogo é último homem em pé. A luta começará ao meu comando."
+watcher_ready_guild_vs_guild = pt "%s%q vs %s%q: a luta começa ao meu comando."
+watcher_ready_battle_royale = pt \
+   "Batalha Real: Mate qualquer pessoa em qualquer guilda, exceto na sua. A luta começa ao meu comando."
+watcher_welcome = pt \
+   "~kO Observador lhe diz: \"Bem-vindo à Arena de Kraanan. Leia as faixas para obter ajuda.\""
+watcher_worship_admin = pt \
+   "Todos saúdem o poderoso %s, e rezem para que %s não nos castigue por nossa impudência!"
+watcher_worship_dm = pt "Ajoelhe-se diante de %s %s de Meridian!"
+watcher_welcome_champion = pt "Todos saúdem %s%s, um Campeão de Kraanan!"
+watcher_welcome_champion_guild = pt \
+   "Todos saúdem %s%s, membro da %s%q, guilda favorita de Kraanan!"
+watcher_new_champion_guild = pt \
+   "%s%s registrou %s%q como os novos Campeões de Kraanan!"
+watcher_new_guild_combatant = pt \
+   "%s%s registrou %s%q como desafiantes na próxima batalha."
+watcher_need_guild = pt \
+   "Você não pode participar de combate entre guildas a menos que se junte a uma guilda!"
+watcher_only_two = pt \
+   "Apenas duas guildas podem se enfrentar em combate de guildas."
+watcher_not_more_members_yet = pt \
+   "Outros membros de %s%q não podem entrar na luta até que uma segunda guilda tenha se comprometido com o combate."
+watcher_new_champion_guild_win = pt "%s%q são os novos Campeões de Kraanan!"
+watcher_defended_guild_title = pt "%s%q permanecem os Campeões de Kraanan!"
+watcher_invalid_fight = pt \
+   "Esta luta foi inválida por certos motivos e, portanto, foi cancelada."
+watcher_cant_start_end = pt \
+   "Você não pode encerrar um torneio enquanto houver combatentes!"
+watcher_tournament_win = pt "%s%s reivindicou a vitória nesta luta!"
+watcher_tournament_win_guild = pt "%s%q reivindicou a vitória nesta luta!"
+watcher_tournament_style = pt \
+   "%s%s decretou que o estilo de combate será %s."
+watcher_tournament_combatant = pt \
+   "%s%s será um combatente nesta luta."
+watcher_tournament_cancelled = pt \
+   "Com um aceno da mão de %s, %s%s dispensa os procedimentos atuais e começa de novo."
+watcher_only_grand_marshal = pt \
+   "~kO Observador lhe diz: \"Somente o Juiz do Torneio pode dar comandos durante um torneio. Se você deseja participar dos procedimentos, deve informar o Juiz do Torneio.\""
+watcher_not_during_fight = pt \
+   "~kO Observador lhe diz: \"Você não pode me oferecer comandos enquanto uma luta ainda está acontecendo.\""
+watcher_speed_up = pt "Vamos ver se podemos acelerar um pouco isso."
+watcher_quit_guild = pt \
+   "Devido a uma mudança no status da guilda, %s%s desistiu do papel de %s na próxima batalha."
+watcher_no_guild_tourny = pt \
+   "%s%s não pode participar de um cenário de guilda porque %s não é membro de nenhuma guilda."
+watcher_wrong_guild_tourny = pt \
+   "%s%s não é membro de nenhuma das guildas registradas para esta luta."
+watcher_already_tourny_combatant = pt \
+   "%s%s já é um combatente nesta luta!"
+watcher_tournament_over_guild_limit = pt \
+   "%s%s não foi adicionado aos procedimentos, porque %s%q já tem muitos membros no campo. Uma guilda só pode ter %i membros em uma luta desse estilo de cada vez."
+watcher_over_guild_limit = pt \
+   "Você não pode se juntar aos seus camaradas no campo porque já há %i definidos para lutar nesta luta. Leia as faixas para obter mais detalhes."
+watcher_not_more = pt \
+   "Não pode haver mais do que %i combatentes em uma única luta."
+watcher_tourny_invalid = pt \
+   "Esta luta ainda não é válida. Você pode querer cancelar a luta dizendo 'Limpar tudo', ou adicionar combatentes para garantir uma luta válida."
+watcher_killed_by_spell = pt "%s%s acabou de ser morto pelo feitiço %s!"
+watcher_arena_help = pt \
+   "Prossiga todos os subcomandos com o comando DM. 'Iniciar Torneio' "
+   "inicia o torneio. 'Finalizar torneio' encerra o torneio. 'Lutar' "
+   "inicia uma luta (embora lutas tradicionais comecem por conta própria). "
+   "'Limpar tudo' redefine o torneio e começa de novo. DM seguido pelo nome de uma "
+   "pessoa tentará torná-la um combatente na próxima rodada. "
+   "O nome do estilo de combate escolhe o estilo que os jogadores usarão. "
+   "'Cabine' teleporta você para a cabine do observador."
+watcher_no_assgame = pt \
+   "Não vou tolerar essas artimanhas durante um torneio oficialmente sancionado!"
+watcher_unwanted_give = pt "~k%s%s ignora seu suborno.~n~k"
+watcher_arena_help_command = pt "ajuda da arena"
+watcher_start_tournament_command = pt "iniciar torneio"
+watcher_end_tournament_command  = pt "finalizar torneio"
+watcher_champion_command  = pt "campeão"
+watcher_challenge_command  = pt "desafiar"
+watcher_accept_command  = pt "aceitar"
+watcher_renege_command  = pt "renegar"
+watcher_traditional_command  = pt "tradicional"
+watcher_last_man_standing_command  = pt "último homem em pé"
+watcher_guild_vs_guild_command  = pt "guilda vs guilda"
+watcher_battle_royale_command  = pt "batalha real"
+watcher_fight_command  = pt "lutar"
+watcher_clear_all_command  = pt "limpar tudo"

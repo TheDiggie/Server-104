@@ -19,3 +19,26 @@ riijamonk_dispel = de "~B~rTu das NIE wieder!"
 riijamonk_respel = de "Yrxlfle'man ~I~gGrn'Solagh ~rYippie ~bYup-Yup..."
 riijamonk_unwanted_give = de \
    "~k%s%s teilt dir mit, \"~BNarr,~I ich benötige nichts von ~n~r~Bdir~n~k\""
+
+RiijaMonk_name_rsc = pt "Monge de Riija"
+RiijaMonk_desc_rsc = pt \
+   "Flutuando a vários metros acima do solo, este enigma de ser o observa. "
+   "Quando fala, a voz do monge crepita como pergaminho centenário. Você tem "
+   "uma sensação muito desconfortável de que nem tudo é como parece."
+RiijaMonk_name_rsc2 = pt "garotinha assustadora"
+RiijaMonk_desc_rsc2 = pt \
+   "Com uma voz doce e doentia de criança e uma aparência inocente não saudável, "
+   "a sacerdotisa de Riija o recebe em seu santuário interno de irrealidade."
+riijamonk_teach = pt \
+   "Através da loucura de ~I~rRiija, ~b você pode aprender %s%s%s%s%s%s%s%s%s%s%s%s "
+   "naquele nível."
+riijamonk_notworthy = pt \
+   "~II vejo ~gnenhuma evidência de que ~bvocê~g está pronto para ~r aprender."
+riijamonk_worthy = pt "~IVocê está ~rpreparado para a ~I~B~fenlightenment?"
+riijamonk_nobait = pt \
+   "~lTalvez se ~I`você fosse ~Imais hábil em ~catrair "
+   "~fmonstros `I`tvocê pudesse ser ~y~I~Bcapaz ~Bde aprender ~p~ISeduce."
+riijamonk_dispel = pt "~B~rNunca faça isso de novo!"
+riijamonk_respel = pt "Yrxlfle'man ~I~gGrn'Solagh ~rYippie ~bYup-Yup..."
+riijamonk_unwanted_give = pt \
+   "~k%s%s lhe diz: \"~BTolo,~I não preciso de nada de ~n~r~Bvocê~n~k\""

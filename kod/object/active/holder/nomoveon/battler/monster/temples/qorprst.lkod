@@ -24,3 +24,31 @@ qorpriestess_not_powerful = de \
 qorpriestess_teach = de \
    "Durch die Dunkelheit Qors, lernst du %s%s%s%s%s%s%s%s%s%s%s%s "
    "ab diesem Zirkel."
+
+qorpriestess_name_rsc = pt "Sacerdotisa Zuxana"
+qorpriestess_desc_rsc = pt \
+   "A serva perfeita de Qor, o Vil. Sombras se aprofundam onde esta mulher "
+   "malévola está. Ela possui uma sensualidade astuta que ela vai explorar "
+   "para seduzir homens e mulheres a sucumbir à vontade obscura de Qor. Se "
+   "ela não puder seduzir outros para Qor, preferirá vê-los mortos."
+Qor_forget_potion_sale = pt \
+   "~I~rVocê realmente pode comprar %s%s. Qor ficará feliz em despojar você "
+   "das inibições dos ensinamentos de Shal'ille.~n~k"
+qorpriestess_already_have_spell = pt \
+   "~bNão brinque comigo, %s, você já participou do acordo feito por aquele "
+   "trapaceiro amaldiçoado, Riija.~n~k"
+qorpriestess_not_ready = pt \
+   "~bQue Qor leve esse deus trapaceiro! Riija roubou parte do segredo do "
+   "Vil e exige um preço por isso. Prostre-se diante daquele deus insular "
+   "abandonado e torne-se adepto dos caminhos do trapaceiro. Somente então "
+   "posso ensinar-lhe adequadamente os segredos completos do Troca.~n~k"
+qorpriestess_teach_song = pt \
+   "Você é um desses bardos berrantes? Posso ensinar o hino que atrapalha "
+   "as magias de nosso inimigo, mesmo que seu ouvido de lata, sem dúvida, "
+   "não seja capaz de compreender toda a sua beleza."
+qorpriestess_not_powerful = pt \
+   "~bVolte quando tiver se livrado desse anjo da guarda patético e estiver "
+   "pronto para matar outros pela glória da Senhora das Trevas.~n~k"
+qorpriestess_teach = pt \
+   "Através das trevas de Qor, você pode aprender %s%s%s%s%s%s%s%s%s%s%s%s "
+   "naquele nível."

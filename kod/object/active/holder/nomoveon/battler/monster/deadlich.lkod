@@ -16,3 +16,20 @@ deadlich_dispel = de \
    "Der Haufen reichverzierter Kleider wechselt auf mystische Art die Farbe!"
 deadlich_respel = de \
    "Der Haufen reichverzierter Kleider wechselt zurück zu seiner Originalfarbe."
+
+DeadLich_name_rsc = pt "restos espectrais da Rainha Venya'cyr"
+DeadLich_desc_rsc = pt \
+   "Um monte espectral de roupas formais ornamentadas parece ser tudo o que "
+   "resta desta rainha outrora poderosa."
+DeadLich_name2_rsc = pt "restos espectrais da Rainha Venya'cyr"
+DeadLich_desc2_rsc = pt \
+   "Um monte espectral de roupas formais ornamentadas parece ser tudo o que "
+   "resta desta rainha outrora poderosa. Quando você desvia o olhar, no entanto, "
+   "do canto do olho você percebe um vislumbre de um fio fino e cintilante de "
+   "escuridão que parece estar ligado aos seus restos terrenos, estendendo-se "
+   "infinitamente em uma direção que não parece ser descritível em termos "
+   "geométricos normais."
+deadlich_dispel = pt \
+   "O monte de roupas ornamentadas muda misteriosamente de cor!"
+deadlich_respel = pt \
+   "O monte de roupas ornamentadas volta à sua cor original."

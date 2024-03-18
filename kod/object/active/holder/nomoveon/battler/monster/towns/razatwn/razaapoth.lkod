@@ -5,3 +5,10 @@ RazaApothecary_desc_rsc = de \
 RazaAp_entry_welcome = de \
    "Hast du mir irgendetwas zu verkaufen? Ich bin bereit nahezu alles zu "
    "kaufen."
+
+RazaApothecary_name_rsc = pt "Ravi"
+RazaApothecary_desc_rsc = pt \
+   "Um homem estranho de origem desconhecida, Ravi está sempre disposto a comprar "
+   "reagentes e gemas para sua loja pobre em inventário."
+RazaAp_entry_welcome = pt \
+   "Tem algo para me vender? Estou disposto a comprar quase qualquer coisa."

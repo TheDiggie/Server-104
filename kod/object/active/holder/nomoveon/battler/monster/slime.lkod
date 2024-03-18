@@ -5,3 +5,10 @@ slime_desc_rsc = de \
    "eine ekelerregende Spur. Die Reste seines letzten Opfers sind durch die "
    "transparenten Innereien zu sehen."
 slime_dead_name_rsc = de "toter Schleim"
+
+slime_name_rsc = pt "limo"
+slime_desc_rsc = pt \
+   "Uma massa de gosma tremeluzente, o limo avança centímetro "
+   "a centímetro deixando um rastro doentio para trás. Os restos "
+   "de sua última vítima são visíveis dentro de seus interiores transparentes."
+slime_dead_name_rsc = pt "limo morto"

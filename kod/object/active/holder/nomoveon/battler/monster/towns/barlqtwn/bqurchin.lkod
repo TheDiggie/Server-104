@@ -3,3 +3,7 @@ barloque_urchin_desc_rsc = de \
    "Dies ist ein junges, dreckiges Urchin, welches bislang noch kein Ärger "
    "macht."
 barloque_urchin_dead_name_rsc = de "Ein totes Urchin"
+
+barloque_urchin_name_rsc = pt "menino de rua"
+barloque_urchin_desc_rsc = pt "Este é um jovem urchin sujo, vivendo na rua, mas não causando problemas."
+barloque_urchin_dead_name_rsc = pt "menino de rua morto"

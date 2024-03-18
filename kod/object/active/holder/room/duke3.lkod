@@ -6,3 +6,10 @@ duke3_West_Door = de \
 duke3_East_Door = de \
    "Der Herzog fordert Deinen Kopf, wenn Du seine Räume betrittst. Du beschließt, "
    "ihn lieber zu behalten und hältst Dich von der Tür fern."
+
+room_name_Duke3_old = pt "Os Aposentos do Duque Kalior"
+room_name_Duke3 = pt "Os Aposentos do Duque Akardius"
+duke3_West_Door = pt "O Duque grita com raiva enquanto você tenta abrir a porta. "
+"Você sabiamente interrompe seus esforços."
+duke3_East_Door = pt "O Duque teria sua cabeça se você entrasse em seus aposentos. "
+"Você decide que prefere mantê-la e deixa a porta em paz."

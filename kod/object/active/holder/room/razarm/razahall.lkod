@@ -10,3 +10,10 @@ razahall_sign = de \
    "während die Nachrichtenkugel der Administratoren in den Kneipen zu finden sind. "
    "\n\nHier könntest du deine Fragen an andere Spieler veröffentlichen, eine Gilde "
    "suchen oder dich einfach nur vorstellen! "
+
+room_name_razahall = pt "The Adventurer's Hall of Raza"
+news_raza_hall = pt "Notícias Gerais"
+news_raza_hall_desc = pt "Descubra as últimas fofocas em Meridian."
+razahall_signname = pt "Globos de Notícias"
+razahall_sign = pt \
+   "Este objeto na plataforma ao lado do sinal é um Globo de Notícias. Globos de Notícias Gerais podem ser encontrados nas Salas de Aventureiros em cada cidade em Meridian, enquanto Globos de Notícias dos Designers podem ser encontrados em Estalagens. \n\nOs jogadores podem postar no globo de Notícias Gerais, como este aqui, e você pode usar esse meio para fazer perguntas a outros jogadores, postar mensagens procurando por uma guilda, etc. \n\nUse o botão Postar para fazer uma postagem, Responder para postar na mesma thread que uma postagem anterior, ou Enviar Correio para enviar um correio privado para o autor de uma postagem. \n\nPor um curto período após a postagem, os usuários podem excluir suas próprias postagens."

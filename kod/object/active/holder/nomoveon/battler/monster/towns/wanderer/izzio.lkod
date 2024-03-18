@@ -15,3 +15,19 @@ izzio_too_many_rsc = de \
    "Ich würde es Dir abnehmen, aber ich habe schon einige davon zu verkaufen. "
    "Ich würde lieber erst diese abstoßen."
 Izzio_sold_rsc = de "Danke! Möge es Dir Wohlergehen und Gesundheit schenken."
+
+izzio_name_rsc = pt "Izzio"
+izzio_desc_rsc = pt \
+   "Izzio carrega seu grande saco e barriga protuberante com surpreendente facilidade "
+   "e graça. Um sorriso beatífico e olhos felizes falam da simples alegria de Izzio "
+   "com a natureza. Infelizmente, a comunhão zen de Izzio com a natureza não tempera "
+   "sua busca obsessiva por lucro."
+izzio_AlreadyHaveOne_rsc = pt \
+   "Sinto muito. Este pacote já está pesado o suficiente, prefiro não carregar duplicatas."
+izzio_Full_rsc = pt \
+   "Olhe para o meu saco. Onde eu colocaria isso? O sábio conhece seus limites."
+izzio_Not_Interested = pt "Eu simplesmente não me sentiria bem em pegar isso."
+izzio_too_many_rsc = pt \
+   "Eu pegaria isso das suas mãos, mas já tenho vários desses para vender. "
+   "Prefiro me livrar deles primeiro."
+Izzio_sold_rsc = pt "Obrigado! Que isso traga a você boa saúde e riqueza."

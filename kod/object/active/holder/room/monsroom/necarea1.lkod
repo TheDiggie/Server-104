@@ -1,2 +1,5 @@
 room_name_Necropolis1 = de "Die schlängelnden Höhlen"
 underground_lake_locked = de "Die Tür scheint von innen verschlossen zu sein."
+
+room_name_Necropolis1 = pt "Cavernas Sinuosas"
+underground_lake_locked = pt "Esta porta parece estar trancada por dentro."

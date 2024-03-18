@@ -6,3 +6,12 @@ entry_welcome = de "Guten Tag, %s%s."
 TsSm_mace_sale = de \
    "%s%s?? Ich biete so viele schöne Waffen an und Du willst einen Streitkolben! "
    "Nun gut, anscheinend habe ich keine Wahl und muss Dir einen verkaufen."
+
+TosBlacksmith_name_rsc = pt "Fehr'loi Qan"
+TosBlacksmith_desc_rsc = pt \
+   "Um dos melhores ferreiros da região, Fehr'loi Qan é conhecido de longe "
+   "por seu trabalho superlativo."
+entry_welcome = pt "Olá %s%s, e bem-vindo."
+TsSm_mace_sale = pt \
+   "Todas essas belas armas, e você quer %s%s. Puxa! Bem, eu "
+   "suponho que não tenho escolha senão vender uma para você."

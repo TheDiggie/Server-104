@@ -1,3 +1,8 @@
 FactionTroop_name_rsc = de "Der Fraktionssoldat"
 FactionTroop_desc_rsc = de "This is a member of the local militia."
 FactionTroop_dead_name_rsc = de "toter Fraktionssoldat"
+
+FactionTroop_name_rsc = pt "tropa da facção"
+FactionTroop_desc_rsc = pt \
+   "Este é um membro da milícia local."
+FactionTroop_dead_name_rsc = pt "tropa da facção morta"

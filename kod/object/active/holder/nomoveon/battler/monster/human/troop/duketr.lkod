@@ -1,3 +1,8 @@
 DukeTroop_name_rsc = de "Ein Soldat der Armee des Herzogs"
 DukeTroop_desc_rsc = de "Dieser Soldat trägt mit Stolz die Farben des Herzogs."
 DukeTroop_dead_name_rsc = de "Ein toter Soldat"
+
+DukeTroop_name_rsc = pt "soldado do exército do duque"
+DukeTroop_desc_rsc = pt \
+   "Este soldado orgulhosamente ostenta as cores do Duque."
+DukeTroop_dead_name_rsc = pt "soldado morto"

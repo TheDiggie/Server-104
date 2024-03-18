@@ -7,3 +7,12 @@ GhostSkeleton_desc_rsc = de \
    "kleine Pfützen auf dem Boden. Du schauderst, wenn Du darandenkst, was "
    "für ein dunkles Ritual diese Abnormalität zum Leben erweckt hat."
 GhostSkeleton_dead_name_rsc = de "Ein Knochenhaufen"
+
+GhostSkeleton_name_rsc = pt "esqueleto fantasma"
+GhostSkeleton_desc_rsc = pt \
+   "Alguns pedaços de carne podre aderem a esta coleção de ossos humanos "
+   "cobertos de ácido. Um líquido borbulhante goteja de seus dentes, "
+   "deixando pequenos buracos no chão abaixo formando uma poça espessa. Você "
+   "estremece ao pensar em que ritual obscuro trouxe esta abominação à "
+   "existência."
+GhostSkeleton_dead_name_rsc = pt "monte de ossos ácidos"

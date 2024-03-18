@@ -10,3 +10,15 @@ huntghost_not_powerful = de \
    "~wTendrath sagt, \"Du bist viel zu unerfahren, um derart kraftvolle Zauber "
    "anzuwenden.\""
 huntghost_said_resource_str = de "%s%s sagt, \"%s~n\""
+
+HunterGhost_name_rsc = pt "Tendrath"
+HunterGhost_desc_rsc = pt \
+   "O comportamento deste mago druídico é tão calmo e pacífico que você não "
+   "pode deixar de se perguntar por que sua sombra fantasmagórica ainda caminha "
+   "neste plano."
+huntghost_hunt_only = pt \
+   "Posso ensinar isso apenas a um portador de uma espada de caçador."
+huntghost_not_powerful = pt \
+   "~kTendrath diz: \"Você é muito inexperiente para controlar "
+   "tais magias poderosas.\""
+huntghost_said_resource_str = pt "%s%s diz: \"%s~n\""

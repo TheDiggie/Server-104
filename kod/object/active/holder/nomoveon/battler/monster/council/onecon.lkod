@@ -17,3 +17,23 @@ onecon_already_has = de \
 onecon_unwanted_give = de \
    "~k%s%s sagt Dir, \"Welch möglichen Nutzen sollte ein Zauberer meiner Klasse "
    "davon haben?~n~k\""
+
+oneCouncilor_name_rsc = pt "Alzahakar"
+oneCouncilor_desc_rsc = pt \
+   "Reconhecido como o mago mais poderoso do Reino, Alzahakar fica " 
+   "orgulhosamente diante de você. Você pode sentir a vontade conflitante " 
+   "de quatro deuses separados dentro dele. Como um dos mais antigos amigos " 
+   "do Rei Zarcos V, ele tem aconselhado a princesa desde o nascimento."
+onecon_true_ideal_rsc = pt \
+   "Tenho grande respeito pelo seu conhecimento de magia, e ter você " 
+   "retornado meu símbolo me afetou profundamente."
+onecon_half_ideal_rsc = pt \
+   "Eu ficaria mais impressionado se você conhecesse mais feitiços, " 
+   "mas você tem potencial."
+onecon_not_ready = pt \
+   "Você ainda não está pronto para aprender as artes perdidas."
+onecon_already_has = pt \
+   "Você já conhece os segredos perdidos de Riija."
+onecon_unwanted_give = pt \
+   "~k%s%s te diz, \"Que uso possível um mago da minha estatura poderia " 
+   "ter para isso?~n~k\""

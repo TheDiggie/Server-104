@@ -6,3 +6,12 @@ spider_desc_rsc = de \
 spider_illusion_poisoned = de \
    "%s%s taumelt als Gift in den Adern von %s flieﬂt."
 spider_dead_name_rsc = de "tote Riesenspinne"
+
+spider_koc_name_rsc = pt "teotkauilkinich"
+spider_name_rsc = pt "aranha"
+spider_desc_rsc = pt \
+      "Esta estranhamente delicada criatura se move com furtividade e ataca "
+      "com precis„o mortal."
+spider_illusion_poisoned = pt \
+      "%s%s cambaleia conforme o veneno de seu ataque percorre as veias de %s."
+spider_dead_name_rsc = pt "aranha morta"

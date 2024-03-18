@@ -4,3 +4,7 @@ Nest_to_Cave_1 = de \
    "auf Deinem Hinterteil."
 Nest_to_Cave_2 = de \
    "Du springst durch ein Loch im Boden in eine unterirdische Höhle."
+
+room_name_nest1 = pt "O Ninho da Aranha"
+Nest_to_Cave_1 = pt "~r~B>Ouch<~n  Você cai por um buraco no chão, caindo diretamente sobre seu traseiro."
+Nest_to_Cave_2 = pt "Você pula por um buraco no chão para uma caverna abaixo."

@@ -2,3 +2,7 @@ name_throne2 = de "Der Thronsaal von Schloss Viktoria"
 throne2_ghost_spawn = de \
    "~wEine kratzende Stimme ächzt, \"~r~IErwarte meine Rache, Eindringling!~I~w\""
 no_walls_here = de "Dunkle Mächte hindern dich daran Wandzauber zu sprechen."
+
+name_throne2 = pt "A Sala do Trono do Castelo Victoria"
+throne2_ghost_spawn = pt "~kUma voz rouca geme, \"~r~IAtestemunhe minha vingança, intruso!~I~k\""
+no_walls_here = pt "Magias sombrias interferem com o lançamento de seu feitiço de parede."

@@ -25,3 +25,13 @@ Wolfgang_Nerudite_bought = de \
 Wolfgang_Nerudite_cant_accept_money = de \
    "Ich würde dir gerne das feine Stück Erz aus der Hand nehmen, aber ich "
    "fürchte, du trägst zu viel um deine Zahlung an zu nehmen."
+
+kocatanTradeMaster_name_rsc = pt "Wulfgang zax'Ak"
+kocatanTradeMaster_desc_rsc = pt "Um homem notável que passou por uma vida difícil, Wulfgang nasceu no continente e foi criado na sociedade secreta perseguida da última Escola Riija. Além disso, pouco mais se sabe sobre o passado de Wulfgang além de como ele escapou para esta ilha e estabeleceu sua estação comercial."
+Wolfgang_lute = pt "Um alaúde... um alaúde... Acho que tenho um desses em algum lugar..."
+Wolfgang_potion_jala = pt "Sim, eu tenho uma dessas. Naturalmente, não tenho uso para isso..."
+Wolfgang_entrootberry_sale = pt "Você pede %s%s? Pegue-os, é apenas um lembrete amargo do que deixei para trás."
+Wolfgang_fairywing_sale = pt "Você quer %s%s? Você pode levá-los, eu não tenho mais uso para isso."
+Wolfgang_mushroom_sale = pt "Ah, sim. Você deseja comprar %s%s? Lembro-me de colecionar esses perto da minha cidade natal quando era criança."
+Wolfgang_Nerudite_bought = pt "Maravilhoso! Isso renderá um bom preço dos Peet- * ahem. Dos meus clientes."
+Wolfgang_Nerudite_cant_accept_money = pt "Eu adoraria pegar esse belo pedaço de minério das suas mãos, mas receio que você esteja carregando muito para aceitar seu pagamento."

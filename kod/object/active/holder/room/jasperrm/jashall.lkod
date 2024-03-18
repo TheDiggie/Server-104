@@ -1,3 +1,7 @@
 room_name_Jasperhall = de "Gemeinschaftshalle von Jasper"
 news_jas_hall = de "Allgemeine Nachrichten"
 news_jas_hall_desc = de "Finde her aus, was so in Meridian abgeht."
+
+room_name_Jasperhall = pt "Sala dos Aventureiros de Jasper"
+news_jas_hall = pt "Notícias Gerais"
+news_jas_hall_desc = pt "Descubra o que está acontecendo ao redor de Meridian."

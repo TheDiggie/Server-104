@@ -16,3 +16,18 @@ brambles_dead_name_rsc = de "Die Überreste einiger Brombeeren"
 brambles_monster_healing = de \
    "Die Brombeerranken rascheln, als sie ein wenig zurückwachsen."
 bramble_dissipates = de "Die Brombeerranken wanken und sterben."
+
+brambles_name_rsc = pt "matagal de espinhos"
+brambles_desc_rsc = pt "O matagal de espinhos se ergue perigosamente, "
+                      "esperando rasgar sua pele se você passar por perto."
+Brambles_damage0 = pt "Você atravessa o matagal de espinhos sem incidentes."
+Brambles_damage2 = pt \
+    "Enquanto você passa pelo matagal de espinhos, eles coçam aquela coceira difícil de alcançar para você."
+Brambles_damage3 = pt "Está tudo bem, você não precisava daquela pele mesmo."
+Brambles_damage4 = pt \
+    "Você quase perde as calças quando o matagal de espinhos tenta agarrá-las."
+Brambles_damage5 = pt "Ai ai ai ai ai ai ai..."
+brambles_dead_name_rsc = pt "as ruínas de alguns espinhos"
+brambles_monster_healing = pt \
+    "O matagal de espinhos se agita enquanto regenera um pouco."
+bramble_dissipates = pt "Um matagal de espinhos se engasga e morre."

@@ -22,3 +22,14 @@ zap_to_corpse = de \
 zap_to_home = de \
    "Du durchschreitest das Portal und verlierst jegliche Orientierung. Als "
    "Du Dich plötzlich zuhause wiederfindest, steigt Deine Verwirrung."
+
+room_name_underworld = pt "O Submundo"
+underworld_assgame = pt "Algo te força a segurar sua mão."
+portal_tos = pt "Olhando no portal, você vê o bar movimentado dos Familiares."
+portal_marion = pt "Através do portal, você vê a atmosfera descontraída do Sapo Manco."
+portal_jasper = pt "O tranquilo Yonder Inn de Jasper fica do outro lado deste portal."
+portal_cornoth = pt "Um tranquilo pousada ao lado de um córrego silencioso repousa do outro lado deste portal."
+portal_barloque = pt "Olhando para o portal, você vê uma pousada cara em uma cidade movimentada."
+portal_raza = pt "Através do portal, você vê o charme rústico do Raza Inn."
+zap_to_corpse = pt "Entrando no portal, você vagueia pelo submundo, mas se encontra sendo expulso..."
+zap_to_home = pt "Você entra no portal e se vê perdido, a confusão começa a tomar conta quando você se vê em casa."

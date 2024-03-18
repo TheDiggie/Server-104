@@ -10,3 +10,23 @@ Smith_potion_skills = de \
    "vergisst. Mach Dir keinen Kopf um die Nebenwirkungen, es gibt keine. "
    "Also willst du einen kaufen?"
 potion_skills = de "Waffenfertigkeiten"
+
+RazaBlacksmith_name_rsc = pt "Tomas"
+RazaBlacksmith_desc_rsc = pt \
+   "Como fabricante de armas e armaduras nada notáveis, mas confiáveis, Tomas "
+   "conquista seus clientes com boa camaradagem e preços baixos. Um excelente "
+   "guerreiro em seus dias, Tomas é conhecido por compartilhar de bom grado seu conhecimento "
+   "na arte da batalha com qualquer jovem aventureiro que esteja interessado em "
+   "pegar uma lâmina para defender a terra. Ele também pode ser útil, caso você "
+   "queira esquecer o que aprendeu sobre fabricação de armas, para que você "
+   "possa se dedicar completamente ao estudo das magias. A maioria das pessoas "
+   "concorda, no entanto, que até mesmo um mago se sairia bem sabendo como "
+   "desviar de um golpe."
+RazaBla_entry_welcome = pt \
+   "Olá %s%s, e bem-vindo. Você veio para negociar lâminas? Ou talvez para "
+   "afiar suas habilidades?"
+Smith_potion_skills = pt \
+   "Posso vender-lhe %s%s, para que você possa esquecer tudo o que sabe sobre "
+   "a arte da fabricação de armas. Não se preocupe com o rótulo, você tem a minha "
+   "palavra de que a poção não tem efeitos colaterais. Então, você quer comprar uma?"
+potion_skills = pt "Fabricação de Armas"

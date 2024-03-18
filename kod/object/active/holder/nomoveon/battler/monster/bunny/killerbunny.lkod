@@ -4,3 +4,9 @@ killerbunny_desc_rsc = de \
    "Du bist entzückt von der süßen Farbe des kleinen Hasen. Sicherlich wird "
    "er niemals böse sein...."
 killerbunny_dead_name_rsc = de "toter Killerhase"
+
+killerbunny_name_rsc = pt "killer bunny"
+killerbunny_desc_rsc = pt \
+   "Você se maravilha com a cor encantadora da pelagem deste coelho fofo. " 
+   "Certamente não pode ser perigoso..."
+killerbunny_dead_name_rsc = pt "coelho assassino morto"

@@ -6,3 +6,13 @@ BarVault_sign_desc = de \
    "die Du hierlassen möchtest. Um Gegenstände abzuholen, benutze den Befehl "
    "ABHEBEN.Das alles ist aber nicht umsonst (die Kosten dafür werden automatisch "
    "von Dir entrichtet), und ich bewahre keine Schillinge auf."
+
+room_name_barvault = pt "Escritório do Guardião dos Cofres de Barloque"
+BarVault_sign_name = pt "Bem-vindo aos Cofres de Barloque"
+BarVault_sign_desc = pt \
+"Para usar meus justos serviços, basta digitar DEPOSIT sem argumento adicional. "
+"A lista do seu inventário aparecerá, e você pode escolher os itens que deseja depositar. Para recuperar esses itens, "
+"simplesmente use o comando WITHDRAW. Observe que este serviço não é gratuito (o custo será removido automaticamente da "
+"sua bolsa), e que eu não guardarei xelins. Usar o feitiço Conveyance em um item empilhável (comida, reagentes) em seu "
+"inventário também enviará seu item para os cofres, desde que você tenha shillings suficientes para cobrir a taxa. "
+"Quaisquer itens que você depositar aqui também podem ser acessados dos Cofres de Jasper em West Jasper."

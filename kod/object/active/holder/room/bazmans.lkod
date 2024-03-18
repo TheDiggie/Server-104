@@ -1,3 +1,7 @@
 room_name_bazmans = de "Kammer der Ratsmitglieder"
 bazmans_lockdoor = de "Du verriegelst die Tür."
 bazmans_unlockdoor = de "Du entriegelst die Tür."
+
+room_name_bazmans = pt "Sala dos Conselheiros"
+bazmans_lockdoor = pt "Você tranca a porta, impedindo a entrada de outros."
+bazmans_unlockdoor = pt "Você destranca a porta."

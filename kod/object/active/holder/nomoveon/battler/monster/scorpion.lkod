@@ -6,3 +6,13 @@ scorpion_desc_rsc = de \
 scorpion_illusion_poisoned = de \
    "%s%s reels as poison from your attack courses through %s veins."
 scorpion_dead_name_rsc = de "toter Skorpion"
+
+scorpion_koc_name_rsc = pt "kinkauikinich"
+scorpion_name_rsc = pt "escorpião gigante"
+scorpion_desc_rsc = pt \
+      "O ferrão mortal do escorpião se ergue alto no ar "
+      "e seu corpo duro e blindado o protege de tudo, exceto "
+      "dos ataques mais fortes."
+scorpion_illusion_poisoned = pt \
+      "%s%s cambaleia conforme o veneno de seu ataque percorre as veias de %s."
+scorpion_dead_name_rsc = pt "escorpião morto"

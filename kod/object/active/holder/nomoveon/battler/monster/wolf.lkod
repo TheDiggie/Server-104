@@ -2,3 +2,8 @@ wolf_koc_name_rsc = de "ixleocwolf"
 wolf_name_rsc = de "Der Wolf"
 wolf_desc_rsc = de "Ein Wolf"
 wolf_dead_name_rsc = de "Ein toter Wolf"
+
+wolf_name_rsc = pt "wolf"
+wolf_desc_rsc = pt \
+   "Um Lobo"
+wolf_dead_name_rsc = pt "lobo morto"

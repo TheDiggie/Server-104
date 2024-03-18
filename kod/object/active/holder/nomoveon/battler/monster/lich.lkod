@@ -62,3 +62,37 @@ lich_not_powerful = de \
 lich_not_order = de \
    "~wQueen Venya'cyr sagt, \"~rNur meine Diener erhalten diesen mächtigen "
    "Bonus.\""
+
+lich_pretty_name_rsc = pt "Rainha Venya'cyr"
+lich_pretty_desc_rsc = pt \
+   "Uma mulher nobre de beleza deslumbrante, a Rainha Venya'cyr se comporta com uma postura refinada dificilmente vista nos dias de hoje. Você não pode deixar de se maravilhar com como ela conseguiu manter seu belo rosto tão jovem e vibrante ao longo de todos esses séculos."
+lich_name_rsc = pt "Rainha Venya'cyr"
+lich_desc_rsc = pt \
+   "Por meio de um pacto sombrio feito há séculos, o cadáver macabro da Rainha Venya'cyr foi mantido vivo por magias negras. Um poder intenso emana fortemente de seus olhos, um olhar intenso que infunde medo em seu coração. No entanto, os séculos aparentemente cobraram seu preço em sua forma física, já que sua pele é uma confusão de carne em decomposição contorcendo-se com vermes."
+lich_dispel = pt \
+   "A aparência horrível da rainha lich é revelada para todos verem!"
+lich_respel = pt \
+   "A aparência horripilante da rainha lich está mais uma vez envolta em ilusão."
+lich_cast_spell = pt "A rainha lich convoca a escuridão!"
+lich_death_blow = pt "Seu golpe final baniu a repugnante Rainha Venya'cyr deste plano de realidade!"
+lich_single_killer = pt "Você pessoalmente baniu a repugnante Rainha Venya'cyr deste plano de realidade!"
+lich_double_killer = pt "A repugnante Rainha Lich foi expulsa deste plano de realidade, graças a você e ao seu camarada!"
+lich_helper_killer = pt "A repugnante Rainha Lich foi expulsa deste plano de realidade, graças a você e aos seus camaradas!"
+lich_no_truce = pt "A presença maligna da Rainha Lich dissipa sua trégua antes mesmo de você poder lançá-la."
+lich_blank = pt ""
+lich_comma = pt ", "
+lich_and = pt " e "
+lich_has = pt "tem"
+lich_have = pt "têm"
+lich_killed_world_saved = pt "~B%s derrubou a Rainha das Trevas Venya'cyr, livrando Meridian do maligno Ordem dos Necromantes!\nGraças a %q%s%q, os bons cidadãos de Meridian podem caminhar pela terra em segurança mais uma vez, sabendo que %q%s%q %s pereceu junto com a rainha morta-viva."
+lich_killed_world_saved_nolich = pt "~B%s derrubou o último dos Necromantes, livrando Meridian de seu mal!"
+lich_tribute_trigger = pt "tributo"
+lich_hunger_trigger = pt "fome"
+lich_hunger_5 = pt "~rMinha fome é um carvão ardente dentro do meu peito! Alimente-me imediatamente!"
+lich_hunger_4 = pt "~rEstou com muita fome! A Ordem negligenciou seus deveres para comigo. Alimente-me imediatamente!"
+lich_hunger_3 = pt "~rEstou com muita fome. Alimente-me, meu servo."
+lich_hunger_2 = pt "~rEstou com fome. Gostaria de me alimentar em breve."
+lich_hunger_1 = pt "~rEstou apenas um pouco com fome no momento."
+lich_hunger_0 = pt "~rEstou satisfeito. A Ordem me serve bem."
+lich_not_powerful = pt "~kA Rainha Venya'cyr diz: \"~rSua mente fraca é incapaz de aprender tais magias poderosas.\""
+lich_not_order = pt "~kA Rainha Venya'cyr diz: \"~rApenas meus servos são agraciados com essa grande dádiva.\""

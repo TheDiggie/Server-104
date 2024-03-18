@@ -5,3 +5,10 @@ GiantDaemonSkeleton_desc_rsc = de \
    "Menschen erstarren zu lassen. Du schauderst, als Du daran denkst,was "
    "für ein dunkles Ritual diese Abnormalität zum Leben erweckt hat!"
 GiantDaemonSkeleton_dead_name_rsc = de "Ein großer Knochenhaufen"
+
+GiantDaemonSkeleton_name_rsc = pt "gigante esqueleto de demônio"
+GiantDaemonSkeleton_desc_rsc = pt \
+   "A mera visão desta abominação da natureza muitas vezes é suficiente para "
+   "paralisar um humano. Você estremece ao pensar em que ritual obscuro trouxe "
+   "esta criatura à existência."
+GiantDaemonSkeleton_dead_name_rsc = pt "monte de ossos"

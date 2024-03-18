@@ -15,3 +15,10 @@ CnGro_unwanted_give = de \
    "~k%s%s teilt dir mit, \"Sicher machst du einen Witz auf meine Kosten!  "
    "Du müsstest wissen, dass Solomon nur mit Qualitätsware handelt und das "
    "ist Müll!~n~k\""
+
+Cornoth_grocer_name_rsc = pt "Solomon"
+Cornoth_grocer_desc_rsc = pt "Esta loja reflete os gostos refinados e exóticos de seu proprietário. Solomon colecionou bens e arte de cantos inimagináveis do mundo conhecido, e há rumores de que possui relíquias e artefatos de além disso."
+CnGro_entry_welcome = pt "Oh, bem-vindo, bem-vindo, bem-vindo!"
+CnGro_unwanted_keep = pt "~k%s%s diz-lhe: \"Que amigo generoso eu tenho! Você me abençoa com sua gentileza!~n~k\""
+CnGro_unwanted_pay = pt "~k%s%s diz-lhe: \"Pagarei o que vale, e não um tostão a mais.~n~k\""
+CnGro_unwanted_give = pt "~k%s%s diz-lhe: \"Certamente você está fazendo uma pequena brincadeira às minhas custas! Você deve saber que Solomon negocia apenas com qualidade, e isso é lixo!~n~k\""

@@ -20,3 +20,26 @@ avarshaman_nomagic_desc = de \
    "Krieger herauszufordern."
 avarshaman_dead_name_rsc = de "Der tote Avar-Schamane"
 shaman_cast_spell = de "Der Schamane ruft die großen Geister an, ihm zu he..."
+
+avarshaman_koc_name_rsc = pt "avarya"
+avarshaman_default_name = pt "xamã avar"
+avarshaman_name_rsc = pt "xamã avar da tribo Peet-Seeeep"
+avarshaman_desc_rsc = pt \
+   "Este é um xamã do clã Peet-Seeeep. " 
+   "A lenda diz que os xamãs Avar cegam a si mesmos para forçar " 
+   "seu terceiro 'olho mágico' a brotar. Apenas um tolo ofenderia " 
+   "voluntariamente um desses feiticeiros temíveis."
+avarshaman_bone_name = pt "xamã da facção Bone"
+avarshaman_bone_desc = pt \
+   "Este é o poderoso xamã da mística facção Bone. " 
+   "A lenda diz que os xamãs Avar cegam a si mesmos para forçar " 
+   "seu terceiro 'olho mágico' a brotar. Apenas um tolo ofenderia " 
+   "voluntariamente um desses feiticeiros temíveis."
+avarshaman_nomagic_name = pt "xamã avar da tribo Kyip-Kyip-Kreeet"
+avarshaman_nomagic_desc = pt \
+   "Este é um xamã escravo do clã Kyip-Kyip-Kreet. " 
+   "A lenda diz que os xamãs Avar cegam a si mesmos para forçar " 
+   "seu terceiro 'olho mágico' a brotar. Apenas um tolo ofenderia " 
+   "voluntariamente um desses feiticeiros temíveis."
+avarshaman_dead_name_rsc = pt "xamã avar morto"
+shaman_cast_spell = pt "O xamã invoca os grandes espíritos para ajudá-lo!"

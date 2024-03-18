@@ -5,3 +5,7 @@ c2_elhai_win = de \
 c2_dirhai_win = de \
    "~INach ihrem großen Triumph laden die bösen Feen alle Gleichgesinnten "
    "ein, mit ihrer magischen Energiequelle zu verschmelzen."
+
+room_name_OutdoorsC2 = pt "O Vale das Tristezas"
+c2_elhai_win = pt "~IVitoriosos, os elhai convidam todos aqueles de coração puro para beber profundamente de seu nó de mana."
+c2_dirhai_win = pt "~ITriumfantes em sua vitória sombria, os dirhai convidam qualquer pessoa com escrúpulos semelhantes para se fundir com o nó."

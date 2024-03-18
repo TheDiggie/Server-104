@@ -7,3 +7,10 @@ GroundWorm_desc_rsc = de \
 GroundWorm_dead_name_rsc = de "Erschlagener Grundwurm"
 groundworm_cannot_hit = de \
    "Du bist nicht in der Lage, den Grundwurm zu erreichen."
+
+GroundWorm_name_rsc = pt "minhoca terrestre"
+GroundWorm_desc_rsc = pt \
+   "Uma criatura temível e furtiva, a minhoca terrestre é conhecida por sua tendência de se esconder sob a terra, fora de vista, e então, de repente, saltar para devorar sua vítima incauta."
+GroundWorm_dead_name_rsc = pt "minhoca terrestre abatida"
+groundworm_cannot_hit = pt \
+   "Você não consegue alcançar a minhoca terrestre com seus ataques."

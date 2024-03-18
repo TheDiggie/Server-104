@@ -17,7 +17,7 @@ constants:
 resources:
 
    // We'll need Tyran for German translation
-   //include boatcaptain.lkod
+   include boatcaptain.lkod
 
    captain_name_rsc = "Captain of the Seaborn Legend"
    captain_icon_rsc = captain.bgf

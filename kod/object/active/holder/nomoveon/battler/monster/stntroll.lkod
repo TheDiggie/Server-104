@@ -11,3 +11,17 @@ StoneTroll_desc2_rsc = de \
    "in kleinen räuberischen Gruppen aus den Bergen hervorgebrochen."
 StoneTroll_koc_name_rsc = de "ha'humoch"
 StoneTroll_dead_name_rsc = de "toter Steintroll"
+
+StoneTroll_name_rsc = pt "Guardião de Zjiria"
+stonetroll_realname_rsc = pt "troll de pedra"
+StoneTroll_desc_rsc = pt \
+      "Dado à tarefa sinistra de guardar o Coração de Zjiria, este troll de pedra "
+      "encara sombriamente todos os que passam por ele. Você tem a sensação de que "
+      "é melhor começar a correr."
+StoneTroll_desc2_rsc = pt \
+      "Este troll de pedra é o irmão de pele cinza de seu irmão mais comum. "
+      "Os trolls de pedra foram conduzidos para as montanhas há eras, "
+      "e eram considerados extintos. No entanto, mais recentemente, eles emergiram "
+      "das colinas em pequenos grupos de saqueadores."
+StoneTroll_koc_name_rsc = pt "ha'humoch"
+StoneTroll_dead_name_rsc = pt "troll de pedra morto"

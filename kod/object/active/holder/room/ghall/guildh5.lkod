@@ -1,3 +1,7 @@
 room_name_guildhall5 = de "Konimas versteckte Zuflucht"
 guildhall5_privacy_command = de "Privatsphäre"
 guildhall5_no_privacy_command = de "keine Privatsphäre"
+
+room_name_guildhall5 = pt "Moradia Abandonada de Konima"
+guildhall5_privacy_command = pt "privacidade"
+guildhall5_no_privacy_command = pt "sem privacidade"

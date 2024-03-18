@@ -3,3 +3,8 @@ ActiveWallElement_desc_rsc = de "Dies ist ein Element eines Wandzauberspruches."
 ActiveWallElement_dissipate_rsc = de "Das Wandelement verschwindet."
 ActiveWallElement_unaffected_rsc = de \
    "Du wirst von dem Wandelement nicht behelligt."
+
+ActiveWallElement_name_rsc = pt "elemento de parede"
+ActiveWallElement_desc_rsc = pt "Este é um elemento de parede mágica."
+ActiveWallElement_dissipate_rsc = pt "O elemento de parede se dissipa."
+ActiveWallElement_unaffected_rsc = pt "Você não é afetado pelo elemento de parede."

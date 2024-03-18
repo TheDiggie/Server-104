@@ -13,3 +13,18 @@ kocinn_rentableroom_door = de \
    "sich gar nicht öffnen würde. Aber es ist ein kleines Schlüsselloch in "
    "der Tür. Vielleicht würde irgendetwas Interessantes passieren, wenn man "
    "einen Schlüssel hineinstecken würde."
+
+room_name_kocinn = pt "A Pousada do Ninho"
+kocinn_waz_locked = pt "O quarto waz está trancado."
+kocinn_wazwaz_locked = pt "O quarto wazwaz está trancado."
+kocinn_zik_locked = pt "O quarto zik está trancado."
+kocinn_zikzik_locked = pt "O quarto zikzik está trancado."
+kocinn_katalin_locked = pt "O quarto katalin está trancado."
+kocinn_katalinwaz_locked = pt "O quarto katalinwaz está trancado."
+kocinn_rentableroom_door = pt \
+   "A porta não se mexe. Estranhamente, parece que ela não abre de jeito nenhum. "
+   "Há, no entanto, um pequeno buraco de fechadura na porta. Talvez se você usasse "
+   "uma chave nele, algo interessante pudesse acontecer."
+kocnews_god_name = pt "Notícias dos Designers"
+kocnews_god_desc = pt \
+   "Confira aqui as informações dos administradores do jogo."

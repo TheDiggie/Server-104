@@ -2,3 +2,7 @@ room_name_OutdoorsA5 = de "Ausguck der Seefahrer"
 cliff_msg1a5 = de "Das soll wohl ein Witz sein!"
 room_discord_message = de \
    "Ein scharfer Wind weht von der See herüber und fegt alle Raumzauber weg."
+
+room_name_OutdoorsA5 = pt "Pico del Navegante"
+cliff_msg1a5 = pt "¡Debes estar bromeando!"
+room_discord_message = pt "Un viento extraño sopla desde el mar y disipa los hechizos que afectan esta área."

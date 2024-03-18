@@ -53,3 +53,65 @@ flag_failed_not_enough_allies = de \
 flag_failed_no_adjacent = de \
    "Nach dem Gesetz des Rates kann ein Fraktionsmitglied nur ein Gebiet erobern, "
    "das an ein bereits von der Fraktion erobertes Gebiet grenzt."
+
+flag_name_rsc = pt "mastro de bandeira"
+flag_desc_rsc = pt \
+   "Este mastro de bandeira está vazio, não reclamado na luta entre "
+   "as facções pelos direitos territoriais.  %r"
+flag_duke_desc_rsc = pt \
+   "Este mastro de bandeira ostenta as cores reais do Duque Akardius, "
+   "protetor de Tos.  %r"
+flag_princess_desc_rsc = pt \
+   "Este mastro de bandeira ostenta as cores reais da Princesa Kateriina, "
+   "soberana de Barloque.  %r"
+flag_rebel_desc_rsc = pt \
+   "Este mastro de bandeira ostenta as cores das forças rebeldes baseadas "
+   "em Jasper.  %r"
+flag_append_desc = pt \
+   "%s%s está atualmente tentando reivindicar este "
+   "território em nome de %s."
+flag_append_desc_empty = pt ""
+flag_claim_attempt = pt \
+   "~I%s%s bravamente reivindicou %s%s em nome de %s!"
+flag_claim_plugin_duke = pt "Duque Akardius"
+flag_claim_plugin_princess = pt "Princesa Kateriina"
+flag_claim_plugin_rebel = pt "as forças rebeldes"
+flag_claim_plugin_unfactioned = pt "os não-filiados"
+flag_claim_attempt_succeeded = pt \
+   "~ITodos saúdem %s%s, que reivindicou com sucesso %s%s em nome de %s!"
+flag_claim_attempt_failed_flee = pt \
+   "~I%s%s fugiu do campo de batalha, abandonando a reivindicação de %s%s em "
+   "nome de %s!"
+flag_claim_attempt_failed_killed = pt \
+   "~I%s%s defendeu corajosamente %s%s contra a tentativa de %s%s de reivindicá-lo "
+   "em nome de %s!"
+flag_claim_attempt_failed_dropped_flag = pt \
+   "~I%s%s entregou a reivindicação de %s%s em nome de %s!"
+flag_claim_attempt_failed_generic = pt \
+   "~I%s%s falhou em reivindicar %s%s em nome de %s!"
+flag_claim_attempt_failed_happyland = pt \
+   "~I%s%s falhou na tentativa de reivindicar %s%s em nome de %s devido a "
+   "falta de apoio político na área!"
+flag_failed_yours = pt \
+   "Este território já foi reivindicado em nome de sua facção."
+flag_failed_not_soldier = pt \
+   "Pelas leis do Conselho, você deve ser um soldado reconhecido de sua facção."
+flag_failed_angel = pt \
+   "Seu anjo da guarda impede você de interferir aqui."
+flag_failed_in_progress = pt \
+   "Uma reivindicação a este território feita por %s%s já está em andamento."
+flag_failed_too_recent = pt \
+   "Pelas leis do Conselho, este território está em disputa há muito "
+   "pouco tempo para fazer outra reivindicação."
+flag_failed_not_enough_users = pt \
+   "Pelas leis do Conselho, não há cidadãos suficientes acordados "
+   "para fazer uma reivindicação legítima de qualquer território."
+flag_failed_no_flag = pt \
+   "Você não possui uma bandeira de suas cores para hastear no mastro!"
+flag_failed_not_enough_allies = pt \
+   "Pelas leis do Conselho, você não tem apoiadores políticos suficientes "
+   "na área para fazer uma reivindicação legítima."
+flag_failed_no_adjacent = pt \
+   "Pelas leis do Conselho, um membro da facção só pode fazer uma reivindicação "
+   "a um território que seja adjacente a um território que já foi reivindicado "
+   "para essa facção."

@@ -2,3 +2,6 @@ jasper_innkeep_name_rsc = de "Witwe Qesino"
 jasper_innkeep_desc_rsc = de \
    "Die Witwe Qesino führt die Kneipe zum Zwergenhammer seitdem ihr Mann "
    "jüngst verschwunden ist. Sie scheint eine sehr aufrichtige Frau zu sein."
+
+jasper_innkeep_name_rsc = pt "Viúva Qesino"
+jasper_innkeep_desc_rsc = pt "A Viúva Qesino administra o Yonder Inn desde o desaparecimento de seu falecido marido. Ela parece ser uma mulher muito direta, embora bastante simples."

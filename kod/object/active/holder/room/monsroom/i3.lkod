@@ -1,3 +1,6 @@
 room_name_OutdoorsI3 = de \
    "Das Haupttor von Barloque - Königliche Stadt von Meridian"
 outdoorsi3_msg1 = de "Heute ist bestimmt kein guter Tag zum Ertrinken."
+
+room_name_OutdoorsI3 = pt "Portão principal de Barloque - Cidade Real de Meridian"
+outdoorsi3_msg1 = pt "Hoje não parece ser um dia particularmente bom para se afogar."

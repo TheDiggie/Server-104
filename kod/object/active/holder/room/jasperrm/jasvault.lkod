@@ -6,3 +6,17 @@ JasVault_sign_desc = de \
    "die Du hierlassen möchtest. Um Gegenstände abzuholen, benutze den Befehl "
    "ABHEBEN.Das alles ist aber nicht umsonst (die Kosten dafür werden automatisch "
    "von Dir entrichtet), und ich bewahre keine Schillinge auf."
+
+room_name_Jaspervault = pt "O Cofre de Jasper"
+JasVault_sign_name = pt "Bem-vindo às Cofres de Jasper"
+JasVault_sign_desc = pt \
+   "Para usar meus serviços justos, basta digitar DEPOSIT sem nenhum outro argumento. "
+   "Uma lista do seu inventário aparecerá, e você pode escolher os itens que deseja depositar. "
+   "Para recuperar esses itens, basta usar o comando WITHDRAW. "
+   "Observe que este serviço não é gratuito (o custo será removido automaticamente "
+   "de sua bolsa), e que não armazenarei moedas. "
+   "Usar o feitiço de Conveyance em um item empilhável (comida, reagentes) em "
+   "seu inventário também enviará seu item para os cofres, desde "
+   "que você carregue moedas suficientes para cobrir a taxa. "
+   "Quaisquer itens que você depositar aqui também podem ser acessados nas Cofres de Barloque "
+   "nos Portos de Barloque."

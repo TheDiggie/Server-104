@@ -8,3 +8,14 @@ RazaInnkeeper_nothing_for_sale = de \
 RazaInnkeeper_welcome = de \
    "Hallo, %s, und willkommen zu Meridian 59!  Lies das Schild um mit dem "
    "Tutorial zu beginnen."
+
+Raza_innkeep_name_rsc = pt "Marcus"
+Raza_innkeep_desc_rsc = pt \
+   "Um veterano das Guerras dos Orcs, Marcus agora parece contente em se estabelecer "
+   "em sua nova vida administrando uma pequena e tranquila estalagem no campo."
+RazaInnkeeper_nothing_for_sale = pt \
+   "Eu não tenho nada para vender, mas pergunte por aí - algumas das "
+   "outras pessoas por aqui têm."
+RazaInnkeeper_welcome = pt \
+   "Olá, %s, e bem-vindo ao Meridian 59! Leia o sinal para "
+   "começar o tutorial."

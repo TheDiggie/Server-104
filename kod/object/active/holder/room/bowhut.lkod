@@ -1,3 +1,6 @@
 room_name_BowmakerHut = de "Die Hütte der Bogenmacherin"
 BowmakerHut_locked = de \
    "~wHanla zax'Ta sagt, \"Du darfst dahin nicht zurückgehen.\""
+
+room_name_BowmakerHut = pt "A Cabana do Fabricante de Arcos"
+BowmakerHut_locked = pt "~kHanla zax'Ta diz, \"Você não pode voltar para lá.\""

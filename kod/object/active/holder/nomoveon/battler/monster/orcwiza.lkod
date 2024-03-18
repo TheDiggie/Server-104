@@ -7,3 +7,13 @@ OrcWizard_desc_rsc = de \
    "doch der Gedanke, dass der größte Feind mit arkanen Kräfte ausgestattet "
    "ist, reicht aus, dass jeder Krieger sich unwohl fühlt."
 OrcWizard_dead_name_rsc = de "toter Ork-Zauberer"
+
+OrcWizard_koc_name_rsc = pt "utomya"
+OrcWizard_name_rsc = pt "mago orc"
+OrcWizard_desc_rsc = pt \
+      "Manipulando poderes sombrios das profundezas subterrâneas, os Magos Orcs "
+      "fazem cumprir os mandatos de seu chefe, como a exterminação "
+      "das bestas das sombras inimigas. Como os orcs adquiriram os poderes da "
+      "magia é desconhecido, mas o pensamento do maior inimigo do homem armado "
+      "com poder arcano é suficiente para deixar qualquer guerreiro enjoado."
+OrcWizard_dead_name_rsc = pt "mago orc morto"

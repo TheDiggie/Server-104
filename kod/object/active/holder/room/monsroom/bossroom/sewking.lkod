@@ -5,3 +5,10 @@ SewerKingLair_lever_desc = de \
 SewerKingLair_drowning = de \
    "Du ringst in den letzten Millimetern Luft nahe der Decke nach Atem und "
    "saugst dabei ebenso viel Wasser wie Luft in Deine Lungen."
+
+room_name_SewerKingLair = pt "A Antiga Travessia dos Contrabandistas"
+SewerKingLair_lever_desc = pt \
+   "Esta alavanca está coberta com anos de acúmulo de ferrugem e limo."
+SewerKingLair_drowning = pt \
+   "Você prende a respiração nos últimos centímetros de ar próximo ao "
+   "teto, tragando tanta água quanto ar para seus pulmões."

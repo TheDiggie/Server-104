@@ -11,3 +11,7 @@ goodguard_thanks = de \
    "sehen.Die Bestechung eines Offiziers ist eine große Straftat auf Ko'catan, "
    "aber ich weiß, dass es eine gutmütige Spende für die Witwen und Waisen "
    "ist und ich werde sehen, dass es an genau die weitergeleitet wird."
+
+KocatanCaptainGood_name_rsc = pt "Cital ko'Manca"
+KocatanCaptainGood_desc_rsc = pt "Como um dos oficiais de maior patente no Exército Ko'catan, Cital ko'Manca é sério e meticuloso em seus deveres. Em tempos de paz, esses deveres incluem supervisionar o portão principal durante o dia contra ações de inimigos desconhecidos. Cital ko'Manca é extraordinariamente jovem para ter alcançado tal patente, mas é muito respeitado por sua imparcialidade e adesão à lei militar."
+goodguard_thanks = pt "Um oficial menos compreensivo poderia ver esta oferta como um suborno, o que é muito sério em Ko'catan. Subornar um oficial do portão é um crime capital. Mas eu sei que tudo o que você realmente queria fazer é uma generosa doação para as viúvas e órfãos de Kici'ca. Vou garantir que isso chegue lá, e você estará a caminho."

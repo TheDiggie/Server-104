@@ -6,3 +6,12 @@ OrcPitBoss_desc_rsc = de \
    "In den Höhlen gibt es keinen furchterregenderen Krieger, entschlosseneren "
    "Führer oder grässlicheren Gegner als den entsetzlichen Orkhäuptling."
 OrcPitBoss_dead_name_rsc = de "toter Orkhäuptling"
+
+OrcPitBoss_koc_name_rsc = pt "koutom"
+OrcPitBoss_name_rsc = pt "chefe de fosso orc"
+OrcPitBoss_desc_rsc = pt \
+      "Para ganhar o título sinistro e a posição de Chefe de Fosso, "
+      "este orc teve que batalhar e matar mais de cem outros de sua "
+      "espécie. Nas cavernas, não há guerreiro mais formidável, "
+      "líder determinado ou adversário horrendo do que os terríveis Chefes de Fosso."
+OrcPitBoss_dead_name_rsc = pt "chefe de fosso orc morto"

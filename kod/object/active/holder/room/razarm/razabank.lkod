@@ -9,3 +9,9 @@ razabank_sign_desc = de \
    "von Ko'catan nicht mit den Banken auf dem Festland arbeitet.\n\n"
    "Benutze die Befehle EINZAHLEN [BETRAG], ABHEBEN [BETRAG] und KONTOSTAND, "
    "um auf Dein Konto zuzugreifen."
+
+room_name_RazaBank = pt "Royal Bank of Raza"
+RazaBank_sign_name = pt "Bem-vindo ao Banco Real de Raza"
+RazaBank_sign_desc = pt \
+   "Com ladrões e assassinos espreitando a cada esquina, geralmente é uma boa ideia viajar com o mínimo de moedas possível. Os bancos em Raza, Tos, Jasper e Ko'catan permitem que deposits seguramente suas moedas e as recupere mais tarde sem custo algum. No entanto, observe que, enquanto os bancos de Raza, Tos e Jasper têm um saldo de conta compartilhado, o banco de Ko'catan não tem.\n\n"
+   "Use os comandos 'deposit xxx' para depositar xxx moedas e 'withdraw xxx' para retirar a mesma quantia. Além disso, você pode usar o comando 'balance' para saber sobre seu saldo atual."

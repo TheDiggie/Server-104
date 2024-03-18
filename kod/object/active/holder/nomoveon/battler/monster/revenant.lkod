@@ -14,3 +14,18 @@ Rev_coming_to_get_ya = de \
    "näherkommt."
 Rev_draining_effect = de \
    "Der Racheengel vollführt eine mystische Bewegung... Du fühlst Dich ausgelaugt."
+
+revenant_name_rsc = pt "revenante"
+revenant_desc_rsc = pt \
+      "A recompensa pelas más ações de alguém: uma batalha até a morte com uma alma perdida. "
+      "Embora seja inofensivo para todos, exceto para o assassino que assombra, "
+      "qualquer um tolo o suficiente para interferir sofrerá o mesmo destino."
+
+Rev_grouping_is_bad = pt \
+      "Sua alma se agita quando você interfere na batalha de outro. "
+      "Você percebe que agora você também será assombrado quando sair deste lugar."
+Rev_vanquished = pt "Você sente um grande peso levantado de sua alma."
+Rev_coming_to_get_ya = pt \
+      "Sua espinha arrepia ao sentir a presença ameaçadora de um "
+      "revenante perseguindo se aproximando."
+Rev_draining_effect = pt "O revenante faz um movimento místico... você se sente drenado."

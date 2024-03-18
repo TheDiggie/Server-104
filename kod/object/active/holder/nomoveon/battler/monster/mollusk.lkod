@@ -7,3 +7,12 @@ MolluskMonster_desc_rsc = de \
    "wenn sie selbst angegriffen wird. Aber sei auf der Hut, ihr dicker Panzer "
    "und die mächtigen Klauen machen sie zu einem furchterregenden Gegner."
 MolluskMonster_dead_name_rsc = de "Der erschlagene Panzermolch"
+
+MolluskMonster_koc_name_rsc = pt "kolisith"
+MolluskMonster_name_rsc = pt "criatura molusco"
+MolluskMonster_desc_rsc = pt \
+      "Uma chegada recente às terras, esta criatura gigante é bastante "
+      "pacífica. Ela vagueia pela área em busca de comida. Raramente ataca "
+      "as pessoas, a menos que seja atacada primeiro. Mas, seja avisado, sua "
+      "casca grossa e sua garra poderosa a tornam um oponente difícil de enfrentar."
+MolluskMonster_dead_name_rsc = pt "criatura molusco abatida"

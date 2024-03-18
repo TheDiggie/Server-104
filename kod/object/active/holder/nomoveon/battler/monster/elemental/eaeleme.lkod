@@ -5,3 +5,11 @@ earthelemental_desc_rsc = de \
    "dring in die Nase."
 earthelemental_koc_name_rsc = de "atzmochzhu"
 earthelemental_dead_name_rsc = de "toter Erdgolem"
+
+earthelemental_name_rsc = pt "earth golem"
+earthelemental_desc_rsc = pt \
+   "Uma criatura de terra viva, este monstro imponente se aproxima de você," 
+   " fazendo o chão tremer a cada passo. Cada movimento seu soa como pedra " 
+   "sendo moída, e o aroma de terra fresca enche suas narinas."
+earthelemental_koc_name_rsc = pt "atzmochzhu"
+earthelemental_dead_name_rsc = pt "earth golem morto"

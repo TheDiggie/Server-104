@@ -4,3 +4,9 @@ EvilTwin_delete = de "%s%s verschwindet in einer Rauchwolke."
 EvilTwin_trouble = de \
    "Du bemerkst, dass ein böser Zwilling, den Du beschworen hast, Dich in "
    "Schwierigkeiten gebracht hat..."
+
+EvilTwin_name_rsc = pt "gêmeo maligno"
+EvilTwin_dead_name_rsc = pt "gêmeo maligno morto"
+EvilTwin_delete = pt "%s%s desaparece em uma nuvem de fumaça."
+EvilTwin_trouble = pt \
+   "Você sente que um gêmeo maligno que você convocou te colocou em apuros..."

@@ -1,2 +1,5 @@
 room_name_OutdoorsH4 = de "Die Ebene"
 waterfall_msg1 = de "Für ~BDIESEN~n Schritt fehlt Dir der Mut!"
+
+room_name_OutdoorsH4 = pt "As Planícies"
+waterfall_msg1 = pt "Você não é corajoso o suficiente para dar ~BESSE~n mergulho!"

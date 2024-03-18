@@ -2,3 +2,7 @@ cornoth_urchin_name_rsc = de "Der Urchin"
 cornoth_urchin_desc_rsc = de \
    "Dies ist ein junges, dreckiges Urchin, welches bislang kein Ärger macht."
 cornoth_urchin_dead_name_rsc = de "Ein totes Urchin"
+
+cornoth_urchin_name_rsc = pt "menino de rua"
+cornoth_urchin_desc_rsc = pt "Este é um jovem menino de rua sujo, vivendo na rua, mas não causando problemas."
+cornoth_urchin_dead_name_rsc = pt "menino de rua morto"

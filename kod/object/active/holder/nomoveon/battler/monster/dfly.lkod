@@ -7,3 +7,12 @@ DragonFly_desc_rsc = de \
    "werden, weiß man, dass sie darauf mit einem widerlichen Spuckangriff "
    "reagieren."
 DragonFly_dead_name_rsc = de "tote Drachenfliege"
+
+DragonFly_koc_name_rsc = pt "huzotz"
+DragonFly_name_rsc = pt "libélula"
+DragonFly_desc_rsc = pt \
+   "Esses pequenos lagartos parecem excepcionalmente amigáveis. Suas asas de "
+   "gaze permitem que eles pulem no ar e voem por breves períodos de tempo. "
+   "Quando encurraladas, as libélulas são conhecidas por terem um ataque de "
+   "cuspe desagradável."
+DragonFly_dead_name_rsc = pt "libélula morta"

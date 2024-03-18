@@ -17,3 +17,23 @@ TosWatcher_ad_good_fight1 = de \
    "Ein Kampf auf Leben und Tod macht mich immer ganz nervös!"
 TosWatcher_ad_good_fight2 = de "Hip-Hip-Hurrah!"
 TosWatcher_ad_good_fight3 = de "Laß ein bißchen Blut sehen!"
+
+TosWatcher_name_rsc = pt "Observador"
+TosWatcher_desc_rsc = pt \
+   "O filho da Sacerdotisa Qerti'nya e do General Cylill, o jovem Cort foi "
+   "designado como Observador da Gloriosa Arena de Kraanan. Um sorriso calmo "
+   "adorna seu rosto enquanto ele supervisiona os combates simulados realizados "
+   "em nome de Kraanan, o Punho."
+TosWatcher_ad_need_champion1 = pt \
+   "Será que não temos guerreiro que seja nosso campeão?"
+TosWatcher_ad_need_champion2 = pt \
+   "Não há ninguém que ouse vestir o manto de Kraanan?"
+TosWatcher_ad_need_champion3 = pt \
+   "Prove-se perante os olhos críticos de Kraanan!"
+TosWatcher_ad_need_champion4 = pt \
+   "Leia meus estandartes para obter instruções sobre como iniciar uma luta."
+TosWatcher_ad_need_challenger = pt "Nenhum guerreiro se atreverá a desafiar %s%s?"
+TosWatcher_ad_good_fight1 = pt \
+   "Um combate vingativo sempre me faz arrepiar!"
+TosWatcher_ad_good_fight2 = pt "Viva!"
+TosWatcher_ad_good_fight3 = pt "Vamos ver um pouco de sangue!"

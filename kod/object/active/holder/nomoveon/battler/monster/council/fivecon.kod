@@ -36,7 +36,6 @@ resources:
       "~k%s%s tells you, \"You keep it.  You never know when you are going to "
       "need it.~n~k\""
 
-
 classvars:
 
    vrName = fiveCouncilor_name_rsc

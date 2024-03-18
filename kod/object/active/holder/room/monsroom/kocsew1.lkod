@@ -4,3 +4,9 @@ kocsewer1_locked = de \
    "doch es ist fest verschlossen."
 kocsewer1_no_cheat = de \
    "Die Tür sieht nicht so aus als ob sie sich für dich öffnen will."
+
+room_name_kocsew1 = pt "Um lugar repugnante para vagar"
+kocsewer1_locked = pt \
+   "Você fica de pé até os joelhos em esgoto bruto, sacudindo a grade, "
+   "mas ela está firmemente trancada."
+kocsewer1_no_cheat = pt "A porta parece relutante em ceder para você."

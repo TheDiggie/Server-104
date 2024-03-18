@@ -8,3 +8,13 @@ XeoEarth_desc_rsc = de \
    "sie sehr mächtig macht. Es gibt reichlich Gerüchte über die Herkunft "
    "dieser Monster, aber Du hast wenig Zeit, um darüber nachzudenken, in "
    "der Gegenwart einer solch zerstörerischen Kraft!"
+
+XeoEarth_name_rsc = pt "te'xeochicatl"
+XeoEarth_koc_name_rsc = pt "te'xeo'chicatl"
+XeoEarth_desc_rsc = pt \
+   "Diante de você está um te'xeochicatl, um monstro temido que ganhou vida "
+   "pela magia caótica de Meridian. O te'xeochicatl é a personificação da "
+   "destruição, um monstro violento que parece incontrolável. Esses monstros "
+   "se alimentam da magia das terras, o que os torna muito poderosos. Rumores "
+   "surgem sobre a origem desses monstros, mas você tem pouco tempo para "
+   "contemplar esses rumores na presença de um poder tão destrutivo!" 

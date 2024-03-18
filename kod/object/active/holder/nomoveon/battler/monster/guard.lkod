@@ -3,3 +3,8 @@ guard_koc_name_rsc = de "tanahyijoa"
 guard_desc_rsc = de \
    "Dies ist die bösartige Wachkuh, die alle Missetäter bestraft."
 guard_dead_name_rsc = de "tote Wachkuh"
+
+guard_name_rsc = pt "vaca guardiã"
+guard_desc_rsc = pt \
+   "Esta é a feroz vaca guardiã, que pune todos os malfeitores."
+guard_dead_name_rsc = pt "vaca guardiã morta"

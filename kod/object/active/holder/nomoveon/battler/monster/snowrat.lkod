@@ -5,3 +5,10 @@ SnowRat_desc_rsc = de \
    "nehmen."
 SnowRat_koc_name_rsc = de "shonapyijoa"
 SnowRat_dead_name_rsc = de "tote Schneeratte"
+
+SnowRat_name_rsc = pt "rato da neve"
+SnowRat_desc_rsc = pt \
+      "Este é o primo nascido no gelo dos vermes do continente. É "
+      "menos repugnante por natureza, mas de longe um oponente mais desafiador."
+SnowRat_koc_name_rsc = pt "shonapyijoa"
+SnowRat_dead_name_rsc = pt "rato da neve morto"

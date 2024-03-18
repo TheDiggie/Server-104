@@ -5,3 +5,11 @@ orc_desc_rsc = de \
    "überragt jeden Menschen bei weitem. Er fuchtelt wild mit einem Säbel "
    "in seiner knorrigen Hand herum."
 orc_dead_name_rsc = de "toter Ork"
+
+orc_koc_name_rsc = pt "utomca"
+orc_name_rsc = pt "orc"
+orc_desc_rsc = pt \
+      "Este vil servo de Qor, corpo coberto de sujeira, se ergue "
+      "acima da altura humana. Ele segura firmemente uma lâmina "
+      "em uma mão nodosa."
+orc_dead_name_rsc = pt "orc morto"

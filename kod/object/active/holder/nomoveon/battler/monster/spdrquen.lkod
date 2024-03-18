@@ -6,3 +6,12 @@ spiderqueen_desc_rsc = de \
 qspider_illusion_poisoned = de \
    "%s%s taumelt als Gift in den Adern von %s fließt."
 spiderqueen_dead_name_rsc = de "tote Spinnenkönigin"
+
+spiderqueen_name_rsc = pt "rainha aranha"
+spiderqueen_koc_name_rsc = pt "kokinich"
+spiderqueen_desc_rsc = pt \
+      "O enorme saco de ovos da rainha aranha a torna lenta e pesada, mas "
+      "uma inteligência sombria brilha em seus muitos olhos vermelhos."
+qspider_illusion_poisoned = pt \
+      "%s%s cambaleia conforme o veneno de seu ataque percorre as veias de %s."
+spiderqueen_dead_name_rsc = pt "rainha aranha morta"

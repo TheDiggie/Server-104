@@ -1,3 +1,7 @@
 room_name_KocatanSmithy = de "Das Schornsteinhaus"
 KocatanSmithy_locked_1 = de "Das Tor ist fest verschlossen."
 KocatanSmithy_locked_2 = de "Die Tür ist gut verschlossen."
+
+room_name_KocatanSmithy = pt "A Casa da Chaminé"
+KocatanSmithy_locked_1 = pt "O portão está firmemente trancado."
+KocatanSmithy_locked_2 = pt "A porta está bem trancada."

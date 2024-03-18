@@ -12,3 +12,10 @@ ghost_normal_desc_rsc = de \
    "zu schaffen, bewirken, dass sie nur recht selten auftreten - was ein "
    "Segen für die Lebenden ist."
 ghost_dead_name_rsc = de "toter Geist"
+
+ghost_name_rsc = pt "fantasma de Far'Nohl"
+ghost_desc_rsc = pt \
+   "Farrapos e carne podre pendem nos ossos desta aparição mágica. Este é o fantasma de um antigo tirano de Meridian, Far'Nohl, que deu sua vida e sua alma às artes negras."
+ghost_normal_desc_rsc = pt \
+   "Almas perdidas de ira interminável, esses temidos mortos-vivos estão entre as criaturas mais temidas a percorrer as terras principais de Meridian. A tortura e a dor necessárias para criar um significam que sua ocorrência é relativamente rara - o que é uma bênção para os vivos."
+ghost_dead_name_rsc = pt "fantasma morto"

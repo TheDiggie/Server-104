@@ -11,3 +11,9 @@ CnInn_wedding_ring_sale = de \
 CnInn_not_ready = de \
    "Ich denke nicht, dass deine Stimme gut genug ist, dass ich dir das Arbeitslied "
    "meines Großvaters kann. Geh und sprich mit Parrin und schau was er denkt."
+
+CornothInnkeep_name_rsc = pt "D'Franco"
+CornothInnkeep_desc_rsc = pt "O Cibilo Creek Inn é um local de encontro comum para estudantes e acadêmicos da universidade próxima, e frequentemente o local de debates sobre todo tipo de questão. D'Franco é encorajador e tolerante com qualquer boa discussão, embora suas opiniões tendam a ser um tanto conservadoras."
+CnInn_entry_welcome = pt "Bom dia, %s%s."
+CnInn_wedding_ring_sale = pt "~B<wink>~n Encontrou alguém especial, né? Seria uma honra oferecer-lhe %s%s."
+CnInn_not_ready = pt "Acho que sua voz não está pronta para eu te ensinar a canção de trabalho do meu avô. Vá falar com Parrin e veja o que ele acha."

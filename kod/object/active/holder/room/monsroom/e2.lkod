@@ -3,3 +3,7 @@ E2_oceanwalk = de \
    "Du beschließt, im großen Meer besser nicht schwimmen zu gehen."
 E2_icewalk = de \
    "Das Eis sieht zu dünn aus, als das du dich traust weiter raus zu gehen..."
+
+room_name_OutdoorsE2 = pt "O Grande Oceano"
+E2_oceanwalk = pt "Você decide que não gosta o suficiente de água salgada para nadar no Grande Oceano."
+E2_icewalk = pt "O gelo parece um pouco fino demais para arriscar ir mais longe."

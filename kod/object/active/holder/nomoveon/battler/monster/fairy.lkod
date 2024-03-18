@@ -4,3 +4,9 @@ good_fairy_desc_rsc = de \
    "Als eine der noblen Feenrassen der Wälder sind die Fey Elhai bekannt "
    "für ihren Haß auf ihre dunklen Brüder, die Fey Dirhai."
 fairy_dead_name_rsc = de "toter Fey"
+
+good_fairy_koc_name_rsc = pt "kinimixlal"
+good_fairy_name_rsc = pt "fada da floresta"
+good_fairy_desc_rsc = pt \
+   "Uma das nobres fadas da floresta, as fey elhai são mais conhecidas por seu ódio absoluto de seus irmãos sombrios, as fey dirhai."
+fairy_dead_name_rsc = pt "fada morta"

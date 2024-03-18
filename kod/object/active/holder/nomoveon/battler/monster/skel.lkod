@@ -5,3 +5,9 @@ skeleton_desc_rsc = de \
    "Knochen. Das Skelett, normalerweise leblos, ist von dunkler Magie mit "
    "Leben erfüllt."
 skeleton_dead_name_rsc = de "Der Knochenhaufen"
+
+skeleton_name_rsc = pt "esqueleto"
+skeleton_desc_rsc = pt \
+      "Alguns pedaços de carne podre se agarram a esta coleção de "
+      "ossos. O esqueleto, embora sem vida, é animado por magias negras."
+skeleton_dead_name_rsc = pt "monte de ossos"

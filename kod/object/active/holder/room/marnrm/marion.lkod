@@ -29,3 +29,12 @@ mimosa_insc = de \
 marion_gate_warning = de \
    "Dieses Gitter wurde errichtet, um die Bevölkerung vor den Gefahren zu "
    "beschützen, die in der Krypta lauern."
+
+room_name_marion = pt "Marion"
+mimosa_rose_offering = pt "Te detienes para reflexionar sobre los caídos y sientes tu espíritu renovado a pesar del dolor."
+mimosa_rose_offering_spam = pt "Te detienes para reflexionar sobre el significado de la vida."
+mimosa_other_offering = pt "Tu ofrenda a los caídos cae suavemente sobre un lecho de pétalos de flores secas."
+mimosa_name = pt "el árbol de mimosa"
+mimosa_desc = pt "Este árbol sirve como memorial de un amigo caído. Hay una pequeña placa de metal fijada cerca del suelo; unos pocos pétalos de rosa secos descansan cerca."
+mimosa_insc = pt "Las jóvenes\nCortaron su cabello cuando te fuiste.\nEse día no se horneó pan,\nY el vino tenía un sabor agrio.\n\nLuchamos cuesta arriba\nEn la lluvia torrencial\nPara acompañarte en tu camino.\nUn poco más lejos hacia la eternidad\nQue tus camaradas empapados por la lluvia.\n\nDiana conservó tu espada;\nAspasia, tu manto embarrado de lana roja fina.\nYo guardé tu memoria, y la túnica oscura\nQue solíamos usar para limpiarte la cara.\nNo habría hecho más que eso."
+marion_gate_warning = pt "Esta puerta se colocó para mantener a los ciudadanos a salvo de los peligros de la cripta."

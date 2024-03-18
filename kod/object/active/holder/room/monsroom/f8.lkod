@@ -7,3 +7,9 @@ OutdoorsF8_PasswordDoorRelocked = de \
 OutdoorsF8_locked = de \
    "Die Tür zur Gildehalle ist von der anderen Seite verschlossen. Du benötigst "
    "das Gildenpasswort, um einzutreten."
+
+room_name_OutdoorsF8 = pt "Lago da Canção de Jala"
+OutdoorsF8_muffled = pt "Você mal consegue ouvir o som de alguém falando ao longe."
+OutdoorsF8_PasswordDoorUnlocked = pt "Você ouve um clique alto enquanto a porta é destrancada."
+OutdoorsF8_PasswordDoorRelocked = pt "Você ouve um clique alto enquanto a porta é trancada novamente."
+OutdoorsF8_locked = pt "A porta de volta para o salão da guilda está trancada do outro lado. A senha da guilda é necessária para entrar."

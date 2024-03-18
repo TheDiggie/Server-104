@@ -21,3 +21,25 @@ princess_other_delivered_rsc = de \
 princess_toopowered_rsc = de \
    "Ich bin offen zu Euch: Wären wir nicht bereits eine sehr starkeFraktion, "
    "hätte ich Euch vorgeschlagen, uns beizutreten."
+
+princess_name_rsc = pt "Princesa Kateriina"
+princess_desc_rsc = pt \
+   "A idade tornou a Princesa Kateriina mais forte e mais certa de si mesma, " 
+   "mas fez pouco para temperar sua ingenuidade. Ela desenvolveu grande desdém " 
+   "pelo Duque e por todos que se envolvem em manobras políticas. Ela considera " 
+   "assuntos de intriga política abaixo dela, confiando que se ela governar " 
+   "com sabedoria e justiça, todos a aceitarão. A magia continua a fasciná-la " 
+   "e às vezes ela sonha em fugir para estudar as artes arcanas."
+princess_token_delivered_rsc = pt \
+   "Ahhh. Vou garantir que isso seja devolvido ao seu conselheiro legítimo. " 
+   "Por minha coroa, ele me mostrará favor. %s"
+princess_princess_delivered_rsc = pt "Tu foste sempre um seguidor leal."
+princess_neutral_delivered_rsc = pt \
+   "Já que possuis uma mente semelhante, por favor apoie minha facção. Assine " 
+   "o rolo aqui..."
+princess_other_delivered_rsc = pt \
+   "Amém. Até mesmo os servos dos pretendentes ao trono começam a enxergar " 
+   "o caminho melhor. Vamos te transferir para nossa facção, não vamos?"
+princess_toopowered_rsc = pt \
+   "De fato, se não fôssemos uma facção muito poderosa, eu ofereceria para " 
+   "que te juntasses a nós."

@@ -3,3 +3,7 @@ Necropolis4_locked_door = de \
    "Die großen Steintüren sind vermutlich durch Geröllhaufen auf der anderen "
    "Seite fest verkeilt."
 necroarea5_guildwarning = de "Dein Amulett vibriert einen kurzen Moment."
+
+room_name_Necropolis5 = pt "Ruínas do Castelo Brax"
+Necropolis4_locked_door = pt "As grandes portas de pedra estão firmemente presas, provavelmente por montes de escombros do outro lado."
+necroarea5_guildwarning = pt "Seu amuleto vibra suavemente por um momento."

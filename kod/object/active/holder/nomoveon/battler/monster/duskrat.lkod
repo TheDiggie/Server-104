@@ -11,3 +11,17 @@ duskrat_poisoned_add_rsc = de \
 duskrat_illusion_poisoned = de \
    "%s%s taumelt als Gift in den Adern von %s fließt. "
 duskrat_dead_name_rsc = de "Tote Schwarze Ratte"
+
+duskrat_koc_name_rsc = pt "teotnapyijoa"
+duskrat_name_rsc = pt "rato crepuscular"
+duskrat_desc_rsc = pt \
+   "O ar ao redor do rato é escuro e espesso com o mal. O cheiro de morte e "
+   "doença paira em sua respiração fétida enquanto ele se lança em direção ao "
+   "seu alvo. As origens dessa abominação são desconhecidas. O único conhecimento "
+   "definitivo é do veneno mortal que carrega em sua mordida."
+duskrat_poisoned_add_rsc = pt \
+   "À medida que o veneno se espalha para sua cabeça, você começa "
+   "a se sentir um pouco tonto. O quarto gira ao seu redor."
+duskrat_illusion_poisoned = pt \
+   "%s%s cambaleia quando o veneno do seu ataque percorre as veias de %s."
+duskrat_dead_name_rsc = pt "rato crepuscular morto"

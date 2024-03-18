@@ -5,3 +5,11 @@ mummy_desc_rsc = de \
    "Leben gerufen.Ihr Fleisch ist faulig und weich, und ihre Augen bitten "
    "um Ruhe von diesem verfluchten Unleben."
 mummy_dead_name_rsc = de "tote Mumie"
+
+mummy_koc_name_rsc = pt "napleoc"
+mummy_name_rsc = pt "múmia"
+mummy_desc_rsc = pt \
+      "Incapaz de encontrar paz, esta pobre alma abandonada vaga por corredores "
+      "escuros e intermináveis, esperando ser julgada afinal. Sua carne é pútrida "
+      "e macia, e seus olhos pedem descanso de sua maldita não-vida."
+mummy_dead_name_rsc = pt "múmia morta"

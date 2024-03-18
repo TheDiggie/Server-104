@@ -8,3 +8,7 @@ Bqmerch_unwanted_give = de \
    "~k%s%s teilt dir mit, \"Warum willst du mir solche Dinge anbieten? Ich "
    "habe Diener die für mich zum Markt gehen um solche Dinge für mich zu "
    "kaufen.~n~k\""
+
+barloque_merch_name_rsc = pt "Herbutte"
+barloque_merch_desc_rsc = pt "Achando-se um conhecedor das coisas mais refinadas, Herbutte é pouco mais do que um snob aristocrático à moda antiga. Dentro dele há uma veia sombria de desprezo por quase todos, exceto a realeza. Ele nunca ficará sem coisas ruins para dizer sobre as outras cidades e os transitórios de baixa vida que vagam entre elas."
+Bqmerch_unwanted_give = pt "~k%s%s diz, \"Por que me ofereces tais bugigangas comuns?! Eu tenho servos que vão ao mercado comprar tais coisas para mim.~n~k\""

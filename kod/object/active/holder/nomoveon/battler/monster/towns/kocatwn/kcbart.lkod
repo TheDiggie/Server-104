@@ -8,3 +8,7 @@ kocatanBartender_desc_rsc = de \
    "rende Kneipe zu fÃ¼hren. Doch Oxal geht seiner Arbeit offensichtlich "
    "mit wenig Begeisterung nach."
 kocatanBartender_entry_welcome = de "Was willst du?"
+
+KocatanBartender_name_rsc = pt "Oxal ix'Tokak"
+kocatanBartender_desc_rsc = pt "Depois de perder seu braço direito em ação em Balo na'te Din, Oxal foi dispensado do serviço no Exército Ko'catan e designado para O Monstro Latindo. É uma grande honra ser o veterano selecionado para administrar este estabelecimento de propriedade militar, mas Oxal realiza o trabalho com pouco entusiasmo aparente."
+kocatanBartender_entry_welcome = pt "O que você quer?"

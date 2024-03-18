@@ -11,3 +11,18 @@ basicinnkeeper_wrap_rsc = de \
    "~kRulker benutzt ein wenig Klebstoff und farbiges Papier, um eine Geschenkschachtel "
    "einzupacken. Mit geübten Fingern schlingt er ein kurzes Band zu einer schönen "
    "Schleife. Er überreicht es, nachdem er etwas auf den Anhänger geschrieben hat."
+
+basicinnkeeper_name_rsc = pt "Rycksher"
+basicinnkeeper_desc_rsc = pt \
+   "O irmão mais novo, esnobe e menos competente de Paddock, relaxa casualmente "
+   "atrás do balcão. Enquanto bebe de um cálice (com o mindinho "
+   "esticado), ele balança lentamente a cabeça ao som da música."
+basicIK_entry_welcome = pt "Estarei com você em breve."
+basicinnkeeper_fee_rsc = pt \
+   "Você não tem o suficiente para cobrir os custos do embrulho de papel."
+basicinnkeeper_type_rsc = pt "Não vou embrulhar nada desse tipo."
+basicinnkeeper_wrap_rsc = pt \
+   "~kRycksher usa um pouco de goo de slime morto e folhas de papel de seda colorido "
+   "para embrulhar uma caixa de presente. Com mãos hábeis, ele transforma um pequeno pedaço de fita brilhante "
+   "em um laço perfeito. Ele entrega de volta após escrever delicadamente "
+   "algo em uma etiqueta."

@@ -5,3 +5,10 @@ JasperBlacksmith_desc_rsc = de \
    "bleibt. Nimm es wie du willst."
 JsBla_entry_welcome = de "Hallo %s%s, und willkommen."
 JsBla_island_items = de "Ich handel nicht mit Nerudite Müll."
+
+JasperBlacksmith_name_rsc = pt "Quintor"
+JasperBlacksmith_desc_rsc = pt "Quintor é amplamente reconhecido como o melhor ferreiro do país. Ele também é reconhecido como um homem quieto e sombrio que mantém para si mesmo. Tire suas próprias conclusões."
+JsBla_entry_welcome = pt "Olá %s%s, e bem-vindo."
+JsBla_island_items = pt "Não lido com lixo nerudita."
+JasperBlacksmith_already_have_spell = pt "Você já tem conhecimento do feitiço %s. Você está desperdiçando meu tempo."
+JasperBlacksmith_not_ready = pt "Você não está pronto para aprender como forjar uma espada mística."

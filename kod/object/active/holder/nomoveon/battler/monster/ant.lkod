@@ -5,3 +5,11 @@ ant_desc_rsc = de \
    "nach Dir. Obwohl langsam und fast blind, haben Ameisen einen feinen Geruchssinn "
    "für Menschenfleisch."
 ant_dead_name_rsc = de "tote Riesenameise"
+
+ant_koc_name_rsc = pt "yokinich"
+ant_name_rsc = pt "formiga"
+ant_desc_rsc = pt \
+   "Pinças estalando, ensanguentadas da última refeição da formiga, se " 
+   "agarram a você. Embora lentas e quase cegas, as formigas têm um " 
+   "sentido aguçado de olfato e um gosto por carne humana."
+ant_dead_name_rsc = pt "formiga morta"

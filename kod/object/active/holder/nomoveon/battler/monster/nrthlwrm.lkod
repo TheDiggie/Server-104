@@ -6,3 +6,11 @@ NarthylWorm_desc_rsc = de \
    "Dich, als Du, fast völlig abgedämpft, jeden Nerv in Deinem Körper Gefahr "
    "schreien hörst."
 NarthylWorm_dead_name_rsc = de "toter Natterwurm"
+
+NarthylWorm_koc_name_rsc = pt "tepna'arthyl"
+NarthylWorm_name_rsc = pt "verme narthyl"
+NarthylWorm_desc_rsc = pt \
+      "Apesar de sua monstruosidade de outro mundo, os movimentos ágeis do verme narthyl "
+      "são intensamente hipnóticos. Cada nervo do seu corpo está gritando perigo, ecoando "
+      "fraco através do estado de transe que parece estar descendo sobre sua mente."
+NarthylWorm_dead_name_rsc = pt "verme narthyl morto"

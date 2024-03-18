@@ -6,3 +6,11 @@ Necropolis3_locked_door = de \
    "Die massiven Tore aus Stein lassen sich nicht bewegen, egal wie sehr "
    "Du Dich bemühst."
 Necropolis3_no_rift = de "Hier Schattenriss zu zaubern würde nutzlos sein."
+
+room_name_Necropolis3 = pt "Cidade Decadente de Brax"
+Necropolis3_locked_gate = pt \
+   "O portão não possui meios visíveis de abrir, e os espinhos no topo servem como um "
+   "dissuasor suficiente para escalar sobre ele."
+Necropolis3_locked_door = pt \
+   "A porta de pedra maciça não se move, não importa o quanto você a empurre."
+Necropolis3_no_rift = pt "Fazer uma fenda de sombra aqui seria inútil."

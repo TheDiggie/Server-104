@@ -9,3 +9,11 @@ jasper_bank_closed_rsc = de \
 jasper_hard_times_rsc = de "Das Wohnhaus wurde in schweren Zeiten verlassen."
 jasper_tenement = de "Das Mietshaus ist verlassen."
 jasper_schoolmarm_rsc = de "Das Schulgebäude ist verfallen."
+
+room_name_JasperWest = pt "Oeste de Jasper"
+jasper_factory_closed = pt "Desde que as minas secaram, esta fábrica foi fechada para sempre."
+jasper_yevitan_rsc = pt "Embora severamente vandalizada, a casa de Yevitan recusa a entrada."
+jasper_bank_closed_rsc = pt "Proibida a entrada! Propriedade do Banco Real de Jasper."
+jasper_hard_times_rsc = pt "Tempos difíceis deixaram sua casa abandonada."
+jasper_tenement = pt "O cortiço está desertado."
+jasper_schoolmarm_rsc = pt "A casa da professora caiu em desuso."

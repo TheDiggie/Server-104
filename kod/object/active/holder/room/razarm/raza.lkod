@@ -36,3 +36,27 @@ raza_locked_clock = de \
 raza_locked_townhall = de \
    "Die Türen der Stadthalle sind fest von innen verriegelt."
 raza_locked_tavern = de "Die Tür zu Eric D'Jorns Wohnung ist verschlossen."
+
+room_name_raza = pt "Raza"
+raza_signname = pt "Explorando"
+raza_sign = pt \
+   "Agora que estás do lado de fora, podes realmente praticar movimentando-te. A corrida automática está ativada por padrão, mas se quiseres diminuir um pouco a velocidade, usa a tecla SHIFT para caminhar enquanto te moves. Além disso, podes usar as teclas A e D para deslizar lateralmente (ou 'desviar'). A tecla END é útil para virar rapidamente 180 graus.\n\n"
+   "Também é um bom momento para aprender sobre o mapa, à direita da janela gráfica. A linha azul mostra a tua posição no mapa. Dependendo do tamanho do mapa, isso pode parecer um ponto azul, mas podes usar as teclas + e - para ampliar/reduzir. Outros jogadores aparecerão como pontos azuis, monstros como pontos vermelhos e NPCs como pontos pretos. Podes adicionar comentários ao mapa CLICANDO DIREITO no mapa e, em seguida, inserindo o lembrete para ti mesmo."
+raza_signname2 = pt "Entrando no mundo"
+raza_sign2 = pt \
+   "Além deste portão, está o resto do mundo de Meridian 59. Neste momento, podes querer ler o correio que o teu anjo da guarda te enviou, pois contém informações sobre como sobreviver e o que podes fazer neste mundo. Para aceder ao teu correio, escreve MAIL.\n\n"
+   "Na área circundante a Raza, encontrarás monstros adequados ao teu nível, no entanto, ao encontrar um novo monstro, deves olhar para a sua descrição para ver quantos pontos de vida ele tem. Se este número estiver muito acima do teu próprio nível, o monstro pode ser muito perigoso para desafiares sozinho.\n\n"
+   "Podes regressar a Raza a qualquer momento para vender os teus itens ou comprar mais, e se te aventurares a nordeste até à Floresta de Farol, podes viajar para o norte ou sul para outras cidades."
+raza_locked_farm = pt \
+   "A porta da quinta está firmemente trancada por dentro."
+raza_locked_stable = pt "A porta do estábulo está trancada."
+raza_locked_clock = pt \
+   "As portas do templo permanecem trancadas o tempo todo, exceto "
+   "durante os serviços fúnebres."
+raza_locked_townhall = pt \
+   "As portas da câmara municipal estão firmemente trancadas por dentro."
+raza_locked_tavern = pt \
+   "A porta dos aposentos de Eric D'Jorn está trancada."
+raza_info = pt \
+   "A cidade de Raza oferece quase tudo o que um aventureiro novato poderia desejar. Equipamento, treinadores capazes e - claro - missões! Explore a cidade com calma e veja por si mesmo. Vou te contar um pouco mais sobre a cidade enquanto caminhamos."
+   "\n~I[Dica: Interage com NPCs e objetos com um clique direito. No Ogre, seleciona o NPC ou objeto com um clique esquerdo e, em seguida, usa os símbolos na janela de seleção para interagir.]~I"

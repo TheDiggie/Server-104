@@ -6,3 +6,8 @@ dark_fairy_desc_rsc = de \
    "Trauer selbst in Besitz zu nehmen. Sie hassen ihre Artgenossen, die Fey "
    "Elhai, mit verzehrender Leidenschaft."
 darkfairy_dead_name_rsc = de "Ein toter Fey"
+
+dark_fairy_koc_name_rsc = pt "teotimixlal"
+dark_fairy_name_rsc = pt "fey dirhai"
+dark_fairy_desc_rsc = pt "Escuras, travessas e, em última análise, malévolas, essas fadas têm apenas um objetivo - levar a Floresta Quilicia para uma escuridão permanente, para que possam reivindicar o Vale das Dores como seu próprio. Eles odeiam seus parentes, as fey elhai, com uma paixão fervorosa."
+darkfairy_dead_name_rsc = pt "fada morta"

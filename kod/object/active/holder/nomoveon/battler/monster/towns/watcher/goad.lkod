@@ -88,3 +88,88 @@ Goad_not_during_fight = de \
 Goad_wont_fight = de \
    "~wOffenbar ist %s%s zu feige für einen Kampf. Feiglinge sollten sterben. "
    ". . qualvoll sterben."
+
+Goad_name_rsc = pt "O Provocador"
+Goad_desc_rsc = pt \
+   "Como um homem mortal, Goad traiu sua Rainha, enviando-a para a morte. "
+   "Para seu desgosto, ela foi apenas temporariamente inconveniente e agora "
+   "o prendeu aqui, para servi-la por toda a eternidade. Sua forma distorcida "
+   "se contorce em agonia constante, aliviada apenas brevemente pela onda de "
+   "êxtase que ele sente quando supervisiona a morte de outro."
+Goad_ad_need_champion1 = pt "Venha, meus queridos, não tenham medo..."
+Goad_ad_need_champion2 = pt \
+   "Posso sentir seu desejo... entregue-se a ele, há tanto "
+   "poder a ser obtido."
+Goad_ad_need_champion3 = pt \
+   "É uma coisa tão pequena matar outro, você não dançaria para mim?"
+Goad_ad_need_champion4 = pt "Eu devo ter morte!"
+Goad_ad_need_challenger = pt "Venha... você não vai dançar com %s%s?"
+Goad_ad_good_fight1 = pt "SIM!! Oh Deus sim!!! Morram, seus tolos, morram!!!"
+Goad_ad_good_fight2 = pt "Posso sentir sua alma."
+Goad_ad_good_fight3 = pt "Tão doce... seu sangue é tão doce."
+Goad_no_need = pt "Fique calmo, pequeno, seu momento de morrer chegará."
+Goad_need_champion = pt \
+   "Pela antiga lei, eu devo primeiro ter um Campeão. Entregue-se a mim."
+Goad_dont_need_challenger = pt \
+   "Mais tarde, meu doce, mais tarde. Já há sangue suficiente "
+   "nas veias desses tolos, posso esperar pelo seu."
+Goad_fight_in_progress = pt \
+   "Sim! Assim que eu me banquetear com esses tolos, você pode segui-los."
+Goad_already_combatant = pt "Tão generoso... mas você já é meu."
+Goad_already_champion = pt "Tão generoso... mas você já é meu."
+Goad_already_have_champion = pt \
+   "Então você quer ser campeão? Nada poderia ser mais fácil, simplesmente "
+   "desafie e mate %s%s. Você ousaria desafiar %s?"
+Goad_challenge_offered = pt \
+   "%s%s te desafiou. Você vai esmagar %s como o inseto que %s é?"
+Goad_must_accept = pt \
+   "Apresse-se, tolo! Você só tem %i segundos para aceitar o desafio de %s%s."
+Goad_commence_fight = pt "Lutar!!!!  Matar!!!  Morrer!!!!"
+Goad_last_minute = pt "Você tem um minuto... então eu os levarei."
+Goad_victor = pt "~BQue maldição seja você %s%s! Hoje você vive, mas não para sempre!~B"
+Goad_new_champion = pt "~B%s%s é o nosso novo Campeão, pronto para ser morto.~B"
+Goad_killed_champion = pt \
+   "%s%s matou o Campeão, %s%s . . . que sangue doce!"
+Goad_retain_title = pt \
+   "%s%s mantém o título de Campeão, alguém poderia me dar sangue %s?"
+Goad_ready_to_fight = pt "%s%s vs %s%s.  Prepare-se para morrer  . . ."
+Goad_cant_leave = pt "Desculpe, tolo, não há escape!"
+Goad_pitifully_fled = pt \
+   "%s%s fugiu covardemente. Acho que terei que matá-los, sim?"
+Goad_fled_reconnect = pt \
+   "%s%s fugiu covardemente. Se %s%s não voltar em 30 segundos, "
+   "acho que terei que matá-los, sim?"
+Goad_only_combatants = pt \
+   "Você precisa entrar em meu abraço se quiser matar aqui!"
+Goad_no_fighting_yet = pt "Ainda não, meu pequeno saco de sangue, ainda não."
+Goad_only_combatants_cast = pt \
+   "Você precisa entrar em meu abraço se quiser lançar feitiços aqui!"
+Goad_only_target_combatants = pt \
+   "Você não pode lutar contra não-combatentes!"
+Goad_spell_banned = pt \
+   "Sinto muito, você não pode conjurar %s aqui. Por quê? Porque eu digo."
+Goad_must_choose_style = pt \
+   "Primeiro as coisas importantes... teremos um duelo ou um banho de sangue?"
+Goad_cant_switch = pt"Você não pode mudar isso agora, verme."
+Goad_new_combat_style = pt \
+   "Excelente. Eu tenho sede por um bom %s. Agora, quem vai "
+   "dizer a palavra mágica, \"campeão\"?"
+Goad_style_one_on_one = pt "duelo"
+Goad_style_last_man_standing = pt "banho de sangue"
+Goad_welcome = pt "~kO Goad lhe diz, \"Bem-vindo ao meu inferno, verme.\""
+Goad_worship_admin = pt \
+   "Oh, que emocionante... é %s, %s é tão importante."
+Goad_worship_dm = pt \
+   "Não espere que eu me rebaixe para %s, eu poderia "
+   "me importar menos com um %s de Meridian!"
+Goad_welcome_champion = pt "Todos saúdem %s%s, derramador de sangue."
+Goad_not_during_fight = pt \
+   "~kO Goad lhe diz, \"Você não pode me oferecer comandos enquanto "
+   "uma luta ainda está acontecendo.\""
+Goad_wont_fight = pt \
+   "`kAparentemente %s%s é muito covarde para lutar. Covardes devem "
+   "morrer... lentamente."
+Goad_already_have_spell = pt \
+   "Você já conhece o feitiço %s. Você está desperdiçando meu tempo."
+Goad_not_ready = pt \
+   "Você não está pronto para aprender a criar isso."

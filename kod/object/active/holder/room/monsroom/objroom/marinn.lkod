@@ -8,3 +8,12 @@ marinn_rentableroom_door = de \
    "sich gar nicht öffnen würde. Aber es ist ein kleines Schlüsselloch in "
    "der Tür. Vielleicht würde irgendetwas Interessantes passieren, wenn man "
    "einen Schlüssel hineinstecken würde."
+
+room_name_marinn = pt "A Estalagem e Taverna do Sapo Manco"
+news_marinn_name = pt "Eventos em Marion"
+news_marinn_desc = pt "Descubra o que as pessoas estão dizendo sobre Marion."
+marnews_god_name = pt "Notícias dos Criadores"
+marnews_god_desc = pt "Verifique aqui as informações dos administradores do jogo."
+marinn_rentableroom_door = pt "A porta não se move. Estranhamente, parece que não abre de jeito nenhum. "
+         "Há, no entanto, um pequeno buraco de fechadura na porta. Talvez se você usasse uma chave, "
+         "algo interessante pudesse acontecer."

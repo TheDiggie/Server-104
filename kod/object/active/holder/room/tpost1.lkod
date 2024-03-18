@@ -2,3 +2,8 @@ room_name_TradingPost = de "Der entlegene Handelsposten von Wulfgang zax'Ak"
 TradingPost_locked_1 = de "Der Lagerraum ist abgeschlossen."
 TradingPost_locked_2 = de "Wulfgang hält sein Quartier verschlossen."
 TradingPost_locked_3 = de "Die Dachbodentür ist abgeschlossen."
+
+room_name_TradingPost = pt "O Posto de Comércio Remoto de Wulfgang zax'Ak"
+TradingPost_locked_1 = pt "O depósito está trancado."
+TradingPost_locked_2 = pt "Wulfgang mantém seus aposentos trancados."
+TradingPost_locked_3 = pt "A porta do sótão está trancada."

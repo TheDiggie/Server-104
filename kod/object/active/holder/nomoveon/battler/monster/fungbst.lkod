@@ -4,3 +4,8 @@ fungusbeast_desc_rsc = de \
    "Diese seltsame Kreatur aus weichem, schwammigen Gewebe bewegt sich langsam "
    "und überlegend. Riesige Sporen haften auf ihrem Rücken."
 fungusbeast_dead_name_rsc = de "totes Pilzwesen"
+
+fungusbeast_name_rsc = pt "besta de fungos"
+fungusbeast_desc_rsc = pt \
+   "Esta estranha criatura, composta de carne macia e polposa, move-se lentamente e deliberadamente. Esporos gigantes aderem às suas costas."
+fungusbeast_dead_name_rsc = pt "besta de fungos morta"

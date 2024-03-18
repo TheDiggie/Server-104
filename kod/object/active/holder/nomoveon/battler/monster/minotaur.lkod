@@ -2,3 +2,9 @@ minotaur_koc_name_rsc = de "Der Minotaurus"
 minotaur_name_rsc = de "minotaur"
 minotaur_desc_rsc = de "Minotaurus."
 minotaur_dead_name_rsc = de "toter Minotaurus"
+
+minotaur_koc_name_rsc = pt "minotauro"
+minotaur_name_rsc = pt "minotauro"
+minotaur_desc_rsc = pt \
+      "Um monstro imponente com o corpo de um homem e a cabeça de um touro. "
+minotaur_dead_name_rsc = pt "minotauro morto"

@@ -24,3 +24,38 @@ RazaEl_stat_window_trigger = de "Werte ändern"
 Raza_elder_teach_rsc = de \
    "Ich unterrichte %s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s"
    "%s%s%s%s%s%s%s%s%s%s%s%s%s%s ab diesem Zirkel."
+
+RazaElder_name_rsc = pt "Rodric d'Stane"
+RazaElder_desc_rsc = pt \
+   "O velho olha para você com olhos que viram além do eterno. "
+   "Ele é famoso por seu conhecimento de vários tipos de magia e parece muito "
+   "disposto a ensinar alguns deles a aspirantes aventureiros. Você também pode "
+   "perguntar a ele sobre uma escola de magia se precisar de ajuda para libertar sua "
+   "mente de seus ensinamentos, para que você possa ser mais bem-sucedido "
+   "na aprendizagem de outros."
+RazaEl_entry_welcome = pt \
+   "Bem-vindo, meu filho. Você veio para aprender algumas magias?"
+Elder_potion_faren = pt \
+   "Posso vender-lhe %s%s, para que você possa esquecer tudo o que sabe sobre "
+   "os ensinamentos de Faren. Não se preocupe com efeitos colaterais, isso é "
+   "perfeitamente seguro! Então, você gostaria de comprar um?"
+Elder_potion_kraanan = pt \
+   "Posso vender-lhe %s%s, para que você possa esquecer tudo o que sabe sobre "
+   "os ensinamentos de Kraanan. Não se preocupe com efeitos colaterais, isso é "
+   "perfeitamente seguro! Então, você gostaria de comprar um?"
+Elder_potion_qor = pt \
+   "Posso vender-lhe %s%s, para que você possa esquecer tudo o que sabe sobre "
+   "os ensinamentos de Qor. Não se preocupe com efeitos colaterais, isso é "
+   "perfeitamente seguro! Então, você gostaria de comprar um?"
+Elder_potion_shalille = pt \
+   "Posso vender-lhe %s%s, para que você possa esquecer tudo o que sabe sobre "
+   "os ensinamentos de Shal'iile. Não se preocupe com efeitos colaterais, isso é "
+   "perfeitamente seguro! Então, você gostaria de comprar um?"
+potion_faren = pt "Faren"
+potion_kraanan = pt "Kraanan"
+potion_qor = pt "Qor"
+potion_shalille = pt "Shal'ille"
+RazaEl_stat_window_trigger = pt "alterar estatísticas"
+Raza_elder_teach_rsc = pt \
+   "Eu ensino %s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s"
+   "%s%s%s%s%s%s%s%s%s%s%s%s nesse nível."

@@ -11,3 +11,17 @@ cow_dead_name_rsc = de "tote Kuh"
 cow_dung = de \
    "Überrascht und erschrocken lässt die arme Kuh einen Fladen Dung auf den "
    "Boden fallen."
+
+cow_koc_name_rsc = pt "nahyijoa"
+cow_name_rsc = pt "vaca"
+cow_desc_rsc = pt \
+   "Alquimistas e fazendeiros se esforçaram para criar a vaca perfeita para "
+   "leite doce e carne macia. Infelizmente, seus experimentos foram longe demais "
+   "e eventualmente criaram a completamente inútil Vaca Pigmeu. Desapontados com "
+   "seu fracasso, eles soltaram todo o rebanho. A vaca pigmeu não domesticada é "
+   "raramente vista atualmente."
+cow_cant_attack = pt "Você não pode atacar a vaca ~Ipobre~I!"
+cow_dead_name_rsc = pt "vaca morta"
+cow_dung = pt \
+   "Assustada, a pobre vaca deposita um monte fumegante de esterco no chão."
+   

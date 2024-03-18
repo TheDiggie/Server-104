@@ -9,3 +9,10 @@ JB_favored_status = de \
    "Als ergebener Jünger Qors Magie, lehre ich dir, wie du deine Feinde blenden "
    "kannst."
 JasperBanker_entry_welcome = de "Hallo %s%s, und willkommen."
+
+JasperBanker_name_rsc = pt "Yevitan"
+JasperBanker_desc_rsc = pt "Yevitan estuda você com olhos atentos e inteligentes. Surpreendentemente ágil para sua idade."
+JB_need_balance = pt "Talvez, se você utilizasse mais o meu banco... eu ofereceria a você um favor especial."
+JB_favored_status = pt "Para os devotos discípulos da magia de Qor, eu ensino como cegar seus inimigos."
+JasperBanker_entry_welcome = pt "Olá %s%s, e bem-vindo."
+Jasperbanker_unwanted_give = pt "~k%s%s diz-lhe: \"~IGuh~I Eu não tenho nenhum lugar para colocar isso. Agora, se fossem xelins...~n~k\""

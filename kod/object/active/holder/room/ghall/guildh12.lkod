@@ -11,3 +11,10 @@ guildh12_sealed5 = de \
    "Der Zugang zu den oberen Stockwerken des Westturms wird von einem Eisentor "
    "blockiert. Es wäre nicht sehr klug, unerlaubt in das Gebiet der Armee "
    "von Ko'catan einzudringen."
+
+room_name_guildh12 = pt "Sede da Guilda da Torre Oeste em Ko'catan"
+guildh12_sealed1 = pt "Esta porta está selada por ordem do capitão da guarda."
+guildh12_sealed2 = pt "A porta para a muralha interna da cidade está trancada para pessoal não militar."
+guildh12_sealed3 = pt "A porta para os alojamentos superiores está trancada."
+guildh12_sealed4 = pt "O acesso à muralha superior é negado a pessoal não militar."
+guildh12_sealed5 = pt "Todo acesso aos níveis superiores da torre oeste está bloqueado por um portão de ferro. Não seria sábio violar um contrato com o exército de Ko'catan."

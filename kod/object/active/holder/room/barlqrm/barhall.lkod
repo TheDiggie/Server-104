@@ -1,3 +1,7 @@
 room_name_barhall = de "Gemeinschaftshalle von Barloque"
 news_bar_hall = de "Allgemeine Nachrichten"
 News_bar_hall_desc = de "Die neuesten Gerüchte rund um Meridian"
+
+room_name_barhall = pt "Salão dos Aventureiros de Barloque"
+news_bar_hall = pt "Notícias Gerais"
+News_bar_hall_desc = pt "Descubra os últimos boatos em torno de Meridian."

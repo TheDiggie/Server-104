@@ -1,3 +1,6 @@
 guest_cant_broadcast = de "Nur Stammspieler können Nachrichten verbreiten."
 guest_cant_send_non_guest = de \
    "Nur Stammspieler können Nachrichten in die wirkliche Welt schicken."
+
+guest_cant_broadcast = pt "Somente jogadores regulares podem transmitir mensagens."
+guest_cant_send_non_guest = pt "Somente jogadores regulares podem enviar mensagens para o mundo real."

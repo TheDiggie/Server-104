@@ -5,3 +5,10 @@ GroundWormLarva_desc_rsc = de \
    "Sie ist bekannt dafür, unsichtbar versteckt im Untergrund zulauern und "
    "plötzlich ihr Opfer anzugreifen."
 GroundWormLarva_dead_name_rsc = de "erschlagene Grundwurm Larve"
+
+GroundWormLarva_name_rsc = pt "larva de minhoca terrestre"
+GroundWormLarva_desc_rsc = pt \
+   "Uma forma mais jovem de seus parentes maduros, a larva é um pouco mais fraca do que " 
+   "outras minhocas terrestres. É conhecida por seu hábito de se esconder debaixo da " 
+   "terra fora de vista e depois surgir repentinamente para atacar sua vítima."
+GroundWormLarva_dead_name_rsc = pt "larva de minhoca terrestre abatida"

@@ -8,3 +8,9 @@ Drop_incorrect_item_rsc = de "Du lässt %s fallen, und nichts passiert."
 Shrine_appears = de \
    "Ein Strom von Kraft durchflutet den Raum und ein mysteriöser Schrein "
    "materialisiert vor Dir."
+
+room_name_OutdoorsKA0 = pt "Uma caverna escura e úmida"
+new_item_appears_rsc = pt "O ar cintila e uma imagem fantasmagórica aparece."
+Drop_correct_item_rsc = pt "O ar estala com energia e o(a) %s desaparece."
+Drop_incorrect_item_rsc = pt "Você larga o(a) %s e nada acontece."
+Shrine_appears = pt "Um fluxo de poder percorre a sala e um santuário misterioso materializa diante de você."

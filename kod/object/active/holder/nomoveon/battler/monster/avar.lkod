@@ -17,3 +17,19 @@ avar_nomagic_desc = de \
    "wenn Du Dich näherst. Das Gefieder zeigt eindeutig, dass diese Avar zum "
    "wilden Ki-Ki-Krii-Stamm gehören."
 avar_dead_name_rsc = de "Der tote Avar"
+
+avar_default_name = pt "avar"
+avar_koc_name_rsc = pt "avar"
+avar_name_rsc = pt "avar guerreiro da tribo Peet-Seeeep"
+avar_desc_rsc = pt \
+   "Guerreiros ferozes, esses homens pássaros sem voo exigem cautela ao se aproximar. " 
+   "A plumagem claramente denota este Avar como parte da nobre tribo Peet-Seeeep."
+avar_bone_name = pt "guerreiro da facção Chyup-Tewee"
+avar_bone_desc = pt \
+   "Guerreiros ferozes, esses homens pássaros sem voo exigem cautela ao se aproximar. " 
+   "A plumagem claramente denota este Avar como parte da poderosa tribo Chyup-Tewee, que se aliou à facção Bone."
+avar_nomagic_name = pt "guerreiro avar da tribo Kyip-Kyip-Kreeet"
+avar_nomagic_desc = pt \
+   "Guerreiros ferozes, esses homens pássaros sem voo exigem cautela ao se aproximar. " 
+   "A plumagem claramente denota este Avar como parte da selvagem tribo Kyip-Kyip-Kreeet."
+avar_dead_name_rsc = pt "avar morto"

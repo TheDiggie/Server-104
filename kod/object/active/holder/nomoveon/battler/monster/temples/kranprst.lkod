@@ -12,3 +12,17 @@ Kran_forget_potion_sale = de \
 kraananpriestess_teach = de \
    "Durch rigerose Disziplin, kann ich dir beibringen %s%s%s%s%s%s%s%s%s%s%s%s "
    "ab diesem Zirkel."
+
+kranpriestess_name_rsc = pt "Sacerdotisa Qerti'nya"
+kranpriestess_desc_rsc = pt \
+   "Qerti'nya é muito crítica da força daqueles que vêm diante dela. Sangue e "
+   "fogo infernal são as ferramentas desta sacerdotisa, pois apenas os fortes e "
+   "bem-intencionados merecem viver. Ela é rápida para fazer acusações ou declarações. "
+   "Embora ela entregue um sermão poderoso, é provável que vá beber com os homens "
+   "depois que terminar."
+Kran_forget_potion_sale = pt \
+   "~B~bEu vendo %s%s que é muito potente. Você não se lembrará de nenhuma daquelas "
+   "habilidades de combate baseadas em habilidades físicas se o consumir.~n~k"
+kraananpriestess_teach = pt \
+   "Através de uma disciplina rigorosa, posso ensinar-lhe %s%s%s%s%s%s%s%s%s%s%s%s "
+   "naquele nível."

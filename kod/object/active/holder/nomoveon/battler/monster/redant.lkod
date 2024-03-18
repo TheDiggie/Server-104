@@ -4,3 +4,11 @@ redant_desc_rsc = de \
    "Der Panzer der roten Ameise ist dick und hart und ihre Klauen sind scharf "
    "und tödlich. Sie ist stärker und tödlicher als ihre dunkelhäutigen Verwandten."
 redant_dead_name_rsc = de "tote rote Ameise"
+
+redant_koc_name_rsc = pt "kawilkinich"
+redant_name_rsc = pt "formiga mutante"
+redant_desc_rsc = pt \
+      "O exoesqueleto da formiga mutante é grosso e duro e "
+      "suas mandíbulas afiadas e letais. É mais forte e mais "
+      "vicioso do que seu primo de pele escura."
+redant_dead_name_rsc = pt "formiga mutante morta"

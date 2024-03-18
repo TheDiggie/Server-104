@@ -7,3 +7,8 @@ kcsmith_entry_welcome = de "Sei Gegrüßt!"
 kcSm_mace_sale = de \
    "All diese schönen Waffen, und du willst %s%s.  Nunja, ich denke ich werde "
    "dir dann wohl einen verkaufen müssen."
+
+KocatanBlacksmith_name_rsc = pt "Ixla cha'Totlak"
+KocatanBlacksmith_desc_rsc = pt "Esta mulher poderosa se estabeleceu como a principal ferreira na sociedade guerreira de Ko'catan. Ela também se estabeleceu como uma mulher com o dom de falar as partes mais coloridas da língua Ko'catan."
+kcsmith_entry_welcome = pt "Saudações!"
+kcSm_mace_sale = pt "Todas essas belas armas, e você quer %s%s. Bem, eu suponho que vou vender uma para você."

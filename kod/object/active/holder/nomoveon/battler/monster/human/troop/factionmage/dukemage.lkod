@@ -2,3 +2,8 @@ dukemage_name_rsc = de "Ein Magier der Armee des Herzogs"
 dukemage_desc_rsc = de \
    "Dieser Magier trägt mit Stolz die Farben des Herzogs."
 dukemage_dead_name_rsc = de "Ein toter Magier"
+
+dukemage_name_rsc = pt "mago do exército do duque"
+dukemage_desc_rsc = pt \
+   "Este mago orgulhosamente ostenta as cores do Duque."
+dukemage_dead_name_rsc = pt "mago morto"

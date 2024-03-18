@@ -5,3 +5,7 @@ F2_oceanwalk = de \
 F2_icewalk = de \
    "Das Eis sieht irgendwie zu dünn aus, als ob Du dich traust weiter raus "
    "zu gehen"
+
+room_name_OutdoorsF2 = pt "As margens arenosas do Grande Oceano"
+F2_oceanwalk = pt "Você já está com água salgada até os tornozelos, e decide que é o suficiente."
+F2_icewalk = pt "O gelo parece um pouco fino demais para arriscar ir mais adiante."

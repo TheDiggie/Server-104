@@ -15,3 +15,11 @@ evilguard_no_money = de \
    "Wenn Du den Jungle betrittst, brauchst du Geld zum handeln. Du bist pleite, "
    "also verschwende nicht meine Zeit."
 EvilGuard_not_enough = de "Nicht genug..."
+
+KocatanCaptainEvil_name_rsc = pt "Xacal ko'Ixca"
+KocatanCaptainEvil_desc_rsc = pt "Como um dos oficiais de maior patente no Exército Ko'catan, Xacal ko'Ixca é veterano de muitas campanhas. Suas funções em tempos de paz incluem supervisionar o portão principal durante as horas noturnas contra ações de inimigos desconhecidos, e já que este é um período de relativa paz, parte das responsabilidades de Xacal ko'Ixca consiste em definir exatamente quem são esses inimigos. Ele é amplamente respeitado por sua dureza e capacidade de obter resultados."
+evilguard_Pass = pt "Você está por sua conta."
+evilguard_winknudge = pt "Você sabe, engraçado como este dinheiro caiu da sua bolsa nas minhas mãos."
+evilguard_winknudge_action = pt "~kXacal pisca e dá um cutucão em você."
+evilguard_no_money = pt "Quando você se aproxima do portão, precisa estar pronto para negociar. Você está quebrado e está desperdiçando meu tempo."
+EvilGuard_not_enough = pt "Não é o suficiente."

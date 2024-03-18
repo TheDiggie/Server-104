@@ -10,3 +10,12 @@ koctowereast_dungeons = de \
 koctowereast_wall = de "Du hast keine Erlaubnis, den großen Wall zu betreten."
 koctowereast_guarddoor2 = de "~wDer Soldat sagt, \"Hey, bleib da weg!\""
 koctowereast_lockedgate = de "Das Tor ist fest verschlossen."
+
+room_name_koctower = pt "A Torre Leste"
+koctowereast_guarddoor1 = pt "~kO soldado diz: \"Você aí, afaste-se dessa porta.\""
+koctowereast_barracks = pt "Os alojamentos são proibidos para pessoal não militar."
+koctowereast_citadelgate = pt "Um portão trancado impede sua entrada na Cidadela."
+koctowereast_dungeons = pt "A porta para as masmorras centrais está trancada. Você não pode entrar."
+koctowereast_wall = pt "Você não está autorizado a entrar na muralha."
+koctowereast_guarddoor2 = pt "~kO soldado diz: \"Ei, fique longe daí.\""
+koctowereast_lockedgate = pt "O portão está firmemente trancado."

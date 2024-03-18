@@ -4,3 +4,9 @@ smallratdesc_rsc = de \
    "Diese Riesenratte entblößt herausfordernd ihre Gelben Zähne.Der Gestank "
    "von Fäulnis entströmt ihrem schmutzigem Fell."
 smallratdead_name_rsc = de "Die tote Ratte"
+
+smallratname_rsc = pt "rato pequeno"
+smallratdesc_rsc = pt \
+   "O rato pequeno mostra seus dentes amarelos em desafio. Um " 
+   "cheiro de podridão emana de sua pelagem suja."
+smallratdead_name_rsc = pt "rato morto"

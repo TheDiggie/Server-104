@@ -3,3 +3,7 @@ jasbank_sign_name = de "Bank von Jasper"
 jasbank_sign_desc = de \
    "Benutze die Befehle EINZAHLEN [BETRAG], ABHEBEN [BETRAG] und KONTOSTAND, "
    "um auf Dein Konto zuzugreifen."
+
+room_name_jasbank = pt "Banco Real de Jasper"
+jasbank_sign_name = pt "Bem-vindo ao Banco de Jasper"
+jasbank_sign_desc = pt "Use os comandos \"deposit amount\", \"withdraw amount\" e \"balance\" para acessar sua conta bancária.\n\nDepósitos feitos aqui também podem ser acessados no Primeiro Banco Real de Tos, em East Tos."

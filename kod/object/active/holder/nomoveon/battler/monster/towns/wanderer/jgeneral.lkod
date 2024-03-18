@@ -12,3 +12,18 @@ JealousGeneral_already_have_spell = de \
 JealousGeneral_no_murderer = de \
    "Ich bin ein Diener des Gesetzes, m'%s, und deshalb erlaubt es mir mein "
    "Gewissen nicht, Dir zu helfen. Bitte geh weiter."
+
+JealousGeneral_name_rsc = pt "Jonas D'Accor"
+JealousGeneral_desc_rsc = pt \
+   "Como soldado de linha de frente e mais tarde um sábio general, Jonas D'Accor "
+   "lutou contra toda sorte de mal que tem assolado as cidades de Meridian. "
+   "Apesar disso, ele perdeu a posição de Mestre das Armas para Rook e o "
+   "estimado assento no Conselho de Meridian para Cylill. Ele se considera "
+   "muito superior a ambos, especialmente quando se trata de estratégia e táticas, "
+   "considerando ambos homens como meros brigões. Na verdade, sua esgrima é apenas "
+   "adequada, embora suas táticas sejam soberbas."
+JealousGeneral_already_have_spell = pt \
+   "Acredito que você já possui conhecimento do feitiço %s, m'%s"
+JealousGeneral_no_murderer = pt \
+   "Sou servo da Lei, m'%s, e como tal minha consciência não me permitirá "
+   "ajudá-lo. Por favor, siga seu caminho."

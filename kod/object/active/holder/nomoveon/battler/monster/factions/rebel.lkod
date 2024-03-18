@@ -26,3 +26,29 @@ RebelLiege_already_have_spell = de \
 RebelLiege_no_murderer = de \
    "Ich bin ein Diener des Gesetzes, und als ein Solcher lässt mein Gewissennicht "
    "zu, dass ich Dir helfe. Bitte mach Dich wieder auf den Weg."
+
+RebelLiege_name_rsc = pt "Jonas D'Accor"
+RebelLiege_desc_rsc = pt \
+   "O tempo e a raiva transformaram Jonas D'Accor em um homem duro. Ele permanece " 
+   "firmemente no lugar, contemplando o futuro das terras. As ações dos outros " 
+   "senhores o forçaram a tentar pela coroa. Ele acredita que os outros senhores " 
+   "não são fortes o suficiente para governar, mesmo que tenham um direito legítimo " 
+   "ao trono. Ele organiza seus rebeldes e espera obter apoio em sua busca para " 
+   "tomar a coroa e trazer paz e ordem de volta às terras."
+RebelLiege_token_delivered_rsc = pt \
+   "Retornar este token mostrará aos conselheiros que meu poder não pode ser ignorado. %s"
+RebelLiege_rebel_delivered_rsc = pt \
+   "Você é muito leal à minha causa. Eu agradeço a você."
+RebelLiege_neutral_delivered_rsc = pt \
+   "Você também se opõe à tirania dos atuais pretendentes ao trono? Junte-se a mim."
+RebelLiege_other_delivered_rsc = pt \
+   "Será que o jugo de seu senhor atual o restringe tanto que você me traz tais presentes? " 
+   "Junte-se a nós em nossa busca por uma coroa forte."
+RebelLiege_toopowered_rsc = pt \
+   "Atualmente não posso aceitar mais um em minhas fileiras com medo de que eles " 
+   "cresçam além do meu controle."
+RebelLiege_already_have_spell = pt \
+   "Acredito que você já tenha conhecimento do feitiço %s."
+RebelLiege_no_murderer = pt \
+   "Sou um servo da Lei e, como tal, minha consciência não me permitirá ajudá-lo. " 
+   "Por favor, siga seu caminho."

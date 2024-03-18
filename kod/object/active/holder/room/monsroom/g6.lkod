@@ -2,3 +2,7 @@ room_name_OutdoorsG6 = de "Weg des Königs"
 G6_lakewalk = de \
    "Der Grund des Sees fällt hier steil ab und Du beschließt, nicht weiter "
    "zu gehen."
+
+room_name_OutdoorsG6 = pt "O Caminho do Rei"
+G6_lakewalk = pt \
+   "O fundo do lago desce abruptamente aqui. Você duvida se deve continuar."

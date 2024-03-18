@@ -30,3 +30,34 @@ MrIk_room_command = de "Zimmer"
 MrIk_rent_command = de "mieten"
 MrIk_cost_command = de "Kosten"
 MrIk_copy_key_command = de "Schlüsselkopie"
+
+MarionInnkeep_name_rsc = pt "Morrigan"
+MarionInnkeep_desc_rsc = pt \
+   "Um homem bobo, Morrigan mantém um modesto negócio alternadamente "
+   "comprando e vendendo reagentes e outras várias bugigangas. Embora seu "
+   "coração não pareça estar no comércio, há pouca dúvida de que "
+   "Morrigan ama seu trabalho."
+MrIk_entry_welcome = pt \
+   "Com licença por dizer, mas você parece que precisa de um descanso, %s%s."
+MarionInnkeeper_room_rented = pt \
+   "Aqui está então. Espero que aproveite sua estadia, se tiver algum problema, "
+   "Tova ficará feliz em ajudá-lo."
+MarionInnkeeper_cost = pt \
+   "Ah, bom, você deveria descansar. Deixe-me ver.... Eu cobro %i xelins para "
+   "alugar um bom quarto aqui por 85 dias. Se desejar ficar "
+   "mais tempo, cobro %i por dia se pagar antecipadamente. Cópias de chaves, uh, cópias de chaves.... "
+   "Ah, elas custam %i xelins para fazer. Eu sei que você vai "
+   "gostar do seu quarto."
+MarionInnkeeper_days_left = pt \
+   "Você gosta daqui, vejo. Faltam %q dias até você dever "
+   "me pagar novamente."
+MarionInnkeeper_too_long = pt \
+   "Oh, eu não posso ser responsável por guardar tanto dinheiro! Pague-me novamente "
+   "mais tarde quando você não tiver tantos dias restantes na sua conta."
+MarionInnkeeper_destroy_key_copy = pt \
+   "~kMorrigan diz a você: \"Oh, sim. Eu posso se livrar desta chave para "
+   "você. Sem problemas.\""
+MrIk_room_command = pt "quarto"
+MrIk_rent_command = pt "aluguel"
+MrIk_cost_command = pt "custo"
+MrIk_copy_key_command = pt "copiar chave"

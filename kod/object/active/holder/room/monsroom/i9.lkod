@@ -4,3 +4,10 @@ i9_node_name = de "Das Herz von Zjiria"
 i9_node_desc = de \
    "Dich beschleicht die Gewissheit, eine der seltensten magischen Energiequellen "
    "gefunden zu haben, benannt nach Qors treuestem Leutnant.%s"
+
+room_name_i9 = pt "Ukgoth, Terra Sagrada dos Trolls"
+i9_qor = pt "Qor, o Vil"
+i9_node_name = pt "O Coração de Zjiria"
+i9_node_desc = pt \
+   "Você percebe que encontrou um dos raros nós de mana, nomeado em homenagem ao "
+   "mais confiável tenente de Qor.\n\n%s"

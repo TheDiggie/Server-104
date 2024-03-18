@@ -3,3 +3,8 @@ SpiderTree_desc_rsc = de "Spinnweben überziehen diesen Baum."
 SpiderTree_move_req_no = de \
    "Aus irgendeinem Grund schaffst Du es nicht, die Höhle zu betreten."
 Spidertree_enter = de "Du stolperst durch das Loch im Baum in die Tiefe."
+
+SpiderTree_name_rsc = pt "Árvore Coberta de Teias"
+SpiderTree_desc_rsc = pt "Teias elegantes e sinistras cobrem o que um dia foi um carvalho orgulhoso e antigo. Há um buraco prenunciador esculpido na base da árvore, grande o suficiente para entrar."
+SpiderTree_move_req_no = pt "Por alguma razão, você não consegue entrar no buraco."
+Spidertree_enter = pt "Você tropeça no buraco na base da árvore."

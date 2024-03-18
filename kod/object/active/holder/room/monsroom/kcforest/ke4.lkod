@@ -15,3 +15,11 @@ ke4_drown1 = de "Du Idiot wirst noch ertrinken! Hör auf, sofort!"
 ke4_drown2 = de \
    "Das Meer erscheint grenzenlos und die Strömungen sind stark - Du wagst "
    "es nicht, noch weiter zu schwimmen."
+
+room_name_OutdoorsKE4 = pt "Vila Avar"
+KE4_good = pt "~IA terra treme e o ar parece um pouco mais doce. Você agradou os deuses avars."
+KE4_evil = pt "~IA terra treme e o ar parece um pouco mais fétido. Você desagradou os deuses avars."
+KE4_good_final = pt "~kUma voz profunda ecoa, \"~B~bSua oferta é aceita. Desfrutem do meu poder, espíritos afins.~n~k\""
+KE4_evil_final = pt "~kUma voz profunda troveja, \"~B~rDestruidores! Vocês matam meu povo e roubam meu poder. Ainda assim, me vingarei de vocês!~n~k\""
+ke4_drown1 = pt "Você vai se afogar, idiota! Pare com isso, já!"
+ke4_drown2 = pt "O oceano parece infinito e as correntezas são fortes - você não se atreve a nadar mais longe."

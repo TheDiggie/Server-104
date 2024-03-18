@@ -5,3 +5,10 @@ fireelemental_desc_rsc = de \
    "wie hungrige Flammen."
 fireelemental_koc_name_rsc = de "atzmochcho"
 fireelemental_dead_name_rsc = de "toter Feuergolem"
+
+fireelemental_name_rsc = pt "fire golem"
+fireelemental_desc_rsc = pt \
+   "Esta criatura é uma massa de energia elemental pura. Você sente um calor poderoso" 
+   " emanando de seu corpo imenso. Seus movimentos crepitam como chamas famintas."
+fireelemental_koc_name_rsc = pt "atzmochcho"
+fireelemental_dead_name_rsc = pt "fire golem morto"

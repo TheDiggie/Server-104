@@ -7,3 +7,14 @@ GroundWormQueen_desc_rsc = de \
    "nach Nahrung, um ihren immensen Hunger zu stillen. Gelegentlichlegen "
    "sie ihre Eier in Leichen, aus denen Grundwurmlarven schlüpfen."
 GroundWormQueen_dead_name_rsc = de "erschlagene Grundwurm Königin"
+
+GroundWormQueen_name_rsc = pt "rainha da minhoca terrestre"
+GroundWormQueen_koc_name_rsc = pt "koslithic"
+GroundWormQueen_desc_rsc = pt \
+   "A maior das minhocas terrestres, a rainha é um monstro temido. " 
+   "Após crescer ao longo de longos períodos de tempo, as minhocas terrestres " 
+   "precisam de quantidades cada vez maiores de comida para se sustentarem. " 
+   "As rainhas são enlouquecidas por um desejo avassalador de consumir comida " 
+   "para saciar sua imensa fome. Ocasionalmente, as rainhas das minhocas terrestres " 
+   "colocam ovos em cadáveres que eclodem em larvas de minhocas terrestres."
+GroundWormQueen_dead_name_rsc = pt "rainha da minhoca terrestre abatida"

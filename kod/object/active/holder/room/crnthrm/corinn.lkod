@@ -1,3 +1,7 @@
 room_name_corinn = de "Kneipe zum Bach"
 cornews_god_name = de "Neues von den Designern"
 cornews_god_desc = de "Neueste Informationen der Administratoren."
+
+room_name_corinn = pt "Pousada Cibilo Creek"
+cornews_god_name = pt "Notícias dos Designers"
+cornews_god_desc = pt "Verifique aqui para informações dos administradores do jogo."

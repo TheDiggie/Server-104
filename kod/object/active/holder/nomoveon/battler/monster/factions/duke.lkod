@@ -27,3 +27,30 @@ duke_toopowered_rsc = de \
    "Wären wir nicht bereits eine sehr mächtige Fraktion, so hätte ich Dirjetzt "
    "angeboten, uns beizutreten."
 duke_dead_name_rsc = de "Der Leichnam von Herzog Kalior!"
+
+duke_name_rsc = pt "Duke Akardius"
+duke_desc_rsc = pt \
+   "Apesar de ter apenas 16 anos, o Duque Akardius habilmente se posicionou " 
+   "para suceder seu tio assassinado. O jovem Duque simplesmente irradia " 
+   "confiança e poder. Rumores dizem que ele é um devoto zeloso de Riija e " 
+   "seu sorriso astuto sugere o aspecto manipulador e enganoso do Deus Trickster. " 
+   "Apesar de seus espetáculos luxuosos e muito públicos de luto por seu tio, " 
+   "há aqueles que duvidam da sinceridade de seu pesar."
+duke_murder_desc_rsc = pt \
+   "O jovem sobrinho do Duque Akardius está imerso em tristeza. Ele fica " 
+   "sobre o corpo de seu tio com lágrimas escorrendo pelo rosto. No entanto, " 
+   "apesar de sua dor, você pode ver um núcleo de vontade de ferro que sugere " 
+   "força e astúcia maior do que você já viu em um garoto de apenas dezesseis anos."
+duke_token_delivered_rsc = pt \
+   "Ahhh. Vou garantir que isso seja devolvido ao seu conselheiro legítimo. " 
+   "É claro, ele me deverá um favor. %s"
+duke_duke_delivered_rsc = pt "Você é verdadeiramente um servo digno."
+duke_neutral_delivered_rsc = pt \
+   "Já que você está alinhado com minha causa, deveria apenas se juntar à minha facção. " 
+   "Assine o rolo aqui..."
+duke_other_delivered_rsc = pt \
+   "Bem, agora, você escolheu reconhecer minha autoridade sobre os outros Senhores! " 
+   "Deixe-me convencê-lo a se juntar à minha facção."
+duke_toopowered_rsc = pt \
+   "Se não fossemos uma facção muito poderosa, eu ofereceria para você se juntar a nós."
+duke_dead_name_rsc = pt "O corpo do Duque Kalior!"

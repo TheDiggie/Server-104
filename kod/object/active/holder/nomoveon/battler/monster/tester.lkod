@@ -4,3 +4,9 @@ name_test3 = de "test3.bgf"
 name_test4 = de "test4.bgf"
 tester_desc = de \
    "Grafiktester. Verprügle mich, um zu dem nächsten bfg-Set zu schalten."
+
+name_test1 = pt "test1.bgf"
+name_test2 = pt "test2.bgf"
+name_test3 = pt "test3.bgf"
+name_test4 = pt "test4.bgf"
+tester_desc = pt "Testador gráfico. Toque-me para avançar para o próximo conjunto de bgf."

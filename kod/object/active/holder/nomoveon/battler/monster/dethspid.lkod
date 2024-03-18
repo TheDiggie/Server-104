@@ -12,3 +12,18 @@ DeathSpider_desc_rsc = de \
 dspider_illusion_poisoned = de \
    "%s%s taumelt als Gift in den Adern von %s fließt."
 DeathSpider_dead_name_rsc = de "Tote Schwarze Spinne"
+
+DeathSpider_koc_name_rsc = pt "na'arkinich"
+DeathSpider_name_rsc = pt "aranha negra"
+DeathSpider_desc_rsc = pt \
+   "Uma vez pensada como uma criatura inventada para assustar crianças, a "
+   "aranha negra é dita ser um produto da magia negra, uma fusão pouco "
+   "saudável de humano e inseto. Sua origem, no entanto, varia dependendo "
+   "da história. Em algumas, é o destino de uma alma pobre que cruzou um "
+   "mago sombrio. Em outras, a aranha negra é um mago mal transformado em "
+   "troca de longevidade. Todas as antigas histórias, no entanto, alertam "
+   "os viajantes a temer a extraordinariamente venenosa mordida dessa criatura "
+   "maligna."
+dspider_illusion_poisoned = pt \
+   "%s%s treme conforme o veneno do seu ataque percorre as veias de %s."
+DeathSpider_dead_name_rsc = pt "aranha morta"

@@ -8,3 +8,13 @@ SpectralMummy_desc_rsc = de \
    "hat, wie sie ursprünglich aussah. Nun wandert sie so, wie sie aussah, "
    "als sie zur Ruhe gebettet wurde als spektrales Wesen umher."
 SpectralMummy_dead_name_rsc = de "tote Gefallene Seele"
+
+SpectralMummy_name_rsc = pt "múmia espectral"
+SpectralMummy_desc_rsc = pt \
+      "Esta pobre criatura já foi uma pessoa que foi mumificada em um antigo "
+      "ritual e posta para descansar na cripta. As eras se passaram e apenas o "
+      "espírito da pessoa original permanece. Ela está morta e mumificada há tanto "
+      "tempo que esqueceu como originalmente parecia e agora vaga por este plano "
+      "como um ser espectral, aparecendo como estava originalmente quando foi "
+      "posto para descansar."
+SpectralMummy_dead_name_rsc = pt "múmia espectral morta"

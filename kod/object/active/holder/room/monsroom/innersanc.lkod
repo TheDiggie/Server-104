@@ -4,3 +4,9 @@ Guildh15_lever_desc = de \
    "zu sein. Du fragst Dich natürlich, was er bewirkt."
 guildh15_guildwarning = de \
    "Dein Amulett vibriert für einen Moment sehr stark. Irgendetwas fehlt."
+
+room_name_guildh15 = pt "Santuário Interior da Rainha Venya'cyr"
+Guildh15_lever_desc = pt \
+   "Esta alavanca é claramente de design arcaico, mas parece estar em condições impecáveis. Você não pode deixar de se perguntar o que ela controla."
+guildh15_guildwarning = pt \
+   "Seu amuleto vibra vigorosamente por um momento. Algo está errado."

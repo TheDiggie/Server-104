@@ -14,3 +14,11 @@ JasperElder_unwanted_give = de \
    "~k%s%s teilt dir mit, \"Die meisten materiellen Güter sind von geringer "
    "Bedeutung, für einen alten Mann wie mich.~n~k\""
 JsEl_stat_window_trigger = de "Werte ändern"
+
+JasperElder_name_rsc = pt "Afiera D'xor"
+JasperElder_desc_rsc = pt "Afiera D'xor passou muitos, muitos anos de solidão nessas montanhas e agora dedica sua vida à sua arte. Suas esculturas em pedra são designs intricados de perfeição matemática. Ele arranjará tempo, no entanto, para entreter viajantes que esperam compartilhar um pouco da sabedoria que ele adquiriu de uma vida de meditação isolada."
+JasperElder_entry_welcome = pt "Saudações. Que você viva para ver meus anos."
+JasperElder_unwanted_keep = pt "~k%s%s diz-lhe: \"Talvez eu possa encontrar algum uso para isso.~n~k\""
+JasperElder_unwanted_pay = pt "~k%s%s diz-lhe: \"Que conveniente.~n~k\""
+JasperElder_unwanted_give = pt "~k%s%s diz-lhe: \"A maioria dos bens materiais é de pouca consequência para um velho como eu.~n~k\""
+JsEl_stat_window_trigger = pt "mudar estatísticas"

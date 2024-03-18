@@ -8,3 +8,13 @@ yeti_desc_rsc = de \
 yeti_dead_name_rsc = de "Ein toter Yeti"
 yeti_cast_spell = de \
    "Dieser Yeti fühlt sich durch die menschliche Magie gestört."
+
+yeti_name_rsc = pt "yeti"
+yeti_koc_name_rsc = pt "tezatzmoch"
+yeti_desc_rsc = pt \
+   "Esta magnífica besta branca se ergue acima de todos em sua " 
+   "presença. Yetis são extremamente perigosos, especialmente " 
+   "quando atacados nas cavernas de gelo onde habitam. Apenas " 
+   "alguém bem preparado se atreveria a atacar um yeti sozinho."
+yeti_dead_name_rsc = pt "yeti morto"
+yeti_cast_spell = pt "O yeti está ofendido pela mágica humana poluente."

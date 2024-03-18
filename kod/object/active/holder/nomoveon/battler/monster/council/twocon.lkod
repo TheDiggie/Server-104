@@ -11,3 +11,16 @@ twocon_true_ideal_rsc = de \
 twocon_half_ideal_rsc = de \
    "Als Hinweis für die Zukunft: Ich bevorzuge es, Geschäfte mit Leutenzu "
    "tätigen, die etwas mehr Reichtum vorweisen können."
+
+twoCouncilor_name_rsc = pt "Bei Naq"
+twoCouncilor_desc_rsc = pt \
+   "Um pequeno homem semelhante a um abutre vestido com trajes extravagantes " 
+   "de ouro e joias, ele vive com medo constante de que outros queiram seus " 
+   "tesouros. Através de seus estudos, ele localizou inúmeras minas de jóias " 
+   "e continua sendo o mais rico da terra, embora sua bolsa raramente seja aberta."
+twocon_true_ideal_rsc = pt \
+   "Sua fortuna é considerável. Eu sempre fico duplamente impressionado por " 
+   "aqueles que carregam tal capital."
+twocon_half_ideal_rsc = pt \
+   "Para referência futura, eu prefiro fazer negócios com aqueles que " 
+   "carregam mais riqueza consigo."

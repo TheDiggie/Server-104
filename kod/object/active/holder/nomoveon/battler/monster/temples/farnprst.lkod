@@ -11,3 +11,17 @@ Faren_forget_potion_sale = de \
    "die Kraft der Amnesie ist permanent.~n~k"
 faren_teach = de "Von Farens Feuer kannst du lernen %s%s%s%s%s%s%s%s%s%s%s%s "
    "ab diesem Zirkel."
+
+farenpriestess_name_rsc = pt "Sacerdotisa Tenuv'vyal"
+farenpriestess_desc_rsc = pt \
+   "Cabelos desalinhados e raiva mal contida. Alguns dizem que ela está à "
+   "beira da loucura, outros dizem que é uma terrível ameaça esperando para "
+   "ser libertada como uma tempestade furiosa. Ela despreza a civilização e "
+   "acredita que os humanos devem voltar aos caminhos das selvas."
+Faren_forget_potion_sale = pt \
+   "~B~gVocê escolheu abandonar o Senhor Faren? Assim seja, %s%s é seu se "
+   "desejar comprar um. Cuidado, no entanto, os poderes do amnésico são "
+   "permanentes.~n~k"
+faren_teach = pt \
+   "Do fogo de Faren, você pode aprender %s%s%s%s%s%s%s%s%s%s%s%s "
+   "naquele nível."

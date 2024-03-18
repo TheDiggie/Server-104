@@ -6,3 +6,8 @@ bar_leave_w2 = de \
 bar_leave_w3 = de \
    "~wMeidei hält die einen langen Vortrag, wie unhöflich es doch ist, seine "
    "Privatgemächer unerlaubt zu betreten."
+
+room_name_barlbar1 = pt "O Bhrama & Falcão"
+bar_leave_w1 = pt "~kMeidei grita com você, \"Tu não tens permissão para usar aquelas escadas!\""
+bar_leave_w2 = pt "~kMeidei diz a você, \"Por favor, bom companheiro, não suba aquelas escadas.\""
+bar_leave_w3 = pt "~kMeidei te adverte sobre como é indelicado entrar em seus aposentos privados sem antes obter permissão."

@@ -16,3 +16,11 @@ JunkMan_Full_rsc = de \
    "Ich wünschte, ich könnte das aus deiner Hand nehme aber meine sind auch "
    "alle voll!"
 JunkMan_Not_Interested = de "Ich danke dir, aber ich bin nicht interessiert."
+
+kocatanShopkeeper_name_rsc = pt "Pacal ix'Anoak"
+kocatanShopkeeper_desc_rsc = pt "Este homem um tanto disperso administra uma loja bastante bagunçada em um arsenal abandonado. Independentemente de sua aparente falta de organização, Pacal tem um entendimento notável do que está aqui e onde está."
+kocatanShopkeeper_entry_welcome = pt "Provavelmente tenho o que você está procurando.... em algum lugar...."
+JunkMan_AlreadyHaveOne_rsc = pt "Já tenho um desses para descarregar, não preciso de outro agora."
+JunkMan_NumberItem_rsc = pt "Desculpe, meu amigo, bugigangas como essas são coisas que eu não aceito."
+JunkMan_Full_rsc = pt "Eu gostaria de poder pegar isso de suas mãos para você, mas as minhas estão todas cheias também!"
+JunkMan_Not_Interested = pt "Agradeço, mas não estou interessado."

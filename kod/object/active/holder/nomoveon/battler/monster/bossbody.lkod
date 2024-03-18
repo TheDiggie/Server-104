@@ -7,3 +7,12 @@ OrcPitBossBody_dead_name_rsc = de "Der Körper des enthaupteten Orkhäuptlings"
 OrcPitBossBody_monster_healing = de \
    "Der Körper des Orkhäuptlings zuckt ein wenig, sein fast vollständig durchtrennter "
    "Hals gurgelt grotesk, als sich seine Lungen krampfhaft zusammenziehen."
+
+OrcPitBossBody_name_rsc = pt "corpo do chefe dos orcs da arena"
+OrcPitBossBody_live_name = pt "chefe dos orcs da arena"
+OrcPitBossBody_desc_rsc = pt \
+   "Este é o corpo do chefe dos orcs da arena. Sua cabeça está quase completamente decepada."
+OrcPitBossBody_dead_name_rsc = pt "corpo decapitado do chefe dos orcs da arena"
+OrcPitBossBody_monster_healing = pt \
+   "O corpo do chefe dos orcs da arena treme ligeiramente, seu pescoço quase "
+   "decepado gorgolejando grotescamente enquanto seus pulmões espasmos."

@@ -10,3 +10,8 @@ kocatanbanker_entry_welcome = de \
 kocatanbanker_unwanted_give = de \
    "~k%s%s teilt dir mit, \"Du verwechselst mich mit meinem Bruder. Er wird "
    "deine Gegenstände verstauen.~n~k\""
+
+Kocatanbanker_name_rsc = pt "Huital ko'Nosak"
+kocatanbanker_desc_rsc = pt "Bem respeitado como o mestre de todos os assuntos monetários na ilha, Huital presta muita atenção à economia e como ela se relaciona com todos os negócios. Antes de se envolver em qualquer nova transação de moedas, ele rapidamente lava as mãos no pedestal de água limpa."
+kocatanbanker_entry_welcome = pt "Saudações. Esperamos atendê-lo bem, seus objetos de valor estarão seguros conosco."
+kocatanbanker_unwanted_give = pt "~k%s%s diz-lhe: \"~IGuh~I Eu não tenho lugar para colocar isso. Agora, se fossem xelins...~n~k\""

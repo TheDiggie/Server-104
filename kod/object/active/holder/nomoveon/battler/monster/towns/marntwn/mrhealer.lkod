@@ -6,3 +6,7 @@ MarionHealer_desc_rsc = de \
 Mrhealer_entry_welcome = de \
    "Entschuldige, aber du siehst aus als könntest du eine Pause gebrauchen  "
    "%s%s.  Ich habe keine Räume zu vermieten aber du bist hier willkommen."
+
+MarionHealer_name_rsc = pt "Lady Aftyn"
+MarionHealer_desc_rsc = pt "Na presença de Lady Aftyn não há como confundir que ela é da realeza, e não dessas partes. Ela exala um senso de determinação pacífica; de confiança, serenidade e propósito."
+Mrhealer_entry_welcome = pt "Perdoe-me por dizer isso, mas você parece precisar de um descanso, %s%s. Não tenho quartos para alugar no momento, mas você é bem-vindo a descansar aqui."

@@ -5,3 +5,11 @@ zombie_desc_rsc = de \
    "Verfaultes Fleisch, weiﬂ und schwammig, h‰ngt an weichen Knochen. Seine "
    "w‰ﬂrigen Augen starren blind ins Leere."
 zombie_dead_name_rsc = de "Ein toter Zombie"
+
+zombie_name_rsc = pt "zombie"
+zombie_desc_rsc = pt \
+   "O mal desenfreado trouxe os mortos de volta ‡ vida na " 
+   "forma deste zumbi. Carne podre, branca e pastosa, " 
+   "gruda nos ossos fr·geis. Seus olhos encharcados encaram " 
+   "sem ver."
+zombie_dead_name_rsc = pt "zumbi morto"

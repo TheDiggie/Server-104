@@ -1,1 +1,4 @@
 room_name_Duke1 = de "Der Hof von Burg Schwarzstein"
+
+room_name_Duke1 = pt "O Pátio do Forte de Pedra Negra"
+tos_locked_door = pt "A porta está trancada."

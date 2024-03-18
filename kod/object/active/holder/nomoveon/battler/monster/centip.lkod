@@ -4,3 +4,11 @@ centipede_desc_rsc = de \
    "Glänzende rote Schuppen umhüllen das Exoskelett des riesigen Tausendfüßlers. "
    "Instinkt, nicht Intelligenz, leiten diesen Allesfresser."
 centipede_dead_name_rsc = de "Ein toter Tausendfüßler"
+
+centipede_koc_name_rsc = pt "puuckinich"
+centipede_name_rsc = pt "centopeia"
+centipede_desc_rsc = pt \
+   "Placas vermelho-brilhantes compõem o exoesqueleto desta "
+   "centopeia gigante. O instinto, não o intelecto, guia sua "
+   "busca por alimentação."
+centipede_dead_name_rsc = pt "centopeia morta"

@@ -1,2 +1,6 @@
 priestess_name_rsc = de "Die Priesterin"
 priestess_desc_rsc = de "Kein Lebewesen, nur zur Verzierung hier..."
+
+priestess_name_rsc = pt "sacerdotisa"
+priestess_desc_rsc = pt \
+   "Não é uma criatura, apenas está aqui por sua aparência."

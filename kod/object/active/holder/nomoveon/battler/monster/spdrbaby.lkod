@@ -4,3 +4,11 @@ spiderbaby_desc_rsc = de \
    "Obwohl sie kleiner und schwächer als ihre großen Artgenossen sind, bleiben "
    "die Spinnen tödlich. Ihr weicher Bauch ist vom letzten Fressen aufgebläht."
 spiderbaby_dead_name_rsc = de "tote Spinne"
+
+spiderbaby_koc_name_rsc = pt "imixkinich"
+spiderbaby_name_rsc = pt "aranha bebê"
+spiderbaby_desc_rsc = pt \
+      "Menor e mais fraco do que seus parentes maiores, esta aranha bebê "
+      "ainda é mortal. Sua barriga macia está inchada com "
+      "sua última refeição."
+spiderbaby_dead_name_rsc = pt "aranha bebê morta"

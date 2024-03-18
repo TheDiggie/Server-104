@@ -10,3 +10,16 @@ kocatan_no_armor = de "Du darfst nur eine Rüstung mit in den Wald nehmen!"
 kocatan_no_helm = de "Du darfst nur einen Helm mitnehmen."
 kocatan_no_gauntlets = de "Nur ein Paar Panzerhandschuhe ist erlaubt."
 kocatan_no_shields = de "Du darfst nur einen Schild mitnehmen."
+
+kocatan_may_pass = pt "Você pode passar."
+kocatan_no_alcohol = pt "Não contrabandeie álcool para os nativos!"
+kocatan_no_nerudite = pt \
+   "Os avars não devem ser autorizados a colocar as mãos em nerudite bruto!"
+kocatan_no_weapons = pt \
+   "É proibido levar para a selva qualquer arma que não seja necessária "
+   "para garantir a segurança do viajante."
+kocatan_no_armor = pt "Você só pode levar duas armaduras para a selva!"
+kocatan_no_helm = pt "Você só pode levar dois capacetes com você lá fora."
+kocatan_no_gauntlets = pt "Apenas dois conjuntos de manoplas permitidos."
+kocatan_no_shields = pt \
+   "Você só pode levar dois escudos mais um escudo de soldado com você para o exterior."

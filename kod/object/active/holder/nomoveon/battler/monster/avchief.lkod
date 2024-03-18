@@ -21,3 +21,25 @@ avarchief_fire_misses = de \
    "verfehlt."
 avarchief_fire_hits = de \
    "Der gut gezielte Pfeil des Häuptlings trifft Dich genau!"
+
+avarchief_koc_name_rsc = pt "koavar"
+avarchief_default_name = pt "chefe avar"
+avarchief_name_rsc = pt "chefe avar da tribo Peet-Seeeep"
+avarchief_desc_rsc = pt \
+   "Conhecidos por sua graça nobre, a tribo Peet-Seeeep " 
+   "controla eficientemente as margens sudeste da ilha. Este " 
+   "líder do clã é temido por sua precisão aguçada com um arco e seu golpe fatal."
+avarchief_nomagic_name = pt "chefe avar da tribo Kyip-Kyip-Kreeet"
+avarchief_nomagic_desc = pt \
+   "Conhecidos por seus instintos brutais, a tribo Kyip-Kyip-Kreeet " 
+   "domina implacavelmente as margens noroeste da ilha. Este " 
+   "líder do clã é temido por sua precisão aguçada com um arco e seu golpe fatal."
+avarchief_bone_name = pt "líder avar da facção Bone"
+avarchief_bone_desc = pt \
+   "Dedicado a preservar os antigos costumes da facção Bone, este " 
+   "líder do clã é temido por sua precisão aguçada com um arco e seu golpe fatal."
+avarchief_dead_name_rsc = pt "ex-chefe avar"
+avarchief_fire_misses = pt \
+   "O chefe avar arma e dispara, mal te errando."
+avarchief_fire_hits = pt \
+   "A flecha bem-ajustada do chefe te atinge com precisão!"

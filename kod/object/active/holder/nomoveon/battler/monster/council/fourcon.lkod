@@ -15,3 +15,19 @@ fourcon_unwanted_give = de \
 fourCouncilor_not_ready = de \
    "Oh, Du bist noch nicht tüchtig genug um zu lernen, wie Du den zweiten "
    "Atem richtig einsetzen kannst."
+
+fourCouncilor_name_rsc = pt "Drechx"
+fourCouncilor_desc_rsc = pt \
+   "Um sábio médico, ele é rumores de ter aperfeiçoado a capacidade de " 
+   "cura de seu próprio corpo. Seu corpo é velho e desgastado, mas perfeitamente " 
+   "saudável. Ele realmente acredita que a voz do povo deve ditar quem os lidera " 
+   "e permite que sua aliança oscile entre os diferentes senhores feudais."
+fourcon_true_ideal_rsc = pt \
+   "Você possui uma constituição muito saudável, e tal treinamento me impressiona."
+fourcon_half_ideal_rsc = pt \
+   "Como a maioria das pessoas que encontro, você é do tipo doentio, que presta " 
+   "pouca atenção à sua saúde."
+fourcon_unwanted_give = pt \
+   "~k%s%s te diz, \"Não tenho necessidade de posses mundanas.~n~k\""
+fourCouncilor_not_ready = pt \
+   "Ah, você não está saudável o suficiente para aprender como recuperar suas forças!"

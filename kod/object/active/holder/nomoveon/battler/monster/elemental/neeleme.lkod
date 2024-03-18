@@ -5,3 +5,11 @@ neruelemental_desc_rsc = de \
    "erklingt bei jeder Bewegung."
 neruelemental_koc_name_rsc = de "atzmochner"
 neruelemental_dead_name_rsc = de "toter Neruditgolem"
+
+neruelemental_name_rsc = pt "nerudite golem"
+neruelemental_desc_rsc = pt \
+   "A imponente estatura desta besta fala de poder bruto e força. " 
+   "Seu corpo brilha com um brilho verde metálico. Um som como de " 
+   "aço desenhado acompanha cada um de seus movimentos."
+neruelemental_koc_name_rsc = pt "atzmochner"
+neruelemental_dead_name_rsc = pt "nerudite golem morto"

@@ -8,3 +8,11 @@ tosinn_locked_cabinet = de \
    "~wPaddock sagt, \"Hey, bleib aus meiner Vorratskammer!\""
 tosinn_locked_confused = de \
    "~wPaddock murmelt, \"Hey, was meinst Du, wo Du da hingehst?\""
+
+tosnews_god_name = pt "Notícias dos Designers"
+tosnews_god_desc = pt "Verifique aqui para obter informações dos administradores do jogo."
+room_name_tosinn = pt "Familiares"
+tosinn_no_rooms = pt "~kPaddock chama, \"Desculpe, não temos quartos vagos no momento.\""
+tosinn_locked_basement = pt "A porta do porão está trancada."
+tosinn_locked_cabinet = pt "~kPaddock diz, \"Ei, fique fora da minha despensa!\""
+tosinn_locked_confused = pt "~kPaddock resmunga, \"Para onde você pensa que vai?\""

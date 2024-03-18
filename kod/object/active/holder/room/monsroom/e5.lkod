@@ -2,3 +2,7 @@ room_name_OutdoorsE5 = de "Der Waldschrein"
 e5_second_runner = de \
    "Eine mysteriöse Kraft hindert Dich am betreten des Gasfeldes."
 e5_death = de "Der Säuredampf ätzt Dir das Fleisch von den Knochen."
+
+room_name_OutdoorsE5 = pt "O Santuário da Floresta"
+e5_second_runner = pt "Uma força misteriosa impede você de entrar no campo de gás."
+e5_death = pt "O vapor ácido derrete a carne dos seus ossos."

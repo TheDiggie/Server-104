@@ -1,3 +1,9 @@
 elephant_name_rsc = de "Der Elefant"
 elephant_desc_rsc = de "Elefant"
 elephant_dead_name_rsc = de "toter Elefant"
+
+elephant_name_rsc = pt "elefante"
+elephant_desc_rsc = pt \
+   "Os enormes dentes deste elefante estão manchados com o sangue de seu "
+   "último inimigo."
+elephant_dead_name_rsc = pt "elefante morto"

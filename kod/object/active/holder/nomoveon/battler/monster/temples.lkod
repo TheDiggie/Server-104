@@ -1,3 +1,7 @@
 priestess_teach_quest_needed = de \
    "Um das zu lernen, musst Du zuerst mein Schüler werden, indem Du die Größe "
    "Deiner Treue unter Beweis stellst."
+
+priestess_teach_quest_needed = pt \
+      "Para aprender isso, primeiro você deve se tornar meu discípulo provando "
+      "a força de sua fé."

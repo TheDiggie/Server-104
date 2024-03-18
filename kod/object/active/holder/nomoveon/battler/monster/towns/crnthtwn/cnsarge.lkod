@@ -12,3 +12,11 @@ CnSer_Alcohol_taken = de \
    "Ohhh, danke dir! Hier hast du eines meiner alten Trainingsschwerter! "
    "Die halten nicht lange, aber vielleicht kann ich es reparieren, wenn "
    "du es mir bringst?"
+
+cornothsergeant_name_rsc = pt "Rook"
+cornothsergeant_desc_rsc = pt "Um nobre e ex-oficial militar, Rook se porta com uma dignidade rígida. Ele é um mestre de armas e ganha a vida transmitindo suas habilidades aos estudantes do caminho dos guerreiros. Suas proezas com a espada são famosas e incomparáveis, assim como seu amor por uma boa bebida."
+CnSer_forget_potion_sale = pt "Ótimo, nenhum guerreiro respeitável compartilha a companhia daqueles fanáticos por mana. Eu venderia com muito gosto %s%s que elimina toda dependência do chamado deus Guerreiro de tua memória."
+CnSer_Alcohol_taken = pt "Ohhh, obrigado! Aqui, pegue algumas das minhas antigas espadas de treinamento! Elas não durarão muito, mas talvez você consiga consertá-las?"
+CnSer_Alcohol_toomuch = pt "Eu não poderia aceitar tanto álcool, você acha que tenho um problema com bebida?"
+CnSer_inv_full_one = pt "Você está carregando muitos itens, colocarei a espada de treinamento aos seus pés."
+CnSer_inv_full_many = pt "Você está carregando muitos itens, colocarei as espadas de treinamento aos seus pés."

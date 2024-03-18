@@ -1,2 +1,5 @@
 Kocatansentry_name_rsc = de "Wachposten"
 kocatansentry_desc_rsc = de "Verteidigt die Inselsiedlung bis zum Tode."
+
+Kocatansentry_name_rsc = pt "sentinela"
+Kocatansentry_desc_rsc = pt "Treinado para defender as muralhas de Ko'catan, este soldado está pronto para provar o seu valor."

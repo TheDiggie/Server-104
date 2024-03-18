@@ -9,3 +9,7 @@ KocatanWeaponsMaster_desc_rsc = de \
 KocatanWeaponsMaster_orcteeth_sale = de \
    "Du willst %s%s?  Ja, ja, ich habe einige alte Trophäen, die du von mir "
    "kaufen kannst."
+
+KocatanWeaponsMaster_name_rsc = pt "Kochtal ko'Tulca"
+KocatanWeaponsMaster_desc_rsc = pt "Um homem mais velho que é claramente cego em ambos os olhos. Com cada movimento seu exato e cada palavra dita com antecedência, este antigo guerreiro define a lenta graça de um caçador experiente. Notado por seu ouvido aguçado, alguns dizem que ele pode ouvir aquelas coisas que não fazem barulho, como um franzir de sobrancelhas ou um pensamento duvidoso."
+KocatanWeaponsMaster_orcteeth_sale = pt "Você quer %s%s? Sim, sim, eu tenho alguns troféus antigos que você pode comprar de mim."

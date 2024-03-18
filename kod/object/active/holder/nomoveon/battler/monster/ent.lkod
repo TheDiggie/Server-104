@@ -6,3 +6,11 @@ ent_desc_rsc = de \
    "zittern. Du fragst Dich, ob er wirklich Blitze schleudern kann, um den "
    "Wald zu beschützen."
 ent_dead_name_rsc = de "Die toten Überreste eines Waldschrates"
+
+ent_koc_name_rsc = pt "tezmecya"
+ent_name_rsc = pt "árvore viva"
+ent_desc_rsc = pt "Um espírito primordial flui através dos galhos escuros deste "
+   "ser antigo. Um aroma de floresta de madeira envelhecida e terra fértil aguça "
+   "suas narinas. Você se pergunta se a história de que ele pode invocar raios para"
+   " proteger a floresta é realmente verdadeira."
+ent_dead_name_rsc = pt "restos mortais da árvore viva"

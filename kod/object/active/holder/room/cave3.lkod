@@ -1,3 +1,7 @@
 room_name_cave3 = de "Der unterirdische See"
 cave3_key_disappears = de "Dein Schlüssel löst sich in Luft auf!"
 cave3_locked_door = de "Die Tür scheint fest verschlossen zu sein."
+
+room_name_cave3 = pt "O Lago Subterrâneo"
+cave3_key_disappears = pt "Sua chave desaparece no ar!"
+cave3_locked_door = pt "A porta parece estar firmemente trancada."

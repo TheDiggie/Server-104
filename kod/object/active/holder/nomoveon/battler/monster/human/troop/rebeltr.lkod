@@ -2,3 +2,8 @@ RebelTroop_name_rsc = de "Ein Rebellensoldat"
 RebelTroop_desc_rsc = de \
    "Dieser Soldat trägt stolz die Farben der Jasper-Miliz."
 RebelTroop_dead_name_rsc = de "Ein toter Rebellensoldat"
+
+RebelTroop_name_rsc = pt "soldado rebelde"
+RebelTroop_desc_rsc = pt \
+   "Este soldado orgulhosamente ostenta as cores da milícia Jasper."
+RebelTroop_dead_name_rsc = pt "soldado rebelde morto"

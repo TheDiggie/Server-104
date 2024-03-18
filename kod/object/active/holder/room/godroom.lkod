@@ -1,3 +1,7 @@
 room_name_Godroom = de "Der Treffpunkt der Götter"
 news_godroom_name = de "God discussion"
 news_godroom_desc = de "courtesy of Q and Zandramas (tm)"
+
+room_name_Godroom = pt "O local de encontro dos Deuses"
+news_godroom_name = pt "Discussão divina"
+news_godroom_desc = pt "cortesia de Q e Zandramas (tm)"

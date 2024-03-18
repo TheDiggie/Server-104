@@ -13,3 +13,16 @@ dragonfly_notcharmed = de \
    "schaut Dich erwartungsvoll an."
 DragonFlyQueen_unwanted_give = de \
    "~w%s%s hebt spöttisch den Kopf und schnuppert an Deiner Hand.~n~w"
+
+DragonFlyQueen_koc_name_rsc = pt "kohuzotz"
+DragonFlyQueen_name_rsc = pt "rainha libélula"
+DragonFlyQueen_desc_rsc = pt \
+   "As outras libélulas parecem reverenciar esta fêmea de cor estranha. Ela "
+   "olha para você com curiosidade ou fome, você não tem certeza."
+DragonFlyQueen_dead_name_rsc = pt "rainha libélula morta"
+dragonfly_charmed = pt \
+   "A libélula devora o(a) %s e olha para você com adoração óbvia."
+dragonfly_notcharmed = pt \
+   "A libélula devora o(a) %s, cheira sua mão e olha para você expectantemente."
+DragonFlyQueen_unwanted_give = pt \
+   "~k%s%s inclina a cabeça com curiosidade e cheira sua mão.~n~k"

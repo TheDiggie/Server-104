@@ -18,3 +18,14 @@ tova_unwanted_pay = de \
 tova_unwanted_give = de \
    "~w%s%s sagt zu Dir, \"Haha, Du willst mich wohl auf den Arm nehmen, Fremder! "
    "Dies ist eine Taverne und nicht das Zelt irgendwelcher fahrender Leute!~n~w\""
+
+MarionBartender_name_rsc = pt "Tova"
+MarionBartender_desc_rsc = pt "Não há como ignorar Tova, um homem alto e tumultuoso que encara a vida exatamente como ela vem pela porta da frente do Limping Toad. Ele é o proprietário daqui, servindo bebidas e entretenimento a partir de seu palco autodenominado, conhecido por sua cerveja poderosa."
+Tova_entrootberry_sale = pt "Hmm. Bem, sim, eu acredito que tenho algumas entroots... como é da minha reserva privada, terei que cobrar extra...."
+Tova_cheers1 = pt "Obrigado, m'%s. . . saúde!"
+Tova_cheers2 = pt "Obrigado, vou sim, m'%s. Só uma, para o meu peito. . ."
+Tova_cheers3 = pt "À sua saúde, %s!"
+Tova_cheers4 = pt "Sim, saúde!"
+tova_unwanted_keep = pt "~k%s%s diz a você, \"Bem, que gentileza sua. Um presente.~n~k\""
+tova_unwanted_pay = pt "~k%s%s diz a você, \"Que item interessante!~n~k\""
+tova_unwanted_give = pt "~k%s%s diz a você, \"Ha, ha, você só pode estar brincando comigo, estranho! Isso é uma taverna, não uma barraca de ciganos!~n~k\""

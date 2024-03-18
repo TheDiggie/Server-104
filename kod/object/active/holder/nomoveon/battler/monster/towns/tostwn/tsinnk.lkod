@@ -13,3 +13,21 @@ TsIK_orcteeth_sale = de \
    "Noch einer interessiert an %s%sn? Ich sollte die Kneipe dicht machen "
    "und nur noch diese Sachen verkaufen.."
 TsIK_watch_head = de "Hey, %s%s! Pass auf Deinen Kopf auf."
+
+tosinnkeeper_name_rsc = pt "Paddock"
+tosinnkeeper_desc_rsc = pt \
+   "Como proprietário do bar mais popular do mundo, Paddock se esforça "
+   "para sorrir para cada cliente que entra pela porta. Sua postura simples "
+   "e abordagem comum com sua clientela o torna um dos homens mais simpáticos em Tos."
+TsIK_entry_welcome = pt \
+   "Bem-vindo ao Familiars, o bar mais popular da região!"
+TsIK_purplemushroom_sale = pt \
+   "Sim, eu tenho %s%s aqui. Vamos ver que tipo de negócio posso fazer "
+   "com você por essas pequenas raridades."
+TsIK_orcteeth_sale = pt \
+   "Outro cliente interessado em %s%s? Eu deveria fechar "
+   "o bar e apenas vender essas coisas."
+TsIK_watch_head = pt \
+   "Ei, %s%s! Cuidado com a cabeça!"
+Crafting_forget_potion_sale = pt \
+   "Quer esquecer a fabricação? Tenho algo para isso."

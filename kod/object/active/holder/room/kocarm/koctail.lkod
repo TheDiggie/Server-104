@@ -4,3 +4,9 @@ koctail_locked_2 = de "Diese Tür ist fest verschlossen."
 koctail_locked_3 = de \
    "Ein übler Geruch weht von jenseits der verschlossenen Eisentür hervor."
 koctail_key_disappears = de "Der schwere Eisenschlüssel verschwindet!"
+
+room_name_koctail = pt "A Loja de Roupas The Crooked Hem"
+koctail_locked_1 = pt "Os aposentos do alfaiate Tepal ix'Zonak estão trancados."
+koctail_locked_2 = pt "Esta porta está trancada firmemente."
+koctail_locked_3 = pt "Um fedor úmido emana de debaixo desta porta de ferro trancada."
+koctail_key_disappears = pt "A pesada chave de ferro desaparece!"

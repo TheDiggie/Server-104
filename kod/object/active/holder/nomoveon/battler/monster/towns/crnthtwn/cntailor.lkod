@@ -5,3 +5,7 @@ CornothTailor_desc_rsc = de \
    "Kunst verbindet. Die Kleider, die sie herstellt, sind wunderschön"
 CnTail_entry_welcome = de \
    "Bitte versuch nicht alles hier mit Dreck voll zu sauen."
+
+CornothTailor_name_rsc = pt "Hester Gilk"
+CornothTailor_desc_rsc = pt "Hester é de uma terra muito distante, e sua costura hábil reflete uma tradição distinta que incorpora funcionalidade com uma arte poderosa. As roupas que ela produz são lindas."
+CnTail_entry_welcome = pt "Por favor, tente não espalhar lama por toda parte."

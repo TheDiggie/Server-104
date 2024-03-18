@@ -7,3 +7,11 @@ BatteredSkeleton_desc_rsc = de \
    "kleine Pfützen auf dem Boden. Du schauderst, wenn Du darandenkst, was "
    "für ein dunkles Ritual diese Abnormalität zum Leben erweckt hat."
 BatteredSkeleton_dead_name_rsc = de "Ein Knochenhaufen"
+
+BatteredSkeleton_name_rsc = pt "esqueleto surrado"
+BatteredSkeleton_desc_rsc = pt \
+   "Alguns retalhos de carne podre aderem a esta coleção de ossos humanos "
+   "coroados por um crânio surrado e distintamente não humano. Líquido fervente "
+   "pinga de seus dentes, deixando pequenos buracos no chão abaixo. Você estremece "
+   "ao pensar em que ritual obscuro trouxe essa abominação à existência."
+BatteredSkeleton_dead_name_rsc = pt "monte de ossos"

@@ -29,3 +29,35 @@ shalillepriestess_teach_song = de \
 shalillepriestess_teach = de \
    "Durch das Wohlwollen Shal'ills lernst du %s%s%s%s%s%s%s%s%s%s%s%s "
    "ab diesem Zirkel."
+
+shalpriestess_name_rsc = pt "Sacerdotisa Xiana"
+shalpriestess_desc_rsc = pt \
+   "Limpa e primorosa, esta sacerdotisa de serenidade pacífica fala apenas "
+   "palavras gentis. Ela até deseja paz para aqueles de Qor e reza por "
+   "sua redenção."
+shal_forget_potion_sale = pt \
+   "~bCaso você compre e beba %s%s, Shal'ille o abençoará exorcizando todos "
+   "os vestígios de Qor de seus pensamentos.~n~k"
+priestess_token_delivered_rsc = pt \
+   "~bAhhh. Eu me assegurarei de que isso seja devolvido ao seu "
+   "conselheiro legítimo. %s~n~k"
+priestess_faction_delivered_rsc = pt \
+   "~bVós pareces uma pessoa justa, por que te alinhar com "
+   "essas facções políticas? Nós vamos cuidar disso.~n~k"
+priestess_neutral_delivered_rsc = pt \
+   "~bUm tão puro como vós é raramente visto nestes dias de intriga "
+   "política. É tão refrescante.~n~k"
+shalpriestess_already_have_spell = pt \
+   "~bOlhe dentro de si, %s, e você encontrará que a luz já está "
+   "brilhando dentro de sua mente.~n~k"
+shalpriestess_not_ready = pt \
+   "~bAs complexidades do martelo espiritual só podem ser compreendidas por "
+   "aquele que está versado nos caminhos do Deus da Batalha. Buscai mais, "
+   "filho, e retornai quando vossa mente tiver seguido Seu caminho por "
+   "mais tempo.~n~k"
+shalillepriestess_teach_song = pt \
+   "Oh, sois um dos seguidores de Jala? Eu conheço um belo hino antigo que "
+   "dizem ser capaz de atrapalhar os feitiços que vêm das trevas. Estou "
+   "disposta a ensiná-lo àqueles que são capazes de aprendê-lo."
+shalillepriestess_teach = pt \
+   "A benevolência de Shal'ille oferece %s%s%s%s%s%s%s%s%s%s%s%s nesse nível."

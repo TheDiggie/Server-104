@@ -13,3 +13,20 @@ DarkWizard_not_ready = de \
 DarkWizard_teach_quest_needed = de \
    "Ich lehre meine Kunst nicht irgendeinem hergelaufenen Salonzauberer. "
    "Ich werde es Dich wissen lassen, wenn Du bereit bist. Verschwinde."
+
+DarkWizard_name_rsc = pt "Maleval"
+DarkWizard_desc_rsc = pt \
+   "Você pode sentir que está na presença de um feiticeiro poderoso. "
+   "A magia invasiva pesa no ar ao redor deste feiticeiro errante. "
+   "Seu conhecimento das complexidades do aprendizado de feitiços é "
+   "inigualável, embora sua aversão pública aos templos o tenha transformado "
+   "em um pária da Corte Real."
+DarkWizard_already_have_spell = pt \
+   "Você já possui o conhecimento do feitiço %s. Você está desperdiçando meu tempo, tolo."
+DarkWizard_not_ready = pt \
+   "Você me insulta com seus pedidos fracos por poderes além de seu valor. "
+   "Vá praticar seus truques de salão insignificantes em outro lugar e não me "
+   "incomode até estar pronto."
+DarkWizard_teach_quest_needed = pt \
+   "Eu não ensino minha arte para qualquer mágico de salão que tropeça "
+   "por aqui. Quando estiver pronto, eu vou deixar você saber. Desapareça."

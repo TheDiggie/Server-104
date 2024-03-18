@@ -3,3 +3,7 @@ room_no_sound = de \
    "Du öffnest Deine Lippen zum Sprechen, doch zu Deinem Schrecken dringt "
    "kein Wort aus Deinem Mund."
 oog_casting_message = de "~B%s hat versucht versucht %s zu zaubern."
+
+room_name_outofgrace = pt "Out of Grace with the Higher Powers"
+room_no_sound = pt "You open your lips, and panic strikes you as no words escape."
+oog_casting_message = pt "~B%s tried to cast %s."

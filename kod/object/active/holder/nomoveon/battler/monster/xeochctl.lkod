@@ -10,3 +10,16 @@ Xeochicatl_desc_rsc = de \
    "solch zerstörerischen Kraft!"
 Xeochicatl_dead_name_rsc = de "toter Xeochicatl"
 Xeochicatl_drain_rsc = de "%s entzieht Dir Deine Zauberkraft!"
+
+Xeochicatl_name_rsc = pt "Xeochicatl"
+Xeochicatl_koc_name_rsc = pt "Xeo'chicatl"
+Xeochicatl_desc_rsc = pt \
+   "Diante de você está um Xeochicatl, um monstro temível dado vida pela " 
+   "magia caótica do Meridiano. O Xeochicatl é a personificação da " 
+   "destruição, um monstro violento que parece incontrolável. Esses " 
+   "monstros se alimentam da magia das terras, o que os torna muito " 
+   "poderosos. Rumores abundam sobre a origem desses monstros, mas você " 
+   "tem pouco tempo para contemplar esses rumores na presença de um poder " 
+   "tão destrutivo!"
+Xeochicatl_dead_name_rsc = pt "Xeochicatl abatido"
+Xeochicatl_drain_rsc = pt "O %s drena sua mana!"

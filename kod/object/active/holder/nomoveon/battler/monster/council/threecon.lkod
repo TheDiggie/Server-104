@@ -13,3 +13,18 @@ threecon_half_ideal_rsc = de \
    "nicht übermäßig beeindruckt."
 threecon_unwanted_give = de \
    "~k%s%s sagt Dir, \"Das brauche ich nicht, Bursche.~n~k\""
+
+threeCouncilor_name_rsc = pt "Cylill"
+threeCouncilor_desc_rsc = pt \
+   "Um veterano de combate das guerras com Ukgoth, ele dominou todas as habilidades " 
+   "de combate. Vestido com armadura leve e trajes formais militares, ele fica à " 
+   "vontade em sua cabana como um general durante o repugnante tempo de paz. Cylill " 
+   "tem um longo passado servindo com as forças do Duque na proteção do mundo dos " 
+   "Trolls e tem muitas histórias de guerra para contar."
+threecon_true_ideal_rsc = pt \
+   "É impressionante conhecer outro que sabe tanto sobre habilidades de combate."
+threecon_half_ideal_rsc = pt \
+   "Dado o seu conhecimento insignificante de habilidades, certamente não estou " 
+   "muito impressionado."
+threecon_unwanted_give = pt \
+   "~k%s%s te diz, \"Eu não preciso disso, camarada.~n~k\""

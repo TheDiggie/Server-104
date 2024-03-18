@@ -1,2 +1,5 @@
 storagebox_name_rsc = de "ein wenig Lager"
 storagebox_desc_rsc = de "Dies ist ein Platz zum Einlagern."
+
+storagebox_name_rsc = pt "algum armazenamento"
+storagebox_desc_rsc = pt "Este é um lugar para armazenar coisas."

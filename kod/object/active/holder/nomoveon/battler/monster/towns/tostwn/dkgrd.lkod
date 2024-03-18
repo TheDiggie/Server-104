@@ -4,3 +4,10 @@ duke_guard_desc_rsc = de \
    "diese Wache nicht täuschen. Sollte ein Krieg ausbrechen, wird sie keine "
    "große Hilfe darstellen. Sie ist auf keinen Fall so breit und stark wie "
    "ein Mitglied der königlichen Leibgarde."
+
+duke_guard_name_rsc = pt "Guarda do Forte"
+duke_guard_desc_rsc = pt \
+   "Embora vestido muito elegantemente em seu melhor uniforme de oficial, "
+   "este guarda do forte provavelmente não representaria um desafio sério "
+   "caso a guerra estourasse. Ele não é nem de longe tão grande e robusto quanto "
+   "os membros da Guarda de Honra do Duque."

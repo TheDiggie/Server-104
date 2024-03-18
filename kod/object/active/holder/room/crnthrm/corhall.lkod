@@ -1,3 +1,7 @@
 room_name_corhall = de "Gemeinschaftshalle von Cor Noth"
 news_cor_hall = de "Allgemeine Nachrichten"
 news_cor_hall_desc = de "Die neuesten Gerüchte rund um Meridian."
+
+room_name_corhall = pt "O Salão do Aventureiro de Cor Noth"
+news_cor_hall = pt "Notícias Gerais"
+news_cor_hall_desc = pt "Descubra o que está acontecendo ao redor de Meridian."

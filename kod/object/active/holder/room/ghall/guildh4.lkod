@@ -1,3 +1,7 @@
 room_name_guildh4 = de "Die Feste der Wryn"
 news_guild4_name = de "Nachrichten"
 news_guild4_desc = de "Dies sind die Gildennachrichten."
+
+room_name_guildh4 = pt "A Fortaleza de Wryn"
+news_guild4_name = pt "notícias"
+news_guild4_desc = pt "Este é o grupo de notícias da guilda."

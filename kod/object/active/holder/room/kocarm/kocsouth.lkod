@@ -12,3 +12,16 @@ kocatansouth_guild_locked = de \
    "In dem Moment, als Du die Tür berührtest, konntest Du hören, dass sie "
    "sich selbst verriegelt hat. Offenbar ist diese Tür magisch gesichert, "
    "um Nicht-Mitglieder (wie z. B. Dich) fernzuhalten."
+
+room_name_kocatansouth = pt "Ko'catan, o Assentamento da Ilha"
+kocatansouth_northdoors = pt "Esta porta para o muro interno está firmemente trancada."
+kocatansouth_private = pt "Você não tem permissão para entrar na residência particular."
+kocatansouth_whooping = pt \
+   "Você ouve barulhos altos de comemoração vindo de dentro e decide que é melhor "
+   "não entrar."
+kocatansouth_drown = pt \
+   "Você decide que se afogar provavelmente não está em seus melhores interesses pessoais."
+kocatansouth_guild_locked = pt \
+   "Ao tocar na porta, você ouve o mecanismo de trinco se mover para casa, "
+   "trancando-se. Aparentemente, esta porta está magicamente protegida contra "
+   "não membros de guildas como você."

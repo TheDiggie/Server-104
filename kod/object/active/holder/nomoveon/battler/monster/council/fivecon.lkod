@@ -12,3 +12,17 @@ fivecon_half_ideal_rsc = de \
    "so wenig Mana erworben hast."
 fivecon_unwanted_give = de \
    "~k%s%s sagt Dir, \"Behalte es. Du weißt nie, wann Du es brauchen wirst.~n~k\""
+
+fiveCouncilor_name_rsc = pt "Esseldi"
+fiveCouncilor_desc_rsc = pt "Um grande viajante e explorador, agora ele caça " 
+   "aparições dos nós de mana místicos. Esseldi tenta usar o traje elegante " 
+   "da corte, mas sempre consegue rasgá-los em suas explorações improvisadas. " 
+   "Ele gosta de falar sobre todas as suas descobertas, relevantes ou não para " 
+   "qualquer outra pessoa."
+fivecon_true_ideal_rsc = pt \
+   "Estou feliz em ver que você compartilha meu interesse nos nós místicos."
+fivecon_half_ideal_rsc = pt \
+   "Você não deve ser uma pessoa curiosa para ter adquirido tão pouca mana em " 
+   "suas viagens."
+fivecon_unwanted_give = pt \
+   "~k%s%s te diz, \"Você fique com isso. Nunca se sabe quando vai precisar.~n~k\""

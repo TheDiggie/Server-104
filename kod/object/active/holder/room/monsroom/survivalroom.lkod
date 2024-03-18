@@ -46,3 +46,44 @@ survivalroom_cant_leave_yet = de \
    "Du musst %i Sekunden warten, bis du die Überlebens-Arena wieder "
    "verlassen kannst."
 survivalroom_user_say_leave = de "verlasse survival"
+
+SurvivalRoom_name = pt "Arena de Sobrevivência"
+welcome_message = pt \
+   "Ao entrar no novo plano de realidade, você pode sentir energias poderosas convergindo em sua direção. Este lugar se tornará progressivamente mais perigoso com o tempo. Felizmente, você pode perceber que não há Mundo Inferior aqui. A morte não terá significado para você neste reino.\n" 
+   "Diga 'leave survival' para sair da arena."
+survivalroom_solo_starttime = pt "~BOs ataques começarão em %i segundos."
+next_level_in_seconds = pt \
+   "~BVocê derrotou a onda número %i. A próxima chegará em %i segundos."
+begin_level = pt "~BA onda %i da força inimiga chegou."
+you_died_to_monster = pt "O %s fica triunfante sobre seu corpo esmagado."
+player_died_to_monster = pt "~B%s foi morto por %s%s!"
+you_were_booted = pt "As magias que permitem sua batalha falham, e você é lançado para casa."
+player_was_booted = pt "%s foi expulso desta realidade."
+lives_remain_update = pt \
+   "Você sente que a morte só pode ser evitada aqui mais %i vezes."
+one_life_remains = pt "~BVocê sente que a morte só pode ser evitada mais uma vez."
+no_lives_remain = pt \
+   "A partir deste ponto, as mortes vão te expulsar deste lugar."
+survival_no_cast_rsc = pt "Você não pode lançar %s aqui."
+goals_header = pt "Para derrotar esta onda de inimigos, você deve:"
+kill_goal_msg = pt "Matar %i criaturas inimigas."
+boss_goal_msg = pt "Matar um chefe."
+minibosses_goal_msg = pt "Matar %i minibosses."
+boss_slain_goal_msg = pt "~BUm chefe foi derrotado!"
+minibosses_slain_goal_msg = pt "~BDois minibosses foram derrotados!"
+kills_remaining = pt "Restam %i mortes até a próxima onda."
+extralife_header = pt "Para adquirir uma vida extra, você deve:"
+kill_friendly_msg = pt "Matar um colega aventureiro."
+player_murdered_player_no_goal = pt "~B%s foi assassinado por %s!"
+player_murdered_player_goal = pt "~B%s foi sacrificado por %s!"
+gain_a_life_msg = pt \
+   "~BVocê adquire energia suficiente para formar uma proteção extra contra a morte! Agora você tem %i vidas."
+wall_blitz_activated = pt "~BUma onda de fúria etérea domina a horda!"
+fixed_reward_msg = pt \
+   "Parece que um dos inimigos caídos deixou cair %s no campo de batalha!"
+your_lives_remain = pt "Você tem %i vidas restantes."
+spectator_only_msg = pt \
+   "A luta já começou. Você pode assistir até que todos os participantes tenham morrido."
+survivalroom_cant_leave_yet = pt \
+   "Você deve esperar pelo menos %i segundos após a criação de uma Arena de Sobrevivência antes de poder sair."
+survivalroom_user_say_leave = pt "sair da sobrevivência"

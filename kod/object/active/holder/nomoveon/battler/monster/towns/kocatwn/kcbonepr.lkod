@@ -5,3 +5,7 @@ KocatanBonePriestess_desc_rsc = de \
    "allgemein angenommen wird, denn es ist schwierig zu entscheiden, ob diese "
    "Geschöpfe überhaupt vernunftbegabt sind."
 KocatanBonePriestess_stat_window_trigger = de "Werte ändern"
+
+KocatanBonePriestess_name_rsc = pt "A Sacerdotisa dos Ossos"
+KocatanBonePriestess_desc_rsc = pt "Esta Avar fêmea foi exilada de sua sociedade por suas práticas de magia ilegais. Pelo menos é essa a crença comum, embora seja difícil determinar se alguma razão pode ser aplicada a esta estranha criatura."
+KocatanBonePriestess_stat_window_trigger = pt "mudar estatísticas"

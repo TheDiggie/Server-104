@@ -4,3 +4,9 @@ giantratsdesc_rsc = de \
    "Diese Riesenratte entblößt herausfordernd ihre Gelben Zähne.Der Gestank "
    "von Fäulnis entströmt ihrem schmutzigem Fell."
 giantratsdead_name_rsc = de "Der toter Rattensoldat"
+
+giantratsname_rsc = pt "soldado rato"
+giantratsdesc_rsc = pt \
+   "O soldado rato gigante mostra seus dentes amarelos em desafio. Um " 
+   "cheiro de podridão emana de sua pelagem suja."
+giantratsdead_name_rsc = pt "soldado rato morto"

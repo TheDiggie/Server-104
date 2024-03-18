@@ -10,3 +10,9 @@ BqApo_unwanted_give = de \
    "Angebot habe.  Vielleicht findest du einen anderen Laden den es interessiert.~n~k\""
 BqApo_firesand_sale = de \
    "Du suchst nach %s%s?  Ich habe einige importiert von der Insel  Ko'catan."
+
+barloque_apothecary_name_rsc = pt "Joguer"
+barloque_apothecary_desc_rsc = pt "Assobiando uma melodia tola para si mesmo, Joguer cuida com grande atenção de seu jardim fresco de ervas mágicas e cogumelos. Muitos dizem que ele é o principal herborista da terra."
+BqApo_entry_welcome = pt "Parabéns! Tu encontraste a melhor loja da terra."
+BqApo_unwanted_give = pt "~k%s%s te diz: \"Receio que não tenha uso para tua oferta. Talvez devas tentar vendê-la em outro estabelecimento.\"~n~k"
+BqApo_firesand_sale = pt "Procurando por %s%s? Eu tenho importado algumas da ilha de Ko'catan."

@@ -11,3 +11,9 @@ BQsmith_entry_welcome = de "Hallo %s%s, und herzlich willkommen."
 BQSm_mace_sale = de \
    "All diese schönen Waffen und du willst %s%s.  Du ...!  Ich denke, ich "
    "habe einfach keine andere Wahl als ihn dir zu verkaufen."
+
+BarloqueBlacksmith_name_rsc = pt "Fehr'loi Qan"
+BarloqueBlacksmith_desc_rsc = pt "Embora seja conhecido em todo o país por sua habilidade soberba como mestre ferreiro, Fehr'loi Qan em si não poderia ser considerado a espada mais afiada no suporte. A fala lenta do homem grande parece fora de lugar na cidade elitista de Barloque. Você tem a impressão de que ele está desconfortável com estranhos, mas seu grande tamanho e clara devoção a Kraanan não o fazem temer ninguém."
+BQSm_mace_sale = pt "Todas essas belas armas, e você quer %s%s. Filho de uma ...! Bem, eu suponho que não tenho escolha senão te vender uma."
+BQsmith_already_have_spell = pt "Você já tem conhecimento do feitiço %s. Você está desperdiçando meu tempo."
+BQsmith_not_ready = pt "Você não está pronto para aprender a criar isso. "

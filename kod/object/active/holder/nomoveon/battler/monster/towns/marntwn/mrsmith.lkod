@@ -11,3 +11,17 @@ MarionBlacksmith_unwanted_pay = de \
    "~k%s%s teilt dir mit, \"Nun, es sieht auf jeden Fall wertvoll aus!~n~k\""
 MarionBlacksmith_unwanted_give = de \
    "~k%s%s teilt dir mit, \"Verschwende nicht meine Zeit damit.~n~k\""
+
+MarionBlacksmith_name_rsc = pt "Colhorr"
+MarionBlacksmith_desc_rsc = pt \
+   "Um ferreiro do campo com anos de marteladas na bigorna ecoando em "
+   "seus ouvidos, Colhorr é um ponto de referência estabelecido em Marion. A maior parte do seu "
+   "trabalho consiste em fabricar e reparar implementos agrícolas e "
+   "ferragens para os moradores agrários."
+MrBS_entry_welcome = pt "Huh? Quem é esse?"
+MarionBlacksmith_unwanted_keep = pt \
+   "~k%s%s diz a você: \"Hmm, tudo bem, eu acho.~n~k\""
+MarionBlacksmith_unwanted_pay = pt \
+   "~k%s%s diz a você: \"Bem, certamente parece valioso!~n~k\""
+MarionBlacksmith_unwanted_give = pt \
+   "~k%s%s diz a você: \"Não me faça perder tempo com isso.~n~k\""

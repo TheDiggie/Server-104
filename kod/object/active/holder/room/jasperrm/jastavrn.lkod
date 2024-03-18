@@ -1,3 +1,7 @@
 room_name_JasperTavern = de "Pietros süffiges Gebräu"
 jastav_adv_name = de "Die Abenteurererzählungen"
 jastav_adv_desc = de "Geschichten des Volkes von Meridian, von Barden gesammelt"
+
+room_name_JasperTavern = pt "Cervejaria Malvada do Pietro"
+jastav_adv_name = pt "Contos de Aventura"
+jastav_adv_desc = pt "Histórias das pessoas de Meridian, coletadas pelos Bardos"

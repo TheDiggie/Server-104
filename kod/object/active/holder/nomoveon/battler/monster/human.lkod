@@ -1,3 +1,7 @@
 human_name_rsc = de "human"
 human_desc_rsc = de "This is a standard human."
 human_dead_name_rsc = de "toter human"
+
+human_name_rsc = pt "humano"
+human_desc_rsc = pt "Este é um humano padrão."
+human_dead_name_rsc = pt "humano morto"

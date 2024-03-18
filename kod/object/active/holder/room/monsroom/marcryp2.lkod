@@ -8,3 +8,13 @@ MarionCrypt2_warning_sign = de \
    "dieses Punktes zu wagen. Dieser Ort ist bar jeglicher Zivilisation, und "
    "diejenigen die ihn betreten sind des Todes. Denjenigen, die sich über "
    "diese Order hinwegsetzen möge keine Gnade zuteil werden."
+
+room_name_MarionCrypt2 = pt "Local de descanso dos ancestrais de Marion"
+MarionCrypt2_boss_message = pt \
+   "~kUma voz sinistra ecoa, \"~IVocê ainda não pode passar!~I\""
+MarionCrypt2_warning_sign_name = pt "Aviso!"
+MarionCrypt2_warning_sign = pt \
+   "Por ordem do Rei Far'Nohl, ninguém deve se aventurar além deste ponto. "
+   "Este lugar está perdido para a civilidade e aqueles que entram têm "
+   "probabilidade de morrer. Nenhuma piedade será concedida àqueles que cruzarem "
+   "esta ordem."

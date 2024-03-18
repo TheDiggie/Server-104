@@ -5,3 +5,11 @@ iceelemental_desc_rsc = de \
    "und die Luft um ihm herum scheint ein Eis Nebel zu sein."
 iceelemental_koc_name_rsc = de "atzmochyal"
 iceelemental_dead_name_rsc = de "dead ice golem"
+
+iceelemental_name_rsc = pt "ice golem"
+iceelemental_desc_rsc = pt \
+   "Um frio penetrante te envolve vindo desta criatura, te gelando até " 
+   "os ossos. Gelo cobre o chão a cada um de seus passos, e o ar ao seu " 
+   "redor parece carregado de neblina gélida."
+iceelemental_koc_name_rsc = pt "atzmochyal"
+iceelemental_dead_name_rsc = pt "ice golem morto"

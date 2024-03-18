@@ -6,3 +6,7 @@ lupogg_desc_rsc = de \
    "scheint wütend zu werden, wenn sein Territorium durchschritten wird, "
    "und will wohl jeden herausfordern, den er finden kann."
 lupogg_dead_name_rsc = de "toter Lupogg"
+
+lupogg_name_rsc = pt "lupogg"
+lupogg_desc_rsc = pt "Este habitante submarino, embora horrível e brutal, é rumores de ser pacífico por natureza, mas não há evidências disso agora. Os lupoggs parecem chateados por seu território ter sido invadido e parecem ansiosos para desafiar qualquer um que encontrarem."
+lupogg_dead_name_rsc = pt "lupogg morto"

@@ -17,3 +17,14 @@ kocatanapoth_bluemushroom_sale = de \
    "Nacht nimmt. Versuch es mal."
 kocatanapoth_redmushroom_sale = de \
    "Ah, du willst %s%s?  Ich sehe, du weißt, wie man sich amüsiert."
+
+KocatanApoth_name_rsc = pt "Zala ix'Mecya"
+kocatanapoth_desc_rsc = pt "Zala é uma mulher de movimentos lentos que claramente aprecia os prazeres terrenos. Ela fala com uma voz suave e rouca entre longas tragadas em seu cachimbo de barro."
+kocatanapoth_entry_welcome = pt "Paz, amor e tranquilidade para você, amigo."
+apoth_potion_riija = pt "Sim, eu tenho uma poção de esquecimento. Beba com cautela, pois seus efeitos são potentes."
+kocatanapoth_herbs_sale = pt "Por que, sim, eu poderia compartilhar %s%s da minha reserva pessoal com você. Frescas do continente."
+kocatanapoth_elderberry_sale = pt "Por que você quer %s%s? Elas não parecem muito potentes."
+kocatanapoth_bluemushroom_sale = pt "Você sabia que %s%s fazem maravilhas se tomados após uma noite de diversão? Compre alguns e veja."
+kocatanapoth_redmushroom_sale = pt "Ah, você quer %s%s? Vejo que você sabe como se divertir."
+kocatanapoth_already_have_spell = pt "Você já tem conhecimento do feitiço %s. Você está desperdiçando meu tempo."
+kocatanapoth_not_ready = pt "Você não está pronto para aprender como criar uma coroa de hera."

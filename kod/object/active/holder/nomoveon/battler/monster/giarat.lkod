@@ -4,3 +4,8 @@ giantrat_desc_rsc = de \
    "Diese Riesenratte entblößt herausfordernd ihre gelben Zähne. Der Gestank "
    "von Fäulnis entströmt ihrem schmutzigen Fell."
 giantrat_dead_name_rsc = de "tote Riesenratte"
+
+giantrat_name_rsc = pt "rato gigante"
+giantrat_desc_rsc = pt \
+   "O rato gigante mostra os dentes amarelos em desafio. Um cheiro de decomposição emana de seu pelo sujo."
+giantrat_dead_name_rsc = pt "rato gigante morto"

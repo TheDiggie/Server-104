@@ -10,3 +10,17 @@ RazaBanker_desc_rsc = de \
    "als Mentor und wird dabei niemals müde, seinen 'Anhängern' wichtige "
    "theologische Konzepte zu vermitteln, wie zum Beispiel 'Verdorben sind "
    "die Armen!' oder 'Kredit gibt's hier nicht!'"
+
+RazaBanker_name_rsc = pt "Gamos"
+RazaBanker_desc_rsc = pt \
+   "Como um autoproclamado discípulo da deusa Shal'ille, Gamos "
+   "fez de sua missão sagrada espalhar os ensinamentos abençoados de "
+   "responsabilidade fiscal para as massas - e onde melhor para começar "
+   "do que na pitoresca cidade de Raza com seu suprimento quase inesgotável de "
+   "aventureiros jovens e impressionáveis prontos para espalhar o evangelho. "
+   "Abraçando entusiasticamente seu papel como mentor, ele nunca se cansa de "
+   "familiarizar seus 'acólitos' com conceitos teológicos importantes "
+   "como 'malditos sejam os pobres' ou 'sem empréstimos'."
+RazaBanker_not_Shils = pt \
+   "~k%s%s diz a você: \"~IGuh~I Eu não tenho lugar para colocar "
+   "isso. Agora, se fossem xelins...~n~k\""

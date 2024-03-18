@@ -4,3 +4,8 @@ EvilEnt_desc_rsc = de \
    "Während er aus der verdorbenen Erde der Lande zehrt, sondert dieser verdorbene "
    "Waldschrat das Böse aus, seine Säfte schwarz vor Hass."
 EvilEnt_dead_name_rsc = de "Die toten Überreste eines verdorbenen Waldschrates"
+
+EvilEnt_koc_name_rsc = pt "teotezmecya"
+EvilEnt_name_rsc = pt "árvore doente"
+EvilEnt_desc_rsc = pt "Alimentando-se dos detritos do solo contaminado da terra, esta árvore viva exala o mal, sua seiva enegrecida pelo ódio."
+EvilEnt_dead_name_rsc = pt "restos mortos da árvore doente"

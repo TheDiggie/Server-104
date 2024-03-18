@@ -6,3 +6,8 @@ JsMer_entry_welcome = de \
    "Dürfte ich dich für einige meiner feinen Waren interessieren?"
 JsMer_ruby_sale = de \
    "Ja, ich habe %s%s.  Die sind der Stolz meines kleinen Geschäfts."
+
+jaspermerchant_name_rsc = pt "Zhieu B'hob"
+jaspermerchant_desc_rsc = pt "Zhieu B'hob trabalha muito para fazer seu negócio prosperar nesta comunidade deprimida. Ele está ansioso e ocupado com as aparências."
+JsMer_entry_welcome = pt "Posso te interessar em algumas mercadorias finas?"
+JsMer_ruby_sale = pt "Sim, eu tenho %s%s. Eles são o orgulho da minha pequena loja."

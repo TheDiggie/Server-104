@@ -13,3 +13,10 @@ Ran_orctooth = de \
    "siehst ich weiß, wo ihre Grabstätten sind, und man könnte sagen, dass  "
    "ich eine Art ~ISammler~n bin."
 MrEl_stat_window_trigger = de "Werte ändern"
+
+MarionElder_name_rsc = pt "Ran er'Hoth"
+MarionElder_desc_rsc = pt "Um membro antigo da comunidade Marion, Ran er'Hoth adquiriu um status um tanto lendário por toda Meridian, e é procurado por peregrinos e viajantes por suas opiniões e conhecimento. Se ele é considerado um sábio ou o idiota da vila localmente realmente depende de quem você perguntar."
+MrEl_entry_welcome = pt "Outro viajante por Marion. Talvez %s%s venha me contar de suas aventuras."
+Ran_orctooth = pt "Tirei alguns de seus crânios em decomposição nas montanhas. Você vê, eu sei onde ficam seus cemitérios, e você poderia dizer que sou um pouco um ~Icolecionador~I."
+Ran_silver = pt "Ah, lidando com esses piratas, está? Claro, eu tenho um pouco de prata, mas vai custar um braço e uma perna!"
+MrEl_stat_window_trigger = pt "mudar estatísticas"

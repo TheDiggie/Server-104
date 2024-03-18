@@ -1,3 +1,6 @@
 room_name_weaponsmaster = de "Der Wohnsitz des Schwertmeisters"
 weaponsmaster_locked_door = de \
    "Rook erlaubt dir nicht, in seine privaten Gemächer zu gehen."
+
+room_name_weaponsmaster = pt "A Morada do Mestre das Armas"
+weaponsmaster_locked_door = pt "Rook não permite que você entre em seus aposentos privados."

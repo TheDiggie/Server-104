@@ -11,3 +11,10 @@ JasperBartender_unwanted_pay = de \
 JasperBartender_unwanted_give = de \
    "~k%s%s teilt dir mit, \"Sehe ich so aus wie ein dämlicher Müllkäufer?  "
    "Es gibt hier nichts zu Bitten, also verlasse meine Kneipe, Fremder.~n~k\""
+
+Jasper_Bartender_name_rsc = pt "Pietro"
+Jasper_Bartender_desc_rsc = pt "Um homem irritadiço e sombrio administra este bar. Este é Pietro, o sot impetuoso."
+JsBar_entry_welcome = pt "Feche a porta, você pode!"
+JasperBartender_unwanted_keep = pt "~k%s%s joga o item no lixo e resmunga: \"Suma daqui.~n~k\""
+JasperBartender_unwanted_pay = pt "~k%s%s diz-lhe: \"Vou te dar alguns xelins por isso, o aniversário da minha mãe está chegando.~n~k\""
+JasperBartender_unwanted_give = pt "~k%s%s diz-lhe: \"Como eu pareço, um comprador de tralhas? Não há solicitação aqui, então saia do meu bar com sua enganação, estranho.~n~k\""

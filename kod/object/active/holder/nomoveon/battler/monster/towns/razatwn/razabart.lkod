@@ -11,3 +11,20 @@ RazaBart_not_enough = de \
    "Ich brauche ein paar essbare Pilze. Aber bringe mir genug für meine Suppe, "
    "ansonsten sind sie nutzlose für mich - sagen wir, mindestens zehn! Ich "
    "werde dich belohnen dafür!"
+
+Raza_Bartender_name_rsc = pt "Eric d'Jorn"
+Raza_Bartender_desc_rsc = pt \
+   "Apesar de seu comportamento profissional e traje de barman elegante, "
+   "o espírito de Eric realmente se eleva quando se trata de sua verdadeira paixão: cozinhar. "
+   "Ele é especialmente renomado por sua deliciosa sopa e está sempre de olho "
+   "em ingredientes frescos."
+RazaBar_entry_welcome = pt \
+   "Gostaria de uma bebida forte? O especial da casa vai te "
+   "derrubar!"
+RazaBart_enough = pt \
+   "Mmmh! Cogumelos selecionados a dedo - fanTÁSticos! Aqui, "
+   "deixe-me recompensá-lo..."
+RazaBart_not_enough = pt \
+   "Preciso de alguns cogumelos comestíveis, mas são inúteis para mim a menos que você "
+   "consiga o suficiente para fazer uma boa sopa - digamos, PELO MENOS dez. Se você "
+   "conseguir mais, volte e eu vou recompensá-lo!"

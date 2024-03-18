@@ -2,3 +2,7 @@ room_name_mockers = de "Kammer der Diebe"
 mockers_lockdoor = de \
    "Du verschließt die Tür, um andere Spieler am Eintreten zu hindern."
 mockers_unlockdoor = de "Du schließt die Tür auf."
+
+room_name_mockers = pt "Câmara do Zombeteiro"
+mockers_lockdoor = pt "Você tranca a porta, impedindo que outros entrem."
+mockers_unlockdoor = pt "Você destranca a porta."

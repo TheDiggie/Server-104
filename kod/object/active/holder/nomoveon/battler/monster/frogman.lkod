@@ -4,3 +4,9 @@ frogman_desc_rsc = de \
    "Dies ist ein Froschmensch, eine freundliche Rasse von Amphibien. Sie "
    "sind bekannt für ihren Haß auf jene, die den Weg des Bösen gehen."
 frogman_dead_name_rsc = de "toter Froschmensch"
+
+frogman_koc_name_rsc = pt "yozotz"
+frogman_name_rsc = pt "homem-sapo"
+frogman_desc_rsc = pt \
+   "Este é um homem-sapo, uma raça gentil de anfíbios. Eles são conhecidos por seu ódio àqueles que seguem o caminho do mal."
+frogman_dead_name_rsc = pt "homem-sapo morto"

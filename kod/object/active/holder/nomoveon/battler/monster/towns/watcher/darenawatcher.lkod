@@ -72,3 +72,85 @@
    DeathArenaWatcher_wont_fight = de \
       "`kAnscheinend ist %s%s zu feige um zu kämpfen. Feiglinge sollten "
       "sterben... Qualvoll! "
+
+DeathArenaWatcher_name_rsc = pt "Johlan Tulca"
+DeathArenaWatcher_desc_rsc = pt \
+   "Johlan é filho de Kochtal ko'Tulca. Ele foi um soldado orgulhoso do exército "
+   "Ko'catan até ser banido do assentamento, para as Cavernas dos Orcs. Ele viajou "
+   "pela rota perigosa até o continente e montou uma loja na sala de armazenamento "
+   "desativada da Arena de Kraanan, transformando-a em uma taverna e arena subterrânea."
+DeathArenaWatcher_ad_need_champion1 = pt "Venham, meus pequenos, não tenham medo..."
+DeathArenaWatcher_ad_need_champion2 = pt \
+   "Consigo sentir sua paixão... cedam a ela, há tanto sangue para derramar."
+DeathArenaWatcher_ad_need_champion3 = pt \
+   "É uma coisa tão pequena matar outros, vocês não fariam isso por mim?"
+DeathArenaWatcher_ad_need_champion4 = pt "Quero ver alguns corpos mortos!"
+DeathArenaWatcher_ad_need_challenger = pt "Venham... vocês não querem dançar com %s%s?"
+DeathArenaWatcher_ad_good_fight1 = pt "SIM!! Oh Senhor sim!!! Morram seus tolos!!!"
+DeathArenaWatcher_ad_good_fight2 = pt "Posso sentir o sabor de suas almas."
+DeathArenaWatcher_ad_good_fight3 = pt \
+   "Sangue, posso ver o sangue por todo o chão."
+DeathArenaWatcher_no_need = pt "Mantenha a calma, covarde, sua hora de morrer chegará."
+DeathArenaWatcher_need_champion = pt \
+   "Precisamos de um campeão primeiro. Sacrifique-se para mim."
+DeathArenaWatcher_dont_need_challenger = pt \
+   "Mais tarde, meu pequeno, mais tarde. Já há sangue suficiente fluindo nas veias "
+   "desses tolos, posso esperar pelo seu."
+DeathArenaWatcher_fight_in_progress = pt \
+   "Paciência, pequeno. Espere esses tolos morrerem antes de você segui-los."
+DeathArenaWatcher_already_combatant = pt \
+   "Você já está na fila para morrer, apenas espere."
+DeathArenaWatcher_already_champion = pt \
+   "Você já está na fila para morrer, apenas espere."
+DeathArenaWatcher_already_have_champion = pt \
+   "Você quer ser nosso campeão? Tudo que você precisa fazer é matar %s%s. Você "
+   "é corajoso o suficiente para desafiar %s?"
+DeathArenaWatcher_must_accept = pt \
+   "Apresse-se! Você só tem %i segundos para aceitar o desafio de %s%s."
+DeathArenaWatcher_commence_fight = pt "LUTE e MORRA!!!"
+DeathArenaWatcher_last_minute = pt "Você tem um minuto... então entrarei na gaiola e "
+   "encerrarei isso!"
+DeathArenaWatcher_victor = pt "~BQue você seja amaldiçoado %s%s! Hoje você vive, mas não "
+   "para sempre!~B"
+DeathArenaWatcher_new_champion = pt "~B%s%s é nosso novo Campeão, pronto para ser "
+   "morto.~B"
+DeathArenaWatcher_killed_champion = pt \
+   "%s%s matou o Campeão, %s%s... bom ver pelo menos um morto!"
+DeathArenaWatcher_retain_title = pt \
+   "%s%s mantém o título de Campeão, alguém me dá sangue de %s?"
+DeathArenaWatcher_ready_to_fight = pt "%s%s vs %s%s. Prepare-se para morrer..."
+DeathArenaWatcher_cant_leave = pt "Desculpe, tolo, não há escape!"
+DeathArenaWatcher_pitifully_fled = pt \
+   "%s%s fugiu covardemente. Acho que terei que matá-los, sim?"
+DeathArenaWatcher_fled_reconnect = pt \
+   "%s%s fugiu covardemente. Se %s%s não voltar em 30 segundos, acho que terei que "
+   "matá-los, sim?"
+DeathArenaWatcher_only_combatants = pt \
+   "Você precisa vir para o meu abraço se quiser matar aqui!"
+DeathArenaWatcher_no_fighting_yet = pt \
+   "Ainda não, meus pequenos. Ainda não."
+DeathArenaWatcher_only_combatants_cast = pt \
+   "Você precisa vir para o meu abraço se quiser lançar magias aqui!"
+DeathArenaWatcher_only_target_combatants = pt \
+   "Você não pode lutar contra não combatentes!"
+DeathArenaWatcher_spell_banned = pt \
+   "Desculpe, você não pode lançar %s aqui. Por quê? Porque eu disse."
+DeathArenaWatcher_must_choose_style = pt \
+   "Primeiro você precisa escolher que tipo de luta deseja."
+DeathArenaWatcher_cant_switch = pt "Você não pode mudar isso agora."
+DeathArenaWatcher_new_combat_style = pt \
+   "Ótima escolha. Estava esperando por uma boa %s. Agora, quem dirá a palavra "
+   "mágica, \"campeão\"?"
+DeathArenaWatcher_welcome = pt "~kJohlan diz, \"Bem-vindo à verdadeira arena da morte.\""
+DeathArenaWatcher_worship_admin = pt \
+   "Ah, que emocionante... é %s, %s é tão importante."
+DeathArenaWatcher_worship_dm = pt \
+   "Não espere que eu me curve para %s, eu poderia me importar menos com um %s de "
+   "Meridian!"
+DeathArenaWatcher_welcome_champion = pt "Todos saúdam %s%s, derramador de sangue."
+DeathArenaWatcher_not_during_fight = pt \
+   "~kJohlan diz, \"Você não pode me oferecer comandos enquanto uma luta ainda está "
+   "em andamento.\""
+DeathArenaWatcher_wont_fight = pt \
+   "`kAparentemente %s%s é muito covarde para lutar. Covardes devem morrer... "
+   "devagar."

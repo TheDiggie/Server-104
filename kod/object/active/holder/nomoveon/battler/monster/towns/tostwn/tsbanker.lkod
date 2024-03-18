@@ -22,3 +22,27 @@ TBank_not_enough_gems = de \
 TBank_unwanted_give = de \
    "~w%s%s sagt zu Dir, \"Ich habe keinen Platz, um das zu verstauen. Wenn "
    "es ein paar Schillinge wären...~n~w\""
+
+TosBanker_name_rsc = pt "Skivlat"
+TosBanker_desc_rsc = pt \
+   "Skivlat passa todo o seu tempo na companhia do dinheiro e isso "
+   "é evidente. Sua mão acaricia amorosamente o ouro enquanto um grande "
+   "sorriso afetuoso se forma em seu rosto. De vez em quando, ele sacode a bolsa apenas "
+   "para ouvir o tilintar melodioso dos xelins."
+TBank_gems_not_quality = pt \
+   "Essas pedras são de má qualidade. Deixe-me me livrar desses "
+   "%s sem valor para você."
+TBank_cant_give_gems = pt \
+   "Se esses %s fossem de qualidade, você não seria capaz de "
+   "carregar seu valor em xelins."
+TBank_gems_traded = pt \
+   "Nunca vi um conjunto de %s tão bonito. Fico feliz em fazer "
+   "negócios com você, ~IGuh~I."
+TBank_not_gem_group = pt \
+   "Desculpe-me, mas eu sou um atacadista de gemas. Se você quiser vender apenas algumas "
+   "gemas similares, tente aquele ~Icolecionador~I em Barloque."
+TBank_not_enough_gems = pt \
+   "Hmm. Você não parece possuir o que está tentando me vender."
+TBank_unwanted_give = pt \
+   "~k%s%s diz a você: \"~IGuh~I Eu não tenho lugar para colocar "
+   "isso. Agora, se fossem xelins...~n~k\""

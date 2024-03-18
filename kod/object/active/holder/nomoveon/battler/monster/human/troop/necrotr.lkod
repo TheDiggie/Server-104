@@ -5,3 +5,11 @@ NecromancerTroop_desc_rsc = de \
    "haben, was es jetzt ist. In der Tat ist der Nekromant ein lebloser Beweis "
    "für den schrecklichen Preis der magischen Kraft."
 NecromancerTroop_dead_name_rsc = de "Ein toter Nekromant"
+
+NecromancerTroop_name_rsc = pt "nigromante"
+NecromancerTroop_desc_rsc = pt \
+   "Preso sob o olhar sobrenatural deste ser repugnante, sua mente "
+   "treme temerosamente diante do pensamento dos rituais obscuros "
+   "que devem tê-lo transformado no que é. Na verdade, o nigromante "
+   "é um testemunho não vivo do terrível preço do poder mágico."
+NecromancerTroop_dead_name_rsc = pt "nigromante morto"

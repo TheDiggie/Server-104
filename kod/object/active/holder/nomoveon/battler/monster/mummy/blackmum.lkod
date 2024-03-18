@@ -6,3 +6,12 @@ blackmummy_desc_rsc = de \
    "von diesem verfluchten Unleben. Diese Kreatur leidet unter einemständigen "
    "Schatten-Fluch, der ihr große Stärke, aber auch großes Leid gibt."
 blackmummy_dead_name_rsc = de "Eine tote Schattenmumie"
+
+blackmummy_name_rsc = pt "múmia sombria"
+blackmummy_desc_rsc = pt \
+   "Percorrendo dentro de sua tumba, esta alma miserável aguarda libertação das "
+   "restrições de seu corpo amaldiçoado. Sua carne é pútrida e mole, e "
+   "seus olhos pedem descanso de sua vida não vida amaldiçoada.\n\n"
+   "Esta criatura foi afligida com uma maldição de sombra permanente, "
+   "o que lhe confere grande força, mas também grande miséria."
+blackmummy_dead_name_rsc = pt "múmia sombria morta"

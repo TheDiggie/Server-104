@@ -31,3 +31,35 @@ ladypheonix_wlll_protect = de \
    "~kLadyPhoenix flüstert, \"Ich werde Dich schützen.\""
 ladypheonix_already_protecting = de \
    "~kLadyPhoenix flüstert, \"Ich schütze gerade jemand anders.\""
+
+ladypheonix_name_rsc = pt "LadyPhoenix"
+ladypheonix_desc_rsc = pt \
+   "Um estranho sentimento toma conta de você ao perceber que há uma "
+   "força profunda dentro desta estátua. Uma voz suave e cantante preenche "
+   "seus sentidos. Seus olhos parecem seguir você, observando atentamente "
+   "suas ações. Um sentimento de bem-estar e proteção se espalha sobre você, "
+   "e você sabe que pode confiar em sua orientação."
+ladyph_dir_step_rsc = pt \
+   "`kLadyPhoenix sussurra, \"Agora, pegue %s %s %s e dê um passo à frente.\""
+ladyph_dir_nostep_rsc = pt \
+   "`kLadyPhoenix sussurra, pt \"Agora, dê um passo à frente.\""
+ladypheonix_not_in_range = pt \
+   "`kLadyPhoenix sussurra algo, mas você está muito longe para ouvir."
+ladypheonix_whisper_start = pt \
+   "~kLadyPhoenix sussurra,\"O %s não vai te machucar, mas não vá mais longe "
+   "sem a minha orientação.\""
+ladypheonix_row_6 = pt "nuvem mais ao norte"
+ladypheonix_row_7 = pt "segunda nuvem a partir do norte"
+ladypheonix_row_8 = pt "terceira nuvem a partir do norte"
+ladypheonix_row_9 = pt "nuvem central"
+ladypheonix_row_10 = pt "terceira nuvem a partir do sul"
+ladypheonix_row_11 = pt "segunda nuvem a partir do sul"
+ladypheonix_row_12 = pt "nuvem mais ao sul"
+ladypheonix_step = pt "passo"
+ladypheonix_steps = pt "passos"
+ladypheonix_south = pt "sul"
+ladypheonix_north = pt "norte"
+ladypheonix_protect_command = pt "proteger"
+ladypheonix_wlll_protect = pt "~kLadyPhoenix sussurra,\"Eu vou te proteger.\""
+ladypheonix_already_protecting = pt \
+   "~kLadyPhoenix sussurra,\"Já estou protegendo outro.\""

@@ -2,3 +2,9 @@ chupacabra_koc_name_rsc = de "ixleocchupacabra"
 chupacabra_name_rsc = de "Der Chupacabra"
 chupacabra_desc_rsc = de "Ein Chupacabra"
 chupacabra_dead_name_rsc = de "toter Chupacabra"
+
+chupacabra_koc_name_rsc = pt "ixleocchupacabra"
+chupacabra_name_rsc = pt "chupacabra"
+chupacabra_desc_rsc = pt \
+   "A chupacabra"
+chupacabra_dead_name_rsc = pt "chupacabra morta"

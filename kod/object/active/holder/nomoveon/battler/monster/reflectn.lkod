@@ -4,3 +4,8 @@ reflection_delete = de "%s%s verschwindet in einer Rauchwolke."
 reflection_trouble = de \
    "Du spürst, dass Dein Spiegelbild Dich in irgendwelche Schwierigkeiten "
    "gebracht hat..."
+
+reflection_name_rsc = pt "reflexão"
+reflection_dead_name_rsc = pt "reflexão morta"
+reflection_delete =  pt "%s%s desaparece em uma nuvem de fumaça."
+reflection_trouble = pt "Você sente que sua reflexão está te metendo em problemas..."

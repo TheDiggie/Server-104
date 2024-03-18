@@ -2,3 +2,7 @@ room_name_kocatan = de "Ko'catan, die Insel-Siedlung"
 kocatan_military = de \
    "Kein Zutritt zur Wachkaserne für nicht-militärisches Personal!"
 kocatan_locked = de "Diese Tür ist fest verschlossen."
+
+room_name_kocatan = pt "Ko'catan, o Assentamento na Ilha"
+kocatan_military = pt "Pessoal não militar não tem permissão para entrar nos alojamentos da guarda."
+kocatan_locked = pt "Esta porta está firmemente trancada com um ferrolho."
