@@ -29,6 +29,7 @@ resources:
    wind1_sound_tosarena2 = rs_wind.ogg
 
    TosArena2_locked = "The Arena of Kraanan is at capacity - the doors have been locked by Guardian command."
+   
 classvars:
 
    vrName = name_TosArena2

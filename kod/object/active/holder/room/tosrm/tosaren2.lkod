@@ -2,3 +2,6 @@ name_TosArena2 = de "Die Arena von Kraanan"
 TosArena2_locked = de \
    "Die Arena von Kraanan ist voll - die Türen wurden daher auf Befehl des "
    "Wächters geschlossen."
+
+name_TosArena2 = pt "A Arena de Kraanan"
+TosArena2_locked = pt "A Arena de Kraanan está lotada - as portas foram trancadas por ordem do Guardião."

@@ -10,3 +10,9 @@ corpsenode_meld = de \
    "das Universum in sich zusammenzufallen! Höhenangst überkommt Dich und "
    "Du fällst auf die Knie. Als Du den Schock überwunden hast, fühlst Du "
    "neue magische Energien durch Deinen Körper strömen."
+
+corpsenode_name_rsc = pt "rasgo no espaço"
+corpsenode_desc_rsc = pt "Você não sabe para onde isso leva, pois você vê apenas insanidade através do rasgo aberto na realidade."
+corpsenode_already_melded = pt "Você já se fundiu com o nó do corpo."
+corpsenode_nothing = pt "Nada parece acontecer."
+corpsenode_meld = pt "Você estende sua mente para tocar o rasgo, e de repente o universo parece colapsar ao seu redor! O vertigem te atinge, e você cai de joelhos. No entanto, quando você recupera seu equilíbrio, você sente o curso da magia fluir através de suas veias."

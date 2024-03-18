@@ -6,3 +6,9 @@ ActiveSporeCloud_poisoned = de \
    "Ein Teil des Giftes lässt nach, verschwindet ganz."
 ActiveSporeCloud_unaffected = de \
    "Seltsamerweise tut Dir die giftige Wolke nichts."
+
+ActiveSporeCloud_name_rsc = pt "nevoeiro denso"
+ActiveSporeCloud_desc_rsc = pt "Você se sufoca só de olhar para o denso nevoeiro pútrido."
+ActiveSporeCloud_dissipates = pt "As nuvens de esporos se dissipam ao vento."
+ActiveSporeCloud_poisoned = pt "Você de repente se sente doente ao inalar os vapores do nevoeiro."
+ActiveSporeCloud_unaffected = pt "Estranhamente, a nuvem nociva não afeta você."

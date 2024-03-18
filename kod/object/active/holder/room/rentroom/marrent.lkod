@@ -1,2 +1,5 @@
 MarionRentableRoom_name = de "Ein gemütlicher Raum"
 MarionRentableRoom_landlord = de "Morrigan"
+
+MarionRentableRoom_name = pt "Um quarto confortável"
+MarionRentableRoom_landlord = pt "Morrigan"

@@ -6,3 +6,9 @@ PoisonFog_dissipates = de \
    "Ein wenig von dem Giftnebel löst sich auf und vers..."
 PoisonFog_unaffected = de \
    "Du hälst Deinen Atem an und die schädliche Wolke tut Dir nichts."
+
+PoisonFogCloud_name_rsc = pt "nevoeiro denso"
+PoisonFogCloud_desc_rsc = pt "Você se sufoca só de olhar para o denso nevoeiro pútrido."
+PoisonFogCloud_poisoned = pt "Você de repente se sente doente ao inalar os vapores do nevoeiro."
+PoisonFog_dissipates = pt "Parte do nevoeiro venenoso desaparece e depois se dissipa."
+PoisonFog_unaffected = pt "Você prende a respiração e a nuvem nociva não afeta você."

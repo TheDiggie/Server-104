@@ -1,3 +1,6 @@
 chest_name_rsc = de "Eine stählerne Kiste"
 chest_desc_rsc = de \
    "Diese Stahltruhe ist massiv und stabil gebaut. Sie hat ein grosses Fassungsvermögen."
+
+chest_name_rsc = pt "baú"
+chest_desc_rsc = pt "Este baú de metal é resistente e bem construído. Pode conter muitos itens."

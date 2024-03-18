@@ -1,2 +1,5 @@
 BarloqueRentableRoom_name = de "Ein geschmackvoll eingerichteter Raum"
 BarloqueRentableRoom_landlord = de "Pritchet"
+
+BarloqueRentableRoom_name = pt "Um quarto decorado com bom gosto"
+BarloqueRentableRoom_landlord = pt "Pritchett"

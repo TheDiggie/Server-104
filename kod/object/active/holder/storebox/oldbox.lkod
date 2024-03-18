@@ -2,3 +2,6 @@ box_name_rsc = de "Eine alte Holzkiste"
 box_desc_rsc = de \
    "Diese Holzkiste bietet gerade genug Raum, um ein paar Gegenstände darin "
    "aufzubewahren. Sie ist eines der wenigen Übrigbleibsel ihrer Art."
+
+box_name_rsc = pt "caixa de madeira antiga"
+box_desc_rsc = pt "Esta caixa de madeira é apenas grande o suficiente para armazenar algumas coisas. É uma das poucas caixas restantes do seu tipo em Meridian."

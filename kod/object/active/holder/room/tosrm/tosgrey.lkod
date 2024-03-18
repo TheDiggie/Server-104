@@ -1,3 +1,7 @@
 room_name_tosgrey = de "Verlassenes Gebäude"
 news_game_name = de "Spiel Diskussionen"
 news_game_desc = de "Alles über Meridian59"
+
+room_name_tosgrey = pt "Prédio Abandonado"
+news_game_name = pt "Discussão do Jogo"
+news_game_desc = pt "Uma troca de ideias sobre o Meridian 59."

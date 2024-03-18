@@ -2,3 +2,6 @@ corpseportal_name_rsc = de "Ein Dimensionstor"
 corpseportal_desc_rsc = de \
    "Dieser Riss im Raum führt zu jemandes Leichnam. Der Riss wird nur dem "
    "früheren Besitzer dieses Körpers von Nutzen sein."
+
+corpseportal_name_rsc = pt "rasgo no espaço"
+corpseportal_desc_rsc = pt "Este rasgo no espaço leva de volta ao corpo de alguém. O rasgo só funcionará para o antigo habitante desse corpo."

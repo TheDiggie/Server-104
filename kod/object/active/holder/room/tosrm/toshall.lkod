@@ -1,3 +1,7 @@
 room_name_toshall = de "Gemeinschaftshalle von Tos"
 news_tos_hall = de "Allgemeine Nachrichten"
 news_tos_hall_desc = de "Finde heraus was in Meridian abgeht."
+
+room_name_toshall = pt "Salão dos Aventureiros de Tos"
+news_tos_hall = pt "Notícias Gerais"
+news_tos_hall_desc = pt "Descubra o que está acontecendo ao redor de Meridian."

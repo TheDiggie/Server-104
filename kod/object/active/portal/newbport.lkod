@@ -11,3 +11,8 @@ newbportal_warning = de \
    "der Lage sein, nach Raza zurückzukehren. Betrete dieses Portal erst dann, "
    "wenn Du mit Deinen Fähigkeiten vertraut bist. Für weitere Informationen "
    "lies (Rechtsklick) das Schild rechts neben diesem Portal."
+
+newbportal_desc_rsc = pt "Entrar neste portal despoja você de seu equipamento de treinamento e o leva para o continente de Meridian 59, sem retorno."
+newbportal_dead = pt "Esta passagem permanece fria e inanimada."
+newbportal_enter = pt "Você entra no portal e começa sua aventura em Meridian 59!"
+newbportal_warning = pt "~BAdvertência~B: Se você entrar neste portal, não poderá retornar a Raza. Entre neste portal apenas se estiver confiante em suas habilidades. Para mais informações, leia (clique com o botão direito) na placa à direita deste portal."

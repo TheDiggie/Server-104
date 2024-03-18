@@ -1,3 +1,6 @@
 SmallBox_name_rsc = de "Persönliche Kiste"
 SmallBox_desc_rsc = de \
    "Dies ist eine kleine Kiste. Groß genug um einige Dinge darin zu Lagern."
+
+SmallBox_name_rsc = pt "pequeno baú pessoal"
+SmallBox_desc_rsc = pt "Este pequeno baú de madeira é apenas grande o suficiente para armazenar algumas coisas."

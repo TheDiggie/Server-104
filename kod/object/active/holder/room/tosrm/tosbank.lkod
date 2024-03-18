@@ -3,3 +3,7 @@ tosbank_sign_name = de "Bank von Tos"
 tosbank_sign_desc = de \
    "Benutze die Befehle EINZAHLEN [BETRAG], ABHEBEN [BETRAG] und KONTOSTAND, "
    "um auf Dein Konto zuzugreifen."
+
+room_name_tosbank = pt "Primeiro Banco Real de Tos"
+tosbank_sign_name = pt "Bem-vindo ao Banco de Tos"
+tosbank_sign_desc = pt "Use os comandos \"depositar valor\", \"sacar valor\" e \"saldo\" para acessar sua conta bancária.\n\nDepósitos feitos aqui também podem ser acessados no Banco Real de Jasper em West Jasper."
