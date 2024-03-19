@@ -4,3 +4,7 @@ torch_desc_rsc = de \
    "Wenn die Fackel benutzt wird, spendet sie eine geringe Menge Licht."
 torch_dead_rsc = de \
    "Die Fackel ist ruﬂgeschw‰rzt und hat ihre beste Zeit lange hinter sich."
+
+torch_name_rsc = pt "torch"
+torch_desc_rsc = pt "A shaft of crudely hewn rough timber is topped by oily rags.  When used it will provide limited illumination."
+torch_dead_rsc = pt "This torch is blackened and burned beyond use."

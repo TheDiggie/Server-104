@@ -5,3 +5,10 @@ TurkeyLeg_desc_rsc = de \
    "importiert. Manche Leute glauben, dass die Avare Handelskaravanen angreifen, "
    "um gefangene Vögel zu befreien."
 TurkeyLeg_name_plural_rsc = de "Truthahnkeulen"
+
+TurkeyLeg_name_rsc = pt "perna de peru"
+TurkeyLeg_desc_rsc = pt "Esta é uma suculenta perna de peru assado. O peru é nativo das selvas de Ko'catan e importado para o continente por comerciantes. Algumas pessoas acreditam que os avars atacam caravanas comerciais para libertar os pássaros capturados."
+TurkeyLeg_name_plural_rsc = pt "pernas de peru"
+TurkeyLeg_disp_name = pt "peru assado"
+TurkeyLeg_disp_desc = pt "Este peru foi assado lentamente sobre uma fogueira para realçar os sabores naturais e deliciosos. Por favor, pegue o quanto puder comer!"
+TurkeyLeg_got_one = pt "Você quebra uma grande e fresca perna de peru."

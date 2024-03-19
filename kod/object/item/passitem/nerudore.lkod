@@ -2,3 +2,6 @@ NeruditeOreChunk_name_rsc = de "Der Nerudit-Klumpen"
 NeruditeOreChunk_desc_rsc = de \
    "Dies ist ein großer, unhandlicher Brocken widerlich grünen Gesteins mit "
    "starken, leuchtenden Adern, die auf einen verborgenen Wert hindeuten."
+
+NeruditeOreChunk_name_rsc = pt "pedaço de nerudita"
+NeruditeOreChunk_desc_rsc = pt "Este é um enorme e desajeitado pedaço de rocha feia e verde, com fortes veias luminosas sugerindo um valor imenso escondido dentro."

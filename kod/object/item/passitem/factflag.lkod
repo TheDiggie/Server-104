@@ -6,3 +6,10 @@ FactionFlag_drops = de "%s%s entwindet sich Deinen Händen und fällt zu Boden!"
 FactionFlag_not_soldier = de \
    "Die Flagge kann nur von offiziell anerkannten Soldaten dieser Fraktion "
    "benutzt werden!"
+
+FactionFlag_name_rsc = pt "bandeira"
+FactionFlag_desc_rsc = pt "Esta é a bandeira da neutralidade."
+FactionFlag_drops = pt "%s%s escorrega de suas mãos e cai no chão!"
+FactionFlag_not_soldier = pt \
+   "A bandeira só pode ser usada por um soldado oficialmente reconhecido "
+   "dessa facção!"

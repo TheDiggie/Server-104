@@ -3,3 +3,6 @@ platearmor_desc_rsc = de \
    "Der Plattenpanzer besteht aus mehreren Lagen gehärteten Stahls. Diese "
    "Rüstung bietet den größtmöglichen Schutz. Er trägt das Zeichen von Ferloi "
    "Qan, ein Zeichen für Handwerkskunst und Qualität."
+
+platearmor_name_rsc = pt "armadura de placa"
+platearmor_desc_rsc = pt "Formada a partir de folhas sólidas de aço endurecido, esta armadura oferece proteção contra todos os ataques, exceto os mais ferozes. Ela ostenta a marca de Fehr'loi Qan, um sinal de excelente mão de obra e materiais de primeira qualidade."

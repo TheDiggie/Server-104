@@ -13,3 +13,12 @@ robe_condition_poor = de \
 robe_condition_broken = de \
    " ist mit Dreck bedeckt und zerrissen, so dass man sie nicht mehr benutzen "
    "kann."
+
+robe_name_rsc = pt "túnica"
+robe_desc_rsc = pt "Pesadas e quentes, essas túnicas de comprimento total geralmente denotam a dedicação de alguém às artes superiores do conhecimento, magia ou religião."
+robe_condition_exc = pt "estão em condição imaculada."
+robe_condition_exc_mended = pt "estão em excelente estado, mas foram remendadas anteriormente."
+robe_condition_good = pt "estão desgastadas e levemente gastas."
+robe_condition_med = pt "têm alguns rasgos feios."
+robe_condition_poor = pt "estão em farrapos e mal conseguem se manter juntas."
+robe_condition_broken = pt "estão cobertas de sujeira e rasgadas além do uso."

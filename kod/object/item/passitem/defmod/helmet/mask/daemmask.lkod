@@ -2,3 +2,6 @@ DaemonMask_name_rsc = de "Die Dämonenskelettmaske"
 DaemonMask_desc_rsc = de \
       "Diese Maske sieht unheimlich aus und ist geeignet um kleine Kinder zu erschrecken. "
 	  "Doch es wäre gefährlich, sie in Deiner Tasche aufzubewahren."
+
+DaemonMask_name_rsc = pt "máscara de esqueleto de demônio"
+DaemonMask_desc_rsc = pt "Esta máscara parece sinistra, boa para assustar crianças pequenas. Seria perigoso guardá-la no bolso."

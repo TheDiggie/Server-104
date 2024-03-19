@@ -11,3 +11,18 @@ fortunecookie_disp_desc = de \
    "Handeln bestimmt ihn."
 fortunecookie_got_one = de "Du nimmst wahllos einen Keks."
 fortunecookie_format = de "Du liest Deine Zukunft: \"~w%s~n\""
+
+fortunecookie_name_rsc = pt "biscoito da sorte"
+fortunecookie_desc_rsc = pt \
+    "O desejo por um futuro doce se equilibra com o desejo por um biscoito doce. "
+    "Até que você realmente quebre o biscoito e leia sua mensagem, "
+    "você não satisfará nenhum dos desejos."
+fortunecookie_name_plural_rsc = pt "biscoitos da sorte"
+fortunecookie_disp_name = pt "cesta de biscoitos da sorte"
+fortunecookie_disp_desc = pt \
+    "Os místicos acreditam que escolher seu destino entre os caminhos de "
+    "seus amigos é a melhor maneira de garantir que ele se torne realidade. "
+    "Cada biscoito pode conter o segredo do sucesso, mas será sua mão "
+    "que escolherá sua fortuna."
+fortunecookie_got_one = pt "Você escolhe um biscoito da sorte aleatoriamente."
+fortunecookie_format = pt "Você lê sua fortuna: \"~k%s~n\""

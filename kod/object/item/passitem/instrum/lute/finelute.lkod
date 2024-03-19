@@ -3,3 +3,8 @@ FineLute_desc_rsc = de \
    "Diese Laute ist von besserer Qualität als herkömmliche. Sie ist makellos "
    "und die dunkle Färbung wurde von einem Meister der Handwerkskunst aufgebracht. "
    "Die Pinienlaute erzeugt einen schöneren Klang als die herkömmliche Rosenholzlaute."
+
+FineLute_name_rsc = pt "alaúde refinado"
+FineLute_desc_rsc = pt "O alaúde é de melhor qualidade do que a maioria dos alaúdes. "
+                       "O instrumento foi construído impecavelmente e a mancha escura foi claramente aplicada por um mestre artesão. "
+                       "Sua construção de pinho oferece um som mais rico do que os alaúdes mais comuns de pau-rosa."

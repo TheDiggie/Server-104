@@ -1,3 +1,6 @@
 FeyMask_name_rsc = de "Die Feymaske"
 FeyMask_desc_rsc = de \
    "Eine Maske der Fey."
+
+FeyMask_name_rsc = pt "máscara de fey elhai"
+FeyMask_desc_rsc = pt "Esta é uma máscara de fey elhai."

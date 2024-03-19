@@ -6,3 +6,9 @@ wineGoblet_name_plural_rsc = de "Weinkelche"
 wineGoblet_use_rich = de \
    "Ein Tropfen mit einem vollen Aroma, ganz offensichtlich ein guter Jahrgang."
 wineGoblet_use_poor = de "Pfui! Was ist das denn für ein Gesöff?"
+
+wineGoblet_name_rsc = pt "cálice de vinho"
+wineGoblet_desc_rsc = pt "Uma bebida fina e requintada. Apenas os plebeus acham isso desagradável."
+wineGoblet_name_plural_rsc = pt "cálices de vinho"
+wineGoblet_use_rich = pt "Uma bebida rica e saborosa, obviamente de um ano muito bom."
+wineGoblet_use_poor = pt "Eca! O que é esse líquido?" 

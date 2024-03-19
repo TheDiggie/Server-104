@@ -3,3 +3,7 @@ inkycap_name_plural_rsc = de "Streifenpilze"
 inkycap_desc_rsc = de \
    "Auf den ersten Blick sehen diese Pilze ziemlich gewöhnlich aus, aber "
    "sieh nur, dieses merkwürdige Grün!"
+
+inkycap_name_rsc = pt "Cogumelo inky-cap"
+inkycap_name_plural_rsc = pt "Cogumelos inky-cap"
+inkycap_desc_rsc = pt "À primeira vista, esses cogumelos parecem comuns, mas observe o caule verde! Na verdade, estes são os Inky Caps Revigorantes de Darken!"

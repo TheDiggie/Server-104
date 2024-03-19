@@ -13,3 +13,14 @@ lightningwall_damage15 = de \
 lightningwall_damage20 = de "SO fühlt es sich also an."
 lightningwall_dissipates = de \
    "Ein Teil der Blitzwand flackert und verschwindet."
+
+WallofLightning_name_rsc = pt "muro de relâmpagos"
+WallofLightning_desc_rsc = pt \
+   "O muro de relâmpagos crepita perigosamente, quase como se esperasse que você caminhasse até ele."
+lightningwall_damage0 = pt "Você atravessa o muro de relâmpagos sem incidentes."
+lightningwall_damage5 = pt \
+   "Certamente um dia o homem encontrará um uso para o relâmpago além de te eletrocutar."
+lightningwall_damage10 = pt "Uau, isso dá um formigamento!!"
+lightningwall_damage15 = pt "Uhuuuiii, isso te acordará pela manhã!"
+lightningwall_damage20 = pt "Então é isso que se sente."
+lightningwall_dissipates = pt "Parte do muro de relâmpagos cintila e desaparece."

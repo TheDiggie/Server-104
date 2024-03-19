@@ -11,3 +11,14 @@ deedpoll_cant_drop_rsc = de \
    "Du befindest dich nicht in der Lage, die Urkunde loszuwerden."
 deedpoll_destroyed_rsc = de \
    "Die Urkunde löst sich plötzlich in Staub auf!"
+
+deedpoll_name_rsc = pt "procuração"
+deedpoll_desc_rsc = pt "Este é um documento oficial do Gabinete do Justicar.\n"
+                     "O gabinete do Justicar Real é responsável por organizar mudanças legais "
+                     "de nome. Preencha seu nome solicitado e devolva este pergaminho "
+                     "a Caramo no Gabinete do Justicar em Barloque Norte, e se "
+                     "seu nome proposto for válido, ele será seu.\n"
+                     "\n"
+                     "    =[C]=   Caramo, Assistente do Justicar Real"
+deedpoll_cant_drop_rsc = pt "Você se vê incapaz de se livrar da procuração."
+deedpoll_destroyed_rsc = pt "Sua procuração de repente se desintegra em pó!"

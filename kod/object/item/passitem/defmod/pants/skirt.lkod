@@ -1,3 +1,7 @@
 Skirt_name_rsc = de "Der lange Rock"
 Skirt_desc_rsc = de \
    "Dieser Rock wird nett Deine Beine bedecken, aber nicht viel Schutz bieten."
+
+
+Skirt_name_rsc = pt "saia longa"
+Skirt_desc_rsc = pt "Esta saia cobrirá bem suas pernas, mas não oferecerá muita proteção."

@@ -20,3 +20,24 @@ SoldierShield_booted_mail = de \
 SoldierShield_sling_on_back = de "Du schnallst dein Fraktionsschild auf den Rücken."
 SoldierShield_remove_from_back = de \
    "Du entfernst das Fraktionsschild von deinem Rücken."
+
+SoldierShield_name_rsc = pt "soldier's shield"
+SoldierShield_desc_rsc = pt \
+      "Shields of this style show allegiance to a particular faction"
+SoldierShield_rank_desc = pt "\n\nYour rank within %s is: %s."
+SoldierShield_ArmyName = pt "the forces of neutrality"
+SoldierShield_rank_name1 = pt "a lowly peon"
+SoldierShield_rank_name2 = pt "an average soldier"
+SoldierShield_rank_name3 = pt "a notable fighter"
+SoldierShield_rank_name4 = pt "a great warrior"
+SoldierShield_rank_name5 = pt "a supreme hero"
+SoldierShield_welcome_mail = pt "Subject: Welcome.\n"
+      "You are a soldier now."
+SoldierShield_lost_status = pt "Your liege revokes your status as a soldier!"
+SoldierShield_lost_status_nonfaction = pt \
+      "You are not worthy to hold a soldier shield!"
+SoldierShield_booted_mail = pt "Subject: Your soldier status is revoked.\n"
+      "I have removed you from my army of soldiers.  I have no use for one so "
+      "cowardly as yourself."
+SoldierShield_sling_on_back = pt "You sling your shield on your back."
+SoldierShield_remove_from_back = pt "You remove your shield from your back."

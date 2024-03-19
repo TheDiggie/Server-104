@@ -12,3 +12,10 @@ spideye_disp_desc = de \
    "Spinne herauszuschneiden."
 spideye_use = de \
    "Der Augapfel stößt gegen Deine Zunge, mit einem Schwall süßer Flüssigkeit."
+
+spideye_name_rsc = pt "olho de aranha"
+spideye_desc_rsc = pt "Duas vezes o tamanho de uma azeitona e muito mais saboroso. O olho de uma aranha gigante é conhecido como uma iguaria, especialmente para os moradores mais antigos de Marion."
+spideye_name_plural_rsc = pt "olhos de aranha"
+spideye_disp_name = pt "prato de olhos de aranha crus"
+spideye_disp_desc = pt "A aranha gigante é muito temida pelo povo comum e é muito valorizada pelos nobres e aventureiros de Meridian. Os olhos da aranha são uma iguaria rara, mas favorita, especialmente dada a dificuldade de removê-los da aranha intactos."
+spideye_use = pt "O globo ocular estoura contra sua língua e jorra com sucos internos doces."

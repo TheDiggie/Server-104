@@ -2,3 +2,8 @@ reagentbag_name_rsc = de "Reagenzienbeutel"
 reagentbag_desc_rsc = de \
    "Dieser lumpige Beutel, kann eine große Menge an Reagenzien für dich aufnehmen. Er "
    "hat aber keinen Effekt auf das Gewicht, das du tragen kannst."
+
+ReagentBag_name_rsc = pt "Bolsa de Reagentes"
+ReagentBag_desc_rsc = pt \
+    "Esta bolsa de reagentes amassada é de natureza mágica e capaz de " 
+    "armazenar grandes quantidades de objetos que possuem poder inerente."

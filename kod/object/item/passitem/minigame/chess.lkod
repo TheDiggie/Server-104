@@ -5,3 +5,6 @@ chess_desc_rsc = de \
    "liegen. Wenn Du während eines Spiels das Schachbrett hochhebst, wird "
    "der Spielstand gespeichert, so dass man später fortfahren kann. Es ist "
    "empfehlenswert, einen sicheren Ort zum Spielen aufzusuchen."
+
+chess_name_rsc = pt "tabuleiro de xadrez"
+chess_desc_rsc = pt "Dois jogadores podem usar este tabuleiro para jogar uma partida de xadrez. Qualquer outra pessoa pode usar o tabuleiro para observar. O tabuleiro deve estar no chão para que as pessoas possam jogar entre si. Se você pegar um tabuleiro no meio de uma partida, o tabuleiro salvará o status do jogo para que ele possa ser concluído posteriormente. É prudente encontrar uma área segura para jogar."

@@ -1,2 +1,5 @@
 FaceMask_name_rsc = de "Maske"
 FaceMask_desc_rsc = de "Maske."
+
+FaceMask_name_rsc = pt "máscara"
+FaceMask_desc_rsc = pt "Esta máscara pode ser usada como disfarce."

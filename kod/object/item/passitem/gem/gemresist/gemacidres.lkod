@@ -1,3 +1,6 @@
 gem_acid_resist_name_rsc = de "verdant crystal"
 gem_acid_resist_desc_rsc = de \
    "This exotic shard of gemstone seems oddly chalky."
+
+gem_acid_resist_name_rsc = pt "cristal verdejante"
+gem_acid_resist_desc_rsc = pt "Este fragmento exótico de pedra preciosa parece estranhamente gizento."

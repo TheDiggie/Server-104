@@ -2,3 +2,6 @@ gem_slash_resist_name_rsc = de "Glimmernder Mondstein"
 gem_slash_resist_desc_rsc = de \
    "This shard of gemstone subtly twists space around itself as it pulses "
    "with traces of lunar energy."
+
+gem_slash_resist_name_rsc = pt "pedra da lua cintilante"
+gem_slash_resist_desc_rsc = pt "Este fragmento de pedra preciosa torce sutilmente o espaço ao seu redor enquanto pulsa com vestígios de energia lunar."

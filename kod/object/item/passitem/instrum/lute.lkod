@@ -3,3 +3,7 @@ lute_desc_rsc = de \
    "Die einfache Laute ist das Instrument der Wahl bei den Barden von Meridian. "
    "Durch die Verwendung von Rosenholz hat es einen tiefen, vollen Ton, der "
    "von anderen Instrumenten nicht erreicht wird."
+
+lute_name_rsc = pt "alaúde"
+lute_desc_rsc = pt "O simples alaúde é o instrumento de escolha entre os bardos de Meridian. "
+                 "Sua construção de pau-rosa oferece um tom rico nas mãos de um especialista."

@@ -7,3 +7,16 @@ apple_name_plural_rsc = de "Äpfel"
 apple_disp_name = de "Apfelbaum"
 apple_disp_desc = de "Apfelbaum - plück dir einen!"
 apple_got_one = de "Du greifst nach einem Apfel und plückst einen."
+
+apple_name_rsc = pt "maçã"
+apple_desc_rsc = pt \
+    "Esta maçã vermelha brilhante, um alimento favorito dos camponeses de Marion, "
+    "é enorme e livre de manchas. Provavelmente foi "
+    "cultivada na profunda floresta de Farol."
+apple_name_plural_rsc = pt "maçãs"
+apple_disp_name = pt "árvore de maçã"
+apple_disp_desc = pt \
+    "Esta variedade de macieira é comum na floresta de Farol e é "
+    "conhecida por suas maçãs deliciosas e suculentas. Várias delas parecem estar baixas "
+    "o suficiente para você colher."
+apple_got_one = pt "Você estende a mão e pega uma maçã da árvore."

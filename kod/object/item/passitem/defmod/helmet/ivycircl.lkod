@@ -5,3 +5,8 @@ IvyCirclet_desc_rsc = de \
 ivycirclet_cant = de \
    "Das Efeu-Diadem widersetzt sich hartnäckig Deinen Versuchen, es auf Deine "
    "Stirn zu setzen."
+
+IvyCirclet_name_rsc = pt "coroa de hera"
+IvyCirclet_desc_rsc = pt "Folhas verdes e saudáveis de hera estão envolvidas em uma coroa de madeira. Isso parece que seria fresco e refrescante contra a sua testa."
+ivycirclet_cant = pt "A coroa de hera resiste teimosamente às suas tentativas de colocá-la na sua testa."
+ivy_not_shal = pt "Somente um seguidor de Shal'ille pode usar esta coroa."

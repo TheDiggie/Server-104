@@ -3,3 +3,6 @@ circlet_desc_rsc = de \
    "Dieses silberbeschlagene Diadem fühlt sich heiß an, wenn Du es berührst. "
    "Die Inschrift in diesem magischen Gegenstand besagt: \"Körperliche Substanz "
    "in magische Kraft.\""
+
+circlet_name_rsc = pt "diadema"
+circlet_desc_rsc = pt "Este diadema de estanho é quente ao toque. Uma mensagem gravada no interior deste dispositivo mágico diz \"Essência física em poder mágico\"."

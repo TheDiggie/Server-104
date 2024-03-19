@@ -6,3 +6,7 @@ telofruit_desc_rsc = de \
    "gegessen wird.  Die Einsiedler machen daraus auch gerne noch ein "
    "Süßes Getränk."
 telofruit_name_plural_rsc = de "Telo-Früchte"
+
+telofruit_name_rsc = pt "fruta telo"
+telofruit_desc_rsc = pt "Esta pequena fruta semelhante a uma maçã é nativa de Ko'catan e é usada ??intensamente tanto pelos colonos quanto pelas tribos avar. Uma casca externa espessa cobre uma fruta surpreendentemente doce que é melhor consumida crua, embora os colonos gostem de usá-la para fazer uma bebida ainda mais doce."
+telofruit_name_plural_rsc = pt "frutas telo"

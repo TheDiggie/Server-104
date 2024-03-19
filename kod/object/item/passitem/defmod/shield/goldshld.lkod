@@ -2,3 +2,6 @@ goldshield_name_rsc = de "Das Goldschild"
 goldshield_desc_rsc = de \
    "Dieser schwere, kunstvoll gearbeitete Goldschild bietet einen guten Schutz. "
    "Wunderschöne Gravierungen mit dem Wappen Quintors zieren seinen Rand."
+
+goldshield_name_rsc = pt "escudo redondo de ouro"
+goldshield_desc_rsc = pt "Feito com esmero, este pesado escudo de ouro oferece uma medida justa de proteção. Gravações delicadas, a marca de Quintor, adornam sua circunferência."

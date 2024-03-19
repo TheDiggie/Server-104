@@ -20,3 +20,24 @@ easteregg_type_vigor = de \
    "\n\nWenn du dieses Ei isst, erhältst Du Ausdauer dazu."
 easteregg_type_spell = de \
    "\n\nWenn du dieses Ei isst, erhältst Du einen %s Zauber."
+
+easteregg_name_rsc = pt "ovo de Páscoa"
+easteregg_desc_rsc = pt \
+   "Feito com o melhor chocolate negro de Barloque, este ovo de Páscoa "
+   "parece estar quente, mas não derretido. Você se questiona sobre qual "
+   "mágica mantém o ovo inteiro."
+easteregg_eat = pt \
+   "Você desembrulha o papel colorido e ceroso do ovo e dá uma mordida "
+   "no saboroso chocolate."
+easteregg_cant_use_on = pt "Você não pode alimentar %s%s"
+easteregg_healed = pt "Você se sente revitalizado ao recuperar ~B~g%d~n de saúde!"
+easteregg_gave_mana = pt "Você se sente reenergizado ao recuperar ~b~B%i~B~n de mana!"
+easteregg_vigor = pt "Hmm, delicioso!"
+easteregg_type_health = pt \
+   "\n\nComer este ovo de Páscoa irá recuperar sua saúde."
+easteregg_type_mana = pt \
+   "\n\nComer este ovo de Páscoa irá recuperar seu poder mágico."
+easteregg_type_vigor = pt \
+   "\n\nComer este ovo de Páscoa irá revigorá-lo."
+easteregg_type_spell = pt \
+   "\n\nComer este ovo de Páscoa irá lançar o feitiço %s."

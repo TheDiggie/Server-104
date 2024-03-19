@@ -1,11 +1,14 @@
-   dHelm_name_rsc = de "Der Dämonen Helm" 
-      dHelm_desc_rsc = de \
-      "Der Anblick dieses Helms lässt Dein Herz angsterfüllt schlagen! Er strahlt "
-      "eine Aura von Macht und Stärke aus und scheint geeignet für einen guten Kampf."
-  
-   dHelm_use_rsc = de \
-      "Die Lust nach dem Kampf steigt in Dir hoch, während dem du den Helm trägst. "
-      "Du sehnst Dich danach, Deine Feinde niederzustrecken!"
-  
-   dHelm_unuse_rsc = de \
-      "Die Kampfeslust des Dämonen Helm verlässt Dich."
+dHelm_name_rsc = de "Der Dämonen Helm" 
+   dHelm_desc_rsc = de \
+   "Der Anblick dieses Helms lässt Dein Herz angsterfüllt schlagen! Er strahlt "
+   "eine Aura von Macht und Stärke aus und scheint geeignet für einen guten Kampf."
+dHelm_use_rsc = de \
+   "Die Lust nach dem Kampf steigt in Dir hoch, während dem du den Helm trägst. "
+   "Du sehnst Dich danach, Deine Feinde niederzustrecken!"
+dHelm_unuse_rsc = de \
+   "Die Kampfeslust des Dämonen Helm verlässt Dich."
+
+dHelm_name_rsc = pt "elmo do demônio"
+dHelm_desc_rsc = pt "A visão deste elmo chifrado faz seu coração tremer de medo. Ele irradia uma aura de poder e força, e parece ser adequado para o combate."
+dHelm_use_rsc = pt "Seu sangue ferve de desejo por batalha enquanto você usa o elmo. Você anseia por derrubar seus inimigos!"
+dHelm_unuse_rsc = pt "A fúria da batalha do elmo do demônio se dissipa de você."

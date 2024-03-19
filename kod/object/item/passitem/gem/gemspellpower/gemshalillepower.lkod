@@ -1,3 +1,6 @@
 gem_shalpower_name_rsc = de "celestial beryl"
 gem_shalpower_desc_rsc = de \
    "This shard of gemstone glows with a sliver of holy righteousness."
+
+gem_shalpower_name_rsc = pt "berilo celestial"
+gem_shalpower_desc_rsc = pt "Este fragmento de pedra preciosa irradia um lampejo de retidão sagrada."

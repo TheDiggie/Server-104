@@ -2,3 +2,6 @@ StoneTrollMask_name_rsc = de "Die Steintrollmaske"
 StoneTrollMask_desc_rsc = de \
    "Dies ist die Maske einer lebendigen Statue, eines Steintrolls! Mal sehen, "
    "wer am längsten still steht?"
+
+StoneTrollMask_name_rsc = pt "máscara de troll de pedra"
+StoneTrollMask_desc_rsc = pt "Esta é a máscara de um troll de pedra, a estátua andante! Vamos ver quem consegue ficar parado por mais tempo!"

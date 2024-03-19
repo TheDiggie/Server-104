@@ -4,3 +4,6 @@ ManaCrystal_desc_rsc = de \
    "Benutze ihn um das Mana, welches in ihm gespeichert ist wiederzugewinnen. "
    "Da er auf Dich abgestimmt ist, kannst Du den Kristall weder wegwerfen "
    "noch jemand anderem geben."
+
+ManaCrystal_name_rsc = pt "cristal de mana"
+ManaCrystal_desc_rsc = pt "Uma forma cristalizada de mana bruto, a energia para feitiços. Use isso para recuperar o mana armazenado neste cristal. Como está sintonizado em você, você não pode largá-lo ou dá-lo a mais ninguém."

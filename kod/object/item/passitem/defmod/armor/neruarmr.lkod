@@ -5,3 +5,7 @@ neruditearmor_desc_rsc = de \
    "Fertigkeit von Ixla cha'Totlak."
 neruarmor_shatters = de \
    "Die Nerudit-Rüstung zerbricht in einem Regen aus Splittern!"
+
+neruditearmor_name_rsc = pt "armadura de nerudita"
+neruditearmor_desc_rsc = pt "Forjada a partir do poderoso Nerudita, esta placa é mais leve e mais durável do que a placa normal. Esta peça de peito exemplifica a notável habilidade de Ixla cha'Totlak."
+neruarmor_shatters = pt "A armadura de nerudita se despedaça em um frenesi de lascas!"

@@ -2,3 +2,8 @@ arrow_name_rsc = de "Die Pfeile"
 arrow_desc_rsc = de \
    "Schlank und gerade, mit Waldvogelfedern als Lenkung, stellt dies die "
    "Standardmunition für den Bogen dar."
+
+arrow_name_rsc = pt "setas"
+arrow_desc_rsc = pt \
+    "Delgadas e retas, com penas de pássaro da selva para orientação, "
+    "este é o armamento padrão para um arco."

@@ -7,3 +7,10 @@ JalaNecklace_used_rsc = de \
    "Jalas Halskette vibriert um Deinen Hals. Sie verleiht Deiner Stimme magische "
    "Kräfte."
 JalaNecklace_unused_rsc = de "Deine Stimme verliert ihre Kraft."
+
+JalaNecklace_name_rsc = pt "colar de Jala"
+JalaNecklace_desc_rsc = pt "Este colar parece que se ajustaria firmemente em volta do seu pescoço. "
+                        "A nota musical dourada sugere que este colar pode ter algum valor para "
+                        "aqueles que se autodenominam Bardos."
+JalaNecklace_used_rsc = pt "O colar de Jala vibra contra sua garganta, dando a sua voz uma potência mágica."
+JalaNecklace_unused_rsc = pt "Sua voz perde sua potência."

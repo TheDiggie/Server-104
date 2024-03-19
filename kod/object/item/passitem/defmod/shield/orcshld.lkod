@@ -8,3 +8,15 @@ OrcShield_desc_rsc = de \
 orcshield_cant = de \
    "Du versuchst, nach dem Griff des Schildes zu greifen, doch er schlüpft "
    "Dir immer wieder aus den Fingern."
+
+OrcShield_name_rsc = pt "orc shield"
+OrcShield_desc_rsc = pt \
+      "The skull that decorates the face of the shield offers a fair "
+      "amount of fear to potential opponents, but the shield seems to "
+      "be far more decorative than useful.  Still, there seems to be a "
+      "darker edge to the shield that you can't place your finger on, and "
+      "one wonders if this device has some hidden attribute."
+orcshield_cant = pt \
+      "You try to grab the handle of the shield, but it insistently "
+      "slips out of your fingers."
+orc_not_qor = pt "Only a follower of Qor can wield this shield."

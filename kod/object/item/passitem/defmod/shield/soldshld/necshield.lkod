@@ -3,3 +3,8 @@ necshield_desc_rsc = de \
    "This shield identifies you as an elite soldier of Queen Venya'cyr army."
 necshield_ArmyName = de "the undead army"
 necshield_welcome_mail = de "Subject: You are now an elite soldier.\n"
+
+necshield_name_rsc = pt "escudo do exército do Necromante"
+necshield_desc_rsc = pt "Este escudo identifica você como um soldado de elite do exército da Rainha Venya'cyr."
+necshield_ArmyName = pt "o exército dos mortos-vivos"
+necshield_welcome_mail = pt "Assunto: Você agora é um soldado de elite.\n"

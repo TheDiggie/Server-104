@@ -4,3 +4,11 @@ bread_desc_rsc = de \
    "aber auch im ganzen Land finden. Man sagt, der Bäcker fülle den Teig "
    "mit magischen Holunderbeeren. Ganz sicher ist sich jedoch keiner."
 bread_name_plural_rsc = de "Brotlaibe"
+
+bread_name_rsc = pt "pão"
+bread_desc_rsc = pt \
+    "Este pão de cheiro doce é uma especialidade de Tos, embora "
+    "possa ser encontrado em todo o país. Dizem que o padeiro "
+    "infunde a massa com sabugueiro mágico, "
+    "embora ninguém saiba ao certo."
+bread_name_plural_rsc = pt "pães"

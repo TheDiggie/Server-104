@@ -1,3 +1,6 @@
 gem_riijapower_name_rsc = de "trickster's jewel"
 gem_riijapower_desc_rsc = de \
    "This shard of gemstone radiates a mischievous sense of play."
+
+gem_riijapower_name_rsc = pt "joia do trapaceiro"
+gem_riijapower_desc_rsc = pt "Este fragmento de pedra preciosa irradia um senso malicioso de brincadeira."

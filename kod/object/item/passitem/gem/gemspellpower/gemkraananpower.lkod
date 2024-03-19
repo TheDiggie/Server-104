@@ -1,3 +1,6 @@
 gem_kraananpower_name_rsc = de "warrior's jewel"
 gem_kraananpower_desc_rsc = de \
    "This shard of gemstone radiates a calm and tactical certainty."
+
+gem_kraananpower_name_rsc = pt "jóia do guerreiro"
+gem_kraananpower_desc_rsc = pt "Este fragmento de pedra preciosa irradia uma calma e certeza tática."

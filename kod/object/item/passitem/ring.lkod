@@ -3,3 +3,8 @@ ring_unidentified_description_rsc = de \
    "Der Ring pulsiert voll magischer Energie."
 ring_identified_name_rsc = de "Ein gewöhnlicher magischer Ring"
 ring_identified_description_rsc = de "Er besitzt einen magischen Effekt."
+
+ring_unidentified_name_rsc = pt "Anel Mágico"
+ring_unidentified_description_rsc = pt "O anel pulsa com energia mágica."
+ring_identified_name_rsc = pt "Anel Mágico Genérico"
+ring_identified_description_rsc = pt "O anel tem algum efeito mágico."

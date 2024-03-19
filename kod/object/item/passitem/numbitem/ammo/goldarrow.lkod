@@ -1,6 +1,12 @@
-   golden_arrow_name_rsc = de "Die Goldpfeile"
-   golden_arrow_desc_rsc = de \
-	  "Diese Pfeile sind aus purem Gold gemacht. Unentdeckt seit "
-	  "Jahrzehnten, sind diese Pfeile von Göttern erschaffen worden. "
-	  "Man glaubt, dass der Gott Kraanan selbst diese Pfeile hergestellt hat, "
-	  "und nur die Mächtigsten unter den Lebenden kann diese nutzen. "
+golden_arrow_name_rsc = de "Die Goldpfeile"
+golden_arrow_desc_rsc = de \
+  "Diese Pfeile sind aus purem Gold gemacht. Unentdeckt seit "
+  "Jahrzehnten, sind diese Pfeile von Göttern erschaffen worden. "
+  "Man glaubt, dass der Gott Kraanan selbst diese Pfeile hergestellt hat, "
+  "und nur die Mächtigsten unter den Lebenden kann diese nutzen. "
+
+golden_arrow_name_rsc = pt "setas douradas"
+golden_arrow_desc_rsc = pt \
+    "Essas setas são feitas de ouro puro. Desconhecidas por "
+    "séculos, acredita-se que essas setas foram criadas pelo deus "
+    "Kraanan e concedidas apenas aos mais poderosos dos mortais."

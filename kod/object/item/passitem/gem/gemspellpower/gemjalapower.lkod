@@ -1,2 +1,5 @@
 gem_jalapower_name_rsc = de "bard's jewel"
 gem_jalapower_desc_rsc = de "This shard of gemstone hums a low harmonic note."
+
+gem_jalapower_name_rsc = pt "jóia do bardo"
+gem_jalapower_desc_rsc = pt "Este fragmento de pedra preciosa emite um baixo tom harmônico."

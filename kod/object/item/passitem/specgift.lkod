@@ -1,3 +1,7 @@
 SpecialGift_name_rsc = de "Das Spezielgeschenk"
 SpecialGift_desc_rsc = de "Spezialgeschenk von den Göttern."
 SpecialGift_open = de "Du öffnest es und findest %s%s im Inneren!"
+
+SpecialGift_name_rsc = pt "regalo especial"
+SpecialGift_desc_rsc = pt "Este es un regalo especial de los dioses, para agradecerte por tu paciencia y tu patrocinio."
+SpecialGift_open = pt "Con deleite desenfrenado, abres el regalo para encontrar %s%s dentro!"

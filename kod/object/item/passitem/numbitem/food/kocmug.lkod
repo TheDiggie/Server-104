@@ -7,3 +7,11 @@ kocatanmug_disp_desc = de "Dies ist ein schwerer Krug voll mit dunklem Pekonch."
 kocatanmug_got_one = de \
    "Du füllst einen Becher mit dunklem Pekonch aus dem Krug."
 kocatanmug_use = de "Wow, da hast Du auch morgen noch was davon!"
+
+kocatanmug_name_rsc = pt "canecas de pekonch de cobre"
+kocatanmug_desc_rsc = pt "Vinho tão espesso que você poderia colocar uma adaga nele."
+kocatanmug_name_plural_rsc = pt "canecas de Pekonch"
+kocatanmug_disp_name = pt "jarra de pekonch"
+kocatanmug_disp_desc = pt "Esta é uma jarra pesada cheia de pekonch escuro."
+kocatanmug_got_one = pt "Você despeja uma caneca cheia de pekonch escuro da jarra."
+kocatanmug_use = pt "Uau, você vai sentir isso amanhã!"

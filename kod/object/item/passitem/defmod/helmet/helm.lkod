@@ -4,3 +4,6 @@ helm_desc_rsc = de \
    "Helm fühlt sich schaurig kalt an. Der Herzog beauftragte Ferloi Qan, "
    "diesen Helm mit Hilfe von Priesterin Qertina speziell für Gewinner des "
    "offiziell gebilligten Wettkampfes anzufertigen."
+
+helm_name_rsc = pt "elmo espiritual mágico"
+helm_desc_rsc = pt "Bem trabalhado e ornamentado em seu design, este impressionante pedaço de cobertura para a cabeça é estranhamente frio ao toque. O Duque encomendou a Fehr'loi Qan com a ajuda da Sacerdotisa Qerti'nya para criar esses capacetes especificamente para os vencedores de torneios oficialmente sancionados."

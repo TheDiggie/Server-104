@@ -15,3 +15,16 @@ shirt_wrong_gender = de \
 shirt_woman = de "Frau"
 shirt_man = de "Mann"
 shirt_this = de ""
+
+shirt_condition_exc = pt " está em condição imaculada."
+shirt_condition_good = pt " está arranhada e levemente desgastada."
+shirt_condition_med = pt " tem alguns rasgos desagradáveis."
+shirt_condition_poor = pt " está em frangalhos, mal se segurando."
+shirt_condition_broken = pt " está coberta de sujeira e rasgada além do uso."
+shirt_name_rsc = pt "camisa"
+shirt_desc_rsc = pt \
+   "Esta camisa cobre o essencial, mas oferece pouca ou nenhuma proteção ao usuário."
+shirt_wrong_gender = pt "Uma camisa projetada para uma %s não serviria para você de jeito nenhum."
+shirt_woman = pt "mulher"
+shirt_man = pt "homem"
+shirt_this = pt "Esta "

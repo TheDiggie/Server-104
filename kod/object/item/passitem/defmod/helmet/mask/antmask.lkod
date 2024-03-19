@@ -2,3 +2,6 @@ AntMask_name_rsc = de "Die Ameisenmaske"
 AntMask_desc_rsc = de \
    "Endlich! Eine Ameisenmakse für Erwachsene von Ko'Catan. Nun kannst Du an den merkwürdigen "
    "Inselritualen, über die du schon so viel gehört hast, teilnehmen."
+
+AntMask_name_rsc = pt "máscara de formiga"
+AntMask_desc_rsc = pt "Finalmente! Uma máscara de formiga para adultos de Ko'catan. Agora você pode participar do estranho ritual da ilha que sempre ouviu falar."

@@ -2,3 +2,6 @@ OreChunk_name_rsc = de "Der Erzklumpen"
 OreChunk_desc_rsc = de \
    "Dies ist ein großer, unhandlicher Brocken Gesteins mit starken, silbernen "
    "Adern, die auf einen riesigen verborgenen Wert hindeuten."
+
+OreChunk_name_rsc = pt "pedaço de minério"
+OreChunk_desc_rsc = pt "Este é um enorme e desajeitado pedaço de rocha, com fortes veias de prata sugerindo um valor imenso escondido dentro."

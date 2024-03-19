@@ -9,3 +9,8 @@ Mint_use = de \
    "Die zarte Schokolade zergeht auf Deiner Zunge und vermischt sich langsam "
    "zu einer minzig-süßen Creme, die eine Welle der Ekstase durch Deinen "
    "Körper strömen läßt."
+
+Mint_name_rsc = pt "menta de chocolate"
+Mint_desc_rsc = pt "Um pequeno bloco de chocolate importado de Kocatani, infundido com uma variedade de menta que cresce apenas em Faronath, essa iguaria é dito ter certas propriedades mágicas além de seu apelo inquestionável ao paladar."
+Mint_name_plural_rsc = pt "mentas de chocolate"
+Mint_use = pt "A menta dissolve em sua língua em uma bagunça de delícias de chocolate, enviando uma sensação de prazer pela sua espinha."

@@ -3,3 +3,6 @@ leatherarmor_desc_rsc = de \
    "Diese Rüstung wurde aus dicker, getrockneter Trollhaut geschneidert. "
    "Obwohl sie einen strengen Geruch hat, bietet die Lederrüstung zumindest "
    "ein wenig Schutz."
+
+leatherarmor_name_rsc = pt "armadura de couro"
+leatherarmor_desc_rsc = pt "Esta armadura é feita de peles de troll espessas e curadas, costuradas grosseiramente juntas. Apesar do cheiro que lembra carne de troll apodrecida, a armadura oferece alguma proteção."

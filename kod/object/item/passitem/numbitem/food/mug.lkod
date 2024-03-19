@@ -12,3 +12,11 @@ mug_got_one = de \
 mug_use = de \
    "Stark und absolut köstlich! Der rauchige Geschmack wird noch eine Weile "
    "in Deinem Mund bleiben."
+
+mug_name_rsc = pt "caneca de cerveja preta"
+mug_desc_rsc = pt "Uma cerveja preta escura com uma espuma espessa."
+mug_name_plural_rsc = pt "canecas de cerveja preta"
+mug_disp_name = pt "jarra de cerveja preta"
+mug_disp_desc = pt "Uma jarra de latão pesada, cheia até a borda com uma cerveja preta escura e deliciosa. Precisa ser despejada lentamente para preservar a espuma perfeita."
+mug_got_one = pt "Você despeja lentamente sua caneca cheia de cerveja preta espumosa da jarra."
+mug_use = pt "Forte e absolutamente delicioso! O sabor defumado vai persistir em sua boca por um bom tempo."

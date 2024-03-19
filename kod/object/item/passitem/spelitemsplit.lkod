@@ -6,3 +6,10 @@ default_split_spell_item_rsc = de \
    "einen Gegenstand der %d Ladungen mit %d Zauberkraft."
 cant_split = de "Es ist nicht genügend zu Zerteilen vorhanden!"
 item_no_split = de "Du kannst diesen Gegenstand nicht zerteilen!"
+
+SpellItemSplitter_name_rsc = pt "separador de item de hechizo"
+SpellItemSplitter_desc_rsc = pt "Este es un separador de item de hechizo."
+splitter_cant_use_on = pt "No puedes adquirir ninguna carga de %s%s."
+default_split_spell_item_rsc = pt "Combina la mitad del %s en tu separador, creando un objeto que tiene %d cargas que promedian %d de poder de hechizo."
+cant_split = pt "¡No hay suficiente para dividir!"
+item_no_split = pt "¡No puedes dividir este objeto!"

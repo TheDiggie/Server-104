@@ -7,3 +7,10 @@ treaty_vanishes = de "Der Vertrag mit %s%s löst sich schlagartig in Rauch auf!"
 treaty_fell_apart = de \
    "Deine Anstrengungen, eine Allianz mit %s%s einzugehen, erweisen sich "
    "als wirkungslos."
+
+treaty_name_rsc = pt "tratado"
+treaty_desc_rsc = pt "Este tratado criará uma aliança entre %s%s e %s%s."
+treaty_cant_ditch = pt "Você não pode descartar este tratado."
+treaty_expires = pt "Seu tratado com %s%s expirou."
+treaty_vanishes = pt "O tratado com %s%s desaparece em uma nuvem de fumaça!"
+treaty_fell_apart = pt "Suas tentativas de forjar uma aliança com %s%s desmoronaram."

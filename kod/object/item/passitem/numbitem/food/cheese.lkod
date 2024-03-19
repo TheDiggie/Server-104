@@ -4,3 +4,10 @@ Cheese_desc_rsc = de \
    "selten wie die Pygmäenkühe in Meridian sind, so delikat ist auch ein "
    "Käse wie dieser."
 Cheese_name_plural_rsc = de "Die Käselaibe"
+
+Cheese_name_rsc = pt "roda de queijo"
+Cheese_desc_rsc = pt \
+    "Este delicioso queijo é feito do doce leite da vaca pigmeu. "
+    "Como a vaca pigmeu raramente é vista em Meridian propriamente dita, "
+    "um queijo tão fino como este é uma verdadeira iguaria."
+Cheese_name_plural_rsc = pt "rodas de queijo"

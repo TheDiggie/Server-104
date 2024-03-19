@@ -5,3 +5,7 @@ qorcharm_desc_rsc = de \
 qorcharm_whisper = de \
    "Eine Stimme flüstert, \"~I...der Böse muss genau treffen, denn Meuchelmörder "
    "bekommen nur selten eine zweite Chance...\""
+
+qorcharm_name_rsc = pt "monóculo"
+qorcharm_desc_rsc = pt "Em sua mão repousa uma lente com borda de cobre. O vidro parece surrealmente fresco em sua mão.\n\nEstatísticas de Bônus:\n+10 Mira\n+4 Força\n\n"
+qorcharm_whisper = pt "Uma voz sussurra, \"~Eu... a mira do vilão deve ser certeira, pois assassinos raramente têm segundas chances...\""

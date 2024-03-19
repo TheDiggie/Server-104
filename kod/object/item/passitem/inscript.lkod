@@ -6,3 +6,12 @@ inscript_desc_written_rsc = de \
 inscript_emote_write_third_rsc = de "%s schreibt etwas auf %s%s."
 inscript_blank_rsc = de " "
 inscript_q = de "%q"
+
+inscript_name_rsc = pt "pedaço de pergaminho"
+inscript_desc_blank_rsc = pt \
+   "Um pedaço de papel de pergaminho fresco, sem nenhuma marca nele."
+inscript_desc_written_rsc = pt \
+   "Um pequeno pedaço de papel de pergaminho, com algo rabiscado nele."
+inscript_emote_write_third_rsc = pt "%s rabisca algo em %s%s."
+inscript_blank_rsc = pt ""
+inscript_q = pt "%q"

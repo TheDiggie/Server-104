@@ -10,3 +10,10 @@ orange_disp_desc = de \
 	 "bekannt für seine wundervollen Orangen. Einige hängen tief genug "
 	 "um sie zu pflücken."
 orange_got_one = de "Du greifst nach oben und pflückst eine Orange vom Baum."
+
+orange_name_rsc = pt "laranja"
+orange_desc_rsc = pt "Bonita, quase perfeitamente redonda, esta laranja está madura na perfeição. Certamente será um lanche suculento."
+orange_name_plural_rsc = pt "laranjas"
+orange_disp_name = pt "laranjeira"
+orange_disp_desc = pt "Esta laranjeira é comum ao redor da cidade de Marion e é conhecida por suas muitas laranjas bonitas. Várias delas parecem estar baixas o suficiente para você colher."
+orange_got_one = pt "Você estica o braço e colhe uma laranja da árvore."

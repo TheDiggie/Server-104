@@ -4,3 +4,9 @@ WarJoinPendant_desc_before_rsc = de \
    "anzuschließen:\n%s."
 WarJoinPendant_desc_after_rsc = de \
    "Dieser Anhänger zeigt Deine Zugehörigkeit zu:\n%s."
+
+WarJoinPendant_name_rsc = pt "pingente de guerra"
+WarJoinPendant_desc_before_rsc = pt \
+   "Isso permitirá que você se junte à guerra no lado de:\n%s."
+WarJoinPendant_desc_after_rsc = pt \
+   "Este pingente mostra sua lealdade a:\n%s."

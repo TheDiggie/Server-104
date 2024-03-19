@@ -10,3 +10,13 @@ web_stick5 = de "Du findest Dich hilflos im Spinnennetz klebend wieder!"
 web_dissipates = de "Ein Stück des Netzes altert und vergeht vor Deinen Augen."
 web_stuck = de \
    "%s%s scheint in einem klebrigen Teil des Spinnennetzes steckengeblieben."
+
+Web_name_rsc = pt "teia"
+Web_desc_rsc = pt "A teia parece muito pegajosa."
+web_stick0 = pt "Você navega pelas teias sem ficar preso nelas."
+web_stick1 = pt "Você momentaneamente se vê preso nas teias."
+web_stick2 = pt "Seus sapatos quase se desprendem, grudados nas teias."
+web_stick3 = pt "Tem algo preso na sua bota ou você está preso a ela?"
+web_stick5 = pt "Você se encontra preso e indefeso na teia de aranha!"
+web_dissipates = pt "Um pedaço da teia murcha e desaparece diante dos seus olhos."
+web_stuck = pt "%s%s parece estar preso em um pedaço de teia de aranha pegajosa."

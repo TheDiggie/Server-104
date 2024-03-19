@@ -13,3 +13,17 @@ gauntlet_condition_poor = de \
 gauntlet_condition_broken = de " sind kaputt und haben keinen Nutzen mehr."
 gauntlet_broken = de \
    "Die Panzerhandschuhe bestehen nur noch aus unbrauchbarem Metall.%s$0"
+
+gauntlet_name_rsc = pt "Manoplas"
+gauntlet_desc_rsc = pt \
+    "Estas manoplas de aço polido oferecem proteção para as mãos e antebraços, permitindo que você golpeie com maior confiança e força."
+gauntlet_condition_exc = pt " brilham com o fulgor da perfeição."
+gauntlet_condition_exc_mended = pt \
+    " estão em excelente estado, mas já foram consertadas antes."
+gauntlet_condition_good = pt " estão manchadas e marcadas, mas ainda são utilizáveis."
+gauntlet_condition_med = pt " foram severamente amassadas em vários lugares."
+gauntlet_condition_poor = pt \
+    " estão em perigo de se desfazer. Grandes placas de metal " 
+    "foram arrancadas durante a batalha."
+gauntlet_condition_broken = pt " estão arruinadas e não oferecem nenhum benefício."
+gauntlet_broken = pt "Suas %s são um emaranhado de metal."

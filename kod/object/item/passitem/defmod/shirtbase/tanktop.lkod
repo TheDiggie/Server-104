@@ -6,3 +6,8 @@ exotic_top_name_rsc = de "Das Unterhemd"
 exotic_top_desc_rsc = de \
    "Dieses Unterhemd ist offensichtlich so geschnitten, dass es flattert "
    "und damit nur wenig der Phantasie überläßt. "
+
+tanktop_name_rsc = pt "colete leve"
+tanktop_desc_rsc = pt "Fina e leve, esta camisa de corte rente é o estilo preferido da comunidade da selva."
+exotic_top_name_rsc = pt "camiseta"
+exotic_top_desc_rsc = pt "Esta peça de roupa íntima é claramente cortada para ser lisonjeira e deixa pouco para a imaginação quando usada."

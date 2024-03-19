@@ -15,3 +15,20 @@ frozjewel_broken = de \
 frozjewel_recharge_rsc = de \
    "Dein Juwel von Froz gewinnt an Stärke aus der Lebenskraft deines "
    "getöteten Feindes."
+
+frozjewel_name_rsc = pt "Jóia de Froz"
+frozjewel_desc_rsc = pt \
+   "Este gem foi criado pelo grande alquimista, Froz, em um processo secreto " 
+   "conhecido apenas por ele. Rumores dizem que é um condutor para agressão mística, " 
+   "usando mana bruta para aumentar os feitiços de toque elemental. " 
+   "Sua mão dá formigamento quando você o segura."
+jof_condition_exc = pt " está em condição imaculada."
+jof_condition_good = pt " está levemente arranhado."
+jof_condition_med = pt \
+   " está moderadamente arranhado e parece ligeiramente opaco."
+jof_condition_poor = pt \
+   " está bastante arranhado e parece estar perdendo seu brilho."
+frozjewel_desc_broken_rsc = pt "A jóia parece comum e sem brilho."
+frozjewel_broken = pt "A Jóia de Froz agora parece bastante comum."
+frozjewel_recharge_rsc = pt \
+   "Sua Jóia de Froz ganha força a partir da força vital de seu inimigo morto."

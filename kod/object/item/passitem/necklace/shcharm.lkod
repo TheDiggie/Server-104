@@ -5,3 +5,13 @@ ShalilleCharm_desc_rsc = de \
 ShalilleCharm_whisper = de \
    "Eine Stimme flüstert, \"~I...Ruhe gewinnt nur die Oberhand, wenn sie aus "
    "ihren Qualen lernt...\""
+
+ShalilleCharm_name_rsc = pt "pingente de diamante"
+ShalilleCharm_desc_rsc = pt "Feito de diamantes cuidadosamente lapidados e engastados em cobre finamente trabalhado, este pingente "
+                            "seria o melhor amigo de qualquer um.\n\n"
+                            "Bônus de Estatísticas:\n"
+                            "+10 Intelecto\n"
+                            "+4  Resistência\n\n"
+
+ShalilleCharm_whisper = pt "Uma voz sussurra, \"~Eu... a calma só prevalece se aprender com "
+                              "seus revezes...\""

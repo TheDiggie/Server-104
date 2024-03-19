@@ -4,3 +4,6 @@ royalshirt_desc_rsc = de \
    "königliches Hemd. Es ist nach der neusten Mode, wenn man die hochwertigen "
    "Zeichen der auf das Kleidungsstück aufgestickten prächtigen Handschuhe "
    "in Betracht zieht."
+
+royalshirt_name_rsc = pt "camisa real"
+royalshirt_desc_rsc = pt "Esta é uma camisa real costurada à mão pela famosa costureira Madelia. É a última moda, considerada o símbolo da alta classe."

@@ -4,3 +4,8 @@ StoutGoblet_desc_rsc = de \
    "Tülle eingravierten Logo steht \"Pietros teuflisches Gebräu.\""
 StoutGoblet_name_plural_rsc = de "Bierkrüge"
 StoutGoblet_use = de "Erfrischend und belebend! <Hicks>"
+
+StoutGoblet_name_rsc = pt "caneca de cerveja preta"
+StoutGoblet_desc_rsc = pt "A caneca de estanho e madeira é grosseiramente formada. Um logotipo estampado em sua borda de prata diz 'Cerveja do Mal de Pietro'."
+StoutGoblet_name_plural_rsc = pt "canecas de cerveja preta"
+StoutGoblet_use = pt "Refrescante para tomar um gole, e dá uma boa 'chicotada'!"

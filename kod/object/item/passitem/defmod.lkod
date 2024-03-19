@@ -1,3 +1,7 @@
 defmod_broken = de "%s fällt in Stücke"
 defmod_broken_plural = de "%s zerfällt in Stücke"
 defmod_broken_plural_clothes = de "%s fällt zu untragbaren Fetzen auseinander."
+
+defmod_broken = pt "Seu %s cai em pedaços."
+defmod_broken_plural = pt "Seus %s caem em pedaços."
+defmod_broken_plural_clothes = pt "Suas %s desmoronam em trapos inutilizáveis."

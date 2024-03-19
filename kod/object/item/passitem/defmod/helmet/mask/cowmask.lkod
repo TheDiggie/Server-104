@@ -2,3 +2,6 @@ CowMask_name_rsc = de "Die Kuhmaske"
 CowMask_desc_rsc = de \
       "Geformt wie der Kopf einer Kuh, wird diese Maske manchmal von Gottheiten "
 	  "getragen. Muuuh!"
+
+CowMask_name_rsc = pt "máscara de vaca"
+CowMask_desc_rsc = pt "Esculpida como a cabeça de uma vaca, às vezes usada pela divindade. Muu."

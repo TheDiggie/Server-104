@@ -3,3 +3,9 @@ metalshield_desc_rsc = de \
    "Dieser kleine Schild besteht aus dünnem Blech, befestigt auf einem hölzernen "
    "Rahmen. Obwohl er nicht besonders hochwertig ist, bietet er im Kampf "
    "zumindest einen kleinen Schutz."
+
+metalshield_name_rsc = pt "small round shield"
+metalshield_desc_rsc = pt \
+      "This small shield is made from a sheet of tin bent and "
+      "fitted to a wooden frame.  Although the workmanship is "
+      "poor, it offers some protection during battle."

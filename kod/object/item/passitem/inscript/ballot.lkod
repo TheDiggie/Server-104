@@ -8,3 +8,13 @@ ballot_desc_rsc = de \
    "Stimmen, die von Caramo, der Assistentin des Justiziars in Empfang genommen "
    "werden, können anerkannt werden.    \n=[C]=   Caramo, Assistentin des "
    "Königlichen Justiziars"
+
+ballot_name_rsc = pt "Voto Real"
+ballot_desc_rsc = pt "Este é um documento oficial do Gabinete do Justicar.\n"
+                   "O Real Justicar é o árbitro em disputas de Lei nos Olhos Reais. "
+                   "Podeis lançar o vosso voto para um candidato ao Cargo, se fordes um cidadão "
+                   "legal vós mesmos, e se o vosso candidato também o for.  Podeis apenas lançar "
+                   "um voto a cada mandato do Cargo.  Apenas os votos recebidos pelo Caramo, "
+                   "o Assistente do Justicar, serão contabilizados.\n"
+                   "\n"
+                   "    =[C]=   Caramo, Assistente do Real Justicar"

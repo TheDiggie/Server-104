@@ -1,3 +1,6 @@
 key_name_rsc = de "Der Schlüssel"
 key_desc_rsc = de \
    "Dieser verschlungen geformte Schlüssel trägt die Inschrift eines Zauberers."
+
+key_name_rsc = pt "chave"
+key_desc_rsc = pt "Esta chave formada intricadamente traz a inscrição de um mago."

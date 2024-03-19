@@ -1,3 +1,6 @@
 gem_farenpower_name_rsc = de "magma crystal"
 gem_farenpower_desc_rsc = de \
    "This shard of gemstone glows with a sliver of earthen fury."
+
+gem_farenpower_name_rsc = pt "cristal de magma"
+gem_farenpower_desc_rsc = pt "Este fragmento de pedra preciosa brilha com um lampejo de fúria terrena."

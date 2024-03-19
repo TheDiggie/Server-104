@@ -9,3 +9,9 @@ grapes_disp_desc = de \
    "Diese saftigen Trauben stammen aus dem Weinberg von Marion und sind für "
    "ihren bewundernswerten Geschmack berühmt. Ihr Geschmack ist so einzigartig, "
    "dass nur wenige schlußendlich für Wein verwendet werden."
+
+grapes_name_rsc = pt "cacho de uvas"
+grapes_desc_rsc = pt "As receitas secretas de Pietro geralmente envolvem uvas viníferas picantes do oeste. Estas uvas em particular são extra suculentas e suculentas."
+grapes_name_plural_rsc = pt "cachos de uvas"
+grapes_disp_name = pt "prato de uvas"
+grapes_disp_desc = pt "Estas uvas suculentas vêm dos vinhedos de Marion e são renomadas por seu sabor notável. Seu sabor é tão apreciado que poucas realmente sobrevivem para se tornar vinho."

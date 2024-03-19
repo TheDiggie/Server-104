@@ -2,3 +2,6 @@ PrincessFlag_name_rsc = de "Eine Flagge der Prinzessin"
 PrincessFlag_desc_rsc = de \
    "Die Flagge zeigt die königlichen Farben der Prinzessin, Herrscherin von "
    "Barloque."
+
+PrincessFlag_name_rsc = pt "bandeira da Princesa"
+PrincessFlag_desc_rsc = pt "Esta bandeira ostenta as cores reais da Princesa, soberana de Barloque."

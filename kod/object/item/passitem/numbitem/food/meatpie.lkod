@@ -4,3 +4,7 @@ meatpie_desc_rsc = de \
    "mit geschmortem Trollfleisch, Käse und exotischen Gewürzen aus fernen "
    "Landen."
 meatpie_name_plural_rsc = de "Trollkekse"
+
+meatpie_name_rsc = pt "torta de carne"
+meatpie_desc_rsc = pt "Uma crosta dourada cobre esta torta gigantesca. É recheada com carne de troll cozida, queijo e especiarias de terras distantes."
+meatpie_name_plural_rsc = pt "tortas de carne"

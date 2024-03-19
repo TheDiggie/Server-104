@@ -7,3 +7,13 @@ armor_condition_poor = de \
    " ist durch viele Angriffe aufgerissen und hält nicht mehr lange."
 armor_condition_broken = de \
    " ist in Stücke zerfallen und bietet keinerlei Schutz mehr."
+
+armor_condition_exc = pt " está sem manchas ou falhas."
+armor_condition_exc_mended = pt \
+    " está em ótimas condições, mas já foi reparada antes."
+armor_condition_good = pt " tem um ou dois amassados."
+armor_condition_med = pt " está marcada e arranhada pela batalha."
+armor_condition_poor = pt \
+    " foi rasgada e dilacerada por ataques ferozes e pode não durar muito mais."
+armor_condition_broken = pt \
+    " está inútil. Foi rasgada em vários pedaços pelo desgaste e tensão da batalha."

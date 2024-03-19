@@ -2,3 +2,6 @@ SimpleHelm_name_rsc = de "Der Helm"
 SimpleHelm_desc_rsc = de \
    "Stahl und Kettenringe geben dem Träger dieses gepolsterten Helms einen "
    "mäßigen Schutz."
+
+SimpleHelm_name_rsc = pt "capacete"
+SimpleHelm_desc_rsc = pt "Aço e elos de corrente oferecem proteção moderada ao usuário deste capacete acolchoado."

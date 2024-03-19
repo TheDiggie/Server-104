@@ -2,3 +2,6 @@ ShortSkirt_name_rsc = de "Der kurze Rock"
 ShortSkirt_desc_rsc = de \
    "Dieser kurze Rock wird viel von Deinen schönen Beinen zeigen. Erwarte "
    "jedoch nicht allzu viel Schutz von ihm."
+
+ShortSkirt_name_rsc = pt "saia curta"
+ShortSkirt_desc_rsc = pt "Esta saia curta vai mostrar suas pernas adoráveis! Não espere muita proteção, no entanto."

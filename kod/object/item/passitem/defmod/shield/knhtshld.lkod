@@ -4,3 +4,10 @@ knightshield_desc_rsc = de \
    "höchster Qualität und besitzt einen Durchmesser von mehr als einem Meter. "
    "Du kannst das Wappen Ferloi Qans sehen, das in den hölzernen Griff geschnitzt "
    "wurde."
+
+knightshield_name_rsc = pt "knight's shield"
+knightshield_desc_rsc = pt \
+      "Nearly three feet from top to bottom, this glimmering " 
+      "shield of polished steel is of the highest quality.  " 
+      "You see the mark of Fehr'loi Qan inscribed on the " 
+      "wooden handle."

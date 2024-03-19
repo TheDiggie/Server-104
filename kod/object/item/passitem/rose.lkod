@@ -1,2 +1,5 @@
 rose_name_rsc = de "Die Rose"
 rose_desc_rsc = de "Dies ist eine einfache, doch elegante und zarte Rose."
+
+rose_name_rsc = pt "rosa"
+rose_desc_rsc = pt "Esta é uma rosa simples, porém elegante e delicada."

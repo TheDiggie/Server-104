@@ -1,3 +1,7 @@
 food_desc_rsc = de "%s\n\nDies wird den Hunger stillen.%s"
 food_use = de "Lecker, lecker, lecker!"
 food_cant_use_on = de "Du kannst %s%s nicht füttern"
+
+food_desc_rsc = pt "%s\n\nIsso vai satisfazer a fome.%s"
+food_use = pt "Hmm, delicioso!"
+food_cant_use_on = pt "Você não pode alimentar %s%s"

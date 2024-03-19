@@ -6,3 +6,8 @@ stew_desc_rsc = de \
    "den man von Kindheit an gewohnt sein muss."
 stew_name_plural_rsc = de "Schüsseln mit Stew"
 stew_use = de "Wäh! So, wie es schmeckt, sollte es wenigstens gesund sein!"
+
+Stew_name_rsc = pt "tigela de ensopado"
+stew_desc_rsc = pt "O ensopado de faroni da Viúva Qesino foi aclamado por alguns como um clássico vegetariano. Cheio de pedaços saudáveis de bestas de fungos falecidas e casca de árvore viva, você só pode assumir que este é um gosto adquirido."
+stew_name_plural_rsc = pt "tigelas de ensopado"
+stew_use = pt "Eca - isso melhor ser bom para você!"

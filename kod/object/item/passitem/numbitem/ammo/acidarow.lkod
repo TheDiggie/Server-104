@@ -1,5 +1,10 @@
-   acid_arrow_name_rsc = de "Die Säurepfeile"
-   acid_arrow_name_rsc_desc_rsc = de \
-	  "Eine grüne flüssige faulig riechende Substanz klebt an der Spitze des Pfeils. "
-	  "Der Pfeil verspricht dem Ziel große Schmerzen. "
-	  
+acid_arrow_name_rsc = de "Die Säurepfeile"
+acid_arrow_name_rsc_desc_rsc = de \
+  "Eine grüne flüssige faulig riechende Substanz klebt an der Spitze des Pfeils. "
+  "Der Pfeil verspricht dem Ziel große Schmerzen. "
+  
+acid_arrow_name_rsc = pt "setas ácidas"
+acid_arrow_name_rsc_desc_rsc = pt \
+    "Um sibilo repugnante emana desta flecha ao ser retirada da aljava. "
+    "Líquido verde escorre da ponta enquanto ela é puxada no arco, "
+    "prometendo dor ardente para o alvo."

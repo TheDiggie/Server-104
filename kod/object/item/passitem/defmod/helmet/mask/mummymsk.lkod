@@ -2,3 +2,6 @@ MummyMask_name_rsc = de "Die Mumienmaske"
 MummyMask_desc_rsc = de \
    "Entweder ist dies eine Mumienmaske oder Bandagen, die Dich vor dem Feuer "
    "von Feuerbällen schützen."
+
+MummyMask_name_rsc = pt "máscara de múmia"
+MummyMask_desc_rsc = pt "Esta é uma máscara de múmia, ou bandagens para se recuperar de queimaduras de bola de fogo."

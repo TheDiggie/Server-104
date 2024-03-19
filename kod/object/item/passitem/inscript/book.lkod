@@ -8,3 +8,11 @@ book_emote_open_rsc = de \
 book_emote_open_third_rsc = de "%s%s öffnet %s%s und geht die Seiten durch."
 book_emote_close_rsc = de "%s%s wird von Dir zufrieden wieder zugeschlagen."
 book_emote_close_third_rsc = de "%s%s schließt zufrieden %s%s."
+
+book_name_rsc = pt "livro"
+book_desc_rsc = pt "Uma capa de couro espessa liga este livro, escurecida pela idade e pelo uso.  "
+                 "Parece vir de algum tempo antigo."
+book_emote_open_rsc = pt "Tu abres %s%s e passas as páginas até encontrar uma boa página."
+book_emote_open_third_rsc = pt "%s%s abre %s%s e passa as páginas."
+book_emote_close_rsc = pt "Tu fechas %s%s com um som satisfatório."
+book_emote_close_third_rsc = pt "%s%s fecha %s%s."

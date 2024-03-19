@@ -1,2 +1,5 @@
 lightrobe_name_rsc = de "leichte Robe"
 lightrobe_desc_rsc = de "leichte Robe"
+
+lightrobe_name_rsc = pt "robes leves"
+lightrobe_desc_rsc = pt "Tecidas a partir de finos tecidos da selva, estas túnicas leves oferecem pouca proteção."

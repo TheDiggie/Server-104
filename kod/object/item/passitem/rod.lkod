@@ -17,3 +17,13 @@ rod_cannot_hold_more_rsc = de \
    "Wenn Du einen anderen Zauberstab halten würdest, würden sich die Zauber "
    "gegenseitig bekämpfen."
 rod_cant_use_yet = de "Du kannst diesen Gegenstand noch nicht benutzen."
+
+Rod_desc_rsc = pt "Você pode sentir a energia mágica pulsando através da vara."
+Rod_broken = pt "%s%s fica escuro, tendo esgotado sua última carga!"
+Rod_useless = pt "A vara deve ser recarregada antes de poder ser usada novamente."
+Rod_desc_broken_rsc = pt "Esta vara uma vez impecável está opaca e escura, e deve ser recarregada."
+Rod_success_msg = pt "A vara pulsa em sua mão."
+rod_consumes_charges_rsc = pt "  Desencadear a magia dentro consumirá %i cargas."
+rod_charges_left_rsc = pt "\n\nEsta vara tem %i cargas restantes e pode conter no máximo %i cargas."
+rod_cannot_hold_more_rsc = pt "Se você segurasse outra vara, suas magias concorrentes entrariam em conflito e explodiriam!"
+rod_cant_use_yet = pt "Você não pode usar esse item ainda."

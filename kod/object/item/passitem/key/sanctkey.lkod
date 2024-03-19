@@ -1,3 +1,6 @@
 SanctuaryKey_name_rsc = de "Der Eisenschlüssel"
 SanctuaryKey_desc_rsc = de \
    "Dies ist ein kompliziert geschmiedeter Eisenschlüssel."
+
+SanctuaryKey_name_rsc = pt "chave de ferro"
+SanctuaryKey_desc_rsc = pt "Esta é uma chave de ferro elaboradamente trabalhada."

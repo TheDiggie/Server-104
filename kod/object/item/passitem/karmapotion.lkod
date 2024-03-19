@@ -12,3 +12,12 @@ KarmaPotion_neg_desc_rsc = de \
 KarmaPotion_drink = de "Du trinkst den Trank mit einem Schluck leer."
 KarmaPotion_no_drink = de \
    "Du kannst diesen Trank nicht außerhalb einer Frenzy trinken."
+
+KarmaPotion_name_rsc = pt "Poção do Karma"
+KarmaPotion_desc_rsc = pt "Beber esta poção durante um frenesi mudará seu karma."
+KarmaPotion_pos_name_rsc = pt "Poção de Karma Positivo"
+KarmaPotion_pos_desc_rsc = pt "Beber esta poção durante um frenesi mudará seu karma para +100."
+KarmaPotion_neg_name_rsc = pt "Poção de Karma Negativo"
+KarmaPotion_neg_desc_rsc = pt "Beber esta poção durante um frenesi mudará seu karma para -100."
+KarmaPotion_drink = pt "Você bebe o conteúdo da Poção do Karma em um único gole."
+KarmaPotion_no_drink = pt "Você não pode usar esta poção quando não é um frenesi."

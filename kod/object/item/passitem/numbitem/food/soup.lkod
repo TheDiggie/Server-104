@@ -7,3 +7,10 @@ soup_disp_name = de "Der Suppentopf"
 soup_disp_desc = de \
    "Genügend heiße Suppe, um eine ganze Armee von Abenteurern satt zu kriegen."
 soup_got_one = de "Du schöpfst Dir eine Schüssel dampfender Suppe."
+
+soup_name_rsc = pt "tigela de sopa"
+soup_desc_rsc = pt "Uma tigela vaporosa de sopa, com bons pedaços de cogumelo e uma mistura de ervas."
+soup_name_plural_rsc = pt "tigelas de sopa"
+soup_disp_name = pt "caldeirão de sopa"
+soup_disp_desc = pt "Suficiente sopa quente para alimentar um exército de aventureiros."
+soup_got_one = pt "Você serve uma tigela vaporosa de sopa para si mesmo."

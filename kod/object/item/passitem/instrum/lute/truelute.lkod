@@ -4,3 +4,8 @@ TrueLute_desc_rsc = de \
    "besaß Jala eine solche Laute. Sie ist aus einem schweren ungewöhnlichen "
    "Holz gemacht und hat einen wundervollen Klang.Sie verleiht den Bardenliedern "
    "mehr Kraft und Ausdruck."
+
+TrueLute_name_rsc = pt "verdadeiro alaúde"
+TrueLute_desc_rsc = pt "Este é o alaúde mais perfeito que você já viu. Dizem que Jala mesma possuía "
+                      "um alaúde idêntico a este. É feito de uma madeira escura, estranha e pesada e tem um som mais belo. "
+                      "Este alaúde certamente confere mais potência às canções mágicas do bardo que o toca."

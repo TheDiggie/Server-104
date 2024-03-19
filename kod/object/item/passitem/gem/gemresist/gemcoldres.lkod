@@ -2,3 +2,6 @@ gem_cold_resist_name_rsc = de "Saphirträne"
 gem_cold_resist_desc_rsc = de \
    "This shard of gemstone mysteriously retains some of the celestial chill "
    "from its former home in the skies."
+
+gem_cold_resist_name_rsc = pt "lágrima de safira"
+gem_cold_resist_desc_rsc = pt "Este fragmento de pedra preciosa misteriosamente mantém um pouco do frio celestial de sua antiga casa nos céus."

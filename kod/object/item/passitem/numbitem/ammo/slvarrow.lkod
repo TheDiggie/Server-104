@@ -5,3 +5,10 @@ silver_arrow_desc_rsc = de \
    "im Kampf gegen Untote sind."
 silver_arrow_burns_you = de \
    "Der Silberpfeil bohrt sich in Dein untotes Fleisch!"
+
+silver_arrow_name_rsc = pt "setas de prata"
+silver_arrow_desc_rsc = pt \
+    "A borda afiada e limpa da ponta da seta causa ferimentos desagradáveis.  "
+    "Alguns arqueiros descobriram que essas são a escolha de nock para "
+    "batalhar contra os mortos-vivos."
+silver_arrow_burns_you = pt "A ponta da seta de prata queima sua carne de morto-vivo!"

@@ -1,2 +1,6 @@
 bardletter_name_rsc = de "Der Pergamentbogen"
 bardletter_desc_written_rsc = de "%q"
+
+bardletter_name_rsc = pt "pedaço de pergaminho"
+bardletter_desc_written_rsc = pt \
+    "%q"

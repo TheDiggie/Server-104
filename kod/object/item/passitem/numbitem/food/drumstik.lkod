@@ -8,3 +8,16 @@ drumstick_disp_desc = de \
    "des Geflügels von Meridian. Gut für uns alle, denn dann bleibt mehr von "
    "den einfachen Hühnerbeinchen für uns übrig!"
 drumstick_name_plural_rsc = de "Hühnerbeinchen"
+
+drumstick_name_rsc = pt "coxa de frango"
+drumstick_desc_rsc = pt \
+    "A deliciosa coxa de uma grande ave do sul, "
+    "coberta levemente com algumas migalhas crocantes e "
+    "assada até ficar dourada e quente."
+drumstick_disp_name = pt "prato de coxas de frango"
+drumstick_disp_desc = pt \
+    "Alguns dizem que o prato favorito de Frisconar são as carnes brancas e macias "
+    "das espécies de aves de Meridian.  "
+    "Sorte para nós, pois isso torna a suculenta coxa de frango ainda mais abundante "
+    "para o resto de nós!"
+drumstick_name_plural_rsc = pt "coxas de frango"

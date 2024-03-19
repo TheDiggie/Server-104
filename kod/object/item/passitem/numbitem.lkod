@@ -5,3 +5,8 @@ NumberItem_got_one = de \
 NumberItem_dispenser_name = de "Das magische Gerät"
 NumberItem_dispenser_desc = de \
    "Dies ist ein magisches Gerät. Es erschafft kleine Gegenstände."
+
+NumberItem_desc_rsc = pt "\n\nVocê está olhando para %i %s."
+NumberItem_got_one = pt "Faminto, você arranca %s%s de %s%s."
+NumberItem_dispenser_name = pt "criador de itens mágicos"
+NumberItem_dispenser_desc = pt "Este é um criador de itens mágicos. Ele cria coisas."

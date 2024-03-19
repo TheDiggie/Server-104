@@ -2,3 +2,6 @@ LightRobeDiscipleInsignia_name_rsc = de "Die leichte Schülerroben"
 LightRobeDiscipleInsignia_desc_rsc = de \
    "Leicht und komfortabel sind diese leichten Schülerroben. Diese Roben "
    "trägt das Zeichen von %s und gibt einen Bonus auf Sprüche dieser Schule."
+
+LightRobeDiscipleInsignia_name_rsc = pt "túnicas leves do discípulo"
+LightRobeDiscipleInsignia_desc_rsc = pt "Leves e confortáveis, essas túnicas de discípulo geralmente denotam uma dedicação fervorosa (e alguns diriam doentia) a uma escola ou outra. Essas túnicas ostentam a insígnia de %s e fornecerão bônus para magias dessa escola."

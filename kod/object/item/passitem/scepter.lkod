@@ -2,3 +2,6 @@ scepter_name_rsc = de "Das Relikt Qors"
 scepter_desc_rsc = de \
    "Das Objekt trägt die Zeichen von Qor. Eine Inschrift besagt \"Der wahre "
    "Diener wird dies zum kargen Ort bringen und meinen Namen aussprechen.\""
+
+scepter_name_rsc = pt "relíquia de Qor"
+scepter_desc_rsc = pt "Este objeto ostenta as marcas de Qor. Uma inscrição diz: \"O verdadeiro servo trará isso ao lugar árido e pronunciará meu nome.\""

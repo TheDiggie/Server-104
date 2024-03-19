@@ -2,3 +2,6 @@ DuskRatMask_name_rsc = de "Die schwarze Rattenmaske"
 DuskRatMask_desc_rsc = de \
    "Diese Maske ist die Silhouette einer der gefährlichen Staubratten. Sie erscheint "
    "geeignet, um mit Deinen Freunden verstecken zu spielen!"
+
+DuskRatMask_name_rsc = pt "máscara de rato do crepúsculo"
+DuskRatMask_desc_rsc = pt "Esta máscara é a silhueta do rato do crepúsculo venenoso. Ótimo para brincar de esconde-esconde com seus amigos!"

@@ -12,3 +12,12 @@ pants_condition_poor = de \
 pants_condition_broken = de \
    " ist mit Dreck bedeckt und zerrissen, so dass man sie nicht mehr benutzen "
    "kann."
+
+pants_name_rsc = pt "calças"
+pants_desc_rsc = pt "Estas calças cobrirão suas pernas, mas não ajudarão muito em termos de proteção."
+pants_condition_exc = pt " estão em condição imaculada."
+pants_condition_exc_mended = pt " estão em excelente condição, mas já foram remendadas antes."
+pants_condition_good = pt " estão arranhadas e ligeiramente desgastadas."
+pants_condition_med = pt " têm alguns rasgos desagradáveis."
+pants_condition_poor = pt " estão em farrapos e mal se seguram."
+pants_condition_broken = pt " estão cobertas de sujeira e rasgadas além de serem utilizáveis."

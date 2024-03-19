@@ -1,1 +1,7 @@
 gem_name_rsc = de "Der Mystische Edelstein"
+
+gem_name_rsc = pt "gema mística"
+gem_desc = pt \
+   "Esta estranha gema parece gravitar poderosamente em direção à sua armadura."
+gem_attached_rsc = pt "\nUm %s anexado adiciona um estranho efeito místico."
+gem_attach_no_sockets = pt "A %s não possui encaixes para anexar uma gema!"

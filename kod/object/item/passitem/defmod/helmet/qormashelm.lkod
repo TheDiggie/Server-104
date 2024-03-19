@@ -4,3 +4,6 @@ qormas_helm_desc_rsc = de \
    "Vorfreude darauf ein paar Monster oder Spieler zu töten um Qormas "
    "angemessen zu feiern. Selbst wenn das nicht der Fall ist zeigt er allen "
    "anderen doch Deine Feiertagslaune."
+
+qormas_helm_name_rsc = pt "capacete qormas"
+qormas_helm_desc_rsc = pt "Usar este capacete macio e fofo não oferece proteção, mas o manterá no espírito de Qormas."

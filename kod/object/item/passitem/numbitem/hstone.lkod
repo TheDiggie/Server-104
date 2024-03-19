@@ -2,3 +2,7 @@ HeartStone_name_rsc = de "Der Herzstein"
 HeartStone_desc_rsc = de \
    "Das ist ein Herzstein. Es ist ein großer Edelstein und er stammt von "
    "einem getöteten Xeochicatl."
+
+HeartStone_name_rsc = pt "pedra do coração"
+HeartStone_desc_rsc = pt \
+    "Isso é chamado de 'pedra do coração'. É uma pedra preciosa enorme retirada do corpo de um Xeochicatl caído."

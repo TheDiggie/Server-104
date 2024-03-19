@@ -2,3 +2,6 @@ playerskull_desc_rsc = de \
    "Dies ist ein verwesender Sch√§del von %q, get√∂tet von %q."
 playerskull_player_desc_rsc = de \
    "Der Sch√§del."
+
+playerskull_desc_rsc = pt "Este È o cr‚nio de %q, que foi morto por %q."
+playerskull_player_desc_rsc = pt "Um cr‚nio humano."

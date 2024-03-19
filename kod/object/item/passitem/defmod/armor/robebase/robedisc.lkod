@@ -4,3 +4,6 @@ RobeInsignia_desc_rsc = de \
    "Träger leidenschaftlich (einige sagen gar krankhaft) der einen oder anderen "
    "Schule widmen.  Diese Robe trägt das Zeichen von %s, und gibt einen "
    "Bonus auf Zaubersprüche dieser Schule."
+
+RobeInsignia_name_rsc = pt "túnicas do discípulo"
+RobeInsignia_desc_rsc = pt "Pesadas e quentes, as túnicas dos discípulos geralmente denotam uma dedicação fervorosa (e alguns diriam doentia) a uma escola ou outra. Essas túnicas ostentam a insígnia de %s e fornecerão bônus para magias dessa escola."

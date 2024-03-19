@@ -1,3 +1,6 @@
 gem_qorpower_name_rsc = de "bloodstone agate"
 gem_qorpower_desc_rsc = de \
    "This shard of gemstone glows with a sliver of unholy hunger."
+
+gem_qorpower_name_rsc = pt "ágata de pedra sangrenta"
+gem_qorpower_desc_rsc = pt "Este fragmento de pedra preciosa brilha com uma lasca de fome profana."

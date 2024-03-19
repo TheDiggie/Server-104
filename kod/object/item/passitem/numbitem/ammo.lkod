@@ -1,2 +1,5 @@
 ammo_name_rsc = de "Die Munition"
 ammo_desc_rsc = de "Dies ist ein bisschen Munition für das eine oder andere..."
+
+ammo_name_rsc = pt "munição"
+ammo_desc_rsc = pt "Este é um pedaço de munição para algo ou outro."

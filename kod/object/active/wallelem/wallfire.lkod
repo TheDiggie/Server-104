@@ -10,3 +10,12 @@ firewall_damage15 = de "Du brennst! Lösche es!"
 firewall_damage20 = de "Autsch, das brennt wirklich!"
 firewall_dissipates = de \
    "Ein kleiner Teil der Feuerwand verwandelt sich in Kälte."
+
+WallofFire_name_rsc = pt "muro de fogo"
+WallofFire_desc_rsc = pt "O muro de fogo tremula perigosamente, ameaçando tornar o dia de quem passa por ele ruim."
+firewall_damage0 = pt "Você suporta o fogo ileso."
+firewall_damage5 = pt "Você se sente um pouco tostado pelas chamas."
+firewall_damage10 = pt "Algo cheira a cabelo queimado. Espere, é você!"
+firewall_damage15 = pt "Você está pegando fogo! Apague!"
+firewall_damage20 = pt "Ai, isso realmente queimou!"
+firewall_dissipates = pt "Um pouco do firewall se dissipa no frio."

@@ -25,3 +25,17 @@ forgetpotion_lose_intellect = de \
 forgetpotion_lose_links = de \
    "Das scheußliche Elixier beraubt Dich aller Deiner Verbindungen zu magischen "
    "Energiequellen!"
+
+forgetpotion_use = pt "Você bebe a poção. Nada acontece no início, então a tontura te atinge...."
+forgetpotion_cant_use_on = pt "Você não pode servir a %s%s."
+forgetpotion_cant_drop = pt "Você deixa cair a poção no chão, e a garrafa explode em mil pedaços."
+forgetpotion_warning = pt "Ao levantar a poção até seus lábios, seus olhos avistam um rótulo de advertência, que diz: ~I'Esta poção pode ter efeitos colaterais muito sérios! Muito sérios! Não estamos brincando aqui!'"
+forgetpotion_nothing_happens = pt "A desorientação passa. Parece que nada aconteceu."
+forgetpotion_name_rsc = pt "poção do esquecimento"
+forgetpotion_desc_rsc = pt \
+   "Beber esta poção fará com que você esqueça todas as suas magias em uma determinada escola de magia. "
+   "Tenha absoluta certeza de que deseja que isso aconteça antes de bebê-la!"
+forgetpotion_forget_spell = pt "A arte de lançar '%s' escapa de sua mente!"
+forgetpotion_forget_wrong = pt "A poção maldita removeu toda a memória de '%s' de você!"
+forgetpotion_lose_intellect = pt "De repente, você se sente um pouco... mais burro..."
+forgetpotion_lose_links = pt "O elixir horrível corta todos os seus vínculos com os nós de mana!"

@@ -4,3 +4,8 @@ cookie_desc_rsc = de \
 	   "Dir läuft bei dem Anblick schon das Wasser im Mund zusammen."
 cookie_name_plural_rsc = de "Cookies"
 
+cookie_name_rsc = pt "biscoito"
+cookie_desc_rsc = pt \
+    "Assado pelos deuses, este biscoito é quente e macio ao toque. "
+    "Sua boca saliva só de olhar para ele."
+cookie_name_plural_rsc = pt "biscoitos"

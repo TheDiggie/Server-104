@@ -2,3 +2,6 @@ XeoMask_name_rsc = de "Die Xeochicatlmaske"
 XeoMask_desc_rsc = de \
    "Sieht aus wie der Kopf eines gefürchteten Xeochicatl. Die tollen Zauberfähigkeiten "
    "sind nicht enthalten."
+
+XeoMask_name_rsc = pt "máscara de xeochicatl"
+XeoMask_desc_rsc = pt "Isso se parece com a cabeça de um temido Xeochicatl. Habilidade de conjuração (incluindo golpes) não incluída."

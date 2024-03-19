@@ -10,3 +10,11 @@ goblet_disp_desc = de \
 goblet_got_one = de "Du füllst Deinen Kelch mit schäumendem Bier aus dem Krug."
 goblet_use = de \
    "Dieses verwässerte und armselige Bier ist dünn und nichtssagend."
+
+goblet_name_rsc = pt "cálice de cerveja"
+goblet_desc_rsc = pt "Cerveja dos barris privados do Duque, fabricada de acordo com suas especificações rigorosas."
+goblet_name_plural_rsc = pt "cálices de cerveja"
+goblet_disp_name = pt "jarro de cerveja"
+goblet_disp_desc = pt "Um jarro de metal pesado, cheio até a borda com cerveja fresca das adegas do Duque, e servido à temperatura ambiente para máxima potência."
+goblet_got_one = pt "Você enche seu cálice com cerveja espumante do jarro."
+goblet_use = pt "Essa cerveja aguada e medíocre é fraca e pouco impressionante."

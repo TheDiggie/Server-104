@@ -4,3 +4,10 @@ nerudite_arrow_desc_rsc = de \
    "die normalen Pfeilspitzen. Sollte jedoch der kleine grüne Stein durch "
    "den Aufschlag zerbrechen, kann sich das als fatal für das Opfer erweisen."
 nerudite_arrow_explodes = de "Die Pfeilspitze aus Nerudit zerbricht!"
+
+nerudite_arrow_name_rsc = pt "setas de nerudita"
+nerudite_arrow_desc_rsc = pt \
+    "Essas pontas de seta esculpidas causam um pouco mais de dano do que as setas padrão, "
+    "mas caso a pequena pedra verde se quebre sob o impacto, poderia "
+    "ser fatal para a vítima."
+nerudite_arrow_explodes = pt "A ponta da seta de nerudita se despedaça!"

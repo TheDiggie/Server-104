@@ -1,3 +1,7 @@
 ShrunkenHeadMask_name_rsc = de "Die Schrumpfkopfmaske"
 ShrunkenHeadMask_desc_rsc = de "Bist Du sicher, dass sie passt?"
 ShrunkenHeadMask_wear_rsc = de "~IDie Maske sitzt sehr eng an Deinem Gesicht..."
+
+ShrunkenHeadMask_name_rsc = pt "máscara de cabeça encolhida"
+ShrunkenHeadMask_desc_rsc = pt "Você tem certeza de que isso vai servir?"
+ShrunkenHeadMask_wear_rsc = pt "~IA máscara parece muito apertada no seu rosto."

@@ -10,3 +10,10 @@ helmet_condition_poor = de \
 helmet_condition_broken = de \
    " ist unbrauchbar, nachdem er durch einen mächtigen Hieb in zwei Teile "
    "gespalten worden ist."
+
+helmet_condition_exc = pt " está em condição imaculada."
+helmet_condition_exc_mended = pt " está em ótima condição, mas já foi remendado antes."
+helmet_condition_good = pt " está manchado com sangue, mas em bom estado geral."
+helmet_condition_med = pt " está marcado com as cicatrizes da batalha, mas ainda é utilizável."
+helmet_condition_poor = pt " foi amassado e desgastado quase ao ponto de quebrar."
+helmet_condition_broken = pt " está inútil, tendo sido partido ao meio por um golpe poderoso."

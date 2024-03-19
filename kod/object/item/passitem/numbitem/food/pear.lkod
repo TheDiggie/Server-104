@@ -10,3 +10,10 @@ pear_disp_desc = de \
 	 "bekannt für seine wundervollen Birnen. Einige hängen tief genug "
 	 "um sie zu pflücken."
 pear_got_one = de "Du greifst nach oben und pflückst eine Orange vom Baum."
+
+pear_name_rsc = pt "pêra"
+pear_desc_rsc = pt "Esta fruta firme e de formato estranho cabe bem na sua mão. Você não tem certeza por onde começar a mordida!"
+pear_name_plural_rsc = pt "peras"
+pear_disp_name = pt "pereira"
+pear_disp_desc = pt "Esta pereira é comum ao redor da cidade de Marion e é conhecida por suas frutas de formato estranho. Várias delas parecem estar baixas o suficiente para você colher."
+pear_got_one = pt "Você estica o braço e colhe uma pera da árvore."

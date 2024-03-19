@@ -1,3 +1,6 @@
 gem_thrust_resist_name_rsc = de "sunstone"
 gem_thrust_resist_desc_rsc = de \
    "This shard of gemstone subtly emanates a mysterious repulsive force."
+
+gem_thrust_resist_name_rsc = pt "pedra do sol"
+gem_thrust_resist_desc_rsc = pt "Este fragmento de pedra preciosa emana sutilmente uma misteriosa força repulsiva."

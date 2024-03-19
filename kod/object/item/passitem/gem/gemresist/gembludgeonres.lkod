@@ -2,3 +2,6 @@ gem_bludgeon_resist_name_rsc = de "battered tourmaline"
 gem_bludgeon_resist_desc_rsc = de \
    "This lumpy shard of gemstone has clearly seen numerous celestial collisions, "
    "but has somehow remained whole."
+
+gem_bludgeon_resist_name_rsc = pt "turmalina surrada"
+gem_bludgeon_resist_desc_rsc = pt "Este fragmento irregular de pedra preciosa claramente viu numerosas colisões celestiais, mas de alguma forma permaneceu inteiro."

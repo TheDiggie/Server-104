@@ -2,3 +2,6 @@ KriipaMask_name_rsc = de "Die Kriipamaske"
 KriipaMask_desc_rsc = de \
    "Eine Maske mit dem Bild einer wilden Kriipa. Trotzdem scheinst Du damit nicht "
    "höher springen zu können."
+
+KriipaMask_name_rsc = pt "máscara de kriipa"
+KriipaMask_desc_rsc = pt "Uma máscara com a imagem da feroz Kriipa. No entanto, ela não parece fazer você pular mais alto."

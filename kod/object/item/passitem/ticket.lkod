@@ -1,0 +1,3 @@
+ticket_name_rsc = pt "Bilhete"
+ticket_desc_rsc = pt "Um bilhete para algum lugar."
+ticket_used_desc_rsc = pt "Este bilhete pode ser entregue a um NPC em troca de um serviço ou item."

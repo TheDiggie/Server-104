@@ -4,3 +4,10 @@ ice_arrow_desc_rsc = de \
    "may freeze your hand."
 ice_arrow_freezes = de \
    "The ice arrowhead explodes into a flurry of razor-sharp shards!"
+
+ice_arrow_name_rsc = pt "setas de gelo"
+ice_arrow_desc_rsc = pt \
+    "Essas setas são mais frias do que o coração de Qor; alguns "
+    "dizem que se seguradas por muito tempo, podem congelar sua mão."
+ice_arrow_freezes = pt \
+    "A ponta da seta de gelo explode em uma rajada de fragmentos afiados como navalhas!"

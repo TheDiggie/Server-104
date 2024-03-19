@@ -5,3 +5,7 @@ RiijaCharm_desc_rsc = de \
 RiijaCharm_whisper = de \
    "Eine Stimme flüstert, \"~I...der Schlüssel zum Unheilstiften ist, schlau "
    "genug zu sein, um den Folgen auszuweichen...\""
+
+RiijaCharm_name_rsc = pt "coleira emplumada"
+RiijaCharm_desc_rsc = pt "Ornamentado e extravagante, esta coleira é maravilhosa de se olhar, mas não parece ser muito divertido de usar.\n\nEstatísticas de Bônus:\n+10 Agilidade\n+4 Intelecto\n\n"
+RiijaCharm_whisper = pt "Uma voz sussurra, \"~Eu... a chave para fazer travessuras é ser inteligente o suficiente para evitar as consequências...\""
