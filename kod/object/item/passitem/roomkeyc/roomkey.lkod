@@ -10,3 +10,9 @@ RoomKey_teleport = de \
    "weißes Licht und Du befindest Dich plötzlich woanders."
 RoomKey_no_use = de \
    "Es scheint nichts in der Nähe zu sein, um den Schlüssel zu benutzen."
+
+RoomKey_name_rsc = pt "Chave do Quarto de Ouro"
+RoomKey_desc_rsc = pt "Esta chave de ouro maciço possui uma inscrição que diz:\nQuarto de %q em %s."
+RoomKey_vanishes = pt "Sua chave do quarto de ouro se dissolve em um estranho líquido dourado, depois evapora em uma névoa verde e desaparece."
+RoomKey_teleport = pt "Ao deslizar a chave na fechadura, um estranho brilho branco o envolve, e você se encontra em outro lugar."
+RoomKey_no_use = pt "Não parece haver nada nas proximidades para usar a chave."

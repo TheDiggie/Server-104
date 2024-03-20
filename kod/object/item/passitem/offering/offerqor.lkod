@@ -2,3 +2,6 @@ OfferingQor_name_rsc = de "Das Blut der Unschuldigen"
 OfferingQor_desc_rsc = de \
    "Diese Flasche mit Flüssigkeit hat eine ominöse Wirkung, die Du nur erraten "
    "kannst."
+
+OfferingQor_name_rsc = pt "sangue dos inocentes"
+OfferingQor_desc_rsc = pt "Esta garrafa de líquido tem algum propósito sombrio que você só pode adivinhar."

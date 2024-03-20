@@ -2,3 +2,6 @@ DispellIllusionScroll_label_name_rsc = de "Schriftrolle der Illusionsauflösung"
 DispellIllusionScroll_desc_rsc = de \
    "Diese Schriftrolle ist mit einer unleserlichen, krakeligen, mystischen "
    "Schrift bedeckt."
+
+DispellIllusionScroll_label_name_rsc = pt "pergaminho de dissipação"
+DispellIllusionScroll_desc_rsc = pt "Este pergaminho está coberto com escrita mística indecifrável em uma mão esguia."

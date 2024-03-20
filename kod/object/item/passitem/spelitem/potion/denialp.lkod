@@ -7,3 +7,8 @@ DenialPotion_desc_rsc = de \
 DenialPotion_bad_desc_rsc = de \
    "This flask, formed from clear glass and topped by a cork, contains a "
    "thick, red fluid.  A slight whiff of it is enough to turn your stomach."
+
+DenialPotion_fake_name_rsc = pt "frasco"
+DenialPotion_name_rsc = pt "poção de negação"
+DenialPotion_desc_rsc = pt "Este frasco, formado por vidro transparente e com uma rolha, contém um fluido azul espesso. Parece fresco e refrescante, mas algo sobre ele parece estranho."
+DenialPotion_bad_desc_rsc = pt "Este frasco, formado por vidro transparente e com uma rolha, contém um fluido vermelho espesso. Um leve cheiro é o suficiente para revirar seu estômago."

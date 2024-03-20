@@ -25,7 +25,6 @@ resources:
    BaitPotion_bad_desc_rsc = "This is a glass vial of slightly cloudy colored liquid.  "
                         "It smells sort of sickly-sweet."
 
-
 classvars:
 
    vrLabelName = BaitPotion_name_rsc

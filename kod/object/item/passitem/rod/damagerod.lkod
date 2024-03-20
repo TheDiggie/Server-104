@@ -4,3 +4,7 @@ DamageRod_desc_rsc = de \
    "Zauber für 5 Sekunden verbessert wird"
 DamageRod_success_rsc = de \
    "Der Stab lodert in deiner Hand, und du bemerkst wie dich eine Kraft durchringt.!"
+
+DamageRod_name_rsc = pt "Vara de Poder"
+DamageRod_desc_rsc = pt "Esta vara é quente ao toque. Runas inscritas detalham o processo pelo qual as magias dentro dela melhoram os ataques do usuário por até cinco segundos."
+DamageRod_success_rsc = pt "A vara brilha em sua mão, e você sente magias furiosas fluírem através de você!"

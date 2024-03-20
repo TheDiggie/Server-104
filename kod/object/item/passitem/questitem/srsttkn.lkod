@@ -12,3 +12,8 @@ StatsResetToken_desc_append = de \
 StatsResetToken_desc_noTrade = de \
    "\n\nMit diesem altertümliche Schmuckstück kann nicht gehandelt, oder gar "
    "weggeworfen werden."
+
+StatsResetToken_name_rsc = pt "Relíquia Ancestral"
+StatsResetToken_desc_rsc = pt "Esta é uma Relíquia dos Anciões, diz-se que foi entregue a eles pelos Deuses. A lenda afirma que estas Relíquias Antigas contêm o poder de mudar a própria estrutura de um Mortal. Certamente, os Anciões recompensariam grandemente quem lhes devolvesse esta Relíquia. Leve esta relíquia antiga para Ran er'Hoth em Marion, Afiera D'xor em Jasper, Rodric d'Stane em Raza ou a Sacerdotisa dos Ossos em Ko'catan e eles o ajudarão a mudar suas estatísticas."
+StatsResetToken_desc_append = pt "\n\nEsta relíquia expirará em %i dias.%s"
+StatsResetToken_desc_noTrade = pt "\n\nEsta relíquia não pode ser negociada nem descartada."

@@ -4,3 +4,7 @@ fairywing_desc_rsc = de \
    "Er ist extrem selten und man sagt, er sei eine sehr mächtige magische "
    "Zutat."
 fairywing_name_plural_rsc = de "Feenflügel"
+
+fairywing_name_rsc = pt "asa de fada"
+fairywing_desc_rsc = pt "Esta pequena asa de fada é tão delicada quanto pergaminho envelhecido. É extremamente rara e dizem ser um poderoso reagente mágico."
+fairywing_name_plural_rsc = pt "asas de fada"

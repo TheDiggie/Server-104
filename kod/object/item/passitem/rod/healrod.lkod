@@ -6,3 +6,7 @@ healWand_desc_rsc = de \
 healWand_success_rsc = de \
    "Der Zauberstab pulsiert einmal in Deiner Hand und regneriert ~B~g%d~n "
    "Lebenspunkte."
+
+healWand_name_rsc = pt "Vara de Cura"
+healWand_desc_rsc = pt "Esta vara é quase que comicamente decorada por gemas claramente falsas. Ainda assim, a vara emite um zumbido quase inaudível, e quando você coloca a mão sobre ela, está quente ao toque."
+healWand_success_rsc = pt "A vara pulsa uma vez em sua mão, restaurando ~B~g%d~n de saúde."

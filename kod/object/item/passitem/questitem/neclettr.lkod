@@ -3,3 +3,6 @@ NecromancerLetter_desc_rsc = de \
    "Diese Rolle ist durch eine unheimliche, spinnengleiche Schrift verschlüsselt, "
    "geschrieben in einer unidentifizierbaren Sprache, wenn es denn überhaupt "
    "eine Sprache ist."
+
+NecromancerLetter_name_rsc = pt "pergaminho sinistro"
+NecromancerLetter_desc_rsc = pt "Este pergaminho está coberto com uma sinistra e escura escrita em uma linguagem não identificável, se é que é uma linguagem."

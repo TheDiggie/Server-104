@@ -5,3 +5,7 @@ ShadowFormPotion_desc_rsc = de \
 ShadowFormPotion_bad_desc_rsc = de \
    "Dies ist eine Phiole mit einer dunklen, milchigen Flüssigkeit. Nur ein "
    "Hauch davon genügt, um Dir den Magen umzudrehen."
+
+ShadowFormPotion_name_rsc = pt "poção de forma sombria"
+ShadowFormPotion_desc_rsc = pt "Este é um frasco de vidro de líquido colorido. Cheira a uma mistura de alcaçuz e almíscar."
+ShadowFormPotion_bad_desc_rsc = pt "Este é um frasco de vidro de líquido colorido escuro e turvo. Um leve cheiro é o suficiente para revirar seu estômago."

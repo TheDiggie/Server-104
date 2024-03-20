@@ -3,3 +3,6 @@ SkyHeartStone_desc_rsc = de \
    "Das ist ein Herzstein. Es ist ein großer himmelblauer Edelstein und er "
    "stammt von einem getöteten Ve'Xeochicatl. Der Herzstein fühlt sich sehr "
    "leicht in Deiner Hand an. Die Verwendung dieses Edelsteins ist unbekannt."
+
+SkyHeartStone_name_rsc = pt "pedra do coração celeste"
+SkyHeartStone_desc_rsc = pt "Isso é chamado de 'pedra do coração'. É uma enorme gema azul celeste retirada do corpo de um Ve'Xeochicatl caído. A pedra do coração parece muito leve em suas mãos. Os usos desta gema não são amplamente conhecidos."

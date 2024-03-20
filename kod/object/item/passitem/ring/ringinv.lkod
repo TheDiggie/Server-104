@@ -12,3 +12,10 @@ ringinvisibility_already_invisible_rsc = de \
    "Du kannst den Ring der Unsichtbarkeit nicht einsetzen, da Du bereits "
    "unsichtbar bist."
 ringinvisibility_cant = de "Du hast nicht das passende Karma, um diesen Ring zu benutzen."
+
+ringinvisibility_name_rsc = pt "Anel da Invisibilidade"
+ringinvisibility_desc_rsc = pt "Este anel possui estranhas marcações e parece cintilar, tornando difícil ver claramente."
+ringinvisibility_use = pt "Sua forma física cintila e então desaparece por completo."
+ringinvisibility_dead_rsc = pt "Seu anel de invisibilidade esfria, tendo esgotado sua energia mágica."
+ringinvisibility_already_invisible_rsc = pt "Você não pode usar o anel de invisibilidade porque já está invisível."
+ringinvisibility_cant = pt "Você não é vil o suficiente para usar o anel."

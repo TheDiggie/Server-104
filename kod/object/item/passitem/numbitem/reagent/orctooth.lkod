@@ -3,3 +3,7 @@ orctooth_desc_rsc = de \
    "Dieser gelbliche Zahn ist fast drei Zentimeter lang. Kleine Stückchen "
    "Fleisch hängen an seiner Wurzel."
 orctooth_name_plural_rsc = de "Orkzähne"
+
+orctooth_name_rsc = pt "dente de orc"
+orctooth_desc_rsc = pt "Este canino amarelado tem quase quatro polegadas de comprimento.  Pedaços de carne seca grudam em sua base."
+orctooth_name_plural_rsc = pt "dentes de orc"

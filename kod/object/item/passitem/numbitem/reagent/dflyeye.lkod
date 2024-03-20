@@ -3,3 +3,7 @@ DragonflyEye_desc_rsc = de \
    "Diese Augen, die einst einer Drachenfliege gehörten, sind ungewöhnliche, "
    "doch sehr begehrte magische Kostbarkeiten."
 DragonflyEye_name_plural_rsc = de "Drachenfliegenaugen"
+
+DragonflyEye_name_rsc = pt "olho de libélula"
+DragonflyEye_desc_rsc = pt "Antigamente pertencentes a uma libélula, esses olhos são incomuns, mas muito desejados como iguaria mágica."
+DragonflyEye_name_plural_rsc = pt "olhos de libélula"

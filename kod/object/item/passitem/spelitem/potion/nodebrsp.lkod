@@ -12,3 +12,7 @@ NodeBurstPotion_bad_desc_rsc = de \
    "einen extrem beißenden Geruch; ein einziger Schnupperer reicht, um Dich "
    "würgen zu lassen. Du tust gut daran, dass Warnschild zu beachten und "
    "es zu vermeiden, aus der Flasche zu trinken."
+
+NodeBurstPotion_name_rsc = pt "elixir pungente"
+NodeBurstPotion_desc_rsc = pt "Este é um frasco de vidro de líquido colorido. Tem um odor extremamente pungente; uma cheirada é suficiente para deixar sua cabeça girando. Não surpreendentemente, possui um grande rótulo de aviso anexado a ele. Aparentemente, este estranho elixir tem o poder de abrir todos os seus elos de nódulo de mana ao máximo, fornecendo-lhe um explosão instantânea de mana, mas permanentemente cortando um elo de nódulo."
+NodeBurstPotion_bad_desc_rsc = pt "Este é um frasco de vidro de líquido colorido ligeiramente turvo. Tem um odor extremamente pungente e acre; uma cheirada é quase suficiente para fazê-lo desmaiar. Você seria bem aconselhado a prestar atenção ao grande rótulo de aviso e evitar bebê-lo."

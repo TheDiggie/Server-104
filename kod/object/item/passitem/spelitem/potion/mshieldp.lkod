@@ -5,3 +5,7 @@ MagicShieldPotion_desc_rsc = de \
 MagicShieldPotion_bad_desc_rsc = de \
    "Dies ist eine Glasphiole mit einer leicht trüben Flüssigkeit. Nur ein "
    "Hauch davon genügt, um Dir den Magen umzudrehen."
+
+MagicShieldPotion_name_rsc = pt "poção de proteção"
+MagicShieldPotion_desc_rsc = pt "Este é um frasco de vidro de líquido colorido. Cheira fresco, limpo e refrescante."
+MagicShieldPotion_bad_desc_rsc = pt "Este é um frasco de vidro de líquido colorido ligeiramente turvo. Um leve cheiro é o suficiente para revirar seu estômago."

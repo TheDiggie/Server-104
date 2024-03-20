@@ -5,3 +5,7 @@ ResistAcidPotion_desc_rsc = de \
 ResistAcidPotion_bad_desc_rsc = de \
    "Dies ist eine Glasphiole mit einer leicht trüben Flüssigkeit. Nur ein "
    "Hauch davon genügt, um Dir den Magen umzudrehen."
+
+ResistAcidPotion_name_rsc = pt "poção de resistência a ácido"
+ResistAcidPotion_desc_rsc = pt "Este é um frasco de vidro de líquido colorido. Cheira fresco, limpo e refrescante."
+ResistAcidPotion_bad_desc_rsc = pt "Este é um frasco de vidro de líquido colorido ligeiramente turvo. Um leve cheiro é o suficiente para revirar seu estômago."

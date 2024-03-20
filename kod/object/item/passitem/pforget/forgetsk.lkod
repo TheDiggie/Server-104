@@ -5,3 +5,7 @@ forgetpotionskills_forget_skill = de \
    "'%s' wird aus Deinen Erinnerungen gelöscht."
 forgetpotionskills_vulnerable = de \
    "Du fühlst Dich plötzlich leichter verwundbar!"
+
+forgetpotionskills_desc_rsc = pt "Beber esta poção faz com que uma pessoa esqueça todas as habilidades que possui.\n\nPode ter efeitos colaterais muito graves."
+forgetpotionskills_forget_skill = pt "A arte de '%s' escapa da sua mente!"
+forgetpotionskills_vulnerable = pt "De repente, você se sente mais vulnerável!"

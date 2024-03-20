@@ -2,3 +2,6 @@ ringsignet_name_rsc = de "Der Siegel-Ring"
 ringsignet_desc_rsc = de \
    "Obwohl dieser Ring dreckig und abgenutzt ist, kannst Du den Namen von %s "
    "erkennen. Sicherlich würde man seine Rückgabe zu schätzen wissen."
+
+ringsignet_name_rsc = pt "Anel de Sinal"
+ringsignet_desc_rsc = pt "Este anel está desgastado e sujo, mas você consegue identificar o brasão da família de %s. Certamente, seu retorno seria apreciado."

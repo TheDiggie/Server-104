@@ -2,3 +2,7 @@ purplemushroom_name_rsc = de "Der Lila Pilz"
 purplemushroom_desc_rsc = de \
    "Diese magischen Pilze lassen Deine Hände durch ihre Energie zittern."
 purplemushroom_name_plural_rsc = de "Lila Pilze"
+
+purplemushroom_name_rsc = pt "cogumelo roxo"
+purplemushroom_desc_rsc = pt "Esses cogumelos mágicos fazem sua mão formigar com energia mágica."
+purplemushroom_name_plural_rsc = pt "cogumelos roxos"

@@ -3,3 +3,6 @@ RecipeScroll_desc_rsc = de \
    "Dies ist das Rezept für etwas, das nach einem ziemlich harten Getränk "
    "aussieht. An Zutaten enthält es Gift von einem Skorpion, Trollgalle und "
    "das Blut von einem gefallenen Engel. Sicherlich nichts für Feiglinge!"
+
+RecipeScroll_name_rsc = pt "Receita para um Anão Atrofiado"
+RecipeScroll_desc_rsc = pt "Esta é uma receita para o que parece ser uma bebida muito forte. A lista de ingredientes inclui veneno de escorpião, bile de troll e icor de anjo negro. Certamente não é para os fracos de coração!"

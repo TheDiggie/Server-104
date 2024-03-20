@@ -12,3 +12,10 @@ ringoflethargy_try_unuse_rsc = de \
 ringoflethargy_unuse_rsc = de \
    "Der Ring springt mit eigener Kraft von Deinem Finger. Luft füllt Deine "
    "Lungen! Endlich kannst Du wieder frei atmen!"
+
+ringoflethargy_name_rsc = pt "Anel da Letargia"
+ringoflethargy_desc_rsc = pt "O anel parece perigoso mesmo daqui. Talvez você não deva usá-lo."
+ringoflethargy_desc_used_rsc = pt "O anel parece pulsar em seu dedo - quase como se estivesse se alimentando."
+ringoflethargy_use_rsc = pt "Depois de colocar o anel, você se sente esgotado e sem fôlego."
+ringoflethargy_try_unuse_rsc = pt "Ao remover o anel, você sente repentinamente sua força esvair-se de seu corpo! Involuntariamente, você coloca o anel de volta - você está ligado a ele e precisa de ajuda especial para removê-lo."
+ringoflethargy_unuse_rsc = pt "O anel sai do seu dedo por vontade própria. O ar enche seus pulmões! Finalmente, você pode respirar livremente novamente!"

@@ -5,3 +5,6 @@ DressPattern_desc_rsc = de \
    "Stoffteilen, die mit Abnähern versehen und eingehalten sind und die die "
    "Verwendung eines exotischen Gewebes wie Spinnenköniginseide oder Yetifell "
    "erfordern."
+
+DressPattern_name_rsc = pt "molde de vestido"
+DressPattern_desc_rsc = pt "Este parece ser um padrão para algum tipo de vestido elaborado. A versão mais complicada é costurada com mais de duas mil peças separadas de tecido, delicadamente pregueadas e franzidas, e requer o uso de tecidos exóticos como seda de aranha rainha e pele de yeti."

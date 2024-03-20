@@ -3,3 +3,7 @@ sapphire_desc_rsc = de \
    "Dieser große, schwere Saphir wird am Markt einen guten Preis erzielen. "
    "Er strahlt in einem warmen, magischen Licht."
 sapphire_name_plural_rsc = de "Saphire"
+
+sapphire_name_rsc = pt "safira"
+sapphire_desc_rsc = pt "Esta safira grande e pesada renderá um bom preço no mercado. Tem um brilho mágico e caloroso."
+sapphire_name_plural_rsc = pt "safiras"

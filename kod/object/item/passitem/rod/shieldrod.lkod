@@ -3,3 +3,7 @@ ShieldRod_desc_rsc = de \
    "Dieser Stab verhindert nahezu jeden Schaden für 5 Sekunden"
 ShieldRod_success_rsc = de \
    "Du fühlst dich magisch geschützt vor allen Angriffen!"
+
+ShieldRod_name_rsc = pt "Vara de Proteção"
+ShieldRod_desc_rsc = pt "Esta vara zumbi com poder. Runas inscritas detalham o processo pelo qual as magias dentro dela protegem o usuário de quase todo dano por cinco segundos."
+ShieldRod_success_rsc = pt "A vara brilha em sua mão, e você sente magias protetoras te envolverem!"

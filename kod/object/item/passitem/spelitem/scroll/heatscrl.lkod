@@ -2,3 +2,6 @@ HeatScroll_label_name_rsc = de "Schriftrolle der Hitze"
 HeatScroll_desc_rsc = de \
    "Diese Schriftrolle ist mit einer unleserlichen, krakeligen, mystischen "
    "Schrift bedeckt."
+
+HeatScroll_label_name_rsc = pt "pergaminho do calor"
+HeatScroll_desc_rsc = pt "Este pergaminho está coberto com escrita mística indecifrável em uma mão esguia."

@@ -2,3 +2,7 @@ yellowmushroom_name_rsc = de "Der Gelbe Pilz"
 yellowmushroom_desc_rsc = de \
    "Dieser magische Pilz hat eine elektrische Aura um sich."
 yellowmushroom_name_plural_rsc = de "Gelbe Pilze"
+
+yellowmushroom_name_rsc = pt "cogumelo amarelo"
+yellowmushroom_desc_rsc = pt "Esses cogumelos mágicos projetam uma aura de eletricidade formigante."
+yellowmushroom_name_plural_rsc = pt "cogumelos amarelos"

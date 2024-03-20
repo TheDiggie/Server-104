@@ -5,3 +5,7 @@ rainbowfern_desc_rsc = de \
    "Jetzt plündern dilletantische Kräuterkundige den Wald auf der Suche nach "
    "seinen Vorteilen. "
 rainbowfern_name_plural_rsc = de "Regenbogenfarne"
+
+rainbowfern_name_rsc = pt "samambaia arco-íris"
+rainbowfern_desc_rsc = pt "Esta planta da selva era uma vez tão comum quanto as ervas daninhas por toda a Selva de Koniman, até que sua força como um reagente de feitiço foi descoberta. Agora, herbologistas amadores saqueiam a selva em busca de seus benefícios."
+rainbowfern_name_plural_rsc = pt "samambaias arco-íris"

@@ -14,3 +14,14 @@ Scroll_fails = de \
 Scroll_Sense_Failure = de \
    "Du spürst, dass Dir irgendetwas fehlt, und brichst den Zauber der Schriftrolle "
    "ab, bevor sie nutzlos verpufft."
+
+Scroll_name_rsc = pt "pergaminho"
+Scroll_label_name_rsc = pt "pergaminho genérico"
+Scroll_desc_rsc = pt "Este pergaminho está coberto com escrita mística indecifrável em uma letra aracnídea."
+scroll_append_hits = pt "\n\nEste pergaminho codifica %i %s."
+scroll_hits_plural = pt "incantações místicas"
+scroll_hits_singular = pt "incantação mística"
+scroll_append_spellpower = pt "  O script rúnico tem em média %i de poder mágico."
+Scroll_Broken = pt "O pergaminho queima e se desfaz em suas mãos, se desfazendo em cinzas."
+Scroll_fails = pt "Você termina de ler o pergaminho, mas nada acontece."
+Scroll_Sense_Failure = pt "Você sente que algo está errado e aborta o lançamento a tempo de evitar que o pergaminho falhe."

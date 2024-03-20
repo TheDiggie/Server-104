@@ -4,3 +4,7 @@ vampireRod_desc_rsc = de \
    "Stab nicht in einem sicheren Raum wieder aufgefüllt werden kann, sondern "
    "nur von guten Seelen im Kampf"
 vampireRod_success_rsc = de "Muuuuhahahaha, das tut gut!!"
+
+vampireRod_name_rsc = pt "Vara de Choque Vampírico"
+vampireRod_desc_rsc = pt "Esta vara antiga é fria ao toque. Sua superfície escura e lisa parece atrair toda a força vital ao seu redor. Você sente que esta vara não pode ser carregada por lugares seguros e, em vez disso, é alimentada pela energia de almas boas abatidas em batalha."
+vampireRod_success_rsc = pt "Você treme incontrolavelmente enquanto consome alegremente fragmentos de energia da alma crua! Sua festa negra escurece seu karma."

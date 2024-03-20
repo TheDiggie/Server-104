@@ -2,3 +2,7 @@ cyanmushroom_name_rsc = de "Der Hellblaue Pilz"
 cyanmushroom_desc_rsc = de \
    "Dieser magische Pilz hat eine auffrischende Wirkung."
 cyanmushroom_name_plural_rsc = de "Hellblaue Pilze"
+
+cyanmushroom_name_rsc = pt "cogumelo ciano"
+cyanmushroom_desc_rsc = pt "Esses cogumelos mágicos irradiam um estranho e revigorante poder."
+cyanmushroom_name_plural_rsc = pt "cogumelos ciano"

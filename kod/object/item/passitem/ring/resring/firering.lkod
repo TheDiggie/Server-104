@@ -7,3 +7,8 @@ FireRing_use_rsc = de \
    "mildern."
 FireRing_dead_rsc = de \
    "Der Ring beginnt zu zischen und zu rauchen und löst sich in Luft auf!"
+
+FireRing_name_rsc = pt "Anel de Resistência ao Fogo"
+FireRing_desc_rsc = pt "Este anel é frio ao toque. Runas mágicas estão inscritas em sua superfície interna."
+FireRing_use_rsc = pt "Você sente o anel funcionando. Até o calor do sol parece diminuído."
+FireRing_dead_rsc = pt "O anel começa a chiar e soltar fumaça e então evapora no ar!"

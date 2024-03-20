@@ -2,3 +2,6 @@ OfferingShalille_name_rsc = de "Die Tränen eines Neugeborenen"
 OfferingShalille_desc_rsc = de \
    "Diese Flasche mit Flüssigkeit hat eine ominöse Wirkung, die Du nur erraten "
    "kannst."
+
+OfferingShalille_name_rsc = pt "lágrimas de um recém-nascido"
+OfferingShalille_desc_rsc = pt "Esta garrafa de líquido tem algum propósito sombrio que você só pode adivinhar."

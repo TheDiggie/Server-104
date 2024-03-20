@@ -4,3 +4,7 @@ entrootberry_desc_rsc = de \
    "an den Wurzeln von Waldschraten. Sie schmecken bitter und kalkig und "
    "sind völlig ungenießbar."
 entrootberry_name_plural_rsc = de "Wurzelknollen"
+
+entrootberry_name_rsc = pt "bagas de raiz de ent"
+entrootberry_desc_rsc = pt "Essas 'bagas' na verdade não são bagas, mas sim protuberâncias escuras, porém coloridas, que às vezes crescem nas raízes das árvores vivas. Apesar do nome, são amargas, com textura farinhenta e, em última análise, não comestíveis."
+entrootberry_name_plural_rsc = pt "bagas de raiz de ent"

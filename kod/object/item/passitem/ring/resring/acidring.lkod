@@ -7,3 +7,8 @@ AcidRing_use_rsc = de \
    "an."
 AcidRing_dead_rsc = de \
    "Der Ring beginnt zu brutzeln und löst sich von Deinem Finger."
+
+AcidRing_name_rsc = pt "Anel de Resistência a Ácido"
+AcidRing_desc_rsc = pt "Este anel é estranho ao toque. Runas mágicas estão gravadas em sua superfície interna."
+AcidRing_use_rsc = pt "Você sente o anel funcionando. Sua pele parece seca e gizenta."
+AcidRing_dead_rsc = pt "O anel começa a chiar e rapidamente derrete do seu dedo!"

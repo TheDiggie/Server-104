@@ -14,3 +14,12 @@ Potion_sell_info = de \
    "Nimm diesen Trank sehr bald, Schätzchen! Denn er wird schnell schlecht."
 Potion_has_karma_requirement = de \
    "\n\nBevor du den Trank zu Dir nimmst, sei sicher das du auch das passende Karma dafür hast."
+
+Potion_name_rsc = pt "poção"
+Potion_label_name_rsc = pt "poção genérica"
+Potion_desc_rsc = pt "Este é um frasco de vidro de líquido colorido."
+Potion_bad_desc_rsc = pt "Este é um frasco de vidro de líquido colorido ligeiramente turvo. Um leve cheiro é o suficiente para revirar seu estômago."
+Potion_broken = pt "Você bebe o conteúdo do frasco de uma só vez."
+Potion_bad_drink = pt "Você engole com dificuldade o conteúdo de gosto horrível do frasco, percebendo quase imediatamente que foi uma ideia muito ruim. O tempo fez com que ele azedasse."
+Potion_sell_info = pt "Certifique-se de beber esta poção logo, querido, elas estragam bastante rápido."
+Potion_has_karma_requirement = pt "\n\nAntes de beber, certifique-se de ter karma suficiente para lançar o feitiço contido."

@@ -1,2 +1,5 @@
 SpellWand_name_rsc = de "Der Zauberstab"
 SpellWand_desc_rsc = de "Magische Energien umströmen diesen dünnen Stab."
+
+SpellWand_name_rsc = pt "Vara de Feitiço"
+SpellWand_desc_rsc = pt "Energia mágica crepita ao redor desta vara esguia. Ela contém um feitiço de encantamento pessoal, mas você percebe que este tipo de vara só pode ser carregado pela energia de monstros abatidos."

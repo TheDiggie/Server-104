@@ -30,7 +30,6 @@ resources:
                         "out.  You would be well advised to heed the large warning label and avoid drinking "
                         "it."
 
-
 classvars:
 
    vrLabelName = NodeBurstPotion_name_rsc

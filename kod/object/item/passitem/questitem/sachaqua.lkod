@@ -4,3 +4,7 @@ Sacchaqua_desc_rsc = de \
    "Diese kleine Phiole ist mit einer kristallinen Flüssigkeit gefüllt. Eine "
    "schnelle Probe ergibt, dass es sich um nichts anderes als Zuckerwasser "
    "handelt."
+
+Sacchaqua_name_rsc = pt "Frasco de Sacchaqua"
+Sacchaqua_name_plural_rsc = pt "Frascos de Sacchaqua"
+Sacchaqua_desc_rsc = pt "Este pequeno frasco está cheio de líquido cristalizado. Um rápido gole revela que o conteúdo não passa de água açucarada."

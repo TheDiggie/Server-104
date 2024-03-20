@@ -2,3 +2,6 @@ TaxLetter_name_rsc = de "Strafsteuer-Bescheid"
 TaxLetter_desc_rsc = de \
    "Du bist sehr froh, dass dieser knappe, scharfe Brief nicht an Dich adressiert "
    "ist."
+
+TaxLetter_name_rsc = pt "aviso de impostos em atraso"
+TaxLetter_desc_rsc = pt "Você está muito feliz por esta carta concisa e habilmente escrita não ser endereçada a você."

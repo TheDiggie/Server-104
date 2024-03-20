@@ -14,3 +14,10 @@ PurifyPotion_bad_drink = de \
    "Du stürzt den faulig schmeckenden Inhalt der Phiole herunter und bemerkst "
    "sofort, dass das eine ziemlich schlechte Idee war. Mit der Zeit ist er "
    "sauer geworden."
+
+PurifyPotion_name_rsc = pt "poção de purificação"
+PurifyPotion_desc_rsc = pt "Este é um frasco de vidro de líquido colorido. Cheira fresco, limpo e refrescante."
+PurifyPotion_bad_desc_rsc = pt "Este é um frasco de vidro de líquido colorido ligeiramente turvo. Um leve cheiro é o suficiente para revirar seu estômago."
+PurifyPotion_drink = pt "Você bebe o conteúdo do frasco em um único gole."
+PurifyPotion_worked = pt "Quase imediatamente, você pode sentir o poder calmante de Shal'ille se espalhando suavemente do seu estômago para fora, limpando sua alma de todas as influências mágicas."
+PurifyPotion_bad_drink = pt "Você engole o conteúdo de sabor horrível do frasco, percebendo quase imediatamente que isso foi uma ideia bem ruim. O tempo fez com que azedasse."

@@ -3,3 +3,7 @@ AphrodesiacPotion_name_plural_rsc = de "Fläschchen mit Parfüm"
 AphrodesiacPotion_desc_rsc = de \
    "Ein Schluck von dieser modrig riechenden Flüssigkeit reicht, "
    "um ein warmes, kribbelndes Gefühl auszulösen."
+
+AphrodesiacPotion_name_rsc = pt "frasco de perfume"
+AphrodesiacPotion_name_plural_rsc = pt "frascos de perfume"
+AphrodesiacPotion_desc_rsc = pt "Um cheiro desta fluído de aroma musky é o suficiente para te dar uma sensação quente e reconfortante."

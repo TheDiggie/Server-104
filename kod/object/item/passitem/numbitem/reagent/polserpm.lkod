@@ -5,3 +5,7 @@ PolishedSeraphym_desc_rsc = de \
    "sie in eine ewige Hölle aus Schmerz und Agonie zu verdammen. Man sollte jedoch dazu sagen, "
    "dass \"sie\" komplette Idioten sind, die keine Ahnung von Magie haben."
 PolishedSeraphym_name_plural_rsc = de "geschliffene Seraph"
+
+PolishedSeraphym_name_rsc = pt "serafim polido"
+PolishedSeraphym_desc_rsc = pt "Dizem que um gema de serafim perfeita pode ser usada para capturar as almas de seus inimigos derrotados, condenando-os a um inferno eterno de tortura e agonia. No entanto, deve ser observado que \"eles\" são completos idiotas que não sabem nada sobre magia."
+PolishedSeraphym_name_plural_rsc = pt "serafins polidos"

@@ -17,6 +17,7 @@ constants:
 resources:
 
    include lablwand.lkod
+   
    LabeledWand_name0_rsc = "magical brushless broom"
    LabeledWand_name1_rsc = "wand of sparks"
    LabeledWand_name2_rsc = "rod of soup stirring"

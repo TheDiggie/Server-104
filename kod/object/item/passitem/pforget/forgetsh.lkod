@@ -2,3 +2,5 @@ forgetpotionShalille_desc_rsc = de \
    "Dieses höchst erfrischend aussehende Gebräu wird Deine Kenntnisse in "
    "der Schule von Sha-Lill restlos auslöschen.Es sei jedoch vor eventuellen "
    "Nebenwirkungen gewarnt."
+
+forgetpotionShalille_desc_rsc = pt "Beber este elixir removerá todos os poderes de Shal'ille do seu grimório.\n\nPode ter efeitos colaterais muito graves."

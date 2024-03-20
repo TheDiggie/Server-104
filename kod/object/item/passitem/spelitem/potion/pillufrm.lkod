@@ -6,3 +6,8 @@ illusionaryformpotion_desc_rsc = de \
    "Dies ist ein zähflüssiger, dunkler, klebriger Trank."
 illusionaryformpotion_cant_use_on = de \
    "%s%s kann von Dir nicht getrunken werden."
+
+illusionaryformpotion_already_enchanted = pt "You are already of another form, and the potion has no effect."
+illusionaryformpotion_name_rsc = pt "poção marrom"
+illusionaryformpotion_desc_rsc = pt "This is a deep, dark, murky, chunky potion."
+illusionaryformpotion_cant_use_on = pt "You can't serve %s%s."

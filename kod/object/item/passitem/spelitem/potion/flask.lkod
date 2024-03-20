@@ -6,3 +6,9 @@ flask_desc_rsc = de \
 healer_desc_rsc = de "%sDamit wirst Du Dich besser fühlen.%s"
 healer_use = de "Du fühlst Dich besser."
 healer_cant_use_on = de "Du kannst %s%s nicht heilen."
+
+flask_name_rsc = pt "frasco"
+flask_desc_rsc = pt "Este frasco, formado por vidro transparente e com uma rolha, contém um fluido azul espesso. Parece fresco e refrescante."
+healer_desc_rsc = pt "%s\n\nIsso vai ajudar você a se sentir melhor.%s"
+healer_use = pt "Você se sente melhor."
+healer_cant_use_on = pt "Você não pode curar %s%s."

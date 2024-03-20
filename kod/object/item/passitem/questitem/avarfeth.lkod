@@ -2,3 +2,6 @@ AvarShamanFeather_name_rsc = de "Die Feder eines Avar-Schamanen"
 AvarShamanFeather_desc_rsc = de \
    "Diese ist die heile Schwanzfeder eines Avar-Schamanen. Die starken Spitzen "
    "der Feder würden hervorragende Lenkhilfen für einen Pfeilschaft abgeben."
+
+AvarShamanFeather_name_rsc = pt "pena de um xamã avar"
+AvarShamanFeather_desc_rsc = pt "Esta é uma pena de cauda não danificada de um xamã avar. As barbas fortes da pena seriam excelentes guias para o eixo de uma flecha."

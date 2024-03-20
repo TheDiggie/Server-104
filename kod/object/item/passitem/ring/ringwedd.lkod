@@ -5,3 +5,8 @@ ringwedding_one = de \
    "  Eingraviert mit magischen Runen ist der Name %q."
 ringwedding_two = de \
    "  Eingraviert mit magischen Runen sind die Namen %q und %q."
+
+ringwedding_name_rsc = pt "Anel de Casamento"
+ringwedding_desc_rsc = pt "Este é um elegante anel de ouro demonstrando o vínculo entre duas pessoas."
+ringwedding_one = pt "Inscrito com runas mágicas está o nome %q."
+ringwedding_two = pt "Inscritos com runas mágicas estão os nomes %q e %q."

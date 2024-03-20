@@ -5,3 +5,7 @@ KaraholsCursePotion_desc_rsc = de \
 KaraholsCursePotion_bad_desc_rsc = de \
    "Dies ist eine Phiole mit einer dunklen, milchigen Flüssigkeit. Nur ein "
    "Hauch davon genügt, um Dir den Magen umzudrehen."
+
+KaraholsCursePotion_name_rsc = pt "elixir maldito de Karahol"
+KaraholsCursePotion_desc_rsc = pt "Este é um frasco de vidro de líquido colorido. Cheira a uma mistura de alcaçuz e almíscar."
+KaraholsCursePotion_bad_desc_rsc = pt "Este é um frasco de vidro de líquido escuro e turvo. Um leve cheiro é o suficiente para revirar seu estômago."

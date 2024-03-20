@@ -3,3 +3,7 @@ Elderberry_desc_rsc = de \
    "Diese magischen, hellroten Beeren wachsen an dünnen Zweigen und sind "
    "sehr gehaltvoll und saftig."
 Elderberry_name_plural_rsc = de "Holunderbeeren"
+
+Elderberry_name_rsc = pt "sabugueiro"
+Elderberry_desc_rsc = pt "Essas ervas mágicas são ricas e suculentas. Bagas vermelhas brilhantes se agarram a galhos tenros."
+Elderberry_name_plural_rsc = pt "sabugueiros"

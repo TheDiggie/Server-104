@@ -5,3 +5,8 @@ ringdefense_add_rsc = de \
    "Als Du den Ring anlegst, fühlst du dich vor Angriffen besser beschützt."
 ringdefense_rem_rsc = de \
    "Als Du den Ring abnimmst, fühlst du dich verletzlicher..."
+
+ringdefense_name_rsc = pt "Anel de Defesa"
+ringdefense_desc_rsc = pt "Este é um elegante anel de ouro imbuido com magias protetoras."
+ringdefense_add_rsc = pt "Ao colocar o anel, você se sente protegido por energias radiantes."
+ringdefense_rem_rsc = pt "Ao tirar o anel do dedo, você se sente mais vulnerável..."

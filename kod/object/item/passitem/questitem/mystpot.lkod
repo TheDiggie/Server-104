@@ -3,3 +3,7 @@ MysteryPotion_desc_rsc = de \
    "Dies ist eine merkwürdige Flasche, von einer Art, die Du noch nie zuvor "
    "gesehen hast. Es sieht bestimmt nicht aus wie etwas, was Du freiwillig "
    "trinken möchtest."
+
+MysteryPotion_name_rsc = pt "poção misteriosa"
+MysteryPotion_desc_rsc = pt "Esta é uma poção estranha de um tipo que você nunca viu antes. Certamente não parece "
+"algo que você gostaria de beber voluntariamente."

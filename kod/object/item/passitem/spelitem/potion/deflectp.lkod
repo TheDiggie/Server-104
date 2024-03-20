@@ -5,3 +5,7 @@ DeflectPotion_desc_rsc = de \
 DeflectPotion_bad_desc_rsc = de \
    "Dies ist eine Glasphiole mit einer leicht trüben Flüssigkeit. Nur ein "
    "Hauch davon genügt, um Dir den Magen umzudrehen."
+
+DeflectPotion_name_rsc = pt "poção de deflexão"
+DeflectPotion_desc_rsc = pt "Este é um frasco de vidro de líquido colorido. Cheira fresco, limpo e refrescante."
+DeflectPotion_bad_desc_rsc = pt "Este é um frasco de vidro de líquido colorido ligeiramente turvo. Um leve cheiro é o suficiente para revirar seu estômago."

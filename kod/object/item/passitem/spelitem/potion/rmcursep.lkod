@@ -14,3 +14,10 @@ RemoveCursePotion_bad_drink = de \
    "Du stürzt den faulig schmeckenden Inhalt der Phiole herunter und bemerkst "
    "sofort, dass das eine ziemlich schlechte Idee war. Mit der Zeit ist er "
    "sauer geworden."
+
+RemoveCursePotion_name_rsc = pt "poção de remoção de maldição"
+RemoveCursePotion_desc_rsc = pt "Este é um frasco de vidro de líquido colorido. Cheira fresco, limpo e refrescante."
+RemoveCursePotion_bad_desc_rsc = pt "Este é um frasco de vidro de líquido colorido ligeiramente turvo. Um leve cheiro é o suficiente para revirar seu estômago."
+RemoveCursePotion_drink = pt "Você bebe o conteúdo do frasco de uma só vez."
+RemoveCursePotion_worked = pt "Quase imediatamente, você sente o poder suave de Shal'ille se espalhando do seu estômago para fora, afrouxando o domínio da maldição sobre sua alma."
+RemoveCursePotion_bad_drink = pt "Você engole com dificuldade o conteúdo de sabor horrível do frasco, percebendo quase imediatamente que isso foi uma péssima ideia. O tempo fez com que azedasse."

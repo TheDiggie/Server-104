@@ -3,3 +3,7 @@ KriipaClaw_desc_rsc = de \
    "Perfekte Kriipa-Klauen, die Waffen der gefährlichen Kriipa, sind schwer "
    "zu bekommen, doch nützlich, wenn man sie hat."
 KriipaClaw_name_plural_rsc = de "Kriipa-Klauen"
+
+KriipaClaw_name_rsc = pt "garra de kriipa"
+KriipaClaw_desc_rsc = pt "As armas dos perigosos Kriipa, garras de kriipa perfeitas são difíceis de encontrar, mas úteis para se ter por perto."
+KriipaClaw_name_plural_rsc = pt "garras de kriipa"

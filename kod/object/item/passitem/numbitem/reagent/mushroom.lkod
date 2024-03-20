@@ -1,3 +1,7 @@
 mushroom_name_rsc = de "Der Pilz"
 mushroom_desc_rsc = de "Diese Pilze sind übliche magische Zutaten."
 mushroom_name_plural_rsc = de "Pilze"
+
+mushroom_name_rsc = pt "cogumelo"
+mushroom_desc_rsc = pt "Esses cogumelos são um reagente mágico comum."
+mushroom_name_plural_rsc = pt "cogumelos"

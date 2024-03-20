@@ -3,3 +3,6 @@ BrownHeartStone_desc_rsc = de \
    "Das ist ein Herzstein. Es ist ein großer brauner Edelstein und er stammt "
    "von einem getöteten Te'Xeochicatl. Er fühlt sich wie ein normaler Stein "
    "an. Die Verwendung dieses Edelsteins ist unbekannt."
+
+BrownHeartStone_name_rsc = pt "pedra do coração marrom"
+BrownHeartStone_desc_rsc = pt "Isso é chamado de 'pedra do coração'. É uma enorme gema marrom retirada do corpo de um Te'Xeochicatl caído. Ela parece muito com uma pedra normal. Os usos desta gema não são amplamente conhecidos."

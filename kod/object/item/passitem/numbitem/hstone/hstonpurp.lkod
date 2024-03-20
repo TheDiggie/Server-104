@@ -3,3 +3,6 @@ PurpleHeartStone_desc_rsc = de \
    "Das ist ein Herzstein. Es ist ein großer lilaer Edelstein und er stammt "
    "von einem getöteten Re'Xeochicatl. Er erzittert leicht und fühlt sich "
    "kühl an. Die Verwendung dieses Edelsteins ist unbekannt."
+
+PurpleHeartStone_name_rsc = pt "pedra do coração roxa"
+PurpleHeartStone_desc_rsc = pt "Isso é chamado de 'pedra do coração'. É uma enorme gema roxa retirada do corpo de um re'Xeochicatl caído. Ela se mexe ligeiramente e é fria ao toque. Os usos desta gema não são amplamente conhecidos."

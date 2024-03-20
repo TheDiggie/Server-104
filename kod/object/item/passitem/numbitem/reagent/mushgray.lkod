@@ -1,3 +1,7 @@
 graymushroom_name_rsc = de "Der Graue Pilz"
 graymushroom_desc_rsc = de "Dieser Pilz riecht nach verrotetem Tod."
 graymushroom_name_plural_rsc = de "Graue Pilze"
+
+graymushroom_name_rsc = pt "cogumelo cinza"
+graymushroom_desc_rsc = pt "Esses cogumelos mágicos exalam cheiro de decomposição e morte."
+graymushroom_name_plural_rsc = pt "cogumelos cinza"

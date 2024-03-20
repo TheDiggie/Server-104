@@ -5,3 +5,9 @@ FireSand_desc_rsc = de \
 FireSand_name_plural_rsc = de "Feuersand"
 FireSand_name_bag = de "Beutel mit Feuersand"
 FireSand_name_bag_plural = de "Beutel mit Feuersand"
+
+FireSand_name_rsc = pt "areia de fogo"
+FireSand_desc_rsc = pt "Estranhamente quente e de cor incomum, esta areia chama sua atenção entre seus semelhantes comuns."
+FireSand_name_plural_rsc = pt "areia de fogo"
+FireSand_name_bag = pt "saco de areia de fogo"
+FireSand_name_bag_plural = pt "sacos de areia de fogo"

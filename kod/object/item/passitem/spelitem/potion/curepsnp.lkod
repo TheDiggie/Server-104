@@ -15,3 +15,10 @@ CurePoisonPotion_bad_drink = de \
    "Du stürzt den faulig schmeckenden Inhalt der Phiole herunter und bemerkst "
    "sofort, dass das eine ziemlich schlechte Idee war. Mit der Zeit ist er "
    "sauer geworden."
+
+CurePoisonPotion_name_rsc = pt "poção de cura de veneno"
+CurePoisonPotion_desc_rsc = pt "Este é um frasco de vidro de líquido colorido. Cheira fresco, limpo e refrescante."
+CurePoisonPotion_bad_desc_rsc = pt "Este é um frasco de vidro de líquido colorido ligeiramente turvo. Um leve cheiro é o suficiente para revirar seu estômago."
+CurePoisonPotion_drink = pt "Você bebe o conteúdo do frasco de uma só vez."
+CurePoisonPotion_worked = pt "Quase imediatamente, você pode sentir o poder calmante de Shal'ille se espalhando suavemente do seu estômago pelo seu corpo, limpando todas as impurezas do seu sangue."
+CurePoisonPotion_bad_drink = pt "Você engole com dificuldade o conteúdo de gosto horrível do frasco, percebendo quase imediatamente que foi uma ideia muito ruim. O tempo fez com que ele azedasse."

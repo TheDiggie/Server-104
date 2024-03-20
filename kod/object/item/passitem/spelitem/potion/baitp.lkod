@@ -5,3 +5,7 @@ BaitPotion_desc_rsc = de \
 BaitPotion_bad_desc_rsc = de \
    "Dies ist eine Glasphiole mit einer leicht trüben Flüssigkeit. Sie riecht "
    "irgendwie schwer und süß."
+
+BaitPotion_name_rsc = pt "O Molho Secreto da Viúva Qesino"
+BaitPotion_desc_rsc = pt "Este é um frasco de vidro de líquido colorido. Cheira poderosamente delicioso!"
+BaitPotion_bad_desc_rsc = pt "Este é um frasco de vidro de líquido colorido ligeiramente turvo. Cheira meio enjoativo."

@@ -6,3 +6,6 @@ ScamScroll_desc_rsc = de \
    "Schichten Geheimsprache bedeckt, die Du noch nie in Deinem Leben gesehen "
    "hast. Du versuchst aus dem Wirrwarr von Buchstaben eine Bedeutung herauszulesen, "
    "doch Du findest weder Anfang noch Ende."
+
+ScamScroll_name_rsc = pt "Documento Obfuscador"
+ScamScroll_desc_rsc = pt "As palavras 'GANHE SHILLINGS RÁPIDO' estão impressas em negrito no topo deste pergaminho (e, estranhamente, as mesmas palavras estão impressas de cabeça para baixo na parte inferior.) O restante do pergaminho é coberto por camadas e mais camadas de linguagem obscura do tipo que você nunca viu em sua vida. Por mais que tente extrair algum sentido do emaranhado de palavras, simplesmente não consegue entender nada."

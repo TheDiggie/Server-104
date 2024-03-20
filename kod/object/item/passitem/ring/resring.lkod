@@ -6,3 +6,9 @@ resistring_working_rsc = de \
    "Your resistance ring offers a surge of elemental protection!"
 resistring_attacker_rsc = de \
    "A flare of energy from %s's resistance ring counteracts your attack!"
+
+resistring_use_rsc = pt "Você coloca o anel."
+resistring_dead_rsc = pt "O anel se desintegra!"
+resistring_chargesleft_rsc = pt "Há %i cargas restantes neste anel."
+resistring_working_rsc = pt "Seu anel de resistência oferece um impulso de proteção elemental!"
+resistring_attacker_rsc = pt "Um lampejo de energia do anel de resistência de %s neutraliza seu ataque!"

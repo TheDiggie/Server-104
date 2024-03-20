@@ -2,3 +2,7 @@ MysteryWand_name_rsc = de "Mysteriöser Stab"
 MysteryWand_desc_rsc = de \
    "Dies ist ein seltsam aussehender Stab, wie Du ihn noch nie zuvor gesehen "
    "hast. Er macht keinen sehr zuverlässigen Eindruck auf Dich."
+
+MysteryWand_name_rsc = pt "varinha misteriosa"
+MysteryWand_desc_rsc = pt "Esta é uma varinha estranha de um tipo que você nunca viu antes. Não parece muito "
+"confiável para você."

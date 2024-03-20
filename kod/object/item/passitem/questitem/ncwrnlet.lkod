@@ -6,3 +6,11 @@ NecromancerWarningLetter_desc_rsc = de \
    "als Deine schlimmsten... ...keine Weisheit oder Gnade wohnt diesen Monstern "
    "inne. Da gibt es nur Hunger. Sie sind hier....hungrig, und alles, was "
    "da lebendig ist, wird zu ihrem Opfer. Sei gewarnt."
+
+NecromancerWarningLetter_name_rsc = pt "carta"
+NecromancerWarningLetter_desc_rsc = pt "Esta carta está rabiscada principalmente ilegivelmente em um script sinuoso e caótico. Você pode entender "
+"as seguintes frases entre seus delírios:\n"
+"\"...Há coisas mais antigas que o chão sobre o qual vivemos. Existem seres antigos além do seu "
+"mais selvagem...\"\n"
+"\"...não há sabedoria ou santidade nesses seres. Só há fome. Eles estão aqui.\"\n"
+"\"...famintos e toda vida é sua presa. Esteja avisado.\""

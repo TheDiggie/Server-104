@@ -3,3 +3,7 @@ darkangelfeather_desc_rsc = de \
    "Diese Feder mit einer Länge von fast dreißig Zentimetern muss wirklich "
    "von einem abscheulichen Monster stammen."
 darkangelfeather_name_plural_rsc = de "Federn eines schwarzen Engels"
+
+darkangelfeather_name_rsc = pt "pena de anjo das trevas"
+darkangelfeather_desc_rsc = pt "Esta pena, com quase um pé de comprimento, deve ter vindo de uma criatura verdadeiramente incrível."
+darkangelfeather_name_plural_rsc = pt "penas de anjo das trevas"

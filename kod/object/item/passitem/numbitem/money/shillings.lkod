@@ -3,3 +3,7 @@ Shillings_name_many_rsc = de "Schillinge"
 Shillings_desc_rsc = de \
    "Die Währung von Meridian. Das Bild einer antiken Prinzessin schmückt "
    "die Vorderseite, die Rückseite ziert das Wappen eines Apothekers."
+
+Shillings_name_one_rsc = pt "xelim"
+Shillings_name_many_rsc = pt "xelins"
+Shillings_desc_rsc = pt "A moeda de Meridian. O perfil de uma princesa antiga adorna a frente e uma pedra de alquimia o verso."

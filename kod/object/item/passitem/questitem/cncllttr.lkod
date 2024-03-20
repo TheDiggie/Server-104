@@ -3,3 +3,6 @@ CouncilLetter_desc_rsc = de \
    "Dieser amtlich aussehende Brief trägt eine Gildenwappenprägung. Du fragst "
    "Dich, was darin steht, traust Dich jedoch nicht, das Siegel zu brechen "
    "und hineinzuschauen."
+
+CouncilLetter_name_rsc = pt "carta"
+CouncilLetter_desc_rsc = pt "Esta carta com aparência oficial está gravada com um brasão dourado. Você se pergunta o que está escrito nela, mas não ousa quebrar o selo para espiar."

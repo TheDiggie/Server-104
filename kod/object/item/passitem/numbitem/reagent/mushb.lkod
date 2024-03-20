@@ -1,3 +1,7 @@
 bluemushroom_name_rsc = de "Der Blaue Pilz"
 bluemushroom_desc_rsc = de "Diese magischen Pilze pulsieren voller Energie."
 bluemushroom_name_plural_rsc = de "blaue Pilze"
+
+bluemushroom_name_rsc = pt "cogumelo azul"
+bluemushroom_desc_rsc = pt "Esses cogumelos mágicos pulsam com energia."
+bluemushroom_name_plural_rsc = pt "cogumelos azuis"

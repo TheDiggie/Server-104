@@ -5,3 +5,8 @@ ShockRing_desc_rsc = de \
 ShockRing_use_rsc = de \
    "Du spürst die Kraft des Rings und fühlst Dich wohl geschützt."
 ShockRing_dead_rsc = de "Der Ring zerspringt in einer kleinen Explosion."
+
+ShockRing_name_rsc = pt "Anel de Resistência a Choque"
+ShockRing_desc_rsc = pt "Este anel é suave ao toque. Runas mágicas estão inscritas em sua superfície interna."
+ShockRing_use_rsc = pt "Você sente o anel funcionando. Você se sente bem aterrado."
+ShockRing_dead_rsc = pt "O anel se despedaça em uma pequena explosão de pedaços!"

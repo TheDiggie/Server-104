@@ -2,3 +2,6 @@ ChickenSoup_name_rsc = de "Die berühmte Hühnersuppe der Witwe Qesino"
 ChickenSoup_desc_rsc = de \
    "Dies ist eine Schüssel der Hühnersuppe von Witwe Qesino, die einen Preis "
    "gewonnen hat. Mmmm, die riecht wirklich gut."
+
+ChickenSoup_name_rsc = pt "a famosa sopa de galinha da Viúva Qesino"
+ChickenSoup_desc_rsc = pt "Esta é uma tigela da premiada sopa de galinha da Viúva Qesino. Mmmmm, cheira muito bem."

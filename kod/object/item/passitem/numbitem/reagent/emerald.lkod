@@ -3,3 +3,7 @@ emerald_desc_rsc = de \
    "Dieser glitzernde, grüne \"Jasper-Smaragd\" ist wunderschön und besonders "
    "wertvoll. Er ist von einem warmen, magischen Leuchten umgeben."
 emerald_name_plural_rsc = de "Smaragde"
+
+emerald_name_rsc = pt "esmeralda"
+emerald_desc_rsc = pt "Este brilhante \"esmeralda de Jaspe\" verde é bonito, embora não excepcionalmente valioso. Tem um brilho mágico e quente."
+emerald_name_plural_rsc = pt "esmeraldas"

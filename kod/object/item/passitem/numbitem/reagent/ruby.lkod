@@ -3,3 +3,7 @@ ruby_desc_rsc = de \
    "Dieser feurige Rubin ist größer als die Faust eine Mannes und extrem "
    "wertvoll."
 ruby_name_plural_rsc = de "Rubine"
+
+ruby_name_rsc = pt "rubí"
+ruby_desc_rsc = pt "Este rubi de fogo é maior que o punho de um homem e extremamente valioso."
+ruby_name_plural_rsc = pt "rubis"

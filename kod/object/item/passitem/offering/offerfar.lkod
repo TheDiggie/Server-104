@@ -2,3 +2,6 @@ OfferingFaren_name_rsc = de "Das brennende Wasser"
 OfferingFaren_desc_rsc = de \
    "Diese Flasche mit Flüssigkeit hat eine ominöse Wirkung, die Du nur erraten "
    "kannst."
+
+OfferingFaren_name_rsc = pt "água ardente"
+OfferingFaren_desc_rsc = pt "Esta garrafa de líquido tem algum propósito sombrio que você só pode adivinhar."

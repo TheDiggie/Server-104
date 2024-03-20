@@ -5,3 +5,8 @@ ColdRing_desc_rsc = de \
 ColdRing_use_rsc = de \
    "Du spürst die Wirkung des Rings. Du fühlst eine angenehme Wärme."
 ColdRing_dead_rsc = de "Der Ring zerfällt in Stücke!"
+
+ColdRing_name_rsc = pt "Anel de Resistência ao Frio"
+ColdRing_desc_rsc = pt "Este anel é quente ao toque. Runas mágicas estão inscritas em sua superfície interna."
+ColdRing_use_rsc = pt "Você sente o anel funcionando. Você se sente agradavelmente aquecido por completo."
+ColdRing_dead_rsc = pt "O anel se parte em pedaços!"

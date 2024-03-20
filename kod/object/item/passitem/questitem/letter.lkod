@@ -2,3 +2,6 @@ letter_name_rsc = de "Brief"
 letter_desc_rsc = de \
    "Dieser Brief von der Prinzessin trägt eine aufgeprägte, vergoldete Krone "
    "und duftet schwach nach ihrem Parfum."
+
+letter_name_rsc = pt "carta"
+letter_desc_rsc = pt "Esta carta da Princesa está gravada com um brasão dourado e tem um leve cheiro do seu perfume."

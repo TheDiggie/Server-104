@@ -26,7 +26,6 @@ resources:
    DenialPotion_bad_desc_rsc = "This flask, formed from clear glass and topped by "
       "a cork, contains a thick, red fluid.  A slight whiff of it is enough to turn your stomach."
 
-
 classvars:
 
    vrLabelName = DenialPotion_name_rsc

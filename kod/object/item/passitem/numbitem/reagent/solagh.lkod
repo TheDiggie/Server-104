@@ -5,3 +5,7 @@ Solagh_desc_rsc = de \
    "billig und die Herstellung ziemlich einfach sei, doch das Geheimnis der "
    "Herstellung wird streng gehütet, vor allem, um den Preis hoch zu halten."
 Solagh_name_plural_rsc = de "Phiolen mit Solagh"
+
+Solagh_name_rsc = pt "frasco de solagh"
+Solagh_desc_rsc = pt "Ninguém sabe o que é este líquido branco leitoso, ou de onde vem, exceto por um punhado dos alquimistas do mundo. Dizem que seus ingredientes são baratos e sua destilação bastante simples, mas o segredo de sua criação é guardado de perto, principalmente para manter o preço estável."
+Solagh_name_plural_rsc = pt "frascos de solagh"

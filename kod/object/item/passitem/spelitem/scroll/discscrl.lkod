@@ -2,3 +2,7 @@ DiscordScroll_label_name_rsc = de "Schriftrolle des magischen Störens"
 DiscordScroll_desc_rsc = de \
    "Diese Schriftrolle ist mit einer unleserlichen, krakeligen, mystischen "
    "Schrift bedeckt."
+
+DiscordScroll_label_name_rsc = pt "pergaminho da discórdia"
+DiscordScroll_desc_rsc = pt \
+      "Este pergaminho está coberto com escrita mística indecifrável em uma mão aracnídea."

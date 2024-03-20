@@ -9,3 +9,9 @@ staffofjolting_broken_desc_rsc = de \
 staffofjolting_jolt = de "Du klopfst mit dem Wurzelholz dreimal auf den Boden."
 staffofjolting_used = de \
    "Du klopfst mit dem Wurzelholz auf den Boden, aber nichts passiert."
+
+staffofjolting_name_rsc = pt "Cajado Nodoso"
+staffofjolting_desc_rsc = pt "Você olha para este pedaço de madeira bastante sem graça e não consegue encontrar nenhuma razão pela qual alguém se interessaria por um dispositivo tão desanimador."
+staffofjolting_broken_desc_rsc = pt "Este pedaço de madeira desanimador e sem graça parece não ter nenhum uso mágico em particular. Talvez se estivesse carregado..."
+staffofjolting_jolt = pt "Você bate o cajado no chão três vezes."
+staffofjolting_used = pt "Você bate o cajado no chão, mas nada acontece."

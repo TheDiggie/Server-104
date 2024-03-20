@@ -3,3 +3,7 @@ diamond_desc_rsc = de \
    "Dieser Diamant, aus den dunklen und gefährlichen Höhlen tief unter Jasper, "
    "ist äußerst rein und wertvoll."
 diamond_name_plural_rsc = de "Diamanten"
+
+diamond_name_rsc = pt "diamante"
+diamond_desc_rsc = pt "Extraído em cavernas escuras e perigosas muito abaixo de Jasper, este diamante é brilhante e valioso."
+diamond_name_plural_rsc = pt "diamantes"

@@ -3,3 +3,7 @@ Herbs_desc_rsc = de \
    "Diese magischen Kräuter haben eine dunkelgrüne Farbe. Ihre Blätter sind "
    "ölig und schmecken nach Minze."
 Herbs_name_plural_rsc = de "Kräuter"
+
+Herbs_name_rsc = pt "erva"
+Herbs_desc_rsc = pt "Estas ervas mágicas são de cor verde escura. As folhas são oleosas e têm um aroma semelhante ao da menta."
+Herbs_name_plural_rsc = pt "ervas"

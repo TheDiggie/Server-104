@@ -6,3 +6,7 @@ WebMoss_desc_rsc = de \
    "ist ein gefährlicher und langwieriger Prozeß, doch wenn das Moos erst "
    "einmal getrocknet ist, ist es von unschätzbarem Wert für einige Zaubersprüche."
 WebMoss_name_plural_rsc = de "Moosnetze"
+
+WebMoss_name_rsc = pt "musgo da teia"
+WebMoss_desc_rsc = pt "Uma das plantas carnívoras mais engenhosas do mundo, o musgo da teia captura pequenos insetos da mesma forma que uma teia de aranha e depois se dobra sobre si mesma para devorar sua presa. Colher essa substância é um processo perigoso e tedioso, mas uma vez que o musgo tenha secado, pode ser inestimável para a conjuração de alguns feitiços."
+WebMoss_name_plural_rsc = pt "musgos da teia"

@@ -3,3 +3,7 @@ redmushroom_desc_rsc = de \
    "Diese magischen Pilze füllen Deine Nase mit einem merkwürdigen, beißenden "
    "Geruch."
 redmushroom_name_plural_rsc = de "Rote Pilze"
+
+redmushroom_name_rsc = pt "cogumelo vermelho"
+redmushroom_desc_rsc = pt "Esses cogumelos mágicos queimam suas narinas com um odor misterioso e acre."
+redmushroom_name_plural_rsc = pt "cogumelos vermelhos"

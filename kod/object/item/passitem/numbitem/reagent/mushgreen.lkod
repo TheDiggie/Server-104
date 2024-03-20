@@ -1,3 +1,7 @@
 greenmushroom_name_rsc = de "Der Grüne Pilz"
 greenmushroom_desc_rsc = de "Dieser Pilz riecht ranzig und faulig."
 greenmushroom_name_plural_rsc = de "Grüne Pilze"
+
+greenmushroom_name_rsc = pt "cogumelo verde"
+greenmushroom_desc_rsc = pt "Esses cogumelos mágicos têm um cheiro estranhamente calcário."
+greenmushroom_name_plural_rsc = pt "cogumelos verdes"
