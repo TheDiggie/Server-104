@@ -3,3 +3,6 @@ goldsword_desc_rsc = de \
    "Dieses Schwert ist reich mit Ornamenten verziert. Für einen Fechtkampf "
    "dürfte es ganz gut sein, mit Sicherheit aber nicht für einen Kampf auf "
    "Leben und Tod."
+
+goldsword_name_rsc = pt "espada dourada"
+goldsword_desc_rsc = pt "Esta espada é delicada e ornamentada. Parece ser boa para um duelo fantasioso, mas certamente não é adequada para os rigores do combate sangrento."

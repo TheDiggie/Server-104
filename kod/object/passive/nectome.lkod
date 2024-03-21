@@ -2,3 +2,7 @@ NecromancerTome_name_rsc = de "alter Wälzer"
 NecromancerTome_desc_rsc = de \
    "Ein alter Wälzer, seine Seiten sind gelb und bröckelig."
 NecromancerTome_text_rsc = de " "
+
+NecromancerTome_name_rsc = pt "tomo antigo"
+NecromancerTome_desc_rsc = pt "Um tomo antigo, suas páginas amareladas e desintegrando."
+NecromancerTome_text_rsc = pt " "

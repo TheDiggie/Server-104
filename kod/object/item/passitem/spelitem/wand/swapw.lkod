@@ -1,2 +1,5 @@
 SwapWand_label_name_rsc = de "Stab der Diebe"
 SwapWand_desc_rsc = de "Magische Energien umströmen diesen dünnen Stab."
+
+SwapWand_label_name_rsc = pt "varinha do roubo"
+SwapWand_desc_rsc = pt "Energia mágica estala em torno desta varinha esguia."

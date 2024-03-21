@@ -1,2 +1,5 @@
 MailingList_name_rsc = de "Mailingliste"
 MailingList_desc_rsc = de "Eine Mailingliste"
+
+MailingList_name_rsc = pt "lista de correio"
+MailingList_desc_rsc = pt "Uma lista de correio."

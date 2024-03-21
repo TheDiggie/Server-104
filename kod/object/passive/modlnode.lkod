@@ -4,3 +4,14 @@ ModelNode_desc_rsc = de \
    "Eine Ansammlung von mystischer Energie, "
    "in einem Fluss aus rohem Mana.Sie gibt Kraft "
    "auf die Zauberer ab, wenn diese sich mit ihr verschmelzen"
+
+ModelNode_name_rsc = pt "nó de mana em miniatura"
+ModelNode_desc_rsc = pt \
+      "Uma placa abaixo do modelo diz:\n"
+      "Encontrados em vários lugares ao redor de Meridian, essas concentrações de energia mística fornecem "
+      "força aos conjuradores que conseguem se fundir com elas. A origem desses nós é um "
+      "mistério até mesmo para os estudiosos mais dedicados, como o Conselheiro Esseldi. "
+      "Alguns magos acreditam que têm algo a ver com o Nexus, que inexplicavelmente se despedaçou "
+      "há centenas de anos, rompendo o contato de Meridian59 com os outros mundos do Nexus. "
+      "Os nós de mana de Meridian podem, portanto, ser vestígios daquela revolta mágica cataclísmica, "
+      "embora ninguém possa afirmar com certeza."

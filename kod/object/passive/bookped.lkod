@@ -3,3 +3,7 @@ bookped_desc_rsc = de \
    "Ein dickes Buch steht auf einem stabilen Sockel, auf "
    "dem folgendes geschrieben steht: "
 bookped_text_rsc = de " "
+
+bookped_name_rsc = pt "livro em um pedestal"
+bookped_desc_rsc = pt "Um livro robusto descansando em um pedestal resistente."
+bookped_text_rsc = pt " "

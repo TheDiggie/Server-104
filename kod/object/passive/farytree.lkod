@@ -1,3 +1,6 @@
 feytree_name_rsc = de "Baum"
 feytree_desc_rsc = de \
    "Diese Bäume bieten kühlen Schatten und eine interessante Landschaft."
+
+feytree_name_rsc = pt "árvore"
+feytree_desc_rsc = pt "Essas árvores oferecem sombra fresca e uma paisagem interessante."

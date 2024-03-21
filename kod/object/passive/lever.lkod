@@ -9,3 +9,14 @@ lever_not_experienced = de \
 lever_stuck = de \
    "Der Hebel scheint wie angeklebt zu sein,  als du versuchst ihn zu bewegen."
 lever_changed = de "Du betätigst den Hebel."
+
+lever_name_rsc = pt "alavanca"
+default_lever_desc_rsc = pt \
+      "O mecanismo ligado a esta alavanca parece estar quase completamente enferrujado. "
+      "Seja qual for o propósito original, provavelmente é inútil agora."
+lever_not_in_range = pt "A alavanca não está perto o suficiente para ser acionada."
+lever_not_experienced = pt \
+      "Seu anjo da guarda impede você de ativar esta alavanca."
+lever_stuck = pt \
+      "A alavanca parece estar presa; por mais que tente, você não consegue movê-la."
+lever_changed = pt "Você aciona a alavanca."

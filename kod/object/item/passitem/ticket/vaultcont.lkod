@@ -1,1 +1,9 @@
- de 
+VaultContract_name_rsc = pt "contrato de cofre"
+VaultContract_Not_Linked = pt "Use este contrato para assiná-lo e autorizar o próximo jogador que o usar a "
+                            "ter acesso completo ao seu cofre. Isso inclui transporte e equipamento."
+VaultContract_Linked = pt "Este é um contrato para dar acesso ao cofre de ''%s''. Você perderá "
+                        "o acesso ao seu cofre atual, portanto, certifique-se de retirar tudo o que deseja manter."
+Sign_Contract = pt "~B~gVocê assina o contrato e o entrega para outro jogador para permitir que ele acesse "
+                 "seu cofre."
+Linked_Vaults = pt "~B~gVocê vinculou seu cofre com %s e qualquer outro jogador com quem eles estiverem vinculados."
+Try_Linked_Vaults = pt "~B~gUsar este item vinculará seu cofre a %s."

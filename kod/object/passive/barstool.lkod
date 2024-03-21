@@ -1,2 +1,5 @@
 barstool_name_rsc = de "Bar Hocker"
 barstool_desc_rsc = de "Dieser Bar Hocker ist in einem ziemlich gutem Zustand."
+
+barstool_name_rsc = pt "banqueta de bar"
+barstool_desc_rsc = pt "Esta é uma banqueta de bar em bastante bom estado."

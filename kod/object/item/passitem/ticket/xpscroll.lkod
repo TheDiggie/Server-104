@@ -1,1 +1,3 @@
- de 
+XPScroll_name_rsc = pt "pergaminho de experiência"
+XPScroll_desc_rsc = pt "Este é um pergaminho de experiência. Usá-lo concederá a você 35.000 de experiência."
+XPScroll_warning = pt "~r~Aviso: usar este pergaminho irá consumi-lo e conceder ao jogador 35.000 de experiência."

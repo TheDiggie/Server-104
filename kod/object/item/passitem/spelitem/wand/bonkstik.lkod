@@ -5,3 +5,8 @@ bonkstick_bad_target = de "Du kannst den Bonkstick nicht auf %s%s anwenden."
 bonkstick_not_self = de \
    "Du würdest Dich nicht wohlfühlen, Dir selbst den Bonkstick auf den Kopf "
    "zu hauen."
+
+BonkStick_name_rsc = pt "cacetete"
+BonkStick_desc_rsc = pt "Esta varinha transborda de ludicridade."
+bonkstick_bad_target = pt "Você não pode usar o cacetete em %s%s."
+bonkstick_not_self = pt "Você não se sentiria bem batendo na sua própria cabeça com o cacetete!"

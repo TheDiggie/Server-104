@@ -5,3 +5,9 @@ guestlever_not_in_range = de \
    "Der Hebel ist nicht nah genug um ihn zu betätigen."
 guestlever_changed = de "Du betätigst den Hebel."
 guestlever_stuck = de "Der Hebel verbleibt in seiner aktuellen Position."
+
+guestlever_name_rsc = pt "alavanca"
+guestlever_desc_rsc = pt "Esta alavanca parece velha e desgastada, mas ainda deve controlar algo."
+guestlever_not_in_range = pt "A alavanca não está perto o suficiente para ser acionada."
+guestlever_changed = pt "Você aciona a alavanca."
+guestlever_stuck = pt "A alavanca está presa em sua posição atual."

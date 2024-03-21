@@ -3,3 +3,6 @@ hammer_desc_rsc = de \
    "Dieser schwere und stumpfe Hammer ist eine mächtige Waffe, mit der man "
    "Fleisch und Knochen zertrümmern kann. Es ist das bevorzugte Kampfgerät "
    "des Zwergenvolks von Jasper."
+
+hammer_name_rsc = pt "martelo"
+hammer_desc_rsc = pt "Pesado e contundente, este martelo é uma arma poderosa, capaz de esmagar carne e osso. É a arma favorita do povo mineiro de Jasper."

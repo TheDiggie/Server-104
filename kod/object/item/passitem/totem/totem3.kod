@@ -28,7 +28,6 @@ resources:
 
 classvars:
 
-
    vrName = TotemThree_name_rsc
    vrIcon = TotemThree_icon_rsc
    vrDesc = TotemThree_desc_rsc

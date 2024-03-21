@@ -1,2 +1,5 @@
 HospiceWand_label_name_rsc = de "Stab der Verjüngung"
 HospiceWand_desc_rsc = de "Magische Energien umströmen diesen dünnen Stab."
+
+HospiceWand_label_name_rsc = pt "varinha de rejuvenescimento"
+HospiceWand_desc_rsc = pt "Energia mágica estala em torno desta varinha esguia."

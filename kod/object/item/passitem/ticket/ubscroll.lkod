@@ -1,1 +1,3 @@
- de 
+UBScroll_name_rsc = pt "pergaminho de energia liberada"
+UBScroll_desc_rsc = pt "Este é um pergaminho de energia liberada. Usá-lo concederá a você 1000 unidades de energia liberada."
+UBScroll_warning = pt "~r~Aviso: usar este pergaminho irá consumi-lo e conceder ao jogador 1000 unidades de energia liberada."

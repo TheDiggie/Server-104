@@ -2,3 +2,6 @@ shrub_name_rsc = de "Der Busch"
 shrub_desc_rsc = de \
    "Dies ist eine hölzerne Pflanze mit mehreren Stämmen, die nahe am Boden "
    "verzweigen."
+
+shrub_name_rsc = pt "arbusto"
+shrub_desc_rsc = pt "Esta é uma planta lenhosa com múltiplos caules permanentes que se ramificam perto do solo."

@@ -3,3 +3,9 @@ moon_desc_rsc = de \
    "Der Mond ragt in den Himmel, eine majestätische Sphäre mit grauen Felsen.Manche "
    "Fabeln sagen, dass der Mond einst ein größer war, aber es ist ein Fabel, "
    "wie die Fabel, dass es Froschmenschen und Blaue Drachen gibt."
+
+moon_name_rsc = pt "lua"
+moon_desc_rsc = pt \
+      "A lua paira no céu, uma esfera majestosa de rocha cinza. "
+      "Algumas fábulas dizem que a lua já foi muito maior, mas provavelmente são "
+      "tão verdadeiras quanto as fábulas de homens-sapo e dragões azuis."

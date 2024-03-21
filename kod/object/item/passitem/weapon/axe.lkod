@@ -2,3 +2,7 @@ axe_name_rsc = de "Die Axt"
 axe_desc_rsc = de \
    "Diese schwere und rasiermesserscharfe Axt ist extrem gefährlich. Sie "
    "kann sogar die dicke Haut eines Trolls durchdringen."
+
+axe_name_rsc = pt "machado"
+axe_desc_rsc = pt "Pesado e afiado como uma navalha, este grande machado é extremamente perigoso. Sua lâmina não consegue cortar a pele espessa dos trolls, "
+    "mas criaturas mais carnudas não terão tanta sorte."

@@ -2,3 +2,8 @@ OneToken_name_rsc = de "Die runenverzierte Truhe"
 OneToken_desc_rsc = de \
    "Nur das Ratsmitglied, das das mit mysteriösen Runen bedeckte Artefakt "
    "studiert, kann aus ihm die Funktionsweise der Zaubersprüche lesen."
+
+OneToken_name_rsc = pt "token de baú rúnico"
+OneToken_desc_rsc = pt \
+    "Coberto por runas misteriosas que se dizem explicar o funcionamento dos feitiços, o "
+    "token é ilegível para todos, exceto o Conselheiro que o estuda."

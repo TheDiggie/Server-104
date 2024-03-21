@@ -5,3 +5,7 @@ NeruditeBow_desc_rsc = de \
    "aus."
 NeruditeBow_shatters = de \
    "Der Nerudit Bogen zerbirst in einem Hagel aus Splittern!"
+
+NeruditeBow_name_rsc = pt "arco nerudita"
+NeruditeBow_desc_rsc = pt "Eles EXISTEM! Este arco foi forjado a partir do notoriamente frágil nerudita em vez de esculpido em madeira. O arco não parece muito flexível."
+NeruditeBow_shatters = pt "O arco nerudita se despedaça em uma rajada de lascas!"

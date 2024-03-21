@@ -3,3 +3,6 @@ SetScroll_desc_rsc = de \
    "Diese Schriftrolle wird deine Vorlieben im Inventar registrieren, "
    "und entsprechend in Frular's Büro hinterlegen. "
    "So wird es dir ermöglicht, die Rolle des Ausladens zu benutzen."
+
+SetScroll_label_name_rsc = pt "pergaminho do conjunto"
+SetScroll_desc_rsc = pt "Este pergaminho registrará suas preferências de inventário com o escritório de Frular, permitindo que você use pergaminhos de conjunto para se reequipar a partir dos baús de sua guilda à distância."

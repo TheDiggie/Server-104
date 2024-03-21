@@ -1,2 +1,5 @@
 BlindWand_label_name_rsc = de "Stab der Blindheit"
 BlindWand_desc_rsc = de "Magische Energien umströmen diesen dünnen Stab."
+
+BlindWand_label_name_rsc = pt "varinha do cegamento"
+BlindWand_desc_rsc = pt "Energia mágica crepita ao redor desta varinha fina."

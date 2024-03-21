@@ -5,3 +5,12 @@ fountain_desc_tos_rsc = de \
 fountain_desc_rsc = de \
    "Dieses Meisterwerk wird von sorgfälltig geformten Marmor kunstvoll geziert.Düsen, "
    "sprühen Wasser in die Luft zur Kühlung von derer die in der Nähe stehen."
+
+fountain_name_rsc = pt "fonte"
+fountain_desc_tos_rsc = pt "Essa obra-prima é feita de mármore cuidadosamente esculpido. Jatos habilmente colocados "
+      "espirram água no ar e refrescam aqueles que ficam perto. Esta "
+      "fonte foi supostamente feita pelo inventor Froz ele mesmo e se "
+      "tornou um lugar de encontro comum no mundo de Meridian."
+fountain_desc_rsc = pt "Embora ornamentada e bonita, é claro ao inspecioná-la mais de perto que "
+      "esta fonte é apenas uma imitação da obra-prima de Froz na praça da "
+      "cidade de Tos."

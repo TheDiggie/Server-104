@@ -5,3 +5,10 @@ TotemThree_desc_rsc = de \
    "Thronsaal von Schloss Viktoria in der Minjaka-Dynastie der Forscher im "
    "zweiten Jahrhundert.Von den Vasen kann man nur eine für kurze Zeit bestizen. "
    "Sie können auch nicht mitgenommen oder in einer Kiste verwahrt werden."
+
+TotemThree_name_rsc = pt "Vaso Minjaka"
+TotemThree_desc_rsc = pt "Antiquários afirmam que há apenas alguns dos inestimáveis Vasos Minjaka restantes "
+    "em existência. Estes vasos exquisitamente elaborados costumavam adornar a sala do trono do Castelo Victoria durante a "
+    "dinastia Minjakan de exploradores no segundo século.\n\n"
+    "Sendo único em sua categoria, este vaso não pode ser carregado por muito tempo em posse de alguém ou guardado "
+    "em um baú."

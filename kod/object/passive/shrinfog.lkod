@@ -2,3 +2,6 @@ shrinefog_name_rsc = de "Ätzender Nebel"
 shrinefog_desc_rsc = de \
    "Eine dichte Wolke aus tödlich aussehendem Dampf tritt aus einem Loch "
    "aus dem Boden aus. Die Luft ist erfüllt vom Geruch von Schwefel und Säure."
+
+shrinefog_name_rsc = pt "névoa ácida"
+shrinefog_desc_rsc = pt "Uma espessa nuvem de vapor mortal emerge do respiradouro. O ar está impregnado do cheiro de enxofre e ácido."

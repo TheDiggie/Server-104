@@ -5,3 +5,6 @@ LoadoutScroll_desc_rsc = de \
    "Büro hinterlegt, wieder aufzustocken. Der Zauber funktioniert "
    "nur in einer sicheren Umgebung, und auch nur für Gildenmitglieder, "
    "welche Rang zwei oder höher besitzen."
+
+LoadoutScroll_label_name_rsc = pt "pergaminho de carregamento"
+LoadoutScroll_desc_rsc = pt "Este pergaminho ativará seu vínculo com os baús da guilda, adquirindo magicamente equipamentos de acordo com suas preferências registradas no escritório de Frular. A magia só funcionará em um ambiente seguro e apenas para membros da guilda com classificação dois ou acima."

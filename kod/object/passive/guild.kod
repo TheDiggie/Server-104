@@ -397,7 +397,6 @@ resources:
    guild_endwar_title = " have ended their quarrel."
    guild_endwar_body2 = " have decided to end their quarrel with "   
    
-   
    guild_peace_title = " declares peace."
    guild_peace_body1 = "Let it be known that on this day "
    guild_peace_body2 = " hath allied themselves with "

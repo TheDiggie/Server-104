@@ -1,2 +1,5 @@
 SeduceWand_label_name_rsc = de "Stab der Verführung"
 SeduceWand_desc_rsc = de "Magische Energien umströmen diesen dünnen Stab."
+
+SeduceWand_label_name_rsc = pt "varinha do encanto"
+SeduceWand_desc_rsc = pt "Energia mágica estala em torno desta varinha esguia."

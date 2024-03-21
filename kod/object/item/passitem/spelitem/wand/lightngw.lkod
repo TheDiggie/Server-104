@@ -1,2 +1,5 @@
 LightningWand_label_name_rsc = de "Stab der Blitze"
 LightningWand_desc_rsc = de "Magische Energien umströmen diesen dünnen Stab."
+
+LightningWand_label_name_rsc = pt "varinha de relâmpagos"
+LightningWand_desc_rsc = pt "Energia mágica estala em torno desta varinha esguia."

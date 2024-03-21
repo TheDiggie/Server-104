@@ -1,3 +1,7 @@
 sign_name_rsc = de "Das Schild"
 sign_desc_rsc = de "Dies ist eine Informationstafel."
 sign_insc_rsc = de " "
+
+sign_name_rsc = pt "placa"
+sign_desc_rsc = pt "Esta é uma placa informativa."
+sign_insc_rsc = pt " "

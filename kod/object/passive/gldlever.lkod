@@ -14,3 +14,13 @@ lever_defenses_down_desc = de \
 guildlever_not_qualified = de \
    "Du versuchst den Schalter umzulegen, jedoch passiert nichts."
 guildlever_happyland = de "Du kannst Gildenhallen in dieser Welt nicht erobern."
+
+guildlever_name_rsc = pt "desativador de escudo místico"
+guildlever_desc_rsc = pt "Ao acionar esta alavanca, os defensores de um salão da guilda podem levantar e abaixar suas defesas. Se esta alavanca for acionada e não for recolocada em sua posição original em 10 minutos, o salão da guilda é declarado conquistado. %s"
+guildlever_not_in_range = pt "Você não está perto o suficiente do desativador para usá-lo."
+guildlever_changed = pt "Você aciona a alavanca."
+lever_unowned_desc = pt "No entanto, como o salão da guilda está atualmente desocupado, este objeto não faz nada no momento."
+lever_defenses_up_desc = pt "Energia protetora estala ao redor do olho místico, oferecendo uma proteção calorosa."
+lever_defenses_down_desc = pt "O olho permanece frio e inerte - as defesas do salão estão desativadas!"
+guildlever_not_qualified = pt "Você tenta acionar a alavanca, mas ela resiste a todas as suas tentativas."
+guildlever_happyland = pt "Você não pode conquistar salões de guilda neste mundo."

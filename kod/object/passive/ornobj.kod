@@ -958,7 +958,6 @@ resources:
    oo_talltree3_icon = talltree3.bgf
    oo_talltree3_desc = "A fresh scent hangs in the air around this tall tree."
 
-
 classvars:
 
 properties:

@@ -4,3 +4,9 @@ ThreeToken_desc_rsc = de \
    "ist, soll dieses altertümliche Artefakt seine Fähigkeiten an sein Ratsmitglied "
    "übertragen können. Wenn Du es zurückgibst, würde wahrscheinlich Dein "
    "Ansehen am königlichen Hof steigen."
+
+ThreeToken_name_rsc = pt "token de gato de jade"
+ThreeToken_desc_rsc = pt \
+    "Como um gato vivo é conhecido por sua destreza e maestria em habilidades, este "
+    "token antigo é rumorado para ensinar suas técnicas ao seu mestre Conselheiro. "
+    "Devolver isso provavelmente aumentaria seu status na Corte Real."

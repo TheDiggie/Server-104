@@ -3,3 +3,6 @@ shortsword_desc_rsc = de \
    "Obwohl diese Waffe unspektakulär aussieht, ist ihre Klinge scharf genug, "
    "um gefährlich zu sein. Im Kampf gegen kleine Kreaturen kann sie äußerst "
    "effektiv sein."
+
+shortsword_name_rsc = pt "espada corta"
+shortsword_desc_rsc = pt "De aspecto sencillo, la hoja de esta espada corta es lo suficientemente afilada como para ser peligrosa. Puede ser efectiva cuando se usa contra bestias pequeñas."

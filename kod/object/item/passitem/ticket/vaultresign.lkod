@@ -1,1 +1,4 @@
- de 
+VaultResign_name_rsc = pt "renunciar ao cofre"
+VaultResign_desc_rsc = pt "Use isso para renunciar ao seu cofre atual e retornar ao seu cofre original."
+VaultResign_warning = pt "~B~gUsar isso removerá seu acesso ao seu cofre atual!"
+VaultResign_remove = pt "~B~gVocê foi transferido para o seu cofre original."

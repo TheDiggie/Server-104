@@ -4,3 +4,7 @@ ScrollSplitter_desc_rsc = de \
 scroll_split_spell_item_rsc = de \
    "Words flow from the %s, transferring runes. Your blank scroll gains %d "
    "recitations of %d spellpower."
+
+ScrollSplitter_name_rsc = pt "pergaminho em branco"
+ScrollSplitter_desc_rsc = pt "Este pergaminho em branco parece de alguma forma faminto por runas mágicas."
+scroll_split_spell_item_rsc = pt "Palavras fluem do(a) %s, transferindo runas. Seu pergaminho em branco ganha %d recitações com %d de poder mágico."

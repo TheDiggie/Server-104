@@ -6,3 +6,8 @@ spirithammer_expires = de \
    "Dein heiliger Hammer verschwindet in einer Rauchwolke!"
 spirithammer_time_header_rsc = de \
    "\n\nDein Heiliger Hammer verschwindet in %r%r%r%r%r%r%r."
+
+spirithammer_name_rsc = pt "martelo espiritual"
+spirithammer_desc_rsc = pt "Inerentemente abençoado, este martelo é ainda mais poderoso do que a variação padrão."
+spirithammer_expires = pt "Seu martelo espiritual desaparece em uma nuvem de fumaça!"
+spirithammer_time_header_rsc = pt "\n\nSeu martelo espiritual expira em %r%r%r%r%r%r%r."

@@ -1,3 +1,6 @@
 MagicBow_name_rsc = de "Der Magische Bogen"
 MagicBow_desc_rsc = de \
    "Gebaut von den Göttern, hat dieser Bogen unheimliche Kräfte"
+
+MagicBow_name_rsc = pt "arco mágico"
+MagicBow_desc_rsc = pt "Forjado pelos deuses, este arco zumbi com poder mágico."

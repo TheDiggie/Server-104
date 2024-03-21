@@ -3,3 +3,7 @@ WandSplitter_desc_rsc = de \
    "Dieser Zauberstab glimmt vor Energie die aufgeladen werden muss."
 wand_split_spell_item_rsc = de \
    "Du lässt %s ab. Der ungeladene Zauberstab wird %d geladen von %d Zauberkraft."
+
+WandSplitter_name_rsc = pt "varinha descarregada"
+WandSplitter_desc_rsc = pt "Esta varinha brilha com capacidade, esperando adquirir carga de outras varinhas."
+wand_split_spell_item_rsc = pt "Você drena parcialmente o(a) %s, transferindo carga. A varinha descarregada ganha %d cargas com %d de poder mágico."

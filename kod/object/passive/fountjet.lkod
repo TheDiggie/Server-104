@@ -1,2 +1,5 @@
 fountainjet_name_rsc = de "Brunnen"
 fountainjet_desc_rsc = de "Ein Wasserstrahl von einer unterirdischen Quelle."
+
+fountainjet_name_rsc = pt "fonte"
+fountainjet_desc_rsc = pt "Um jato de água de alguma fonte subterrânea."

@@ -3,3 +3,7 @@ NeruditeSword_desc_rsc = de \
    "Die schnelle und starke Nerudit-Waffe liegt gut in Deiner Hand."
 nerusword_shatters = de \
    "Das Nerudit-Schwert zerbirst in einem Regen aus Splittern!"
+
+NeruditeSword_name_rsc = pt "espada nerudita"
+NeruditeSword_desc_rsc = pt "Rápida e forte, a arma nerudita se sente bem em sua mão."
+nerusword_shatters = pt "A espada nerudita se despedaça em uma enxurrada de estilhaços!"

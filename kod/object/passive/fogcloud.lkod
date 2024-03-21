@@ -1,3 +1,6 @@
 fogcloud_name_rsc = de "dichter Nebel"
 fogcloud_desc_rsc = de \
    "Es schnürrt dir die Luft ab, bei dem Blick auf den dichten fauligen Nebel."
+
+fogcloud_name_rsc = pt "neblina densa"
+fogcloud_desc_rsc = pt "Você se sufoca só de olhar para a espessa névoa pútrida."

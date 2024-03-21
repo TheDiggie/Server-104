@@ -10,3 +10,13 @@ questnode_not_enough_items = de \
    "mir %q mehr davon bringen.~n~w\""
 questnode_cant_carry = de \
    "%q kann von Dir nicht mehr getragen werden und fällt zu Boden."
+
+default_monster_desc = pt "monstro"
+default_message_desc = pt "mensagem"
+default_indef = pt "um "
+default_def = pt "o "
+default_money_desc = pt "um pouquinho de dinheiro"
+default_prize_desc = pt "prêmio"
+NPC_quote_to_one = pt "~k%s%s te diz, \"%q~n~k\""
+questnode_not_enough_items = pt "~k%s%s te diz, \"Você está no caminho certo, mas precisa me trazer %q a mais do que isso.~n~k\""
+questnode_cant_carry = pt "Incapaz de carregar mais do que já está carregando, você deixa o %q cair no chão."

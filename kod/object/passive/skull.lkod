@@ -3,3 +3,6 @@ skull_desc_rsc = de \
    "Du blickst auf einen Schädel. Es scheint als wäre jemand hier in geringfügige "
    "Schwierigkeiten geraten. Wenn Du nicht aufpaßt, könnte Dich das gleiche "
    "Schicksal ereilen."
+
+skull_name_rsc = pt "crânio"
+skull_desc_rsc = pt "Você está olhando para um crânio. Parece que alguém teve alguns problemas aqui. Se você não tiver cuidado, pode encontrar o mesmo destino."

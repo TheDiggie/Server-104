@@ -1,2 +1,5 @@
 newslink_name_rsc = de "Nachrichtenrolle"
 newslink_desc_rsc = de "Du schaust auf einen öffentlichen Nachrichtendienst."
+
+newslink_name_rsc = pt "Novo rolo"
+newslink_desc_rsc = pt "Você está olhando para um dispositivo de postagem pública."

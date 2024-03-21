@@ -1,3 +1,6 @@
 Pillow_name_rsc = de "Das Kopfkissen"
 Pillow_desc_rsc = de \
    "Dieses leicht hervorstehende Kissen sieht sehr einladend aus."
+
+Pillow_name_rsc = pt "travesseiro de penas de ganso"
+Pillow_desc_rsc = pt "Este travesseiro macio e envolvente parece muito convidativo."

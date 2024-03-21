@@ -2,3 +2,6 @@ mysticsword_name_rsc = de "Das magische Schwert"
 mysticsword_desc_rsc = de \
    "Alte Runen zieren diese schöne Waffe, eine leichte Klinge von unübertroffener "
    "Güte. Kraanans Segen umgibt dieses Schwert."
+
+mysticsword_name_rsc = pt "espada mística"
+mysticsword_desc_rsc = pt "Runas antigas adornam esta bela arma, uma lâmina leve de excelência incomparável. A bênção de Kraanan cerca esta espada."

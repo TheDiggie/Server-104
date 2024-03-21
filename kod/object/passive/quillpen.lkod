@@ -2,3 +2,6 @@ quillpen_name_rsc = de "Der Federkiel"
 quillpen_desc_rsc = de \
    "Viele wichtige Werke wurden mit diesem Federkiel geschrieben. Im Moment "
    "hat er keine Tinte."
+
+quillpen_name_rsc = pt "pena de escrever"
+quillpen_desc_rsc = pt "Muitas obras importantes foram escritas com esta pena de escrever. No momento, está sem tinta."

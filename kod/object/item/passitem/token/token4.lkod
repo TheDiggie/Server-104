@@ -3,3 +3,9 @@ FourToken_desc_rsc = de \
    "Der Dämon war bekannt für seine Ausdauer und Stärke. Dieses Artefakt "
    "soll seine Geheimnisse dem Ratsmitglied erzählen. Wenn Du es zurückgibst, "
    "würde wahrscheinlich Dein Ansehen beim königlichen Gericht steigen."
+
+FourToken_name_rsc = pt "token de crânio de demônio"
+FourToken_desc_rsc = pt \
+    "A fera demoníaca lendária era conhecida por sua resistência e fortitude. Este "
+    "token antigo é rumorado para falar seus segredos ao Conselheiro que cuida "
+    "dele. Devolvê-lo provavelmente aumentaria seu status na Corte Real."

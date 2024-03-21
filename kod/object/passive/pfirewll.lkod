@@ -3,3 +3,7 @@ PassiveWallofFire_desc_rsc = de "Diese Wand aus Feuer lodert vor sich hin."
 PassiveWallofFire_Cold = de \
    "Diese Wand aus Feuer lodert vor sich hin aber du bemerkst das die Flammen "
    "kalt sind."
+
+PassiveWallofFire_name_rsc = pt "muralha de fogo"
+PassiveWallofFire_desc_rsc = pt "A parede de fogo oscila perigosamente, ameaçando tornar o dia de qualquer um que passe por ela ruim."
+PassiveWallofFire_Cold = pt "A parede de fogo oscila perigosamente, ameaçando tornar o dia de qualquer um que passe por ela ruim. No entanto, o fogo parece estranhamente frio."

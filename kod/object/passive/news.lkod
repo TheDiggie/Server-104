@@ -6,3 +6,12 @@ news_not_own_post = de \
 	"Du kannst nur Deine eigenen Nachrichten löschen!"
 news_del_time_expired_header = de \
 	"Du kannst nur Nachrichten von Dir löschen, die innerhalb von %r%r%r%r%r%r%r geschrieben wurden."
+
+news_name_rsc = pt "Novo rolo"
+news_desc_rsc = pt "Você está olhando para um dispositivo de postagem pública."
+news_users_cant_delete = pt \
+      "Apenas MDs, administradores e moderadores podem excluir postagens deste globo de notícias."
+news_not_own_post = pt \
+     "Você só pode excluir suas próprias postagens."
+news_del_time_expired_header = pt \
+      "Você só pode excluir sua postagem dentro de %r%r%r%r%r%r%r após a publicação."

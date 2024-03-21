@@ -16,10 +16,9 @@ constants:
 
 resources:
 
-   // TODO: German translation from Tyran
-   //include boatticket.lkod
+   include boatticket.lkod
 
-   boat_ticket_name_rsc = "Boat Ticket"
+   boat_ticket_name_rsc = "boat ticket"
    boat_ticket_icon_rsc = scr06.bgf
    boat_ticket_desc_rsc = "This is a boat ticket to ''%s'' aboard the Seaborn Legend. To travel to your destination, offer the ticket to the Boat Captain."   
 

@@ -5,3 +5,9 @@ FiveToken_desc_rsc = de \
    "einer Energiequelle glühen. Wenn Du es zurückgibst, würde wahrscheinlich "
    "Dein Ansehen beim königlichen Gericht steigen."
 FiveToken_icon_rsc = de "sphere.bgf"
+
+FiveToken_name_rsc = pt "token de esfera de cristal"
+FiveToken_desc_rsc = pt \
+    "Girando com padrões místicos, este antigo token é algum parente dos "
+    "nós de mana, e nas mãos de um Conselheiro é rumorado para brilhar quando "
+    "perto de um. Devolvê-lo provavelmente aumentaria seu status na Corte Real."

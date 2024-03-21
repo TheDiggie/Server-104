@@ -1,2 +1,5 @@
 arenasign_name_rsc = de "Arena Wandteppich...  bitte nicht benutzen"
 arenasign_desc1_rsc = de "Dies ist ein Informationsschild."
+
+arenasign_name_rsc = pt "Tapeçaria da Arena.. não use"
+arenasign_desc1_rsc = pt "Este é um sinal informativo."

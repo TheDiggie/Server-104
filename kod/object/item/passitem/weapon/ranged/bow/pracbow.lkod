@@ -5,3 +5,6 @@ PracticeBow_desc_rsc = de \
    "Hölzer verwendet, damit der Übungsbogen länger hält. Dies geht jedoch "
    "auf Kosten von Durchschlagskraft. Dieser Bogen sollte nicht in einem "
    "echten Kampf eingesetzt werden."
+
+PracticeBow_name_rsc = pt "arco de prática"
+PracticeBow_desc_rsc = pt "Esculpido para durabilidade, este arco é geralmente usado por estudantes para praticar as habilidades de combate à distância. Madeiras mais macias foram usadas na construção, permitindo que o arco de prática dure muito mais tempo do que outros arcos, em detrimento do poder. Este arco não deve ser usado em combate letal."

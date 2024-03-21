@@ -1,2 +1,5 @@
 SlitherWand_label_name_rsc = de "Stab des Schlagens"
 SlitherWand_desc_rsc = de "Magische Energien umströmen diesen dünnen Stab."
+
+SlitherWand_label_name_rsc = pt "varinha do golpe"
+SlitherWand_desc_rsc = pt "Energia mágica estala em torno desta varinha esguia."

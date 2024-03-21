@@ -1,2 +1,5 @@
 pillar_name_rsc = de "Die S‰ule"
 pillar_desc_rsc = de "Dies ist eine groﬂe, eindrucksvolle Marmors‰ule."
+
+pillar_name_rsc = pt "pilar"
+pillar_desc_rsc = pt "Este È um pilar alto e impressionante de m·rmore."

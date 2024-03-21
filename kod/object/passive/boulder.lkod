@@ -1,2 +1,5 @@
 boulder_name_rsc = de "Felsblock"
 boulder_desc_rsc = de "Du schaust auf einen harten, kalten Felsblock aus Stein."
+
+boulder_name_rsc = pt "Rocha"
+boulder_desc_rsc = pt "Você está olhando para uma rocha, um pedaço de pedra áspero e frio."

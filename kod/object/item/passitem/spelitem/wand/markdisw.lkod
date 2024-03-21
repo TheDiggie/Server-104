@@ -1,3 +1,6 @@
 MarkOfDishonorWand_label_name_rsc = de "Stab der Brandzeichnung"
 MarkOfDishonorWand_desc_rsc = de \
    "Magische Energien umströmen diesen dünnen Stab."
+
+MarkOfDishonorWand_label_name_rsc = pt "varinha da marca da desonra"
+MarkOfDishonorWand_desc_rsc = pt "Energia mágica estala em torno desta varinha esguia."

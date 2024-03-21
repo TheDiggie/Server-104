@@ -1,3 +1,6 @@
 RoomFlag_name_rsc = de "Raum Kennzeichnung"
 RoomFlag_desc_rsc = de \
    "Ein Indikator der zeigt, in welcher Art von Raum Du dich befindest."
+
+RoomFlag_name_rsc = pt "bandeira do quarto"
+RoomFlag_desc_rsc = pt "Um indicador que mostra o tipo de quarto."

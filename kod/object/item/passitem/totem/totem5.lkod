@@ -7,3 +7,10 @@ TotemFive_desc_rsc = de \
    "nahm an, er sei von Dieben gestohlen worden.Von diesen Kelchen kann man "
    "nur einen für eine kurze Zeit besitzen. Er kann auch nicht mitgenommen "
    "oder in einer Kiste verwahrt werden."
+
+TotemFive_name_rsc = pt "Cálice do Imperador"
+TotemFive_desc_rsc = pt "Fabricado no século V, este legado único em sua categoria deveria ser entregue como um presente para o Imperador da terra antiga. "
+    "Antes que os mensageiros pudessem partir, o Nexus se rompeu, destruindo qualquer rota possível para o império. O Cálice foi perdido por séculos, "
+    "pensado para ter sido levado por ladrões.\n\n"
+    "Sendo único em sua categoria, este Cálice não pode ser carregado por muito tempo em posse de alguém ou guardado "
+    "em um baú."

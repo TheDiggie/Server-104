@@ -2,3 +2,6 @@ DragonflyCage_name_rsc = de "Drahtkäfig"
 DragonflyCage_desc_rsc = de \
    "Dies ist ein fein gestalteter Drahtkäfig, geeignet um eine Avar Kreatur "
    "zu beherbergen"
+
+DragonflyCage_name_rsc = pt "gaiola de arame"
+DragonflyCage_desc_rsc = pt "Esta é uma gaiola de arame delicadamente trabalhada, adequada para abrigar uma pequena criatura aviária."

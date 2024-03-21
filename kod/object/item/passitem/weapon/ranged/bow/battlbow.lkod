@@ -4,3 +4,6 @@ BattleBow_desc_rsc = de \
    "den neidvollen Vorteil eines stärkeren Angriffes auf Kosten von Genauigkeit "
    "bei großen Entfernungen. Du solltest diesen Bogen nur auf kurze Distanz "
    "benutzen."
+
+BattleBow_name_rsc = pt "arco de batalha"
+BattleBow_desc_rsc = pt "Esculpido com maestria para o poder, este arco lhe dá a invejável vantagem de um ataque mais forte com o sacrifício de precisão em longas distâncias. Você deve usar este arco apenas em distâncias mais próximas."

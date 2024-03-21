@@ -2,3 +2,7 @@ ranged_desc_rsc = de "Dies ist eine Fernwaffe."
 ranged_wrong_ammo_rsc = de \
    "Du bist nicht mit den richtigen Geschossen für einen Angriff ausgerüstet."
 ranged_ammo_name = de "Der Pfeil"
+
+ranged_desc_rsc = pt "Esta é uma arma de longo alcance."
+ranged_wrong_ammo_rsc = pt "Você não equipou o projétil adequado para atacar."
+ranged_ammo_name = pt "flecha"

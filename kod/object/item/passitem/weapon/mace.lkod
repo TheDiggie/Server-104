@@ -3,3 +3,6 @@ mace_desc_rsc = de \
    "Obwohl sie tödlich aussieht, ist die Wirkung dieser Waffe nur gering. "
    "Die eingesetzten Nägel wurden aus weichem Metall hergestellt, ihr Schaft "
    "ist dünn und zerbrechlich."
+
+mace_name_rsc = pt "maça"
+mace_desc_rsc = pt "Letal em aparência, esta arma é na verdade apenas minimamente eficaz. Sua cabeça pontiaguda é feita de metal macio e seu cabo de madeira é fino e quebradiço."

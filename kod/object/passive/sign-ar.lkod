@@ -5,3 +5,7 @@ oldarenasign_arena_msg = de \
    "Sag CHAMPION, wenn es keinen Champion gibt. Champions müssen jede Herausforderung "
    "AKZEPTIEREN; sonst verlieren sie ihren Titel. Champions dürfen ihren "
    "Titel ABGEBEN, jedoch nicht während eines Kampfes.\""
+
+oldarenasign_name_rsc = pt "placa"
+oldarenasign_desc_rsc = pt "A placa diz:\n\n%s"
+oldarenasign_arena_msg = pt "\"Diga DESAFIO para iniciar uma luta com um campeão. Diga CAMPEÃO se nenhum campeão existir. Os campeões devem ACEITAR todos os desafios ou perderão seu título. Os campeões podem RENUNCIAR aos seus títulos, mas não durante o combate.\""

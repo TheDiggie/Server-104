@@ -2,3 +2,6 @@ Longbow_name_rsc = de "Der Langbogen"
 Longbow_desc_rsc = de \
    "Hervorragend gefertigt für Flexibilität und Entfernung, gibt Dir dieser "
    "Bogen den Vorteil des Angriffs aus der Ferne."
+
+Longbow_name_rsc = pt "arco longo"
+Longbow_desc_rsc = pt "Esculpido com maestria para flexibilidade e alcance, este arco lhe dá a invejável vantagem de um ataque de longo alcance."

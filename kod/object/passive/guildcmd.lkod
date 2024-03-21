@@ -3,3 +3,9 @@ guildcommand_desc_text_rsc = de \
    "Dies ist ein Gildenbefehl, der benutzt wird um eine Gilde zu administrieren."
 guildcommand_out_of_range = de "%s%q ist nicht in Reichweite."
 guildcommand_desc_rsc = de "Gildenbefehl    Benötiger Rang: %s/%s\n\n%s"
+
+guildcommand_name_rsc = pt "comando de guilda"
+guildcommand_desc_text_rsc = pt \
+   "Este é um comando de guilda, usado para administrar uma guilda."
+guildcommand_out_of_range = pt "%s%q está fora do alcance."
+guildcommand_desc_rsc = pt "Comando de Guilda    Necessário o Rank: %s/%s\n\n%s"

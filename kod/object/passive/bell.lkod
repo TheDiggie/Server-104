@@ -4,3 +4,9 @@ Bell_desc_rsc = de \
    "Bewohner Hilfe benötigt"
 Bell_not_in_range = de "Der Klingelzug ist zu weit entfernt um ihn zu benutzen."
 Bell_decorator_summoned = de "Ein zarter Glockenschlag hallt durch den Raum."
+
+Bell_name_rsc = pt "sino de serviço"
+Bell_desc_rsc = pt "Este cordão de sino é usado para notificar a equipe de decoração de que "
+    "o ocupante requer sua assistência."
+Bell_not_in_range = pt "O cordão do sino está muito longe para alcançar."
+Bell_decorator_summoned = pt "Um toque delicado ecoa pela sala."

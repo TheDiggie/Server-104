@@ -2,3 +2,6 @@ TruceScroll_label_name_rsc = de "Schriftrolle der Waffenruhe"
 TruceScroll_desc_rsc = de \
    "Diese Schriftrolle ist mit einer unleserlichen, krakeligen, mystischen "
    "Schrift bedeckt."
+
+TruceScroll_label_name_rsc = pt "pergaminho de trégua"
+TruceScroll_desc_rsc = pt "Este pergaminho está coberto com escrita mística indecifrável em uma mão de aranha."

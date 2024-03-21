@@ -7,3 +7,7 @@ RiijaSword_desc_rsc = de \
 RiijaSword_desc_append = de \
    " Ein paar der Runen sagen, \"Dieses Schwert wird %q in unerschütterlichem "
    "Glauben führen.\""
+
+RiijaSword_name_rsc = pt "espada de Riija"
+RiijaSword_desc_rsc = pt "Esta é uma espada muito estranha, mas surpreendentemente leve em suas mãos. Diante de seus olhos, runas escuras e estranhas se movem ligeiramente nesta arma mortal."
+RiijaSword_desc_append = pt " Algumas das runas dizem: 'Deixe %q andar com fé.'"

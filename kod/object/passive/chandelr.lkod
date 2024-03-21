@@ -2,3 +2,6 @@ chandelier_name_rsc = de "Kronleuchter"
 chandelier_desc_rsc = de \
    "Dies ist ein dekorativer Kronleuchter, der nicht so aussieht, "
    "als ob er es aushalten würde, wenn sich ein Troll an ihn hängt."
+
+chandelier_name_rsc = pt "Candelabro"
+chandelier_desc_rsc = pt "Este candelabro decorativo não parece capaz de suportar o peso de um espadachim balançando."

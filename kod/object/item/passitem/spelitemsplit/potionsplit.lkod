@@ -5,3 +5,7 @@ PotionSplitter_desc_rsc = de \
 potion_split_spell_item_rsc = de \
    "Deine ganze hälfte von %s in deine leere flasche und es kommt  ein Trank "
    "mit %d und einer KRaft von %d."
+
+PotionSplitter_name_rsc = pt "garrafa vazia"
+PotionSplitter_desc_rsc = pt "Esta garrafa, feita de vidro transparente e selada por uma rolha, contém nada além de água magicamente preparada. Parece ser possível armazenar líquido de poção excedente dentro dela."
+potion_split_spell_item_rsc = pt "Você despeja metade do(a) %s em sua garrafa vazia, criando uma nova poção que tem %d doses com uma média de %d de poder mágico."

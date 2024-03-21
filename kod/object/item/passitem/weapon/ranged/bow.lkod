@@ -1,3 +1,6 @@
 bow_name_rsc = de "Bogen"
 bow_desc_rsc = de \
    "Dieser Bogen bietet den Vorteil von Angriffen auf groﬂe Entfernungen."
+
+bow_name_rsc = pt "arco"
+bow_desc_rsc = pt "Este arco oferece a vantagem de ataques de longo alcance."

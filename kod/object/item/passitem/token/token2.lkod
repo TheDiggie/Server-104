@@ -4,3 +4,9 @@ TwoToken_desc_rsc = de \
    "Edelsteinen verzierten, altertümlichen Artefakts auf Wunsch allen Reichtum "
    "des Landes wegzaubern kann.Wenn Du es zurückgibst, würde wahrscheinlich "
    "Dein Ansehen am königlichen Hof steigen."
+
+TwoToken_name_rsc = pt "token de ovo com joias"
+TwoToken_desc_rsc = pt \
+    "Crivado com todas as pedras preciosas conhecidas, este token antigo é rumorado "
+    "invocar as riquezas da terra com o desejo do Conselheiro que o mantém. "
+    "Devolver isso provavelmente aumentaria seu status na Corte Real."

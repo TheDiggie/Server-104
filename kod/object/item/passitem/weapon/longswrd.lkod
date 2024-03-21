@@ -3,3 +3,6 @@ longsword_desc_rsc = de \
    "Diese Klinge aus Stahl ist die beste Waffe für Halsabschneider und Adlige. "
    "Sie besitzt eine Länge von mehr als einem Meter und ein eindruckvolles "
    "Gewicht. Der Name des Schmieds, Ferloi Qan, ist in die Klinge eingraviert."
+
+longsword_name_rsc = pt "espada longa"
+longsword_desc_rsc = pt "Esta lâmina de aço é a arma de escolha tanto para assassinos quanto para nobres. Com quase quatro pés de comprimento, seu peso é impressionante. O nome de seu fabricante, Fehr'Loi Qan, está inscrito em sua lâmina."

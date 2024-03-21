@@ -5,3 +5,9 @@ TotemFour_desc_rsc = de \
    "wertvoll, als dass er im Kampf benutzt werden würde.Von diesen Schilden "
    "kann man nur einen für kurze Zeit besitzen. Er kann auch nicht mitgenommen "
    "oder in einer Kiste verwahrt werden."
+
+TotemFour_name_rsc = pt "Escudo Antigo"
+TotemFour_desc_rsc = pt "Acredita-se ser um artefato do Império do Nexus antes mesmo desta terra ser descoberta, este escudo antigo é "
+    "muito velho e valioso para ser usado em combate.\n\n"
+    "Sendo único em sua categoria, este escudo não pode ser carregado por muito tempo em posse de alguém ou guardado "
+    "em um baú."

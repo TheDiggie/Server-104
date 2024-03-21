@@ -2,3 +2,6 @@ summonpoisonfogscroll_label_name_rsc = de "Schriftrolle des giftigen Nebels"
 summonpoisonfogScroll_desc_rsc = de \
    "Diese Schriftrolle ist mit einer unleserlichen, krakeligen, mystischen "
    "Schrift bedeckt."
+
+summonpoisonfogscroll_label_name_rsc = pt "pergaminho da névoa venenosa"
+summonpoisonfogScroll_desc_rsc = pt "Este pergaminho está coberto com escrita mística indecifrável em uma mão aracnídea."

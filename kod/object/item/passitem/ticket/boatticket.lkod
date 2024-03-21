@@ -1,1 +1,2 @@
- de 
+boat_ticket_name_rsc = pt "bilhete de barco"
+boat_ticket_desc_rsc = pt "Este é um bilhete de barco para ''%s'' a bordo da Lenda Marítima. Para viajar para o seu destino, ofereça o bilhete ao Capitão do Barco."

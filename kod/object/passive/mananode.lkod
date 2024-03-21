@@ -18,3 +18,25 @@ mananode_failed_meld = de \
    "um zu erreichen, das du dich mit dieser Mana Node verbinden kannst.Du "
    "wachst auf und bist enttäuscht, denn nichts ist geschehen."
 node_somewhere = de "irgendwo unbekannt"
+
+ManaNode_name_rsc = pt "nó de mana"
+ManaNode_desc_rsc = pt \
+      "Uma concentração de energia mística, um fluxo de mana bruto pulsa aqui, "
+      "fornecendo força ao conjurador que consegue se fundir com ela."
+ManaNode_Dead_desc_rsc = pt \
+      "Uma concentração de energia mística, a mana bruta que normalmente pulsa aqui está "
+      "estranhamente ausente. Não parece que você poderia se fundir com este nó."
+mananode_already_melded = pt "Você já se uniu a este nó de mana."
+mananode_not_in_range = pt "O nó de mana não está perto o suficiente para se fundir."
+mananode_yeti_alive = pt \
+      "Você deve matar a besta antes de poder se fundir com este" 
+      " nó."
+mananode_meld = pt \
+      "Fechando os olhos, você entra em um estado de transe e se conecta "
+      "misticamente com o nó. A realidade se expande e o tempo colapsa, "
+      "até que você recobra a consciência, revigorado."
+mananode_failed_meld = pt \
+      "Fechando os olhos, você entra em um estado de transe e tenta "
+      "se conectar misticamente com o nó. Você fica desapontado "
+      "quando nada parece acontecer."
+node_somewhere = pt "em algum lugar desconhecido"

@@ -1,2 +1,5 @@
 PassiveWallofLightning_name_rsc = de "Die Blitzwand"
 PassiveWallofLightning_desc_rsc = de "Eine Blitzwand flackert vor Dir auf"
+
+PassiveWallofLightning_name_rsc = pt "muralha de relâmpagos"
+PassiveWallofLightning_desc_rsc = pt "A parede de relâmpagos crepita perigosamente, como se estivesse esperando que você a atravessasse."
