@@ -1,26 +1,19 @@
-// Quest description.
 hypochondriacquest_name_rsc = de "Hypochonder Quest"
 hypochondriacquest_desc_rsc = de \
    "Frisconar ist wieder einmal \"krank\", und benötigt Hilfe um eine Heilung für "
    "seine Krankheit zu finden."
-
 hypochondriacquest_nodetwo_rsc = de \
    "Frisconar ist wieder einmal krank. Diesmal hat er %s. Gehe zu "
    "%s und frag %s nach einem Heilmittel für \"%s\"."
-
 hypochondriacquest_nodethree_rsc = de \
    "Gehe zu %s und frag %s nach dem \"Sacchaqua\" Trank."
-
 hypochondriacquest_nodefour_rsc = de \
    "Kehre zurück zu Frisconar und gib ihm den Sacchaqua Trank, um  "
    "ihn von seinem Leiden zu erlösen."
-
 hypochondriacquest_completed_rsc = de \
    "Du hast den armen Frisconar geholfen, einen weiteren Tag zu überleben, "
    "und wurdest dafür belohnt. Vielleicht benötigt er deine Hilfe noch einmal "
    "in der Zukunft."
-
-// Quest resources.
 hypochondriac_assign_2 = de \
    "Gott sei Dank bist Du hier! Ich sterbe! Ich habe %CARGO! Gehe zu %NPC "
    "und frag %HIMHER_NPC nach einer Heilung dafür!"
@@ -56,3 +49,22 @@ hypochondriac_failure_4 = de \
    "auch wenn Du gescheitert bist. Ich muss meine letzte Hoffnung auf jemand "
    "anderen übertragen und hoffe das ich nicht wieder enttäuscht werde. Leb "
    "wohl, vielleicht für immer."
+
+hypochondriacquest_name_rsc = pt "missão do hipocondríaco"
+hypochondriacquest_desc_rsc = pt "Frisconar está \"doente\" mais uma vez e requer sua assistência para obter um remédio para sua doença."
+hypochondriacquest_nodetwo_rsc = pt "Frisconar está doente mais uma vez, desta vez com %s. Vá até %s e pergunte a %s sobre a cura para \"%s\"."
+hypochondriacquest_nodethree_rsc = pt "Vá até %s e pergunte a %s sobre a poção \"Sacchaqua\"."
+hypochondriacquest_nodefour_rsc = pt "Volte para Frisconar e dê a ele a poção Sacchaqua, para salvá-lo de uma morte certa."
+hypochondriacquest_completed_rsc = pt "Você ajudou o pobre Frisconar a adiar a morte por mais um dia e foi recompensado por isso. Talvez ele precise de sua ajuda no futuro."
+hypochondriac_assign_2 = pt "Graças a Deus que você está aqui! Acho que estou morrendo! Eu tenho %CARGO! Vá até %NPC e pergunte a %HIMHER_NPC sobre uma cura para isso!"
+hypochondriac_trigger_2a = pt "paragolisys"
+hypochondriac_trigger_2b = pt "miriatetosis"
+hypochondriac_trigger_2c = pt "pelagalosilis"
+hypochondriac_trigger_2d = pt "a grande doença dos fungos"
+hypochondriac_failure_2 = pt "Assunto: %CARGO\nFoi bom que outra pessoa apareceu e me salvou do meu mal! Certamente você me deixaria definhar lentamente até uma morte dolorosa e prolongada."
+hypochondriac_trigger_3 = pt "sacchaqua"
+hypochondriac_assign_3 = pt "Ah, ele está morrendo, hein? Bem, por que você não vai até %NPC e diz que Frisconar precisa de outra poção de Sacchaqua."
+hypochondriac_failure_3 = pt "Assunto: Ailments incessantes de Frisconar\nAcho que você desistiu do velho Frisconar. Eu não te culpo, eu também não tenho muita paciência para os caprichos dele."
+hypochondriac_assign_4 = pt "Que engraçado. Você pensaria que um Alquimista experiente como Frisconar saberia que isso não passa de água com açúcar. Bem, leve isso para ele."
+hypochondriac_success_4 = pt "Ah, graças aos deuses! Eu... eu estava vendo estrelas! A luz no fim do túnel! Eu estou vivo! Aqui, pegue este %PRIZE - eu lhe devo por salvar minha vida!"
+hypochondriac_failure_4 = pt "Assunto: Ai de mim!\nOnde você esteve?! Eu estou acabado agora, com certeza. Enquanto escrevo isso, minha visão escurece até que mal consigo ver o papel diante de mim. Minha respiração é curta e me causa grande dor. Minha busca por uma cura para minha doença deve continuar, embora você tenha me falhado. Devo depositar minhas esperanças frágeis e desfiadas em outro, e esperar que não me decepcione como você fez. Adeus, talvez para sempre."

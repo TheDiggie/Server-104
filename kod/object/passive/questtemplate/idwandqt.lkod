@@ -1,21 +1,15 @@
-// Quest description.
 idwandqt_name_rsc = de "Zauberstab Identifikations Quest"
 idwandqt_desc_rsc = de \
    "Hilf einem NPC einen Zauberstab zu identifizieren."
-
 idwandqt_nodetwo_rsc = de \
    "%s%s hat vor kurzem einen Zauberstan erhalten. %s ist nicht in der Lage ihn zu identifizieren, "
    "und fragt nach deiner Hilfe.  Biete den Zauberstab  "
    "%s%s an und schau ob%ser bei der Aufgabe helfen kann."
-
 idwandqt_nodethree_rsc = de \
    "%s%s hat den Zauberstab identifiziert. Geh zurück zu %s%s und "
    "biete %s den nun identifizierten Zauberstab an um deine Belohnung zu erhalten."
-
 idwandqt_completed_rsc = de \
    "Du hast das Zauberstab Identifikations Quest erfolgreich abgeschlossen."
-
-// Quest resources.
 wand_identify_assign_1 = de \
    "Nun, jetzt wo Du es sagst, ich habe den Zauberstab den ich an dem Tag "
    "gefunden habe mitgenommen. Ich kann aber leider nicht herausfinden was "
@@ -42,3 +36,14 @@ wand_identify_failure_2 = de \
    "wenn ich Du wäre, würde ich ihn wegwerfen.  Obwohl ich könnte Dir sagen "
    "was es war, er sah aber nicht so aus als ob er nicht wirklich funktioniert "
    "hätte."
+
+idwandqt_name_rsc = pt "missão de identificação de varinha"
+idwandqt_desc_rsc = pt "Ajude um NPC a identificar uma varinha."
+idwandqt_nodetwo_rsc = pt "%s%s recebeu recentemente uma varinha %s que não consegue identificar e gostaria da sua assistência para determinar sua natureza. Ofereça a varinha a %s%s e veja se %s pode ajudar com essa tarefa."
+idwandqt_nodethree_rsc = pt "%s%s determinou a natureza da varinha. Volte para %s%s e ofereça a %s a varinha agora identificada e colete sua recompensa."
+idwandqt_completed_rsc = pt "Você concluiu a missão de identificação de varinhas."
+wand_identify_assign_1 = pt "Bem, agora que você mencionou, eu tenho esta varinha que peguei outro dia, mas não consigo entender o que ela faz - parece repelir magia. Você poderia levá-la até %NPC e pedir para %HIMHER_NPC identificá-la para mim? Eu ficaria muito grato se você pudesse."
+wand_identify_assign_2 = pt "Uma varinha, hein? Deixe-me ver aqui... ah ha! Você vê estas runas aqui... ao longo do cabo... Aquelas indicam que esta é uma %CARGO. Deixe-me colocar um rótulo com a tradução na varinha para que %NPC seja capaz de saber o que é isso."
+wand_identify_success = pt "Maravilhoso. Uma %CARGO certamente será útil. Deixe-me dar algo a você pelo seu trabalho."
+wand_identify_failure_1 = pt "Assunto: Aquela varinha estranha\nSobre aquela varinha, lembrei que era um item bastante inútil. Não se preocupe em identificá-lo, tenho certeza de que não vale a pena. Eu provavelmente terei outros trabalhos estranhos para você fazer se voltar para visitar no futuro. Até mais!"
+wand_identify_failure_2 = pt "Assunto: Aquela varinha estranha\nSobre aquela varinha, %NPC me disse que não era importante de qualquer forma. Na verdade, se eu fosse você, jogaria fora. Embora eu pudesse dizer o que era, não parecia que funcionaria corretamente."

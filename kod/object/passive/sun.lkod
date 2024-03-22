@@ -1,3 +1,6 @@
 sun_name_rsc = de "Die Sonne"
 sun_desc_rsc = de \
    "Einige Leute sind schlau genug, nicht in die Sonne zu schauen."
+
+sun_name_rsc = pt "sol"
+sun_desc_rsc = pt "Algumas pessoas têm bom senso o suficiente para não olhar para o sol."

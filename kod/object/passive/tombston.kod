@@ -29,7 +29,6 @@ resources:
    "R.I.P. %q, born %i ME, died %i ME.\n\n"
    "May the gods take their revenge!"
 
-
 classvars:
 
    vrName = tombstone_name_rsc

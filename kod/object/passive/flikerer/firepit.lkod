@@ -2,3 +2,6 @@ firepit_name_rsc = de "Feuer"
 firepit_desc_rsc = de \
    "Dieses kleine Feuer bietet beides, ein schönes Licht und eine schöne "
    "Wärme."
+
+firepit_name_rsc = pt "fogo"
+firepit_desc_rsc = pt "Esse pequeno fogo oferece tanto luz quanto calor para a área ao redor."

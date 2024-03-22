@@ -7,3 +7,8 @@ punisher_fail_use = de \
    "die Finger zurück!"
 weapattpunisher_name = de "%s Vorteil beim Kampf für Gerechtigkeit."
 punisher_dm = de "Bestrafer"
+
+weapattpunisher_desc = pt "\n\nO emblema de um punho segurando um ankh repousa no cabo desta arma, prometendo %s vantagem na luta pela justiça."
+punisher_fail_use = pt "Ao agarrar o cabo de %s%s, você grita de dor e solta!"
+weapattpunisher_name = pt "%s do justo"
+punisher_dm = pt "punidor"

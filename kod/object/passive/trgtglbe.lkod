@@ -2,3 +2,6 @@ TargetGlobe_name = de "Kugel"
 TargetGlobe_desc = de \
    "Während Du die dunkle Kugel betrachtest, beschleicht Dich das seltsame "
    "Gefühl, beobachtet zu werden."
+
+TargetGlobe_name = pt "Globo"
+TargetGlobe_desc = pt "Olhando para este globo escuro, você tem a estranha sensação de que está sendo observado."

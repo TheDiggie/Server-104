@@ -2,3 +2,7 @@ lamp_name = de "Blauer Eisengrill"
 lamp_desc = de \
    "Duftöl verbrennt in diesem Grill und gibt dem Raum einen Moschusduft "
    "sowie ein schönes Licht."
+
+lamp_name = pt "bacia de ferro azul"
+lamp_desc = pt \
+      "Óleo perfumado queima nesta bacia, fornecendo luz e dando ao ambiente um ar amadeirado."

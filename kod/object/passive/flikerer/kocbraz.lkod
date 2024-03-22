@@ -2,3 +2,7 @@ kocatanbrazier_name_rsc = de "Siedlungs Lampe"
 kocatanbrazier_desc_rsc = de \
    "Im Auftrag von A'ach Tezcha soll diese Lampe bei Dunkelheit beleuchtet "
    "bleiben."
+
+kocatanbrazier_name_rsc = pt "lâmpada do assentamento"
+kocatanbrazier_desc_rsc = pt "Por ordem do A'ach Tezcha, essas lâmpadas devem permanecer acesas "
+      "durante as horas de escuridão."

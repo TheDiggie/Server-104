@@ -5,3 +5,9 @@ guildvote_desc_text_rsc = de \
 vote_no_gms = de "Gidelmeister können nicht für sich selber wählen."
 vote_ties_renouncer = de "Du dankst ab bei %s%s."
 vote_ties_others = de "%s dankt ab bei %s%s!"
+
+guildvote_name_rsc = pt "votar"
+guildvote_desc_text_rsc = pt "Use este comando para manifestar seu apoio à liderança da guilda para uma pessoa em particular."
+vote_no_gms = pt "Os mestres da guilda não podem votar suas relações antes de abdicarem de seus títulos."
+vote_ties_renouncer = pt "Você renuncia suas relações com %s%s."
+vote_ties_others = pt "%s renuncia a todas as relações com %s%s!"

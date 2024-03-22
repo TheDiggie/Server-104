@@ -9,3 +9,8 @@ guildabandon_necro_nak = de \
 guildabandon_not_while_under_attack = de \
    "Du kannst deine Gildenhalle nicht aufgeben solange sie angegriffen wird.  "
    "Geh und verteidige sie!"
+
+guildabandon_name_rsc = pt "abandonar salão da guilda"
+guildabandon_desc_text_rsc = pt "Use este comando para sair de sua guilda. Você nunca gostou deles mesmo. Os mestres da guilda devem transferir seu título antes de usar este comando."
+guildabandon_necro_nak = pt "~BVocê fez um juramento de sangue à sua Rainha das Trevas. Você não pode simplesmente abandonar sua fortaleza."
+guildabandon_not_while_under_attack = pt "Você não pode abandonar seu salão da guilda enquanto estiver sob ataque. Vá e defenda-o!"

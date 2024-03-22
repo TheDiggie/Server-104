@@ -1,2 +1,5 @@
 tablamp_name = de "schwarze Stein Lampe"
 tablamp_desc = de "Diese Lampe bietet ein gedämpftes, flackerndes Licht."
+
+tablamp_name = pt "lâmpada de pedra negra"
+tablamp_desc = pt "Esta lâmpada oferece um brilho suave e tremeluzente."

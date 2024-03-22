@@ -3,3 +3,8 @@ switch_desc_rsc = de "Dieser Schalter hat keine Funktion."
 switch_not_in_range = de \
    "Der Schalter ist zu weit entfernt, um ihn zu aktivieren."
 switch_changed = de "Du legst den Schalter um."
+
+switch_name_rsc = pt "interruptor"
+switch_desc_rsc = pt "Este interruptor não controla nada."
+switch_not_in_range = pt "O interruptor não está próximo o suficiente para ser acionado."
+switch_changed = pt "Você aciona o interruptor."

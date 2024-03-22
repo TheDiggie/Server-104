@@ -1,2 +1,5 @@
 itematt_made_desc = de " Es schimmert unwesentlich."
 iaMade_gone = de "%s verschwindet in einer Rauchwolke."
+
+itematt_made_desc = pt "\n\nEle cintila insubstancialmente."
+iaMade_gone = pt "Seu %s desaparece em um borrifo de fumaça."

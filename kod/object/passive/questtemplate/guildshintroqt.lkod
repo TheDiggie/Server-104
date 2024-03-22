@@ -1,16 +1,15 @@
-// Quest description. No description is actually displayed for this
-// quest, its purpose is to activate another quest which isn't given
-// to the player directly.
 guildshintroquest_name_rsc = de "Schmied Eisenerz Quest"
 guildshintroquest_desc_rsc = de \
    "Der Baarkeeper hat Dir von einem Schmied erzählt, der nach Eisenerz sucht."
-
 guildshintroquest_completed_rsc = de \
    "Der Baarkeeper hat Dir von einem Schmied erzählt, der nach Eisenerz sucht."
-
-// Quest resources.
 guildshield_intro = de \
    "Ich habe gehört, dass %QBNPC jemanden auf eine Bergwerksexpedition "
    "schicken möchte%QBHIMHER_NPC, und das es von besonderem Interesse für Deine "
    "Gildenmitglieder ist. Du kannst jemanden von Ihnen schicken um%QBHIMHER_NPC "
    "danach zu fragen."
+
+guildshintroquest_name_rsc = pt "Missão de minério do ferreiro"
+guildshintroquest_desc_rsc = pt "O barman lhe contou sobre um ferreiro procurando minério."
+guildshintroquest_completed_rsc = pt "O barman lhe contou sobre um ferreiro procurando minério."
+guildshield_intro = pt "Ouvi dizer que %QBNPC está procurando alguém para fazer uma expedição de mineração para %QBHIMHER_NPC, e que isso pode ser de interesse particular para os membros da sua guilda. Talvez você queira enviar um deles para perguntar a %QBHIMHER_NPC sobre isso."

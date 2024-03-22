@@ -11,3 +11,11 @@ vamper_worked = de "%s%s schaudert, während %s herausgesaugt wird!"
 vamper_worked_target = de \
    "%s%s scheint entkräftet, als das Metall der Waffe von %s Dein Fleisch berührt!"
 vamper_info_desc = de "10%% Chance beim Schlag 8 Lebenspunkte auf Dich zu übertragen\n"
+
+weapattVamper_desc = pt "\n\nUm brilho profano parece sugar toda a vida do ar ao redor da arma."
+Vamper_dm = pt "Vamper"
+Vamper_fail_use = pt "Você não está pronto para usar %s%s."
+Vamper_fail_use_karma = pt "Você não é suficientemente profano para empunhar essa coisa despótica."
+vamper_worked = pt "%s%s estremece conforme sua vida é sugada!"
+vamper_worked_target = pt "%s%s parece enervado conforme o metal da arma toca sua carne!"
+vamper_info_desc = pt "10%% de chance de ganhar até 8 de saúde ao acertar\n"

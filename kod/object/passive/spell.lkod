@@ -106,3 +106,91 @@ Spell_too_few_hp_rsc = de \
 cannot_cast_on_phased_out = de \
    "Du kannst nichts auf %s zaubern, solange %s aus der Existenz getreten "
    "ist!"
+
+spell_name_rsc = pt "feitiço"
+spell_desc_text_rsc = pt "Este é um feitiço."
+spell_not_good_enough = pt "Você não é digno de lançar %s!"
+spell_not_evil_enough = pt "Você não é vil o suficiente para lançar %s!"
+spell_already_in_effect = pt "Este feitiço já está em efeito aqui."
+spell_cast_on_target = pt "Você lança %s em %s%s."
+spell_triggers_outlawing = pt \
+   "Você foi rotulado como fora da lei por lançar um feitiço antissocial!"
+spell_outlaw = pt "Lançar este feitiço pode fazer com que você seja rotulado como fora da lei."
+spell_nothing = pt " "
+spell_blank = pt ""
+spell_no_rest = pt "Você não pode lançar feitiços enquanto descansa!"
+spell_bad_location = pt "Você não pode lançar %s aqui."
+spell_bad_target = pt "Você não pode lançar %s em %s%s!"
+spell_no_targets = pt "Não há alvos adequados para %s."
+spell_no_self_target = pt "Você não pode lançar %s em si mesmo!"
+spell_too_tired = pt "Você está muito cansado para lançar %s!"
+spell_insufficient_magic = pt "Você não tem mana suficiente para lançar %s!"
+spell_insufficient_reagent = pt "Você não possui os reagentes para lançar %s!"
+spell_out_of_range = pt "%s%s está fora de alcance."
+spell_begin_trance = pt "Você começa a lançar %s."
+spell_safety_on = pt \
+   "Você não pode fazer um lançamento antissocial; você não deseja atacar inocentes."
+spell_safety_no_unlawful = pt \
+   "Ajudar uma pessoa fora da lei como %s%s irá rotulá-lo como um fora da lei. "
+   "Bom que sua segurança estava ligada!"
+spell_angel_no_unlawful = pt \
+   "Ajudar uma pessoa fora da lei como %s%s o rotularia como um fora da lei. "
+   "Você ainda não está pronto para participar de conflitos contra outros jogadores."
+spell_outlaw_cast = pt \
+   "Este feitiço corre o risco de transformá-lo em um fora da lei. "
+   "Você ainda não está pronto para o conflito contra outros jogadores."
+spell_hands_too_full = pt \
+   "Suas mãos estão muito cheias para lançar feitiços que afetariam os outros."
+spell_unlawful_outlaw = pt \
+   "Shal'ille não aprova sua assistência a cidadãos fora da lei."
+spell_failed_by_chance = pt "Você não teve sucesso em lançar %s."
+spell_advanced = pt "Você avançou em %s! Sua habilidade está agora em %s."
+spell_no_pvp_flag = pt \
+   "Shal'ille impede o lançamento deste feitiço, pois você optou por não "
+   "participar do combate entre jogadores."
+spell_guardian = pt \
+   "Seu anjo da guarda lhe diz: \"Você não está pronto para lançar feitiços ofensivos em outros jogadores.\""
+spell_cant_help = pt \
+   "Seu anjo da guarda lhe diz: \"%s%s atacou alguém recentemente demais. "
+   "Não interfira.\""
+spell_too_soon_since_attacking = pt "Você atacou um jogador recentemente demais."
+spell_resists = pt "%s%s resiste às suas tentativas de encantá-lo!"
+spell_silenced_rsc = pt "Suas palavras ficam presas em sua garganta e você não consegue falar."
+spell_desc_rsc = pt "ESCOLA : %s         NÍVEL : %i \n\n%s%s%s%r%r%r"
+spell_school_riija = pt "Riija"
+spell_school_shalille = pt "Shal'ille"
+spell_school_qor = pt "Qor"
+spell_school_faren = pt "Faren"
+spell_school_kraanan = pt "Kraanan"
+spell_school_jala = pt "Jala"
+spell_school_crafting = pt "Crafting"
+spell_intro_rsc = pt "Um dos muitos feitiços místicos."
+spell_gesture_third = pt \
+   "%s%s murmura algo debaixo de %s respiração e faz um gesto místico."
+spell_gesture_third_target = pt \
+   "%s%s murmura algo debaixo de %s respiração e aponta um dedo para %s%s."
+spell_you = pt "você"
+spell_resisted = pt "%s%s resiste ao seu feitiço!"
+spell_forgot1 = pt "Você... não consegue lembrar totalmente deste feitiço." 
+spell_forgot2 = pt \
+   "A incantação está na ponta da sua língua, mas você não consegue pronunciá-la!"
+spell_forgot3 = pt \
+   "Tendo esquecido a incantação deste feitiço, você cospe algumas palavras aleatórias "
+   "e agita os braços esperando um milagre."
+spell_forgot4 = pt "Klaatu Veratu Nepto?!?!"
+spell_trance_begin = pt "Você concentra toda a sua vontade em lançar %s."
+spell_trance_break = pt \
+   "Sua concentração é quebrada e o feitiço %s falha."
+spell_disabled = pt \
+   "~g~BUm força invisível arranca as palavras do feitiço de sua garganta "
+   "antes que você possa pronunciá-las completamente."
+spell_display_spellpower = pt \
+   "O poder do feitiço para %s é ~b%i~n."
+no_line_of_sight = pt \
+   "Sua visão obstruída torna o lançamento mais difícil."
+spell_meditate_ratio_rsc = pt \
+   "\n\nCustará %i pontos de treinamento para melhorar neste feitiço."
+spell_Enchantment_type_default_rsc = pt "encantador"
+Spell_too_few_hp_rsc = pt "Você não é poderoso o suficiente para lançar este feitiço."
+cannot_cast_on_phased_out = pt \
+   "Você não pode lançar nada em %s enquanto %s está fora de existência!"

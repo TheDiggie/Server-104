@@ -18,3 +18,14 @@ guildinvitation_cannot_rejoin = de \
 guildinvitation_necro_no_amulet = de \
    "~BNur ein Nekromant kann dem Orden beitreten. Dieser Spieler eignet sich "
    "nur zum Verzehr."
+
+guildInvite_name_rsc = pt "Convidar"
+guildinvite_desc_text_rsc = pt "Usado para convidar membros em potencial para a guilda. A pessoa convidada tem 1 minuto para aceitar o convite."
+guildinvite_already_your_guild = pt "Esta pessoa já pertence à sua guilda."
+invite_cant_invite_self = pt "Você não pode convidar a si mesmo para se juntar à sua guilda!"
+invite_non_user = pt "%s%s declina respeitosamente sua tentadora oferta."
+guildinvitation_to_inductor = pt "~BVocê estende a oportunidade para %s%q se juntar a %s%q."
+guildinvitation_to_inductee = pt "~B%s%s estende a você um convite para se juntar a %s%q!"
+guildinvitation_guild_full = pt "As fileiras de %s%q estão cheias e não podem aceitar novos membros."
+guildinvitation_cannot_rejoin = pt "~BEste jogador não pode se juntar às fileiras de sua guilda neste momento."
+guildinvitation_necro_no_amulet = pt "~BApenas um necromante pode se juntar à Ordem! Este jogador só serve para consumo."

@@ -11,3 +11,11 @@ ViewPointGlobe_used = de \
    "Du starrst tief in die Kugel und stellst fest, dass Du durch sie zu einem "
    "fernen Ort blicken kannst!\n[Drücke ESC, wenn Du bereit bist, in die normale "
    "Welt zurückzukehren.]"
+
+ViewPointGlobe_name = pt "Globo da Visão"
+ViewPointGlobe_desc = pt "Olhar para este globo permitirá que você veja através do globo ao qual ele está magicamente ligado. Enquanto sua visão estiver assim magicamente transferida, você será incapaz de lançar feitiços ou atacar. Quando desejar parar de olhar para o globo, basta pressionar a tecla Esc e sua visão retornará ao normal."
+ViewPointGlobe_not_in_range = pt "Você não está perto o suficiente do globo para ver dentro dele."
+ViewPointGlobe_used = pt \
+   "Você olha profundamente para o globo e descobre que consegue ver através dele, "
+   "em uma localização diferente!\n"
+   "[Pressione Esc quando estiver pronto para retornar à sua visão normal.]"

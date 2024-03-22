@@ -4,3 +4,8 @@ brazierswitch_desc_on = de \
 brazierswitch_desc_off = de "Der kalte Grill gibt kein Licht."
 brazierswitch_not_in_range = de \
    "Du bist nicht nah genug am Grill, um ihn anzuzünden."
+
+brazierswitch_name_rsc = pt "braseiro"
+brazierswitch_desc_on = pt "A chama queima brilhante, oferecendo luz bem-vinda aos arredores."
+brazierswitch_desc_off = pt "O braseiro de metal frio não emite luz."
+brazierswitch_not_in_range = pt "Você não está perto o suficiente do braseiro para acendê-lo."

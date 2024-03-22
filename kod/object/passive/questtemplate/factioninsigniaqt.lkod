@@ -1,25 +1,18 @@
-// Quest description.
 factioninsigniaquest_name_rsc = de "Gildenschild Insignien Quest"
 factioninsigniaquest_desc_rsc = de \
    "Dein Lehnsherr wird seine Insignien auf dein Gildenschild einlassen, wenn Du "
    "einen \"Auftrag\" für ihn erledigst."
-
 factioninsigniaquest_nodetwo_rsc = de \
    "%s%s wird %s Insignien auf dein Gildenschild einlassen, wenn "
    "Du einen \"Auftrag\" erledigst für %s."
-
 factioninsigniaquest_nodethree_rsc = de \
    "%s%s hat dich beauftragt zu %s zu gehen und nach %s zu fragen.  Kehre zurück zu"
    "%s wenn Du fertig bist, und lasse %s wissen, was %s zu Dir gesagt hat."
-
 factioninsigniaquest_nodefour_rsc = de \
    "Nach der Frage sagte %s \"%s\".  Kehre zurück zu %s und informiere %s über "
    "das, was Dir mitgeteilt wurde."
-
 factioninsigniaquest_completed_rsc = de \
    "Du hast Insignien auf dein Gildenschild erhalten, und erhältst nun somit mehr Kraft für deine Zauber."
-
-// Quest resources.
 factioninsignia_trigger = de "Abzeichen"
 factioninsignia_assign_2 = de \
    "Ich sehe, Du hast ein Schild mit Farben aber ohne Insignien.  Wenn du "
@@ -67,3 +60,32 @@ factioninsignia_success_4 = de \
 factioninsignia_failure_4 = de \
    "Betreff: Insignien Mission\nIch fürchte, dass Du hast in dem kleinen Test "
    "versagt. Wie wir erwartet haben ist Deine Loyalität fraglich."
+
+factioninsigniaquest_name_rsc = pt "Missão do brasão de insígnia de escudo"
+factioninsigniaquest_desc_rsc = pt "Seu suserano colocará sua insígnia em seu escudo, desde que você complete uma 'missão' para eles."
+factioninsigniaquest_nodetwo_rsc = pt "%s%s colocará a insígnia de %s em seu escudo de brasão, desde que você complete uma 'missão' para %s."
+factioninsigniaquest_nodethree_rsc = pt "%s%s pediu para você ir a %s e perguntar sobre %s. Retorne para %s quando terminar e deixe %s saber o que %s disse a você."
+factioninsigniaquest_nodefour_rsc = pt "Quando questionado, %s disse \"%s\". Retorne para %s e informe %s sobre o que foi dito a você."
+factioninsigniaquest_completed_rsc = pt "Você recebeu uma insígnia em seu escudo de brasão, o que adiciona mais poder aos seus feitiços quando usado."
+factioninsignia_trigger = pt "insígnia"
+factioninsignia_assign_2 = pt "Vejo que você tem um escudo com cores, mas sem insígnia. Se você se importar em ganhar a minha, tenho uma missão para você."
+factioninsignia_trigger_2 = pt "missão"
+factioninsignia_assign_3 = pt "No meio desse caos político, súditos conspiram abertamente contra mim. Felizmente, tenho espiões em ação que vigiam suas tramas. Relatadamente, %NPC esteve conferenciando com %CARGO, e naturalmente estou bastante intrigado com o que eles falaram. Faça-me um favor, mencione o nome dessa pessoa para nosso amigo %NPC, e repita palavra por palavra o que lhe for dito."
+factioninsignia_trigger_3a = pt "Esseldi"
+factioninsignia_trigger_3b = pt "Drechx"
+factioninsignia_trigger_3c = pt "Bei Naq"
+factioninsignia_trigger_3d = pt "Cylill"
+factioninsignia_trigger_3e = pt "Alzahakar"
+factioninsignia_trigger_3f = pt "Priestess Qerti'nya"
+factioninsignia_trigger_3g = pt "Priestess Xiana"
+factioninsignia_trigger_3h = pt "Jonas d’Accor"
+factioninsignia_failure_3 = pt "Assunto: Missão de insígnia\nMinha decepção é profunda. Eu pensava que certamente você seria mais confiável do que os bandidos comuns e porcos não confiáveis que compõem minha rede de espiões. Aparentemente, você é inferior a eles."
+factioninsignia_assign_4 = pt "%CARGO."
+factioninsignia_trigger_4a = pt "Uh... Eu realmente não sei do que você está falando"
+factioninsignia_trigger_4b = pt "Um cidadão exemplar. Já faz um tempo desde a última vez que tivemos uma boa conversa"
+factioninsignia_trigger_4c = pt "Ah, sim! Estávamos conversando sobre o ótimo trabalho que a Princesa está fazendo"
+factioninsignia_trigger_4d = pt "Ah, sim! Estávamos conversando sobre o ótimo trabalho que o Duque está fazendo"
+factioninsignia_trigger_4e = pt "Aquele idiota levou tudo o que eu tinha em um jogo de Zoxila na semana passada"
+factioninsignia_trigger_4f = pt "Quem? O nome não me parece familiar"
+factioninsignia_success_4 = pt "Hmm, fascinante. Farei com que meus espiões investiguem mais, mas suas informações forneceram a visão de que eu precisava. Aqui, por favor, aceite minha insígnia como um sinal de minha apreciação."
+factioninsignia_failure_4 = pt "Assunto: Missão de insígnia\nReceio que você tenha falhado no pequeno teste que seu suserano e eu elaboramos. Como esperávamos, sua lealdade é questionável."

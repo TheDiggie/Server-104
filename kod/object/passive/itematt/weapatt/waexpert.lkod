@@ -3,3 +3,7 @@ weapattexpert_desc = de \
    "einen %s Vorteil zu verschaffen - sofern sie in der richtigen Hand liegt."
 weapattexpert_name = de "%s des Meister"
 expert_dm = de "Experte"
+
+weapattexpert_desc = pt "\n\nA assinatura de Colhorr está gravada no cabo desta arma. Esta arma parece proporcionar %s vantagem - nas mãos certas."
+weapattexpert_name = pt "%s do mestre"
+expert_dm = pt "especialista"

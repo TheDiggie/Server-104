@@ -1,2 +1,5 @@
 orctorch_name = de "Ork-Fackel"
 orctorch_desc = de "Diese Fackel bietet ein ominöses, unheimes Glühen."
+
+orctorch_name = pt "tocha orc"
+orctorch_desc = pt "Isso oferece um brilho sinistro e estranho."

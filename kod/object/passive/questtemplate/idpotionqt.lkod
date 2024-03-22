@@ -1,21 +1,15 @@
-// Quest description.
 idpotionqt_name_rsc = de "Zaubertrank Identifikations Quest"
 idpotionqt_desc_rsc = de \
    "Hilf einem NPC einen Zaubertrank zu identifizieren."
-
 idpotionqt_nodetwo_rsc = de \
    "%s%s hat kürzlich einen Zaubetrank erhalten. %s ist nicht in der Lage ihn zu identifizieren, "
    "und bittet Dich um Hilfe.  Biete den Zaubertrank  "
    "%s%s an und schau ob%ser bei der Sache helfen kann."
-
 idpotionqt_nodethree_rsc = de \
    "%s%s hat den Zaubertrank identifiziert. Kehre zurück zu %s%s und "
    "biete %s nun den identifizierten Zaubertrank an um deine Belohnung zu erhalten."
-
 idpotionqt_completed_rsc = de \
    "Du hast das Zaubertrank Identifikations Quest abgeschlossen."
-
-// Quest resources.
 potion_identify_assign_1 = de \
    "In der Tat, ja!  Vor kurzem habe ich diesen Trank erhalten.  Ich habe "
    "versucht ihn auf magische Weise zu identifizieren aber er scheint meine "
@@ -41,3 +35,14 @@ potion_identify_failure_2 = de \
    "hat mich kontaktiert und sagte, der Trank wäre eh nichts Besonderes.  "
    "Du kannst den %CARGO gerne wegwerfen, da das Verfallsdatum eh überschritten "
    "ist."
+
+idpotionqt_name_rsc = pt "missão de identificação de poções"
+idpotionqt_desc_rsc = pt "Ajude um NPC a identificar uma poção."
+idpotionqt_nodetwo_rsc = pt "%s%s recebeu recentemente uma poção %s que não consegue identificar e gostaria da sua assistência para determinar sua natureza. Ofereça a poção a %s%s e veja se %s pode ajudar com essa tarefa."
+idpotionqt_nodethree_rsc = pt "%s%s determinou a natureza da poção. Volte para %s%s e ofereça a %s a poção agora identificada e colete sua recompensa."
+idpotionqt_completed_rsc = pt "Você concluiu a missão de identificação de poções."
+potion_identify_assign_1 = pt "Na verdade, sim! Recebi recentemente esta poção. Tentei identificá-la magicamente, mas parece repelir meus esforços. Você poderia levá-la até %NPC e perguntar se %HIMHER_NPC pode identificá-la? Volte com o conhecimento do que é e eu o recompensarei."
+potion_identify_assign_2 = pt "Hmm, um espécime bastante interessante. Deixe-me pegar algumas gotas para análise... Ah sim, parece ser um(a) %CARGO. Deixe-me colocar um rótulo para que %NPC saiba o que é."
+potion_identify_success = pt "Excelente, tenho certeza de que conseguirei encontrar um bom uso para um(a) %CARGO. Aqui, por favor, leve isso como pagamento."
+potion_identify_failure_1 = pt "Assunto: Aquela poção estranha\nVocê se perdeu? Não se preocupe, isso acontece frequentemente com pessoas que são novas na região. A poção provavelmente não era muito importante mesmo. Eu posso ter outros trabalhos para você se visitar novamente no futuro. Cuide-se!"
+potion_identify_failure_2 = pt "Assunto: Aquela poção estranha\nVocê se perdeu? Não se preocupe, isso acontece frequentemente com pessoas que são novas na região. %NPC entrou em contato comigo e disse que a poção não era importante mesmo. Sinta-se à vontade para jogar fora essa %CARGO, pois está muito além da sua data de validade agora."

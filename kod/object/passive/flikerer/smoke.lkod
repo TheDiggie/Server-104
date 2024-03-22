@@ -2,3 +2,6 @@ SmokeColumn_name = de "Rauchsäule"
 SmokeColumn_desc = de \
    "Dies ist eine Rauchsäume, die wie ein Finger in den Himmel zeigt. Der "
    "beißende Duft in der Luft füllt Deine Lungen."
+
+SmokeColumn_name = pt "coluna de fumaça"
+SmokeColumn_desc = pt "Esta é uma coluna de fumaça, erguendo-se como um dedo para o céu. O aroma acre de nogueira pecã se espalha pelo ar e enche seus pulmões."

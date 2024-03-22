@@ -2,3 +2,8 @@ lamp_name_rsc = de "Lampe"
 lamp_desc_off_rsc = de "Diese Lampe steht wie ein stiller Wächter."
 lamp_desc_on_rsc = de \
    "Du musst Deine Augen von dem Licht dieser Lampe abschirmen."
+
+lamp_name_rsc = pt "lâmpada"
+lamp_desc_off_rsc = pt "Essas lâmpadas ficam como sentinelas silenciosas."
+lamp_desc_on_rsc = pt \
+      "Você tem que proteger os olhos do brilho suave da lâmpada."

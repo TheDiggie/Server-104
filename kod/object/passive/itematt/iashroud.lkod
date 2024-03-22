@@ -2,3 +2,8 @@ itematt_shroud_desc = de " Ein Mantel der Magie umgibt es."
 iashroud_gone = de "Der mystische Mantel verlässt %s."
 iashroud_name = de "Eingehüllt %s"
 shroud_dm = de "Eingehüllt"
+
+itematt_shroud_desc = pt "\n\nUm manto de magia o envolve."
+iashroud_gone = pt "O manto místico desaparece do seu %s."
+iashroud_name = pt "%s envolto em sombras"
+shroud_dm = pt "envolto em sombras"

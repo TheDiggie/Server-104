@@ -1,9 +1,7 @@
-// Quest description.
 fadepupilquest_name_rsc = de "Verblassen Schüler Quest"
 fadepupilquest_desc_rsc = de \
    "Koldor möchte gerne, dass Du ihm eine Formel besorgst, und im Gegenzug "
    "wird er Dich den Verblassen Zauber lehren."
-
 fadepupilquest_nodetwo_rsc = de \
    "Koldor hat dich beauftragt die Formel von %s zu besorgen. Im Gegenzug "
    "wird er Dich den Verblassen Zauber lehren. Frage %s nach der Formel, und "
@@ -15,12 +13,9 @@ fadepupilquest_nodethree2_rsc = de \
    "Du hast das Monster getötet, kehre nun zu %s zurück, und frage nach der Formel."
 fadepupilquest_nodefour_rsc = de \
    "Kehre mit der Formel zu Koldor zurück."
-
 fadepupilquest_completed_rsc = de \
    "Du hast die Verblassen Schüler Quest abgeschlossen. Koldor wird "
    "Dir nun den Verblassen Zauber beibringen."
-
-// Quest resources.
 fadelearn_trigger = de "Schüler"
 fadelearn_assign_2 = de \
    "Ich freue mich, dass Du hier bist. Ich bin bereit mit Dir zu handeln. "
@@ -63,3 +58,20 @@ fadelearn_failure_4 = de \
    "neue Krankheit die sich langsam ausbreitet auszulöschen. Ich hoffe Du "
    "bekommst sie nicht selber Das wäre ein schönes Stück Gerechtigkeit, ne? "
    "Nerv mich nicht weiter, Schurke."
+
+fadepupilquest_name_rsc = pt "Missão do pupilo de Joguer"
+fadepupilquest_desc_rsc = pt "Joguer gostaria que você recuperasse uma fórmula para ele e, em troca, ele ensinará a você o feitiço fade."
+fadepupilquest_nodetwo_rsc = pt "Joguer pediu para você recuperar sua fórmula de %s. Em troca, ele ensinará a você o feitiço fade. Pergunte a %s sobre a fórmula, obtenha-a e traga-a de volta para Joguer."
+fadepupilquest_nodethree1_rsc = pt "%s lhe dará a fórmula, mas primeiro você deve matar %s%s. Faça isso e retorne para %s."
+fadepupilquest_nodethree2_rsc = pt "Você matou o monstro, agora retorne para %s e pergunte sobre a fórmula."
+fadepupilquest_nodefour_rsc = pt "Volte para Joguer com a fórmula."
+fadepupilquest_completed_rsc = pt "Você completou a missão do pupilo de Joguer. Joguer agora ensinará a você os feitiços Fade (nível dois Qor) e Heat (nível três Faren)."
+fadelearn_trigger = pt "pupilo"
+fadelearn_assign_2 = pt "Fico feliz que você esteja aqui; Estou disposto a fazer uma troca. Encontrei uma fórmula para acelerar o crescimento de certas plantas, mas ela caiu nas mãos do patife %NPC. Eu vou te ensinar as pequenas magias que conheço se você recuperar esta fórmula para mim. Não deixe que %HIMHER_NPC te engane, %NPC deseja nada mais do que atrasar egoisticamente minha colheita."
+fadelearn_trigger_2 = pt "fórmula"
+fadelearn_failure_2 = pt "Assunto: Fórmula de crescimento de plantas\nAs plantas agora não estarão prontas para a colheita por mais um mês. Você me decepcionou e custou à terra um valioso antídoto; Uma maldição para você."
+fadelearn_assign_3 = pt "Eu tenho a fórmula da qual você fala. No entanto, estou relutante em lhe dar, pois acredito que os motivos de Joguer não são tão nobres quanto ele afirma. Se você provar para mim sua força de vontade matando um %MONSTER, eu deferirei ao seu julgamento. Apresse-se agora, senão a adorável colheita venenosa de Joguer será atrasada!"
+fadelearn_failure_3 = pt "Assunto: Você escolheu sabiamente\nVejo que você confia no meu julgamento de Joguer. Eu pensei que sua tarefa poderia atrasá-lo o suficiente para forçá-lo a pensar no assunto. Agora, impedimos a colheita prematura de Joguer e podemos descansar sabendo que não haverá novo veneno na terra, pelo menos por enquanto."
+fadelearn_assign_4 = pt "Muito bem, aqui está a fórmula. Não estou feliz em lhe dar isso. Acredito que você interrompeu um curso importante de eventos. Mas isso não é realmente da sua preocupação, não é mesmo. Você só quer pegar seu feitiço e ir embora. Bem, sugiro que você faça exatamente isso."
+fadelearn_success_4 = pt "Ah, finalmente. Você fez um grande serviço não apenas para si mesmo, mas também para todo o reino. Essas plantas podem mudar o curso da história. Elas são um antídoto para uma terrível doença que está começando a se espalhar pela terra. Venha até mim quando quiser aprender comigo, amigo."
+fadelearn_failure_4 = pt "Assunto: Fórmula de crescimento de plantas\nSua demora custou não apenas a você a possibilidade de aprender minhas magias, mas também ao reino inteiro uma chance de resistir a uma nova doença que está se espalhando lentamente. Espero que você não a pegue também. Isso seria uma boa justiça, não é mesmo? Não me incomode mais, canalha."

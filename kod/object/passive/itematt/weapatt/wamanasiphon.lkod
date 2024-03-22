@@ -8,3 +8,11 @@ siphon_worked_target = de \
    "Strahlen aus mystischer Energie strahlen aus %s%s, als das Metall der Waffe%s Dir mystische "
    "Energie entreißt!"
 siphon_info_desc = de "%i%% Chance dem Ziel %i-%i Mana zu entziehen\n"
+
+weapattSiphon_desc = pt "\n\nUma força mística parece atrair energia do ar ao redor da arma."
+Siphon_dm = pt "Sifão"
+Siphon_fail_use = pt "Você não está pronto para usar %s%s."
+siphon_worked = pt "%s%s parece cansado enquanto %s energia mística é sugada!"
+siphon_worked_target = pt "Fios de energia emanam de %s%s enquanto o metal da arma de %s "
+                          "arranca sua energia mística!"
+siphon_info_desc = pt "%i%% chance de drenar %i-%i de mana do seu alvo\n"

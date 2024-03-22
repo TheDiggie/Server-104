@@ -1,15 +1,10 @@
-// Quest description.
 dukejoin_name_rsc = de "Herzog Anhänger Quest"
 dukejoin_desc_rsc = de \
    "Herzog Akardius hat dich beauftragt ihm einen Gegenstand zu bringen um dich zu beweisen."
-
 dukejoin_deliver_rsc = de \
    "Herzog Arkadius hat dich beauftragt ihm %s%s zu bringen, um Dich zu beweisen."
-
 dukejoin_completed = de \
    "Du hast das Vertrauen von Herzog Arkadius erhalten, und bist nun Anhänger."
-
-// Quest resources.
 duke_join2_assign = de \
    "So, Du möchtest gerne beweisen, dass Du mein Vertrauen wert bist? Du "
    "kannst damit anfangen, indem Du mir folgendes bringst: %INDEF_CARGO%CARGO."
@@ -18,3 +13,11 @@ duke_join2_success = de \
 duke_join2_failure = de \
    "Betreff: Es ist Dir nicht gestattet uns beizutreten, Knecht!\nHah!  Du "
    "bist nicht treu genug um Dich uns anzuschließen!"
+
+dukejoin_name_rsc = pt "Missão para se juntar ao Duque"
+dukejoin_desc_rsc = pt "O Duque Akardius pediu para você trazer a ele um item, para provar sua dignidade e confiança."
+dukejoin_deliver_rsc = pt "O Duque Akardius pediu para você trazer a ele %s%s, para provar sua dignidade e confiança."
+dukejoin_completed = pt "Você conquistou a confiança do Duque Akardius e agora é membro de sua facção."
+duke_join2_assign = pt "Então, você deseja provar sua dignidade para mim? Você pode começar me trazendo %INDEF_CARGO%CARGO."
+duke_join2_success = pt "Ah, bom trabalho. Seu serviço para nossa causa não passará despercebido."
+duke_join2_failure = pt "Assunto: Você não pode se juntar às nossas fileiras, patife!\nHah! Você não é fiel o suficiente para servir à nossa causa!"

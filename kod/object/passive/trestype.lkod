@@ -1,2 +1,4 @@
 trinket_found_rsc = de \
    "Du bemerkst etwas interessantes bei der Leiche von %s%s!"
+
+trinket_found_rsc = pt "Você nota algo de interesse no corpo de %s%s!"

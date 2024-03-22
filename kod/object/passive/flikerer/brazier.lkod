@@ -1,3 +1,6 @@
 brazier_name_rsc = de "Das Feuer"
 brazier_desc_rsc = de \
    "Eine einladende Flamme erhellt mit ihrem Licht freundlich die Umgebung."
+
+brazier_name_rsc = pt "braseiro"
+brazier_desc_rsc = pt "A chama queima brilhante, oferecendo luz bem-vinda aos arredores."

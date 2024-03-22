@@ -7,3 +7,10 @@ peace_non_user = de \
 peace_not_member = de "%s%s ist kein Mitglied einer verveindeten Gilde!"
 peace_your_guild = de "%s ist ein Mitglied deiner eigenen Gilde!"
 peace_cant_self = de "Du kommst mit dir selbst ins Reine. Wheeee."
+
+guildpeace_name_rsc = pt "Encerrar inimizade"
+guildpeace_desc_Rsc = pt "Use isso para declarar que uma guilda inimiga não é mais uma inimiga. Observe que você ainda não estará aliado com essa guilda."
+peace_non_user = pt "%s%s não está impressionado com suas propostas pacíficas."
+peace_not_member = pt "%s%s não é membro de uma guilda inimiga!"
+peace_your_guild = pt "%s é um membro de sua guilda!"
+peace_cant_self = pt "Você fica em total paz consigo mesmo. Uau."

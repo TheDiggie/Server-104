@@ -2,3 +2,6 @@ stool_name_rsc = de "Der Hocker"
 stool_desc_rsc = de \
    "Dieser Hocker ist wackelig und schwer beschädigt von langen Jahren der "
    "Benutzung."
+
+stool_name_rsc = pt "banquinho"
+stool_desc_rsc = pt "Este banquinho está bambo e fortemente marcado devido aos anos de uso."

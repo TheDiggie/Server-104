@@ -3,3 +3,8 @@ waEnchant_gone = de \
 waEnchanted = de " Diese Waffe ist Kraanans Ruhm geweiht."
 waEnchanted_name = de "verzauberter %s"
 enchanted_dm = de "Verzaubert"
+
+waEnchant_gone = pt "Seu %s de repente parece um pouco mais... comum."
+waEnchanted = pt "\n\nEsta arma foi dedicada à glória de Kraanan."
+waEnchanted_name = pt "encantado %s"
+enchanted_dm = pt "encantado"

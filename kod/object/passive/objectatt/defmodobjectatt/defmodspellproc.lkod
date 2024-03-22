@@ -6,3 +6,12 @@ defmod_proc_them = de "Dein %s gibt einen magischen Flair, zauber %s auf %s!"
 defmod_proc_nobody = de "Dein %s gibt einen magischen Flair, zauber %s!"
 defmod_proc_no_target = de \
    "Der %s getragen von %s gibt einen magischen Flair, zauber %s!"
+
+defmod_proc = pt "O %s usado por %s emite um clarão mágico, lançando %s em %s!"
+defmod_proc_you = pt "Seu %s emite um clarão mágico, lançando %s em você!"
+defmod_proc_them = pt "Seu %s emite um clarão mágico, lançando %s em %s!"
+defmod_proc_nobody = pt "Seu %s emite um clarão mágico, lançando %s!"
+defmod_proc_no_target = pt "O %s usado por %s emite um clarão mágico, lançando %s!"
+defspellproc_attribute_desc = pt "\n\nAo defender um ataque, as runas gravadas neste %s lançarão %s %s com %i de poder mágico %i%% do tempo."
+def_attribute_self_rsc = pt "em você"
+def_attribute_target_rsc = pt "no inimigo"

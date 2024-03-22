@@ -6,3 +6,10 @@ DeclareEnemy_not_member = de "%s ist kein Mitglied einer verfeindeten Gilde!"
 DeclareEnemy_your_guild = de "%s ist ein Mitglied deiner eigenen Gilde!"
 DeclareEnemy_cant_self = de \
    "Haben wir ein Problem mit unserem Selbstwertgefühl??"
+
+guildDeclareEnemy_name_rsc = pt "declarar inimigo"
+guildDeclareEnemy_desc_Rsc = pt "Use isso para declarar uma guilda adversária como inimiga."
+DeclareEnemy_non_user = pt "%s%s também não gosta muito de você."
+DeclareEnemy_not_member = pt "%s não é membro de uma guilda inimiga!"
+DeclareEnemy_your_guild = pt "%s é membro da sua própria guilda!"
+DeclareEnemy_cant_self = pt "Tem algum problema de autoestima, não é?"

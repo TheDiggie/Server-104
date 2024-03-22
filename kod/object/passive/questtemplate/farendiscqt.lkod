@@ -1,4 +1,3 @@
-// Quest description.
 farenquest_name_rsc = de "Faren Schüler Quest"
 farenquest_desc_rsc = de \
    "Priesterin Tenuv'vyal hat dich beauftragt zu %s zu gehen und folgende Worte "
@@ -9,16 +8,12 @@ farenquest_desc_rsc = de \
    "euer Handeln. Folgt dem Wort Farens. Lebt für die Natur und fordert sie "
    "nicht heraus.\".  "
    "Kehre zurück, wenn Du es erledigt hast."
-
 farenquest_node_three_rsc = de \
    "Kehre zu Priesterin Tenuv'vyal zurück, und lasse Sie wissen, dass Du den Auftrag "
    "abgeschlossen hast."
-
 farenquest_completed = de \
    "Du hast das Faren Schüler Quest abgeschlossen.  Du bist nun ein Schüler "
    "Farens, und die Priesterin wird dir mehr mächtige Zauber beibringen."
- 
-// Quest resources.
 farendisciple_trigger = de \
    "Ihr habt das Land mit Eurem Verhalten geschändet. Das Land schenkt Leben, "
    "doch Ihr behandelt es wie einen zu erobernden Feind. Ihr seid Narren, "
@@ -38,8 +33,6 @@ farendisciple_failure = de \
    "Betreff: Schau hinein und brenne, Kind\nFaren sieht diejenigen ohne das "
    "Feuer der Begierde nicht. Du musst wiederkommen, wenn Du es in Dir gefunden "
    "hast, nicht eher."
-
-// NPC responses.
 farendisc_marbar_resp = de "~kTova säuzt, \"Jetzt fängt das wieder an....\""
 farendisc_jasbar_bad_resp = de \
    "~kPietro sagt, \"Oh, um die Liebe Sha'lills, geh irgendwo anders "
@@ -48,3 +41,16 @@ farendisc_jasbar_resp = de \
    "~kPietro ruft, \"Würde bitte jemand diese Flachzange hier rausschaffen?\""
 farendisc_barlbar_resp = de \
    "~kMeidei sagt, \"Ich werde das berücksichtigen. Nun nimm einen Drink oder verschwinde!\""
+
+farenquest_name_rsc = pt "Missão do discípulo de Faren"
+farenquest_desc_rsc = pt "A Sacerdotisa Tenuv'vyal pediu para você ir até %s e falar as palavras: \"Você profanou a terra com seus caminhos. A terra dá vida, mas você a trata como inimiga a ser conquistada. Vocês são tolos, todos, se continuarem neste caminho sacrílego. Abraçem a natureza, não a desprezem como uma amante esquecida. Arrependam-se dos seus caminhos. Sigam as palavras de Faren. Vivam para a natureza, não em oposição a ela.\". Retorne quando tiver completado esta tarefa."
+farenquest_node_three_rsc = pt "Volte para a Sacerdotisa Tenuv'vyal e informe-a que a tarefa foi concluída."
+farenquest_completed = pt "Você completou a missão do discípulo de Faren. Você é um fiel discípulo de Faren, e a Sacerdotisa Tenuv'vyal agora ensinará a você feitiços mais poderosos."
+farendisciple_trigger = pt "profanou a terra com seus caminhos"
+farendisciple_assign = pt "`B`gVocê deseja a bênção da terra por meio de nosso Senhor Faren. Você deve provar que é digno de suas bênçãos. Leve esta mensagem para %NPC: \"Você profanou a terra com seus caminhos. A terra dá vida, mas você a trata como inimiga a ser conquistada. Vocês são tolos, todos, se continuarem neste caminho sacrílego. Abraçem a natureza, não a desprezem como uma amante esquecida. Arrependam-se dos seus caminhos. Sigam as palavras de Faren. Vivam para a natureza, não em oposição a ela.\"  Retorne rapidamente para me notificar quando terminar e talvez Faren o favorecerá com poder."
+farendisciple_success = pt "`B`gO olhar de Faren está sobre você. Você fez bem. Procure-me quando quiser aprender mais sobre seus caminhos e seus feitiços."
+farendisciple_failure = pt "Assunto: Olhe dentro e queime, criança\nFaren não vê aqueles sem o fogo do desejo dentro deles. Você deve retornar quando tiver encontrado isso dentro de si mesmo, não antes."
+farendisc_marbar_resp = pt "~kTova suspira, \"Lá vamos nós de novo.\""
+farendisc_jasbar_bad_resp = pt "~kPietro diz, \"Ah, pelo amor de Shal'ille, vá para outro lugar, %s! Estou cansado de vocês, fanáticos.\""
+farendisc_jasbar_resp = pt "~kPietro grita, \"Alguém tire esse adorador de árvore daqui.\""
+farendisc_barlbar_resp = pt "~kMeidei diz, \"Vou considerar isso, agora compre uma bebida ou saia!\""

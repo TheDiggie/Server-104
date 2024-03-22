@@ -4,3 +4,9 @@ GlowTree_desc = de \
    "than gather sunlight with plump foliage, the soulsap tree attracts insects "
    "with the sweet glowing fluid, then absorbs the nutrients of the helpless "
    "bugs directly."
+
+GlowTree_name = pt "árvore de salgueiro de seiva de alma"
+GlowTree_desc = pt "Uma seiva luminescente pendura-se nos galhos desta árvore bizarra. "
+      "Em vez de capturar a luz solar com folhagem exuberante, a árvore de seiva de alma "
+      "atrai insetos com o fluido doce e brilhante, depois absorve os nutrientes dos "
+      "insetos indefesos diretamente."

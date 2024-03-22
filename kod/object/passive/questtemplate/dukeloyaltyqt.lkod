@@ -1,20 +1,14 @@
-// Quest description.
 dukeloyalty_name_rsc = de "Herzog Loyalitäts Quest"
 dukeloyalty_desc_rsc = de \
    "Herzog Akardius hat Dich befehligt Steuern für ihn einzutreiben.  Kehre rasch "
    "zurück mit der vollen Summe."
-
 dukeloyalty_collect_rsc = de \
    "Herzog Akardius hat Dich befehligt Steuern für ihn einzutreiben bei %s.  Kehre rasch "
    "zurück mit der vollen Summe."
-
 dukeloyalty_return_rsc = de \
    "Kehre zu Herzog Arkadius zurück mit den %i Schillingen an Steuer."
-
 dukeloyalty_completed = de \
    "Du hast den Auftrag von Herzog Arkadius abgeschlossen und bleibst sein Anhänger."
-
-// Quest resources.
 duke_standard2_assign = de \
    "Ah, %NAME, mein treuer Diener.  Ich brauche Dich um alle Steuern von "
    "%NPC einzutreiben.  Kehre innerhalb einer Stunde zurück."
@@ -29,3 +23,15 @@ duke_standard3_failure = de \
    "Betreff: Deine Mitgliedschaft in meiner Fraktion wurde widerrufen\nDu "
    "hast versagt.  Ich werde in der nächsten Zeit nicht noch einmal so doof "
    "sein und auf Dich vertrauen."
+
+dukeloyalty_name_rsc = pt "Missão de lealdade ao Duque"
+dukeloyalty_desc_rsc = pt "O Duque Akardius ordenou que você coletasse impostos para ele. Retorne rapidamente com o valor total."
+dukeloyalty_collect_rsc = pt "O Duque Akardius ordenou que você coletasse impostos de %s. Retorne rapidamente com o valor total."
+dukeloyalty_return_rsc = pt "Volte para o Duque Akardius e entregue a ele os %i xelins em impostos."
+dukeloyalty_completed = pt "Você executou a tarefa do Duque e permanece em sua graça."
+duke_standard2_assign = pt "Ah, %NAME, meu servo leal. Preciso que você colete todos os impostos devidos de %NPC. Retorne dentro de uma hora."
+duke_standard2_failure = pt "Assunto: Cobrança de Impostos\nNão pude esperar mais, já enviei outro mensageiro para coletar meus impostos."
+duke_standard2_trigger = pt "imposto"
+duke_standard3_assign = pt "Ah, sim, meu dinheiro de impostos para o Duque... Aqui está, %INDEF_CARGO%CARGO."
+duke_standard3_success = pt "Você se saiu bem."
+duke_standard3_failure = pt "Assunto: Sua afiliação à minha facção foi revogada\nVocê me decepcionou. Não serei tão tolo a ponto de contar com seu serviço no futuro."

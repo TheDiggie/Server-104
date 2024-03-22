@@ -1,19 +1,13 @@
-// Quest description.
 chickensoupquest_name_rsc = de "Hühnersuppen Quest"
 chickensoupquest_desc_rsc = de \
    "Gehe zu Witwe Qesino und frage nach einer schönen warmen Hühnersuppe für einen NPC."
-
 chickensoupquest_nodetwo_rsc = de \
    "%s fühlt sich krank, und fragt ob du zu Witwe Qesino "
    "gehen kannst und nach einer warmen Hühnersuppe fragen kannst."
-
 chickensoupquest_return_rsc = de \
    "Kehre zurück zu %s und gib %sihm die Hühnersuppe."
-
 chickensoupquest_completed = de \
    "Du hast das Hühnersuppen Quest abgeschlossen und wurdest dafür belohnt."
-
-// Quest resources.
 chickensoupquest_trigger_2 = de "Hühnersuppe"
 chickensoupquest_assign_2 = de \
    "Ich fühle mich ein wenig krank.  Ich gehe nicht davon aus, dass Du Witwe "
@@ -33,3 +27,15 @@ chickensoupquest_failure_3 = de \
    "Betreff: %NPC's Erkältung\nDu hast die Schüssel mit der Hühnersuppe selber "
    "gegessen, oder?  Schande über Dich, %NAME!  %NPC ist weiterhin krank, "
    "armer Wicht."
+
+chickensoupquest_name_rsc = pt "missão da sopa de frango"
+chickensoupquest_desc_rsc = pt "Vá até a Viúva Qesino e peça um pouco de sopa de frango quente para %NPC."
+chickensoupquest_nodetwo_rsc = pt "%s está se sentindo doente, e pediu se você poderia ir até a Viúva Qesino e pedir uma tigela da sua especial sopa de frango."
+chickensoupquest_return_rsc = pt "Volte para %s e dê a %s a sopa de frango."
+chickensoupquest_completed = pt "Você completou a missão da sopa de frango e recebeu uma recompensa por sua generosidade."
+chickensoupquest_trigger_2 = pt "sopa de frango"
+chickensoupquest_assign_2 = pt "Estou me sentindo um pouco doente. Você poderia ir até a Viúva Qesino e pedir uma tigela da sua especial sopa de frango? Ficaria muito grato."
+chickensoupquest_failure_2 = pt "Assunto: Sopa de frango\nAh, bem... Acho que você tem coisas melhores para fazer do que me ajudar. Tudo bem, estou me recuperando do meu resfriado de qualquer maneira."
+chickensoupquest_assign_3 = pt "Ah, claro, querido! Aqui está uma tigela da minha sopa especial para %NPC. Deseje-lhe melhoras por mim."
+chickensoupquest_success_3 = pt "Muito obrigado, já me sinto melhor só de sentir o cheiro desta deliciosa sopa! Aqui, pegue este %PRIZE como um token da minha gratidão."
+chickensoupquest_failure_3 = pt "Assunto: Resfriado de %NPC\nVocê comeu aquela tigela de sopa, não é? Que vergonha, agora, %NAME! %NPC está doente afinal, pobre querido."

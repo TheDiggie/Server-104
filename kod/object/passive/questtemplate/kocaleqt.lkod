@@ -1,20 +1,14 @@
-// Quest description.
 kocaleqt_name_rsc = de "Ko'catan Bierhandel Quest"
 kocaleqt_desc_rsc = de \
    "Mache eine Alkohollieferung zur Insel."
-
 kocaleqt_nodetwo_rsc = de \
    "%s%s benötigt eine garantierte Lieferung.  Ein Fehlschlag "
    "dieser Lieferung wird bestraft. Wirst du diesen Handel eingehen?"
-
 kocaleqt_nodethree_rsc = de \
    "Überbringe %i %s zu %s%s.  Wage es nicht, die Vorrät für dich "
    "selber zu behalten; Diebstahl wird bestraft."
-
 kocaleqt_completed_rsc = de \
    "Du hast das Ko'catan Bierhandel Quest abgeschlossen."
-
-// Quest resources.
 kocale_assign_2 = de \
    "Ich brauche eine garantierte Zustellung zum Festland.  Ein Versagen führt "
    "dazu, dass Du ein Gesetzesloser wirst.  Bist Du bereit diesen Bedingungen "
@@ -52,3 +46,17 @@ kocale_success_3 = de \
    "Ich sehe %SOURCE_NPC hat sein Wort gehalten.  Das ist sehr gut!  Ich bin mir "
    "sicher, das ist der Anfang einer sehr profitablen Geschäftsbeziehung. "
    "Hier ist ein Zeichen meiner Dankbarkeit."
+
+kocaleqt_name_rsc = pt "Missão de comércio de cerveja Ko'catan"
+kocaleqt_desc_rsc = pt "Faça uma entrega de álcool para a ilha."
+kocaleqt_nodetwo_rsc = pt "%s%s precisa de uma entrega garantida feita para a ilha. Falha na entrega será punida. Você aceitará esses termos?"
+kocaleqt_nodethree_rsc = pt "Entregue %i %s para %s%s. Não seja tentado a ficar com os suprimentos para você mesmo; o roubo será punido."
+kocaleqt_completed_rsc = pt "Você completou a missão de comércio de armas Ko'catan."
+kocale_assign_2 = pt "Preciso de uma entrega garantida feita para a ilha. Falhar em entregá-la resultaria em status de fora da lei. Você está disposto a aceitar esses termos?"
+kocale_assign_2_h = pt "Preciso de uma entrega garantida feita para a ilha. Falhar em entregá-la seria muito desfavorável para você. Você está disposto a aceitar esses termos?"
+kocale_failure_2 = pt "Assunto: Vou procurar outro mensageiro\nCompreendo sua relutância em se comprometer com uma viagem tão longa. De qualquer forma, obrigado."
+kocale_assign_3 = pt "%NPC em Kocatan pediu suprimentos da nossa cerveja para seus clientes do outro lado. Por favor, leve estes %INDEF_CARGO%CARGO para %HIMHER_NPC. Eu organizei para que %NPC pague pela viagem. Não roube meus produtos; tenho um amigo, um mago, muito proficiente em maldições. Mas não vamos nos deter no lado mais sombrio da vida. Isso pode ser o começo de algo muito lucrativo para todos os envolvidos, meu amigo!"
+kocale_assign_3_h = pt "%NPC em Kocatan pediu suprimentos da nossa cerveja para seus clientes do outro lado. Por favor, leve estes %INDEF_CARGO%CARGO para %HIMHER_NPC. Eu organizei para que %NPC pague pela viagem. Não roube meus produtos; tenho um amigo, um mago, muito proficiente em maldições. Mas não vamos nos deter no lado mais sombrio da vida. Isso pode ser o começo de algo muito lucrativo para todos os envolvidos, meu amigo!"
+kocale_failure_3 = pt "Assunto: Ladrão!\nSeu roubo o tornou um fora da lei por decreto do Duque."
+kocale_failure_3_h = pt "Assunto: Ladrão!\nA má sorte trazida por sua má ação agora o seguirá onde quer que vá."
+kocale_success_3 = pt "Vejo que %SOURCE_NPC cumpriu sua palavra. Isso é muito bom. Tenho certeza de que este é o início de um relacionamento mutuamente benéfico. Aqui está um sinal da minha gratidão."

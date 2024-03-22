@@ -13,3 +13,12 @@ abdicate_to_abdicator = de "~BDu bist %q der neue Führer von %s%q."
 abdicate_necro_nak = de \
    "~BDu hast den Blutschwur als Meister des Ordens geschworen.  Du kannst "
    "nicht so einfach abdanken!"
+
+GuildAbdicate_name_rsc = pt "abdicação"
+GuildAbdicate_desc_Rsc = pt "Esta é a única maneira que um mestre de guilda pode deixar uma guilda. Ele deve escolher um sucessor ao abdicar."
+abdicate_non_user = pt "%s%s agradece, mas não se sente pronto para liderar sua guilda."
+abdicate_not_member = pt "%s%q não é um membro de %s%q!"
+abdicate_cant_self = pt "Você não pode escolher a si mesmo como seu próprio sucessor!"
+abdicate_to_chosen = pt "~B%s abdicou da posição de líder de %s%q e passou para você!"
+abdicate_to_abdicator = pt "~BVocê nomeia %q o novo líder de %s%q."
+abdicate_necro_nak = pt "~BVocê prestou um juramento de sangue como Mestre da Ordem. Você não pode simplesmente abdicar!"

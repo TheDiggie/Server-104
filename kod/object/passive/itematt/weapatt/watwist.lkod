@@ -5,3 +5,8 @@ twister_dm = de "Dreher"
 weapatt_twister_victim_effect = de \
    "~gDu bist orientierungslos und verlierst den Bezug zu Deiner Umgebung."
 twister_info_desc = de "8%% Chance Deinen Gegner mit GMT zu belegen\n"
+
+weapatt_twister_desc = pt "\n\nUm turbilhão verde 'GMT' está gravado no cabo."
+twister_dm = pt "turbilhão"
+weapatt_twister_victim_effect = pt "~gVocê se sente desorientado, perdendo seu senso de direção."
+twister_info_desc = pt "8%% de chance de desorientar a vítima ao acertar\n"

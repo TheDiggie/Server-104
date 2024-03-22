@@ -1,2 +1,4 @@
 ItemAttQuestCargo_desc_rsc = de \
    "\n\nDies wurde vergeben von %s an %q, um es an %s zu liefern."
+
+ItemAttQuestCargo_desc_rsc = pt "\n\nEste item foi dado por %s a %q, para ser entregue a %s."

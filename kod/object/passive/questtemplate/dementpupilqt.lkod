@@ -1,19 +1,14 @@
-// Quest description.
 dementpupilquest_name_rsc = de "Verblöden Schüler Quest"
 dementpupilquest_desc_rsc = de \
    "Afiera D'xor hat dich beauftragt ein paar Güter zu überbringen. Erledige es, "
    "und kehre zurück zu ihm, wenn Du fertig bist."
-
 dementpupilquest_nodetwo_rsc = de \
    "Afiera D'xor hat dich beauftragt %s%s zu %s zu überbringen."
 dementpupilquest_return_rsc = de \
    "Kehre zu Afiera D'xor zurück, und teile ihm mit, dass Du fertig bist."
-
 dementpupilquest_completed = de \
    "Du hast die Verblöden Schüler Quest abgeschlossen. Afiera D'xor wird dich nun "
    "den Verblöden Zauber lehren."
-
-// Quest resources.
 dementlearn_trigger = de "Schüler"
 dementlearn_assign_2 = de \
    "Ich kann Dir das wenige in den magischen Dingen beibringen, das ich weiß, "
@@ -40,3 +35,15 @@ dementlearn_failure_3 = de \
    "Betreff: Verblöden Zauber\nIch habe seit einiger Zeit nichts mehr von Dir "
    "gehört und gehe damit davon aus das Du den Zauber nicht mehr lernen willst?  "
    "Komm wieder, wenn Du es Dir anders überlegt hast, mein Freund!"
+
+dementpupilquest_name_rsc = pt "Missão do aprendiz de Afiera D'xor"
+dementpupilquest_desc_rsc = pt "Afiera D'xor pediu para você entregar uma carga. Faça isso e retorne a ele quando terminar."
+dementpupilquest_nodetwo_rsc = pt "Afiera D'xor pediu para você entregar %s%s para %s."
+dementpupilquest_return_rsc = pt "Volte para Afiera D'xor e avise que a tarefa foi concluída."
+dementpupilquest_completed = pt "Você completou a missão do aprendiz de Afiera D'xor. Afiera D'xor agora irá ensinar a você os feitiços Dement (nível quatro Riija) e Lightning Bolt (nível cinco Faren)."
+dementlearn_trigger = pt "aprendiz"
+dementlearn_assign_2 = pt "Posso ensinar um pouco do que sei sobre as artes místicas, mas preciso de um favor. Preciso urgentemente entregar esta %CARGO para %NPC, mas estou relutante em me aproximar de %HIMHER_NPC. Veja, %NPC está recentemente afligido por uma força não saudável que parece se alimentar da energia humana. Não sei mais do que estar na presença de %NPC provavelmente terá algum efeito terrível sobre você. Faça sua reunião breve e talvez você possa evitar esses efeitos."
+dementlearn_success_2 = pt "Obrigado, %NAME. Espero que esta %CARGO me ajude a dissipar a força da qual você foi alertado. Vá agora, a menos que deseje ser tão afligido quanto eu."
+dementlearn_failure_2 = pt "Assunto: Entrega da %CARGO\nEntendo sua apreensão e medo de se aproximar de %NPC. No entanto, você falhou e nosso acordo está anulado."
+dementlearn_success_3 = pt "Ah, você retornou de seu recado, %NAME. Você se saiu bem. Espero que não tenha sofrido muito com seu contato com %SOURCE_NPC. Entendo que os efeitos são apenas temporários. No entanto, você provou ser digno de meus ensinamentos. Volte quando quiser aprender o feitiço \"dement\"."
+dementlearn_failure_3 = pt "Assunto: Feitiço Dement\nNão ouvi mais falar de você por um tempo, então presumo que não tenha mais interesse em aprender. Volte mais tarde se mudar de ideia, amigo."

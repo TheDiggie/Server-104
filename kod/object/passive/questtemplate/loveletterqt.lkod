@@ -1,6 +1,7 @@
-// Quest resources.
 love_letter_failure = de \
    "Betreff: Du hast meinen Brief nicht ausgeliefert!\nDank Deiner Fahrlässigkeit, "
    "muss mein Schatz %NPC nun denken, dass ich mich nicht mehr kümmere um "
    "%HIMHER_NPC.  Zukünfitg werde ich mich bemühen einen zuverlässigeren "
    "Kurier zu wählen!"
+
+love_letter_failure = pt "Assunto: Não entregaste minha carta!\nGraças à tua negligência, meu querido %NPC deve pensar que já não me importo com %HIMHER_NPC. No futuro, eu tentarei escolher um mensageiro mais confiável!"

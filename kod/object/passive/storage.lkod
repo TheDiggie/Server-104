@@ -4,3 +4,9 @@ msg_does_not_have_item = de \
 msg_has_no_deposit = de "%s%s hat keine Sachen für Dich eingelagert."
 msg_reduced_tally = de "Du kannst nicht alles tragen, was Du forderst."
 msg_cannot_carry = de "Du bist nicht in der Lage %s%s aufzunehmen."
+
+msg_not_enough_items_on_deposit = pt "%s%s não tem tantos itens depositados."
+msg_does_not_have_item = pt "%s%s não tem esse item depositado para você."
+msg_has_no_deposit = pt "%s%s não tem nenhum item depositado para você."
+msg_reduced_tally = pt "Você não pôde carregar tudo o que solicitou."
+msg_cannot_carry = pt "Você não pôde retirar %s%s."

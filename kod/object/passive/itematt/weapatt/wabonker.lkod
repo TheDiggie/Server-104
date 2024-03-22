@@ -1,3 +1,7 @@
 weapattbonker_desc = de " Das Diebeszeichen schmückt auffällig den Knauf."
 bonker_dm = de "Bonker"
 bonker_info_desc = de "8%% Chance auf Bonk beim Schlag\n"
+
+weapattbonker_desc = pt "\n\nA assinatura extravagante de Mocker embeleza a empunhadura."
+bonker_dm = pt "cacete"
+bonker_info_desc = pt "Chance de 8%% de lançar Bonk ao acertar\n"

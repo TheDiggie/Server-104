@@ -2,3 +2,6 @@ skullbrazier_name = de "Totenkopf Grill"
 skullbrazier_desc = de \
    "Dieser Schädel-Grill bietet ein ominöses, unheimliches Glühen.  Feuer "
    "schimmert im Auge welches dem Kopf Leben einhaucht."
+
+skullbrazier_name = pt "tocha de crânio"
+skullbrazier_desc = pt "Esta tocha de crânio oferece um brilho sinistro e estranho. O fogo brilha nas órbitas oculares, dando-lhe uma aparência realista."

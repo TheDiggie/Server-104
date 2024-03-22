@@ -1,22 +1,15 @@
-// Quest description.
 lutequest_name_rsc = de "Instrumenten Quest"
 lutequest_desc_rsc = de \
    "Parrin kennt jemanden, der ein Instrument für Dich hat, um dich zu lehren es zu nutzen."
-
 lutequest_nodetwo_rsc = de \
    "Parrin wird Dir helfen ein Instrument zu bekommen.  Gehe zu %s und sag \"%s\"."
-
 lutequest_nodethree_rsc = de \
    "%s wird Dir eine Laute geben, aber zu allererst musst Du etwas für "
    "%s tun.  Überbringe %s%s an %s, und kehre dann zu %s zurück."
-   
 lutequest_nodefour_rsc = de \
    "Kehre zu %s zurück, um eine Laute zu erhalten."
-
 lutequest_completed_rsc = de \
    "Du hast das Instrumenten Quest abgeschlossen, und dafür eine Laute erhalten."
-
-// Quest resources.
 lutequest_trigger_1 = de "Instrument"
 lutequest_assign_2 = de \
    "Natürlich wirst Du ein Instrument benötigen.  Ich werde Dir sogar helfen, "
@@ -55,3 +48,23 @@ lutequest_failure_4 = de \
    "solltest zurückkommen um Deine Laute abzuholen.  Ich glaube %NPC hat "
    "bereits jemanden anderes gefunden, an den die Laute gehen soll.  Sorry "
    "für all Deine Mühen aber danke noch einmal für Deine Lieferung."
+
+lutequest_name_rsc = pt "quest do instrumento"
+lutequest_desc_rsc = pt "Parrin conhece alguém que pode arranjar um instrumento para você, então ele pode te ensinar a tocar."
+lutequest_nodetwo_rsc = pt "Parrin irá ajudá-lo a conseguir um instrumento. Vá para %s e diga \"%s\"."
+lutequest_nodethree_rsc = pt "%s lhe dará um alaúde, mas primeiro você precisa fazer algo para %s. Entregue %s%s para %s e depois volte para %s."
+lutequest_nodefour_rsc = pt "Volte para %s para receber o alaúde."
+lutequest_completed_rsc = pt "Você completou a quest do instrumento e recebeu um alaúde."
+lutequest_trigger_1 = pt "instrumento"
+lutequest_assign_2 = pt "Claro que você vai precisar de um instrumento para tocar. Eu até vou ajudá-lo a conseguir um. Aqui está o que você faz: %NPC pode arranjar um para você, vá até %HIMHER_NPC e diga \"%CARGO\"."
+lutequest_trigger_2a = pt "Parrin me mandou"
+lutequest_trigger_2b = pt "Eu preciso de um instrumento"
+lutequest_trigger_2c = pt "Parrin disse para eu falar com você sobre um alaúde"
+lutequest_trigger_2d = pt "Eu poderia pegar aquele alaúde que você está segurando para Parrin"
+lutequest_trigger_2e = pt "Parrin diz que você tem um alaúde para ele"
+lutequest_failure_2 = pt "Assunto: Aquele alaúde que você queria\nÉ tarde demais, %NPC deu o alaúde para outra pessoa. Se você está mesmo interessado em aprender a tocar, volte mais tarde e eu talvez saiba onde você pode encontrar outro."
+lutequest_assign_3 = pt "Você vai aprender a tocar com Parrin?! Boa sorte! A propósito, Parrin me deve um favor. Se você fizer algo por mim, eu te darei o alaúde; eu preciso que este %CARGO seja entregue para %NPC. Ele precisa ser entregue dentro de vinte minutos ou eu não te darei o instrumento. Quando você tiver feito isso, volte."
+lutequest_success_3 = pt "Ah, %NAME, eu estava ansioso esperando a chegada deste %CARGO! Obrigado pela entrega rápida."
+lutequest_failure_3 = pt "Assunto: Você perdeu o prazo\nVocê perdeu muito tempo chegando até %NPC. Não se preocupe em voltar para pegar o alaúde. Na próxima vez, eu conseguirei um mensageiro mais rápido."
+lutequest_success_4 = pt "Obrigado, aqui está o alaúde. Por favor, aprenda a tocar bem."
+lutequest_failure_4 = pt "Assunto: Você esqueceu de pegar o seu alaúde!\n%NPC me disse que você deveria voltar lá para pegar o seu alaúde. Eu acho que %NPC já encontrou outra pessoa para quem dar o alaúde agora. Desculpe por todo o transtorno que você teve, mas obrigado novamente por fazer a entrega."

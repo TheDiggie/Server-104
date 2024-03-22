@@ -1,4 +1,3 @@
-// Quest description.
 abstainpvp_name_rsc = de "Enthaltung vom PvP Quest"
 abstainpvp_desc_rsc = de \
    "Wenn Du dir sicher bist, dass es dein Wunsch ist, mit diesem Charakter "
@@ -14,8 +13,6 @@ abstainpvp_completed_rsc = de \
    "angreifen, noch angegriffen werden, Gildenhallen betreten, an der "
    "Richterwahl teilnehmen, ein Fraktionsschild tragen oder an "
    "Gebietseroberungen teilnehmen."
-
-// Quest resources.
 abstainpvp_trigger = de "Verzicht der Gewalt"
 abstainpvp_trigger_2 = de "Ich bitte Shal'ill mich vor Leid zu beschützen"
 abstainpvp_assign = de \
@@ -28,3 +25,12 @@ abstainpvp_success = de \
 abstainpvp_failure = de "Betreff: Dein Wunsch nach Schutz\n"
    "Wenn Du in der Zukunft den Wunsch nach einem permanentem Schutz hast, "
    "kehre zurück und sprich mit mir."
+
+abstainpvp_name_rsc = pt "abstain from PvP quest"
+abstainpvp_desc_rsc = pt "Se você tem certeza de que nunca deseja participar de combates entre jogadores com este personagem, fale estas palavras para a sacerdotisa de Shal'ille: \"Eu solicito que Shal'ille me proteja de danos.\".\n\nATENÇÃO: Esta é uma escolha permanente e não pode ser desfeita! Se você escolher este caminho, não poderá participar de PvP, segurar um escudo de soldado ou itens futuros relacionados a PvP, entrar em guild halls ou participar de eleições de Justicar."
+abstainpvp_completed_rsc = pt "Você está permanentemente protegido contra outros jogadores. Você não pode atacá-los ou ser atacado, entrar em guild halls, participar de eleições de Justicar, segurar um escudo de soldado ou interagir com mastros de bandeira de facção."
+abstainpvp_trigger = pt "abstain from violence"
+abstainpvp_trigger_2 = pt "Eu solicito que Shal'ille me proteja de danos"
+abstainpvp_assign = pt "Shal'ille o protegerá da violência dos combates com outros aventureiros. Para obter proteção, você deve falar estas palavras em voz alta: \"~IEu solicito que Shal'ille me proteja de danos.~I\"."
+abstainpvp_success = pt "Você foi abençoado por Shal'ille e agora está permanentemente sob sua proteção."
+abstainpvp_failure = pt "Assunto: Sua solicitação de proteção\nSe você deseja obter proteção no futuro, venha falar comigo novamente."

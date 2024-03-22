@@ -1,16 +1,11 @@
-// Quest description.
 apothecaryqt_name_rsc = de "Apotheker Quest"
 apothecaryqt_desc_rsc = de \
    "Ein Apotheker hat nichts mehr im Lager. Bringe ihm etwas für sein Lager"
-
 apothecaryqt_deliver_rsc = de \
    "%s%s benötigt %i %s. Also hat %s%s danach gefragt sie Ihm%s zu liefern.  "
    "Behalte nichts für dich, denn sonst wirst Du bestraft!"
-
 apothecaryqt_completed_rsc = de \
    "Du hast das Apotheker Quest abgeschlossen."
-
-// Quest resources.
 apothecary_assign_2 = de \
    "%NPC benötigt diese %INDEF_CARGO%CARGO, bitte überbringe sie%HIMHER_NPC.  "
    "Diebstahl in jeglicher Form wird dazu führen, dass Du als Gesetzesloser "
@@ -33,3 +28,13 @@ apothecary_failure_2 = de \
 apothecary_failure_2_h = de \
    "Betreff: Dieb!\nDein Diebstahl von %INDEF_CARGO%CARGO hat mich dazu gebracht, "
    "einen Fluch auf Dich zu legen. Gut gemacht!."
+
+apothecaryqt_name_rsc = pt "missão do boticário"
+apothecaryqt_desc_rsc = pt "Um boticário ficou sem estoque; entregue alguns para eles."
+apothecaryqt_deliver_rsc = pt "%s%s precisa de %i %s, então %s%s pediu que você os entregasse para %s. Não seja tentado a mantê-los para si mesmo, para não ser punido por seu furto!"
+apothecaryqt_completed_rsc = pt "Você completou a missão do boticário."
+apothecary_assign_2 = pt "%NPC precisa destes %INDEF_CARGO%CARGO, por favor, leve-os para %HIMHER_NPC. O furto de qualquer um dos itens resultará em você ser rotulado como fora da lei. Eu fiz arranjos para %NPC pagar você pelo seu tempo. Você tem um dia meridiano para entregar estes itens."
+apothecary_assign_2_h = pt "%NPC precisa destes %INDEF_CARGO%CARGO, por favor, leve-os para %HIMHER_NPC. O furto de qualquer um dos itens resultará em grave infortúnio. Eu fiz arranjos para %NPC pagar você pelo seu tempo. Você tem um dia meridiano para entregar estes itens."
+apothecary_success_2 = pt "Obrigado pela sua entrega rápida. Os negócios têm sido ótimos ultimamente! Eu me pergunto por quê? Bem, aqui está o seu pagamento. Talvez volte mais tarde se estiver interessado em realizar este serviço novamente. Você ajudou nas relações entre eu e %SOURCE_NPC."
+apothecary_failure_2 = pt "Assunto: Ladrão!\nSeu furto de %INDEF_CARGO%CARGO o rotulou como fora da lei."
+apothecary_failure_2_h = pt "Assunto: Ladrão!\nSeu furto de %INDEF_CARGO%CARGO me obrigou a lançar uma maldição sobre você. Use-a bem."

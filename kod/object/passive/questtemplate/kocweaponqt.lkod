@@ -1,21 +1,15 @@
-// Quest description.
 kocweaponqt_name_rsc = de "Ko'catan Waffenhandel Quest"
 kocweaponqt_desc_rsc = de \
    "Bringe eine Lieferung Pfeile zum Festland."
-
 kocweaponqt_nodetwo_rsc = de \
    "%s%s benötigt eine garantierte Lieferung zum Festland.  Dies ist eine "
    "Regierungssache, somit wird ein scheitern bestraft.  Wirst Du "
    "diesen Handel eingehen?"
-
 kocweaponqt_nodethree_rsc = de \
    "Überbringe %i %s zu %s%s, um die %s Fraktionstruppen auszurüsten.  Wage es nicht, "
    "die Vorräte für Dich zu behalten; Diebstahl wird bestraft."
-
 kocweaponqt_completed_rsc = de \
    "Du hast das Ko'catan Waffenhandel Quest abgeschlossen."
-
-// Quest resources.
 kocweapon_assign_2 = de \
    "Ich brauche eine garantierte Zustellung zum Festland.  Es ist eine Regierungssache, "
    "also würde ein Versagen dazu führen, dass Du ein Gesetzesloser wirst.  "
@@ -53,3 +47,17 @@ kocweapon_success_3 = de \
    "Vielen Dank.  Dies ist aber nur die erste Lieferung von vielen.  Es könnte "
    "zu einer guten Handelsbeziehung führen für die nächsten Jahre. Hier, "
    "bitte %INDEF_CARGO%CARGO."
+
+kocweaponqt_name_rsc = pt "Missão de comércio de armas Ko'catan"
+kocweaponqt_desc_rsc = pt "Faça uma entrega de flechas para o continente."
+kocweaponqt_nodetwo_rsc = pt "%s%s precisa de uma entrega garantida feita para o continente. Este é um negócio do governo, então a falha na entrega seria punida. Você aceitará esses termos?"
+kocweaponqt_nodethree_rsc = pt "Entregue %i %s para %s%s, para abastecer as tropas da facção %s. Não seja tentado a ficar com os suprimentos para você mesmo; o roubo será punido."
+kocweaponqt_completed_rsc = pt "Você completou a missão de comércio de armas Ko'catan."
+kocweapon_assign_2 = pt "Preciso de uma entrega garantida feita para o continente. É um negócio do governo, então a falha em entregá-lo resultaria em status de fora da lei. Você está disposto a aceitar esses termos?"
+kocweapon_assign_2_h = pt "Preciso de uma entrega garantida feita para o continente. É um negócio do governo, então a falha em entregá-lo resultaria em infortúnio. Você está disposto a aceitar esses termos?"
+kocweapon_failure_2 = pt "Assunto: Vou procurar outro mensageiro\nCompreendo sua relutância em se comprometer com uma viagem tão longa. De qualquer forma, obrigado."
+kocweapon_assign_3 = pt "%NPC solicitou meus serviços para %HIMHER_NPC abastecer as tropas da facção, mas infelizmente não tenho ninguém para levar os suprimentos para %HIMHER_NPC. Aqui estão %INDEF_CARGO%CARGO para serem entregues; tenho certeza de que %NPC pagará por seus problemas. Lembre-se de que você está legalmente obrigado a entregar os suprimentos, e a falha em entregá-los resultará em ser rotulado como fora da lei. Por algum motivo, confio em você, no entanto."
+kocweapon_assign_3_h = pt "%NPC solicitou meus serviços para %HIMHER_NPC abastecer as tropas da facção, mas infelizmente não tenho ninguém para levar os suprimentos para %HIMHER_NPC. Aqui estão %INDEF_CARGO%CARGO para serem entregues; tenho certeza de que %NPC pagará por seus problemas. Lembre-se de que você está legalmente obrigado a entregar os suprimentos, e a falha em entregá-los resultará em infortúnio. Por algum motivo, confio em você, no entanto."
+kocweapon_failure_3 = pt "Assunto: Ladrão!\nSeu roubo o tornou um fora da lei por decreto de %NPC."
+kocweapon_failure_3_h = pt "Assunto: Ladrão!\nA má sorte trazida por sua má ação agora o seguirá onde quer que vá."
+kocweapon_success_3 = pt "Obrigado. Esta é apenas a primeira de muitas entregas. Que ela promova boas relações comerciais por muitos anos. Aqui, por favor, pegue %INDEF_PRIZE%PRIZE."

@@ -1,2 +1,5 @@
 tallbush_name_rsc = de "Der Strauch"
 tallbush_desc_rsc = de "Ein frischer Duft umgibt diesen groﬂen Strauch."
+
+tallbush_name_rsc = pt "arbusto"
+tallbush_desc_rsc = pt "Um aroma fresco paira no ar ao redor deste arbusto alto."

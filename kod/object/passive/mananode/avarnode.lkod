@@ -1,2 +1,4 @@
 AvarNode_rejected = de \
    "Die Node weist Deinem Versuch Dich mit ihr zu verschmelzen ab."
+
+AvarNode_rejected = pt "O nó rejeita sua tentativa de se fundir com ele."

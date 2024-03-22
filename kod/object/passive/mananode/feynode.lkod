@@ -3,3 +3,8 @@ feynode_name_evil = de "Fey Dirhai"
 feynode_stripped = de "~IDu fühlst, dass dich einige deiner Energie verlässt."
 feynode_scream = de \
    "~IDu schreist vor Schmerz, als die Mana Node Dich verlässt!"
+
+feynode_name_good = pt "kii'elhai"
+feynode_name_evil = pt "kii'dirhai"
+feynode_stripped = pt "~IVocê sente parte de suas energias mágicas se desprendendo de você."
+feynode_scream = pt "~IVocê grita de dor quando o nó de mana ataca você!"

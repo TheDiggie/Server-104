@@ -1,19 +1,13 @@
-// Quest description.
 chessqt_desc_rsc = de \
    "Du wurdest beauftragt einen Schachzug zu überbringen."
-
 chessqt_nodetwo_rsc = de \
    "%s%s spielt eine Partie Schach und wäre überaus froh, wenn Du "
    " %s nächstne Zug zu %s Gegner bringst.  Akzeptierst du?"
-
 chessqt_nodethree_rsc = de \
    "Gehe zu %s%s und sage %s nächster Schachzug ist \"%q\"."
-
 chessqt_nodefour_rsc = de \
    "Gehe zurück zu %s%s und sage %s nächster Schachzug in "
    "dieser Partie ist \"%q\"."
-
-// Quest resources.
 chess_assign_2 = de \
    "Ich spiele eine Runde Schach mit einem Freund. Wärst Du bereit meinen "
    "nächsten Zug meinem Gegner mitzuteilen?"
@@ -25,3 +19,12 @@ chess_assign_4 = de \
 chess_failure = de \
    "Betreff:  Mein Schachzug\nDu kannst es vergessen meinen nächsten Zug weiterzugeben. "
    "Ich habe schon einen anderen Kurier gefunden."
+
+chessqt_desc_rsc = pt "Você foi solicitado para entregar uma jogada de xadrez."
+chessqt_nodetwo_rsc = pt "%s%s está jogando uma partida de xadrez com um amigo, e ficaria grato se você pudesse enviar a próxima jogada de %s para o oponente de %s. Você aceita?"
+chessqt_nodethree_rsc = pt "Vá até %s%s e diga a %s que a próxima jogada no jogo de xadrez é \"%q\"."
+chessqt_nodefour_rsc = pt "Volte para %s%s e diga a %s que a próxima jogada no jogo de xadrez é \"%q\"."
+chess_assign_2 = pt "Estou jogando uma partida de xadrez com um amigo, você estaria disposto a enviar minha próxima jogada para o meu oponente?"
+chess_assign_3 = pt "Maravilhoso! Por favor, diga a %NPC que minha próxima jogada é %CARGO."
+chess_assign_4 = pt "Uma manobra interessante, mas facilmente contra-atacada. Diga a %NPC que minha jogada é %CARGO."
+chess_failure = pt "Assunto: Minha jogada de xadrez\nNão se preocupe em entregar minha jogada; encontrei outro mensageiro."

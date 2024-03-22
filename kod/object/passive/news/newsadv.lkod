@@ -1,3 +1,6 @@
 newsadventure_name = de "Abenteuer"
 newsadventure_desc = de \
    "Geschichten der Einwohner Meridians - Gesammelt von den Barden"
+
+newsadventure_name = pt "Tales of Adventure"
+newsadventure_desc = pt "Histórias do povo de Meridian, coletadas pelos Bardos"

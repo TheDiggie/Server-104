@@ -1,3 +1,6 @@
 table_name_rsc = de "Der Tisch"
 table_desc_rsc = de \
    "Ein alter Holztisch, an dem die Jahre nicht spurlos vorübergegangen sind."
+
+table_name_rsc = pt "mesa"
+table_desc_rsc = pt "Esta é uma mesa de madeira, desgastada pelos anos de uso e abuso."

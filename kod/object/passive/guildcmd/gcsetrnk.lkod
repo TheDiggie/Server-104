@@ -11,3 +11,11 @@ setrank_too_high = de \
 setrank_promotion_too_high = de \
    "Du kannst keine Ränge setzen von Leuten die höheren oder gleichem Rangs "
    "sind als Du!"
+
+guildsetrank_name_rsc = pt "definir patente"
+guildsetrank_lieutenant = pt "Substitui 'promover' e 'rebaixar' na nova e elegante interface."
+setrank_not_member = pt "%s%s não é membro de %s%q!"
+setrank_cant_setrank_self = pt "Você não pode promover ou rebaixar a si mesmo!"
+setrank_non_user = pt "%s%s não parece estar preocupado com sua decisão."
+setrank_too_high = pt "Você não pode alterar a patente de alguém com patente igual ou superior à sua!"
+setrank_promotion_too_high = pt "Você não pode promover alguém para uma patente igual ou superior à sua!"

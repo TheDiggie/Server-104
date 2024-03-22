@@ -6,3 +6,10 @@ WeapAttSpellCaster_desc_self = de \
    " Mystische Energie umgibt diese Waffe. Diese Waffe wird den %s Zauber "
    "auf den Besitzer ausüben."
 WeapAttSpellCaster_dm = de "Zaubernden"
+
+WeapAttSpellCaster_desc = pt "\n\nEnergia mística flutua em torno desta arma."
+WeapAttSpellCaster_desc_target = pt \
+    "\n\nEnergia mística flutua em torno desta arma. Esta arma lançará o feitiço %s no seu alvo."
+WeapAttSpellCaster_desc_self = pt \
+    "\n\nEnergia mística flutua em torno desta arma. Esta arma lançará o feitiço %s no portador."
+WeapAttSpellCaster_dm = pt "lançador de feitiços"

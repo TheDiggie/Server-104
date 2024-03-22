@@ -6,3 +6,8 @@ tombstone_desc2_rsc = de \
 tombstone_desc_player = de \
    "Ruhe sanft %q, geboren %i ME, verstorben %i ME.\n\nMögen sich die Götter "
    "rächen!"
+
+tombstone_name_rsc = pt "lápide"
+tombstone_desc1_rsc = pt "O nome nesta lápide foi apagado pelo tempo e pelo clima."
+tombstone_desc2_rsc = pt "R.I.P. uma grande cabra, falecida há 3 anos. Ela foi amada por muitos."
+tombstone_desc_player = pt "R.I.P. %q, nascido em %i, falecido em %i.\n\nQue os deuses se vinguem!"

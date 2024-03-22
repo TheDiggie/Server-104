@@ -10,3 +10,10 @@ renounce_ties_others = de "~B%s%s beendet die Mitgliedschaft von %s%q!"
 guildrenounce_necro_nak = de \
    "~BDu hast den Blutschwur zu dem Orden der Nekromanten geschworen.  Tod "
    "ist der einzige Ausweg."
+
+guildrenounce_name_rsc = pt "Renunciar à guilda"
+guildrenounce_desc_text_rsc = pt "Use este comando para sair da sua guilda. Você nunca gostou deles mesmo. Os mestres de guilda devem transferir seu título antes de usar este comando."
+renounce_no_gms = pt "Os mestres de guilda não podem renunciar aos seus laços antes de abdicarem de seus títulos."
+renounce_ties_renouncer = pt "Você renuncia seus laços com %s%q."
+renounce_ties_others = pt "%s%s renuncia todos os laços com %s%q!"
+guildrenounce_necro_nak = pt "Você jurou um juramento de sangue à Ordem dos Necromantes. A morte é a sua única saída."

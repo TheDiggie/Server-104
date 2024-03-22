@@ -1,2 +1,5 @@
 singletree_name_rsc = de "Ein Baum"
 singletree_desc_rsc = de "Ein Baum, der mit Spinnweben belegt ist."
+
+singletree_name_rsc = pt "árvore"
+singletree_desc_rsc = pt "Uma árvore coberta por teias de aranha."

@@ -1,18 +1,13 @@
-// Quest description.
 kranquest_name_rsc = de "Kraanan Schüler Quest"
 kranquest_desc_rsc = de \
    "Priesterin Qertina hat Dich beauftragt %s%s zu töten. Kehre zurück "
    "wenn Du deine Aufgabe abgeschlossen hast."
-
 kranquest_node_two_rsc = de \
    "Kehre zu Priesterin Qertina zurück, und lasse Sie wissen, dass Du deine Aufgabe "
    "abgeschlossen hast."
-
 kranquest_completed = de \
    "Du hast das Kraanan Schüler Quest abgeschlossen.  Du bist ein würdiger "
    "Schüler Kraanans, und Priesterin Qertina wird Dir mehr mächtige Zauber lehren."
- 
-// Quest resources.
 kraanandisciple_assign = de \
    "`B`bDu hast zwei Stunden, um %MONSTER zu töten.  Geh jetzt!  Komme wieder "
    "und gebe Bescheid wenn es erledigt wurde."
@@ -25,3 +20,11 @@ kraanandisciple_failure = de \
    "um Kraanan zu dienen. Wir brauchen Menschen mit Entschlossenheit, Konzentration "
    "und Geschicklichkeit.  Kehre zurück zu mir, wenn Du diese Dinge in Dir "
    "trägst."
+
+kranquest_name_rsc = pt "Missão de discípulo de Kraanan"
+kranquest_desc_rsc = pt "A Sacerdotisa Qerti'nya pediu que você mate %s%s. Retorne quando tiver completado esta tarefa."
+kranquest_node_two_rsc = pt "Volte para a Sacerdotisa Qerti'nya e informe-a de que a tarefa foi concluída."
+kranquest_completed = pt "Você completou a missão de discípulo de Kraanan. Você é um fiel discípulo de Kraanan, e a Sacerdotisa Qerti'nya agora irá ensiná-lo a magias mais poderosas."
+kraanandisciple_assign = pt "`B`bVocê tem duas horas para matar um %MONSTER. Vá imediatamente. Retorne e me diga quando terminar."
+kraanandisciple_success = pt "`B`bVocê fez bem. Você é um seguidor digno. Talvez seja você quem quebrará a pedra em torno da alma de Kraanan. Procure-me quando desejar aprender mais sobre seus caminhos e suas magias."
+kraanandisciple_failure = pt "Assunto: Sua fraqueza de coração\nDuvido da sua capacidade de servir Kraanan. Precisamos daqueles com determinação, foco e habilidade. Volte aqui apenas quando essas coisas estiverem dentro de você."

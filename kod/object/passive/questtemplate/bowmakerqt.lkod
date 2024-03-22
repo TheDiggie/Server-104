@@ -1,11 +1,12 @@
-// Quest description.
 bowmakerquest_name_rsc = de "Avar Schamanen Feder Quest"
-
 bowmakerquest_completed_rsc = de \
    "Du hast eine Avar Schamanen Feder für Hanla zax'Ta erhalten"
    "und wirst dafür einen Riija Schwert Splitter erhalten."
-
-// Quest resources.
 bowmaker_trigger_1 = de "Pfeile"
 bowmaker_success_3 = de \
    "Danke, hier nimm diesen Schrott aus Metall als Belohnung."
+
+bowmakerquest_name_rsc = pt "missão da pena da cauda do xamã avar"
+bowmakerquest_completed_rsc = pt "Você obteve uma pena da cauda do xamã avar para Hanla zax'Ta e recebeu um fragmento de espada Riija em troca."
+bowmaker_trigger_1 = pt "setas"
+bowmaker_success_3 = pt "Obrigado. Aqui, leve este pedaço de metal como sua recompensa."

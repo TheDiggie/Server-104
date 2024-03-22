@@ -1,3 +1,6 @@
 treepine_name_rsc = de "Die Kiefer"
 treepine_desc_rsc = de \
    "Du riechst den frischen Kiefernduft, als Du dicht neben diesem Baum stehst."
+
+treepine_name_rsc = pt "árvore"
+treepine_desc_rsc = pt "Você sente o fresco aroma de pinheiro enquanto está próximo a esta árvore."

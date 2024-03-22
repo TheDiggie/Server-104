@@ -1,3 +1,7 @@
 itematttranscendant_desc = de "  Es glüht in einem sanften weißen Licht."
 itematttranscendant_name = de "Überweltlich %s"
 transcendant_DM = de "Überweltlich"
+
+itematttranscendant_desc = pt "\n\nEle brilha com uma luz branca suave."
+itematttranscendant_name = pt "%s transcendental"
+transcendant_DM = pt "transcendental"

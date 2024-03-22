@@ -3,3 +3,7 @@ durable_dm = de "langlebig"
 itematt_durable_desc = de \
    "  Die Handwerkskunst von diesem %s bewundenswert, offensichtlich das "
    "Ergebnis von Hunderten von Stunden der Arbeit von erfahrenen Händen."
+
+itematt_durable_name = pt "bem-feito %s"
+durable_dm = pt "durável"
+itematt_durable_desc = pt "\n\nA qualidade deste %s é admirável, claramente o resultado de centenas de horas de trabalho por mãos especializadas."

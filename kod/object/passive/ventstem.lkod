@@ -1,2 +1,5 @@
 VentCloud_name_rsc = de "Der dichte Schwaden."
 VentCloud_desc_rsc = de "Dichter Dampf dringt aus dem Loch im Boden."
+
+VentCloud_name_rsc = pt "vapor espesso"
+VentCloud_desc_rsc = pt "Um vapor espesso sai da abertura."

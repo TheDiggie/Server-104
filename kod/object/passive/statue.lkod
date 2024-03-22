@@ -1,2 +1,5 @@
 Statue_name_rsc = de "Die Statue"
 Statue_desc_rsc = de "Dies ist eine Statue von %q, einem groﬂen Abenteurer."
+
+Statue_name_rsc = pt "est·tua"
+Statue_desc_rsc = pt "Esta È uma est·tua de %q, um grande aventureiro."

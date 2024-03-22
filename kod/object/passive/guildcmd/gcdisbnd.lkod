@@ -5,3 +5,10 @@ guilddisband_disband_users = de "~BDeine Gilde wurde aufgelöst von %s%s."
 guilddisband_necro_nak = de \
    "~BDer Orden der Nekromanten wurde mit dem Blutschwur zur dunklen Königin "
    "geschaffen.  Du kannst sie nicht einfach auflösen."
+
+guilddisband_name_rsc = pt "disband"
+guilddisband_desc_Rsc = pt "Este é o comando para excluir uma guilda."
+guilddisband_disband_master = pt "~BVocê dissolve %s%q."
+guilddisband_disband_users = pt "~BSua guilda foi dissolvida por %s%s."
+guilddisband_necro_nak = pt "~BA Ordem dos Necromantes é vinculada por um juramento de sangue. "
+"Não pode simplesmente ser dissolvida."

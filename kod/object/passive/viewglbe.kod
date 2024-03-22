@@ -17,17 +17,18 @@ constants:
 resources:
 
    include viewglbe.lkod
-ViewPointGlobe_name = "Globe of Seeing"
-ViewPointGlobe_icon = necglobe.bgf
-ViewPointGlobe_desc = "Gazing into this globe will allow you to see out of the globe to which it is magically "
-      "linked.  While your viewpoint is thus magically transferred, you will be unable to cast spells or "
-      "attack.  When you wish to stop gazing into the globe, simply press the Esc key "
-      "and your viewpoint will return to normal."
+   
+   ViewPointGlobe_name = "Globe of Seeing"
+   ViewPointGlobe_icon = necglobe.bgf
+   ViewPointGlobe_desc = "Gazing into this globe will allow you to see out of the globe to which it is magically "
+         "linked.  While your viewpoint is thus magically transferred, you will be unable to cast spells or "
+         "attack.  When you wish to stop gazing into the globe, simply press the Esc key "
+         "and your viewpoint will return to normal."
 
-ViewPointGlobe_not_in_range = "You are not close enough to the globe to see into it."
-ViewPointGlobe_used = "You gaze deep into the globe, and find that you can see through "
-   "into a different location!\n"
-   "[Press Esc when you are ready to return to your normal viewpoint.]"
+   ViewPointGlobe_not_in_range = "You are not close enough to the globe to see into it."
+   ViewPointGlobe_used = "You gaze deep into the globe, and find that you can see through "
+      "into a different location!\n"
+      "[Press Esc when you are ready to return to your normal viewpoint.]"
 
 classvars:
 

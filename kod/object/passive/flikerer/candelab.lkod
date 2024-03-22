@@ -5,3 +5,8 @@ candelabra_desc_on = de \
 candelabra_desc_off = de \
    "Ein reich verzierter Kerzenständer mit fünf Kerzen. Die Kerzen sind erloschen."
 candelabra_not_in_range = de "Du bist nicht nah genug um die Kerzen anzuzünden."
+
+candelabra_name_rsc = pt "candelabro"
+candelabra_desc_on = pt "Um suporte de cinco velas de latão ornamentado. As velas estão tremulando suavemente."
+candelabra_desc_off = pt "Um suporte de cinco velas de latão ornamentado. As velas estão apagadas."
+candelabra_not_in_range = pt "Você não está perto o suficiente do candelabro para usá-lo."

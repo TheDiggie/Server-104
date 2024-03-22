@@ -1,2 +1,5 @@
 candle_name = de "Kerze"
 candle_desc = de "Eine hell brennende Bienenwachs Kerze."
+
+candle_name = pt "vela"
+candle_desc = pt "Uma vela de cera de abelha que queima brilhantemente."

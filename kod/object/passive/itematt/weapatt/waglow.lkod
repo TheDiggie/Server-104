@@ -2,3 +2,8 @@ weapattglowing_desc = de " Die Waffe glüht sanft wie eine Fackel."
 weapattglowing_name = de "glühend %s"
 waglowing_gone = de "%s hört auf zu glühen."
 glowing_dm = de "Glühend"
+
+weapattglowing_desc = pt "\n\nEla brilha suavemente como uma tocha."
+weapattglowing_name = pt "brilhante %s"
+waglowing_gone = pt "Seu %s para de brilhar."
+glowing_dm = pt "brilhante"
