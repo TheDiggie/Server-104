@@ -10,3 +10,11 @@ Cloak_Succeed_rsc = de "Du wickelst einen magischen Umhang über %s%s."
 cloak_enchantment_rsc = de \
    "\n\nDein aktueller %s Zauber hält dich vor Feinden versteckt für "
    "%i%% der Zeit."
+
+Cloak_name_rsc = pt "manto"
+Cloak_desc_rsc = pt "Qor envolve seu corpo astral em sombras em movimento, permitindo que você evite rastreamento mágico. Requer dois entroot berries para lançar."
+cloak_enchantment_rsc = pt "\n\nSeu encantamento atual de %s o manterá escondido do rastreamento inimigo %i%% do tempo."
+Cloak_on_rsc = pt "Parece que seu próprio espírito se tornou de alguma forma indistinto."
+Cloak_off_rsc = pt "Você se sente mais conspicuo."
+Cloak_already_enchanted_rsc = pt "Você já está enfeitado."
+Cloak_Succeed_rsc = pt "Você envolve um manto mágico ao redor de %s%s."

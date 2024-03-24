@@ -15,3 +15,23 @@ Elusion_depart_to_destination = de \
    "%s verschwindet innerhalb eines Augenblicks und hinterlässt nur einen "
    "blassen Schimmer in einem verzerrtem Raum."
 elusion_loc_list_and = de "und "
+
+Elusion_name_rsc = pt "elusão"
+Elusion_desc_rsc = pt \
+   "Permite que o conjurador evite problemas e escape para outro local. "
+   "Vários destinos podem estar disponíveis, e o conjurador deve chamar "
+   "o nome do local para onde deseja viajar. "
+   "Requer as garras do temível kriipa para ser lançado."
+Elusion_No_Location_Given = pt \
+   "Sem um local especificado, sua tentativa de elusão falha."
+Elusion_Success = pt "O mundo se dobra sobre si mesmo."
+Elusion_Location_list = pt \
+   "O mundo reluz e caminhos secretos são revelados, levando "
+   "a %s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s."
+Elusion_fail = pt "Esse não é um destino válido."
+Elusion_cant_cast_here = pt \
+   "Você só pode se eludir de um lugar para onde pode se eludir."
+Elusion_depart_to_destination = pt \
+   "%s desaparece instantaneamente, deixando para trás um brilho desvanecido "
+   "do espaço distorcido."
+   

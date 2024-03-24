@@ -16,3 +16,15 @@ EagleEyes_resist_caster = de \
 EagleEyes_evade_caster = de "Die Magie Kraanans bewahrt dein Augenlich."
 eagleeyes_enchantment_rsc = de \
    "\n\nDein aktueller %s Zauber fügt %i Offensive hinzu und Zielen +1.%i$0%i$0"
+
+EagleEyes_name_rsc = pt "olhos de águia"
+EagleEyes_desc_rsc = pt "Concede uma acuidade sobrenatural de visão ao conjurador, protegendo contra feitiços que atacam a visão e melhorando a precisão a longo alcance. Requer três cogumelos e um cogumelo roxo."
+EagleEyes_on_rsc = pt "Seus olhos ardem e o mundo salta para uma clareza surreal."
+EagleEyes_off_rsc = pt "O mundo parece de alguma forma menos nítido e vívido."
+EagleEyes_already_enchanted_rsc = pt "Você já possui Olhos de Águia."
+EagleEyes_Success_rsc = pt "Você concede a %s%s visão preternatural."
+eagleeyes_enchantment_rsc = pt "\n\nSeu encantamento atual de %s adiciona %i ofensa e 1 de dano aos seus ataques à distância. Ele resistirá completamente a uma tentativa de deixá-lo cego %i%% do tempo. Tentativas bem-sucedidas de remover sua visão serão reduzidas em %i%%."
+EagleEyes_resist = pt "A magia de Krannan luta para penetrar o véu da escuridão."
+EagleEyes_evade = pt "A magia de Krannan preserva sua visão."
+EagleEyes_resist_caster = pt "Você sente uma força resistindo ao seu feitiço de cegueira."
+EagleEyes_evade_caster = pt "A magia de Krannan preserva a visão do seu alvo."

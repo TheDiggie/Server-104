@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include cgaunts.lkod
+
    CraftGauntlets_name_rsc = "craft gauntlets"
    CraftGauntlets_icon_rsc = icraftgaunt.bgf
    CraftGauntlets_desc_rsc = \

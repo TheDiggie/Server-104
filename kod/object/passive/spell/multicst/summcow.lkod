@@ -6,3 +6,7 @@ SummonCow_desc_rsc = de \
 summoncow_failed_rsc = de \
    "Es gibt zu viel Beschwörungsmagie in dem Raum um eine Kuh ins Leben zu "
    "bringen."
+
+SummonCow_name_rsc = pt "convocar bovino"
+SummonCow_desc_rsc = pt "Convoca uma vaca pigmeia para o divertimento de todos os presentes. Requer 5 seraphym perfeitamente polidos e as energias místicas dos conjuradores devem ser focalizadas através de um prisma."
+summoncow_failed_rsc = pt "Há muita magia de convocação concentrada aqui para trazer uma vaca à existência."

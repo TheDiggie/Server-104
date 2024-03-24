@@ -21,3 +21,27 @@ Meditate_maxed_skill = de \
    "doch nicht mehr verbessern in dieser Fähigkeit?"
 Meditate_cast_finished = de \
    "Du wachst aus deiner Trance auf und fühlst dich erfrischt!"
+
+Meditate_name_rsc = pt "meditar"
+Meditate_desc_rsc = pt \
+   "Permite que você canalize sua experiência na meditação para "
+   "abrir sua mente e melhorar suas habilidades. Para isso, fale o "
+   "nome da habilidade que deseja melhorar enquanto estiver em transe. "
+   "Isso consumirá pontos de treinamento acumulados."
+Meditate_begin_trance = pt \
+   "Você começa sua meditação e deixa sua mente vagar. Em qual habilidade "
+   "você vai focar sua meditação?"
+Meditate_cast_success = pt \
+   "Você começa a meditar na arte de %s e chega a uma compreensão mais profunda "
+   "de suas complexidades. Você melhorou sua habilidade em ~B%i~B pontos."
+Meditate_cast_failure = pt \
+   "Você parece não conseguir focar sua mente adequadamente. Confuso e "
+   "desapontado, você acorda de seu transe."
+Meditate_not_enough_points = pt \
+   "Você começa a meditar na arte de %s, mas parece faltar a "
+   "inspiração para avançar em seus estudos."
+Meditate_maxed_skill = pt \
+   "Você começa a meditar na arte de %s, mas não pode "
+   "progredir ainda mais em sua maestria."
+Meditate_cast_finished = pt \
+   "Você acorda de seu transe e sente suas energias mentais renovadas!"

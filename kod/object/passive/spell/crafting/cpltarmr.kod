@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include cpltarmr.lkod
+
    CraftPlateArmor_name_rsc = "craft plate armor"
    CraftPlateArmor_icon_rsc = icraftplatea.bgf
    CraftPlateArmor_desc_rsc = \

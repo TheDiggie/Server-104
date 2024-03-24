@@ -10,3 +10,16 @@ unholyweapon_spell_intro = de \
    "Qor Level 2: Weiht Deine Waffe Qor und steigert ihre Wirksamkeit gegen "
    "das Heilige."
 unholyweapon_label_rsc = de "Diener Qors"
+
+unholyweapon_cast_rsc = pt "Agora, o seu %s está dedicado a Qor."
+unholyweapon_no_can = pt "Você não pode dedicar %s%s a Qor."
+unholyweapon_fails = pt "O %s não é afetado estranhamente pelo feitiço."
+unholyweapon_fails2 = pt "O %s já está sob efeito de magia."
+unholyweapon_already_done = pt "Esta arma já está dedicada a Qor."
+unholyweapon_name_rsc = pt "arma profana"
+unholyweapon_desc_rsc = pt \
+      "Dedica sua arma a Qor, aumentando sua eficácia contra o sagrado. "
+      "Requer duas asas de fada e um dente de orc para lançar."
+unholyweapon_spell_intro = pt \
+      "Qor Lv. 2: Dedica sua arma a Qor, aumentando sua eficácia contra o sagrado."
+unholyweapon_label_rsc = pt "suplicante de Qor"

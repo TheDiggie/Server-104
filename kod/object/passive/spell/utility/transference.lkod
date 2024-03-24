@@ -11,3 +11,20 @@ Transference_cast = de \
 Transference_not_guilded = de "You must be guilded to cast this spell."
 Transference_rank_too_low = de "You are not high enough rank to access your guild hall chest."
 Transference_no_hall = de "Your guild does not own a hall. Perhaps you should complain to your guild master."
+
+Transference_name_rsc = pt "transferência"
+Transference_desc_rsc = pt \
+   "Envia qualquer item para o baú de sua guilda. "
+   "Requer apenas um momento do seu precioso tempo."
+Transference_cant = pt "Você não pode transferir %s%s para o baú de sua guilda."
+Transference_chest_full = pt "O baú da sua guilda não pode mais armazenar itens."
+Transference_not_holding = pt \
+   "O item deve estar em seu inventário primeiro."
+Transference_cast = pt \
+   "Entregou %s%s para o baú da sua guilda."
+Transference_not_guilded = pt "Você deve estar associado a uma guilda para lançar este feitiço."
+Transference_rank_too_low = pt \
+   "Você não tem patente suficiente para acessar o baú do salão de guilda."
+Transference_no_hall = pt \
+   "Sua guilda não possui um salão. Talvez você deva reclamar com seu mestre de guilda."
+   

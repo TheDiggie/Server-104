@@ -10,3 +10,14 @@ Eavesdrop_already_enchanted_rsc = de "Du lauscht bereits einem Raum."
 Eavesdrop_no_rooms = de \
    "Es scheint kein Raum in der Nähe zu sein den du belauschen kannst."
 Eavesdrop_Success_rsc = de "Du gibst %s%s die Möglichkeit zu lauschen."
+
+Eavesdrop_name_rsc = pt "escuta indiscreta"
+Eavesdrop_desc_rsc = pt \
+    "Riija concede a capacidade de ouvir conversas distantes, permitindo que você "
+    "espione os outros. Requer dois olhos de libélula."
+Eavesdrop_on_rsc = pt "Os sons de uma sala próxima preenchem sua mente."
+Eavesdrop_off_rsc = pt "Os sons distantes tornam-se impossíveis de ouvir."
+Eavesdrop_already_enchanted_rsc = pt \
+   "Você já está ouvindo outra sala."
+Eavesdrop_no_rooms = pt "Parece que não há salas próximas que você possa ouvir."
+Eavesdrop_Success_rsc = pt "Você concede a %s%s a capacidade de escutar indiscretamente."

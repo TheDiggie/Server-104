@@ -23,3 +23,15 @@ Deflect_failure_to_victim = de \
 deflect_enchantment_rsc = de \
    "\n\nDein aktueller %s Zauber reflektiert gegnerische Angriffe um "
    "%i%% der Zeit."
+
+Deflect_name_rsc = pt "defletir"
+Deflect_desc_rsc = pt "Invoca a vontade de Kraanan para formar uma barreira protetora ao redor do alvo que os protege de ataques mágicos diretos, mas não de outros tipos de magia, como encantamentos. Requer um frasco de solagh e uma garra de kriipa para lançar."
+Deflect_already_enchanted_rsc = pt "Você já está encantado por defletir."
+deflect_enchantment_rsc = pt "\n\nSeu encantamento atual de %s refletirá magias de respingo e raios inimigos %i%% do tempo."
+Deflect_on_rsc = pt "Uma barreira mágica o envolve."
+Deflect_success_rsc = pt "Você sente uma barreira mágica cercando %s%s."
+Deflect_off_rsc = pt "A barreira mágica que o protege parece estar diminuindo."
+Deflect_spell_intro = pt "Kraanan Nível 4: Forma uma barreira mágica ao redor do alvo, protegendo-os de danos de magias que causam dano diretamente."
+Deflect_success_to_victim = pt "Seu encantamento de deflexão rebate a magia de %s de volta para o conjurador!"
+Deflect_success_to_caster = pt "Uma barreira de energia mística se forma na frente de %s, rebatendo sua magia de volta para você!"
+Deflect_failure_to_victim = pt "Seu encantamento de deflexão tenta rebater a magia de %s, mas não é forte o suficiente."

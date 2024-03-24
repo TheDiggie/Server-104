@@ -21,3 +21,15 @@ gort_part_mag_red_rsc = de \
    "%s%s's Gorts Panzer straft sich und mildert einiges von den zum Teil magischen Angriffen."
 gort_mag_red_rsc = de \
    "%s%s's Gorts Panzer schimmert und bietet einen leichten Schutz vor magischen Angriffen."
+
+ArmorOfGort_name_rsc = pt "armadura de Gort"
+ArmorOfGort_desc_rsc = pt "Cerca o conjurador com um campo poderoso que desvia danos de golpes extremos. Requer duas escamas de dragão azul para lançar."
+gort_enchantment_rsc = pt "\n\nSeu encantamento atual de armadura de Gort adiciona 1-%i de armadura ou reduz o dano não mágico para 15, o dano parcialmente mágico para 20 e o dano totalmente mágico para 25. Apenas o melhor desses dois efeitos se aplica. A armadura de Gort modifica o dano recebido antes de qualquer outra armadura ou feitiços."
+ArmorOfGort_already_enchanted_rsc = pt "Você já possui a Armadura de Gort."
+ArmorOfGort_on_rsc = pt "Sua pele fica tensa enquanto a Armadura de Gort se forma ao seu redor."
+ArmorOfGort_off_rsc = pt "Sua Armadura de Gort se dissipa."
+ArmorOfGort_success_rsc = pt "A pele de %s%s se contrai enquanto a Armadura de Gort se forma."
+ArmorOfGort_spell_intro = pt "Nível 5 de Kraanan: armadura mágica que protege o conjurador."
+gort_phys_red_rsc = pt "A armadura de Gort de %s%s se endurece, protegendo %s de grande parte da força do seu ataque."
+gort_part_mag_red_rsc = pt "A armadura de Gort de %s%s se ajusta, mitigando parte do seu ataque parcialmente mágico."
+gort_mag_red_rsc = pt "A armadura de Gort de %s%s brilha, oferecendo uma leve proteção contra o seu ataque mágico."

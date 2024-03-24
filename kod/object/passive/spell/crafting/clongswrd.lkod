@@ -1,0 +1,4 @@
+CraftLongSword_name_rsc = pt "fabricar espada longa"
+CraftLongSword_desc_rsc = pt \
+      "Fabricar uma espada longa em uma bigorna com um martelo de ferreiro. "
+      "Requer 20 lingotes de ferro e 5 tábuas."

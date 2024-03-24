@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include csickle.lkod
+
    CraftSickle_name_rsc = "craft sickle"
    CraftSickle_icon_rsc = iCraftSickle.bgf
    CraftSickle_desc_rsc = \

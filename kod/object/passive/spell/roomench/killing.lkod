@@ -12,3 +12,11 @@ killingfields_on_new_entrant = de \
    "Blut."
 killingfields_enchantment_rsc = de \
    "\n\nDer %s Zauber fügt 2-5 Schaden allen Attacken hinzu."
+
+killingfields_name_rsc = pt "campos de morte"
+killingfields_desc_rsc = pt "Induz uma sede de sangue mágica, aumentando o dano de todos os ataques na área. Requer elderberries e dentes de orc para ser lançado."
+killingfields_already_enchanted = pt "Este lugar já é um campo de morte."
+killingfields_enchantment_rsc = pt "\n\nO encantamento %s atualmente adiciona de 2 a 5 de dano a todos os ataques na área."
+killingfields_on = pt "Kraanan sorri e a fúria da batalha enche seu coração. A própria terra anseia por sangue recém-derramado."
+killingfields_off = pt "O espírito de Kraanan parte deste lugar."
+killingfields_on_new_entrant = pt "A fúria da batalha enche seu coração. A própria terra anseia por sangue recém-derramado."

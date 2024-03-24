@@ -6,3 +6,8 @@ TouchAttack_Succeed_rsc = de \
    "ist ein Bug.  Bitte melde es. Schönen Tag noch."
 touchattack_enchantment_rsc = de \
    "\n\nDein aktueller %s Zauber verursacht %i - %i Grund %s Schaden."
+
+TouchAttackSpell_name_rsc = pt "Feitiço de Toque"
+TouchAttackSpell_desc_rsc = pt "Este é um feitiço de toque que causa dano."
+TouchAttack_Succeed_rsc = pt "Você lançou um ataque de toque em outro jogador. Isso é um erro. Por favor, relate-o. Tenha um bom dia."
+touchattack_enchantment_rsc = pt "\n\nSeu encantamento atual de %s causará %i - %i de dano base de %s."

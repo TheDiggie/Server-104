@@ -11,3 +11,9 @@ BloodInheritance_bad_target2 = de \
 BloodInheritance_succeeded = de \
    "Die böse Macht des Zaubers geht raus aus %s%s, die ihr Qor's Macht gegeben "
    "hat."
+
+BloodInheritance_name_rsc = pt "herança de sangue"
+BloodInheritance_desc_rsc = pt "Infunde uma arma com o poder malévolo de Qor. É impossível prever exatamente qual forma esta bênção sombria tomará, mas sempre será mortal. Requer 16 sangues de xamã, 16 bagas de raiz ent e 16 dentes de orc."
+BloodInheritance_bad_target = pt "Você deve mirar este feitiço em uma arma de combate corpo a corpo."
+BloodInheritance_bad_target2 = pt "Você não pode conceder o presente de Qor a uma arma que já tenha uma encantamento tão forte."
+BloodInheritance_succeeded = pt "A força maligna do seu feitiço se projeta sobre %s%s, infundindo-a com o poder de Qor."

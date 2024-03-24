@@ -10,3 +10,11 @@ magicshield_off_rsc = de "Das magische Schild verschwindet."
 magicshield_success_rsc = de "Ein magisches Schild formt sich vor %s%s."
 mshield_enchantment_rsc = de \
    "\n\nDein aktueller %s Zauber fügt %i Verteidigung hinzu."
+
+magicshield_name_rsc = pt "escudo mágico"
+magicshield_desc_rsc = pt "Invoca um escudo de poderosa energia mágica que irá desviar alguns dos golpes direcionados a você por vários minutos. Requer dois cogumelos e um cogumelo vermelho para lançar."
+mshield_enchantment_rsc = pt "\n\nSeu encantamento atual de %s adiciona %i de defesa."
+magicshield_already_enchanted_rsc = pt "Você já possui um escudo mágico."
+magicshield_on_rsc = pt "Um escudo protetor de energia mágica se forma ao seu redor."
+magicshield_off_rsc = pt "O escudo mágico se dissipa."
+magicshield_success_rsc = pt "Um escudo protetor de energia mágica se forma ao redor de %s%s."

@@ -170,7 +170,6 @@ resources:
    LT_howdy = "howdy"
    LT_bye = "bye"
    LT_goodbye = "goodbye"
-//   LT_farewell = "farewell"
    LT_help = "help"
    
    LT_ohm = "ohm"
@@ -428,8 +427,8 @@ resources:
    LT_babysp = "baby spider"
    LT_baby = "baby"
    LT_giantrat = "giant rat"
-   LT_giant = "giant"         // obsolete
-   LT_rat = "rat"             // obsolete
+   LT_giant = "giant"
+   LT_rat = "rat"    
    LT_fairy = "fairy"
    LT_slime = "slime"
    LT_tree = "tree"

@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include cpickaxe.lkod
+
    CraftPickAxe_name_rsc = "craft pickaxe"
    CraftPickAxe_icon_rsc = icraftpickaxe.bgf
    CraftPickAxe_desc_rsc = \

@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include cscim.lkod
+
    CraftScimitar_name_rsc = "craft scimitar"
    CraftScimitar_icon_rsc = icraftscim.bgf
    CraftScimitar_desc_rsc = \

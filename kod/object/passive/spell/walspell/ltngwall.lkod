@@ -6,3 +6,12 @@ LightningWall_cast_rsc = de "Eine Blitzwand erscheint vor dir!"
 LightningWall_failed_rsc = de \
    "Es gibt zu viel Beschwörungsmagie in diesem Raum. Du kannst nicht noch "
    "weitere Wände erschaffen."
+
+LightningWall_name_rsc = pt "parede de relâmpagos"
+LightningWall_desc_rsc = pt \
+   "Cria uma barreira crepitante de eletricidade. Aquele que entrar em tal "
+   "campo certamente sentiria mais do que apenas trovão. "
+   "Requer cogumelos azuis e yxrl para lançar."
+LightningWall_cast_rsc = pt "Uma parede de relâmpagos aparece diante de você!"
+LightningWall_failed_rsc = pt \
+   "Há muita magia de invocação concentrada aqui para criar uma parede de relâmpagos."

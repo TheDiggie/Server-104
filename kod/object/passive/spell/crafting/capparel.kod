@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include capparel.lkod
+
    CraftApparel_name_rsc = "craft apparel"
    CraftApparel_icon_rsc = icraftapparel.bgf
    CraftApparel_desc_rsc = \

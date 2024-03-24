@@ -8,3 +8,13 @@ BrambleWall_cast_rsc = de "Eine Wand von Brombeeren erscheint vor Dir!"
 BrambleWall_failed_rsc = de \
    "Es gibt zu viel Beschwörungsmagie in diesem Raum. Du kannst nicht noch "
    "weitere Wände erschaffen."
+
+BrambleWall_name_rsc = pt "muralha de espinhos"
+BrambleWall_desc_rsc = pt \
+   "Cria um emaranhado de espinhos retorcidos e espinhosos. Tal parede seria "
+   "dolorosa de atravessar, embora não prejudicasse alguém que permanecesse "
+   "imóvel. "
+   "Requer elderberries e yrxl sap para lançar."
+BrambleWall_cast_rsc = pt "Uma parede de espinhos aparece diante de você!"
+BrambleWall_failed_rsc = pt \
+   "Há muita magia de invocação concentrada aqui para criar uma parede de espinhos."

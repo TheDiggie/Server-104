@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include cmagrobe.lkod
+
    CraftMagicRobes_name_rsc = "craft magic robes"
    CraftMagicRobes_icon_rsc = icraftmagicrobe.bgf
    CraftMagicRobes_desc_rsc = \

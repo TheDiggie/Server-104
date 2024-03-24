@@ -16,3 +16,10 @@ ShatterLock_cast_complete = de \
 ShatterLock_guildwarning = de \
    "Du hast ein seltsames Gefühl, dass die Abwehr deiner Gildenhalle manipuliert "
    "wird."
+
+ShatterLock_name_rsc = pt "quebrar bloqueio"
+ShatterLock_desc_rsc = pt "Penetra as fechaduras de uma sala de guilda (observe que não abrirá outros tipos de portas em outros lugares). Requer quatro garras de Kriipa para ser lançado, e as energias dos lançadores devem ser focalizadas através de um prisma."
+Shatterlock_safety = pt "Você não deve ter um anjo da guarda e deve desativar sua segurança ANTES de lançar este feitiço. Observe que você será marcado como fora da lei como resultado da realização deste feitiço."
+Shatterlock_outlaw = pt "NOTA: Lançar este feitiço o marcará como fora da lei, mesmo que você não tenha sucesso em invadir a sala. Portanto, você deve desativar sua segurança ANTES de lançar o feitiço."
+ShatterLock_cast_complete = pt "Ao terminar sua incantação, a porta da sala da guilda se abre!"
+ShatterLock_guildwarning = pt "Você tem uma sensação estranha de que as defesas de sua sala de guilda estão sendo manipuladas."

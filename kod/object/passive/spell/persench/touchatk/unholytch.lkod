@@ -18,3 +18,15 @@ UnholyTouch_spell_intro = de \
 UnholyTouch_health_gain = de \
    "Du saugst die Lebenskraft Deines Opfers um ~g~B%i~B~n Lebenspunkte aus, "
    "und fühlst Dich stärker."
+
+UnholyTouch_name_rsc = pt "toque profano"
+UnholyTouch_desc_rsc = pt "Energia sombria de Qor queima seu alvo e drena uma pequena quantidade de vida. Mais eficaz em alvos bons. Requer uma única asa de fada para lançar."
+UnholyTouch_already_enchanted_rsc = pt "Suas mãos já estão banhadas no amor de Qor."
+UnholyTouch_On_rsc = pt "Suas mãos pulsam com energias sombrias."
+UnholyTouch_Off_rsc = pt "Suas mãos não estão mais banhadas no amor de Qor."
+UnholyTouch_player_was_hit = pt "%s%s rasga você com a força sombria de Qor!"
+UnholyTouch_player_hit_something = pt "%s%s%s recua da energia sombria de Qor."
+UnholyTouch_player_killed_something = pt "Energia do mal sombria escapa de %s%s, rasgando suas almas."
+UnholyTouch_player_was_killed = pt "O toque de %s%s separa corpo de alma, arrastando %s%s para o Submundo."
+UnholyTouch_health_gain = pt "Você suga a força vital de sua vítima, ganhando ~g~B%i~B~n de saúde."
+UnholyTouch_spell_intro = pt "Nível 1 de Qor: Entrega o mal de Qor em seu toque."

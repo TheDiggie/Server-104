@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include cwoodaxe.lkod
+
    CraftWoodAxe_name_rsc = "craft wood cutting axe"
    CraftWoodAxe_icon_rsc = iCraftWoodAxe.bgf
    CraftWoodAxe_desc_rsc = \

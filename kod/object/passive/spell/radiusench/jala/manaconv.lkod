@@ -11,3 +11,12 @@ Mana_Convergence_caster_ends = de "Dein Song der Stärkung verstummt."
 Mana_Convergence_enter = de \
    "Der Fluss der Magie wird an diesem Ort plötzlich stärker."
 Mana_Convergence_leave = de "Der Song der Stärkung verstummt"
+
+ManaConvergence_name_rsc = pt "convergência de mana"
+ManaConvergence_desc_rsc = pt "As palavras desta música formam um encantamento que aumenta a eficácia dos feitiços de ataque mágico. Requer um serafim polido perfeito."
+Mana_Convergence_cast = pt "Você começa a tocar uma música carregada de capacitação."
+Mana_Convergence_starts = pt "%s%s começa a tocar uma música carregada de capacitação."
+Mana_Convergence_ends = pt "A música carregada tocada por %s%s desaparece."
+Mana_Convergence_caster_ends = pt "Sua música de capacitação desaparece."
+Mana_Convergence_enter = pt "O fluxo de magia neste lugar de repente se torna mais forte."
+Mana_Convergence_leave = pt "O crepitar energizado ao redor do ar à sua volta desaparece."

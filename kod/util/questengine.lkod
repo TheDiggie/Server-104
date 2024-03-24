@@ -104,3 +104,87 @@ questEngine_report_1 = de \
    "Betreff: Report: Quest %q\nQuest %q has %q active instances, %q of which "
    "are unassigned, and %q of which have been assigned to:\n%q"
 questEngine_report_2 = de ",\n"
+
+pawn = pt "Peão"
+pawn1 = pt "Peão do Quartel da Rainha"
+pawn2 = pt "Peão do Corcel da Rainha"
+pawn3 = pt "Peão da Sacerdotisa da Rainha"
+pawn4 = pt "Peão da Rainha"
+pawn5 = pt "Peão do Quartel do Rei"
+pawn6 = pt "Peão do Corcel do Rei"
+pawn7 = pt "Peão da Sacerdotisa do Rei"
+pawn8 = pt "Peão do Rei"
+rook = pt "Torre"
+rook1 = pt "Torre do Rei"
+rook2 = pt "Torre da Rainha"
+knight = pt "Cavalo"
+knight1 = pt "Cavalo do Rei"
+knight2 = pt "Cavalo da Rainha"
+bishop = pt "Bispa"
+bishop1 = pt "Bispa do Rei"
+bishop2 = pt "Bispa da Rainha"
+queen = pt "Rainha"
+king = pt "Rei"
+chess_move = pt "%q para %q %q"
+chess_capture = pt "%q captura %q"
+chess_substring = pt "%q"
+two = pt "dois"
+three = pt "três"
+four = pt "quatro"
+five = pt "cinco"
+six = pt "seis"
+seven = pt "sete"
+default_message = pt "O céu vermelho começa antes da próxima lua cheia."
+default_assign_hint = pt "Você foi atribuído a um novo nó de missão."
+temp_assign_hint_bring_me_item = pt \
+      "Com licença. Eu estava fazendo algumas experimentações menores com as margens da magia conhecida. Eu preciso de %INDEF_CARGO %CARGO para continuar minha pesquisa. Você poderia ser tão gentil a ponto de trazer isso para mim?"
+temp_assign_hint_bring_message = pt \
+      "Por favor, entregue esta mensagem para mim para %NPC: %CARGO"
+temp_success_hint_bring_message = pt \
+      "Obrigado, mas eu já sabia disso."
+temp_assign_hint_reward_message = pt \
+      "Você pode dizer isso para %NPC por mim: %CARGO"
+temp_success_hint_reward_message = pt \
+      "Por declarar o óbvio, sua recompensa é %INDEF_PRIZE %PRIZE."
+default_success_hint = pt "Você concluiu com sucesso este nó de missão."
+first_success_hint = pt "Ah, exatamente a pessoa que eu estava procurando."
+temp_success_hint_bring_me_item = pt \
+      "Obrigado por trazer %DEF_CARGO %CARGO para mim. Eu não tenho muito, mas deixe-me dar a você %INDEF_PRIZE %PRIZE por seu esforço."
+default_failure_hint = pt \
+      "Você falhou em cumprir minha solicitação dentro do prazo. Estou muito desapontado com você."
+never_again_failure_hint = pt \
+      "Hmmph. Você me decepcionou. Eu não vou mais lhe impor no futuro com pedidos desse tipo."
+temp_assign_hint_chess1 = pt \
+      "Estou jogando uma partida de xadrez com %NPC. Estive pensando sobre isso e estou pronto para enviar minha próxima jogada para %HIMHER_NPC. Você poderia por favor dizer a %HIMHER_NPC que minha jogada é %CARGO?"
+temp_success_hint_chess1 = pt "Uma jogada brilhante, mas facilmente bloqueada."
+temp_assign_hint_chess2 = pt "Por favor, diga a %NPC %CARGO."
+temp_success_hint_chess2 = pt "Essa ave lhe disse isso, não é?"
+temp_assign_hint_chess3 = pt \
+      "Bem, diga a %HIMHER_NPC %CARGO. E enquanto estiver lá, diga a %HIMHER_NPC 'xeque-mate'."
+temp_success_hint_chess3 = pt \
+      "Uma jogada astuta. Devo ter certeza de parabenizar %NPC. Pegue este %PRIZE como um símbolo de minha apreciação por ser nosso mensageiro."
+temp_assign_hint_monster = pt \
+      "Cuidado com %DEF_MONSTER %MONSTER, meu rapaz corajoso. As mandíbulas que mordem, as garras que seguram. Irás matá-lo por mim?"
+temp_success_hint_monster = pt \
+      "Oh, que alegria, que dia glorioso! Tu mataste %DEF_MONSTER %MONSTER."
+temp_assign_hint_monster_item = pt \
+      "Preciso que vá e mate %INDEF_MONSTER %MONSTER, e traga-me %DEF_CARGO %CARGO fresco de seu cadáver fumegante. Vou recompensá-lo adequadamente."
+temp_success_hint_monster_item = pt \
+      "Ah, é exatamente o que eu precisava. Aqui está sua compensação, %INDEF_PRIZE %PRIZE."
+temp_assign_hint_food_item = pt \
+      "Estou um pouco faminto, e estou desejando %INDEF_CARGO %CARGO. Você seria tão gentil a ponto de trazer um para mim, imediatamente?"
+temp_success_hint_food_item = pt \
+      "Ah, que delícia! Obrigado, e aqui está %INDEF_PRIZE %PRIZE."
+temp_assign_hint_E3_message = pt \
+      "Você pode me ajudar? Estou em terrível apuro. Quando estava do lado de fora dos muros colhendo cogumelos, uma banda cruel de Avar me atacou. Embora eu tenha escapado, deixei cair o Livro de Escavagem de Tepal. Ele vai me odiar se eu não o recuperar para ele. Você poderia encontrá-lo e trazê-lo para ele? Por favor. Se fizer isso, lançarei um feitiço para deixá-lo mais forte por alguns dias."
+temp_success_hint_E3_message = pt \
+      "Aqui está meu livro! Bem, malditos orcs, eu pensei que ele estava perdido para sempre."
+temp_failure_hint_E3_message = pt \
+      "Zala não mencionou algo sobre recuperar meu livro para você? Bem, esqueça isso. Eu não quero mais. E vou lhe dizer uma coisa, vai demorar muito tempo antes de eu emprestar qualquer coisa para ela novamente."
+temp_E3_trigger = pt "olá"
+questEngine_report_sender = pt "Motor de Missões"
+questEngine_report_1 = pt \
+      "Assunto: Relatório: Missão %q\n"
+      "A missão %q tem %q instâncias ativas, %q das quais estão não atribuídas e %q "
+      "das quais foram atribuídas a:\n%q"
+questEngine_report_2 = pt ",\n"

@@ -16,3 +16,20 @@ egghunt_score_eggs_msg = de \
    "~B~k[Event]~n ~B~y%q hat %i Ostereier gefunden!"
 egghunt_score_egg_msg = de \
    "~B~k[Event]~n ~B~y%q hat %i Osterei gefunden!"
+
+egghunt_start_msg = pt \
+      "~B~k[Evento]~n ~B~vA Caça aos Ovos de Páscoa começou! %i ovos de Páscoa foram escondidos ao redor do mundo, encontre o máximo que puder!"
+egghunt_end_msg = pt \
+      "~B~k[Evento]~n ~B~vA caça aos ovos de Páscoa foi concluída. Hora de desfrutar de todo aquele chocolate!"
+egghunt_continues_msg = pt \
+      "~B~k[Evento]~n ~B~vAinda há %i ovos de Páscoa restantes para serem encontrados!"
+egghunt_oneleft_msg = pt \
+      "~B~k[Evento]~n ~B~vResta apenas um ovo de Páscoa para ser encontrado!"
+egghunt_allfound_msg = pt \
+      "~B~k[Evento]~n ~B~vTodos os ovos de Páscoa foram encontrados!"
+egghunt_scores_msg = pt \
+      "~B~k[Evento]~n ~B~vA contagem dos ovos encontrados é a seguinte:"
+egghunt_score_eggs_msg = pt \
+      "~B~k[Evento]~n ~B~y%q encontrou %i ovos!"
+egghunt_score_egg_msg = pt \
+      "~B~k[Evento]~n ~B~y%q encontrou %i ovo!"

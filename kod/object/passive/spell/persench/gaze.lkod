@@ -18,3 +18,13 @@ gaze_enchantment_rsc = de \
    "\n\nDein aktueller %s Zauber lähmt Gegner die dich angreifen für %i-%i "
    "Millisekunden.  Gegner mit Fernwaffen haben eine 50%% Chance dem Lähmen "
    "zu widerstehen."
+
+paralyze_name_rsc = pt "olhar do basilisco"
+paralyze_desc_rsc = pt "Concede ao conjurador a capacidade de paralisar qualquer um que encontre seu olhar. Requer seiva yrxl e um cogumelo roxo para lançar."
+gaze_enchantment_rsc = pt "\n\nSeu encantamento atual de %s irá paralisar oponentes que o atacarem por %i - %i milissegundos. Oponentes atacando à distância têm uma chance de 50%% de evitar seu olhar paralisante."
+paralyze_on_rsc = pt "Seus olhos parecem inchar e pulsar com energia mágica."
+paralyze_off_rsc = pt "Seus olhos voltam ao normal."
+paralyze_already_enchanted_rsc = pt "Você já possui o olhar do basilisco."
+paralyze_caster = pt "%s%s encontra seu olhar e congela no lugar."
+paralyze_target_on = pt "Ao encontrar o terrível olhar de %s%s, você sente seus membros endurecerem e congelarem."
+paralyze_no_soul = pt "Você não consegue detectar uma alma em %s%s para transformar em pedra!"

@@ -11,3 +11,11 @@ DetectEvil_Success_rsc = de \
    "Du sorgst dafür, dass %s%s die Abscheulichkeit auch sehen kann."
 DetectEvil_spell_intro = de \
    "Shal'ill Level 1: Ermöglicht Dir, bis in die tiefsten Abgründe zu blicken"
+
+DetectEvil_name_rsc = pt "detectar o mal"
+DetectEvil_desc_rsc = pt "Permite que você veja os profanadores vis de seu nome. Revela todas as pessoas e monstros malignos que são mais sujos do que você é puro. Requer uma asa de fada para lançar."
+DetectEvil_on_rsc = pt "Você se sente mais sintonizado com a escuridão dos corações ao seu redor."
+DetectEvil_off_rsc = pt "Sua visão retorna à sua mundanidade anterior."
+DetectEvil_already_enchanted_rsc = pt "Você já pode ver o vil."
+DetectEvil_Success_rsc = pt "Você concede a %s%s a capacidade de detectar o mal."
+DetectEvil_spell_intro = pt "Shal'ille Nível 1: Permite que você detecte pessoas e monstros malignos."

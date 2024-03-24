@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include cmsh.lkod
+
    CraftMahicSpiritHelm_name_rsc = "craft magic spirit helm"
    CraftMahicSpiritHelm_icon_rsc = iCraftMSH.bgf
    CraftMahicSpiritHelm_desc_rsc = \

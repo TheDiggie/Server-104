@@ -1,0 +1,4 @@
+CraftSickle_name_rsc = pt "fabricar foice"
+CraftSickle_desc_rsc = pt \
+      "Fabricar uma foice em uma bigorna com um martelo de ferreiro. "
+      "Requer 20 lingotes de ferro e 5 tábuas."

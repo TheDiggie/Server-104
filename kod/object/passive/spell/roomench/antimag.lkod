@@ -10,3 +10,11 @@ AntiMagicAura_reinforced = de \
 AntiMagicAura_on = de "Das magische Feld beginnt zu fluktuieren."
 AntiMagicAura_off = de "Das magische Feld normalisiert sich wieder."
 AntiMagicAura_new_occupant = de "Hier fluktuiert das magische Feld."
+
+AntiMagicAura_name_rsc = pt "aura anti-mágica"
+AntiMagicAura_desc_rsc = pt "Envia uma onda de choque de energia mágica pela sala, reduzindo o poder dos feitiços lançados por vários minutos. Magos mais poderosos são mais eficazes ao lançar este feitiço. Requer dois safiras e um seraphym polido para ser lançado."
+AntiMagicAura_unnecessary = pt "Você não pode superar o campo anti-mágico em vigor."
+AntiMagicAura_reinforced = pt "O campo de mana ao seu redor está flutuando mais descontroladamente do que antes."
+AntiMagicAura_on = pt "O campo de mana começa a flutuar."
+AntiMagicAura_off = pt "O campo de mana volta ao normal."
+AntiMagicAura_new_occupant = pt "O campo de mana está flutuando aqui."

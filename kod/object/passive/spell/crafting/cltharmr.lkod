@@ -1,0 +1,4 @@
+CraftLeatherArmor_name_rsc = pt "fabricar armadura de couro"
+CraftLeatherArmor_desc_rsc = pt \
+      "Fabricar uma armadura de couro a partir de couro. "
+      "Requer 20 couro e 5 fios de seda."

@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include cbrawlglove.lkod
+
    CraftBrawlingGloves_name_rsc = "craft brawling gloves"
    CraftBrawlingGloves_icon_rsc = iCraftBrawl.bgf
    CraftBrawlingGloves_desc_rsc = \

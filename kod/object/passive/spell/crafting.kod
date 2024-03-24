@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include crafting.lkod
+
    Crafting_cast_rsc = "You craft a %s%s."
    Crafting_inv_full_rsc = \
       "You cant carry %s%s, it falls on the floor with a loud clang."

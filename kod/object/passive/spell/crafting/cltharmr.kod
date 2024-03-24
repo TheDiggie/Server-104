@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include cltharmr.lkod
+
    CraftLeatherArmor_name_rsc = "craft leather armor"
    CraftLeatherArmor_icon_rsc = icraftleatha.bgf
    CraftLeatherArmor_desc_rsc = \

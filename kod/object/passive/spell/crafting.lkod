@@ -1,0 +1,9 @@
+Crafting_cast_rsc = pt "Você fabrica um %s%s."
+Crafting_inv_full_rsc = pt \
+      "Você não pode carregar %s%s, ele cai no chão com um estrondo alto."
+Crafting_name_rsc = pt "fabricação"
+Crafting_desc_rsc = pt \
+      "O estudo da fabricação de equipamentos a partir de diversos materiais."
+Need_Tool = pt "Você não tem a ferramenta necessária para fabricar isso."
+No_Work_Bench = pt "Você precisa da bancada de trabalho apropriada!"
+Crafted_Indestructible = pt "~B~gVocê fabricou um(a) %s indestrutível!"

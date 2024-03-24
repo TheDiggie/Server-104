@@ -15,3 +15,12 @@ superstrength_spell_intro = de \
    ""
 ss_enchantment_rsc = de \
    "\n\nDein aktueller %s Zauber fügt %i Stärke hinzu."
+
+superstrength_on_rsc = pt "Seu sangue arde com a força de Kraanan. Você está pronto para a batalha!"
+superstrength_off_rsc = pt "A força sobre-humana de Kraanan deixa seu corpo, deixando você mortal mais uma vez."
+superstrength_already_enchanted_rsc = pt "Você já possui força superior."
+superstrength_success_rsc = pt "%s%s cambaleia sob o impacto do poder de Kraanan."
+ss_enchantment_rsc = pt "\n\nSeu encantamento atual de %s adiciona %i de Força."
+superstrength_name_rsc = pt "super força"
+superstrength_desc_rsc = pt "Infunde seu corpo com força sobre-humana. Requer dois cogumelos e um dente de orc para lançar."
+superstrength_spell_intro = pt "Nível 2 de Kraanan: Infunde seu corpo com força sobre-humana em preparação para a batalha."

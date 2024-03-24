@@ -3,3 +3,5 @@ invasion_start_msg = de \
 invasion_end_msg = de \
    "~B~k[Event]~n ~B~v Die Invasion wurde beendet."
  
+invasion_start_msg = pt "Invasão Iniciada."
+invasion_end_msg = pt "Invasão Encerrada."

@@ -1,0 +1,4 @@
+CraftMahicSpiritHelm_name_rsc = pt "fabricar elmo espiritual mágico"
+CraftMahicSpiritHelm_desc_rsc = pt \
+      "Fabricar um elmo espiritual mágico em uma bigorna com um martelo de ferreiro. " 
+      "Requer 30 lingotes de ferro, 20 couro, 20 escamas de dragão negro e uma pedra de coração negro."

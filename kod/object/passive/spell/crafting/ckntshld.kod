@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include ckntshld.lkod
+
    CraftKnightShield_name_rsc = "craft knight's shield"
    CraftKnightShield_icon_rsc = icraftknightshld.bgf
    CraftKnightShield_desc_rsc = \

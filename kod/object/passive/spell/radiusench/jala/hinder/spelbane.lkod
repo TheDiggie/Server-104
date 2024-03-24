@@ -16,3 +16,14 @@ Spellbane_enter = de \
    "Das Lied, gesungen von %s%s erfüllt die Luft mit mechanischer Rythmen."
 Spellbane_leave = de \
    "Du kannst das Lied voller mechanischer Rythmen von %s%s's nicht mehr hören."
+
+Spellbane_name_rsc = pt "anular feitiço"
+Spellbane_desc_rsc = pt "As palavras desta canção formam um encantamento que dificulta a execução de quaisquer outros feitiços. Requer um serafim polido perfeito."
+Spellbane_no_towns = pt "Você não pode cantar esta canção atualmente."
+Spellbane_cast = pt "Você começa a tocar uma música cheia de cliques e sons mecânicos em camadas."
+Spellbane_starts = pt "%s%s começa a tocar uma música cheia de cliques e sons mecânicos em camadas."
+Spellbane_ends = pt "A música estranhamente mecânica tocada por %s%s desaparece."
+Spellbane_caster_ends = pt "Sua música estranhamente mecânica desaparece."
+Spellbane_caster_enter = pt "Sua música mecânica cria um labirinto de energias mágicas na área ao seu redor."
+Spellbane_enter = pt "A música cantada por %s%s enche o ar com estranhos cliques e sons mecânicos."
+Spellbane_leave = pt "Você não consegue mais ouvir os estranhos ruídos mecânicos da música de %s%s."

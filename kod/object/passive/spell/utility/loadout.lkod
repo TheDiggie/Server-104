@@ -16,3 +16,20 @@ Loadout_desc_rsc = de \
    "aktivieren, um dein Inventar wie in Frular's Büro hinterlegt, wieder aufzustocken. "
    "Der Zauber funktioniert nur in einer sicheren Umgebung, und auch nur für "
    "Gildenmitglieder, welche Rang zwei oder höher besitzen. "
+
+loadout_not_safe = pt "Você deve estar em uma área segura para conjurar o carregamento."
+loadout_not_guilded = pt "Você deve estar associado a uma guilda para conjurar o carregamento."
+loadout_rank_too_low = pt "Você não tem patente suficiente para conjurar o carregamento."
+loadout_no_hall = pt "Sem um salão de guilda para se conectar, o feitiço de carregamento falha."
+loadout_items_not_found = pt "Os baús não continham nenhum %s."
+loadout_items_not_enough = pt "Os baús não continham %s suficiente."
+loadout_item_not_found = pt "Os baús não continham %s%s."
+loadout_cant_carry_all = pt "Você não pode carregar todos os %s."
+loadout_cant_carry_one = pt "Você não pode carregar %s%s."
+loadout_cant_carry_any = pt "Você não pode carregar nenhum %s."
+loadout_cast = pt "Você ativa sua conexão com o armazenamento do salão de guilda."
+loadout_not_set = pt "Você atualmente não tem preferências de inventário definidas."
+loadout_name_rsc = pt "carregamento"
+loadout_desc_rsc = pt \
+   "Tenta translocar equipamentos e reagentes do armazenamento do seu salão de guilda, de acordo com as preferências previamente registradas no escritório de Frular."
+   

@@ -1,0 +1,4 @@
+CraftKnightShield_name_rsc = pt "fabricar escudo de cavaleiro"
+CraftKnightShield_desc_rsc = pt \
+      "Fabricar um escudo de cavaleiro em uma bigorna com um martelo de ferreiro. "
+      "Requer 20 lingotes de ferro, 5 tábuas e 5 couro."

@@ -21,3 +21,13 @@ hunt_gain_trackers = de "Du spürst, dass jemand weiß, wo Du bist..."
 hunt_must_be_murderer = de \
    "Du spürst, dass das Ziel nicht gesetzeslos ist, und der Zauber schlägt "
    "fehl."
+
+Hunt_name_rsc = pt "caçada"
+Hunt_desc_rsc = pt "Permite que os conjuradores usem um prisma para se concentrar no rastro de um jogador e rastreá-lo por um tempo limitado. O nome do jogador caçado deve ser pronunciado durante o transe inicial. Quando o encantamento estiver completo, durante a duração do feitiço, os caçadores receberão notificações periódicas sobre o paradeiro do jogador caçado. Requer todas as garras de uma pata de kriipa, e as energias místicas dos conjuradores devem ser concentradas através de um prisma."
+hunt_cold_trail = pt "Seu rastro para %s%s parece ter esfriado."
+hunt_no_target = pt "Você tenta encontrar um rastro, mas como não está procurando por ninguém em particular, não encontra nada."
+hunt_target_is_dm = pt "Os Imortais não deixam rastros que possam ser seguidos por este feitiço. Tente outro alvo."
+hunt_is_on = pt "~BA caçada começou!"
+hunt_lost_trackers = pt "Parece que você conseguiu perder seus rastreadores!"
+hunt_gain_trackers = pt "Você sente que alguém sabe onde você está..."
+hunt_must_be_murderer = pt "Sentindo que a alma do alvo está intacta, o feitiço falha."

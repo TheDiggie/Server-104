@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include cgoldshld.lkod
+
    CraftGoldShield_name_rsc = "craft gold round shield"
    CraftGoldShield_icon_rsc = icraftgoldshld.bgf
    CraftGoldShield_desc_rsc = \

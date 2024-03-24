@@ -1,0 +1,4 @@
+CraftLongBow_name_rsc = pt "fabricar arco longo"
+CraftLongBow_desc_rsc = pt \
+      "Fabricar um arco longo em uma cadeira de desbaste com um canivete. "
+      "Requer 30 tábuas densas e 15 fios de seda."

@@ -8,3 +8,10 @@ manafocus_break_trance = de "Du hast deine Konzentration verloren."
 manafocus_already_enchanted = de "Du hast bereits %s%s."
 manafocus_enchantment_rsc = de \
    "\n\nDein aktueller %s Zauber wurde mir Zauberkraft %i gezaubert."
+
+manafocus_name_rsc = pt "foco de mana"
+manafocus_desc_rsc = pt "Concentra sua energia mágica, regenerando seu mana a uma taxa acelerada e aumentando o dano dos feitiços de ataque elemental natural. Dissipa-se se sua concentração for quebrada. Requer um cogumelo para lançar."
+manafocus_enchantment_rsc = pt "\n\nSeu encantamento atual de %s foi lançado com %i poder mágico."
+manafocus_on = pt "Você sente uma nova magia focada rugindo através do seu corpo."
+manafocus_break_trance = pt "Você perdeu seu foco de mana."
+manafocus_already_enchanted = pt "Você já possui %s%s."

@@ -9,3 +9,15 @@ Rescue_Already_Cast = de "Du wirst bereits gerettet."
 Rescue_Token_Cancel = de \
    "Du kannst nicht retten, während Du ein Artefakt hälst."
 Rescue_depart_rsc = de "%s verschwindet in einer Wolke aus Licht!"
+
+rescue_name_rsc = pt "resgate"
+rescue_desc_rsc = pt \
+   "Chama Shal'ille para transportá-lo de volta à segurança. "
+   "A habilidade determina o quão rápido você é resgatado. "
+   "Requer um esmeralda para ser lançado."
+Rescue_Start = pt "Você começa seus preparativos de resgate."
+Rescue_Success = pt \
+   "Você sente uma força sagrada resgatá-lo de sua situação atual."
+Rescue_Already_Cast = pt "Você já está sendo resgatado."
+Rescue_Token_Cancel = pt "Você não pode ser resgatado enquanto estiver segurando um token."
+Rescue_depart_rsc = pt "%s desaparece em um clarão de luz protetora!"

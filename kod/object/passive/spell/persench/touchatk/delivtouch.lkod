@@ -5,3 +5,9 @@ delivtouch_desc_rsc = de \
 delivtouch_already_enchanted_rsc = de "Deine Hände glänzen bereits."
 delivtouch_On_rsc = de "Deine Hände nehmen einen göttlichen Glanz an."
 delivtouch_Off_rsc = de "Deine Hände verlieren ihren göttlichen Glanz."
+
+delivtouch_name_rsc = pt "toque divino"
+delivtouch_desc_rsc = pt "Acertar um alvo com este feitiço de toque os envia para sua cidade natal. Por padrão, tem 25% de chance de acertar."
+delivtouch_already_enchanted_rsc = pt "Suas mãos já estão brilhando."
+delivtouch_On_rsc = pt "Suas mãos adquirem um brilho divino."
+delivtouch_Off_rsc = pt "Suas mãos perdem seu brilho divino."

@@ -2,3 +2,6 @@ ProfaneResonance_name_rsc = de "Sha-Lill bannen"
 ProfaneResonance_desc_rsc = de \
    "Der dunkle, drohende Klang dieses Liedes behindert die Magie Sha-Lills. "
    "Benötigt einen Rubin und ein Kraut."
+
+ProfaneResonance_name_rsc = pt "ressonância profana"
+ProfaneResonance_desc_rsc = pt "O som sombrio desta música dificulta a execução dos feitiços sagrados de Shal'ille. Um rubi e algumas ervas são necessários para começar a executar esta música."

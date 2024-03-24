@@ -9,3 +9,12 @@ RingOfFlames_target = de \
 RingOfFlames_failed_rsc = de \
    "Es gibt zu viel Beschwörungsmagie in diesem Raum. Du kannst nicht noch "
    "weitere Wände erschaffen."
+
+RingOfFlames_name_rsc = pt "anel de chamas"
+RingOfFlames_desc_rsc = pt \
+   "Cria um anel de chamas ao redor do alvo. "
+   "Requer cogumelos vermelhos e areia de fogo para lançar."
+RingOfFlames_caster = pt "Um anel ardente de chamas aparece ao redor de %s%s."
+RingOfFlames_target = pt "Um anel ardente de chamas aparece ao seu redor!"
+RingOfFlames_failed_rsc = pt \
+   "Há muita magia de invocação concentrada aqui para criar um anel de chamas."

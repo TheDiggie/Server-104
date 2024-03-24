@@ -29,3 +29,35 @@ parl_token_location = de \
 imposter_token = de \
    "Warum tägst Du Imitate von Artefakten mit Dir herum? Du solltest eine Aussage machen "
    "müssen, wo Du es her hast!"
+
+parl_councilor_report= pt "%s%s é suspeito de ser um crente %s em %s."
+parl_factioned_nSelf = pt "a tolice das facções"
+parl_factioned_neutral = pt "a orientação de Shal'ille em vez de nossas ideias"
+parl_factioned_duke = pt "as causas triviais do Duque"
+parl_factioned_Dself = pt "nossas causas"
+parl_factioned_princess = pt "as esperanças equivocadas da Princesa Kateriina"
+parl_factioned_Pself = pt "nossos desejos"
+parl_factioned_rebel = pt "a rebelião prejudicial de Jonas"
+parl_factioned_Rself = pt "nossa luta pela liberdade"
+parl_strength_weak = pt "fraco"
+parl_strength_strong = pt "forte"
+parl_strength_dedicated = pt "dedicado"
+scandal_occurrence = pt \
+      "~IEm suspeita de aceitar favores em troca de votos, "
+      "o Conselheiro %s%s empreende uma peregrinação ao templo de Shal'ille para "
+      "purificar seus pensamentos."
+parl_liege_token_secret = pt \
+      "Desculpe, mas só direi aos membros da minha facção informações sobre "
+      "os rumores sobre o paradeiro dos tokens."
+parl_liege_token_location = pt \
+      "Nossa rede de espiões relata que %s%s foi visto pela última vez perto de %s. Veja se você "
+      "consegue trazê-lo para mim, ou devolvê-lo."
+parl_liege_token_none = pt \
+      "Nossa rede de espiões indica que todos os tokens estão seguros "
+      "na presença de seus Conselheiros."
+parl_token_location = pt \
+      "Ouvi um boato de que %s%s teleportou-se novamente do seu Conselheiro "
+      "e foi visto perto de %s. Esperançosamente, alguém está a caminho de devolvê-lo, mas talvez algum monstro maligno o tenha pegado!"
+imposter_token = pt \
+      "Agora, por que você está carregando imitações de tokens do conselho?  Você "
+      "deveria reclamar por ter recebido um desses."

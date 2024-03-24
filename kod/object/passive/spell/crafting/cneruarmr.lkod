@@ -1,0 +1,4 @@
+CraftNeruditeArmor_name_rsc = pt "fabricar armadura nerudita"
+CraftNeruditeArmor_desc_rsc = pt \
+      "Fabricar uma armadura nerudita em uma bigorna ko'catan com um martelo de ferreiro. "
+      "Requer 40 lingotes de nerudita e 15 couro de kriipa."

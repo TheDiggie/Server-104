@@ -7,3 +7,10 @@ DetectInvisible_off_rsc = de "Dein Augenlicht kehrt zur Normalform zurück."
 DetectInvisible_already_enchanted_rsc = de \
    "Du kannst die Unsichtbaren bereits sehen."
 DetectInvisible_Success_rsc = de "%s%s Augen pulsieren kurz."
+
+DetectInvisible_name_rsc = pt "detectar invisível"
+DetectInvisible_desc_rsc = pt "Permite que você veja aqueles que os outros não conseguem. "
+DetectInvisible_on_rsc = pt "Você sente um formigamento nos olhos."
+DetectInvisible_off_rsc = pt "Sua visão volta ao seu estado mundano anterior."
+DetectInvisible_already_enchanted_rsc = pt "Você já pode ver o invisível."
+DetectInvisible_Success_rsc = pt "Os olhos de %s%s pulsam brevemente."

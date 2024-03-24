@@ -11,3 +11,15 @@ truce_on = de \
 truce_off = de \
    "Die Ruhe in deinem Geist verschwindet und Du bist wieder bereit für den "
    "Kampf."
+
+truce_name_rsc = pt "trégua"
+truce_desc_rsc = pt \
+   "O espírito de Shal'ille desce sobre a área e acalma as mentes de todos os presentes, impedindo o combate por vários minutos. Requer dois esmeraldas e dois frascos de seiva yrxl para ser lançado."
+truce_unnecessary = pt "O combate com monstros já é impossível aqui."
+truce_on = pt \
+   "Uma calma entorpecedora se instala em sua mente. Você se vê incapaz de levantar uma arma contra a natureza."
+truce_off = pt \
+   "A calma que havia tomado sua mente se dissipa. Você se sente pronto para a batalha mais uma vez."
+truce_guardian = pt \
+   "Seu anjo guardião lhe diz: \"Você não está pronto para lançar este feitiço.\""
+truce_no_towns = pt "Shal'ille não permite que você interfira neste momento."

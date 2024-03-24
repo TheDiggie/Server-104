@@ -19,3 +19,15 @@ FreeAction_evade_caster = de \
 freeaction_enchantment_rsc = de \
    "\n\nDein aktueller %s Zauber verhindert zu %i%% die komplette Lähmung. "
    "Erfolgreiche Lähmversuche werden um %i%% verringert."
+
+FreeAction_name_rsc = pt "ação livre"
+FreeAction_desc_rsc = pt "O amor de Kraanan pela batalha ajuda a repelir a magia que poderia atrapalhar seus movimentos, e assim a dispensação liberal de golpes vigorosos. Requer um cogumelo vermelho e um cogumelo roxo para lançar."
+freeaction_enchantment_rsc = pt "\n\nSeu encantamento atual de %s resistirá completamente a uma tentativa de paralisá-lo %i%% do tempo. Tentativas bem-sucedidas de paralisá-lo serão reduzidas em %i%%."
+FreeAction_on_rsc = pt "Você sente um fluxo de energia e movimento fluido por todo o seu corpo."
+FreeAction_off_rsc= pt "Sua estranha sensação de liberdade diminui."
+FreeAction_already_enchanted_rsc = pt "Você já possui ação livre."
+FreeAction_succeed_rsc = pt "Você concede ação livre a %s%s."
+FreeAction_resist = pt "Você pode sentir a magia de Kraanan trabalhando para libertá-lo."
+FreeAction_evade = pt "Você evita uma tentativa de restringir seus movimentos."
+FreeAction_resist_caster = pt "Você sente uma força lutando para se libertar de sua magia."
+FreeAction_evade_caster = pt "A magia de Kraanan impede que você atrapalhe o fluxo livre da batalha."

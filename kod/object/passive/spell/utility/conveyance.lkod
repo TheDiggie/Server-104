@@ -13,3 +13,17 @@ Conveyance_not_holding = de \
 Conveyance_cast = de \
    "Plötzlich erscheint ein kleines Portal, und du transportierst %s%s in dein "
    "Lager."
+
+Conveyance_name_rsc = pt "condução"
+Conveyance_desc_rsc = pt \
+   "Envia uma pilha de itens para o seu cofre pessoal mais próximo. "
+   "Requer apenas a taxa para depositar os itens."
+Conveyance_cant = pt "Você não pode conjurar condução em %s%s."
+Conveyance_not_enough_cash = pt \
+   "Você não tem dinheiro suficiente para conduzir %s%s."
+Conveyance_not_enough_space = pt \
+   "Seu cofre não tem espaço suficiente!"
+Conveyance_not_holding = pt \
+   "Você não pode conjurar condução em um item que não está segurando!"
+Conveyance_cast = pt \
+   "Um pequeno portal surge, puxando %s%s para o seu cofre."

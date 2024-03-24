@@ -1,0 +1,4 @@
+CraftNeruditeBow_name_rsc = pt "fabricar arco nerudita"
+CraftNeruditeBow_desc_rsc = pt \
+      "Fabricar um arco nerudita em uma bigorna Ko'catan com um martelo de ferreiro. "
+      "Requer 40 lingotes de nerudita, 10 lingotes de ferro, 30 fios de seda e 3 pedras de coração verde."

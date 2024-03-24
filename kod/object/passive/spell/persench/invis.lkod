@@ -10,3 +10,11 @@ invisibility_off = de \
 invisibility_success_rsc = de "%s%s ist nicht mehr sichtbar."
 invis_enchantment_rsc = de \
    "\n\nDein aktueller %s Zauber fügt %i Defensive hinzu."
+
+invisibility_name_rsc = pt "invisibilidade"
+invisibility_desc_rsc = pt "Qor encobre seu corpo com um campo cintilante, deixando você invisível por um breve período. Requer uma pena de anjo negro para lançar."
+invis_enchantment_rsc = pt "\n\nSeu encantamento atual de %s adiciona %i de defesa."
+invisibility_already_enchanted_rsc = pt "Você já está invisível."
+invisibility_on = pt "Um campo cintilante encobre seu corpo."
+invisibility_off = pt "O campo cintilante ao seu redor se dissolve, deixando você visível mais uma vez."
+invisibility_success_rsc = pt "%s%s desaparece da vista."

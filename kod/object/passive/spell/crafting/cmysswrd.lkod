@@ -1,0 +1,4 @@
+CraftMysticSword_name_rsc = pt "fabricar espada mística"
+CraftMysticSword_desc_rsc = pt \
+      "Fabricar uma espada mística em uma bigorna com um martelo de ferreiro. "
+      "Requer 25 lingotes de ferro, 5 tábuas e 5 couro."

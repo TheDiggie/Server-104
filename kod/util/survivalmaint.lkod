@@ -3,3 +3,8 @@ public_survival_started = de \
    "nun innerhalb von 5 Minuten mitbestreiten."
 public_ended = de \
    "Die öffentliche Überlebens-Arena wurde bei Level %i beendet."
+
+public_survival_started = pt \
+      "%s iniciou uma arena de sobrevivência cooperativa pública. Ela começará em três minutos."
+public_ended = pt \
+      "A arena de sobrevivência cooperativa pública terminou no nível %i."

@@ -12,3 +12,13 @@ Rejuvenate_enter = de \
    "wie sich deine Mana schneller regeneriert."
 Rejuvenate_leave = de \
    "Du kannst das motivierende Lied, gespielt von %s%s, nicht mehr hören."
+
+Rejuvenate_name_rsc = pt "rejuvenescer"
+Rejuvenate_desc_rsc = pt "Esta música permite que todos os ouvintes recuperem mana a uma taxa acelerada. Requer um diamante e um serafim bruto e não lapidado para ser lançada."
+Rejuvenate_cast = pt "Você começa a tocar uma música energizante."
+Rejuvenate_starts = pt "%s%s começa a tocar uma música energizante."
+Rejuvenate_ends = pt "A música energizante tocada por %s%s desaparece."
+Rejuvenate_caster_ends = pt "Sua música energizante desaparece."
+Rejuvenate_caster_enter = pt "Você sente o cansaço de sua alma diminuir."
+Rejuvenate_enter = pt "A música energizante de %s%s alivia o cansaço de sua alma."
+Rejuvenate_leave = pt "Você não pode mais ouvir as notas energizantes da música de %s%s."

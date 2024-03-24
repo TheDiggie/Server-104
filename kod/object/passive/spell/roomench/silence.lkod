@@ -15,3 +15,19 @@ Silence_blocked_jala_victim = de "Der Stille Zauber dämpft dein Lied."
 Silence_spell_intro = de \
    "Qor Level 3: Dämpft alle gesprochenen Worte und verhindert so das Anwenden "
    "von Zaubersprüchen."
+
+Silence_name_rsc = pt "silêncio"
+Silence_desc_rsc = pt \
+   "Abafa todo o discurso, impedindo o lançamento de feitiços e a comunicação enquanto o conjurador se concentra. Requer penas de anjo negro e cogumelos roxos."
+Silence_unnecessary = pt "Esta área já está silenciada."
+Silence_on = pt "Uma cortina de silêncio desce sobre a sala."
+Silence_off = pt "A cortina de silêncio é dissipada."
+Silence_new_entrant = pt "Este lugar está estranhamente silencioso."
+Silence_cant_block_jala_caster = pt \
+   "Seu feitiço falha em silenciar o bardo cantante na área."
+Silence_cant_block_jala_victim = pt \
+   "Suas palavras ecoam através do feitiço de silêncio que cobre a sala."
+Silence_blocked_jala_victim = pt "O feitiço de silêncio abafa sua canção."
+Silence_spell_intro = pt \
+   "Qor Nível 3: Desenha uma cortina de Silêncio sobre a sala, despertando os servos de Qor."
+   

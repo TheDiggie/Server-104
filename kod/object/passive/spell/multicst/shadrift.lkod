@@ -25,3 +25,13 @@ DeathsDoor_succeeded2 = de "Das Prisma brummt und erschaudert."
 deathsDoor_necros_only = de \
    "Ohne ein Amulett um die Macht der Drei zu rufen, kann man hoffen einen "
    "Schattenriss zu beschwören."
+
+DeathsDoor_name_rsc = pt "porta das sombras"
+DeathsDoor_desc_rsc = pt "Invoca as mais obscuras magias para distorcer o tecido do espaço. Forma um vínculo mágico entre um prisma e a área onde é lançado. Lançamentos subsequentes com o mesmo prisma fazem com que um portal místico se forme, que transportará todos que entrarem nele para o exato local ao qual o prisma estava vinculado. Requer as penas de um anjo das trevas e um prisma."
+DeathsDoor_already = pt "Uma nuvem de força mágica começa a se condensar, mas depois se dissipa, repelida pela presença de outro portal próximo."
+DeathsDoor_no_lich = pt "Uma nuvem de força mágica começa a se condensar, mas depois se dissipa misteriosamente. Talvez algo crucial esteja faltando."
+DeathsDoor_room_loop = pt "O prisma sibila debilmente. Ele deve ser retirado da área à qual está vinculado."
+DeathsDoor_target_has_portal = pt "O prisma fica brevemente transparente. Através dele, você vê que sua área alvo já contém um portal."
+DeathsDoor_succeeded = pt "Um portal cintilante surge!"
+DeathsDoor_succeeded2 = pt "O prisma zumbindo e tremendo."
+deathsDoor_necros_only = pt "Sem um Amuleto para invocar o poder dos Três, você não pode esperar convocar um vórtice das sombras."

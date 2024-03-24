@@ -16,3 +16,13 @@ heat_kills_you = de "Du erfährst Verbrennungen durch deine Rüstung."
 heat_kills_him = de "%s%s erfährt Verbrennungen durch die getragene Rüstung."
 heat_hurts_you = de \
    "Du schreist vor Schmerzen, als deine glühende Rüstung deine Haut berührt."
+
+heat_name_rsc = pt "calor"
+heat_desc_rsc = pt "Enche a sala com a magia terrestre de Faren, aquecendo toda a armadura a um estado primitivo e derretido e queimando a carne daqueles que a vestem. Requer cogumelo vermelho e areia de fogo para ser lançado."
+heat_already_enchanted = pt "Este lugar já possui um encantamento de calor."
+heat_on = pt "A magia terrestre de Faren enche a sala, aquecendo toda a armadura a um estado derretido e queimando a carne daqueles que a vestem."
+heat_off = pt "O campo de aquecimento da armadura se dissipa."
+heat_new_entrant = pt "A magia terrestre de Faren enche a sala, aquecendo toda a armadura a um estado derretido."
+heat_kills_you = pt "Você morre por queimaduras causadas por sua armadura."
+heat_kills_him = pt "%s%s morre de queimaduras causadas pela armadura."
+heat_hurts_you = pt "Você solta um grito de dor quando sua armadura incandescente pressiona contra sua pele."

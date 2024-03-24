@@ -1,0 +1,4 @@
+CraftScaleArmor_name_rsc = pt "fabricar armadura de escamas"
+CraftScaleArmor_desc_rsc = pt \
+      "Fabricar uma armadura de escamas em uma bigorna. " 
+      "Requer 30 lingotes de ferro, 15 couro e 10 fios de seda."

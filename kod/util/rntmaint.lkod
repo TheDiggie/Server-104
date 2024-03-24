@@ -7,3 +7,10 @@ RoomMaintenance_no_copy_copy = de \
    "Du kannst keine Kopie einer Kopie von einem Schlüssel herstellen."
 RoomMaintenance_copy_no_money = de \
    "Du kannst Dir eine Kopie vom Schlüssen nicht leisten."
+
+RoomMaintenance_room_already = pt "Você já tem um quarto aqui."
+RoomMaintenance_no_rental_fee = pt "Você não tem dinheiro para alugar um quarto."
+RoomMaintenance_key_copied = pt "Aqui está uma cópia da chave do seu quarto."
+RoomMaintenance_no_key = pt "Onde está a chave deste albergue para copiar?"
+RoomMaintenance_no_copy_copy = pt "Você não pode copiar uma cópia de uma chave de quarto."
+RoomMaintenance_copy_no_money = pt "Você não pode pagar por uma cópia da chave do seu quarto."

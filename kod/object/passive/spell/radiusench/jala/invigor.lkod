@@ -11,3 +11,13 @@ Invigorate_enter = de \
    "%s%s's belebendes Lied erwirkt, das Du dich weniger müde fühlst."
 Invigorate_leave = de \
    "Du kannst die belebenden Worte aus %s%s's Lied nicht mehr hören."
+
+Invigorate_name_rsc = pt "revigorar"
+Invigorate_desc_rsc = pt "Esta canção permite a todos os ouvintes recuperarem o vigor a uma taxa acelerada. Não requer nada além de uma voz forte."
+Invigorate_cast = pt "Você começa a tocar uma música revigorante."
+Invigorate_starts = pt "%s%s começa a tocar uma música revigorante."
+Invigorate_ends = pt "A música revigorante tocada por %s%s desaparece."
+Invigorate_caster_ends = pt "Sua música revigorante desaparece."
+Invigorate_caster_enter = pt "Você sente o cansaço de seus músculos diminuir."
+Invigorate_enter = pt "A música revigorante de %s%s alivia o cansaço de seus músculos."
+Invigorate_leave = pt "Você não consegue mais ouvir as notas revigorantes da música de %s%s."

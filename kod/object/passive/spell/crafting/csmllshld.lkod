@@ -1,0 +1,4 @@
+CraftSmallShield_name_rsc = pt "fabricar escudo redondo pequeno"
+CraftSmallShield_desc_rsc = pt \
+      "Fabricar um escudo redondo pequeno em uma bigorna com um martelo de ferreiro. "
+      "Requer 5 lingotes de ferro, 10 tábuas e 5 couro."

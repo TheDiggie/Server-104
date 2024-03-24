@@ -1,0 +1,4 @@
+CraftGuildShield_name_rsc = pt "fabricar escudo de heráldica"
+CraftGuildShield_desc_rsc = pt \
+      "Fabricar um escudo de heráldica em uma bigorna com um martelo de ferreiro. "
+      "Requer 35 lingotes de ferro, 15 tábuas e 10 couro."

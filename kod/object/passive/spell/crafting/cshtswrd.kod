@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include cshtswrd.lkod
+
    CraftShortSword_name_rsc = "craft short sword"
    CraftShortSword_icon_rsc = icraftshortsword.bgf
    CraftShortSword_desc_rsc = \

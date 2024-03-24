@@ -7,3 +7,11 @@ hinder_caster_enter = de \
 hinder_enter = de \
    "Ein unstimmiges Lied gesungen von %s%s erfüllt deinen Gedanken."
 hinder_leave = de "Du kannst die unstimmige Meldie von %s%s nicht mehr hören."
+
+hinder_cast = pt "Você começa a tocar uma melodia discordante."
+hinder_starts = pt "%s%s começa a tocar uma melodia discordante!"
+hinder_ends = pt "A melodia discordante mantida por %s%s desaparece."
+hinder_caster_ends = pt "Sua melodia discordante desaparece."
+hinder_caster_enter = pt "Você sente as palavras de sua canção se entrelaçando para interferir com magias específicas de outros."
+hinder_enter = pt "Uma melodia discordante cantada por %s%s preenche sua mente."
+hinder_leave = pt "Você não consegue mais ouvir a melodia discordante cantada por %s%s."

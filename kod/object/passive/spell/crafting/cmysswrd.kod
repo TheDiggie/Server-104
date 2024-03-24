@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include cmysswrd.lkod
+
    CraftMysticSword_name_rsc = "craft mystic sword"
    CraftMysticSword_icon_rsc = icraftmyssword.bgf
    CraftMysticSword_desc_rsc = \

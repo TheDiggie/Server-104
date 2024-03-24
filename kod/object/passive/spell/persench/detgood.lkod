@@ -10,3 +10,11 @@ DetectGood_Success_rsc = de "%s%s kann nun die Reinen auch sehen."
 DetectGood_spell_intro = de \
    "Qor Level 1: Ermöglicht Dir, die wahrhaft erschreckende Reinheit des "
    "Herzens zu erfahren"
+
+DetectGood_name_rsc = pt "detectar o bem"
+DetectGood_desc_rsc = pt "Permite que você veja os incrivelmente puros de coração. Este feitiço irá revelar todas as pessoas e monstros bons que são mais bons do que você é corrompido. Requer uma asa de fada para lançar."
+DetectGood_on_rsc = pt "Agora você pode sentir todas as coisas boas, apenas esperando para serem profanadas."
+DetectGood_off_rsc = pt "Sua visão volta à sua mundanidade anterior."
+DetectGood_already_enchanted_rsc = pt "Você já pode ver o puro."
+DetectGood_Success_rsc = pt "%s%s agora pode ver o puro."
+DetectGood_spell_intro = pt "Nível 1 de Qor: Permite que você detecte pessoas e monstros bons."

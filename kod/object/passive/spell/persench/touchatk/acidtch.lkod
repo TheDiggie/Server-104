@@ -19,3 +19,14 @@ AcidTouch_player_was_killed = de \
    "stirbst."
 acidtouch_spell_intro = de \
    "Qor Level 2: Verätzt das Ziel mit der Kraft einer starken Säure."
+
+AcidTouch_name_rsc = pt "toque ácido"
+AcidTouch_desc_rsc = pt "Queima o alvo com a força de um ácido poderoso, penetrando armaduras, roupas e carne. Requer uma única baga de entroot para lançar."
+AcidTouch_On_rsc = pt "A saliva corrosiva do amor de Qor escorre pelos poros de sua mão."
+AcidTouch_Off_rsc = pt "Suas mãos não pingam mais com uma gosma ácida."
+AcidTouch_Already_Enchanted_rsc = pt "Suas mãos já estão pingando com uma gosma ácida."
+AcidTouch_player_was_hit = pt "%s%s queima sua carne com um toque ácido."
+AcidTouch_player_hit_something = pt "%sVocê observa %s%s gritar de agonia com seu toque."
+AcidTouch_player_killed_something = pt "%s%s grita e se derrete em uma poça discreta."
+AcidTouch_player_was_killed = pt "Ao toque de %s%s, você solta um grito final e morre."
+acidtouch_spell_intro = pt "Nível 2 de Qor: Cobertura das mãos do conjurador com um ácido poderoso que penetra armaduras, roupas e carne."

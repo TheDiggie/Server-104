@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include transference.lkod
+   
    Transference_name_rsc = "transference"
    Transference_icon_rsc = iconveyance.bgf
    Transference_desc_rsc = \

@@ -1,0 +1,4 @@
+CraftMace_name_rsc = pt "fabricar maça"
+CraftMace_desc_rsc = pt \
+      "Fabricar uma maça em uma bigorna com um martelo de ferreiro. "
+      "Requer 10 lingotes de ferro e 2 tábuas."

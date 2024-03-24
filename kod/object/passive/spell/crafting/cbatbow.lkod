@@ -1,0 +1,4 @@
+CraftBattleBow_name_rsc = pt "fabricar arco de batalha"
+CraftBattleBow_desc_rsc = pt \
+      "Fabricar um arco de batalha em uma cadeira de desbaste com um canivete. "
+      "Requer 15 fios de seda e 20 tábuas densas."

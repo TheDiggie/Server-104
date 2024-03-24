@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include cdaemhelm.lkod
+
    CraftDaemonHelm_name_rsc = "craft daemon helm"
    CraftDaemonHelm_icon_rsc = icraftdaemhelm.bgf
    CraftDaemonHelm_desc_rsc = \

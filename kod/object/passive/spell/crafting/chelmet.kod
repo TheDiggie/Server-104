@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include chelmet.lkod
+
    CraftHelmet_name_rsc = "craft helm"
    CraftHelmet_icon_rsc = icrafthelm.bgf
    CraftHelmet_desc_rsc = \

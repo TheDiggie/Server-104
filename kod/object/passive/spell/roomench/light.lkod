@@ -9,3 +9,12 @@ light_new_entrant = de "Dieser Ort ist erleuchtet durch ein magisches Licht."
 light_spell_intro = de "Faren Level 1:  Magisches Licht erleuchtet das Gebiet."
 light_enchantment_rsc = de \
    "\n\nDer %s Zauber fügt dem Raum %i Lichtlevel hinzu."
+
+light_name_rsc = pt "luz"
+light_desc_rsc = pt "A iluminação mágica preenche a área onde o feitiço é lançado. Não requer nada além de um espírito livre."
+light_unnecessary = pt "Esta área já está iluminada."
+light_on = pt "Um brilho mágico se espalha pela área."
+light_off = pt "O feitiço de luz se dissipa."
+light_new_entrant = pt "Este lugar é iluminado por um brilho mágico."
+light_spell_intro = pt "Faren Lv. 1: Preenche uma área com iluminação mágica."
+light_enchantment_rsc = pt "\n\nO encantamento %s atualmente adiciona %i nível de luz à área."

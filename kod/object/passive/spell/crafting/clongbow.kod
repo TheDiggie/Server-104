@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include clongbow.lkod
+
    CraftLongBow_name_rsc = "craft long bow"
    CraftLongBow_icon_rsc = icraftlbow.bgf
    CraftLongBow_desc_rsc = \

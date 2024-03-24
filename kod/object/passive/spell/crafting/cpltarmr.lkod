@@ -1,0 +1,4 @@
+CraftPlateArmor_name_rsc = pt "fabricar armadura de placa"
+CraftPlateArmor_desc_rsc = pt \
+      "Fabricar uma armadura de placa em uma bigorna com um martelo de ferreiro. "
+      "Requer 40 lingotes de ferro e 15 couro."

@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include cskinknife.lkod
+
    CraftSkinningKnife_name_rsc = "craft skinning knife"
    CraftSkinningKnife_icon_rsc = iCraftSkinKnife.bgf
    CraftSkinningKnife_desc_rsc = \

@@ -6,3 +6,7 @@ dm_det_invis_desc_rsc = de \
    "entfernen."
 dm_det_invis_off_rsc = de \
    "Du entfernst den größeren Unsichtbares entdecken Zauber von %s%s."
+
+dm_det_invis_name_rsc = pt "detecção invisível superior"
+dm_det_invis_desc_rsc = pt "Permite que você veja aqueles que os outros não conseguem. Este feitiço poderoso dura muito mais do que a detecção invisível regular. Lançar este feitiço novamente em um alvo já encantado removerá o encantamento."
+dm_det_invis_off_rsc = pt "Você remove o encantamento de detecção invisível superior de %s%s."

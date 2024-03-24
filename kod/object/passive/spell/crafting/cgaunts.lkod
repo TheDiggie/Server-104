@@ -1,0 +1,4 @@
+CraftGauntlets_name_rsc = pt "fabricar manoplas"
+CraftGauntlets_desc_rsc = pt \
+      "Fabricar manoplas em uma bigorna com um martelo de ferreiro. "
+      "Requer 10 lingotes de ferro, 5 couro e 5 fios de seda."

@@ -8,3 +8,14 @@ RatInvasion_phase3_msg = de \
    "~B~k[Event]~n ~B~v Die Invasion des Rattenkönigs hat Phase 3 erreicht!"
 RatInvasion_finalphase_msg = de \
    "~B~k[Event]~n ~B~v Die Invasion des Rattenkönigs hat die Finale Phase erreicht!"
+
+RatInvasion_start_msg = pt \
+      "~B~k[Evento]~n ~B~v O reinado do Rei Rato começou."
+RatInvasion_end_msg = pt \
+      "~B~k[Evento]~n ~B~v O reinado do Rei Rato terminou."
+RatInvasion_phase2_msg = pt \
+      "~B~k[Evento]~n ~B~v O reinado do Rei Rato entrou na segunda fase."
+RatInvasion_phase3_msg = pt \
+      "~B~k[Evento]~n ~B~v O reinado do Rei Rato entrou na terceira fase."
+RatInvasion_finalphase_msg = pt \
+      "~B~k[Evento]~n ~B~v O reinado do Rei Rato entrou na fase final."

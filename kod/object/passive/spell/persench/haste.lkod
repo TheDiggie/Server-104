@@ -13,3 +13,12 @@ Haste_spell_intro = de \
    "Kraanan Level 2: Sorgt dafür, dass Du nicht so schnell ermüdest."
 haste_enchantment_rsc = de \
    "\n\nDein aktueller %s Zauber reduziert dein Ausdauerverlust um %i%%."
+
+Haste_name_rsc = pt "pressa"
+Haste_desc_rsc = pt "Reduz a fadiga de correr em ritmo acelerado. Requer cinco cogumelos comestíveis para lançar."
+Haste_on_rsc = pt "Seu sangue começa a formigar, limpando os músculos da perna da fadiga a cada batimento cardíaco."
+Haste_off_rsc = pt "Você sente a maré de energia em seu sangue recuar, e correr parece subitamente mais desgastante."
+Haste_already_enchanted_rsc = pt "Você já é resistente à fadiga de correr."
+Haste_success_rsc = pt "%s%s está carregado com sua energia mágica."
+haste_enchantment_rsc = pt "\n\nSeu encantamento atual de %s reduz seus custos de esforço em %i%%."
+Haste_spell_intro = pt "Nível 2 de Kraanan: Permite que você use menos stamina enquanto corre."

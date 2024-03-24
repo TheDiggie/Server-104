@@ -1,0 +1,4 @@
+CraftAxe_name_rsc = pt "fabricar machado"
+CraftAxe_desc_rsc = pt \
+      "Fabricar um machado em uma bigorna com um martelo de ferreiro. " 
+      "Requer 10 lingotes de ferro e 5 tábuas."

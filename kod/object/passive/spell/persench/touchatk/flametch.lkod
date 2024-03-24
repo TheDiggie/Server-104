@@ -17,3 +17,14 @@ TouchOfFlame_player_was_killed = de \
 TouchOfFlame_spell_intro = de \
    "Faren Level 2: Kocht die Eingeweide der Zielperson mit einer heißen, "
    "weißen Flamme."
+
+TouchOfFlame_name_rsc = pt "toque de chama"
+TouchOfFlame_desc_rsc = pt "Ferve as entranhas do alvo com uma chama branca quente. Requer um cogumelo vermelho para lançar."
+TouchOfFlame_already_enchanted_rsc = pt "Suas mãos já estão envoltas em chamas."
+TouchOfFlame_On_rsc = pt "Jatos de chamas irrompem de seus dedos."
+TouchOfFlame_Off_rsc = pt "Suas mãos não estão mais envoltas em chamas."
+TouchOfFlame_player_was_hit = pt "Chamas irrompem dos dedos de %s%s, queimando você!"
+TouchOfFlame_player_hit_something = pt "%sChamas saltam de seus dedos e queimam %s%s."
+TouchOfFlame_player_killed_something = pt "%s%s, envolto em chamas, solta um grito final."
+TouchOfFlame_player_was_killed = pt "Uma explosão de chamas da mão de %s%s é a última coisa que você vê."
+TouchOfFlame_spell_intro = pt "Nível 2 de Faren: Transforma seu toque em uma explosão de chamas abrasadoras, causando dano aos seus inimigos."

@@ -11,3 +11,11 @@ ResistPoison_success_rsc = de \
 rpoison_enchantment_rsc = de \
    "\n\nDein aktueller %s Zauber beschützt dich vor Gift für eine Dauer "
    "von %i%%."
+
+ResistPoison_name_rsc = pt "resistir ao veneno"
+ResistPoison_desc_rsc = pt "Estabiliza seu sistema imunológico, protegendo você de alguns venenos. Requer duas ervas e um cogumelo vermelho."
+rpoison_enchantment_rsc = pt "\n\nSeu encantamento atual de %s irá protegê-lo de tentativas de envenenamento %i%% do tempo."
+ResistPoison_on_rsc = pt "Seu corpo formiga por um momento, e você se sente um pouco estranho."
+ResistPoison_off_rsc = pt "Sua estranha sensação de tolerância diminui."
+ResistPoison_already_enchanted_rsc = pt "Você já é resistente a venenos."
+ResistPoison_success_rsc = pt "Sua magia aumenta a resistência ao veneno de %s%s."

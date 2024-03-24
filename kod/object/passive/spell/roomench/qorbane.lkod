@@ -20,3 +20,13 @@ QorBane_kill_rsc = de \
    "Als die letzten Silben des Zauberspruchs Deinen Mund verlassen, durchströmt "
    "ein Strudel heiliger Macht Deinen Körper und erfüllt ihn mit glühender Reinheit."
    "Du schreist noch ein einiziges Mal auf bevor die Heiligkeit dich tötet."
+
+QorBane_name_rsc = pt "Qorbanir"
+QorBane_desc_rsc = pt "Permeia uma área com a essência sagrada de Shal'ille, prejudicando qualquer um que tente invocar a energia maligna de Qor. Requer um frasco de seiva de yrxl e uma asa de fada para lançar."
+QorBane_unnecessary = pt "Esta área já está polarizada contra Qor."
+QorBane_on = pt "Uma força mágica entra na área, enchendo o ar com um cheiro doce. Tudo ao seu redor parece brilhar quase imperceptivelmente, irradiando energia sagrada."
+QorBane_off = pt "A força sagrada se dissipa."
+QorBane_new_entrant = pt "Este lugar é permeado por uma presença sagrada; você pode sentir os olhos de Shal'ille observando você, avisando-o contra a invocação das forças mágicas de Qor."
+QorBane_hit_rsc = pt "Ao pronunciar as sílabas finais do seu feitiço, uma onda de poder sagrado passa pelo seu corpo, escaldando você com pureza."
+QorBane_kill_rsc = pt "Ao pronunciar as sílabas finais do seu feitiço, uma onda de poder sagrado passa pelo seu corpo. A onda de pureza é muito forte para você suportar e você expira."
+QorBane_killer_rsc = pt "%s%s expira do poder sagrado do seu encantamento Qorbanir."

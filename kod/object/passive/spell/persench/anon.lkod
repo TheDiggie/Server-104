@@ -9,3 +9,9 @@ anonymity_desc_rsc = de \
    "wissen, wer Du bist. Beachte, dass Sha-Lill Missetäter nicht strafen "
    "kann, die Dir etwas zuleide getan haben, während Du anonym bist. Für "
    "den Zauberspruch braucht man ein Feuersand und zwei Regenbogenfarne."
+
+anonymity_start = pt "Seus traços desaparecem, e você começa a se sentir indistinto."
+anonymity_stop = pt "De repente, você se sente mais como você mesmo novamente."
+anonymity_already_enchanted = pt "Você já possui %s%s."
+anonymity_name_rsc = pt "anonimato"
+anonymity_desc_rsc = pt "Torna você indistinto e irreconhecível para todos, exceto aqueles que você gostaria que soubessem que é você. Observe que Shal'ille não pode punir transgressores contra você quando você está anônimo. Requer dois fetos-de-arco-íris e uma areia de fogo para lançar."

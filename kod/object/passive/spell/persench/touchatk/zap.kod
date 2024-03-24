@@ -36,7 +36,6 @@ resources:
    
    zap_sound = fzap.ogg
 
-
 classvars:
 
    vrName = Zap_name_rsc

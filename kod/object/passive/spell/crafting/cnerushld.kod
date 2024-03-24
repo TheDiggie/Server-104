@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include cnerushld.lkod
+
    CraftNeruditeShield_name_rsc = "craft nerudite shield"
    CraftNeruditeShield_icon_rsc = icraftnerushld.bgf
    CraftNeruditeShield_desc_rsc = \

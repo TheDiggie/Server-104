@@ -18,7 +18,7 @@ resources:
 
    include shalbane.lkod
 
-   ShalilleBane_name_rsc = "Shal'illebane"
+   ShalilleBane_name_rsc = "Shal'ille bane"
    ShalilleBane_icon_rsc = ishabane.bgf
    ShalilleBane_desc_rsc = \
       "Permeates an area with the unholy essence of Qor, harming any who "

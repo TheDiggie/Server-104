@@ -1,0 +1,4 @@
+CraftNeruditeSword_name_rsc = pt "fabricar espada nerudita"
+CraftNeruditeSword_desc_rsc = pt \
+      "Fabricar uma espada nerudita em uma bigorna Ko'catan com um martelo de ferreiro. "
+      "Requer 15 lingotes de nerudita, 5 tábuas densas e 5 couro de kriipa."

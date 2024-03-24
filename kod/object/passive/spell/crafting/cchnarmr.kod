@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include cchnarmr.lkod
+
    CraftChainArmor_name_rsc = "craft chain armor"
    CraftChainArmor_icon_rsc = icraftchaina.bgf
    CraftChainArmor_desc_rsc = \

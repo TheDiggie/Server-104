@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include cmace.lkod
+
    CraftMace_name_rsc = "craft mace"
    CraftMace_icon_rsc = icraftmace.bgf
    CraftMace_desc_rsc = \

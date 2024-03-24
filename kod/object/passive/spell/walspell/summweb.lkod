@@ -9,3 +9,12 @@ SummonWeb_cast_rsc = de \
 SummonWeb_failed_rsc = de \
    "Es gibt zu viel Beschwörungsmagie in diesem Raum. Du kannst diesen Zauber "
    "nicht ausführen."
+
+SummonWeb_name_rsc = pt "teia de aranha"
+SummonWeb_desc_rsc = pt \
+   "As teias de aranha criadas por este feitiço podem dificultar a capacidade "
+   "daqueles que as encontram de se mover. "
+   "Requer musgo de teia para lançar."  
+SummonWeb_cast_rsc = pt "Um campo pegajoso de teias de aranha aparece diante de você."
+SummonWeb_failed_rsc = pt \
+   "Há muita magia de invocação concentrada aqui para criar uma teia."

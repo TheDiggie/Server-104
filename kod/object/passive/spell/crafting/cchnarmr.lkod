@@ -1,0 +1,4 @@
+CraftChainArmor_name_rsc = pt "fabricar armadura de corrente"
+CraftChainArmor_desc_rsc = pt \
+      "Fabricar armadura de corrente em uma bigorna com um martelo de ferreiro. "
+      "Requer 10 lingotes de ferro e 15 couro."

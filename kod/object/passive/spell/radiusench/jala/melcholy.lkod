@@ -17,3 +17,13 @@ Melancholy_enter = de \
    "fühlst dich bereit für den Kampf gegen das Gute."
 Melancholy_leave = de \
    "Du kannst das Lied der Traurigkeit, gesungen von %s%s, nicht mehr hören."
+
+Melancholy_name_rsc = pt "melancolia"
+Melancholy_desc_rsc = pt "Esta é uma canção triste, invocando sentimentos de perda e tristeza. Causa na maioria das pessoas que a ouvem uma tristeza avassaladora, frequentemente levando a humores sombrios. Esta música é apropriada para funerais e para lutar contra as forças do bem. Requer um safira para ser lançada."
+Melancholy_cast = pt "Você começa a tocar uma música melancólica."
+Melancholy_starts = pt "%s%s começa a tocar uma música melancólica."
+Melancholy_ends = pt "A música melancólica tocada por %s%s desaparece."
+Melancholy_caster_ends = pt "Sua música melancólica desaparece."
+Melancholy_caster_enter = pt "Seu coração se sente pesado."
+Melancholy_enter = pt "A música melancólica de %s%s faz seu coração se sentir pesado."
+Melancholy_leave = pt "Você não consegue mais ouvir as notas melancólicas da música de %s%s."

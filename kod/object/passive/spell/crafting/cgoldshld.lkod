@@ -1,0 +1,4 @@
+CraftGoldShield_name_rsc = pt "fabricar escudo redondo de ouro"
+CraftGoldShield_desc_rsc = pt \
+      "Fabricar um escudo redondo de ouro em uma bigorna com um martelo de ferreiro. "
+      "Requer 10 lingotes de ferro e 5 tábuas."

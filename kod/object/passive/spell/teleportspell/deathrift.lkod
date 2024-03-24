@@ -20,3 +20,28 @@ DeathRift_generic_fail = de \
 DeathRift_warning = de \
    "~BDu spürst eine nahegelegende Verbindung zwischen den Dimensionen!"
 deathrift_bound_desc = de "\n\nDeine Seele ist an den folgenden Ort gebunden: %s."
+
+DeathRift_name_rsc = pt "fenda da morte"
+DeathRift_desc_rsc = pt \
+   "Ao invocar um pacto com as forças mais antigas das trevas, "
+   "os discípulos mais verdadeiros de Qor podem atravessar os poços de fogo do "
+   "Submundo mantendo ainda a vida. Os caminhos interdimensionais "
+   "podem levar os favoritos de Qor a muitos locais, incluindo "
+   "um destino dedicado de sua escolha. Requer quatro penas de anjo negro para ser lançado."
+DeathRift_no_angeled = pt \
+   "Você não pode invocar tal pacto maligno enquanto seu anjo guardião o vigia."
+DeathRift_bind = pt \
+   "Você deixa um respingo de sangue no chão sob seus pés, vinculando uma pequena parte de sua alma a este local."
+DeathRift_travel = pt \
+   "Um vasto corredor de chamas se abre, e você se vê " 
+   "puxado para o Submundo!"
+DeathRift_travel_notify = pt \
+   "Um portal de fogo se abre brevemente, arrastando %s para o Submundo!"
+DeathRift_travel_notify_dest = pt \
+   "Um portal de fogo se abre brevemente, arrastando %s através " 
+   "do Submundo em direção a %s!"
+DeathRift_generic_fail = pt \
+   "A magia do pacto maligno falha. Algo parece estar errado."
+DeathRift_warning = pt \
+   "~BVocê sente uma conexão próxima se formando entre dimensões!"
+deathrift_bound_desc = pt "\n\nSua alma está vinculada a %s."

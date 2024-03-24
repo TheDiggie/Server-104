@@ -1,2 +1,4 @@
 resist_enchantment_rsc = de \
    "\n\nDein aktueller %s Zauber fügt %i%% %s hinzu."
+
+resist_enchantment_rsc = pt "\n\nSeu encantamento atual de %s adiciona %i%% de %s."

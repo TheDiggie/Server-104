@@ -10,3 +10,13 @@ Restorate_caster_enter = de "Du fühlst wie sich deine Wunden schneller regenerie
 Restorate_enter = de \
    "%s%s's beruhigendes Lied lässt dich deine Wunden weniger spüren."
 Restorate_leave = de "Du kannst das beruhigende Lied von %s%s's nicht mehr hören."
+
+Restorate_name_rsc = pt "restaurar"
+Restorate_desc_rsc = pt "Esta música permite que todos os ouvintes recuperem saúde a uma taxa acelerada. Requer um diamante e várias ervas para ser lançada."
+Restorate_cast = pt "Você começa a tocar uma música reconfortante."
+Restorate_starts = pt "%s%s começa a tocar uma música reconfortante."
+Restorate_ends = pt "A música reconfortante tocada por %s%s desaparece."
+Restorate_caster_ends = pt "Sua música reconfortante desaparece."
+Restorate_caster_enter = pt "Você sente a dor de suas feridas diminuir."
+Restorate_enter = pt "A música reconfortante de %s%s alivia a dor de suas feridas."
+Restorate_leave = pt "Você não pode mais ouvir as notas reconfortantes da música de %s%s."

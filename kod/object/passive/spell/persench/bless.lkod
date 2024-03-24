@@ -12,3 +12,12 @@ bless_spell_intro = de \
 bless_enchantment_rsc = de \
    "\n\nDein aktueller %s Zauber fügt %i Offensivschaden und 0-%i "
    "Angriffsschaden hinzu."
+
+bless_name_rsc = pt "abençoar"
+bless_desc_rsc = pt "Invoca a bênção de Kraanan, aumentando a precisão e o dano dos ataques. Requer dois cogumelos e dois safiras para lançar."
+bless_enchantment_rsc = pt "\n\nSua encantamento atual de %s adiciona %i de ataque e 0-%i de dano de ataque."
+bless_already_enchanted_rsc = pt "Você já está abençoado."
+bless_on_rsc = pt "Kraanan te enche com o espírito da batalha."
+bless_off_rsc = pt "O espírito da batalha te deixou."
+bless_success_rsc = pt "Kraanan enche %s%s com o espírito da batalha."
+bless_spell_intro = pt "Kraanan Lv. 2: Concede a bênção do Deus da Guerra, melhorando suas habilidades de combate."

@@ -1,0 +1,4 @@
+CraftDaemonHelm_name_rsc = pt "fabricar elmo de demônio"
+CraftDaemonHelm_desc_rsc = pt \
+      "Fabricar um elmo de demônio em uma bigorna com um martelo de ferreiro. " 
+      "Requer 15 lingotes de ferro e 20 couro."

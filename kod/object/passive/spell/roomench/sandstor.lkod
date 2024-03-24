@@ -15,3 +15,11 @@ sandstorm_new_entrant = de \
 sandstorm_hurts_you = de "Du wirst on den wehendem Sandsturm erschöpfter."
 sandstorm_miss_rsc = de "Der kraftvolle Sandsturm wirbelt deinen Schuss davon."
 
+sandstorm_name_rsc = pt "tempestade de areia"
+sandstorm_desc_rsc = pt "Toda a poeira na sala é varrida para uma tempestade turbulenta, tornando mais difícil e exigente se mover e lutar. Também tem uma pequena chance de derrubar flechas no ar. Requer dois dentes de orc para lançar."
+sandstorm_already_enchanted = pt "Uma tempestade de areia já assola este lugar."
+sandstorm_on = pt "De lugar nenhum, poeira em redemoinho começa a picar sua pele, tornando muito difícil respirar. Você sente que está ficando cansado."
+sandstorm_off = pt "O ar se aclara."
+sandstorm_new_entrant = pt "O ar está cheio de poeira, tornando muito difícil respirar. Você sente que está ficando cansado."
+sandstorm_hurts_you = pt "Você está ficando exausto com os ventos de areia violentos."
+sandstorm_miss_rsc = pt "A poderosa tempestade de areia rouba seu disparo."

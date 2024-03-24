@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include civycir.lkod
+
    CraftIvyCirclet_name_rsc = "craft ivy circlet"
    CraftIvyCirclet_icon_rsc = icraftivy.bgf
    CraftIvyCirclet_desc_rsc = \

@@ -7,3 +7,14 @@ SummonFog_failed_rsc = de \
    "Es gibt zu viel Beschwörungsmagie in diesem Raum. Du kannst diesen Zauber "
    "nicht ausführen."
 SummonFog_spell_intro_rsc = de "Faren Level 1: Erschafft eine Wolke aus Nebel."
+
+SummonFog_name_rsc = pt "nevoeiro"
+SummonFog_desc_rsc = pt \
+   "Cria uma nuvem de neblina frequentemente confundida com neblina venenosa. "
+   "Requer elderberries para lançar."
+SummonFog_cast_rsc = pt \
+   "Um denso nevoeiro surge do chão diante de você."
+SummonFog_failed_rsc = pt \
+   "Há muita magia de invocação concentrada aqui para criar neblina."
+SummonFog_spell_intro_rsc = pt \
+   "Faren Nível 1: Invoca uma parede de neblina ondulante para confundir seus inimigos."

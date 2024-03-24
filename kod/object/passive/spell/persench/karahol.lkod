@@ -14,3 +14,11 @@ Karahols_spell_intro = de "Qor Level 2: Gibt dir temporär große Kraft."
 karahol_enchantment_rsc = de \
    "\n\nDein aktueller %s Zauber fügt %i Offensiv und 1-%i Angriffsschaden "
    "hinzu. Wenn der Zauber nachlässt lähmt er dich für %i Sekunden."
+
+KaraholsCurse_name_rsc = pt "maldição de Kara'hol"
+KaraholsCurse_desc_rsc = pt "Seu corpo é possuído pelo espírito do guerreiro Kara'hol por um breve período, aumentando a ferocidade de seus ataques. Quando o espírito parte, seu corpo fica temporariamente paralisado pelo choque. Requer o sacrifício de duas bagas de entroot para lançar."
+karahol_enchantment_rsc = pt "\n\nSeu encantamento atual de %s adiciona %i de ataque e 1-%i de dano de ataque. Quando expirar, ele irá te paralisar por %i segundos."
+KaraholsCurse_on = pt "O espírito de Kara'hol desce sobre você, fazendo seu sangue ferver e seus músculos tremerem com um novo vigor."
+KaraholsCurse_off = pt "Seu corpo congela enquanto o total esgotamento envolve seus membros."
+KaraholsCurse_already_enchanted_rsc = pt "Seu sangue já ferve com o espírito de Kara'hol!"
+Karahols_spell_intro = pt "Nível 2 de Qor: Temporariamente concede a você habilidades de combate berserker, mas com um preço a pagar depois."

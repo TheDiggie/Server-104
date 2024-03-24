@@ -1,0 +1,4 @@
+CraftScimitar_name_rsc = pt "fabricar cimitarra"
+CraftScimitar_desc_rsc = pt \
+      "Fabricar uma cimitarra em uma bigorna com um martelo de ferreiro. "
+      "Requer 30 lingotes de ferro, 5 tábuas e 5 couro."

@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include ccirclet.lkod
+
    CraftCirclet_name_rsc = "craft circlet"
    CraftCirclet_icon_rsc = icraftcirclet.bgf
    CraftCirclet_desc_rsc = \

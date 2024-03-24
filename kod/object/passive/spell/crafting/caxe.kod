@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include caxe.lkod
+
    CraftAxe_name_rsc = "craft axe"
    CraftAxe_icon_rsc = icraftaxe.bgf
    CraftAxe_desc_rsc = \

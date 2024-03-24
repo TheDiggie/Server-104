@@ -2,3 +2,14 @@ OrcInvasion_start_msg = de \
    "~B~k[Event]~n ~B~v Die Invasion der Orks hat soeben begonnen."
 OrcInvasion_end_msg = de \
    "~B~k[Event]~n ~B~v Die Invasion der Orks wurde beendet."
+
+OrcInvasion_start_msg = pt \
+      "~B~k[Evento]~n ~B~v O reinado do Chefe do Abismo começou."
+OrcInvasion_end_msg = pt \
+      "~B~k[Evento]~n ~B~v O reinado do Chefe do Abismo terminou."
+OrcInvasion_phase2_msg = pt \
+      "~B~k[Evento]~n ~B~v Uma onda de orcs de caverna aparece."
+OrcInvasion_phase3_msg = pt \
+      "~B~k[Evento]~n ~B~v Uma onda de magos orcs aparece."
+OrcInvasion_finalphase_msg = pt \
+      "~B~k[Evento]~n ~B~v Você irritou o Chefe do Abismo."

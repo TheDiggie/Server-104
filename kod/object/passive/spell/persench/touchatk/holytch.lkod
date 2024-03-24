@@ -20,3 +20,14 @@ HolyTouch_player_was_killed = de \
 holytouch_spell_intro = de \
    "Shal'ill Level 2: Pure Energie von Sha-Lill verbrennt böse Ziele und "
    "heilt die guten."
+
+HolyTouch_name_rsc = pt "toque sagrado"
+HolyTouch_desc_rsc = pt "Energia pura de Shal'ille queima seu alvo. Mais eficaz em alvos malignos e mortos-vivos. Requer esmeraldas."
+HolyTouch_already_enchanted_rsc = pt "Suas mãos já estão banhadas no amor de Shal'ille."
+HolyTouch_On_rsc = pt "Suas mãos são banhadas no amor de Shal'ille."
+HolyTouch_Off_rsc = pt "Suas mãos não estão mais banhadas no amor de Shal'ille."
+HolyTouch_player_was_hit = pt "%s%s escaldou você com a pura força de Shal'ille!"
+HolyTouch_player_hit_something = pt "%s%s%s recua da energia pura de Shal'ille."
+HolyTouch_player_killed_something = pt "%s%s finalmente sucumbe, encontrando paz através da energia purificadora de Shal'ille."
+HolyTouch_player_was_killed = pt "O toque de %s%s separa o corpo da alma e o envia para o submundo."
+holytouch_spell_intro = pt "Nível 2 de Shal'ille: Dá o julgamento de Shal'ille em seu toque."

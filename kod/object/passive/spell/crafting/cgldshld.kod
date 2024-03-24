@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include cgldshld.lkod
+
    CraftGuildShield_name_rsc = "craft herald shield"
    CraftGuildShield_icon_rsc = icraftgldshld.bgf
    CraftGuildShield_desc_rsc = \

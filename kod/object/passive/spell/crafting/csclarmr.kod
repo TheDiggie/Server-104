@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include csclarmr.lkod
+
    CraftScaleArmor_name_rsc = "craft scale armor"
    CraftScaleArmor_icon_rsc = icraftscalea.bgf
    CraftScaleArmor_desc_rsc = \

@@ -11,3 +11,11 @@ resistgood_success = de \
 resistgood_on = de \
    "Die macht Qors betritt Deinen Körper und beschützt ihn vor dem Guten."
 resistgood_off = de "Du hast keinen Schutz mehr vor dem Guten."
+
+resistgood_name_rsc = pt "resolução profana"
+resistgood_desc_rsc = pt "Invoca a força vil de Qor para proteger o usuário contra danos sagrados. Requer uma única asa de fada para lançar."
+resistgood_spell_intro = pt "Nível 1 de Qor: Protege você de danos de fontes sagradas."
+resistgood_already_enchanted = pt "Você já possui resolução profana."
+resistgood_success = pt "O espírito de Qor entra no corpo de %s%s, protegendo-os das forças do bem."
+resistgood_on = pt "O espírito de Qor entra em seu corpo, protegendo-o das forças do bem."
+resistgood_off = pt "Você não tem mais resistência ao bem."

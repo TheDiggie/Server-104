@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include cneruswrd.lkod
+
    CraftNeruditeSword_name_rsc = "craft nerudite sword"
    CraftNeruditeSword_icon_rsc = icraftnerusword.bgf
    CraftNeruditeSword_desc_rsc = \

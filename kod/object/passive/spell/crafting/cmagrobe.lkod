@@ -1,0 +1,5 @@
+CraftMagicRobes_name_rsc = pt "fabricar vestes mágicas"
+CraftMagicRobes_desc_rsc = pt \
+      "Fabricar vestes de discípulo de uma escola escolhida em um tear. " 
+      "Ao fabricar, diga o nome da escola que deseja capacitar na veste. " 
+      "Requer 250 fios de seda."

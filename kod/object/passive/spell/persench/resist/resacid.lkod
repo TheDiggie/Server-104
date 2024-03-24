@@ -17,3 +17,11 @@ ResistAcid_off = de \
 ResistAcid_Success = de \
    "Eine kreidehaltige, schmierige Masse quillt aus %s%s's Poren und bedeckt "
    "den ganzen Körper."
+
+ResistAcid_name_rsc = pt "resistência ao ácido"
+ResistAcid_desc_rsc = pt "Reveste seu corpo com uma gosma mágica que absorve danos de ataques ácidos por vários minutos. Requer uma baga de entroot para lançar."
+ResistAcid_intro = pt "Nível 2 de Shal'ille: Reveste seu corpo com uma gosma mágica que absorve danos de ataques ácidos."
+ResistAcid_already_enchanted = pt "Você já é resistente a feitiços de ácido."
+ResistAcid_on = pt "Uma gosma calcária escorre de seus poros e reveste todo o seu corpo."
+ResistAcid_off = pt "A gosma abençoada borbulha enquanto o encantamento de resistência ao ácido se dissipa."
+ResistAcid_Success = pt "Uma gosma calcária escorre dos poros de %s%s e reveste todo o seu corpo."

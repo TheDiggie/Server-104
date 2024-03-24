@@ -5,3 +5,9 @@ blink_desc_rsc = de \
 blink_spell_intro = de \
    "Riija Level 1: Teleportiert Dich zu einem zentralen Platz im Raum. Benötigt "
    "nichts anders als den Willen zum Blinken."
+
+blink_name_rsc = pt "piscar"
+blink_desc_rsc = pt \
+ "Teletransporta você para um local central na sala. "
+ "Não requer nada além de vontade de se mover."
+blink_spell_intro = pt "Nível 1 de Riija: O feitiço mais básico do Trapaceiro teletransporta você para o local de poder local."

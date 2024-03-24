@@ -1,0 +1,4 @@
+CraftNeruditeShield_name_rsc = pt "fabricar escudo nerudita"
+CraftNeruditeShield_desc_rsc = pt \
+      "Fabricar um escudo nerudita em uma bigorna Ko'catan com um martelo de ferreiro. "
+      "Requer 20 lingotes de nerudita, 10 tábuas densas e 10 couro de kriipa."

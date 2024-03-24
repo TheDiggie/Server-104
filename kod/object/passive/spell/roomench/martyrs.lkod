@@ -11,3 +11,10 @@ martyrsbg_off = de \
    "an den Kampfhandlungen hier verloren."
 martyrsbg_new_entrant = de \
    "Du bildest Dir ein, dass Du die Anwesenheit der Götter spürst, die Dich beobachten."
+
+martyrsbg_name_rsc = pt "campo de batalha dos mártires"
+martyrsbg_desc_rsc = pt "Chama a atenção dos deuses para a área, aumentando a probabilidade de que eles deem àqueles que morrem aqui uma chance de vingança com um espectro. Requer sabugueiro e cogumelo para lançar."
+martyrsbg_unnecessary = pt "Você já sente a presença dos deuses aqui."
+martyrsbg_on = pt "De repente, você sente como se estivesse sendo observado e julgado por seres intangíveis."
+martyrsbg_off = pt "A área parece menos sagrada. Parece que os deuses perderam o interesse pelas disputas na área."
+martyrsbg_new_entrant = pt "Você imagina que pode sentir a presença dos deuses observando você."

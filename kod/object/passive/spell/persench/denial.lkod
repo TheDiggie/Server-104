@@ -12,3 +12,10 @@ denial_already_enchanted_rsc = de \
    "einmal versucht auf dich zu zaubern."
 denial_off_rsc = de \
    "Ouch - Du wirst daran erinnert wie Müde du eigentlich bist."
+
+denial_name_rsc = pt "negação"
+denial_desc_rsc = pt "Faz com que o conjurador não perceba seus ferimentos, mas cuidado quando você perceber que é uma farsa, porque os ferimentos ainda são tão profundos quanto! Requer dois firesand e um frasco de solagh para lançar."
+denial_on_rsc = pt "Seus ferimentos desaparecem suspeitosamente."
+denial_failed_rsc = pt "Hmmm, parece que você não consegue se convencer de uma saúde perfeita."
+denial_already_enchanted_rsc = pt "Você não pode se enganar duas vezes sobre algo assim, pelo menos não ao mesmo tempo."
+denial_off_rsc = pt "Ai - você é lembrado de seu cansaço anterior."

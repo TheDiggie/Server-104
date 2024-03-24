@@ -6,3 +6,13 @@ IllusionaryFireWall_cast_rsc = de \
    "Eine vorgetäuschte Feuerwand erscheint vor Dir!"
 IllusionaryFireWall_failed_rsc = de \
    "Es sind zu viele künstlich erschaffene Magien hier, um eine Feuerwand zu erschaffen."
+
+IllusionaryFireWall_name_rsc = pt "firewall ilusório"
+IllusionaryFireWall_desc_rsc = pt \
+   "Cria uma parede ilusória de fogo. Esta parede causará ferimentos ilusórios, "
+   "que nunca são letais, para as vítimas que passam por ela. "
+   "Requer samambaias arco-íris e areia de fogo para lançar."
+IllusionaryFireWall_cast_rsc = pt \
+   "Uma parede ilusória de fogo aparece diante de você!"
+IllusionaryFireWall_failed_rsc = pt \
+   "Há muita magia de invocação concentrada aqui para criar uma parede de fogo."

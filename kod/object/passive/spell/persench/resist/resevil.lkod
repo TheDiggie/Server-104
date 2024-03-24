@@ -11,3 +11,11 @@ resistevil_on = de \
    "Du fühlst die warme präsenz die Dich vor der Dunkelheit schützt."
 resistevil_off = de \
    "Die warme präsenz verschwindet und Du bist wieder anfällig für das Böse."
+
+resistevil_name_rsc = pt "resolução sagrada"
+resistevil_desc_rsc = pt "Shal'ille é invocado para fortalecer a alma contra danos profanos. Requer uma única asa de fada para lançar."
+resistevil_spell_intro = pt "Nível 1 de Shal'ille: Protege você de danos de fontes profanas."
+resistevil_success = pt "Você fortalece %s%s contra o mal."
+resistevil_already_enchanted = pt "Você já possui resolução sagrada."
+resistevil_on = pt "Você sente uma presença calorosa fortalecendo sua defesa contra o mal."
+resistevil_off = pt "Você sente um arrepio enquanto o espírito fortificante de Shal'ille parte."

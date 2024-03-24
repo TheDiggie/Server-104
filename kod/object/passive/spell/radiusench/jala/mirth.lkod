@@ -13,3 +13,13 @@ Mirth_caster_enter = de "Deine Laune wird ein wenig besser, du fühlst dich im Ka
 Mirth_enter = de "%s%s's fröhliches Lied verbessert deine Laune, du fühlst dich im Kampf gegen die böse Mächte gewappnet."
 Mirth_leave = de \
    "Du kannst das fröhliche Lied, gesungen von %s%s, nicht mehr hören."
+
+Mirth_name_rsc = pt "alegria"
+Mirth_desc_rsc = pt "Esta música faz as pessoas felizes! É uma melodia animada, que faz as pessoas sentirem como se tivessem um novo começo na vida. A música faz com que algumas pessoas sorriam, muitas vezes resultando em melhores humores. Um bom humor permite que outros combatam o mal de forma mais eficaz. Requer uma safira para ser lançada."
+Mirth_cast = pt "Você começa a tocar uma música alegre."
+Mirth_starts = pt "%s%s começa a tocar uma música alegre."
+Mirth_ends = pt "A música alegre tocada por %s%s desaparece."
+Mirth_caster_ends = pt "Sua música alegre desaparece."
+Mirth_caster_enter = pt "Seu ânimo melhora um pouco."
+Mirth_enter = pt "A música alegre de %s%s eleva um pouco o seu ânimo."
+Mirth_leave = pt "Você não pode mais ouvir as notas alegres da música de %s%s."

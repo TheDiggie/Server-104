@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include cbatbow.lkod
+
    CraftBattleBow_name_rsc = "craft battle bow"
    CraftBattleBow_icon_rsc = icraftbbow.bgf
    CraftBattleBow_desc_rsc = \

@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include chammer.lkod
+
    CraftHammer_name_rsc = "craft hammer"
    CraftHammer_icon_rsc = icraftham.bgf
    CraftHammer_desc_rsc = \

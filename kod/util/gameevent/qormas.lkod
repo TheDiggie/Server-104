@@ -6,3 +6,12 @@ Qormas_end_message = de \
    "~B~k[Event] ~vMüde vom Anblick der Qormas Bäume haben die Bewohner beschlossen sämtliche "
    "Dekorationen zu beseitigen. "
 Qormas_gift_hint = de "\n~B~k[Event] ~vMerry Qormas!  Ein Geschenk erwartet Dich in %s.\n"
+
+Qormas_start_Message = pt \
+      "~B~k[Evento] ~vFeliz Qormas!\n" 
+      "~k[Evento] ~vOs cidadãos de Meridian decoraram em comemoração aos feriados!  "
+Qormas_end_Message = pt \
+      "~B~k[Evento] ~vCansados de olhar para as árvores de Qormas, os cidadãos de Meridian " 
+      "removeram todas as decorações de feriados. "
+Qormas_gift_hint = pt \
+      "\n~B~k[Evento] ~vFeliz Qormas! Um presente espera por você em %s.\n"

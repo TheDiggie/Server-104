@@ -11,3 +11,10 @@ deathlink_on_rsc = de \
    "Du bereitest dich darauf vor, die Dunkelheit selbst zu ernähren."
 deathlink_off_rsc = de "Dein Todesbündnis verschwindet."
 deathlink_feed_rsc = de "Du ernährst dich von der Lebenskraft der Gefallenen."
+
+deathlink_name_rsc = pt "elo da morte"
+deathlink_desc_rsc = pt "Este feitiço sombrio se alimenta das almas de qualquer criatura que infelizmente venha a cair em sua vizinhança. Qualquer vida que você tire são meras transferências de energia - o bem e o mal não significam nada. Requer um frasco de sangue de xamã e uma pena de anjo negro para lançar."
+deathlink_already_enchanted_rsc = pt "Você já está ligado à morte."
+deathlink_on_rsc = pt "Você se prepara para se alimentar da própria escuridão."
+deathlink_off_rsc = pt "Seu elo com a morte se dissipa."
+deathlink_feed_rsc = pt "Você se alimenta da força vital dos caídos."

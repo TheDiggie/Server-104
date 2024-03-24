@@ -13,3 +13,12 @@ darkness_spell_intro = de \
    "Qor Level 1: Legt einen Vorhang aus Dunkelheit über einen Raum."
 darkness_enchantment_rsc = de \
    "\n\nDer %s Zauber reduziert um %i das Lichtlevel in diesem Gebiet."
+
+darkness_name_rsc = pt "escuridão"
+darkness_desc_rsc = pt "Desenha uma cortina de escuridão sobre uma sala, tornando-a mais propícia aos seguidores do Vile One. Não requer nada além de uma intenção sinistra."
+darkness_unnecessary = pt "Esta área já possui um encantamento de escuridão."
+darkness_on = pt "Uma cortina de escuridão é desenhada pela sala, agitando os servos de Qor."
+darkness_off = pt "A cortina de escuridão é dissipada."
+darkness_new_entrant = pt "Este lugar está sob um encantamento de escuridão."
+darkness_enchantment_rsc = pt "\n\nO encantamento %s atualmente subtrai %i níveis de luz da área."
+darkness_spell_intro = pt "Qor Lv. 1: Desenha uma cortina de escuridão sobre a sala, agitando os servos de Qor."

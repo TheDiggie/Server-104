@@ -30,3 +30,40 @@ NodeAttack_severed_mail_rsc = de \
    "nutzen.\n\nIch hoffe in der Zukunft findest Du einen Weg solchen Attacken "
    "stand zu halten.  Wir müssen vorbereitet sein auf den nächsten Angriff."
 NodeAttack_keeper = de "Alzahakar"
+
+NodeAttack_initial_attack_rsc = pt \
+      "~VSente uma sensação de inquietação de que um de seus nós está sendo "
+      "ameaçado."
+   NodeAttack_location_attack_rsc = pt "~BO nó em %s está sendo atacado!"
+   NodeAttack_killed_rsc = pt "um ataque de Xeochicatl"
+   NodeAttack_room_message_rsc = pt \
+      "~VVocê sente a área tremer violentamente enquanto vários Xeochicatl se "
+      "erguem do chão e atacam o nó!"
+   NodeAttack_success_rsc = pt \
+      "~BOs Xeochicatl recuam de %s. O nó foi salvo!"
+   NodeAttack_failure_rsc = pt \
+      "~BO nó em %s foi drenado pelos Xeochicatl atacantes!"
+   NodeAttack_loss_rsc = pt \
+      "~VSua cabeça dói enquanto você sente a perda de um de seus nós."
+   NodeAttack_severed_rsc = pt \
+      "~VSua cabeça dói intensamente enquanto a ligação com um de seus nós é "
+      "severamente cortada!"
+   NodeAttack_loss_mail_rsc = pt "Assunto: A perda do nó\n"
+      "É com o coração pesado que informo que os Xeochicatl atacaram "
+      "e drenaram o nó em %s. Nossas forças não foram capazes de repelir os "
+      "ataques e o nó foi perdido para nós. Como resultado, você não poderá "
+      "extrair mana deste nó por um tempo."
+      "\n\n"
+      "Espero que no futuro saibamos como repelir melhor esses ataques. "
+      "Devemos estar sempre vigilantes contra esses ataques."
+   NodeAttack_severed_mail_rsc = pt "Assunto: O corte do seu nó\n"
+      "É com o coração pesado que informo que os Xeochicatl atacaram "
+      "e drenaram o nó em %s. Infelizmente, a drenagem violenta do nó "
+      "cortou sua conexão com ele. Nossas forças não foram capazes de "
+      "repelir os ataques e o nó foi perdido para nós. Como resultado, "
+      "você precisará se fundir novamente com o nó quando estiver disponível "
+      "no futuro."
+      "\n\n"
+      "Espero que no futuro saibamos como repelir melhor esses ataques. "
+      "Devemos estar sempre vigilantes contra esses ataques."
+   NodeAttack_keeper = pt "Alzahakar"

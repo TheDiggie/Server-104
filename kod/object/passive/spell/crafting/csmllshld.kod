@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include csmllshld.lkod
+
    CraftSmallShield_name_rsc = "craft small round shield"
    CraftSmallShield_icon_rsc = icraftsmallshld.bgf
    CraftSmallShield_desc_rsc = \
