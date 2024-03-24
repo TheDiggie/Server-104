@@ -8,3 +8,7 @@ WallSpell_outlaw_murderer = de \
    "andere Spieler dadurch verletzt werden. Oder sogar zu einem Mörder, wenn du "
    "jemanden tötest."
 WallSpell_failed_rsc = de "Es gibt schon zu viele Beschwörungszaubber im Raum."
+
+WallSpell_outlaw = pt "\nNOTA: Se sua segurança estiver LIGADA, este feitiço não afetará inocentes. Se sua segurança estiver DESLIGADA, você pode se tornar um fora-da-lei por prejudicar outros jogadores."
+WallSpell_outlaw_murderer = pt "\nNOTA: Se sua segurança estiver LIGADA, este feitiço não afetará inocentes. Se sua segurança estiver DESLIGADA, você pode se tornar um fora-da-lei por prejudicar outros jogadores ou um assassino por matar outros jogadores."
+WallSpell_failed_rsc = pt "Há muita magia de invocação concentrada aqui para lançar esse feitiço."

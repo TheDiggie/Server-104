@@ -13,3 +13,13 @@ allinroom_bstick_msg1 = de \
    "~bNach einem heftigen Schlag auf den Kopf von %s$3%s$4, schielt %s$1%s$2 "
    "einen Augenblick heftig.%s$0%s$0"
 allinroom_bstick_msg2 = de "~bDu zuckst, als %s%s bösartigerweise %s%s bonkt.%s$0"
+
+bonk_name_rsc = pt "batida"
+bonk_desc_rsc = pt "Isso bate em uma pessoa de sua escolha."
+bonked_bonk_msg = pt "~r~B>AI<~n~b Você é atingido na cabeça por %s%s."
+caster_bonk_msg = pt "~bVocê bate violentamente em %s%s."
+bonked_bonkstick_msg = pt "~r~B>AI<~n~b %s%s bate impiedosamente em sua cabeça com o bastão de %s!!"
+allinroom_bonk_msg1 = pt "~b%s%s bate em %s%s na cabeça."
+allinroom_bstick_msg1 = pt "~bOs olhos de %s%s cruzam momentaneamente quando %s%s bate em %s na cabeça com o bastão de %s."
+allinroom_bstick_msg2 = pt "~bVocê faz careta quando %s%s bate violentamente em %s%s com o bastão de %s, que se parte."
+caster_bonkstick_msg = pt "~bVocê bate violentamente com seu bastão em %s%s."

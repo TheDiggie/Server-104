@@ -1,13 +1,9 @@
-// Quest description.
 dukesoldier_name_rsc = de "Herzog: Soldaten-Schild Quest"
 dukesoldier_desc_rsc = de \
    "Herzog Arkadius wird Dich in die Reihen der herzögliochen Armee aufnehmen, aber zu erst "
    "musst Du dich als würdig erweisen, und seine Feinde töten."
-
 dukesoldier_completed_rsc = de \
    "Du hast Dich als würdig erwiesen, und bist nun ein Soldat der herzöglichen Armee."
-
-// Quest resources.
 duke_faction_soldier_assign_1 = de \
    "Ja, vielleicht tust Du das. Prüfe Deine Loyalität in dem Du %INDEF_MONSTER%MONSTER "
    "tötest. Normalerweise findest Du ein paar Soldaten an den Fahnenstangen.  "
@@ -23,3 +19,10 @@ duke_faction_soldier_failure = de \
    "Hast Du deine Nerven verloren? Was denkst Du eigentlich, wie Du auf "
    "dem Schlachtfeld überleben kannst, wenn Du keinen Mumm dazu hast zu töten?"
 
+dukesoldier_name_rsc = pt "missão do escudo soldado do duque"
+dukesoldier_desc_rsc = pt "O Duque Akardius permitirá que você se junte ao exército Ducal, mas primeiro você deve provar sua lealdade matando seus inimigos."
+dukesoldier_completed_rsc = pt "Você provou seu valor e agora é um soldado no exército Ducal."
+duke_faction_soldier_assign_1 = pt "Sim, talvez você sirva. Prove sua lealdade assassinando %INDEF_MONSTER%MONSTER. Normalmente você pode encontrar alguns guardando um mastro de bandeira. Volte depois para contar suas façanhas."
+duke_faction_soldier_assign_2 = pt "Excelente. Agora, mostre seu desprezo pelos meus inimigos assassinando %INDEF_MONSTER%MONSTER. Retorne a mim quando terminar para informar que a missão está cumprida."
+duke_faction_soldier_success = pt "Você se saiu bem, meu soldado. Junte-se às fileiras da elite e leve minha influência e poder a todos nesta terra!"
+duke_faction_soldier_failure = pt "Perdeu a coragem? Como você acha que poderia sobreviver no campo de batalha se não tem estômago para matar?"

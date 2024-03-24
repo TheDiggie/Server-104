@@ -8,3 +8,13 @@ mend_beyond_hope = de "%s%s kann nicht mehr repariert werden."
 mend_full_healed = de "%s%s befindet sich im besten Zustand."
 mend_working = de \
    "%s%s wird durch Deine magische Kraft repariert."
+
+mend_name_rsc = pt "consertar"
+mend_desc_rsc = pt \
+      "Apaga o desgaste da batalha de um equipamento, restaurando-o para "
+      "uma condição quase nova.  "
+      "Requer um dente de orc e uma safira para lançar."
+mend_not_weaponry = pt "Você tenta se concentrar em %s%s, mas nada acontece!"
+mend_beyond_hope = pt "%s%s está além do reparo."
+mend_full_healed = pt "%s%s já está em condição perfeita."
+mend_working = pt "Peças de %s%s se unem para formar um novo todo."

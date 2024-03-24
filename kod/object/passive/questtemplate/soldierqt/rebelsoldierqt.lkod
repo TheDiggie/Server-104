@@ -1,13 +1,9 @@
-// Quest description.
 rebelsoldier_name_rsc = de "Rebellen: Soldaten-Schild Quest"
 rebelsoldier_desc_rsc = de \
    "Jonas D'Accor erlaubt es Dir sich der Rebellenarmee amnzuschließen, aber zuerst "
    "musst Du dich beweisen, in dem Du seine Feinde tötest."
-
 rebelsoldier_completed_rsc = de \
    "Du hast Dich als würdig erwiesen, und bist nun ein Soldat der Rebellenarmee."
-
-// Quest resources.
 rebel_faction_soldier_assign_1 = de \
    "Ich glaube an Dich. Geh und erledige %INDEF_MONSTER%MONSTER an dem Fahnenmast, "
    "und komm zurück um vom Kampf zu berichten. Danach werde ich mit Dir über "
@@ -22,3 +18,11 @@ rebel_faction_soldier_failure = de \
    "Ich bin enttäuscht von Dir. Ich mehr von einem treuen Anhänger erwartet.  "
    "Solltest Du gegen die kämpfen, die für die Tyrannei kämpfen, weißt du "
    "wo Du mich findest."
+
+rebelsoldier_name_rsc = pt "missão do escudo soldado rebelde"
+rebelsoldier_desc_rsc = pt "Jonas D'Accor permitirá que você se junte ao exército Rebelde, mas primeiro você deve provar sua lealdade matando seus inimigos."
+rebelsoldier_completed_rsc = pt "Você provou seu valor e agora é um soldado no exército Rebelde."
+rebel_faction_soldier_assign_1 = pt "Eu tenho fé em você. Vá eliminar %INDEF_MONSTER%MONSTER perto de um mastro de bandeira, retorne para relatar sua batalha e então conversaremos sobre seu futuro como soldado."
+rebel_faction_soldier_assign_2 = pt "Sim, ouvi histórias sobre sua luta. Agora vá conquistar %INDEF_MONSTER%MONSTER e você se juntará a nós como um igual quando terminar."
+rebel_faction_soldier_success = pt "Eu sabia que você era um soldado apto. Agora você se junta a nós adequadamente em nossa luta pela liberdade contra a tirania!"
+rebel_faction_soldier_failure = pt "Estou desapontado com você. Esperava mais de um apoiador leal. Se estiver disposto a lutar contra aqueles que apoiam a tirania, você sabe onde me encontrar."

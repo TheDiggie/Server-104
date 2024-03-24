@@ -6,3 +6,11 @@ illusionarywounds_desc_rsc = de \
 illusionarywounds_cast = de "Deine Illusion bekommt die Form von %s."
 illusionarywounds_off = de \
    "Hey! Manche dieser Wunden scheinen nicht echt zu sein!"
+
+illusionarywounds_name_rsc = pt "ferimentos ilusórios"
+illusionarywounds_desc_rsc = pt \
+   "Causa a vítima a ver ferimentos imaginários, mas a imaginação " 
+   "sempre cede à mente correta, presumindo que se viva tanto. " 
+   "Requer solagh e firesand."
+illusionarywounds_cast = pt "Sua ilusão assume a forma de %s."
+illusionarywounds_off = pt "Ei! Alguns desses ferimentos eram ilusórios!"

@@ -4,3 +4,7 @@ Shortswordproficiency_desc_rsc = de \
 Shortswordproficiency_skill_intro = de \
    "Waffenfertigkeiten Level 2: Ermöglicht zusätzliche Fähigkeiten im Kampf "
    "mit dem Kurzschwert."
+
+Shortswordproficiency_name_rsc = pt "luta com espada curta"
+Shortswordproficiency_desc_rsc = pt "Permite maior proficiência com espadas curtas."
+Shortswordproficiency_skill_intro = pt "Manufatura de Armas Nível 2: Habilidade com a espada curta comum."

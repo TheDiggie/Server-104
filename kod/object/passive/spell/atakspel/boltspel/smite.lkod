@@ -4,3 +4,7 @@ smite_desc_rsc = de \
    "niederzustrecken. Dieser Spruch kann nur von Göttern ausgeführt werden."
 smite_hit_rsc = de \
    "%s%s bekommt einen großen nassen Knutscher und ist völlig hingerissen!"
+
+smite_name_rsc = pt "castigo divino"
+smite_desc_rsc = pt "Este é um comando divino usado para derrubar mortais desobedientes e patéticos.\n\nEste é um comando apenas para o Mestre do Jogo."
+smite_hit_rsc = pt "%s%s recebe um grande beijo molhado e fica completamente encantado!"

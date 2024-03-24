@@ -1,10 +1,8 @@
-// Quest description.
 truthspellquest_name_rsc = de "Jala Schüler Quest"
 truthspellquest_desc_rsc = de \
    "Parrin Aragone wird dir die Lieder von Jala beibringen, aber zuerst "
    "musst Du deine Hingabe für die Künste beweisen. Er hat dich beauftragt "
    "zu jemandem zu gehen und ein Lied zu singen."
-
 truthspellquest_nodetwo_rsc = de \
    "Parrin Aragone wird dir die Lieder von Jala beibringen, aber zuerst "
    "musst Du deine Hingabe für die Künste beweisen. Du musst ein Lied für "
@@ -13,12 +11,9 @@ truthspellquest_nodethree_rsc = de \
    "Kehre zu Parrin zurück und teile ihm mit wie dein Auftritt war."
 truthspellquest_nodefour_rsc = de \
    "Teile Parrin mit, wie Dein Auftritt war."
-
 truthspellquest_completed = de \
    "Du hast das Jala Schüler Quest abgeschlossen.  Parrin wird dir nun "
    "die Lieder Jalas beibringen."
-
-// Quest resources.
 truthquest_trigger_1 = de "Schüler"
 truthquest_trigger_2 = de "singt"
 truthquest_assign_2 = de \
@@ -50,3 +45,20 @@ truthquest_failure_4 = de \
    "Betreff: Dein Vorsingen\nDu musst ehrlicher zu Dir selbst sein um Deine "
    "Fähigkeiten einzuschätzen, wenn ich Dir die Lehren Jalas unterrichten "
    "soll."
+
+truthspellquest_name_rsc = pt "Missão de aprendizado de Jala"
+truthspellquest_desc_rsc = pt "Parrin Aragone vai te ensinar as músicas de Jala, mas primeiro você deve provar sua devoção às artes. Ele te enviou para cantar uma música, para testar sua voz."
+truthspellquest_nodetwo_rsc = pt "Parrin Aragone vai te ensinar as músicas de Jala, mas primeiro você deve provar sua devoção às artes. Você deve cantar uma música para %s, o que você pode fazer usando o comando \"emote\"."
+truthspellquest_nodethree_rsc = pt "Volte para Parrin e conte a ele como foi sua apresentação."
+truthspellquest_nodefour_rsc = pt "Diga a Parrin como foi sua apresentação."
+truthspellquest_completed = pt "Você completou a missão de aprendizado de Parrin. Parrin agora vai te ensinar as músicas de Jala."
+truthquest_trigger_1 = pt "aluno"
+truthquest_trigger_2 = pt "canta"
+truthquest_assign_2 = pt "Você está realmente pronto para aprender a magia das músicas de Jala? Se sim, você deve provar sua devoção às artes. Eu gostaria que você testasse sua voz. Vá até %NPC e ~Ising~I uma música. Qualquer música que você quiser. Depois volte para mim e me conte como foi."
+truthquest_success_2 = pt "Por minha verdade, isso é terrível. Parrin te enviou? Diga a ele para treinar tua voz, %NAME"
+truthquest_failure_2 = pt "Assunto: Sua audição vocal\nSe você é tão tímido a ponto de não cantar uma música simples, então receio que nunca se tornará um bom menestrel. Receio que não posso te ensinar os feitiços de Jala neste momento.\n\n-Parrin Aragone"
+truthquest_failure_3 = pt "Assunto: Sua audição vocal\nOnde você esteve? Não pude mais esperar por você. Receio que tenha aceitado outros alunos. Talvez eu te ensine em uma data posterior.\n\n-Parrin Aragone"
+truthquest_trigger_4 = pt "ruim"
+truthquest_assign_4 = pt "Ah, você retornou. O que acharam da sua música? Boa ou ruim?"
+truthquest_success_4 = pt "Bem, vamos trabalhar nisso. Agora abra sua mente para os caminhos de Jala; Eu vou treinar sua voz, se você estiver disposto."
+truthquest_failure_4 = pt "Assunto: Sua audição vocal\nVocê terá que ser mais honesto consigo mesmo sobre sua habilidade se eu for te ensinar os caminhos de Jala."

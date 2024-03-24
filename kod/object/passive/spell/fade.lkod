@@ -10,3 +10,10 @@ fade_off = de "Deine physische Form wird wieder sichtbar."
 fade_broke_trance = de \
    "Du hast deine Konzentration verloren und deine physische Form ist wieder "
    "sichtbar."
+
+fade_name_rsc = pt "desvanecer"
+fade_desc_rsc = pt "Dissolve temporariamente sua forma física, deixando você invisível. O feitiço dura enquanto sua concentração for mantida."
+fade_already_enchanted = pt "Você já está invisível."
+fade_on = pt "Sua forma física desaparece da existência, deixando apenas uma aparição tremeluzente."
+fade_off = pt "Sua forma física é visível mais uma vez."
+fade_broke_trance = pt "Você perde sua concentração e se torna visível novamente."

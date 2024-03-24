@@ -1,15 +1,11 @@
-// Quest description.
 riijaofferingqt_name_rsc = de "Riija Opfer Quest"
 riijaofferingqt_desc_rsc = de \
    "Der Riija Mönch hat dich eingeladen mit ihm zu singen, um Lord Riija zu stärken."
-
 riijaofferingqt_completed = de \
    "Riija hat dir temporäre Kraft verlieren, im Gegenzug zu ein wenig deiner Lebenskraft. "
    "Du hast ebenfalls einen mächtigen magischen Gegenstand erhalten. Wenn dieser an einem "
    "der Schreine in der Welt platziert wird, wird er Riija geweiht und verleiht den "
    "Zaubern Riijas mehr Kraft."
-
-// Quest resources.
 riijaoffering_assign_2 = de \
    "%NAME, Lord Riija will Dich stärken!? Willst Du mit mir singen?"
 riijaoffering_assign_3 = de \
@@ -25,3 +21,13 @@ riijaoffering_success_5 = de \
    "Siehe, der zweischneidige Segen von Riija.  Trage es in die Weld und "
    "ernte das Chaos welches es säht!  Denke an die alten Worte der Weisheit:  "
    "dies wird am morgen wirklich weh tun."
+
+riijaofferingqt_name_rsc = pt "missão da oferta a Riija"
+riijaofferingqt_desc_rsc = pt "O Monge Riija o convidou para cantar com ele, para dar força ao Senhor Riija."
+riijaofferingqt_completed = pt "Riija concedeu poder temporário a você, em troca de parte de sua essência de vida. Você também recebeu um item mágico poderoso. Quando colocado em um dos Altares localizados ao redor do mundo, o Altar será dedicado a Riija e seus feitiços terão mais poder."
+riijaoffering_assign_2 = pt "%NAME, Senhor Louco deseja fortalecê-lo. Você cantará comigo?"
+riijaoffering_assign_3 = pt "Recite estas palavras comigo: %CARGO. Sinta seu poder crescer com cada palavra falada."
+riijaoffering_trigger_3 = pt "Tuas palavras falam sabedoria através de mim, Senhor Riija"
+riijaoffering_failure_3 = pt "Assunto: Tolo!\nAquele que fica à beira de um precipício e ainda anda alegremente é tanto Deus quanto Tolo. Continue a andar, servo da aparência."
+riijaoffering_assign_4 = pt "%CARGO!"
+riijaoffering_success_5 = pt "Eis aqui, a bênção de duas faces de Riija. Leve-a para o mundo e colha o caos que ela semeia! Lembre-se destas palavras antigas de sabedoria: isso realmente vai doer amanhã."

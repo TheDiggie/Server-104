@@ -10,3 +10,13 @@ reveal_working = de \
    "%s%s ist das Ziel Deiner Konzentration. Die verborgenen Geheimnisse "
    "werden für alle sichtbar!"
 reveal_strip_misdir = de "Deine Magie durchschaut jegliche Täuschung. %s%s ist identifiziert!"
+
+reveal_name_rsc = pt "revelar"
+reveal_desc_rsc = pt \
+      "Remove todas as propriedades ocultas de um item, permitindo que qualquer um veja "
+      "suas habilidades especiais. Este feitiço só pode ser aprimorado se lançado em um item "
+      "com propriedades não reveladas. Requer dez esmeraldas para lançar."
+reveal_cant = pt "Você não consegue se concentrar em %s%s."
+reveal_working = pt \
+      "Você se concentra em %s%s, e gradualmente seus segredos se tornam evidentes para todos verem!"
+reveal_strip_misdir = pt "Seus poderes mágicos retiram as ilusões de %s%s!"

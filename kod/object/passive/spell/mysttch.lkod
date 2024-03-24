@@ -15,3 +15,13 @@ MysticTouch_notonself_rsc = de \
    "Du kannst Mystische Berührung nicht auf dich selber zaubern."
 MysticTouch_spell_intro = de \
    "Faren Level 1: Transferiert Mana von dir auf andere."
+
+MysticTouch_name_rsc = pt "toque místico"
+MysticTouch_desc_rsc = pt "Aproveita a magia de Faren para transferir energia mágica do conjurador para o alvo. "
+      "Requer cogumelos para lançar."
+MysticTouch_cast_rsc = pt "Você sente as energias mágicas de outra pessoa preenchendo seu corpo."
+MysticTouch_caster_msg_rsc = pt "Você dá parte de sua energia mágica para %s%s."
+MysticTouch_unnecessary_rsc = pt "%s%s não pode lidar com energia mágica adicional deste feitiço."
+MysticTouch_nomana_rsc = pt "Você não tem energia mágica suficiente para transferir para outra pessoa!"
+MysticTouch_notonself_rsc = pt "Você não pode lançar o toque místico em si mesmo."
+MysticTouch_spell_intro = pt "Faren Lv. 1: Dá parte da mana do conjurador para outra pessoa."

@@ -6,3 +6,15 @@ createweapon_desc_rsc = de \
    "Erschafft eine Waffe. Benötigt nichts als deinen starken Willen."
 createweapon_spell_intro = de \
    "Kraanan Lv. 1: Erschafft eine Auswahl an Waffen um deine Feinde zu töten."
+
+createweapon_cast_rsc = pt "%s%s aparece."
+createweapon_inv_full_rsc = pt \
+    "%s%s aparece no ar diante de você, mas como você não consegue " 
+    "carregá-lo, ele cai no chão com um estrondo alto."
+createweapon_name_rsc = pt "criar arma"
+createweapon_icon_rsc = pt "icremace"
+createweapon_desc_rsc = pt \
+    "Materializa uma arma. Requer apenas uma vontade violenta."
+createweapon_spell_intro = pt \
+    "Kraanan Lv. 1: Cria uma variedade de armas para serem usadas " 
+    "na derrota de seus inimigos."

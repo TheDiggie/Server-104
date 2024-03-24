@@ -1,2 +1,5 @@
 unarmed_name_rsc = de "Unarmed Combat"
 unarmed_desc_rsc = de "This is a hand to hand combat move."
+
+unarmed_name_rsc = pt "Combate Desarmado"
+unarmed_desc_rsc = pt "Este é um movimento de combate corpo a corpo."

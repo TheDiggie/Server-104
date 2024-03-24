@@ -2,3 +2,8 @@ BlastOfFire_name_rsc = de "Feuersbrunst"
 BlastOfFire_desc_rsc = de \
    "Entfesselt Farens Feuerbrunst gegen ein Ziel in kurzer Distanz. "
    "Benötigt zwei rote Pilze und eine Holunderbeere. "
+
+BlastOfFire_name_rsc = pt "explosão de fogo"
+BlastOfFire_desc_rsc = pt \
+   "Libera a raiva de Faren como uma explosão de chamas direcionada a um alvo em curto alcance. " 
+   "Requer cogumelos vermelhos e elderberries para conjurar."

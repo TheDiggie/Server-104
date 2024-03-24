@@ -12,3 +12,13 @@ defile_max = de \
    "Wenn Du noch mehr unheimliche Energie in den Zauber stecken würdest, "
    "wüsste man nicht was passieren könnte!"
 defile_not_good = de "Qor wird nur die mit einem guten Herzen ernten."
+
+defile_name_rsc = pt "profanar"
+defile_desc_rsc = pt \
+    "Neste ritual mais sombrio, o próprio espírito de Qor é invocado para profanar o cadáver de um monstro ou jogador, transformando carne e sangue em energia mágica para o conjurador. Requer uma asa de fada e o abatido."
+defile_cast_rsc = pt "Sua náusea denuncia a iminência de Qor."
+defile_corpse_gone = pt \
+    "Seu feitiço de profanação falha porque o cadáver já retornou à terra."
+defile_max = pt \
+    "Se você convidasse mais energia eldritch para dentro de você, não se sabe o que aconteceria!"
+defile_not_good = pt "Qor só pode colher as almas dos bons de coração."

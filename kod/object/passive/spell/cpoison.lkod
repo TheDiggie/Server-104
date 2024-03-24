@@ -8,3 +8,15 @@ curepoison_abates = de "Du spürst das, das Gift nachlässt."
 curepoison_spell_intro = de \
    "Shal'ill Level 2: Reine, heilende Kraft saugt das Gift aus dem Blut des "
    "Ziels."
+
+curepoison_name_rsc = pt "cura de veneno"
+curepoison_desc_rsc = pt \
+    "Energia pura e curativa combate os efeitos do veneno no alvo. " 
+    "Requer duas ervas e uma amora para ser lançado."
+curepoison_on = pt \
+    "O poder de Shal'ille luta contra os efeitos do veneno em seu sangue."
+curepoison_unnecessary = pt "%s%s não está sofrendo de veneno."
+curepoison_abates = pt "Você sente o veneno enfraquecer."
+curepoison_spell_intro = pt \
+    "Shal'ille Lv. 2: Combate os efeitos de quaisquer venenos que possam fluir " 
+    "através do corpo do alvo."

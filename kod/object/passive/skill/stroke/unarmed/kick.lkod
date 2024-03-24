@@ -5,3 +5,10 @@ kick_player_hit_something = de "%sDu trittst %s%s hart in die Leiste."
 kick_player_killed_something = de \
    "%s%s ist auf den Boden geworfen worden und steht nicht mehr auf."
 kick_player_was_killed = de "%s%s's tritt irgendwas keine ahnung."
+
+kick_name_rsc = pt "Chute"
+kick_desc_rsc = pt "Este é um movimento de combate danoso, mas custoso."
+kick_player_was_hit = pt "%s%s te chuta nas partes íntimas."
+kick_player_hit_something = pt "%sVocê chuta %s%s com força na virilha."
+kick_player_killed_something = pt "%s%s é derrubado pelo seu chute - e não se levanta."
+kick_player_was_killed = pt "O chute de %s%s te faz encontrar o seu fim."

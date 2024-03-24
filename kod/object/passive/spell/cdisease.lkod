@@ -5,3 +5,10 @@ curedisease_desc_rsc = de \
 curedisease_on = de \
    "Die Kraft Shal'ills brennt die Krankheiten aus deinem Körper."
 curedisease_abates = de "Du merkst, dass die Heilung nachlässt."
+
+curedisease_name_rsc = pt "cura de doença"
+curedisease_desc_rsc = pt \
+    "Energia pura e curativa purifica a doença do alvo. " 
+    "Requer duas ervas e duas amoras para ser lançado."
+curedisease_on = pt "O poder de Shal'ille queima a doença do seu corpo."
+curedisease_abates = pt "Você sente a doença enfraquecer."

@@ -18,3 +18,21 @@ earthquake_cast_rsc = de \
 earthquake_hit_rsc = de \
    "%s%s stößt einen erschrockenen Schmerzschrei aus, als die Erde unter "
    "den Füßen bebt.%s$0"
+
+earthquake_name_rsc = pt "terremoto"
+earthquake_desc_rsc = pt \
+   "Move a terra violentamente causando dano a todos os seres na sala. " 
+   "Quanto mais experiente o conjurador, melhor o dano é direcionado ao alvo e longe do conjurador. " 
+   "Requer cogumelos vermelhos e cogumelos roxos para conjurar."
+earthquake_first_rsc = pt \
+   "Você ergue os braços para o céu e invoca a fúria de Faren!"
+earthquake_third_rsc = pt \
+   "%s%s ergue %s braços para o céu e invoca a fúria de Faren!"
+earthquake_killed_someone = pt \
+   "Os tremores derrubam %s%s no chão - %s não se levanta!"
+earthquake_killed_self = pt \
+   "Você tropeça enquanto os tremores o derrubam no chão, e tudo fica escuro..."
+earthquake_cast_rsc = pt \
+   "A terra convulsiona sob seus pés, jogando você ao redor como um boneco de pano."
+earthquake_hit_rsc = pt \
+   "%s%s solta um grito de dor e surpresa enquanto a terra convulsiona sob %s pés."

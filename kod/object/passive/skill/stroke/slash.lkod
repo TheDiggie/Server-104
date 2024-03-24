@@ -3,3 +3,7 @@ slash_desc_rsc = de "Das Zuschlagen ist der gewöhnlichste Waffenhieb."
 slash_skill_intro = de \
    "Waffenfertigkeiten Zirkel 1: Die gewöhnlichste Fertigkeit für den Umgang "
    "mit Waffen aller Art. Ein Muss für jeden Kämpfer."
+
+slash_name_rsc = pt "corte"
+slash_desc_rsc = pt "O corte é a habilidade de arma mais comum. Ajuda você a acertar com armas corpo a corpo."
+slash_skill_intro = pt "Forjaria de Armas Nível 1: A habilidade mais básica do combate armado. Um must para aqueles que vivem pela lâmina."

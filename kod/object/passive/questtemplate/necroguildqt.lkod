@@ -1,20 +1,15 @@
-// Quest description.
 necroguildquest_name_rsc = de "Königin Venya'cyr Auferstehungs Quest"
 necroguildquest_desc_rsc = de \
    "Die Überreste von Königin Venya'cyr haben zu Dir geflüstert, und "
    "dir mitgeteilt, wie sehr sich sich danach sehnt zurück zu finden "
    "in diese Welt. Wirst Du ihr helfen?"
-
 necroguildquest_nodethree_rsc = de \
    "Um der Königin zu helfen, musst Du zu ihren Überresten zurückkehren, und"
    "ihr das \"Blut der Unschuldigen\" anbieten.  Finde diesen Gegenstand, "
    "und biete ihn den Überresten der Königin an."
-
 necroguildquest_completed_rsc = de \
    "Du hast erfolgreich die Königin Venya'cyr wiederbelebt, und bist nun ein "
    "treuer untoter Anhänger von ihr."
-
-// Quest resources.
 necroguild_assign_2 = de \
    "Ich sehne mich danach, wiederzukehren auf die Ebene der Existenz, mein "
    "dunkles Kind.  Wirst Du mir helfen wieder aufzusteigen?"
@@ -29,3 +24,13 @@ necroguild_success_3 = de \
    "Ah!  LEBEN!!  Ich wurde, zusammen mit dem dunklen Orden der Nekromanten "
    "wiedergeboren!  Für Deinen treuen Dienst, ernenne ich Dich zum Meister "
    "des Ordens."
+
+necroguildquest_name_rsc = pt "missão de ressuscitar a Rainha Venya'cyr"
+necroguildquest_desc_rsc = pt "Os restos fantasmagóricos da Rainha Venya'cyr sussurraram para você e lhe contaram seu desejo de retornar a este plano de existência. Você irá ajudá-la?"
+necroguildquest_nodethree_rsc = pt "Para ajudar no retorno da Rainha Venya'cyr a este plano de existência, você deve obter o 'sangue dos inocentes'. Encontre este item e ofereça-o aos restos fantasmagóricos."
+necroguildquest_completed_rsc = pt "Você ressuscitou com sucesso a Rainha Venya'cyr dos mortos e agora é seu servo morto-vivo leal."
+necroguild_assign_2 = pt "Anseio retornar ao teu plano de existência, meu filho das trevas. Tu me ajudarás a ressurgir?"
+necroguild_trigger_2 = pt "sim"
+necroguild_assign_3 = pt "Excelente. Minha alma anseia pelo sangue dos inocentes. Traga-me isso, para que eu possa governar Meridian novamente!"
+necroguild_failure_3 = pt "Assunto: você falhou.\nVocê me decepcionou. Buscarei outro para me trazer de volta a este mundo."
+necroguild_success_3 = pt "Ah! VIDA!! Eu, junto com minha Ordem Negra de Necromantes, renasci! Por seu fiel serviço a mim, eu o nomeio Mestre da Ordem."

@@ -176,7 +176,7 @@ messages:
 
          Send(apply_on,@SubtractNumber,#number=1);
 
-         Send(self,@SubtractNumber,#number=50);
+         Send(self,@SubtractNumber,#number=30);
 
       }
       

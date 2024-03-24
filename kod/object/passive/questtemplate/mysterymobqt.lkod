@@ -1,39 +1,29 @@
-// Quest description.
 mysterymobquest_name_rsc = de "Mysteriöses Monster Quest"
 mysterymobquest_desc_rsc = de \
    "Die Schneiderin hatte vor kurzem ein paar Insektenprobleme. Sie hat ein großes "
    "Insekt in ihrem Lager gefunden, und während Sie versucht hat es mit Feuer und Rauch "
    "zu verscheuchen, hat es sich davon gemacht mit eines ihrer Schnittmuster"
    "Finde das Insekt und bring das Schnittmuster zurück."
-
 mysterymobquest_node_two_rsc = de \
    "%s%s hat mitgeteilt, das %s er ein paar \"Insekten\" Probleme hat, "
    "und%s dich belohnen wird, wenn Du ihm hilfst%s!"
-   
 mysterymobquest_node_three_rsc = de \
    "%s%s hat ein großes Insektenproblem in seinem Lager%s. %s hat es mit "
    "Feuer und Rauch vertrieben, aber als der Rauch abgenommen hat, bemerkte "
    "er,%s das ein %s\"Schnittmuster\" fehlt"
-   
-   
 mysterymobquest_kill_rsc = de \
    "%s%s hat dich gefragt, das fehlende %sSchnittmuster zu finden. "
    "Leider hat %s nicht gesehen, um welches Insekt es sich gehandelt hat. "
    "Geh und töte die Insekten in den umliegenden Karten, vielleicht ist es "
    "noch nicht so weit gekommen?"
-
-   
 mysterymobquest_return_rsc = de \
    "Du hast das fehlende Schnittmuster gefunden! Bringe es zurück zu "
    "%s%s für deine Belohnung!"
-
 mysterymobquest_completed_rsc = de \
    "Du hast das Mysteriöses Monster erschlagen, und das Schnittmuster "
    "zurück gebracht. Dafür hast du eine Schülerrobe erhalten, die dir "
    "viele Vorteile und eine höhere Zauberkraft in einer bestimmten Schule "
    "Meridians gibt."
-   
-// Quest resources.
 mysterymonster_assign_2 = de \
    "Würdest Du etwas für mich machen? Ich werde Dich belohnen. Ich habe "
    "ein Insektenproblem, wirklich"
@@ -57,3 +47,18 @@ mysterymonster_failure_4 = de \
    "Betreff: Fehlende Schnittmuster\nIch habe eine weiter Kopie von dem fehlenden "
    "Schnittmuster gefunden, also vergiss einfach das was ich verloren habe.  "
    "Ich danke Dir das Du es versucht hast."
+
+mysterymobquest_name_rsc = pt "missão do monstro misterioso"
+mysterymobquest_desc_rsc = pt "A alfaiate tem tido problemas com insetos ultimamente. Ela encontrou um inseto grande de algum tipo aninhado em sua área de armazenamento e, embora ela tenha conseguido afugentá-lo com fogo e fumaça, ele fugiu com um de seus modelos de vestido especiais. Encontre o inseto, mate-o e recupere o modelo."
+mysterymobquest_node_two_rsc = pt "%s%s mencionou que %s tem tido problemas com \"insetos\", e que %s irá recompensá-lo se você puder ajudar %s."
+mysterymobquest_node_three_rsc = pt "%s%s encontrou um inseto grande de algum tipo aninhado na área de armazenamento de %s. %s conseguiu afugentá-lo com fogo e fumaça, mas quando a fumaça se dissipou, %s percebeu que um dos \"modelos de vestido\" de %s estava faltando."
+mysterymobquest_kill_rsc = pt "%s%s pediu para você recuperar o modelo de vestido perdido de %s. Provavelmente ainda está preso ao exoesqueleto do inseto, mas %s não viu que tipo de inseto era. Mate insetos na área circundante e veja se algum deles tem o modelo de vestido."
+mysterymobquest_return_rsc = pt "Você encontrou o modelo de vestido perdido. Devolva-o para %s%s em troca de uma recompensa."
+mysterymobquest_completed_rsc = pt "Você matou o monstro misterioso e devolveu o modelo de vestido. Em troca, você recebeu uma túnica de discípulo, que adicionará poder aos feitiços que você lançar. As túnicas de discípulo trazem a insígnia de uma escola específica e fornecem mais poder mágico aos feitiços dessa escola."
+mysterymonster_assign_2 = pt "Gostarias de fazer algo por mim? Eu te recompensarei. Estou com problemas com insetos, é verdade."
+mysterymonster_trigger_2 = pt "inseto"
+mysterymonster_assign_3 = pt "Na verdade, algum inseto grande estava aninhado em minha área de armazenamento por um tempo. Consegui forçá-lo a sair construindo uma pequena fogueira e soprando fumaça dentro. Quando a fumaça se dissipou, procurei meu estoque especial de modelos de vestido, e um estava faltando!"
+mysterymonster_trigger_3 = pt "modelo"
+mysterymonster_assign_4 = pt "Eu ~Inecessito~I desse modelo de volta, e aposto que ainda está preso ao exoesqueleto desse inseto. Poderias recuperá-lo para mim? O problema é que, com toda aquela fumaça, eu não consegui ver quando ele fugiu que tipo de inseto era. Não pode estar muito longe, no entanto."
+mysterymonster_success_4 = pt "Abençoado sejas, criança! Aqui, esta túnica é de um dos meus outros modelos especiais. Tem um design muito antigo mesmo. Use-a bem, amigo."
+mysterymonster_failure_4 = pt "Assunto: Modelo de vestido perdido\nEncontrei outra cópia do modelo de vestido perdido, então esqueça o que perdi. Agradeço-lhe por tentar, no entanto."

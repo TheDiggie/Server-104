@@ -5,3 +5,7 @@ dodge_desc_rsc = de \
 dodge_skill_intro = de \
    "Waffenfertigkeiten Level 2: Das Ausweichen ist eine grundlegende Fähigkeit, "
    "die es Personen erlaubt Treffern im Gefecht auszuweichen."
+
+dodge_name_rsc = pt "esquivar"
+dodge_desc_rsc = pt "Esquivar é uma habilidade básica que permite às pessoas evitar golpes em combate."
+dodge_skill_intro = pt "Artes de Combate Nv. 2: A habilidade de evitar golpes em combate e, assim, permanecer vivo por mais tempo."

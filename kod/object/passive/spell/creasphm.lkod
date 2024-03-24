@@ -6,4 +6,11 @@ createspiritualhammer_desc_rsc = de \
    "Materialisiert einen heiligen Hammer. Der Zauber benötigt einen Orkzahn und "
    "zwei Smaragde."
    
-  
+createspiritualhammer_cast_rsc = pt "Um martelo espiritual aparece."
+createspiritualhammer_inv_full_rsc = pt \
+    "Um martelo espiritual aparece no ar diante de você, " 
+    "mas antes que você possa largar algo e pegá-lo, ele desaparece."
+createspiritualhammer_name_rsc = pt "martelo espiritual"
+createspiritualhammer_desc_rsc = pt \
+    "Materializa um martelo espiritual. " 
+    "Requer esmeraldas e dentes de orc para ser lançado."

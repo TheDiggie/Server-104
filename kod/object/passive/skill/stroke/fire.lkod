@@ -13,3 +13,12 @@ fire_new_ammo = de \
 fire_skill_intro = de \
    "Waffenfertigkeit Zirkel 3: Der Schlüssel, um alle Fernwaffen zu beherrschen."
 fire_no_ammo = de "Du hast keine Munition für diese Waffe!"
+
+fire_name_rsc = pt "fogo"
+fire_desc_rsc = pt "O fogo é a técnica mais básica usada para disparar uma arma de mísseis. Não é muito difícil de aprender, mas apenas aqueles com boa mira serão capazes de dominar essa habilidade."
+fire_only_missile_weapon = pt "Você só pode usar a habilidade 'fogo' com uma arma de mísseis em mãos."
+fire_need_weapon = pt "Você deve ter uma arma de mísseis em mãos para 'disparar' contra alguém."
+fire_wrong_ammo = pt "Você não tem a munição adequada equipada para usar com %s%s."
+fire_new_ammo = pt "Você alcança sua %s e coloca uma flecha para um tiro."
+fire_skill_intro = pt "Artesanato de Armas Nv. 4: Chave para dominar qualquer tipo de arma de mísseis."
+fire_no_ammo = pt "Você não tem munição pronta para esta arma!"

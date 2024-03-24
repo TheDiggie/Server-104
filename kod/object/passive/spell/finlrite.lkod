@@ -15,3 +15,10 @@ FinalRites_hurt = de \
 FinalRites_hurt_necro = de \
    "%s%s wirft eine handvoll Staub in die Luft und es fällt auf dich hinab "
    "und verbrüht dich wie heißer Regen"
+
+FinalRites_name_rsc = pt "ritos finais"
+FinalRites_desc_rsc = pt "Este é o longo e formal cerimônia realizada em funerais para ajudar a alma recentemente falecida a passar suavemente para o Submundo. Também pode ser usado para forçar os mortos-vivos próximos de volta às suas sepulturas, onde pertencem."
+FinalRites_success = pt "Você esmaga os reagentes em um pó fino e, com um murmúrio, lança o punhado de poeira para o céu."
+FinalRites_success_others = pt "Com um murmúrio solene, %s%s lança um punhado de poeira para o céu."
+FinalRites_hurt = pt "%s%s grita de dor enquanto a areia cai como uma chuva sagrada."
+FinalRites_hurt_necro = pt "%s%s lança um punhado de poeira no ar, e ela cai sobre você como uma chuva escaldante."

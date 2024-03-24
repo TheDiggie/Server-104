@@ -1,15 +1,11 @@
-// Quest description.
 qorofferingqt_name_rsc = de "Qor Opfer Quest"
 qorofferingqt_desc_rsc = de \
    "Priesterin Zuxana hat Dich eingeladen mit ihr zu singen, um die Herrin zu stärken."
-
 qorofferingqt_completed = de \
    "Qor hat dir temporäre Kraft verlieren, im Gegenzug zu ein wenig deiner Lebenskraft. "
    "Du hast ebenfalls einen mächtigen magischen Gegenstand erhalten. Wenn dieser an einem "
    "der Schreine in der Welt platziert wird, wird er Qor geweiht und verleiht den "
    "Zaubern Qors mehr Kraft."
-
-// Quest resources.
 qoroffering_assign_2 = de \
    "`r%NAME, dunkler Anhänger unserer Herrin. Wirst du Dich selber aufgeben, "
    "damit unsere Herrin stärker werden kann?"
@@ -29,3 +25,13 @@ qoroffering_assign_4 = de "`r%CARGO!"
 qoroffering_success_5 = de \
    "`rAh, das ist ein großer Tag für Qor!  Geh nun und trage die Kraft unserer "
    "Herrin mit in die ganze Welt!"
+
+qorofferingqt_name_rsc = pt "missão da oferta a Qor"
+qorofferingqt_desc_rsc = pt "A Sacerdotisa Zuxana o convidou para cantar com ela, para dar força à sua Senhora."
+qorofferingqt_completed = pt "Você deu parte de sua essência de vida para fortalecer sua Senhora. Em troca, você recebeu um item mágico poderoso. Quando colocado em um dos Altares localizados ao redor do mundo, o Altar será dedicado a Qor e seus feitiços terão mais poder."
+qoroffering_assign_2 = pt "`r%NAME, devoto das trevas de nossa Senhora da Lua Sangrenta, você dará de si mesmo para que sua Senhora possa ser mais forte?"
+qoroffering_assign_3 = pt "`rAdore comigo, então. Juntos, vamos tirar de nossa própria essência de vida para criar um símbolo do poder de nossa Senhora. Raramente as estrelas estão tão bem alinhadas para o ritual sombrio que realizaremos, então devemos falar rapidamente. Incante essas palavras comigo: %CARGO"
+qoroffering_trigger_3 = pt "Pela luz de uma lua sangrenta, eu te conjuro, Qor, Senhora das Trevas"
+qoroffering_failure_3 = pt "Assunto: Tolo!\nO tempo se esgotou, e agora ambos sofremos por sua hesitação. O ritual iniciado mas deixado incompleto tirou um pedaço de nosso poder. Eu não estou satisfeito com você, verme."
+qoroffering_assign_4 = pt "`r%CARGO!"
+qoroffering_success_5 = pt "`rAh, este é um grande dia para Qor! Vá agora, leve o poder de nossa Senhora para o mundo!"

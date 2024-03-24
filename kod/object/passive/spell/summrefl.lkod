@@ -11,3 +11,10 @@ summonreflection_limit_rsc = de \
    "Du hast bereits die maximale Anzahl an Spiegelbilder."
 reflection_cannot_cast_here = de \
    "Es ist nicht erlaubt hier ein Spiegelbild zu erzeugen."
+
+summonreflection_cast_rsc = pt "Uma imagem espelhada de você mesmo(a) aparece."
+summonreflection_name_rsc = pt "reflexão"
+summonreflection_desc_rsc = pt "Invoca uma criatura que espelha sua própria aparência. Note que você é responsável por quaisquer ações de sua reflexão, e que eles são notoriamente difíceis de controlar. Requer dois firesand e dois uncut seraphym para lançar."
+summonreflection_failed_rsc = pt "Há muita magia de invocação concentrada aqui para invocar uma reflexão."
+summonreflection_limit_rsc = pt "Você puxa suas reflexões para você."
+reflection_cannot_cast_here = pt "Você não tem permissão para criar uma reflexão aqui."

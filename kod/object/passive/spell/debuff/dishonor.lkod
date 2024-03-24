@@ -12,3 +12,11 @@ MarkOfDishonor_already_enchanted = de "%s%s ist bereits geächtet."
 MarkOfDishonor_no_self = de \
    "Du kannst nicht auf Dich selber zaubern! Wenn Du wirklich gesetzeslos "
    "wärst, könntest Du Shal'ill nicht anwenden."
+
+MarkOfDishonor_name_rsc = pt "marca da desonra"
+MarkOfDishonor_desc_rsc = pt "Permite ao conjurador lançar o desprazer de Shal'ille sobre um alvo. Impedirá que a energia vital do alvo exceda o máximo do corpo. Para alvos malignos, Shal'ille causará uma perda de vigor. Requer um esmeralda para conjurar."
+MarkOfDishonor_start = pt "Shal'ille o seleciona para punição. Suas energias vitais diminuem."
+MarkOfDishonor_stop = pt "A atenção de Shal'ille se volta para assuntos mais urgentes."
+MarkOfDishonor_success = pt "Os olhos de Shal'ille se voltam para %s%s."
+MarkOfDishonor_already_enchanted = pt "%s%s já está marcado."
+MarkOfDishonor_no_self = pt "Você não pode lançar a marca da desonra sobre si mesmo; se você fosse verdadeiramente desonroso, não seria capaz de conjurar os feitiços de Shal'ille."

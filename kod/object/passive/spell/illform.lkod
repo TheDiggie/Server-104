@@ -6,3 +6,9 @@ illusionaryform_already_affected = de "Du bist bereits eine Illusionsform."
 illusionaryform_on = de "Du nimmst die Gestalt von %s%s an."
 illusionaryform_off = de \
    "Die Illusionsform verschwindet und du siehst wieder aus wie du selbst."
+
+illusionaryform_name_rsc = pt "forma ilusória"
+illusionaryform_desc_rsc = pt "O toque de Riija muda sua aparência para outra aleatoriamente. Requer musgo de teia e samambaia arco-íris para lançar."
+illusionaryform_already_affected = pt "Sua forma já está modificada."
+illusionaryform_on = pt "Você assume a forma de %s%s."
+illusionaryform_off = pt "Sua forma ilusória desaparece; você volta a parecer você mesmo."

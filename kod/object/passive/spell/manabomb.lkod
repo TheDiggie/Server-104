@@ -15,3 +15,11 @@ manabomb_took_some = de \
 manabomb_took_all = de \
    "%s%s schreit auf, als deine Magische Bombe explodierte, und hinterlässt "
    "deinen Gegner ohne jegliches Mana!%s$0%s$0"
+
+manabomb_name_rsc = pt "bomba de mana"
+manabomb_desc_rsc = pt "Inicia uma explosão de calor branco que queima todo o mana do conjurador e consome metade desse valor de todos os outros na sala. Requer dois safiras para lançar."
+manabomb_cast = pt "O mana de %s%s explode violentamente!"
+manabomb_hit_some = pt "Você sente seu espírito sendo arrancado do seu corpo, queimando ~b~B%i~B~n de mana em uma reação em cadeia mágica."
+manabomb_hit_all = pt "Todo o seu mana queima em uma reação em cadeia mágica!"
+manabomb_took_some = pt "%s%s grita enquanto sua bomba de mana queima o espírito de %s, removendo ~b~B%i~B~n de mana!"
+manabomb_took_all = pt "%s%s grita enquanto sua bomba de mana queima o espírito de %s, deixando %s desprovido de mana!"

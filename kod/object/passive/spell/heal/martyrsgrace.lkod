@@ -1,28 +1,44 @@
-   martyrsgrace_name_rsc = de "Anmut des Märtyrers"
-   martyrsgrace_desc_rsc = de \
-      "In einem Akt bedingungslosen Mitgefühls und ultimativer Barmherzigkeit teilt "
-      "der Zaubernde die sichtlichen Schmerzen seiner Verbündeten und bewegt damit "
-      "die Göttin Shal'ille dazu, ihnen zur Hilfe zu kommen und ihre Wunden zu heilen.  "
-      "Die Erfahrung eines Martyriums kann dazu führen, dass der Zaubernde seinen Geist "
-      "befreien und somit neue mentale Kräfte freisetzen kann.  Der Zauber benötigt "
-      "einen geschliffenen Seraphym."
+martyrsgrace_name_rsc = de "Anmut des Märtyrers"
+martyrsgrace_desc_rsc = de \
+   "In einem Akt bedingungslosen Mitgefühls und ultimativer Barmherzigkeit teilt "
+   "der Zaubernde die sichtlichen Schmerzen seiner Verbündeten und bewegt damit "
+   "die Göttin Shal'ille dazu, ihnen zur Hilfe zu kommen und ihre Wunden zu heilen.  "
+   "Die Erfahrung eines Martyriums kann dazu führen, dass der Zaubernde seinen Geist "
+   "befreien und somit neue mentale Kräfte freisetzen kann.  Der Zauber benötigt "
+   "einen geschliffenen Seraphym."
+martyrsgrace_cast_rsc = de \
+   "%s%s teilt deinen Schmerz und stellt damit ~g~B%i~B~n Lebenspunkte wieder her."
+martyrsgrace_sacrifice_rsc = de \
+   "Du teilst die Schmerzen deiner Verbündeten und opferst ~r~B%i~B~n Lebenspunkte."
+martyrsgrace_mana_rsc = de \
+   "Dein Martyrium erfrischt deine Sinne und gewährt dir ~b~B%i~B~n Manapunkte."
+martyrsgrace_notargetshurt_rsc = de \
+   "Keiner deiner Verbündeten scheint verwundet zu sein. Vielleicht solltest du deine "
+   "Entscheidung noch einmal überdenken."
+martyrsgrace_notargetsworthy_rsc = de \
+   "Du bist dir ziemlich sicher, dass keiner der zwielichtigen Gestalten in deiner "
+   "Umgebung es wert ist, sich für ihn zu opfern."
+martyrsgrace_notargetsaround_rsc = de \
+   "Irgendwie wäre es ziemlich sinnlos sich zu opfern, wenn keiner hinsieht."
 
-   martyrsgrace_cast_rsc = de \
-      "%s%s teilt deinen Schmerz und stellt damit ~g~B%i~B~n Lebenspunkte wieder her."
-
-   martyrsgrace_sacrifice_rsc = de \
-      "Du teilst die Schmerzen deiner Verbündeten und opferst ~r~B%i~B~n Lebenspunkte."
-
-   martyrsgrace_mana_rsc = de \
-      "Dein Martyrium erfrischt deine Sinne und gewährt dir ~b~B%i~B~n Manapunkte."
-      
-   martyrsgrace_notargetshurt_rsc = de \
-      "Keiner deiner Verbündeten scheint verwundet zu sein. Vielleicht solltest du deine "
-      "Entscheidung noch einmal überdenken."
-
-   martyrsgrace_notargetsworthy_rsc = de \
-      "Du bist dir ziemlich sicher, dass keiner der zwielichtigen Gestalten in deiner "
-      "Umgebung es wert ist, sich für ihn zu opfern."
-
-   martyrsgrace_notargetsaround_rsc = de \
-      "Irgendwie wäre es ziemlich sinnlos sich zu opfern, wenn keiner hinsieht."
+martyrsgrace_name_rsc = pt "graça do mártir"
+martyrsgrace_desc_rsc = pt \
+   "Em uma exibição de compaixão e empatia ilimitadas, o lançador compartilha "
+   "do sofrimento visível de seus aliados, compelindo Shal'ille a vir em "
+   "seu auxílio e curar suas feridas. A experiência do martírio pode libertar "
+   "e rejuvenescer a mente do lançador. Requer serafim polido para lançar."
+martyrsgrace_cast_rsc = pt \
+   "%s%s compartilha sua dor, restaurando ~g~B%i~B~n pontos de vida."
+martyrsgrace_sacrifice_rsc = pt \
+   "Você compartilha a dor de seus aliados, sacrificando ~r~B%i~B~n pontos de vida."
+martyrsgrace_mana_rsc = pt \
+   "Seu martírio deixa você com uma sensação de clareza intensificada, restaurando "
+   "~b~B%i~B~n pontos de mana."
+martyrsgrace_notargetshurt_rsc = pt \
+   "Todos os seus aliados parecem estar perfeitamente saudáveis. Você pode querer reconsiderar "
+   "seu martírio."
+martyrsgrace_notargetsworthy_rsc = pt \
+   "Você tem certeza de que nenhuma das criaturas desprezíveis ao seu redor é digna "
+   "de seu martírio."
+martyrsgrace_notargetsaround_rsc = pt \
+   "Seu martírio seria bastante inútil sem ninguém por perto para vê-lo."

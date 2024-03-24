@@ -1,4 +1,3 @@
-// Quest description.
 shalquest_name_rsc = de "Shal'ill Schüler Quest"
 shalquest_desc_rsc = de \
    "Priesterin Xiana hat dich beauftragt zu %s zu gehen und folgende Worte zu sprechen"
@@ -6,15 +5,11 @@ shalquest_desc_rsc = de \
    "Not und unserer Trauer. Ich verzeihe euch und euren Jüngern. Euer Leben "
    "ist dem Krieg gewidmet doch niemand anderes als die Gütige selbst wird "
    "euch nach eurem Tode richten.\".  Kehre zurück, wenn Du den Auftrag erledigt hast."
-
 shalquest_node_three_rsc = de \
    "Kehre zurück zu Priesterin Xiana und teile ihr mit, dass der Auftrag erledigt ist"
-
 shalquest_completed = de \
    "Du hast das Shal'ill Schüler Quest abgeschlossen.  Du bist nun Schüler Shal'ills, und "
    "die Priesterin wird Dir nun weitere Zauber beibringen. "
-
-// Quest resources.
 shalilledisciple_trigger = de \
    "Ihr und Euresgleichen, empfanget die Reinheit welches uns leitet in unserer "
    "Not und unserer Trauer. Ich verzeihe euch und euren Jüngern. Euer Leben "
@@ -35,8 +30,6 @@ shalilledisciple_failure = de \
    "des Lebens. Suche in Deinem Herzen und finde den Makel. Bitte komm zu "
    "mir zurück und wir werden unsere Reise auf dem Weg zur Harmonie von Neuem "
    "beginnen."
-
-// NPC responses.
 shaldisc_qorpr_resp = de \
    "~kPriesterin Zuxana sagt, \"~r~IJa, ich vermute, für Qor ist die Zeit gekommen, Erlösung zu "
    "suchen. Du bist der Schlüssel für ihre Rettung. Schließe dich unserer Gemeinde an, und "
@@ -51,3 +44,11 @@ shaldisc_duke_resp = de \
    "~kHerzog Akardius lacht und sagt, \"~B~bSicherlich meinst Du das nicht ernst?  "
    "Ich brauche keine Vergebung.  Krieche zurück in Deinen Templel, Dein Tod ist Dir "
    "sicher.~B~k\""
+
+shalquest_name_rsc = pt "Missão do discípulo de Shal'ille"
+shalquest_desc_rsc = pt "A Sacerdotisa Xiana pediu-lhe para ir a %s e dizer as palavras: \"Os caminhos da violência e da destruição endureceram nosso povo. É hora de avançar em direção à gentileza e à paz. Eu começarei esse processo concedendo perdão por suas ações. Por favor, aceite minha bênção.\". Retorne quando tiver completado esta tarefa."
+shalquest_node_three_rsc = pt "Volte para a Sacerdotisa Xiana e informe que a tarefa foi concluída."
+shalquest_completed = pt "Você completou a missão do discípulo de Shal'ille. Você é um fiel seguidor de Shal'ille, e a Sacerdotisa Xiana agora lhe ensinará feitiços mais poderosos."
+shalilledisciple_assign = pt "`bVocê deseja aprender mais sobre os caminhos suaves e curativos de nossa boa Senhora. Você deve enfrentar o templo de %NPC e proclamar sua disposição em perdoar a violência e brutalidade deles. Cure-os, se puder. Diga: \"Os caminhos da violência e da destruição endureceram nosso povo. É hora de avançar em direção à gentileza e à paz. Eu começarei esse processo concedendo perdão por suas ações. Por favor, aceite minha bênção.\" Então, retorne e me diga que você fez o que pedi."
+shalilledisciple_success = pt "`bAbençoado seja este dia. Hoje há o nascimento de outra alma se enchendo da luz de Shal'ille. Procure-me quando estiver pronto para aprender mais do conhecimento e feitiços da Mãe Abençoada. Você é digno."
+shalilledisciple_failure = pt "Assunto: Mantenha o coração, filho de Shal'ille\nO fracasso faz parte da vida. Procure em seu coração e encontre a mancha. Por favor, retorne para mim e então começaremos nossa jornada pelo caminho da harmonia mais uma vez."

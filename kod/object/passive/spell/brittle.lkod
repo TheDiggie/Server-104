@@ -12,3 +12,19 @@ brittle_cast_rsc = de \
 brittle_succeed = de \
    "Deine Augen richten sich gebannt auf %s%s. %s wird durch Farens Magie "
    "schwächer."
+
+brittle_name_rsc = pt "quebradiço"
+brittle_desc_rsc = pt \
+    "Envelhece a arma do alvo em muitos anos, tornando-a frágil e propensa a quebrar. " 
+    "Requer três cogumelos mágicos e dois cogumelos roxos para lançar."
+brittle_nothing = pt \
+    "Apesar de toda a sua concentração mística, nada parece acontecer."
+brittle_no_weapon = pt \
+    "%s%s não está empunhando nada que você possa danificar."
+brittle_hunter_sword = pt \
+    "A Espada da Caça de %s%s repele seu feitiço."
+brittle_cast_rsc = pt \
+    "Os olhos de %s%s se concentram intensamente em sua arma. Sua %s fica " 
+    "com uma aparência mais opaca."
+brittle_succeed = pt \
+    "Você concentra intensamente seus olhos na %s de %s%s, e ela fica sem brilho."

@@ -4,3 +4,7 @@ BrawlingProficiency_desc_rsc = de \
 Brawl_skill_intro = de \
    "Waffenfertigkeiten Level 2: Dies erlaubt es dem Kämpfer, unbewaffnet "
    "besser zu kämpfen."
+
+BrawlingProficiency_name_rsc = pt "brigas"
+BrawlingProficiency_desc_rsc = pt "Isso permite ao combatente lutar melhor desarmado."
+Brawl_skill_intro = pt "Artes marciais Lv. 2: Truques avançados em combate desarmado, baseados na habilidade de soco."

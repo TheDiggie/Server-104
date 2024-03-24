@@ -5,3 +5,11 @@ artifice_desc_rsc = de \
 	  "Verzaubert einen Gegenstand für eine kurze Zeit mit zufälligen Kräften. "
 	  "Unvorsichtige Käufer könnten diesen Trick übersehen! "
 	  "Benötigt zwei Feuersand und einen ungeschliffenen Seraph"
+
+artifice_cast_rsc = pt "A forma de %s%s começa a mudar."
+artifice_fails = pt "%s%s é estranhamente não afetado pelo feitiço."
+artifice_name_rsc = pt "artifício"
+artifice_desc_rsc = pt \
+   "Encanta brevemente um item com poderes aleatórios. "
+   "Compradores desavisados podem superestimar o item.  "
+   "Requer dois firesand e um serafim não lapidado."

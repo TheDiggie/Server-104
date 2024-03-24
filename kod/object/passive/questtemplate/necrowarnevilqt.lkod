@@ -1,9 +1,7 @@
-// Quest description.
 necrowarnevilqt_name_rsc = de "Nekromanten Warnungs Quest"
 necrowarnevilqt_desc_rsc = de \
    "Maleval sagt, er habe wichtige Informationen, dass die Nekromanten zurückkehren..."
    "Hilf ihm diese zu verbreiten."
-
 necrowarnevilqt_nodetwo_rsc = de \
    "Maleval hat Informationen, dass die dunklen Mächte zurück sind.  "
    "Hilf ihm, diese Meldung zu verbreiten in dem Du diesen Brief für ihn  "
@@ -12,11 +10,8 @@ necrowarnevilqt_nodetwo_rsc = de \
 necrowarnevilqt_nodethree_rsc = de \
    "%s%s hat nichts von der Warnung gehalten.  Kehre zurück zu Maleval, und "
    "teile ihm mit, dass Du den Auftrag erledigt hast."
-
 necrowarnevilqt_completed_rsc = de \
    "Du hast das Nekromanten Warnungs Quest abgeschlossen"
-
-// Quest resources.
 necrowarning_assign_2 = de \
    "Ja, ich habe Bedarf an einem Boten.  Es scheint eine neue Macht im Land "
    "zu sein, oder eher eine sehr alte Macht, voller Dunkelheit.  Vielleicht "
@@ -40,3 +35,13 @@ necrowarning_success_3 = de \
    "In Wirklichkeit, ist Dein Lohn das Wissen, dass Du die Nachricht abgeliefert "
    "hast, aber... Ich verstehe, dass ihr Leute es wünscht eine er matierielle "
    "Belohnung zu erhalten. Also, hier ist sie."
+
+necrowarnevilqt_name_rsc = pt "missão de aviso dos necromantes"
+necrowarnevilqt_desc_rsc = pt "Maleval tem informações sobre um poder sombrio que está chegando a estas terras. Ajude-o a espalhar a palavra sobre a escuridão iminente."
+necrowarnevilqt_nodetwo_rsc = pt "Maleval tem informações sobre um poder sombrio que está chegando a estas terras. Ajude-o a espalhar a palavra sobre a escuridão iminente entregando uma carta para %s%s. Se você falhar em entregar a carta, Maleval promete fazer você sofrer."
+necrowarnevilqt_nodethree_rsc = pt "%s%s não deu importância ao aviso. Volte para Maleval e avise-o de que você entregou a carta."
+necrowarnevilqt_completed_rsc = pt "Você completou a missão de aviso dos necromantes."
+necrowarning_assign_2 = pt "Sim, estou precisando de um mensageiro. Parece que temos um novo poder na terra, ou melhor, um poder muito antigo, cheio de escuridão. Talvez esses tolos nos templos finalmente recebam o que merecem por sua arrogância. Como eles podem pensar que seus deuses são os únicos deuses? Espero que esta carta ajude a acelerar o inevitável. Leve-a para %NPC e volte para mim para a sua... recompensa. Me decepcione e você sofrerá."
+necrowarning_success_2 = pt "Você tem sido a ferramenta de uma pessoa insensata. Eu esperava isso dele, mas não há desculpa para sua depravação. Você não consegue encontrar um patrocinador melhor para o seu entusiasmo? Bem, talvez não."
+necrowarning_failure_2 = pt "Assunto: Minha carta\nEntão você quer brincar comigo. Sua insolência é um ato de um tolo ou de um covarde. De qualquer forma, você deve esperar que não nos encontremos novamente. Aceite esta maldição como um sinal do meu descontentamento."
+necrowarning_success_3 = pt "Suponho que você tenha voltado para receber sua recompensa. Na verdade, sua recompensa é o conhecimento da mensagem que você entregou, mas... Eu entendo o desejo do seu povo por um pagamento de natureza mais material, então aqui está."

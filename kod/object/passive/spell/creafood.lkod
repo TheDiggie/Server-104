@@ -7,3 +7,13 @@ createfood_cast_rsc = de "%s%s erscheint."
 createfood_inv_full_rsc = de \
    "%s%s erscheint in der Luft. Du kannst es jedoch nicht festhalten und "
    "es verpufft in der Luft."
+
+createfood_name_rsc = pt "criar comida"
+createfood_desc_rsc = pt \
+    "O poder de Kraanan é invocado para materializar vários alimentos nutritivos. " 
+    "Não requer nada além de livre arbítrio para ser lançado."
+createfood_spell_intro = pt \
+    "Kraanan Lv. 1: Transforma amoras básicas em comida para você comer e aumentar seu vigor."
+createfood_cast_rsc = pt "%s%s aparece."
+createfood_inv_full_rsc = pt \
+    "%s%s aparece no ar diante de você, mas antes que você possa largar algo e pegá-lo, ele desaparece."

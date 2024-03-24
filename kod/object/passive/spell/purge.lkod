@@ -8,3 +8,9 @@ Purge_not_enchanted = de "%s%s ist nicht von hilfreichen Magien beeinflusst."
 Purge_spell_intro = de \
    "Shal'ill Level 5: Streift hilfreiche persönliche Verzauberungen vom Ziel "
    "ab"
+
+Purge_name_rsc = pt "purga"
+Purge_desc_rsc = pt "Reduz a eficácia dos encantamentos pessoais úteis do alvo. Com poder suficiente, pode até remover completamente o encantamento. Requer cinco esmeraldas e dois cogumelos roxos para lançar."
+Purge_on = pt "Uma luz brilhante e sagrada está tentando queimar seus encantamentos benéficos."
+Purge_not_enchanted = pt "%s%s não é afetado por quaisquer energias mágicas úteis."
+Purge_spell_intro = pt "Shal'ille Nível 5: Remove encantamentos pessoais úteis no alvo."

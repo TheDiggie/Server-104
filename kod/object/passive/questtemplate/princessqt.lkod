@@ -1,7 +1,10 @@
-// Quest resources.
 princess_standard2_success = de \
    "Ein Brief von ihrer Hoheit?! Ausgezeichnet. Danke, %NAME."
 princess_standard2_failure = de \
    "Betreff: Deine Mitgliedschaft in meiner Fraktion wurde widerrufen\nDu "
    "hast versagt.  Ich werde in der nächsten Zeit nicht noch einmal so doof "
    "sein und auf Dich vertrauen."
+
+princess_standard2_success = pt "Uma carta de sua alteza?! Excelente. Obrigado, %NAME."
+princess_standard2_failure = pt "Assunto: Sua filiação à minha facção foi revogada\n"
+"Tu me falhaste. Não serei tola ao ponto de confiar em teu serviço no futuro."

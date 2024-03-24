@@ -1,1 +1,3 @@
 DMSpell_desc_rsc = de "%s\n\nDie ist ein DM Zauber."
+
+DMSpell_desc_rsc = pt "%s\n\nEste é um comando exclusivo para DMs."

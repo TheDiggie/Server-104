@@ -1,4 +1,3 @@
-// Quest description.
 qorquest_name_rsc = de "Qor Schüler Quest"
 qorquest_desc_rsc = de \
    "Priesterin Zuxana hat dich beauftragt zu %s zu gehen und folgende Worte "
@@ -6,14 +5,10 @@ qorquest_desc_rsc = de \
    "unter den Menschen im Schutz eines lichtlosen Himmels und eines blutigen "
    "Mondes wandeln.\".  "
    "Kehre zu ihr zurück, wenn Du den Auftrag erledigt hast."
-
 qorquest_node_three_rsc = de \
    "Kehre zur Priesterin zurück, und lasse Sie wissen, dass Du den Auftrag erledigt hast."
-
 qorquest_completed = de \
    "Du hast das Qor Schüler Quest abgeschlossen.  Du bist nun ein Schüler Qors."
-
-// Quest resources.
 qordisciple_trigger = de \
    "Alles sollte in Dunkelheit gehüllt sein. Dann würde unsere Meisterin "
    "unter den Menschen im Schutz eines lichtlosen Himmels und eines blutigen "
@@ -34,8 +29,6 @@ qordisciple_failure = de \
    "von wirklichem Wert gegeben habe, denn es wäre jetzt sicherlich verloren.  "
    "Wenn Du irgendwann wiederkommst, werde ich Dir vielleicht eine weitere "
    "Chance gewähren in die Reihen der Elite aufgenommen zu werden."
-
-// NPC responses.
 qordisc_shalpr_resp = de \
    "~kPriesterin Xiana sagt, \"~bÜberdenke deine Taten, Sha'lill wird dir "
    "vergeben, wenn Du bereit dafür bist.~k\""
@@ -49,3 +42,17 @@ qordisc_tosapoth_resp = de \
    "~kFrisconar sagt, \"Hast Du mich gerade verflucht?  Bitte, geh jetzt!\""
 qordisc_jasinn_resp = de \
    "~kDie Witwe Qesino sagt, \"Du bist böse. Du musst nun gänzlich verschwinden.\""
+
+qorquest_name_rsc = pt "Missão do discípulo de Qor"
+qorquest_desc_rsc = pt "A Sacerdotisa Zuxana pediu que você vá até %s e diga as palavras: \"Na escuridão todos serão amarrados. Nossa Senhora caminharia entre os homens no conforto de um céu sem luz e uma lua sangrenta.\". Retorne quando tiver completado esta tarefa."
+qorquest_node_three_rsc = pt "Volte para a Sacerdotisa Zuxana e informe que a tarefa foi concluída."
+qorquest_completed = pt "Você completou a missão do discípulo de Qor. Você é um fiel discípulo de Qor, e a Sacerdotisa Zuxana agora lhe ensinará magias mais poderosas."
+qordisciple_trigger = pt "na escuridão todos serão amarrados"
+qordisciple_assign = pt "`rVocê deseja ser envolvido pelo abraço inefável de nossa Senhora patrona. Seu julgamento é aguçado, mas e quanto à sua lealdade? Para me provar isso, você deve invocar a Senhora Qor para %NPC, assim: \"Na escuridão todos serão amarrados. Nossa Senhora caminharia entre os homens no conforto de um céu sem luz e uma lua sangrenta.\" Depois disso, retorne e me diga que terminou, e nós nos deleitaremos na beleza da corrupção."
+qordisciple_success = pt "`rVocê realizou meus desejos. Você não é apenas sábio, mas também tenaz. Procure-me quando quiser aprender mais sobre as magias de poder de Qor."
+qordisciple_failure = pt "Assunto: Qor o considerou indigno\nVocê alma fraca e patética! Era exatamente o que eu suspeitava. Fico feliz por não ter dado nada de real valor a você, pois certamente estaria perdido agora. Se voltar aqui, talvez eu lhe dê outra chance de se juntar às fileiras da elite."
+qordisc_shalpr_resp = pt "~kA Sacerdotisa Xiana diz, \"~bReconsidere suas ações, Shal'ille concederá perdão quando estiver pronto para recebê-lo.~k\""
+qordisc_marheal_resp = pt "~kLady Aftyn diz, \"A compaixão de Shal'ille afastará a escuridão.\""
+qordisc_barsmith_resp = pt "~kFehr'loi Qan diz, \"Estou ficando irritado agora. É melhor você sair antes que eu te dê um bom soco.\""
+qordisc_tosapoth_resp = pt "~kFrisconar diz, \"Você acabou de me lançar uma maldição? Por favor, saia!\""
+qordisc_jasinn_resp = pt "~kA Viúva Qesino diz, \"Você é maligno, deve sair imediatamente.\""

@@ -11,3 +11,11 @@ morph_off = de \
 Morph_attackable = de \
    "\nHINWEIS: Während du dich in der Form eines Monsters befindest bleibst "
    "du angreifbar."
+
+morph_name_rsc = pt "metamorfose"
+morph_desc_rsc = pt "O toque de Riija transforma você em uma besta diferente! Requer musgo da teia e olhos de libélula para lançar."
+morph_already_enchanted = pt "Você já foi afetado por %s%s."
+morph_already_affected = pt "Você já está transformado."
+morph_on = pt "Você passa por uma transformação dolorosa que quase mas não completamente te transforma em %s%s."
+morph_off = pt "Sua forma alternativa desaparece; você volta ao seu eu normal."
+Morph_attackable = pt "\nNOTA: Enquanto você estiver na forma de um monstro, a proteção de Shal'ille não se aplicará a você. Você pode ser atacado livremente por outros, mesmo em cidades, mas sofrerá as penalidades apropriadas por atacar outros inocentes."

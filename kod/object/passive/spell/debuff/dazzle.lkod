@@ -8,3 +8,10 @@ Dazzle_already_enchanted = de \
 Dazzle_on = de \
    "Die Welt um Dich herum verschwindet in einer Flut aus grellem Licht."
 Dazzle_off = de "Deine Sicht kehrt langsam zurück."
+
+Dazzle_name_rsc = pt "deslumbrar"
+Dazzle_desc_rsc = pt "Deslumbra o alvo com a luz cegante da bondade de Shal'ille. Requer um esmeralda e um cogumelo roxo para conjurar."
+Dazzle_caster = pt "%s%s está agora deslumbrado."
+Dazzle_already_enchanted = pt "%s%s já está deslumbrado."
+Dazzle_on = pt "O mundo é lavado por uma inundação de luz pura."
+Dazzle_off = pt "Sua visão começa a clarear."

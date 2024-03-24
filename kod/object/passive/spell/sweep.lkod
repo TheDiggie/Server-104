@@ -19,3 +19,14 @@ Sweep_no_reward = de \
    "Hey, das war nett von Dir . . . meinen Laden einfach für umsonst aufzuräumen."
 Sweep_spell_intro_rsc = de \
    "Faren Level 1: Boden fegen und Gegenstände landen in deinem Inventar."
+
+Sweep_name_rsc = pt "varrer"
+Sweep_desc_rsc = pt "Os ventos selvagens de Faren varrem a área reunindo itens soltos para você. Requer cogumelos para lançar."
+Sweep_room_cast = pt "%s%s varre magicamente alguns dos itens na área para as mãos de %s."
+Sweep_Something = pt "Você arruma as coisas um pouco."
+Sweep_Nothing = pt "O chão não parece mais limpo."
+Sweep_Pissed_rant = pt "~kRan er\'Hoth grita, \"~r%s%s, você lesma asquerosa, eu estava USANDO isso.~k\""
+Sweep_Grateful_rant = pt "~kRan er\'Hoth se curva e geme, \"Oh, obrigado, poderoso %s%s, obrigado, obrigado. Eu estava com tanto medo, tão assustado até você limpar tudo.\""
+Sweep_Freaked_rant = pt "~kRan er\'Hoth grita, \"ACK! ERK! URK! ORK! Para onde foi? O que você fez com isso, %s%s? Por favor, não faça isso comigo!\""
+Sweep_no_reward = pt "Ei, isso foi legal da sua parte... limpar minha loja de graça."
+Sweep_spell_intro_rsc = pt "Faren Lv. 1: Invoca os ventos de Faren para remover todos os itens soltos da área."

@@ -1,16 +1,11 @@
-// Quest description.
 warletterqt_name_rsc = de "Kriegsbrief Quest"
 warletterqt_desc_rsc = de \
    "Überbringe einen Brief an einen NPC."
-
 warletterqt_nodetwo_rsc = de \
    "%s%s hat dich beauftragt, einen Brief an %s%s zu überbringen.  Dir wurde "
    "gesagt, es könnte gefährlich sein, aber Du wirst dafür belohnt."
-
 warletterqt_completed_rsc = de \
    "Du hast das Kriegsbrief Quest abgeschlossen"
-
-// Quest resources.
 warletter_trigger1 = de "Kurier"
 warletter_assign = de \
    "Ah, ja!  Ich habe gerade einen Brief an %NPC geschrieben.  Bitte überbringe "
@@ -26,3 +21,12 @@ warletter_failure = de \
    "dass Du nicht nur versäumt hast den Brief auszuliefern, sondern auch "
    "noch geöffnet und gelesen!  Wie kannst Du nur!  Das nächste mal werde "
    "ich Dich bei Gericht melden."
+
+warletterqt_name_rsc = pt "Missão da carta de guerra"
+warletterqt_desc_rsc = pt "Entregue uma carta para um NPC."
+warletterqt_nodetwo_rsc = pt "%s%s pediu que você entregasse uma carta para %s%s. Você foi informado de que pode ser perigoso transportar esta carta, mas será recompensado por sua entrega."
+warletterqt_completed_rsc = pt "Você completou a missão da carta de guerra."
+warletter_trigger1 = pt "precisa de um mensageiro"
+warletter_assign = pt "Ah, sim! Acabei de escrever esta carta para %NPC. Por favor, entregue-a para %HIMHER_NPC. Sugiro que você contrate um guarda, pois pode ser perigoso. Tenho certeza de que a recompensa será suficiente para você e um guarda."
+warletter_success = pt "Por que, obrigado! Eu não estava esperando uma carta de %SOURCE_NPC, mas é bem-vinda. Por favor, aceite isso como um sinal da minha apreciação."
+warletter_failure = pt "Assunto: Minha carta?\nEu ouvi de uma fonte confiável que você não apenas falhou em entregar minha carta, mas que você a abriu e a leu! Como se atreve! Da próxima vez, vou denunciá-lo ao Justicar."

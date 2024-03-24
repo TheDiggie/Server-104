@@ -41,7 +41,6 @@ resources:
       "You cannot cast mark of dishonor upon yourself; if you were truly "
       "dishonorable you would not be able to cast Shal'ille's spells."
 
-
 classvars:
 
    vrName = MarkOfDishonor_name_rsc

@@ -1,18 +1,13 @@
-// Quest description.
 seraphymquest_icon_rsc = de serappol.bgf
 seraphymquest_name_rsc = de "Polierte Edelsteine Quest"
 seraphymquest_desc_rsc = de \
    "Du wurdest gefragt, ob Du ungeschliffene Seraphen besitzt, damit "
    "jemand seine Künste verbessern kann. Er wird dir einen seiner Resultate geben."
-
 seraphymquest_deliver_rsc = de \
    "%s verbessert %sseine Künste, und hat dich gefragt, ob Du noch ungeschliffene Seraphen hast. "
    "Als Gegenleistung erhältst Du %seinen seiner Resultate."
-
 seraphymquest_completed_rsc = de \
    "Du hast das Quest abgeschlossen"
-
-// Quest resources.
 polishquest_assign = de \
    "Entschuldige, ich habe meine Fähigkeiten verbessert, und frage mich ob "
    "Du vielleicht ungeschliffene Edelsteine jeglicher Art dabei hast. Wenn "
@@ -21,3 +16,11 @@ polishquest_success = de "Ah, vielen Dank. Erlaube mir Dich zu belohnen."
 polishquest_failure = de \
    "Betreff: Edelstein polieren\nVergiss die ungeschliffenen Edelsteine, "
    "ich habe welche von jemanden anderes bekommen. Danke."
+
+seraphymquest_name_rsc = pt "Missão do seraphym polido"
+seraphymquest_desc_rsc = pt "Você foi perguntado se tem algum seraphym não lapidado sobrando, para que o NPC possa aprimorar suas habilidades de joalheria. Eles lhe darão uma das gemas polidas resultantes."
+seraphymquest_deliver_rsc = pt "%s está aprimorando as habilidades de joalheria de %s, e perguntou se você tem algum seraphym não lapidado sobrando. Em troca, %s se ofereceu para lhe dar uma das gemas polidas resultantes."
+seraphymquest_completed_rsc = pt "Você completou a missão do seraphym polido e recebeu um novo e brilhante seraphym polido por seus esforços."
+polishquest_assign = pt "Com licença. Tenho aprimorado minhas habilidades de joalheria, e queria saber se você tem alguma gema não lapidada de qualquer tipo. Se tiver, ficaria feliz em poli-las e lhe dar uma das resultantes."
+polishquest_success = pt "Ah, obrigado. Permita-me recompensá-lo."
+polishquest_failure = pt "Assunto: Polimento de gemas\nEsqueça as gemas não lapidadas, encontrei algumas de outra pessoa. Obrigado, no entanto."

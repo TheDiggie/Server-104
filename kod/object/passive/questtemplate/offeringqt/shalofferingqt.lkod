@@ -1,15 +1,11 @@
-// Quest description.
 shalofferingqt_name_rsc = de "Shal'ill Beten Quest"
 shalofferingqt_desc_rsc = de \
    "Priesterin Xiana hat Dich eingeladen mit ihr zu singen, um die Herrin zu stärken."
-
 shalofferingqt_completed = de \
    "Du gibst ein wenig deiner Lebenskraft an Shalill ab."
    "Du hast ebenfalls einen mächtigen magischen Gegenstand erhalten. Wenn dieser an einem "
    "der Schreine in der Welt platziert wird, wird er Shalill geweiht und verleit den "
    "Zaubern Shalills mehr Kraft."
-
-// Quest resources.
 shalilleoffering_assign_2 = de \
    "`b%NAME, reiner Schüler unserer Göttin. Gibst du Dich selber dafür auf, "
    "so das unsere Götting stärker sein kann?"
@@ -30,3 +26,13 @@ shalilleoffering_assign_4 = de "`b%CARGO!"
 shalilleoffering_success_5 = de \
    "`bLobet Shal'ill! Geh nun und trage die das Symbol der Reinheit unserer "
    "Göttinin die ganze Welt.!"
+
+shalofferingqt_name_rsc = pt "missão da oferta a Shal'ille"
+shalofferingqt_desc_rsc = pt "A Sacerdotisa Xiana a convidou para cantar com ela, para dar força à sua Senhora."
+shalofferingqt_completed = pt "Você deu parte de sua essência de vida para fortalecer sua Senhora. Em troca, você recebeu um item mágico poderoso. Quando colocado em um dos Altares localizados ao redor do mundo, o Altar será dedicado a Shal'ille e seus feitiços terão mais poder."
+shalilleoffering_assign_2 = pt "`b%NAME, puro discípulo de Nossa Senhora da Luz Prateada, você dará de si mesmo para que sua Deusa seja mais forte?"
+shalilleoffering_assign_3 = pt "`bAdore comigo, então. Juntos, vamos nos apoiar em nossa própria essência de vida para criar um símbolo da pureza de nossa Senhora. Raramente as estrelas estão tão alinhadas para a cerimônia sagrada que vamos realizar, então devemos falar rapidamente. Recite estas palavras comigo: %CARGO"
+shalilleoffering_trigger_3 = pt "Pela luz de um sol brilhante, te suplicamos, Shal'ille, renova-nos"
+shalilleoffering_failure_3 = pt "Assunto: Ai\nEste dia não alcançamos altura suficiente, mas alcançamos, e isso é suficiente. Hoje estamos fracos e de mãos vazias, mas quando chegar a hora certa, Shal'ille nos elevará, meu discípulo."
+shalilleoffering_assign_4 = pt "`b%CARGO!"
+shalilleoffering_success_5 = pt "`bLouvado seja Shal'ille! Agora, leve para o mundo este símbolo da pureza de espírito de nossa Senhora!"

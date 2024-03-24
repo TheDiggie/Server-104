@@ -9,3 +9,10 @@ engrave_no_message = de \
    "gehabt."
 engrave_do = de \
    "Du schaust fasziniert als die Worte '%q' sich selber auf %s%s schreiben."
+
+engrave_name_rsc = pt "gravar"
+engrave_desc_rsc = pt "Adiciona uma mensagem a um item. Um feitiço exclusivo para DMs no momento."
+engrave_already_engraved = pt "%s%s já possui uma mensagem gravada nele."
+engrave_cant_engrave = pt "Você não pode gravar uma mensagem em %s%s."
+engrave_no_message = pt "Sem mensagem para gravar, o feitiço se dissipa em nada."
+engrave_do = pt "Você observa fascinado enquanto as palavras '%q' se escrevem em um script eldritch em %s%s."

@@ -7,3 +7,8 @@ portaloflife_desc_rsc = de \
    "Seraphym und zwei Smaragde für die Beschwörung."
 portaloflife_spell_intro = de \
    "Shal'ill Level 6: Öffnet für Deine gefallenen Kameraden ein Tor."
+
+portaloflife_cast_rsc = pt "Você sente mais confiança de que %s%s encontrará seu caminho de volta."
+portaloflife_name_rsc = pt "portal da vida"
+portaloflife_desc_rsc = pt "Cria um portal para que seus camaradas caídos entrem e retornem do submundo para seus corpos físicos. Se formado a tempo, o portal pode diminuir o choque da morte. Requer esmeraldas e serafim polido para lançar."
+portaloflife_spell_intro = pt "Shal'ille Nível 6: Cria um portal para que seus camaradas caídos entrem e retornem do submundo para seus corpos físicos."

@@ -14,3 +14,11 @@ summonEvilTwin_no_self = de \
    "dich selber zaubern willst."
 summonEvilTwin_only_one = de \
    "%s wird bereits von einem Bösen Zwilling verfolgt."
+
+summonEvilTwin_name_rsc = pt "gêmeo malvado"
+summonEvilTwin_desc_rsc = pt "Invoca o lado mais sombrio de um aventureiro para atacá-lo. Note que você é responsável por quaisquer ações de seus gêmeos malvados, e que eles são notoriamente difíceis de controlar. Requer dois frascos de solagh e dois web moss para lançar."
+summonEvilTwin_cast_rsc = pt "Um gêmeo malvado aparece misteriosamente ao lado de seu alvo."
+summonEvilTwin_failed_rsc = pt "Não há espaço para um gêmeo malvado aqui."
+summonEvilTwin_bad_target = pt "Você não pode lançar um gêmeo malvado em %s%s."
+summonEvilTwin_no_self = pt "Você decide que realmente não quer invocar seu mal contra si mesmo."
+summonEvilTwin_only_one = pt "%s já está sendo perseguido por um gêmeo malvado."

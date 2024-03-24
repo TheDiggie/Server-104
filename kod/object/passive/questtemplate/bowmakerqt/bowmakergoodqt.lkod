@@ -1,18 +1,14 @@
-// Quest description.
 bowmakergoodquest_desc_rsc = de \
    "Hanla zax'Ta hat dich beauftragt, die Feder eines Avar Schamanen für Sie zu besorgen." 
    "Geh, und schau ob Du einen Avar findest, der bereit ist seine Schwanzfeder "
    "im Austausch für etwas wertvolles herzugeben."
    "Kehre zu Ihr zurück, wenn Du eine gefunden hast."
-
 bowmakergoodquest_nodetwo_rsc = de \
    "Hanla zax'Ta hat dich beauftragt, die Feder eines Avar Schamanen für Sie zu besorgen." 
    "Geh, und schau ob Du einen Avar findest, der bereit ist seine Schwanzfeder "
    "im Austausch für etwas wertvolles herzugeben."
 bowmakergoodquest_nodethree_rsc = de \
     "Kehre zurück zu Hanla zax'Ta mit einer Feder eines Avar Schamanen."
-
-// Quest resources.
 bowmaker_assign_2 = de \
    "Ich nutze spezielle Materialien um meine besten Pfeile herzustellen.  "
    "Die Schwanzfeder eines Avar Zauberer haben den Ruf, dem Pfeil der sie "
@@ -23,3 +19,10 @@ bowmaker_success_2 = de "Nyuk nyuk uk ak a-ak!"
 bowmaker_failure_2 = de \
    "Betreff: Avar Feder\nOffensichtlich warst Du nicht in der Lage eine Avar "
    "Feder für mich zu finden, na ja.  Ich werde woanders danach suchen."
+
+bowmakergoodquest_desc_rsc = pt "Hanla zax'Ta pediu que você obtenha a pena da cauda de um xamã avar para ela. Localize um mago avar e veja se eles estão dispostos a trocar uma pena da cauda por algo que considerem precioso. Retorne quando tiver obtido a pena da cauda."
+bowmakergoodquest_nodetwo_rsc = pt "Hanla zax'Ta pediu que você obtenha a pena da cauda de um xamã avar para ela. Localize um mago avar e veja se eles estão dispostos a trocar uma pena da cauda por algo que considerem precioso."
+bowmakergoodquest_nodethree_rsc = pt "Retorne para Hanla zax'Ta com a pena da cauda do xamã avar."
+bowmaker_assign_2 = pt "Eu uso materiais especiais para fazer minhas melhores flechas. As penas da cauda de um mago avar são conhecidas por oferecer propriedades mágicas a qualquer flecha que elas emplumem. Vá, veja se consegue encontrar um avar disposto a trocar uma pena da cauda por algo que considerem precioso."
+bowmaker_success_2 = pt "Nyuk nyuk uk ak a-ak!"
+bowmaker_failure_2 = pt "Assunto: Pena avar\nClaramente, você não conseguiu encontrar uma pena avar para mim. Ah, bem. Eu vou procurar em outro lugar."

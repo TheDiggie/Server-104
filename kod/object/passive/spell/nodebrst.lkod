@@ -10,3 +10,11 @@ Nodeburst_success = de \
    "Du opferst alle deine Mana Nodes und erreichst das maximale an Mana."
 Nodeburst_not_today = de \
    "Du kannst ein Magisches Opfer nur einmal am Tag machen."
+
+Nodeburst_name_rsc = pt "explosão de nó"
+Nodeburst_desc_rsc = pt "Você ativa todos os seus nós de mana ao máximo, proporcionando uma explosão instantânea de mana e saúde, mas destruindo seus vínculos. "
+      "Só pode ser lançado uma vez por dia. "
+      "Requer asas de fada e bagas de entroot e é muito cansativo para lançar."
+Nodeburst_fail = pt "Você não tem vínculos com nenhum nó de mana que possa explodir."
+Nodeburst_success = pt "Você abre todos os seus vínculos de mana ao máximo e a mana desce pelos links."
+Nodeburst_not_today = pt "Você só pode lançar a explosão de nó uma vez por dia."

@@ -1,3 +1,5 @@
 multicast_no_prism = de \
    "Du kannst kein Prisma in deiner Nähe finden auf das du dich fokussieren "
    "kannst."
+
+multicast_no_prism = pt "Você não consegue encontrar um prisma próximo para concentrar suas energias."

@@ -16,3 +16,21 @@ bond_successful_bondee = de \
    "Du fühlst einen magischen Bund zwischen Dir und %s."
 bond_report_room = de "Irgendwie spürst Du, dass Deine %s in %s ist."
 bond_report_user = de "Irgendwie spürst Du, dass Deine %s in %q's Besitz ist."
+
+Bond_name_rsc = pt "vínculo"
+Bond_desc_rsc = pt \
+   "Infunde um item com uma suave luz branca. No entanto, o "
+   "vínculo requer enormes quantidades de energia para se formar. Requer 5 pedras de coração brancas, "
+   "50 seraphym polidos, 50 diamantes e 15 cogumelos amarelos esmagados para amplificar "
+   "a energia mística do conjurador. O item a ser vinculado deve ser alvo. "
+   "Uma vez que o lançamento estiver completo, o item seguirá seu dono até mesmo ao inferno."
+bond_bad_target = pt "Você não pode vincular isso."
+bond_bad_person = pt "Você não pode lançar vínculo em jogadores!"
+bond_failed = pt \
+   "Você sente o vínculo mágico começar a se estender em vão para um de seus alvos, "
+   "mas não encontrando nada, ele se dissipa."
+bond_already_bonded = pt "Este item já está vinculado."
+bond_successful_casters = pt "Você sente um vínculo mágico se formando entre %s%s e %s."
+bond_successful_bondee = pt "Você sente um vínculo mágico se formando entre você e seu %s."
+bond_report_room = pt "De alguma forma, você sente que seu %s está em %s."
+bond_report_user = pt "De alguma forma, você sente que seu %s está na posse de %q."

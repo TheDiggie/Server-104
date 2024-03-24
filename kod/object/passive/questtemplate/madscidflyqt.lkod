@@ -1,15 +1,11 @@
-// Quest description.
 madscientistdflyquest_name_rsc = de "Verrückter Wissenschaftler Drachenfliegen Quest"
 madscientistdflyquest_desc_rsc = de \
    "Bahal zax'Ot möchte, dass Du ihm eine lebendige Drachenfliegenkönigin bringst, "
    "um damit zu experimentieren.  Danach hat er etwas interessantes für Dich.  "
    "Finde eine Drachenfliegenkönigin, und finde einen Weg, dass sie Dir folgt."
-
 madscientistdflyquest_completed_rsc = de \
    "Du hast eine Drachenfliegenkönigin zu Bahal zax'Ot gebracht, und dafür "
    "ein Splitter eines Riija Schwertes erhalten."
-
-// Quest resources.
 madscientistquest_trigger_1 = de "Kohuzotz"
 madscientistquest_assign_2 = de \
    "Ich bin stets bemüht mit meinen Haustieren zu experimentieren.  Wenn "
@@ -21,3 +17,11 @@ madscientistquest_failure_2 = de \
    "zu bringen, dass ich es mir schon anderweitig besorgt habe.  Ich werde "
    "mit diesem Exemplar sehr beschäftigt sein in der nächsten Zeit. Also "
    "mach Dir keine Mühe mir ein weiteres Exemplar zu bringen."
+
+madscientistdflyquest_name_rsc = pt "quest da libélula do cientista louco"
+madscientistdflyquest_desc_rsc = pt "Bahal zax'Ot gostaria que você trouxesse para ele uma rainha de libélula viva para experimentos. Em troca, ele tem algo interessante para você. Localize uma rainha de libélula selvagem e encontre alguma maneira de atraí-la a segui-lo."
+madscientistdflyquest_completed_rsc = pt "Você entregou uma rainha de libélula para Bahal zax'Ot e recebeu em troca um fragmento de espada Riija."
+madscientistquest_trigger_1 = pt "kohuzotz"
+madscientistquest_assign_2 = pt "Estou sempre ansioso para experimentar em meus animais de estimação. Se você me trouxer um espécime vivo, talvez eu tenha algo interessante para lhe dar em troca."
+madscientistquest_success_2 = pt "Excelente. Bom trabalho, caro aprendiz."
+madscientistquest_failure_2 = pt "Assunto: espécime de kohuzotz\nVocê demorou tanto para me trazer um espécime que eu obtive um por outros meios. Eu estarei ocupado com meu novo sujeito por um tempo, então não se preocupe em me trazer outro."

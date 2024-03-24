@@ -8,3 +8,15 @@ majorheal_cast_rsc = de \
    "Die %s%ss stellt ~g~B%i~B~n Lebenspunkte wieder her."
 majorheal_cast_self = de \
    "Sha'lill heilt dich um ~g~B%i~B~n Lebenspunkte."
+
+majorheal_name_rsc = pt "cura maior"
+majorheal_desc_rsc = pt \
+   "O poder compassivo de Shal'ille cura ferimentos graves no lançador ou em outro jogador. "
+   "Shal'ille dá uma pequena recompensa em direção ao karma do mago que cura "
+   "outra alma boa. Requer quatro esmeraldas para lançar."
+majorheal_cast_rsc = pt \
+   "O feitiço de %s%s inunda você com energia de cura pura, "
+   "restaurando ~g~B%i~B~n pontos de vida."
+majorheal_cast_self = pt \
+   "A magia sagrada de Shal'ille inunda você com energia de cura pura, "
+   "restaurando ~g~B%i~B~n pontos de vida."

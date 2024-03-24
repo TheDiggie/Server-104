@@ -10,3 +10,12 @@ Teleport_Attacked_Recently = de \
 Teleport_Generic_Fail = de \
    "Irgendetwas in diesem Gebiet hindert dich daran dich zu teleportieren..."
 Teleport_Fail_Enemies_Nearby = de "Feind in der Nähe, du kannst nicht teleportieren!"
+
+TeleportationSpell_name_rsc = pt "feitiço de teleportação"
+TeleportationSpell_desc_rsc = pt "Move um jogador de um lugar para outro."
+Teleport_Default_Start = pt "Você começa a teleportar."
+Teleport_Default_Already_Cast = pt "Você já está se teleportando."
+Teleport_Token_Cancel = pt "Você não pode se teleportar enquanto segura um token."
+Teleport_Attacked_Recently = pt "Seu coração ainda está acelerado de seu combate recente, tornando impossível se concentrar o suficiente para se teleportar."
+Teleport_Generic_Fail = pt "Algo sobre esta área impede todas as formas de magias de teleportação..."
+Teleport_Fail_Enemies_Nearby = pt "Os delicados fios de suas magias de teleportação se desfazem devido à presença de inimigos próximos!"

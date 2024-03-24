@@ -2,3 +2,6 @@ Swordproficiency_name_rsc = de "Fechten"
 Swordproficiency_desc_rsc = de \
    "Diese Fertigkeit bietet fachmännisches Können bei allen Schwertern mit "
    "langen Klingen, sowohl magischer als auch normaler Art."
+
+Swordproficiency_name_rsc = pt "esgrima"
+Swordproficiency_desc_rsc = pt "Esta habilidade oferece expertise adicional em espadas com lâminas longas, mágicas ou não."

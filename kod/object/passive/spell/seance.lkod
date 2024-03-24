@@ -14,3 +14,12 @@ Seance_Target_Location_rsc = de \
    "Du spürst, dass %s%s in der Nähe von %s sein könnte."
 seance_spell_intro_rsc = de \
    "Shal'ille Level 1: Aufenthalt des letzten Mörders aufspüren."
+
+Seance_name_rsc = pt "sessão espírita"
+Seance_desc_rsc = pt "A magia de Shal'ille permite a comunicação com o mundo espiritual para revelar a localização da última pessoa a matar um inocente."
+Seance_No_Murderer_rsc = pt "Não há assassino a ser caçado."
+Seance_I_See_You_rsc = pt "Você sente que alguém está ciente de sua localização."
+Seance_Cloaked_Target_rsc = pt "A magia negra de Qor desviou a atenção de um inimigo."
+Seance_casting_rsc = pt "Você apela a Shal'ille para obter conhecimento sobre o paradeiro de %s%s."
+Seance_Target_Location_rsc = pt "Você sente que %s%s pode ser encontrado em algum lugar próximo a %s."
+seance_spell_intro_rsc = pt "Shal'ille Nível 1: Dá uma chance de saber a localização da última pessoa que cometeu assassinato."

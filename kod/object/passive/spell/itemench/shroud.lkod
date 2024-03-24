@@ -5,3 +5,11 @@ shroud_desc_rsc = de \
    "Anzuwenden, um die Gerätschaften eines Kriegers gegen sich einschleichende Magie zu schützen. "
    "Zwei braune Pilze sowie zwei Holunderbeeren werden für dieses Ritual benötigt."
 shroud_label_rsc = de "Ummanteler"
+
+shroud_cast_rsc = pt "Um manto escuro se assenta sobre o seu %s."
+shroud_fails = pt "%s%s não é afetado estranhamente pelo feitiço."
+shroud_name_rsc = pt "manto"
+shroud_desc_rsc = pt \
+      "Usado para proteger as ferramentas de um guerreiro contra magias poluentes. "
+      "Requer cinco cogumelos e cinco sabugueiros para lançar."
+shroud_label_rsc = pt "Encobridor"

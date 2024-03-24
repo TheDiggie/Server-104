@@ -1,24 +1,18 @@
-// Quest description.
 monkinsigniaquest_name_rsc = de "Gildenschild Insignien Quest"
 monkinsigniaquest_desc_rsc = de \
    "Der Riija Mönch wird seine Insignien auf dein Gildenschild einlassen, wenn "
    "Du ihm dafür einen \"Zehnter\" zahlst."
-
 monkinsigniaquest_nodetwo_rsc = de \
    "%s%s wird %s Insignien auf dein Gildenschild einlassen, wenn "
    "du ihm %s ein \"Zehnter\" bietest."
-
 monkinsigniaquest_nodethree_rsc = de \
    "%s%s ist an Reagenzien vom Festland interessiert - wenn Du ihm "
    "%s %i %s, %s bringst, wird er die Insignien auf dein Schuld anbringen.  Du "
    "solltest Dein Schild in der Hand halten, wenn Du mehr als eines in deinem "
    "Inventar hast."
-
 monkinsigniaquest_completed_rsc = de \
    "Du hast Insignien auf deinem Gildenschild erhalten, welche Dir "
    "mehr Kraft auf deine Zauber geben."
-
-// Quest resources.
 monkinsignia_trigger = de "Abzeichen"
 monkinsignia_assign_2 = de \
    "~gIch ~rsehe ~bDu hast ~rein ~gun~bsigniertes ~kSchild.  ~rich wäre gerne "
@@ -33,3 +27,15 @@ monkinsignia_success_3 = de "~B~bWunderbar.  Mein ewiger Dank für Ihre Mühen.~B"
 monkinsignia_failure_3 = de \
    "Betreff: Insignien\nIch habe viel besser über Dich gedacht. Ich werde "
    "in der Zukunft nach einem besseren Kreuzfahrer ausschau halten."
+
+monkinsigniaquest_name_rsc = pt "missão do escudo de brasão do monge Riija"
+monkinsigniaquest_desc_rsc = pt "O Monge Riija colocará seu brasão em seu escudo, desde que você ofereça um 'dízimo'."
+monkinsigniaquest_nodetwo_rsc = pt "%s%s colocará %s brasão em seu escudo de brasão, desde que você ofereça %s um 'dízimo'."
+monkinsigniaquest_nodethree_rsc = pt "%s%s está interessado em reagentes mágicos do continente - se você trouxer %s %i %s, %s colocará um brasão em seu escudo de brasão. Você deve equipar o escudo que deseja o brasão, se tiver mais de um em seu inventário."
+monkinsigniaquest_completed_rsc = pt "Você recebeu um brasão em seu escudo de brasão, o que adiciona mais poder aos seus feitiços quando usado."
+monkinsignia_trigger = pt "brasão"
+monkinsignia_assign_2 = pt "~gEu ~rvejo ~bvocê ter ~rum ~grescalão ~kmarcado.  ~rEstou mais ~bdo que ~gdisposto ~ba ~goferecer ~bmeu ~rbrasão para um valente ~gt~br~ki~bc~rk~ks~gt~be~kr,~r desde que eles ofereçam ~b~Bme~B~r um dízimo.~k"
+monkinsignia_trigger_2 = pt "dízimo"
+monkinsignia_assign_3 = pt "~IEu ouvi falar sobre uma `gpassagem `kpara outro mundo se abrindo.  `bEstou interessado nos `rreagentes `kmágicos daquela terra - talvez `gseu surgimento `kresulte no `rfortalecimento`g da`b magia `kpara faithmages como você e eu.  ~rVá e encontre ~bme %CARGO."
+monkinsignia_success_3 = pt "~B~bEx~rcel~lente.  ~kO Trapaceiro ~ragradece~k você por sua benevolência.~B"
+monkinsignia_failure_3 = pt "Assunto: Brasão\nEu esperava muito mais de você.  Oh, bem.  Vou procurar um tolo melhor no futuro."

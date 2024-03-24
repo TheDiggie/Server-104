@@ -15,3 +15,15 @@ breathoflife_notonself_rsc = de \
    "Du kannst Hauch des Lebens nicht auf dich selber zaubern."
 breathoflife_spell_intro = de \
    "Shal'ill Level 1: Die mächtige Kraft Sha-Lills überträgt die Lebensenergie."
+
+breathoflife_cast_rsc = pt "Você sente a força vital de %s%s enchendo seu corpo. Você ganha ~g~B%i~B~n de saúde."
+breathoflife_caster_msg_rsc = pt "Você dá parte de sua força vital para %s%s, sacrificando ~r~B%i~B~n de saúde."
+breathoflife_name_rsc = pt "sopro de vida"
+breathoflife_desc_rsc = pt \
+    "O grande poder de Shal'ille leva parte da força vital do conjurador " 
+    "e a transfere para outra pessoa. " 
+    "Requer ervas para ser lançado."
+breathoflife_unnecessary_rsc = pt "%s%s não pode lidar com mais força vital deste feitiço."
+breathoflife_toohurt_rsc = pt "Você não tem saúde suficiente para transferir para outra pessoa!"
+breathoflife_notonself_rsc = pt "Você não pode lançar Sopro de Vida em si mesmo."
+breathoflife_spell_intro = pt "Shal'ille Lv. 1: Dá parte da saúde do conjurador para outra pessoa."

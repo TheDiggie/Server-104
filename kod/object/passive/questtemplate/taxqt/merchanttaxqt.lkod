@@ -1,12 +1,8 @@
-// Quest description.
 merchanttaxqt_name_rsc = de "Händler Steuern Quest"
 merchanttaxqt_desc_rsc = de \
    "Bringe ein paar Steuern zu einem NPC."
-
 merchanttaxqt_completed_rsc = de \
    "Du hast das Händler Steuern Quest abgeschlossen."
-
-// Quest resources.
 merchanttax_assign_2 = de \
    "Kannst du meine Steuern zu %NPC bringen?  Ich bin mir sicher, dass ich "
    "zu spät drann bin, und brauche Dich, um diese %INDEF_CARGO%CARGO zu %NPC "
@@ -25,3 +21,11 @@ merchanttax_success_2 = de \
 merchanttax_failure_2 = de \
    "Betreff: Dieb!\nDein Diebstahl von %CARGO hat Dich zu einem Gesetzeslosen "
    "gemacht, durch einen Erlass von %NPC."
+
+merchanttaxqt_name_rsc = pt "missão de impostos do comerciante"
+merchanttaxqt_desc_rsc = pt "Entregue alguns impostos para um NPC."
+merchanttaxqt_completed_rsc = pt "Você concluiu a missão de impostos do comerciante."
+merchanttax_assign_2 = pt "Você levaria meus impostos para %NPC? Tenho certeza de que estou atrasado desta vez e preciso que você leve estes %INDEF_CARGO%CARGO para %NPC. O roubo o tornará rapidamente um fora da lei, então não pense em decepção. Eu providenciei para que sua taxa seja paga por %HIMHER_NPC."
+merchanttax_assign_2_h = pt "Você levaria meus impostos para %NPC? Tenho certeza de que estou atrasado desta vez e preciso que você leve estes %INDEF_CARGO%CARGO para %NPC. O roubo resultará em infortúnio, então não pense em decepção. Eu providenciei para que sua taxa seja paga por %HIMHER_NPC."
+merchanttax_success_2 = pt "Ah, eu estava me perguntando quando %SOURCE_NPC viria me visitar. Aqui está seu pagamento pelo seu... serviço rápido."
+merchanttax_failure_2 = pt "Assunto: Ladrão!\nSeu roubo de %CARGO o tornou um fora da lei por decreto de %NPC."

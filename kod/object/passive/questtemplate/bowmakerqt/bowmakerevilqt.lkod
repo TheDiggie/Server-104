@@ -1,16 +1,12 @@
-// Quest description.
 bowmakerevilquest_desc_rsc = de \
    "Hanla zax'Ta hat dich beauftragt, eine Feder eines Avar Schamanen für Sie zu besorgen."
    "Suche und töte solange Avar Schamanen, bis Du eine Feder bei der Leiche findest."
    "Kehre zu Ihr zurück, wenn Du eine gefunden hast."
-
 bowmakerevilquest_kill_rsc = de \
    "Hanla zax'Ta hat dich beauftragt, eine Feder eines Avar Schamanen zu besorgen. "
    "Suche und töte solange Avar Schamanen, bis Du eine Feder bei der Leiche findest."
 bowmakerevilquest_return_rsc = de \
    "Kehre zurück zu Hanla zax'Ta mit einer Feder eines Avar Schamanen."
-
-// Quest resources.
 bowmaker_assign_4 = de \
    "Ich nutze spezielle Materialien um meine besten Pfeile herzustellen.  "
    "Die Schwanzfeder eines Avar Zauberer haben den Ruf, dem Pfeil der sie "
@@ -22,3 +18,9 @@ bowmaker_failure_4 = de \
    "Feder für mich zu finden, na ja.  Ich verstehe, dass Avar Schamanen  "
    "schwierige Gegner sind.  Wenn Du möchtest, kannst Du später zurückkehren. "
    "Vielleicht benötige ich dann mehr."
+
+bowmakerevilquest_desc_rsc = pt "Hanla zax'Ta pediu que você obtenha a pena da cauda de um xamã avar para ela. Procure e mate xamãs avars até encontrar uma pena da cauda intacta no corpo. Retorne para ela quando tiver sucesso em encontrar uma."
+bowmakerevilquest_kill_rsc = pt "Hanla zax'Ta pediu que você obtenha a pena da cauda de um xamã avar para ela. Procure e mate xamãs avars até encontrar uma pena da cauda intacta no corpo."
+bowmakerevilquest_return_rsc = pt "Retorne para Hanla zax'Ta com a pena da cauda do xamã avar."
+bowmaker_assign_4 = pt "Eu uso materiais especiais para fazer minhas melhores flechas. As penas da cauda de um mago avar são conhecidas por oferecer propriedades mágicas a qualquer flecha que elas emplumem. Vá, mate xamãs avars até encontrar um que ofereça uma pena da cauda adequada e intacta."
+bowmaker_failure_4 = pt "Assunto: Pena avar\nClaramente, você não conseguiu obter uma pena avar para mim. Entendo, xamãs avars são oponentes formidáveis. Se desejar, retorne mais tarde, talvez eu precise de mais."

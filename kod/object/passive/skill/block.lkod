@@ -6,3 +6,7 @@ Block_desc_rsc = de \
 Block_skill_intro = de \
    "Waffenfertigkeiten Level 1: Abwehren ist die grundlegende Fähigkeit, "
    "einen Schild gegen die Hiebe Anderer einzusetzen."
+
+Block_name_rsc = pt "bloqueio"
+Block_desc_rsc = pt "Bloqueio é uma habilidade básica que permite às pessoas em combate bloquear golpes com um escudo. Um golpe bloqueado com sucesso será mais prejudicial para a arma atacante e para o escudo defensor."
+Block_skill_intro = pt "Artes de Combate Nv. 1: A capacidade de bloquear golpes em combate e, assim, permanecer vivo por mais tempo."

@@ -14,3 +14,11 @@ firestorm_cast_rsc = de \
 firestorm_hit_rsc = de \
    "%s%s schreit vor Schmerzen, als die Feuerkugeln auf %s Haut treffen und "
    "~k~B%i~n Schaden verursachen."
+
+firestorm_name_rsc = pt "tempestade de fogo"
+firestorm_desc_rsc = pt "Chama a magia de Faren e lança uma devastadora barragem de bolas de fogo, queimando a carne daqueles ao seu redor. Requer quatro dentes de orc, quatro cogumelos vermelhos e dois de areia de fogo."
+firestorm_first_rsc = pt "Você canaliza o poder de Faren e desencadeia uma barragem de fogo!"
+firestorm_third_rsc = pt "%s%s canaliza o poder de Faren e desencadeia uma barragem de fogo!"
+firestorm_killed_someone = pt "As chamas consomem %s%s."
+firestorm_cast_rsc = pt "Você solta um grito de dor enquanto as chamas queimam sua carne, causando ~r~B%i~n de dano."
+firestorm_hit_rsc = pt "%s%s solta um grito de dor enquanto as chamas queimam a carne de %s, causando ~k~B%i~n de dano."

@@ -2,3 +2,6 @@ hammerproficiency_name_rsc = de "Hammerkampf"
 hammerproficiency_desc_rsc = de \
    "Dies erlaubt es dem Anwender, jede Art von Hammer mit größerem Erfolg "
    "zu benutzen."
+
+hammerproficiency_name_rsc = pt "manejo de martelo"
+hammerproficiency_desc_rsc = pt "Isso permite ao usuário usar todos os tipos de martelos com mais proficiência."

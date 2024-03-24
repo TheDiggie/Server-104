@@ -22,7 +22,6 @@ resources:
    hammerproficiency_icon_rsc = hammrico.bgf
    hammerproficiency_desc_rsc = "This allows the user to use all manner of hammers more proficiently."
       
-
 classvars:
 
    vrName = hammerproficiency_name_rsc

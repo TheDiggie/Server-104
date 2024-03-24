@@ -6,3 +6,9 @@ poison_kraanan = de \
 poison_desc = de \
    "Wie Feuer unter Deiner Haut brennt dieses Gift mit ungeheurer Kraft."
    "Langsam schwindet deine Kraft, deine Gesundheit und dein Wille zu leben."
+
+poison_start = pt "Um veneno fresco percorre suas veias como fogo."
+poison_stop = pt "O veneno diminui um pouco."
+poison_name = pt "veneno"
+poison_kraanan = pt "~IA magia de Kraanan fortalece você contra o veneno amaldiçoado!"
+poison_desc = pt "Como fogo sob sua pele, o veneno queima com força perigosa, lentamente minando sua força, sua saúde e sua vontade de viver."

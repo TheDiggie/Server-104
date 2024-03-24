@@ -6,3 +6,9 @@ pardon_msg_DM = de "Du begnadigst %s%s."
 pardon_msg_target = de "Du wurdest begnadigt von %s%s."
 pardon_failed = de \
    "%s%s ist kein Mörder oder Gesetzesloser und kann nicht begnadigt werden."
+
+pardon_name_rsc = pt "perdão"
+pardon_desc_rsc = pt "Remove tanto as bandeiras de assassino quanto as bandeiras de fora da lei."
+pardon_msg_DM = pt "Você perdoa %s%s."
+pardon_msg_target = pt "Você foi perdoado por %s%s."
+pardon_failed = pt "%s%s não é um assassino ou fora da lei e não pode ser perdoado."

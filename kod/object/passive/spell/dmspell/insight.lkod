@@ -12,3 +12,16 @@ Insight_desc_rsc = de \
    "or mutant ant - when casting an offensive spell or using a combat skill, "
    "your odds go up if you fight tougher monsters."
 Insight_Message = de "%s (%i):  %i total, %i initial/%i secondary chance."
+
+Insight_name_rsc = pt "percepção"
+allinroom_Insight_msg1 = pt "~b%s%s observa profundamente a alma de %s%s."
+allinroom_Insight_msg2 = pt "~bVocê sente formigamento enquanto %s%s observa profundamente %s%s."
+caster_Insight_msg = pt "~bVocê olha profundamente para %s%s."
+Insightd_Insight_msg = pt "~b%s%s olha profundamente nos seus olhos."
+Insight_desc_rsc = pt \
+   "Isso observa profundamente nos olhos de uma pessoa e avalia suas chances de avançar em cada feitiço/habilidade."
+   "O verdadeiro percentual aparece após o nome do feitiço ou habilidade. O primeiro número depois disso "
+   "é o teste de intelecto e o segundo é o teste de estatística necessário. Observe que o teste de estatística "
+   "necessário assume que o alvo estará em torno do mesmo nível de uma besta fungo ou formiga mutante - "
+   "ao lançar um feitiço ofensivo ou usar uma habilidade de combate, suas chances aumentam se lutar contra monstros mais difíceis."
+Insight_Message = pt "%s (%i): %i total, %i chance inicial/%i chance secundária."

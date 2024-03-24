@@ -5,3 +5,10 @@ RoomEnchantment_killer_rsc = de "Du hast %s%s mit deinem Raumzauber getötet."
 RoomEnchantment_hit_rsc = de "Der Raumzauber verwundet dich."
 RoomEnchantment_not_guilded = de \
    "Du musst einer Gilde angehören, um diesen Zauber auszusprechen."
+
+RoomEnchantment_name_rsc = pt "encantamento de sala"
+RoomEnchantment_desc_rsc = pt "Um encantamento que é anexado a uma sala."
+RoomEnchantment_kill_rsc = pt "O encantamento da sala te mata."
+RoomEnchantment_killer_rsc = pt "Você matou %s%s com seu encantamento de sala."
+RoomEnchantment_hit_rsc = pt "O encantamento da sala te causa dano."
+RoomEnchantment_not_guilded = pt "Você precisa estar em uma guilda para lançar esse feitiço aqui."

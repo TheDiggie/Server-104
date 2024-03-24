@@ -8,3 +8,10 @@ hold_on = de \
    "Ein magischer Schauer pulsiert durch Deinen Körper. Du bist unfähig, auch "
    "nur einen Finger zu rühren."
 hold_off = de "Der Lähmen-Zauber verflüchtigt sich und Du kannst Dich wieder bewegen."
+
+hold_name_rsc = pt "segurar"
+hold_desc_rsc = pt "Cerca o alvo com energia mágica, causando paralisia por vários segundos. Requer dois cogumelos roxos para conjurar."
+hold_already_enchanted = pt "%s%s já está segurado."
+hold_caster = pt "%s%s está agora retido no lugar por uma força mágica."
+hold_on = pt "Um formigamento mágico percorre seu corpo. Você não consegue se mover."
+hold_off = pt "A retenção mágica cessa e você consegue se mover novamente."

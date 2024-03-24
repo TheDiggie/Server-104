@@ -4,3 +4,9 @@ agilboon_intro_rsc = de \
    "Die physischer Gewandheit von deinem Ziel steigt temporär."
 agilboon_inc = de "Du fühlst Dich plötzlich schneller!"
 agilboon_dec = de "Du fühlst Dich plötzlich langsamer"
+
+agilboon_name_rsc = pt "efeito de agilidade"
+agilboon_desc_rsc = pt "Sua agilidade física não é natural."
+agilboon_intro_rsc = pt "A agilidade da vítima é temporariamente aumentada."
+agilboon_inc = pt "De repente, você se sente muito mais ágil!"
+agilboon_dec = pt "De repente, você se sente mais lento."

@@ -4,3 +4,10 @@ identify_desc_rsc = de \
    "Dafür braucht man drei Smaragde."
 identify_cant = de "Du kannst keinen Fokus auf %s%s richten."
 identify_working = de "du konzentrierst Dich auf %s%s und siehst..."
+
+identify_name_rsc = pt "identificar"
+identify_desc_rsc = pt \
+     "Revela quaisquer propriedades especiais de um item para o conjurador.  "
+     "Requer três esmeraldas para lançar."
+identify_cant = pt "Você não consegue obter um foco adequado em %s%s."
+identify_working = pt "Você se concentra em %s%s e vê..."

@@ -2,3 +2,7 @@ spectate_name_rsc = de "Zuschauen"
 spectate_desc_rsc = de \
    "Trennt den Empfänger des Zaubers mit dem Rest der Welt, und hinterlässt "
    "ihn unfähig zu interagieren."
+
+spectate_name_rsc = pt "espiar"
+spectate_desc_rsc = pt \
+   "Coloca o destinatário do feitiço fora de fase com o resto do mundo, deixando-os incapazes de interagir."

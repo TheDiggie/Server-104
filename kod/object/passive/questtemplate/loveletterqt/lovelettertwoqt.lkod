@@ -1,18 +1,20 @@
-// Quest description.
 lovelettertwoquest_name_rsc = de "Madelias Liebesbrief Quest"
 lovelettertwoquest_desc_rsc = de \
    "Madelia hat Dich dazu beauftragt, einen Liebesbrief an ihren Geliebten zu überbringen."
-
 lovelettertwoquest_deliver_rsc = de \
    "Madelia hat dich beauftragt, einen Liebesbrief an %s%s zu überbringen."
-
 lovelettertwoquest_completed_rsc = de \
    "Du hast das Quest abgeschlossen."
-
-// Quest resources.
 love_letter_2_assign = de \
    "Ja, tatsächlich. Ich habe ein Schreiben was ausgeliefert werden muss.  "
    "Wenn Du diesen Brief zu %NPC bringen würdest, wäre ich Dir sehr dankbar."
 love_letter_2_success = de \
    "Ah, ein Brief von meiner schönen %SOURCE_NPC!  Es wärmt mein Herz zu "
    "wissen, dass sie an mich denkt Bitte nimm dies als Zeichen meines Dankes."
+
+lovelettertwoquest_name_rsc = pt "missão da carta de amor de Madelia"
+lovelettertwoquest_desc_rsc = pt "Madelia pediu para você entregar uma carta de amor ao seu amante."
+lovelettertwoquest_deliver_rsc = pt "Madelia pediu para você entregar uma carta de amor para %s%s."
+lovelettertwoquest_completed_rsc = pt "Você entregou uma carta de amor para Madelia."
+love_letter_2_assign = pt "Sim, na verdade, tenho uma mensagem precisando ser entregue. Se puderes entregar esta carta para %NPC ficarei muito grato(a)."
+love_letter_2_success = pt "Ah, uma carta da minha bela %SOURCE_NPC! Aquece meu coração saber que ela está pensando em mim. Por favor, aceite isso como um símbolo da minha gratidão."

@@ -9,3 +9,10 @@ Vertigo_on = de \
    "Dein Magen springt dir in den Hals und du hast das Gefühl als ob Dir "
    "jemand mit dem Hammer auf den Kopf haut"
 Vertigo_off = de "Du erholst Dich von dem schlimmen Gefühl."
+
+Vertigo_name_rsc = pt "vertigem"
+Vertigo_desc_rsc = pt "Este feitiço faz com que a vítima fique tão doente que mal consegue ficar de pé, muito menos lutar. Requer dois olhos de libélula e um frasco de solagh para conjurar."
+Vertigo_caster = pt "%s%s parece estranhamente atordoado... e confuso."
+Vertigo_already_enchanted = pt "%s%s já parece estar pirando."
+Vertigo_on = pt "Seu estômago sobe até a garganta e você sente como se alguém tivesse batido em você na cabeça com um martelo muito grande."
+Vertigo_off = pt "Você se recupera desse terrível sentimento."

@@ -5,3 +5,7 @@ Maceproficiency_desc_rsc = de \
 Maceprof_skill_intro = de \
    "Waffenfertigkeiten Level 1: Dies ermöglicht es, vertrauter mit einer "
    "der gebräuchlichsten Waffen Meridians zu werden."
+
+Maceproficiency_name_rsc = pt "luta com maça"
+Maceproficiency_desc_rsc = pt "Permite que alguém se torne mais proficiente na arma mais comum de Meridian."
+Maceprof_skill_intro = pt "Artesanato de Armas Lv. 1: Habilidades na arma mais comum, mas menos poderosa, da terra."

@@ -29,7 +29,6 @@ resources:
    mystboon_inc = "You feel more magically powerful!"
    mystboon_dec = "You suddenly feel less magically powerful."
 
-
 classvars:
 
    viPersonal_ench = TRUE

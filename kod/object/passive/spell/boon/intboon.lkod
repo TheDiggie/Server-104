@@ -3,3 +3,9 @@ intboon_desc_rsc = de "Deine Intelligenz scheint merkwürdig beeinflusst zu sein.
 intboon_intro_rsc = de "Die Intelligenz Deines Ziels steigt temporär."
 intboon_inc = de "Du fühlst Dich plötzlich weiser!"
 intboon_dec = de "Du Intelligenz verlässt Dich."
+
+intboon_name_rsc = pt "efeito de intelecto"
+intboon_desc_rsc = pt "Seu intelecto parece ser afetado de forma estranha."
+intboon_intro_rsc = pt "O intelecto da vítima é temporariamente aumentado."
+intboon_inc = pt "De repente, você se sente mais sábio!"
+intboon_dec = pt "Seu intelecto falha."

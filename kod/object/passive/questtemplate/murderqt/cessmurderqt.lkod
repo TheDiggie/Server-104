@@ -1,12 +1,8 @@
-// Quest description.
 cessmurderqt_name_rsc = de "Prinzessin mysterisches Mörder Quest"
 cessmurderqt_desc_rsc = de \
    "Die Prinzessin will, dass Du Leute über den Tod von Herzog Kalior befragtst."
-
 cessmurderqt_completed_rsc = de \
    "Du hast das Quest abgeschlossen."
-
-// Quest resources.
 murder_princess_assign = de \
    "So wie der Rest der Menschen in unserem schönen Land, bin ich neugierig "
    "zu erfahren wer den ehemaligen Herzog geötet hat.  Obwohl er und ich "
@@ -17,3 +13,9 @@ murder_princess_success = de \
    "Ich weiß nicht, ob wir diesen Gerüchten glauben können.  Ich danke Dir "
    "für Deine Hilfe;  je mehr wir untersuchen, desto näher kommen wir der "
    "Wahrheit.  Bitte nimm dieses Zeichen als meine Wertschätzung."
+
+cessmurderqt_name_rsc = pt "missão do mistério do assassinato da princesa"
+cessmurderqt_desc_rsc = pt "A Princesa gostaria que você questionasse as pessoas sobre a morte do Duque Kalior."
+cessmurderqt_completed_rsc = pt "Você completou uma missão do mistério do assassinato da princesa."
+murder_princess_assign = pt "Assim como o resto das pessoas em minhas terras, estou curioso para saber quem matou o ex-Duque. Embora ele e eu fossemos frequentemente rivais, me entristeceu vê-lo partir de forma tão violenta. Se você puder, ajude minha busca perguntando a %NPC por qualquer informação sobre o assassinato e por favor, me reporte." 
+murder_princess_success = pt "Não sei se podemos confiar nesses rumores. Agradeço sua ajuda; quanto mais investigamos, mais perto chegamos da verdade. Por favor, aceite isso como um símbolo de apreciação."

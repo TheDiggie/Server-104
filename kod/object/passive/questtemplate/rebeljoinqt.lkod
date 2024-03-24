@@ -1,17 +1,12 @@
-// Quest description.
 rebeljoin_name_rsc = de "Rebellen Anhänger Quest"
 rebeljoin_desc_rsc = de \
    "Bevor Jonas D'Accor dich in seine Ränge aufnimmt, musst du beweisen, dass Du "
    "kein Spion bist, und ihm einen Gegenstand bringen."
-
 rebeljoin_deliver_rsc = de \
    "Bevor Jonas D'Accor dich in seine Ränge aufnimmt, musst du beweisen, dass Du "
    "kein Spion bist, und ihm %s%s bringen."   
-
 rebeljoin_completed = de \
    "Du hast das Vertrauen von Jonas gewonnen, und bist nun ein Anhänger der Rebellen."
-
-// Quest resources.
 rebel_join2_assign = de \
    "Du willst Dich unserem Kampf für die Freiheit anschließen?  Ich kann "
    "Dir nicht vertrauen, denn Du könntest ein Spion sein. Beweise Deinen "
@@ -23,3 +18,11 @@ rebel_join2_failure = de \
    "Betreff: Deine fehlenden Taten.\nDeine fehlenden Taten mögen meine Ängste "
    "bestätigen, dass Du ein Spion bist. Störe mich nicht noch einmal, mit "
    "deinen falschen Ansichten für den Kampf der Freiheit."
+
+rebeljoin_name_rsc = pt "Missão de adesão à facção rebelde"
+rebeljoin_desc_rsc = pt "Antes que Jonas D'Accor permita que você se junte às suas fileiras, ele deve ser convencido de que você não é um espião. Traga-lhe um item e você ganhará sua confiança."
+rebeljoin_deliver_rsc = pt "Antes que Jonas D'Accor permita que você se junte às suas fileiras, ele deve ser convencido de que você não é um espião. Traga-lhe %s%s, e você ganhará sua confiança."
+rebeljoin_completed = pt "Você conquistou a confiança de Jonas D'Accor e agora é membro de sua facção."
+rebel_join2_assign = pt "Você deseja se juntar à nossa luta pela liberdade? Não posso confiar em você, pois pode ser um espião dos meus inimigos. Prove seu valor trazendo-me %INDEF_CARGO%CARGO."
+rebel_join2_success = pt "Excelente trabalho! Isso equipará as tropas que eu campo na batalha. Considere-se um dos lutadores pela liberdade da terra."
+rebel_join2_failure = pt "Assunto: Sua falta de ação.\nSua falta de ações provavelmente confirma meus temores de que você era um espião dos outros líderes fracos. Não me incomode novamente com seus falsos desejos de lutar pela verdadeira liberdade."

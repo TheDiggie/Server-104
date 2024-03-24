@@ -16,7 +16,7 @@ constants:
 
 resources:
 
-   //include mining.lkod
+   include mining.lkod
 
    Mining_name_rsc = "mining"
    Mining_icon_rsc = imining.bgf

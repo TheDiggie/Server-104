@@ -44,3 +44,48 @@ divench_cant_apply = de "Das %q Attribut kann %s%s nicht hinzugefügt werden."
 divench_notfound = de "Es wurde keine Verzauberung mit dem Namen %q gefunden."
 divench_no_permission = de \
    "Du besitzt nicht die notwendigen Berechtigungen um diesen Spruch auszuführen."
+
+divench_name_rsc = pt "encantamento divino"
+divench_desc_rsc = pt \
+   "Encanta um item com qualquer atributo de item disponível. Lance este feitiço "
+   "e selecione um item, em seguida, diga o nome do atributo durante o tempo de foco. "
+   "Os atributos de item disponíveis para o item selecionado serão "
+   "exibidos no início do tempo de foco."
+divench_list_header = pt \
+   "~fAtributos de item disponíveis para este item:~n%s%s%s"
+divench_list_all = pt \
+   "\n\"~boculto~n\": frágil não tem efeito\n"
+   "\"~btranscendente~n\": vinculado ao jogador"
+divench_list_wearable = pt \
+   "\n\"~badventuring~n\": bônus de XP ao matar\n"
+   "\"~bdurável~n\": item extra durável"
+divench_list_weapon = pt \
+   "\n\"~bacid/cold/fire/holy/shock/unholy~n\": dano elemental\n"
+   "\"~bcegador~n\": lança cegueira no alvo\n"
+   "\"~bbonker~n\": lança bonk no alvo\n"
+   "\"~bcerimonial~n\": dano bônus na arena\n"
+   "\"~bamaldiçoado~n\": item amaldiçoado\n"
+   "\"~bduque/princesa/rebelde/necromante~n\": dano bônus se a facção "
+   "corresponder\n"
+   "\"~bencantado~n\": adiciona um encantamento Kraanan\n"
+   "\"~bexpert~n\": arma Colhorr (mais dano)\n"
+   "\"~bbrilhante~n\": arma ou alaúde emite luz\n"
+   "\"~bdefensor do salão da guilda~n\": dano bônus se o portador possuir o salão\n"
+   "\"~bparalisador~n\": lança hold no alvo\n"
+   "\"~bpunidor~n\": dano bônus contra laranjas/vermelhos\n"
+   "\"~bpurificador~n\": lança purge no alvo\n"
+   "\"~bdrenador~n\": drena mana do alvo\n"
+   "\"~bmago nomedofeitiço~n\": lança debuff no alvo, ou buff no "
+   "portador. Feitiços disponíveis são ~bdement~n, ~benfeeble~n, ~bvertigo~n, "
+   "~besquecimento~n, ~birmão malvado~n, ~bmarca da desonra~n e ~binvisibilidade\n"
+   "\"~btorvelinho~n\": faz o alvo girar\n"
+   "\"~bvampiro~n\": lança dreno vampírico no alvo"
+   "\"~bveneno~n\": lança veneno no alvo"
+divench_cant_enchant = pt "Você não pode adicionar um atributo a %s%s."
+divench_no_message = pt \
+   "Sem atributo especificado, o feitiço se dissipa em nada."
+divench_apply = pt "Você encanta %s%s com o atributo %q."
+divench_cant_apply = pt "Não foi possível adicionar o atributo %q a %s%s."
+divench_notfound = pt "Nenhum atributo encontrado para a string de atributo %q."
+divench_no_permission = pt \
+   "Você não tem permissões necessárias para lançar este feitiço."

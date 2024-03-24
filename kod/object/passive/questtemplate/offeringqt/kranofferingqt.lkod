@@ -1,15 +1,11 @@
-// Quest description.
 kranofferingqt_name_rsc = de "Kraanan Opfer Quest"
 kranofferingqt_desc_rsc = de \
    "Priesterin Quertina Zuxana hat Dich eingeladen mit ihr zu singen, um die Herrin zu stärken."
-
 kranofferingqt_completed = de \
    "Der Lord hat dir temporäre Kraft verlieren, im Gegenzug zu ein wenig deiner Lebenskraft. "
    "Du hast ebenfalls einen mächtigen magischen Gegenstand erhalten. Wenn dieser an einem "
    "der Schreine in der Welt platziert wird, wird er Kraanan geweiht und verleit den "
    "Zaubern Kraanans mehr Kraft."
-
-// Quest resources.
 kraananoffering_assign_2 = de \
    "`B`b%NAME, heldenhafter Champion der Faust. Gibst du Dich selber auf "
    "dafür, dass unser Lord noch stärker sein wird?"
@@ -31,3 +27,13 @@ kraananoffering_assign_4 = de "`B`b%CARGO!"
 kraananoffering_success_5 = de \
    "`B`bAh, dies ist ein großer Tag für Kraanan!  Geh nun und verbreite die "
    "Macht  unseres Lords in der Welt!"
+
+kranofferingqt_name_rsc = pt "missão da oferta a Kraanan"
+kranofferingqt_desc_rsc = pt "A Sacerdotisa Qerti'nya o convidou para cantar com ela, para dar força ao seu Senhor."
+kranofferingqt_completed = pt "Você deu parte de sua essência de vida para fortalecer seu Senhor. Em troca, você recebeu um item mágico poderoso. Quando colocado em um dos Altares localizados ao redor do mundo, o Altar será dedicado a Kraanan e seus feitiços terão mais poder."
+kraananoffering_assign_2 = pt "`B`b%NAME, campeão heroico do Punho, você dará de si mesmo para que seu Senhor possa ser mais forte?"
+kraananoffering_assign_3 = pt "`B`bAdore comigo, então. Juntos, vamos tirar de nossa própria essência de vida para forjar um símbolo do poder de nosso Senhor. Raramente as estrelas estão tão bem alinhadas para a antiga cerimônia que realizaremos, então devemos falar rapidamente. Incante essas palavras comigo: %CARGO"
+kraananoffering_trigger_3 = pt "Pela faísca do aço contra o aço, eu te conjuro, Kraanan o Punho"
+kraananoffering_failure_3 = pt "Assunto: Você deve fortalecer a si mesmo!\nO tempo se esgotou, e agora ambos sofremos por sua hesitação. O ritual iniciado mas deixado incompleto tirou um pedaço de nosso poder. Você foi mais fraco do que eu esperava; Fortaleça teu espírito, e talvez em outro dia sejamos bem-sucedidos."
+kraananoffering_assign_4 = pt "`B`b%CARGO!"
+kraananoffering_success_5 = pt "`B`bAh, este é um grande dia para Kraanan! Vá agora, leve a força de nosso Senhor para o mundo!"

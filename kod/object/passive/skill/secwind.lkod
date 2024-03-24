@@ -8,3 +8,8 @@ SecondWind_skill_intro = de \
    "Waffenfertigkeit Level 4: Der zweite Atem gibt dem starken Abenteurer "
    "die nötige Ausdauer um weiterzukämpfen."
 SecondWind_success = de "Du ergreifst deinen zweiten Atem!"
+
+SecondWind_name_rsc = pt "Segundo fôlego"
+SecondWind_desc_rsc = pt "O segundo fôlego dará a um aventureiro vigor para realizar atividades extenuantes mesmo quando exausto. Quando próximo do esgotamento, esta habilidade dará um impulso ao vigor. É inútil descansar ou comer para recuperar a energia por um tempo após ganhar um segundo fôlego."
+SecondWind_skill_intro = pt "Artesanato de Armas Lv. 4: A capacidade de prosseguir mesmo quando exausto."
+SecondWind_success = pt "Você recupera seu segundo fôlego!"

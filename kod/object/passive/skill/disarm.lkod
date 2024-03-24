@@ -12,3 +12,11 @@ Disarm_opp_unwield = de \
 Disarm_dropped = de "Du hast %s%s entwaffnet!"
 Disarm_opp_dropped = de \
    "%s%s's Schlag führt dazu, dass Du deine Waffe aus der Hand verlierst!"
+
+Disarm_name_rsc = pt "desarmar"
+Disarm_desc_rsc = pt "Uma técnica que permite a um guerreiro atacar a arma de seu oponente. Frequentemente, o uso bem-sucedido dessa habilidade colocará o oponente em desvantagem e, ocasionalmente, jogará a arma da mão do oponente."
+Disarm_skill_intro = pt "Artes de Combate Nv. 5: A habilidade de continuar avançando mesmo quando exausto."
+Disarm_unwield = pt "Você colocou %s%s em desvantagem."
+Disarm_opp_unwield = pt "O golpe de %s%s faz você perder a empunhadura de sua arma."
+Disarm_dropped = pt "Você desarmou %s%s!"
+Disarm_opp_dropped = pt "O golpe de %s%s fez com que você deixasse sua arma escapar das mãos!"

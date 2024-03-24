@@ -2,3 +2,6 @@ parry_name_rsc = de "Parieren"
 parry_desc_rsc = de \
    "Das Parieren ermöglicht es Personen mit einer Waffe einen Schlag abzuwehren, "
    "um nicht getroffen zu werden."
+
+parry_name_rsc = pt "parada"
+parry_desc_rsc = pt "A parada permite que pessoas com uma arma desviem um golpe, evitando assim serem atingidas."

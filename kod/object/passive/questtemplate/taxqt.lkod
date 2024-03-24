@@ -1,8 +1,5 @@
-// Quest description.
 taxqt_deliver_rsc = de \
    "%s%s hat dich beauftragt %i %s zu %s%s bringen. Behalte nichts für dich! Diebstahl wird bestraft."
-
-// Quest resources.
 vaulttax_assign_2_h = de \
    "Ja, ich benötige einen Kurier.  %NPC bekommt einen bestimmten Prozentsatz "
    "der Gewinne von meinem Geschäften.  Bitte nimm diese Zinsen von %INDEF_CARGO%CARGO "
@@ -14,3 +11,7 @@ vaulttax_failure_2_h = de \
    "Betreff: Dieb!\nIch habe mit meinem befreundeten Zauberer gesprochen, "
    "und er hat sich darum gekümmert das Du wegen Deiner Unehrlichkeit leiden "
    "wirst."
+
+taxqt_deliver_rsc = pt "%s%s pediu que você leve %i %s para %s%s. Não seja tentado a ficar com isso para você mesmo; qualquer roubo será punido!"
+vaulttax_assign_2_h = pt "Sim, preciso de um mensageiro. %NPC deve receber uma certa porcentagem dos lucros do meu negócio. Por favor, leve este dízimo de %INDEF_CARGO%CARGO para %HIMHER_NPC rapidamente. Estou ocupado demais para fazer isso pessoalmente. Esteja avisado que qualquer roubo será relatado e ouvi dizer que %NPC agora anda acompanhado de um mago. Eu arranjei para que %NPC te pague pelos seus problemas."
+vaulttax_failure_2_h = pt "Assunto: Ladrão!\nConversei com um amigo mago meu, e ele garantiu que você sofrerá por sua desonestidade."

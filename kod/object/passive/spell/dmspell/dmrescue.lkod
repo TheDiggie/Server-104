@@ -5,3 +5,7 @@ dmrescue_desc_rsc = de \
    "geschickt von...' aus ihrer Beschreibung."
 dmrescue_hit_rsc = de \
    "Ein Riss im Raumgefüge tut sich auf und Du schickst %s%s nach Hause."
+
+dmrescue_name_rsc = pt "resgate"
+dmrescue_desc_rsc = pt "Envia o alvo para sua cidade natal. Se remover o alvo de Fora da Graça, removerá a string 'condenado' de sua descrição."
+dmrescue_hit_rsc = pt "Você abre uma fenda no espaço para a cidade natal de %s%s e os empurra para dentro."

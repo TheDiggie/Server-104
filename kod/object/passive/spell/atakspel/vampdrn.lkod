@@ -7,3 +7,8 @@ VampiricDrain_death = de \
 VampiricDrain_health_gain = de \
    "Du saugst die Lebenskraft Deines Opfers um ~g~B%i~B~n Lebenspunkte aus, "
    "und fühlst Dich stärker."
+
+VampiricDrain_name_rsc = pt "dreno vampírico"
+VampiricDrain_desc_rsc = pt "Extrai a própria força vital do alvo e converte a energia em vida para o conjurador. Requer um frasco de sangue de xamã para conjurar."
+VampiricDrain_death = pt "Você drena o último resquício da força vital de %s%s."
+VampiricDrain_health_gain = pt "Você drena a força vital de sua vítima, ganhando ~g~B%i~B~n de vida."

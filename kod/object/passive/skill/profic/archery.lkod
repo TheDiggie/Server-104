@@ -3,3 +3,6 @@ Archery_desc_rsc = de \
    "Diejenigen mit dieser Fertigkeit kommen mit einem Bogen besser zurecht. "
    "Doch das Lernen geht nur sehr langsam voran und nur diejenigen, die über "
    "eine hohe Zielgenauigkeit verfügen, werden es jemals meistern."
+
+Archery_name_rsc = pt "Arqueria"
+Archery_desc_rsc = pt "Aqueles com essa habilidade se encontram mais aptos a manusear qualquer arco padrão. No entanto, a curva de aprendizado é tediosamente lenta, e apenas aqueles com boa mira realmente se destacarão nisso."

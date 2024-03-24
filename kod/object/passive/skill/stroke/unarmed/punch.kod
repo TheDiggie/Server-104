@@ -17,6 +17,7 @@ constants:
 resources:
 
    include punch.lkod
+   
    punch_name_rsc = "punch"
    punch_icon_rsc = punchico.bgf
    punch_desc_rsc = "This is the most basic hand-to-hand combat move.  Can be very strong for a powerful warrior, but is extremely tiring."
@@ -28,6 +29,7 @@ resources:
    punch_player_was_killed = "The last thing you see is %s%s's fist speeding towards your nose."
 
    punch_skill_intro = "Weaponcraft Lv. 1: The most basic of fighting skills, used by fighters and mages alike."
+
 classvars:
 
    vrName = punch_name_rsc

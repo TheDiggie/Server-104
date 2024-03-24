@@ -11,3 +11,12 @@ shatter_failed_caster = de \
 shatter_failed_target = de \
    "%s%s zeigt auf dich, aber es scheint nichts zu passieren."
 shatter_not_enough_hp = de "Du bist nicht stark genug Objekte zu zerbrechen."
+
+shatter_name_rsc = pt "despedaçar"
+shatter_desc_rsc = pt "A magia gélida de Faren despedaça um ou mais itens no inventário do alvo."
+shatter_cast_rsc = pt "Seu %s gela, treme e se despedaça!"
+shatter_cast_plural_rsc = pt "Seu %s gela, treme e se despedaçam!"
+shatter_succeed = pt "Você despedaça o %s de %s%s!"
+shatter_failed_caster = pt "%s%s aponta para você, mas nada parece acontecer."
+shatter_failed_target = pt "Você aponta para %s%s, mas nada parece acontecer."
+shatter_not_enough_hp = pt "Você ainda não tem poder suficiente para destruir objetos."

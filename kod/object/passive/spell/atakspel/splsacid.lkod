@@ -2,3 +2,6 @@ SplashOfAcid_name_rsc = de "Säurespritzer"
 SplashOfAcid_desc_rsc = de \
    "Spritzt Qors unheilige, verzehrende Säure auf das Ziel. "
    "Benötigt zwei Wurzelknollen. "
+
+SplashOfAcid_name_rsc = pt "borrifada de ácido"
+SplashOfAcid_desc_rsc = pt "Salpica o ácido corrosivo profano de Qor em um alvo a curta distância. Requer bagas de entroot para conjurar."

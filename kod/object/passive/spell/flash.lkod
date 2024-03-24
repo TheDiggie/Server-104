@@ -3,3 +3,6 @@ Flash_desc_rsc = de \
    "Verursacht einen hellen Lichtblitz, der wahrscheinlich die Konzentration eines "
    "jeden in der Nähe befindlichen Zauberbeschwörers stören wird. "
    "Dieser Spruch benötigt zwei frische Augen einer Drachenfliege. "
+
+Flash_name_rsc = pt "clarão"
+Flash_desc_rsc = pt "Causa um clarão brilhante, provavelmente interrompendo a concentração de qualquer conjurador na área ou confundindo temporariamente monstros."

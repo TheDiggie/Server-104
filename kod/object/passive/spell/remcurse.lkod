@@ -9,3 +9,10 @@ RemoveCurse_bad_target = de \
 RemoveCurse_spell_intro = de \
    "Shal'ille Level 2: Zerbricht das magische Band, das Dich an einen verfluchten "
    "Gegenstand bindet."
+
+RemoveCurse_name_rsc = pt "remover maldição"
+RemoveCurse_desc_rsc = pt "Quebra o vínculo mágico que o prende a um item amaldiçoado. "
+                        "Requer esmeraldas para lançar."
+RemoveCurse_on = pt "Shal'ille arranca o item amaldiçoado do seu corpo."
+RemoveCurse_bad_target = pt "Shal'ille não detecta nenhum item amaldiçoado para remover."
+RemoveCurse_spell_intro = pt "Shal'ille Lv. 2: Quebra o vínculo mágico que o prende a um item amaldiçoado."

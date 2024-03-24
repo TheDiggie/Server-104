@@ -1,11 +1,13 @@
-// Quest description.
 chessmovequest_name_rsc = de "Schachzug Kurier Quest"
-
 chessmovequest_completed_rsc = de \
    "Du hast das Quest abgeschlossen."
-
-// Quest resources.
 chess_success_4 = de \
    "Ganz schön clever!  Ich muss ein wenig überlegen, bevor ich antworte.  "
    "Vielen Dank, dass Du uns geholfen hast zu spielen. Hier ist eine Kleinigkeit "
    "für Deine Mühen."
+
+chessmovequest_name_rsc = pt "missão de correio de movimento de xadrez"
+chessmovequest_completed_rsc = pt \
+   "Você completou uma missão de correio de movimento de xadrez."
+chess_success_4 = pt \
+   "Muito inteligente! Vou ter que pensar um pouco antes de responder. Obrigado por nos ajudar a conduzir nosso jogo, aqui está algo para o seu trabalho."

@@ -13,3 +13,14 @@ Animate_too_many_rsc = de \
    "Du bist nicht in der Lage einen Diener von jemandem anderen zu kontrollieren."
 Animate_failed_full_rsc = de \
    "Hier sind zu viele Monster im Raum, darum kannst du keinen erwecken."
+
+Animate_name_rsc = pt "Animar"
+Animate_desc_rsc = pt "Anima o cadáver de um monstro ou jogador, para que ele possa fazer sua vontade. Requer o sangue de um xamã para lançar."
+Animate_bad_target = pt "Você não pode lançar animar em %s%s!"
+Animate_human_cast_rsc = pt "O cadáver de %s se levanta do chão."
+Animate_human_failed_rsc = pt "O cadáver de %s permanece inanimado no chão."
+Animate_mob_failed_rsc = pt "Os restos do(a) %s ainda estão deitados, sem vida e inanimados."
+Animate_mob_cast_rsc = pt "Os restos do(a) %s ganham vida e se levantam do chão."
+Animate_failed_rsc = pt "Os restos não podem ser animados."
+Animate_too_many_rsc = pt "Você não consegue controlar outro servo."
+Animate_failed_full_rsc = pt "Há muitos monstros aqui para criar outro."

@@ -14,3 +14,13 @@ evaluate_monster = de \
 Evaluate_combat = de \
    "~BCombat stats: ~B%s has an Offense of %i, Defense of %i, and can do "
    "around %i points of type %i (physical) and %i (spell) damage."
+
+Evaluate_name_rsc = pt "avaliar"
+allinroom_Evaluate_msg1 = pt "~b%s%s mergulha profundamente na alma de %s%s."
+allinroom_Evaluate_msg2 = pt "~bVocê sente um formigamento enquanto %s%s olha profundamente na alma de %s%s."
+caster_Evaluate_msg = pt "~bVocê olha profundamente para %s%s."
+Evaluated_Evaluate_msg = pt "~b%s%s olha profundamente nos seus olhos."
+Evaluate_desc_rsc = pt "Isso olha profundamente nos olhos de uma pessoa e avalia suas chances de ganhar outro ponto de saúde."
+evaluate_message = pt "%s tem %i XP e precisa de %i para alcançar %i HP."
+evaluate_monster = pt "%s deve se concentrar em matar monstros com cerca de nível de habilidade %s, como %ss e %ss."
+Evaluate_combat = pt "~BEstatísticas de combate: ~B%s tem um Ataque de %i, Defesa de %i, e pode causar cerca de %i pontos de dano do tipo %i (físico) e %i (mágico)."

@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include skinning.lkod
+
    Skinning_name_rsc = "skinning"
    Skinning_icon_rsc = iskinning.bgf
    Skinning_desc_rsc = "This skill allows you to gather hides from slain monsters. Requires a skinning knife. "

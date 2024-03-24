@@ -1,15 +1,10 @@
-// Quest description.
 rebelloyalty_name_rsc = de "Rebellen Loyalitäts Quest"
 rebelloyalty_desc_rsc = de \
    "Jonas D'Accors Truppen benötigen Ausrüstung, und Du sollst sie besorgen."
-
 rebelloyalty_deliver_rsc = de \
    "Jonas D'Accors Truppen benötigen Ausrüstung und hat dich beauftragt ihm %s%s zu bringen, um ihm einen Gefallen zu tun.."
-
 rebelloyalty_completed = de \
    "Du hast das Rebellen Loyalitäts Quest abgeschlossen. Jonas ist dir dankbar... für eine Weile."
-
-// Quest resources.
 rebel_standard2_assign = de \
    "Ah, %NAME, mein Freiheitskämpfer. Meine Truppen benötigen mehr Ausrüstung.Dieser "
    "Krieg kostet eine Menge und ich habe nicht das Geld für eine große Truhe, "
@@ -21,3 +16,11 @@ rebel_standard2_failure = de \
    "Betreff: Du bist kein wahrer Rebell\nDu hast versagt, als ich Dich gebraucht "
    "habe.  Geh und verzieh Dich zu den Anderen, ich habe keinen Nutzen mehr "
    "an Dir."
+
+rebelloyalty_name_rsc = pt "Missão de lealdade rebelde"
+rebelloyalty_desc_rsc = pt "As tropas de Jonas D'Accor precisam de equipamento, e ele solicitou que você ajude a causa trazendo alguns."
+rebelloyalty_deliver_rsc = pt "As tropas de Jonas D'Accor precisam de equipamento, e ele solicitou que você ajude a causa trazendo %s%s para permanecer em favor."
+rebelloyalty_completed = pt "Você completou a missão de lealdade rebelde e mostrou sua dedicação pela causa."
+rebel_standard2_assign = pt "Ah, %NAME, meu companheiro lutador pela liberdade. Minhas tropas precisam de mais equipamentos. Esta guerra nos custa muito, e não tenho o luxo de um grande tesouro como os outros líderes têm. Traga-me %INDEF_CARGO%CARGO e eu não esquecerei sua lealdade."
+rebel_standard2_success = pt "Ah, excelente. Com certeza colocarei isso em bom uso."
+rebel_standard2_failure = pt "Assunto: Você não é um verdadeiro rebelde\nVocê me falhou quando mais precisei. Vá rastejando para um dos outros senhores, pois não tenho mais uso para alguém como você."

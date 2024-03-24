@@ -14,3 +14,11 @@ punch_skill_intro = de \
    "Waffenfertigkeiten Level 1: Dies ist die gebräuchlichste Art, waffenlos "
    "zu kämpfen. Von einem starken Krieger ausgeführt, kann es sehr effektiv "
    "sein, ist aber auch äußerst ermüdend."
+
+punch_name_rsc = pt "Soco"
+punch_desc_rsc = pt "Este é o movimento de combate corpo a corpo mais básico. Pode ser muito forte para um guerreiro poderoso, mas é extremamente cansativo."
+punch_player_was_hit = pt "%s%s conecta um soco solidamente em seu queixo."
+punch_player_hit_something = pt "%sVocê acerta %s%s com um forte cruzado de direita."
+punch_player_killed_something = pt "%s%s desaba no chão, nunca mais se levantando."
+punch_player_was_killed = pt "A última coisa que você vê é o punho de %s%s se aproximando rapidamente do seu nariz."
+punch_skill_intro = pt "Artes de Arma Lv. 1: A habilidade de combate mais básica, usada por lutadores e magos."

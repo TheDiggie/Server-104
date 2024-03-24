@@ -1,15 +1,10 @@
-// Quest description.
 loveletteronequest_name_rsc = de "Liebesbrief Quest"
 loveletteronequest_desc_rsc = de \
    "Überbringe einen Liebesbrief."
-
 loveletteronequest_deliver_rsc = de \
    "%s%s hat Dich beauftragt %s%s zu %s%s zu bringen."
-
 loveletteronequest_completed_rsc = de \
    "Du hast das Liebesbrief Quest beendet."
-
-// Quest resources.
 love_letter_1_assign = de \
    "Ja, tatsächlich, ich habe %INDEF_CARGO%CARGO für mein Liebling %NPC.  "
    "Bitte nimm dies mit zur ihr, und bringe ihr meine Liebe.  Sage ihr, dass "
@@ -19,3 +14,10 @@ love_letter_1_assign = de \
 love_letter_1_success = de \
    "Ah, ein weiterer Brief von %SOURCE_NPC.  Wie schön.  Bitte nimm dies "
    "als Belohnung für Deine Mühen."
+
+loveletteronequest_name_rsc = pt "missão da carta de amor"
+loveletteronequest_desc_rsc = pt "Entregue uma carta de amor."
+loveletteronequest_deliver_rsc = pt "%s%s pediu para você entregar %s%s para %s%s."
+loveletteronequest_completed_rsc = pt "Você completou uma missão da carta de amor."
+love_letter_1_assign = pt "Sim, na verdade, tenho %INDEF_CARGO%CARGO para minha querida %NPC.  Por favor, leve isso para ela e envie-lhe meu amor. Diga a ela que sinto saudades dela, não é? E que anseio pelo momento em que nos encontraremos novamente. Vá agora, rapidamente, para que ela não pense que meu amor por ela é passageiro e volúvel."
+love_letter_1_success = pt "Ah, outra carta de %SOURCE_NPC. Que maravilha. Por favor, aceite isso como recompensa pelo seu trabalho."

@@ -1,1 +1,3 @@
 boon_caster_msg = de "Du zaubest %s auf %s%s."
+
+boon_caster_msg = pt "Você conjura %s em %s%s."

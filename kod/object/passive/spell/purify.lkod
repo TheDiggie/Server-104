@@ -8,3 +8,10 @@ purify_not_enchanted = de "%s%s ist von keinen missgünstigen magischen Energien 
 purify_spell_intro = de \
    "Shal'ill Level 4: Beseitigt schädliche persönliche Zauber der Zielperson."
 purify_spell_self_cast_rsc = de "Du kannst nur %s auf dich selber zaubern."
+
+purify_name_rsc = pt "purificar"
+purify_desc_rsc = pt "Remove encantamentos pessoais prejudiciais no alvo. Requer duas esmeraldas e uma erva-de-sabugueiro para lançar."
+purify_on = pt "Uma luz brilhante e sagrada está tentando purificar sua alma dos efeitos impuros."
+purify_not_enchanted = pt "%s%s não é afetado por quaisquer energias mágicas negativas."
+purify_spell_intro = pt "Shal'ille Nível 4: Remove encantamentos pessoais prejudiciais no alvo."
+purify_spell_self_cast_rsc = pt "Você só pode lançar %s em si mesmo."

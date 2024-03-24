@@ -1,17 +1,11 @@
-// Quest description.
-oreqt_icon_rsc = de ore.bgf
 oreqt_name_rsc = de "Schmied: Eisenerz Quest"
 oreqt_desc_rsc = de \
    "Ein Schmied hat kein Eisenerz mehr. Besorge ihm welches."
-
 oreqt_deliver_rsc = de \
    "%s%s hat kein Eisenerz mehr, also hat %s%s dich beauftragt Ihm welches%s zu bringen.  "
    "Behalte nichts für dich! Diebstahl wird bestraft."
-
 oreqt_completed_rsc = de \
    "Du hast das Schmied Eisenerz Quest abgeschlossen."
-
-// Quest resources.
 ore_assign_2 = de \
    "%NPC hat kein Erz mehr. Bringe dieses Erz zu ihm%HIMHER_NPC.  Es wäre unklug "
    "mich zu betrügen.  Diebstahl wird gemeldet und führt dazu das Du als "
@@ -32,3 +26,13 @@ ore_failure_2_h = de \
    "Betreff: Dieb!\nDein Diebstahl von dem Erz wurde gemeldet.  ich habe mit "
    "einem befreundeten Zauberer gesprochen, und er hat dafür gesorgt, dass "
    "Du für Deine Unehrlichkeit Leiden wirst."
+
+oreqt_name_rsc = pt "missão do minério do ferreiro"
+oreqt_desc_rsc = pt "Um ferreiro ficou sem minério; entregue algum a eles."
+oreqt_deliver_rsc = pt "%s%s ficou sem minério, então %s%s pediu para você entregar alguns para %s. Não seja tentado a ficar com isso para você, para não ser punido por seu roubo!"
+oreqt_completed_rsc = pt "Você completou a missão do minério do ferreiro."
+ore_assign_2 = pt "%NPC ficou sem minério. Leve este minério para %HIMHER_NPC, e rápido. Seria imprudente me trair. O roubo será relatado e você será considerado um fora da lei. Por favor, apresse-se. %NPC pagará por seus problemas."
+ore_assign_2_h = pt "%NPC ficou sem minério. Leve este minério para %HIMHER_NPC, e rápido. Seria imprudente me trair. O roubo resultará em desgraça para nós dois. Por favor, apresse-se. %NPC pagará por seus problemas."
+ore_success_2 = pt "Obrigado pelo minério. Aqui está sua recompensa. Talvez possamos fazer negócios novamente."
+ore_failure_2 = pt "Assunto: Ladrão!\nSeu roubo do minério foi relatado. Você foi considerado um fora da lei e precisará entrar em contato com as autoridades para resolver este assunto."
+ore_failure_2_h = pt "Assunto: Ladrão!\nSeu roubo do minério foi relatado. Falei com um amigo mago meu, e ele garantiu que você sofrerá por sua desonestidade."

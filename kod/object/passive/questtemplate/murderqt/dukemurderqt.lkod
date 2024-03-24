@@ -1,12 +1,8 @@
-// Quest description.
 dukemurderqt_name_rsc = de "Herzog mysterisches Mörder Quest"
 dukemurderqt_desc_rsc = de \
    "Herzog Arkadius will, dass Du Leute über den Tod von Herzog Kalior befragtst."
-
 dukemurderqt_completed_rsc = de \
    "Du hast das Quest abgeschlossen."
-
-// Quest resources.
 murder_duke_assign = de \
    "Der Tot meines Onkels lastet schwer in meinen Gedanken.  Tag und Nacht, "
    "kann ich an nichts anderes denken!  Ich muss sehen, wie jemand für dieses "
@@ -16,3 +12,9 @@ murder_duke_assign = de \
 murder_duke_success = de \
    "Ah, ein weiteres Stück im komplizierten Puzzle vom Tod meines Onkels.  "
    "Nimm dies als Dank und meine Anerkennung, mein treuer Anhänger"
+
+dukemurderqt_name_rsc = pt "missão do mistério do assassinato do duque"
+dukemurderqt_desc_rsc = pt "O Duque Akardius gostaria que você questionasse as pessoas sobre a morte de seu antecessor, o Duque Kalior."
+dukemurderqt_completed_rsc = pt "Você completou uma missão do mistério do assassinato do duque."
+murder_duke_assign = pt "A passagem de meu tio pesa muito em minha mente. Noite e dia, não consigo pensar em mais nada! Eu devo garantir que alguém pague por este terrível crime. Por favor, ajude minha investigação perguntando a %NPC por qualquer informação sobre o assassinato. Certifique-se de me contar o que %NPC tem a dizer."
+murder_duke_success = pt "Ah, mais uma peça no complicado quebra-cabeça da morte de meu Tio. Aceite isso com meu agradecimento e minha apreciação, meu leal seguidor."

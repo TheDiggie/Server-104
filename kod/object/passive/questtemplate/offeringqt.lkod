@@ -1,6 +1,9 @@
-// Quest description.
 offeringquest_accept_rsc = de \
    "%s%s hat dich dazu eingeladen mit %s zu singen, akzeptierst du?"
 offeringquest_chant_rsc = de \
    "Sprich folgende Worte laut: \"%s\"."
 offering_trigger_2 = de "Ja"
+
+offeringquest_accept_rsc = pt "%s%s convidou você para cantar com %s, você aceita?"
+offeringquest_chant_rsc = pt "Diga as seguintes palavras em voz alta: \"%s\"."
+offering_trigger_2 = pt "sim"

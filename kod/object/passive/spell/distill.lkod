@@ -16,3 +16,17 @@ Distill_Dont_have_target = de "Du besitzt nicht das Wissen über den %s-Zauber."
 Distill_no_ingredient = de "Du hast nicht alle Zutaten die du benötigst."
 Distill_Fail_Target = de \
    "Dein Wissen über %s reicht nicht aus und Du bist nicht sicher, wie Du vorgehen musst."
+
+Distill_name_rsc = pt "destilar"
+Distill_desc_rsc = pt \
+    "Permite ao conjurador destilar seu conhecimento de um feitiço em forma líquida. Após lançar, basta dizer o nome do feitiço que deseja transformar em uma poção. Requer um rubi e ingredientes para a poção."
+Distill_no_message = pt \
+    "Sem feitiço para destilar, o feitiço se dissipa sem fazer nada."
+Distill_bad_spell = pt "Você não pode fazer uma poção com esses poderes."
+Distill_do = pt \
+    "Através de uma preparação cuidadosa dos ingredientes, você cria %s%s."
+Distill_inv_full_rsc = pt "Sobrecarregado, você deixa cair %s%s aos seus pés."
+Distill_Dont_have_target = pt "Você não tem conhecimento de %s."
+Distill_no_ingredient = pt "Você não tem todos os ingredientes de que precisa."
+Distill_Fail_Target = pt \
+    "Seu conhecimento de %s é instável e você não tem certeza de como proceder."

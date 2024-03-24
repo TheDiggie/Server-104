@@ -5,3 +5,7 @@ dmroomhold_desc_rsc = de \
    "um es wieder zu befreien."
 dmroomhold_casted_msg = de \
    "%s%s hebt %s Hände, und alle Bewegung im Raum erlischt."
+
+dmroomhold_name_rsc = pt "imobilização do ambiente"
+dmroomhold_desc_rsc = pt "Impede o movimento de todos os jogadores e monstros na sala por 10 minutos. Lance novamente para libertar as vítimas, ou lance segurar superior em alvos específicos para libertá-los."
+dmroomhold_casted_msg = pt "%s%s levanta %s mãos, e todo o movimento na sala cessa."

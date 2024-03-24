@@ -7,3 +7,9 @@ dispelillusion_desc_rsc = de \
 dispelillusion_castermsg_rsc = de \
    "Du kreuzt deine Augen für einen Moment um sämtliche Illusionen in diesem "
    "Raum verschwinden zu lassen."
+
+dispelillusion_name_rsc = pt "dispersar ilusão"
+dispelillusion_desc_rsc = pt \
+    "Tenta dissipar quaisquer ilusões em sua vizinhança. Este poderoso feitiço é o flagelo da escola de magia Riija, mas a um custo significativo em reagentes. Requer olhos de libélula, seraphym não lapidado e solagh para lançar."
+dispelillusion_castermsg_rsc = pt \
+    "Você cruza os olhos momentaneamente para fazer as ilusões na área desaparecerem."

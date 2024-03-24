@@ -14,3 +14,12 @@ forgetspell_caster = de \
    "Du zauberst auf %s%s und der scheint plötzlich vergesslicher."
 forgetspell_cast_self = de "Du kannst Vergessen nicht auf Dich selber zaubern."
 forgetspell_caster_failed = de "%s%s ist so dumm, dümmer geht gar nicht!"
+
+forgetspell_name_rsc = pt "esquecer"
+forgetspell_desc_rsc = pt "Faz com que a vítima esqueça suas próprias habilidades. Requer um areias de fogo e dois seraphym não lapidados para conjurar."
+forgetspell_already_enchanted = pt "Parece que você não consegue fazer %s%s ficar mais esquecido."
+forgetspell_on = pt "A arte de %s escapa de sua mente."
+forgetspell_off = pt "De repente, você lembra do que havia esquecido."
+forgetspell_caster = pt "Você encara %s%s e eles parecem momentaneamente confusos."
+forgetspell_cast_self = pt "Você pensa que lançar esquecer em si mesmo pode fazer você esquecer de esquecer o que você havia esquecido, e assim você pode esquecer de não esquecer tudo o que você havia esquecido quando o feitiço de esquecer deixá-lo, e então você se esquece disso."
+forgetspell_caster_failed = pt "%s%s é muito estúpido para ficar mais estúpido!"

@@ -12,3 +12,13 @@ Relay_toolow_rsc = de \
 Relay_notonself_rsc = de "Du kannst Dir nicht selbst Ausdauer übertragen."
 Relay_spell_intro = de \
    "Kraanan Level 1: Gibt einen Teil deiner Ausdauer an jemand anderes."
+
+Relay_cast_rsc = pt "Você sente o vigor de outro preenchendo seu corpo."
+Relay_caster_msg_rsc = pt "Você dá parte de seu vigor para %s%s."
+Relay_name_rsc = pt "retransmissão"
+Relay_desc_rsc = pt "O poder de Kraanan permite que você dê parte de seu vigor a outra pessoa. "
+                  "Requer um cogumelo comestível para lançar."
+Relay_unnecessary_rsc = pt "%s%s não consegue lidar com vigor adicional deste feitiço."
+Relay_toolow_rsc = pt "Você não tem vigor suficiente para transferir para outro!"
+Relay_notonself_rsc = pt "Você não pode lançar Relay em si mesmo."
+Relay_spell_intro = pt "Kraanan Lv. 1: Dá parte do vigor do conjurador para outra pessoa."

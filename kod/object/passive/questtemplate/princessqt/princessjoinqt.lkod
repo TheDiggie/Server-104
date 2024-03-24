@@ -1,19 +1,20 @@
-// Quest description.
 princessjoin_name_rsc = de "Prinzessin Anhänger Quest"
 princessjoin_desc_rsc = de \
    "Prinzessin Kateriina hat Dich dazu beauftragt einen Brief für Sie zu überbringen, "
    "um Ihres Vertrauens würdig zu sein. "
-
 princessjoin_deliver_rsc = de \
    "Prinessin Katerrina hat Dich dazu beauftragt einen Brief an %s zu überbringen, "
    "um Ihres Vertrauens würdig zu sein."
-
  princessjoin_completed = de \
    "Du hast deine Loyalität zur Krone bewiesen, und wirst nun in die "
    "Reihen der Prinessin aufgenommen."
-
- // Quest resources.
 princess_join2_assign = de \
    "Also, Du willst Dich beweisen um mein Vertrauen zu erlangen?  Würdest "
    "Du so freundlich sein und diesen offiziellen Brief zu %NPC bringen?  "
    "Ich wäre Dir sehr dankbar."
+   
+princessjoin_name_rsc = pt "missão de se juntar à facção da princesa"
+princessjoin_desc_rsc = pt "A Princesa Kateriina pediu-lhe para entregar uma carta para ela, para provar sua dignidade de confiança."
+princessjoin_deliver_rsc = pt "A Princesa Kateriina solicitou que você entregue uma carta para %s, para provar sua dignidade de confiança."
+princessjoin_completed = pt "Você provou sua lealdade à coroa e agora é um servo de confiança da Princesa Kateriina."
+princess_join2_assign = pt "Então, você deseja provar sua dignidade de confiança? Seria tão gentil de sua parte entregar uma carta oficial para %NPC? Eu ficaria muito grato."

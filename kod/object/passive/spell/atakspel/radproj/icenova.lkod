@@ -14,3 +14,11 @@ icenova_cast_rsc = de \
 icenova_hit_rsc = de \
    "%s%s schreit vor Schmerzen, als die Eissterne auf %s Haut treffen und "
    "~k~B%i~n Schaden verursachen."
+
+icenova_name_rsc = pt "nova de gelo"
+icenova_desc_rsc = pt "Chama a magia de Faren e lança uma explosão de gelo, gelando e queimando a pele daqueles ao seu redor. Requer quatro cogumelos vermelhos, quatro cogumelos azuis e dois cogumelos roxos para conjurar."
+icenova_first_rsc = pt "Você canaliza o poder de Faren e desencadeia uma saraivada de fragmentos de gelo!"
+icenova_third_rsc = pt "%s%s canaliza o poder de Faren e desencadeia uma saraivada de fragmentos de gelo!"
+icenova_killed_someone = pt "Os fragmentos de gelo ferem fatalmente %s%s."
+icenova_cast_rsc = pt "Você solta um grito de dor enquanto os fragmentos de gelo perfuram sua pele, causando ~r~B%i~n de dano."
+icenova_hit_rsc = pt "%s%s solta um grito de dor enquanto os fragmentos de gelo perfuram a pele de %s, causando ~k~B%i~n de dano."

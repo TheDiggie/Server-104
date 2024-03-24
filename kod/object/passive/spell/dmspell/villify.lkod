@@ -6,3 +6,12 @@ villify_msg_DM = de "Du verurteilst %s."
 villify_msg_target = de "Du wurdest von %s verurteilt."
 villify_failed = de "%s%s ist bereits ein Mörder."
 villify_unworthy = de "Dir wurde der Zauberspruch wegegenommen."
+
+villify_name_rsc = pt "vilificar"
+villify_desc_rsc = pt "Acusa alguém de ser um fora da lei ou assassino."
+villify_msg_DM = pt "Você vilifica %s."
+villify_msg_target = pt "Você foi vilificado por %s."
+villify_failed = pt "%s%s já é um assassino."
+villify_unworthy = pt \
+   "Você foi considerado indigno de lançar um feitiço tão poderoso, e "
+   "ele foi retirado de você."

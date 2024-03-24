@@ -1,20 +1,13 @@
-// Quest description.
 scimprofquest_name_rsc = de "Säbelkampf Quest"
-
 scimprofquest_desc_rsc = de \
    "Quintor hat dich losgeschickt, ein Monster zu töten um Dir die Künste des Säbelkampfes zu lehren."
-
 scimprofquest_kill_rsc = de \
    "Quintor wird dir beibringen, wie man einen Säbel benutzt, aber zuerst musst du"
    " %s töten. Erledige den Auftrag und kehre dann zu ihm zurück."
-
 scimprofquest_return_rsc = de \
    "Kehre zurück zu Quintor und teile ihm mit, dass der Auftrag abgeschlossen wurde."
-
 scimprofquest_completed = de \
    "Du hast das Säbelkampf Quest abgeschlossen. Quintor wird Dir nun beibringen wie man mit dem Säbel kämpft."
-
-// Quest resources.
 scimitarlearn_trigger = de "Schüler"
 scimitarlearn_assign_2 = de \
    "Du sollst ein Krieger sein? HA! Du siehst nicht wirklich aus wie einer.  "
@@ -51,3 +44,17 @@ scimitarlearn_failure_4 = de \
    "und Deine schiere Trägheit hat Dich der Möglichkeit beraubt von mir zu "
    "lernen. Eine Schande, Du warst so nah. Vielleicht warst Du zu lang "
    "an der Brust deiner Mutter. Praxis, du Anfänger ist das, was Du brauchst!"
+
+scimprofquest_name_rsc = pt "Missão do aprendiz de Quintor"
+scimprofquest_desc_rsc = pt "Quintor enviou você para matar um monstro, para que ele possa ensiná-lo a manejar um cimitarra."
+scimprofquest_kill_rsc = pt "Quintor ensinará você como usar uma cimitarra, mas primeiro você deve matar um(a) %s. Complete esta tarefa e relate de volta a ele."
+scimprofquest_return_rsc = pt "Volte para Quintor e informe que a tarefa foi concluída."
+scimprofquest_completed = pt "Você completou a missão do aprendiz de cimitarra de Quintor. Quintor agora estará disposto a treiná-lo na arte de manejar uma cimitarra."
+scimitarlearn_trigger = pt "aprendiz"
+scimitarlearn_assign_2 = pt "Então você é um guerreiro? Ha! Você não parece muito guerreiro para mim. Antes que eu gaste meu tempo ensinando você nas valiosas maneiras da cimitarra, você deve provar-se matando %INDEF_MONSTER%MONSTER. Faça isso e volte para mim."
+scimitarlearn_failure_2 = pt "Assunto: Aprendendo a manejar a cimitarra\nO fracasso é parte da aprendizagem. O fracasso é crucial para um guerreiro. Você tentou e isso é importante, mas não pense nem por um segundo que eu vou te ensinar alguma coisa. Agora devo voltar ao meu trabalho."
+scimitarlearn_assign_3 = pt "Demorou o bastante. Não gosto de esperar tanto. Com este tempo extra, decidi que você deve matar %INDEF_MONSTER%MONSTER agora. Desta vez, não desperdice tantos golpes com aquela... arma. Vá agora."
+scimitarlearn_failure_3 = pt "Assunto: Aprendendo a manejar a cimitarra\nAh, talvez eu tenha pedido muito para alguém com pouca experiência. Não tenho tempo para te ensinar os fundamentos das armas. Volte quando tiver mais habilidade."
+scimitarlearn_assign_4 = pt "Você de novo! Pensei que o submundo tivesse te levado. O que foi que eu te pedi? Ah sim, você deveria matar %INDEF_MONSTER%MONSTER. Faça isso e eu te ensinarei. Não discuta agora. Vá ou ambos envelheceremos e morreremos antes que você possa aprender a majestade da cimitarra. Mate mais um(a) %MONSTER."
+scimitarlearn_success_4 = pt "Finalmente. A primeira coisa que devo ensinar a você é a ser ágil. Venha até mim e começaremos a aprender como usar efetivamente a maior arma da terra: a cimitarra."
+scimitarlearn_failure_4 = pt "Assunto: Aprendendo a manejar a cimitarra\nSua falta de habilidade e pura preguiça custaram a oportunidade de estudar comigo. Uma pena, você estava tão perto. Talvez tenha ficado tempo demais no colo de sua mãe. Pratique, novato, é disso que você precisa."

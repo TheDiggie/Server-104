@@ -5,3 +5,13 @@ hospice_desc_rsc = de \
 hospice_cast_rsc = de "%s%ss Zauber stellt ~g~B%i~B~n Lebenspunkte wieder her."
 hospice_cast_self = de \
    "Shal'ills Magie stellt bei dir ~g~B%i~B~n Lebenspunkte wieder her."
+
+hospice_name_rsc = pt "hospício"
+hospice_desc_rsc = pt \
+   "Rejuvenesce o alvo do feitiço com a energia de cura de Shal'ille. "
+   "Shal'ille dá uma pequena recompensa em direção ao karma do mago que cura "
+   "outra alma boa. Requer dois ervas para lançar."
+hospice_cast_rsc = pt \
+   "O feitiço de %s%s rejuvenesce você, restaurando ~g~B%i~B~n pontos de vida."
+hospice_cast_self = pt \
+   "A magia sagrada de Shal'ille rejuvenesce você, restaurando ~g~B%i~B~n pontos de vida."

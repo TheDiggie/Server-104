@@ -2,3 +2,8 @@ ShockingFury_name_rsc = de "Zerstörerische Wut"
 ShockingFury_desc_rsc = de \
    "Setzt Farens Wut als eine große Menge von Elektrizität "
    "auf ein nahes Ziel frei. Der Zauber benötigt zwei blaue Pilze und eine Holunderbeere. "
+
+ShockingFury_name_rsc = pt "fúria chocante"
+ShockingFury_desc_rsc = pt \
+      "Libera a fúria de Faren como uma grande quantidade de eletricidade direcionada a um alvo a curta distância.  "
+      "Requer cogumelos azuis e sabugueiros para conjurar."

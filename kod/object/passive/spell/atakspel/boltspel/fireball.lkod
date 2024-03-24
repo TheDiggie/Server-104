@@ -3,3 +3,7 @@ fireball_desc_rsc = de \
    "Schleudert einen Feuerball auf das Ziel. "
    "Der Zauber benötigt zwei rote Pilze und einen Zahn eines Orks. "
 fireball_hit_rsc = de "Ein Feuerball trifft %s%s!"
+
+fireball_name_rsc = pt "bola de fogo"
+fireball_desc_rsc = pt "Envia uma bola de chamas no alvo. Requer dois cogumelos vermelhos e dentes de orc para conjurar."
+fireball_hit_rsc = pt "Uma bola de fogo atinge %s%s!"

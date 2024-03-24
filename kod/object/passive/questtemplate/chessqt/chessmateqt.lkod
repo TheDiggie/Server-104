@@ -1,15 +1,10 @@
-// Quest description.
 chessmatequest_name_rsc = de "Schachzug Kurier Quest"
-
 chessmatequest_nodefive_rsc = de \
    "%s%s ist auf %s%s's Falle reingefallen!  Geh und sag ihm%s das %s%s's nächster "
    "Zug wie folgt lautet: \"%q\"."
-
 chessmatequest_completed_rsc = de \
    "Du hast das Schachzug Kurier Quest erfolgreich beendet, "
    "und den Spielern damit geholfen!"
-
-// Quest resources.
 chess_checkmate_assign_5 = de \
    "Ha!  %NPC ist mir direkt in die Falle gelaufen!  Sag %HIMHER_NPC mein "
    "nächster Zug ist %CARGO.  Oh, uns sag %HIMHER_NPC das er Schachmatt ist."
@@ -18,3 +13,9 @@ chess_checkmate_success_5 = de \
    "Kurier geholfen hast.  Laut Vereinbarung mit %SOURCE_NPC, muss ich die "
    "Gebühren für den Kurier bezahlen. Bitte nimm dies als Belohnung für deine "
    "Mühen."
+
+chessmatequest_name_rsc = pt "missão de entrega de jogada de xadrez"
+chessmatequest_nodefive_rsc = pt "%s%s caiu na armadilha de %s%s! Vá e diga a %s que a próxima jogada de %s%s é \"%q\"."
+chessmatequest_completed_rsc = pt "Você completou uma missão de entrega de jogada de xadrez e ajudou os jogadores a terminar uma partida!"
+chess_checkmate_assign_5 = pt "Ha! %NPC caiu direitinho na minha armadilha! Diga a %HIMHER_NPC que minha próxima jogada é %CARGO. Ah, e diga a %HIMHER_NPC que é xeque-mate."
+chess_checkmate_success_5 = pt "Ah. Sim, deveria ter previsto isso. Bem, obrigado por servir como nosso mensageiro. Pelos termos do meu acordo com %SOURCE_NPC, devo cobrir as taxas de entrega para o jogo. Por favor, aceite isso como uma recompensa pelo seu trabalho."

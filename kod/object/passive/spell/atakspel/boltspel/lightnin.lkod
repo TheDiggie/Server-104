@@ -3,3 +3,7 @@ lightning_hit_rsc = de "Blitzschlag trifft %s%s!"
 lightning_desc_rsc = de \
    "Schleudert einen Blitz auf das Ziel. Der Zauber benötigt zwei blaue Pilze "
    "und einen Orkzahn. "
+
+lightning_name_rsc = pt "raio"
+lightning_hit_rsc = pt "O raio atinge %s%s!"
+lightning_desc_rsc = pt "Lança um raio no alvo. Requer dois cogumelos azuis e dois dentes de orc para conjurar."

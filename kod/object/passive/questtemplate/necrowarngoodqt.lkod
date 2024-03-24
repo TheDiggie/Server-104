@@ -1,8 +1,6 @@
-// Quest description.
 necrowarngoodqt_name_rsc = de "Nekromanten Warnungs Quest"
 necrowarngoodqt_desc_rsc = de \
    "Parrin Aragone sagt, er habe wichtige Informationen, dass die Nekromanten zurückkehren..."
-
 necrowarngoodqt_nodetwo_rsc = de \
    "Parrin Aragone sagt, er habe wichtige Informationen, dass die Nekromanten zurückkehren."
    "Hilf ihm, Andere zu warnen, und bringe diesen Brief "
@@ -10,11 +8,8 @@ necrowarngoodqt_nodetwo_rsc = de \
 necrowarngoodqt_nodethree_rsc = de \
    "%s%s hat nichts über die Warnung gedacht.  Kehre zurück zu Parrin und "
    "lass ihn wissen, dass Du den Brief überbracht hast."
-
 necrowarngoodqt_completed_rsc = de \
    "Du hast das Nekromanten Warnungs Quest abgeschlossen."
-
-// Quest resources.
 necrowarning2_assign_2 = de \
    "Ich habe Nachrichten von größter Wichtigkeit.  Meine Reisen haben mich "
    "an viele Orte geführt, und ich habe viele merkwürdige Dinge gesehen aber "
@@ -35,3 +30,13 @@ necrowarning2_failure_2 = de \
 necrowarning2_success_3 = de \
    "Sie hört nicht, aber egal.  Sie wurde gewarnt.  Danke Dir, treue Seele.  "
    "Nimm dies als Belohung für den Dienst für die Menschen von Meridian."
+
+necrowarngoodqt_name_rsc = pt "missão de aviso dos necromantes"
+necrowarngoodqt_desc_rsc = pt "Parrin Aragone diz ter informações urgentes sobre necromantes que estão chegando às terras."
+necrowarngoodqt_nodetwo_rsc = pt "Parrin Aragone diz ter informações urgentes sobre necromantes que estão chegando às terras. Ajude-o a alertar os outros entregando uma carta para %s%s."
+necrowarngoodqt_nodethree_rsc = pt "%s%s não deu importância ao aviso. Volte para Parrin Aragone e avise-o de que você entregou a carta."
+necrowarngoodqt_completed_rsc = pt "Você completou a missão de aviso dos necromantes."
+necrowarning2_assign_2 = pt "Tenho notícias de grande urgência. Minhas viagens me levaram a muitos lugares e vi muitas coisas estranhas, mas nada tão perigoso quanto esses vil necromantes. Por favor, leve esta carta para %NPC, e rápido. Acredito que essas criaturas ameaçam toda Meridian. Elas vêm de um poder mais antigo que nossos deuses, embora essas forças possam estar conectadas em algum nível."
+necrowarning2_success_2 = pt "Você me traz os delírios de uma alma pobre com um cérebro lamentavelmente confuso? Tenho preocupações mais importantes neste momento. Saia da minha presença, pois não tenho nada a dizer a você."
+necrowarning2_failure_2 = pt "Assunto: Minha carta\nVocê falhou com seus amigos e o povo de Meridian por eras vindouras. Eles estão condenados a uma existência assediada por uma malícia terrível e você escolhe não avisá-los? Sua falha custará vidas. Espero que possa viver com isso."
+necrowarning2_success_3 = pt "Ela não ouve, mas não importa. Ela foi avisada. Obrigado, alma corajosa. Aceite isso como sua recompensa material por seu serviço ao povo de Meridian."

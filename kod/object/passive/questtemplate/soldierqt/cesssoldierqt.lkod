@@ -1,13 +1,9 @@
-// Quest description.
 princesssoldier_name_rsc = de "Prinzessin: Soldaten-Schild Quest"
 princesssoldier_desc_rsc = de \
   "Prinzessin Kateriina erlaubt es Dir ihrer Royalen Armee beizutreten, aber "
   "Du musst dich erst loyal zeigen in dem Du Ihre Feinde tötest."
-
 princesssoldier_completed_rsc = de \
    "Du hast dich als würdig erwiesen, und bist nun ein Soldat der royalen Armee!"
-
-// Quest resources.
 princess_faction_soldier_assign_1 = de \
    "Ich benötige Verbündete. Bitte, beweise Deine Loyalität, indem Du %INDEF_MONSTER%MONSTER "
    "tötest. Du solltest ein paar von Ihnen an den Fahnenmasten finden. "
@@ -24,3 +20,11 @@ princess_faction_soldier_failure = de \
    "muss ich Soldaten haben, die das königliche Recht auf den Thron auf dem "
    "Schlachtfeld verteidigen. Suche mich erneut auf, wenn Du genug Mut hast "
    "um unsere Feinde zu bekämpfen."
+
+princesssoldier_name_rsc = pt "missão do escudo soldado da princesa"
+princesssoldier_desc_rsc = pt "A Princesa Kateriina permitirá que você se junte aos Reais, mas primeiro você deve provar sua lealdade matando seus inimigos."
+princesssoldier_completed_rsc = pt "Você provou seu valor e agora é um soldado no exército Real."
+princess_faction_soldier_assign_1 = pt "Estou precisando de aliados. Por favor, prove sua lealdade lutando contra %INDEF_MONSTER%MONSTER. Você deve encontrar um guardando um mastro de bandeira nas proximidades. Volte e me avise quando terminar."
+princess_faction_soldier_assign_2 = pt "Fico feliz em vê-lo retornar. Por favor, lute contra %INDEF_MONSTER%MONSTER. Me avise quando terminar e você será feito soldado."
+princess_faction_soldier_success = pt "É bom poder contar com você como aliado. Pegue isto como um símbolo de seu compromisso com a batalha."
+princess_faction_soldier_failure = pt "Sim, esta guerra é feia e assustadora, e não há vergonha em desviar-se da tarefa macabra que lhe foi pedida. No entanto, eu preciso de soldados que defendam o direito real ao trono no campo de batalha. Visite-me mais tarde se ganhar coragem suficiente para lutar contra nosso inimigo."

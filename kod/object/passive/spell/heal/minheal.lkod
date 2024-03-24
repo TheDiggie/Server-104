@@ -8,3 +8,14 @@ heal_desc_rsc = de \
 heal_spell_intro = de \
    "Shal'ill Level 1: Die mitfühlende Kraft Sha-Lills heilt Wunden bei dem "
    "Anwender selbst oder bei einem anderen Spieler."
+
+heal_name_rsc = pt "cura menor"
+heal_desc_rsc = pt \
+   "O poder compassivo de Shal'ille cura as feridas do lançador "
+   "ou de outra pessoa. É particularmente potente naqueles protegidos por "
+   "anjos guardiões. Shal'ille dá uma pequena recompensa em direção ao karma "
+   "do mago que cura outra alma boa. Não requer nada além de uma "
+   "alma compassiva."
+heal_spell_intro = pt \
+   "Shal'ille Lv. 1: Concede o toque curativo de Shal'ille, restaurando "
+   "pontos de vida."

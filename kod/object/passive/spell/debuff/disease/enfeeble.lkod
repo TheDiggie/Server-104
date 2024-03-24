@@ -8,3 +8,10 @@ enfeeble_name_rsc = de "Schwächen"
 enfeeble_desc_rsc = de \
    "Entzieht dem Ziel physische Stärke. Der Effekt dauert für einige Minuten an. "
    "Der Zauber benötigt einen Zahn des Orks. "
+
+enfeeble_cast_rsc = pt "Você sente uma presença desagradável."
+enfeeble_already_enchanted = pt "Essa pobre alma já está enfraquecida."
+palsy_start = pt "Seus músculos se transformam em água."
+palsy_stop = pt "Você sente sua antiga força voltando."
+enfeeble_name_rsc = pt "enfraquecer"
+enfeeble_desc_rsc = pt "Drena a força física do alvo. O efeito dura alguns minutos. Requer um único dente de orc para conjurar."

@@ -1,9 +1,7 @@
-// Quest description.
 priestessinsigniaquest_name_rsc = de "Gildenschild Insignien Quest"
 priestessinsigniaquest_desc_rsc = de \
    "Die Priesterin wird Ihre Insignien auf dein Gildenschild einlassen, wenn "
    "Du ihm dafür einen \"Zehnter\" zahlst."
-
 priestessinsigniaquest_nodetwo_rsc = de \
    "%s%s wird %s Insignien auf dein Gildenschild einlassen, wenn "
    "du ihm %s ein \"Zehnter\" bietest."
@@ -12,12 +10,9 @@ priestessinsigniaquest_nodethree_rsc = de \
    "%s %i %s, %s bringst, wird sie die Insignien auf dein Schuld anbringen.  Du "
    "solltest Dein Schild in der Hand halten, wenn Du mehr als eines in deinem "
    "Inventar hast."
-
 priestessinsigniaquest_completed_rsc = de \
    "Du hast Insignien auf deinem Gildenschild erhalten, welche Dir "
    "mehr Kraft auf deine Zauber geben."
-
-// Quest resources.
 priestessinsignia_trigger = de "Abzeichen"
 priestessinsignia_assign_2 = de \
    "~IIch sehe Du hast ein unsigniertes Schild.  Ich wäre gerne dazu bereit, "
@@ -33,3 +28,15 @@ priestessinsignia_success_3 = de \
 priestessinsignia_failure_3 = de \
    "Betreff: Insignien\nIch habe viel besser über Dich gedacht. Ich werde "
    "in der Zukunft nach einem besseren Kreuzfahrer ausschau halten."
+
+priestessinsigniaquest_name_rsc = pt "missão da insígnia do escudo do arauto"
+priestessinsigniaquest_desc_rsc = pt "A sacerdotisa colocará sua insígnia em seu escudo, desde que você ofereça a eles um \"dízimo\"."
+priestessinsigniaquest_nodetwo_rsc = pt "%s%s colocará a insígnia de %s em seu escudo de arauto, desde que você ofereça a %s um \"dízimo\"."
+priestessinsigniaquest_nodethree_rsc = pt "%s%s está interessado em reagentes mágicos de Ko'catan - se você trouxer %s %i %s, %s colocará uma insígnia em seu escudo de arauto. Você deve equipar o escudo em que deseja a insígnia, se tiver mais de um em seu inventário."
+priestessinsigniaquest_completed_rsc = pt "Você recebeu uma insígnia em seu escudo de arauto, que adiciona mais poder aos seus feitiços quando usado."
+priestessinsignia_trigger = pt "insígnia"
+priestessinsignia_assign_2 = pt "~II vejo que você tem um escudo sem marca. Estou mais do que disposta a oferecer minha insígnia a um mago corajoso, desde que eles me ofereçam um dízimo.~I"
+priestessinsignia_trigger_2 = pt "dízimo"
+priestessinsignia_assign_3 = pt "~II ouvi falar sobre uma passagem para outro mundo se abrindo. Estou interessada nos reagentes mágicos dessa terra - talvez sua emergência resulte no fortalecimento da magia para sacerdotes como você e eu. Vá e me traga %CARGO.~I"
+priestessinsignia_success_3 = pt "~IExcelente. Os Eternos agradecem por sua benevolência.~I"
+priestessinsignia_failure_3 = pt "Assunto: Insígnia\nEu pensava muito melhor de você. Oh, bem. Vou esperar por um cruzado melhor no futuro."

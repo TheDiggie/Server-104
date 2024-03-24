@@ -16,7 +16,7 @@ constants:
 
 resources:
 
-   //include Logging.lkod
+   include Logging.lkod
 
    Logging_name_rsc = "logging"
    Logging_icon_rsc = ilogging.bgf

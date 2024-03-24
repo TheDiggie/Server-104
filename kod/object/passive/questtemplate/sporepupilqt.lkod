@@ -1,24 +1,18 @@
-// Quest description.
 sporepupilquest_name_rsc = de "Sporenwolke Schüler Quest"
 sporepupilquest_desc_rsc = de \
    "Maleval hat Dir angeboten, Dir einen mächtigen Zauber beizubringen. Aber zuerst "
    "will er, dass Du ihm seltene magische Dinge bringst."
-
 sporepupilquest_nodetwo_rsc = de \
    "Maleval hat dir angeboten, einen mächtigen neuen Zauber zu lernen, aber zuerst "
    "musst Du ihm %s%s für ihn besorgen."
-
 sporepupilquest_nodethree_rsc = de \
    "Maleval hat dich beauftragt, einen weiteren Gegenstand für ihn zu besorgen, %s%s.  Bring "
    "zu ihm, damit er Dir den Zauberspruch beibringt."
-
 sporepupilquest_completed = de \
    "Du hast das Sporenwolken Quest abgeschlossen.  Maleval wird Dir nun "
    "den Zauber Sporenwolke beibringen, wenn Du wenigstens Qor Level 5 und Faren Level 6 besitzt."
    "Er wird dir ebenfalls den Zauber verfluchte Waffe beibringen, wenn Du wenigstens Qor Level 4, "
    "und Kraanan Level 5 besitzt."
-
-// Quest resources.
 sporeburstlearn_assign_2 = de \
    "Oh, %LORDLADY %NAME, es ist mir ~Iwirklich~I eine Ehre Dich zu sehen.  "
    "Ich habe Deinen Fortschritt in Deinen Studien mit großem Interesse verfolgt;  "
@@ -68,3 +62,17 @@ sporeburstlearn_success_3_h = de \
    "lernen willst, und wir werden einen kleinen Toast aussprechen - ~IAuf "
    "die törichten Massen, die ihren Körper aus Blut und Knochen anbieten "
    "damit diese von ein paar Puppen-Göttern verspeist werden.~I"
+
+sporepupilquest_name_rsc = pt "Missão do pupilo de Maleval"
+sporepupilquest_desc_rsc = pt "Maleval ofereceu-se para ensinar-lhe um novo feitiço poderoso, mas pediu que você lhe trouxesse itens mágicos raros antes de fazê-lo."
+sporepupilquest_nodetwo_rsc = pt "Maleval ofereceu-se para ensinar-lhe um novo feitiço poderoso, mas pediu que você obtenha %s%s para ele primeiro."
+sporepupilquest_nodethree_rsc = pt "Maleval pediu que você obtenha outro item para ele, %s%s. Traga-o para ele para que ele lhe ensine o feitiço."
+sporepupilquest_completed = pt "Você completou a missão do pupilo de Maleval. Maleval agora ensinará a você o feitiço de explosão de esporos, desde que você tenha pelo menos nível 5 Qor e nível 6 Faren. Ele também ensinará a você o feitiço de arma amaldiçoada, se você tiver nível 4 Qor e nível 5 Kraanan."
+sporeburstlearn_assign_2 = pt "Ah, %LORDLADY %NAME, é realmente um prazer vê-lo. Tenho acompanhado seu progresso nos estudos arcanos com grande interesse; raramente encontrei alguém tão digno de minha tutela. Você pode conhecer minha pesquisa nas artes mágicas. Bem, finalmente criei um feitiço totalmente novo, combinando os campos de energia do que o bando religioso chamaria de Faren e Qor. Vou ensinar-lhe minha nova invocação, se você realizar uma pequena tarefa para mim: traga-me %INDEF_CARGO%CARGO, para que eu possa pesquisar suas propriedades místicas."
+sporeburstlearn_assign_2_h = pt "Ah, %LORDLADY %NAME, é realmente um prazer vê-lo. Tenho acompanhado seu progresso nos estudos arcanos com grande interesse; raramente encontrei alguém tão digno de minha tutela. Você pode conhecer minha pesquisa nas artes mágicas. Bem, finalmente criei um feitiço totalmente novo. Vou ensinar-lhe minha nova invocação, se você realizar uma pequena tarefa para mim: traga-me %INDEF_CARGO%CARGO, para que eu possa pesquisar suas propriedades místicas."
+sporeburstlearn_failure_2 = pt "Assunto: Tolo fraco!\nEu o julguei mal, %NAME. Acreditei que você fosse capaz de grandes feitos, alturas de poder não alcançadas nem mesmo pelos Necromantes da antiguidade. Vejo agora que estava errado."
+sporeburstlearn_success_2 = pt "Você é realmente um pupilo digno, %NAME. Ah, %INDEF_CARGO%CARGO! Você pode ~Isentir~I sua essência mágica, emanando em ondas? O poder contido aqui está muito além do significado religioso trivial que esses padres de salão atribuem a ele. Isso é a matéria de que o universo é feito! ..."
+sporeburstlearn_assign_3 = pt "Ah sim, o feitiço, o feitiço. Esporos! Agora me traga %INDEF_CARGO%CARGO, e eu lhe ensinarei isso, e mais - recentemente descobri outro feitiço intrigante também."
+sporeburstlearn_assign_3_h = pt "Ah sim, o feitiço, o feitiço. Arma amaldiçoada! Agora me traga %INDEF_CARGO%CARGO, e eu lhe ensinarei."
+sporeburstlearn_success_3 = pt "Já se passaram muitas luas desde que %INDEF_CARGO%CARGO tocou meus lábios pela última vez. Gostaria de dar um gole? É ~Irealmente~I refrescante. Bem, volte quando quiser aprender o feitiço de esporos, e faremos um brinde - ~IAos tolos, que oferecem seus corpos frágeis de sangue e osso para serem engolidos por pedras silenciosas ou deuses fantoches delirantes.~I"
+sporeburstlearn_success_3_h = pt "Já se passaram muitas luas desde que %INDEF_CARGO%CARGO tocou meus lábios pela última vez. Gostaria de dar um gole? É ~Irealmente~I refrescante. Bem, volte quando quiser aprender o feitiço de arma amaldiçoada, e faremos um brinde - ~IAos tolos, que oferecem seus corpos frágeis de sangue e osso para serem engolidos por pedras silenciosas ou deuses fantoches delirantes.~I"

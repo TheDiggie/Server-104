@@ -9,3 +9,8 @@ HolySymbol_success = de \
    "in deiner Nähe Frucht ein."
 holysymbol_intro = de \
    "Shal'ille Level 1: Flößt unheilige Wesen in deiner Nähe Frucht ein."
+
+HolySymbol_name_rsc = pt "símbolo sagrado"
+HolySymbol_desc_rsc = pt "Este feitiço envolve tecer suas mãos em uma trama sagrada que assusta seres profanos próximos. Requer que duas sementes de sabugueiro sejam esmagadas na pele de suas mãos para serem ritulamente purificadas."
+HolySymbol_success = pt "Suas mãos tecem pelo ar em uma trama delicada, expressando por meio do movimento a pureza de Shal'ille, uma proteção contra o profano."
+holysymbol_intro = pt "Shal'ille Nível 1: Tece um símbolo sagrado no ar que repele qualquer morto-vivo próximo."

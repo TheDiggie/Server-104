@@ -7,3 +7,13 @@
    holyblaze_cast_on_other = de "Du umgibst %s%s mit heiligem Feuer und stellst ~g~B%i~B~n "
       "Lebenspunkte wieder her."
    holyblaze_unnecessary_rsc = de "%s%s erfreut sich bereits bester Gesundheit."
+
+holyblaze_name_rsc = pt "chama sagrada"
+holyblaze_desc_rsc = pt \
+   "Banha um alvo em curto alcance em uma chama de energia sagrada, curando-o " 
+   "ou causando dano, dependendo de seu karma. Requer esmeraldas e elderberries para conjurar."
+holyblaze_cast_rsc = pt \
+   "%s%s envolve você em uma chama de energia sagrada, restaurando ~g~B%i~B~n pontos de vida."
+holyblaze_cast_on_other = pt \
+   "Você envolve %s%s em uma chama de energia sagrada, restaurando ~g~B%i~B~n pontos de vida."
+holyblaze_unnecessary_rsc = pt "%s%s está perfeitamente saudável."

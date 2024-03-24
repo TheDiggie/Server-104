@@ -1,39 +1,28 @@
-// Quest description.
 stunteddwarfquest_name_rsc = de "Verkümmerter Zwerg Quest"
 stunteddwarfquest_desc_rsc = de \
    "Du hast den Barkeeper etwas über einen Verkümmerten Zwerg reden hören. "
    "Versuche mehr darüber herauszufinden."
-  
 stunteddwarfquest_nodetwo_rsc = de \
    "%s hat etwas über einen Verkümmerten Zwerg gesagt.  Das klingt interessant - "
    "Finde mehr darüber heraus."
-
 stunteddwarfquest_nodethree_rsc = de \
    "%s sagte das %s etwas über einen verkümmerten Zwerg Rezept weiß.  Gehe zu "
    "%s und frage %s danach."
-
 stunteddwarfquest_nodefour_rsc = de \
    "%s sagte Dir, dass das Rezept für einen Verkümmerten Zwerg nur ein Mythos ist.  "
    "Kehre zurück zu %s und schau ob %s irgendetwas darüber zu sagen hat."
-
 stunteddwarfquest_nodefive_rsc = de \
    "Frag herum und schau ob jemand etwas über einen \"Verkümmerter Zwerg\" weiß."
-
 stunteddwarfquest_nodesix_kill_rsc = de \
    "%s wird Dir ein Rezept Verkümmerter Zwerg Drink geben, aber zuerst "
    "musst du eine Kriipa töten um zu zeigen das Du stark genug dazu bist.  "
    "Töte eine Kriipa und kehre dann zurück zu %s."
-
 stunteddwarfquest_nodesix_return_rsc = de \
    "Kehre zurück zu %s und teile ihm mit, dass Du erfolgreich warst eine Kriipa zu töten."
-
 stunteddwarfquest_nodeseven_rsc = de \
    "Hier hast du das Rezept!  Kehre zurück zu %s und gib es %s."
-
 stunteddwarfquest_completed_rsc = de \
    "Du hast das Verkümmerter Zwerg Quest abgeschlossen."
-
-// Quest resources.
 stunteddwarf_trigger = de "Verkümmerter Zwerg"
 stunteddwarf_assign_2 = de \
    "Heißer Tag heute, mh? Sicher, es wäre ein großartiger Tag für einen verkümmerter "
@@ -60,3 +49,24 @@ stunteddwarf_failure_6 = de \
 stunteddwarf_success_7 = de \
    "Bemerkenswert! Du musst ein dauerhafter sein, %NAME.  Ich muss Dir etwas "
    "geben,  als Gegenleistung."
+
+stunteddwarfquest_name_rsc = pt "missão do anão atrofiado"
+stunteddwarfquest_desc_rsc = pt "Você ouviu o bartender mencionar algo sobre um anão atrofiado. Veja se consegue descobrir mais sobre isso."
+stunteddwarfquest_nodetwo_rsc = pt "%s mencionou algo sobre um anão atrofiado. Isso parece interessante - você deveria descobrir mais."
+stunteddwarfquest_nodethree_rsc = pt "%s disse que %s sabe sobre a receita do anão atrofiado. Vá até %s e pergunte a %s sobre isso."
+stunteddwarfquest_nodefour_rsc = pt "%s disse que a receita do anão atrofiado é apenas um mito. Volte para %s e veja se %s tem algo a dizer sobre isso."
+stunteddwarfquest_nodefive_rsc = pt "Pergunte por aí e veja se alguém sabe mais sobre esse \"anão atrofiado\"."
+stunteddwarfquest_nodesix_kill_rsc = pt "%s lhe dará uma receita para a bebida do anão atrofiado, mas primeiro você deve matar um kriipa para provar que pode lidar com isso. Mate um kriipa e então retorne para %s."
+stunteddwarfquest_nodesix_return_rsc = pt "Volte para %s e avise que você teve sucesso em matar o kriipa."
+stunteddwarfquest_nodeseven_rsc = pt "Você tem a receita! Volte para %s e entregue-a para %s."
+stunteddwarfquest_completed_rsc = pt "Você completou a missão do anão atrofiado."
+stunteddwarf_trigger = pt "anão atrofiado"
+stunteddwarf_assign_2 = pt "Dia quente, né. Com certeza seria um ótimo dia para um anão atrofiado."
+stunteddwarf_assign_3 = pt "Ah, uma bebida antiga. Na verdade, a receita se perdeu no tempo, embora eu tenha ouvido dizer que %NPC pode saber sobre isso."
+stunteddwarf_trigger_4 = pt "mito"
+stunteddwarf_assign_4 = pt "Anão atrofiado? Ha! Isso é apenas um mito, e você diga a %HIMHER_NPC que eu disse isso!"
+stunteddwarf_success_4 = pt "Ah, bem. Se você ouvir alguém mencionar um anão atrofiado, certifique-se de descobrir o que puder."
+stunteddwarf_assign_6 = pt "Ah, você precisa de uma receita para o seu anão atrofiado comum, né? Deixe-me te dizer. Prove para mim que você é corajoso o suficiente para beber um, e eu te darei a receita. Vá matar um kriipa para mim."
+stunteddwarf_success_6 = pt "Ótimo trabalho, %NAME. Pegue essa receita."
+stunteddwarf_failure_6 = pt "Assunto: Anão Atrofiado\nVejo que você sabiamente esqueceu sobre o anão atrofiado. Afinal, não é uma bebida para os fracos de coração ou estômagos fracos."
+stunteddwarf_success_7 = pt "Que notável! Você deve ser persistente, %NAME. Devo lhe dar algo igualmente raro em troca."

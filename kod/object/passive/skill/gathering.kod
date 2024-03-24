@@ -16,7 +16,7 @@ constants:
 
 resources:
 
-   //include Gathering.lkod
+   include Gathering.lkod
 
    Gathering_name_rsc = "gathering"
    Gathering_icon_rsc = igathering.bgf

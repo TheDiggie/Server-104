@@ -1,15 +1,11 @@
-// Quest description.
 farenofferingqt_name_rsc = de "Faren Opfer Quest"
 farenofferingqt_desc_rsc = de \
    "Priesterin Tenuval hat Dich eingeladen mit ihr zu singen, um die Herrin zu stärken."
-
 farenofferingqt_completed = de \
    "Du gibst ein wenig deiner Lebenskraft an Faren ab."
    "Du hast ebenfalls einen mächtigen magischen Gegenstand erhalten. Wenn dieser an einem "
    "der Schreine in der Welt platziert wird, wird er Faren geweiht und verleit den "
    "Zaubern Farens mehr Kraft."
-
-// Quest resources.
 farenoffering_assign_2 = de \
    "`B`g%NAME, Kind unserer Herrin der Wildnis. Gibst du Dich selber dafür "
    "auf, so das Deine Mutter stärker sein kann?"
@@ -30,3 +26,13 @@ farenoffering_assign_4 = de "`B`g%CARGO!"
 farenoffering_success_5 = de \
    "`B`gSiehe, die Turbulenzen der Natur manifestieren sich!  Geh jetz, und "
    "trage die Kraft der Herrin weiter in die ganze Wel!"
+
+farenofferingqt_name_rsc = pt "missão da oferta a Faren"
+farenofferingqt_desc_rsc = pt "A Sacerdotisa Tenuv'vyal o convidou para cantar com ela, para dar um pouco de sua força a Faren."
+farenofferingqt_completed = pt "Você deu parte de sua essência de vida para fortalecer Faren. Em troca, você recebeu um item mágico poderoso. Quando colocado em um dos Altares localizados ao redor do mundo, o Altar será dedicado a Faren e seus feitiços terão mais poder."
+farenoffering_assign_2 = pt "`B`g%NAME, filho(a) de nossa Senhora dos Bosques, você dará de si mesmo para que sua Mãe possa ser mais forte?"
+farenoffering_assign_3 = pt "`B`gAdore comigo, então. Juntos, vamos tirar de nossa própria essência de vida para formar um símbolo do poder da natureza. Raramente as estrelas estão tão bem alinhadas para o ritual que realizaremos, então devemos falar rapidamente. Incante essas palavras comigo: %CARGO"
+farenoffering_trigger_3 = pt "Pela terra, os ventos, os mares e o fogo interior, eu te conjuro, Faren, Senhora dos Bosques"
+farenoffering_failure_3 = pt "Assunto: As estrelas estavam erradas\nCalculei erroneamente a posição de várias forças; o momento não estava certo para manifestar o poder de Faren. Talvez em outro momento, quando os relógios celestiais girarem mais uma vez."
+farenoffering_assign_4 = pt "`B`g%CARGO!"
+farenoffering_success_5 = pt "`B`gEis a Turbulência da Natureza manifesta! Vá agora, leve o poder de nossa Senhora para o mundo!"

@@ -1,2 +1,5 @@
 proficiency_name_rsc = de "Waffenfertigkeiten"
 proficiency_desc_rsc = de "Dies ist eine Waffenfertigkeit"
+
+proficiency_name_rsc = pt "Proficiência em armas"
+proficiency_desc_rsc = pt "Esta é uma proficiência em armas."

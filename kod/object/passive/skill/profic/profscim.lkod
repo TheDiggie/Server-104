@@ -2,3 +2,6 @@ scimitarproficiency_name_rsc = de "Säbelkampf"
 scimitarproficiency_desc_rsc = de \
    "Ermöglicht den Ausbau der Fähigkeiten mit Meridians meist unterschätzter "
    "Waffe."
+
+scimitarproficiency_name_rsc = pt "uso do cimitarra"
+scimitarproficiency_desc_rsc = pt "Permite o crescimento e a força na arma mais exótica de Meridian."

@@ -1,14 +1,16 @@
-// Quest description.
 truthendbranch_name_rsc = de "Parrin Anlügen"
 truthendbranch_desc_rsc = de \
    "Erzähle Parrin wie dein Aufritt wirklich war."
-
 truthendbranch_completed = de \
    "Du hast das Jala Schüler Quest abgeschlossen.  Parrin wird dir nun "
    "die Lieder Jalas beibringen."
-
-// Quest resources.
 truthquest_trigger_5 = de "gut"
 truthquest_success_5 = de \
    "Das wäre eine bemerkenswerte Sache, für einen so jungen Dichter wie Du "
    "es bist.  Bist Du wirklich ganz ehrlich zu Dir selbst, %NAME?"
+
+truthendbranch_name_rsc = pt "mentindo para Parrin"
+truthendbranch_desc_rsc = pt "Diga a Parrin como sua apresentação realmente foi."
+truthendbranch_completed = pt "Você completou a missão de aprendizado de Parrin. Parrin agora vai te ensinar as músicas de Jala."
+truthquest_trigger_5 = pt "bom"
+truthquest_success_5 = pt "Isso seria uma coisa notável mesmo, para um bardo novato como você. Você está sendo completamente honesto consigo mesmo, %NAME?"

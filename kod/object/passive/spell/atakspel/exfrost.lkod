@@ -2,3 +2,8 @@ ExplosiveFrost_name_rsc = de "Frostexplosion"
 ExplosiveFrost_desc_rsc = de \
    "Erzeugt eine kleine Frostexplosion, die Ziele in geringer Entfernung verletzt. "
    "Benötigt zwei rote Pilze und eine Holunderbeere. "
+
+ExplosiveFrost_name_rsc = pt "geada explosiva"
+ExplosiveFrost_desc_rsc = pt \
+   "Cria uma pequena explosão de gelo que causa dano a um alvo em curto alcance. "
+   "Requer cogumelos vermelhos e elderberries para conjurar."

@@ -20,3 +20,24 @@ CrystalizeMana_triggered = de \
    "Deine spirituelle Energie ist erschöpft und deine Seele ruhig und du "
    "hörst ein Lied in der großen Ferne"
 CrystalizeMana_surge = de "Unglaubliche Energie brüllt aus dir heraus!"
+
+CrystalizeMana_name_rsc = pt "cristalizar mana"
+CrystalizeMana_desc_rsc = pt \
+    "Este feitiço se conecta diretamente às energias do som e da vibração " 
+    "em si, aproveitando as leis do universo para invocar " 
+    "uma onda de energia mágica. A onda é exaustiva, mas bardos experientes " 
+    "se recuperarão mais rapidamente de sua fadiga espiritual. " 
+    "Pode ser lançado por 1 safira e 1 seraphym não lapidado, mas magos exaustos " 
+    "também podem instintivamente invocar essas forças em situações desesperadoras."
+CrystalizeMana_no_room = pt \
+    "Você para de cantar assim que percebe que não será capaz de segurar o cristal de mana."
+CrystalizeMana_already_surging = pt \
+    "Seu espírito está muito fraco para invocar outra onda de energia neste momento."
+CrystalizeMana_cast = pt \
+    "Você esmaga magicamente duas gemas e usa suas energias vibracionais cristalinas " 
+    "para acessar forças mais profundas."
+CrystalizeMana_triggered = pt \
+    "Com sua energia espiritual esgotada e sua alma quieta, você se vê capaz " 
+    "de ouvir uma canção vasta e distante..."
+CrystalizeMana_surge = pt \
+    "Energias incríveis rugem através de você!"

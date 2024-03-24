@@ -1,3 +1,6 @@
 axeproficiency_name_rsc = de "Axtkampf"
 axeproficiency_desc_rsc = de \
    "Ermöglicht es dem Anwender, effizienter mit jeder Axt umzugehen."
+
+axeproficiency_name_rsc = pt "manejo de machado"
+axeproficiency_desc_rsc = pt "Permite ao usuário se tornar mais eficiente com qualquer machado."

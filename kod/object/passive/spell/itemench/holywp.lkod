@@ -10,3 +10,13 @@ holyweapon_spell_intro = de \
    "Shal'ill Level 2: Deine Waffe wird von Sha-Lill gesegnet und verstärkt "
    "ihre Wirkung gegen die Unheiligen."
 holyweapon_label_rsc = de "Heilig"
+
+holyweapon_cast_rsc = pt "Sua %s agora está dedicada a Shal'ille."
+holyweapon_no_can = pt "Você não pode dedicar %s%s a Shal'ille."
+holyweapon_fails = pt "O %s não é afetado estranhamente pelo feitiço."
+holyweapon_fails2 = pt "O %s já está afetado por magia."
+holyweapon_already_done = pt "Esta arma já está dedicada a Shal'ille."
+holyweapon_name_rsc = pt "arma sagrada"
+holyweapon_desc_rsc = pt "Dedica sua arma a Shal'ille, aumentando sua eficácia contra o impuro. Requer duas asas de fada e um dente de orc para ser conjurado."
+holyweapon_spell_intro = pt "Shal'ille Nível 2: Dedicar sua arma a Shal'ille, aumentando sua eficácia contra o impuro."
+holyweapon_label_rsc = pt "santificador"

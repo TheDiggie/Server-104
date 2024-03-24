@@ -6,3 +6,7 @@ Bait_desc_rsc = de \
 Bait_success = de \
    "Der Duft von etwas leckerem liegt in der Luft Dein Mund füllt sich mit "
    "Wasser für einen Moment, bis du merkst, dass der Duft von dir kommt!"
+
+Bait_name_rsc = pt "iscas"
+Bait_desc_rsc = pt "Torna você muito apetitoso para monstros próximos. Quanto mais poderoso você for, mais provável será de chamar a atenção do monstro. Requer musgo da teia e areia de fogo para ser lançado."
+Bait_success = pt "O cheiro de algo realmente delicioso enche o ar. Sua boca involuntariamente começa a salivar, um momento antes de você perceber que o cheiro apetitoso está vindo de você!"

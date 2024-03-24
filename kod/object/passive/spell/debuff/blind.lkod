@@ -9,3 +9,10 @@ blind_on = de \
    "Eine magische Energie legt sich um Deine Augen, die schreckliche Schmerzen "
    "und Blindheit verursacht. "
 blind_off = de "Du kannst wieder mit Deinen Augen sehen."
+
+blind_name_rsc = pt "cego"
+blind_desc_rsc = pt "A força mágica de Qor queima os olhos do alvo, tirando toda visão por um breve período. Requer duas bagas de entroot e um cogumelo roxo para conjurar."
+blind_caster = pt "%s%s está agora cego."
+blind_already_enchanted = pt "%s%s já está cego."
+blind_on = pt "Algo queima em seus olhos, causando dor excruciante e perda de visão."
+blind_off = pt "Seus olhos começam a funcionar novamente."

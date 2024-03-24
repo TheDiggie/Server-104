@@ -14,3 +14,11 @@ summonapp_toomany_rsc = de \
 summonapparition_failed_inanimate = de \
    "Es hat keinen Sinn, bei %s%s mit deiner Magie herum zu pfuschen."
 apparition_fizzle = de "Dein Illusionsgeschöpf verpufft!"
+
+summonapparition_name_rsc = pt "aparição"
+summonapparition_desc_rsc = pt "Invoca uma criatura ilusória para atacar seus inimigos. A criatura causa um bom dano, mas é facilmente banida. Requer musgo de teia e samambaia arco-íris para lançar."
+summonapparition_cast_rsc = pt "Você sorri enquanto %s%s se ergue do chão ao lado de %s%s!"
+summonapparition_failed_rsc = pt "Já há muita magia de invocação concentrada aqui para invocar uma aparição."
+summonapp_toomany_rsc = pt "Há muitos monstros presentes aqui para arriscar invocar outro."
+summonapparition_failed_inanimate = pt "%s%s não possui mente para ser manipulada por sua magia de ilusão."
+apparition_fizzle = pt "Seu feitiço de aparição falha!"
