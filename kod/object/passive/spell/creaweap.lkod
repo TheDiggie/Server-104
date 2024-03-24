@@ -12,7 +12,6 @@ createweapon_inv_full_rsc = pt \
     "%s%s aparece no ar diante de você, mas como você não consegue " 
     "carregá-lo, ele cai no chão com um estrondo alto."
 createweapon_name_rsc = pt "criar arma"
-createweapon_icon_rsc = pt "icremace"
 createweapon_desc_rsc = pt \
     "Materializa uma arma. Requer apenas uma vontade violenta."
 createweapon_spell_intro = pt \

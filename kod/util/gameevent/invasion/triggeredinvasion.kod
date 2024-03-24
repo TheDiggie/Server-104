@@ -577,7 +577,7 @@ messages:
          plEventMonsters = [ [&TuskedSkeleton, 15],   [&GiantDaemonSkeleton, 15], 
                              [&NecromancerTroop, 15], [&DarkAngel, 5] ];
                              
-         piRewardAmount = 15;
+         piRewardAmount = 25;
       }
       else if isClass(poLeader,&SpiderQueen)
       {
@@ -591,7 +591,7 @@ messages:
          plEventMonsters = [ [&avar, 15],       [&Kriipa, 15], 
                              [&avarshaman, 15], [&avarchieftain, 10] ];
                              
-         piRewardAmount = 7;
+         piRewardAmount = 10;
       }
       else if isClass(poLeader,&Yeti)
       {
@@ -612,7 +612,7 @@ messages:
          plEventMonsters = [ [&XeoFire, 15], [&XeoIll, 15], 
                              [&XeoHoly, 15], [&XeoUnholy, 10] ];
                              
-         piRewardAmount = 15;
+         piRewardAmount = 20;
       }
       else if isClass(poLeader,&GiantRatKing)
       {
