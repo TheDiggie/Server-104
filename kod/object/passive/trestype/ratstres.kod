@@ -26,7 +26,7 @@ messages:
    {
       plTreasure = [ 
                      [ &Cheese, 99 ],
-		             [ &RatMask, 1 ]
+		               [ &RatMask, 1 ]
                    ];
 
       propagate;

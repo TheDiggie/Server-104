@@ -35,13 +35,13 @@ messages:
                      [ &Ruby, 7 ],
                      [ &BlueDragonScale, 13 ],
                      [ &DarkAngelFeather, 13 ],
-		             [ &LightningWand, 3 ],
+		               [ &LightningWand, 3 ],
                      [ &MysticSword, 3 ],
-		             [ &TrollMask, 5 ],
-		             [ &XeoMask, 1 ],
-		             [ &RatMask, 1 ],
+		               [ &TrollMask, 5 ],
+		               [ &XeoMask, 1 ],
+		               [ &RatMask, 1 ],
                      [ &PlateArmor, 3 ],
-		             [ &GreenMushroom, 1 ]
+		               [ &GreenMushroom, 1 ]
                    ];
 
       propagate;
