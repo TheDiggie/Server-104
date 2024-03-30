@@ -122,7 +122,7 @@ messages:
 
    CastSpell(who = $, lTargets = $, iSpellpower = 1, bItemCast = FALSE)
    {
-      local oTarget, iHeal, iCasterKarma, iTargetKarma;
+      local oTarget, iHeal;
 
       if (Length(lTargets) <> 1)
       {
@@ -136,11 +136,8 @@ messages:
 
       oTarget = First(lTargets);
 
-      iCasterKarma = Send(who,@GetKarma);
-      iTargetKarma = Send(oTarget,@GetKarma);
-
       iHeal = Random(piDamageMin*100,piDamageMax*100)*(iSpellpower+101)/100;
-      iHeal = (100 + bound((iCasterKarma+iTargetKarma)/4,0,50))*iHeal/100;
+      iHeal = (100 + bound(100/4,0,50))*iHeal/100;
 
       iHeal = Send(oTarget,@GainHealthNormal,#amount=iHeal,#precision=TRUE);
 
@@ -152,20 +149,12 @@ messages:
             #parm1=Send(who,@GetCapDef),#parm2=Send(who,@GetName),
             #parm3=iHeal/100);
 
-      // Give them a little boost if they help someone of higher Karma.
-      //if (iCasterKarma < iTargetKarma)
-      //{
-      //   Send(who,@AddKarma,#amount=Send(who,@CalculateKarmaChangeFromAct,
-      //         #karma_doer=iCasterKarma,#karma_act=iTargetKarma,
-      //         #Swing_factor=1));
-      //}
-
       propagate;
    }
 
    DamageFactors(damage=0,who=$,lTargets=$)
    {
-      local oTarget,iCasterKarma,iTargetKarma,bUndead;
+      local oTarget, iCasterKarma, iTargetKarma, bUndead;
 
       iCasterKarma = Send(who,@GetKarma);
       iTargetKarma = 0;
@@ -186,11 +175,15 @@ messages:
          return damage + (damage*iCasterKarma/100);
       }
 
-      if iTargetKarma < 0
+      if IsClass(oTarget,&Player)
+      {
+         return damage + damage*(random(130,260))/400;
+      }
+      else if iTargetKarma < 0
       {
          return damage + damage*(iCasterKarma - iTargetKarma)/400;
       }
-      
+
       return damage - damage*iTargetKarma/100;
    }
 

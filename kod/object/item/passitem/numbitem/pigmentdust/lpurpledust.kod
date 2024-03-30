@@ -57,11 +57,11 @@ messages:
       {
          return &PurpleDust;
       }
-      else if IsClass(what,&LightOrangeDust)
+      else if IsClass(what,&LightGreenDust)
       {
          return &LightBlueDust;
       }
-      else if IsClass(what,&LightGreenDust)
+      else if IsClass(what,&LightOrangeDust)
       {
          return &PinkDust;
       }
