@@ -9241,7 +9241,7 @@ messages:
          iXP = iXP * Bound(Send(SETTINGS_OBJECT,@GetXPPercent),50,1000) / 100;
          // Add in XP bonus from items after this.
          iXP += iItemBonus;
-		 iXP += iBonusXP;
+		   iXP += iBonusXP;
 		 
          // AddXP checks for HP gain and redraws the XP bar.
          // NOTE: iMaxHealth could be wrong after this point.
@@ -9304,7 +9304,15 @@ messages:
                + (Send(what,@GetBoostedLevel)
                / Send(Send(SYS,@GetSurvivalRoomMaintenance),@GetSurvivalTP));
 
-            if monster_level > 130
+            if monster_level > 249
+            {
+               piTraining_points = piTraining_points + 9;
+            }
+            else if monster_level > 199
+            {
+               piTraining_points = piTraining_points + 7;
+            }
+            else if monster_level > 130
             {
                piTraining_points = piTraining_points + 5;
             }
