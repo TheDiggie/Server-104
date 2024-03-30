@@ -34,7 +34,7 @@ classvars:
 
    vrName_plural = PigmentDust_name_many_rsc
 
-   viBulk = 0
+   viBulk = 1
    viWeight = 0
 
    viValue_average = 1
@@ -112,6 +112,6 @@ messages:
    {
       return FALSE;
    }
-
+   
 end
 ////////////////////////////////////////////////////////////////////////////////
