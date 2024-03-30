@@ -156,7 +156,7 @@ messages:
    {
       local oTarget, iCasterKarma, iTargetKarma, bUndead;
 
-      iCasterKarma = Send(who,@GetKarma);
+      iCasterKarma = 20;
       iTargetKarma = 0;
       bUndead = FALSE;
 
