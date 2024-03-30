@@ -86,7 +86,7 @@ messages:
       else
       {
          Send(what,@MsgSendUser,#message_rsc=Linked_Vaults,#parm1=send(pvPlayer,@GetTrueName));
-         send(what,@SetVault,#vault=pvVault);
+         send(what,@SetLinkedVault,#vault=pvVault);
 
          send(self,@delete);
       }

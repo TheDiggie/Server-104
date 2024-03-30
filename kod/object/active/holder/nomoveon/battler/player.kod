@@ -15566,27 +15566,17 @@ messages:
       propagate;
    }
 
-   SetVaultNumber()
-   {
-      local oVault, oSafeBox;
-
-      oVault = Send(SYS,@FindVaultByNum,#num=1);
-      oSafeBox = Send(oVault,@OldGetPlayerSafeBox,#who=self);
-
-      viVault = oSafeBox;
-      viOriginalVault = oSafeBox;
-
-      return;
-   }
-
    SetVault(vault=$)
    {
       viVault = vault;
+      viOriginalVault = viVault;
+      
+      return;
+   }
 
-      if viOriginalVault = $
-      {
-         viOriginalVault = viVault;
-      }
+   SetLinkedVault(vault=$)
+   {
+      viVault = vault;
 
       return;
    }
