@@ -4581,7 +4581,7 @@ messages:
 
       if iBankAmt = 0
       {
-         oMoney = Send(who,@GetMoneyObject,#type=poCurrency);
+         oMoney = Send(SYS,@FindTemplateItemByClass,#cClass=poCurrency);
 
          Post(who,@SomeoneSaid,#what=self,#string=vrLm_bnkr_no_account,
               #type=SAY_RESOURCE,#parm1=Send(oMoney,@GetName));

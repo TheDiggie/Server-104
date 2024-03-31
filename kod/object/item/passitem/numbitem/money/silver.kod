@@ -16,8 +16,8 @@ constants:
 
 resources:
 
-   Silver_name_one_rsc = "silver"
-   Silver_name_many_rsc = "silver"
+   Silver_name_one_rsc = "silver coin"
+   Silver_name_many_rsc = "silver coins"
    
    Silver_icon_rsc = platinum.bgf
    Silver_desc_rsc = \

@@ -17,7 +17,7 @@ constants:
 resources:
 
    Doubloon_name_one_rsc = "doubloon"
-   Doubloon_name_many_rsc = "doubloon"
+   Doubloon_name_many_rsc = "doubloons"
    
    Doubloon_icon_rsc = doubloon.bgf
    Doubloon_desc_rsc = \
