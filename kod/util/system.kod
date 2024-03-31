@@ -2968,6 +2968,8 @@ messages:
       Send(self,@CreateOneBankIfNew,#num=BID_TOS,#class=&Bank);
       Send(self,@CreateOneBankIfNew,#num=BID_KOCATAN,#class=&Bank);
       Send(self,@CreateOneBankIfNew,#num=BID_DR,#class=&Bank);
+      Send(self,@CreateOneBankIfNew,#num=BID_DOUB,#class=&Bank);
+      Send(self,@CreateOneBankIfNew,#num=BID_SILVER,#class=&Bank);
 
       return;
    }

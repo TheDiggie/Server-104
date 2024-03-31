@@ -121,11 +121,6 @@ messages:
             #triggers=[Send(oObj,@GetName)],
             #action=[LIBACT_CONDITIONAL,oObj,350,ran_orctooth]);
 
-      oObj2 = Create(&Silver,#number=500);
-      Send(Send(SYS,@GetLibrary),@AddToMobLib,#mob=self,
-            #triggers=[Send(oObj2,@GetName)],
-            #action=[LIBACT_CONDITIONAL,oObj2,1000,ran_silver]);
-
       return;
    }
 

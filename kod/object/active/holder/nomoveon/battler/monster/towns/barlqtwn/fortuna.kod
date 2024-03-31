@@ -29,8 +29,12 @@ classvars:
    vrDesc = Fortuna_desc_rsc
    viAttributes = \
       MOB_NOFIGHT | MOB_SELLER | MOB_NOMOVE | MOB_RANDOM | MOB_LISTEN \
-      | MOB_RECEIVE
-   viOccupation = MOB_ROLE_MERCHANT
+      | MOB_RECEIVE | MOB_BANKER
+
+   viOccupation = MOB_ROLE_MERCHANT | MOB_ROLE_BANKER
+   
+   viBank = BID_DOUB
+
    viMerchant_markup = MERCHANT_FLAT
 
 properties:
@@ -38,6 +42,13 @@ properties:
    poCurrency = &Doubloon
 
 messages:
+
+   Constructor()
+   {
+      plWantedItems = [&Doubloon];
+
+      propagate;
+   }
 
    SetForSale()
    {
@@ -50,6 +61,11 @@ messages:
       $,$,$];
 
       return;
+   }
+
+   GetBankNum()
+   {
+      return viBank;
    }
 
 end

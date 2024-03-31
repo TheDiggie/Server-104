@@ -1525,6 +1525,8 @@
    BID_TOS        = 1
    BID_KOCATAN    = 2
    BID_DR         = 3
+   BID_DOUB       = 4
+   BID_SILVER     = 5
 
    // Vaults
    VID_BARLOQUE   = 1
