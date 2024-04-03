@@ -5992,6 +5992,7 @@ messages:
       plItemTemplates = cons(create(&Qorcite),plItemTemplates);
       plItemTemplates = cons(create(&SteakMeal),plItemTemplates);
       plItemTemplates = cons(create(&Gingermen),plItemTemplates);
+      plItemTemplates = cons(create(&CougarBrew),plItemTemplates);
 
       // Head
       plItemTemplates = cons(create(&Helm),plItemTemplates);

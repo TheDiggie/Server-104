@@ -48,8 +48,6 @@ classvars:
    viValue_average = 25
 
    vrEat_wav = tiki_tribute_eat_wav
-   viValue_average = 0
-
 
 properties:
 
@@ -83,5 +81,6 @@ messages:
    {	 
       return TRUE;
    }
+   
 end
 ////////////////////////////////////////////////////////////////////////////////

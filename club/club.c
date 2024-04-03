@@ -71,9 +71,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrev_instance,
    if (ParseCommandLine(command_line))
       Interface(how_show);
 
-   if (success)
-      RestartClient();
-
    if (success == False)
       return 1;
 

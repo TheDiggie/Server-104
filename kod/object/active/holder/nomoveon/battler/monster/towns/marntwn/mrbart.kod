@@ -30,6 +30,9 @@ resources:
       "Hmmm.  Why, yes, I do believe I have some entroot... since it's from "
       "my own private stash, I will have to charge extra...."
 
+   Tova_cougar_sale = "I have something...stronger. Can't say I'd recommend it tho.."
+   Tova_cougar_con  = "Do you have any stronger drinks?"
+
    Tova_cheers1 = "Thank you, m'%s. . . bottoms up!"
    Tova_cheers2 = "Thank you, I will, m'%s. Just one, for my chest. . ."
    Tova_cheers3 = "To your health, %s!"
@@ -201,6 +204,11 @@ messages:
       Send(Send(SYS,@GetLibrary),@AddToMobLib,#mob=self,
             #triggers=[Send(oObj,@GetName)],
             #action=[LIBACT_CONDITIONAL,oObj,200,Tova_entrootberry_sale]);
+
+      oObj=Create(&CougarBrew,#number=1);
+      Send(Send(SYS,@GetLibrary),@AddToMobLib,#mob=self,
+            #triggers=[Tova_cougar_con],
+            #action=[LIBACT_CONDITIONAL,oObj,3000,Tova_cougar_sale]);
 
       return;
    }
