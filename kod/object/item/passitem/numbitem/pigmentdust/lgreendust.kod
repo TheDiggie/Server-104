@@ -22,8 +22,8 @@ resources:
    LightGreenDust_icon_rsc = colordust.bgf
    LightGreenDust_desc_rsc = "This is a pile light green pigment dust. \n\nCan be mixed with following : "
    "\n\nBlack pigment dust to make green pigment dust"
-   "\n\nLight orange pigment dust to make light blue pigment dust"
-   "\nLight purple pigment dust to make light yellow pigment dust"
+   "\n\nLight orange pigment dust to make light yellow pigment dust"
+   "\nLight purple pigment dust to make light blue pigment dust"
 
 classvars:
 
@@ -59,11 +59,11 @@ messages:
       }
       else if IsClass(what,&LightPurpleDust)
       {
-         return &LightYellowDust;
+         return &LightBlueDust;
       }
       else if IsClass(what,&LightOrangeDust)
       {
-         return &LightBlueDust;
+         return &LightYellowDust;
       }
 
       return;
