@@ -91,6 +91,10 @@ messages:
       {
          return &PotentWhiteDust;
       }
+      else if IsClass(what,&RedDust)
+      {
+         return &PinkDust;
+      }
 
       return;
    }
