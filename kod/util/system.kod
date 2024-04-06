@@ -5510,8 +5510,6 @@ messages:
       plMonsterTemplates = cons(create(&Lich,#template=TRUE),plMonsterTemplates);
       plMonsterTemplates = cons(create(&BatteredSkeleton),plMonsterTemplates);
       plMonsterTemplates = cons(create(&TuskedSkeleton),plMonsterTemplates);
-      plMonsterTemplates = cons(create(&DuskSkeleton),plMonsterTemplates);
-      plMonsterTemplates = cons(create(&GhostSkeleton),plMonsterTemplates);
       plMonsterTemplates = cons(create(&GiantDaemonSkeleton),plMonsterTemplates);
       plMonsterTemplates = cons(create(&DaemonSkeleton),plMonsterTemplates);
       plMonsterTemplates = cons(create(&NarthylWorm),plMonsterTemplates);
