@@ -371,7 +371,7 @@ messages:
          iMoney = iMoney + Send(i,@GetValue);
       }
 
-      oMoney = Send(what,@GetMoneyObject);
+      oMoney = Send(what,@GetMoneyObject,#type=poCurrency);
 
       if oMoney = $
          OR Send(oMoney,@GetNumber) < iMoney

@@ -611,7 +611,7 @@ messages:
       }
 
       // Check for hacked offers
-      oMoney = Send(who,@GetMoneyObject);
+      oMoney = Send(who,@GetMoneyObject,#type=poCurrency);
       if oMoney = $
       {
          return FALSE;

@@ -129,7 +129,7 @@ messages:
 
       foreach i in Send(SYS,@GetUsers)
       {
-         oPlayerMoney = Send(i,@GetMoneyObject);
+         oPlayerMoney = Send(i,@GetMoneyObject,#type=&Shillings);
 
          if oPlayerMoney <> $
          {
@@ -209,7 +209,7 @@ messages:
 
       foreach u in Send(SYS,@GetUsers)
       {
-         oPlayerMoney = Send(u,@GetMoneyObject);
+         oPlayerMoney = Send(u,@GetMoneyObject,#type=&Shillings);
 
          if oPlayerMoney <> $
          {

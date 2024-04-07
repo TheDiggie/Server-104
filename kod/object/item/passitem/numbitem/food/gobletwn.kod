@@ -52,7 +52,7 @@ messages:
    SendTaste(what = $,apply_on = $)
    {
       local oMoney;
-      oMoney = send(apply_on, @getMoneyObject);
+      oMoney = send(apply_on, @getMoneyObject,#type=oMoney);
       if oMoney = $ or send(oMoney,@GetNumber) < 5000
       {  Send(apply_on,@MsgSendUser,#message_rsc=wineGoblet_use_poor);  }
       else

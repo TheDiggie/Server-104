@@ -92,7 +92,7 @@ messages:
       }
 
       // Check for the fee.  If too poor, complain and bail.
-      oMoney = Send(who,@GetMoneyObject);
+      oMoney = Send(who,@GetMoneyObject,#type=&Shillings);
 
       if oMoney = $ OR Send(oMoney,@GetNumber) < iCost
       {
@@ -165,7 +165,7 @@ messages:
       }
 
       // Check for the fee.  If too poor, complain and bail.
-      oMoney = Send(who,@GetMoneyObject);
+      oMoney = Send(who,@GetMoneyObject,#type=&Shillings);
 
       if oMoney = $ OR Send(oMoney,@GetNumber) < iCost
       {
@@ -215,7 +215,7 @@ messages:
       // Set the amount to the even cost.
       iAmount = iDays * iCost;
 
-      oMoney = Send(who,@GetMoneyObject);
+      oMoney = Send(who,@GetMoneyObject,#type=&Shillings);
 
       if oMoney = $ OR Send(oMoney,@GetNumber) < iAmount
       {

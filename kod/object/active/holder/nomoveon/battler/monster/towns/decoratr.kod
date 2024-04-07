@@ -894,7 +894,7 @@ messages:
       }
 
       iCredit = Send(poOwner,@GetCreditBalance);
-      oMoney = Send(who,@GetMoneyObject);
+      oMoney = Send(who,@GetMoneyObject,#type=poCurrency);
       if oMoney <> $
       {
          iMoneyValue = Send(oMoney,@GetNumber);
@@ -938,7 +938,7 @@ messages:
          return;
       }
 
-      oMoney = Send(who,@GetMoneyObject);
+      oMoney = Send(who,@GetMoneyObject,#type=poCurrency);
 
       if Send(oMoney,@GetNumber) >= price
       {

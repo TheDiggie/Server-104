@@ -138,7 +138,7 @@ messages:
       local iMoney;
 
       piStateBump = 1;
-      iMoney = Send(who,@GetMoneyObject);
+      iMoney = Send(who,@GetMoneyObject,#type=poCurrency);
       if iMoney <> $
          AND (Send(iMoney,@GetValue) >= NUM_COINS_FOR_SPECIAL)
       {

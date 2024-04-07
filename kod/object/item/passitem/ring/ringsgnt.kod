@@ -104,7 +104,7 @@ messages:
          iValue = iValue * 5;
       }
 
-      oMoney = Send(who,@GetMoneyObject);
+      oMoney = Send(who,@GetMoneyObject,#type=oMoney);
 
       if oMoney = $
       {

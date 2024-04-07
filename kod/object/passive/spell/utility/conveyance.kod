@@ -118,7 +118,7 @@ messages:
          return;
       }
 
-      oMoney = Send(who,@GetMoneyObject);
+      oMoney = Send(who,@GetMoneyObject,#type=&Shillings);
       if oMoney = $
       {
          // No cash.

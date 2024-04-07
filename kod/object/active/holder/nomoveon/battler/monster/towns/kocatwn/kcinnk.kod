@@ -151,7 +151,7 @@ messages:
          return FALSE;
       }
 
-      oMoney = Send(who,@GetMoneyObject);
+      oMoney = Send(who,@GetMoneyObject,#type=poCurrency);
       
       if oMoney = $
       {

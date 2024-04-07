@@ -2602,7 +2602,7 @@ messages:
       }
 
       iCost = Send(oHall,@GetPurchaseValue,#who=self);
-      oMoney = Send(self,@GetMoneyObject);
+      oMoney = Send(self,@GetMoneyObject,#type=&Shillings);
 
       if oMoney = $ OR Send(oMoney,@GetNumber) < iCost
       {
@@ -2663,7 +2663,7 @@ messages:
          return;
       }
 
-      oMoney = Send(self,@GetMoneyObject);
+      oMoney = Send(self,@GetMoneyObject,#type=&Shillings);
 
       // Secret guild?
       if Nth(client_msg,13)
@@ -10104,7 +10104,7 @@ messages:
    {
       local oMoney,num;
 
-      oMoney = Send(self,@GetMoneyObject);
+      oMoney = Send(self,@GetMoneyObject,#type=&Shillings);
       if oMoney <> $
       {
          num = Send(oMoney,@GetNumber);

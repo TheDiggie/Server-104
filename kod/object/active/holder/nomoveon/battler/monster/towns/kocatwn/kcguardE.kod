@@ -125,7 +125,7 @@ messages:
          return FALSE;
       }
 
-      oMoney = Send(who,@GetMoneyObject);
+      oMoney = Send(who,@GetMoneyObject,#type=poCurrency);
       if oMoney = $
       {
          Post(poOwner,@SomeoneSaid,#what=self,#string=Evilguard_no_money,
