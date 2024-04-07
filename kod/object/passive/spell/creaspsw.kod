@@ -1,0 +1,89 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CreateSpiritualSword is Spell
+
+constants:
+   include blakston.khd
+
+resources:
+
+   CreateSpiritualSword_cast_rsc = "A spiritual sword appears."
+   CreateSpiritualSword_inv_full_rsc = "A spiritual sword appears in the air before you, "
+      "but before you can drop something and grab it, it vanishes."
+
+   CreateSpiritualSword_name_rsc = "spiritual sword"
+   CreateSpiritualSword_icon_rsc = ispirsword.bgf
+   CreateSpiritualSword_desc_rsc = \
+      "Materializes a spiritual sword.  "
+      "Requires 20 emeralds and 30 orc teeth to cast."
+
+   CreateSpiritualSword_sound = sspham.ogg
+
+classvars:
+
+   vrName = CreateSpiritualSword_name_rsc
+   vrIcon = CreateSpiritualSword_icon_rsc
+   vrDesc = CreateSpiritualSword_desc_rsc
+   
+   viSpell_num = SID_SPIRITUAL_SWORD
+   viSchool = SS_SHALILLE
+   viSpell_level = 6
+   viMana = 15
+   viSpellExertion = 2
+   viCast_time = 0
+   viMeditate_ratio = 30
+
+   vrSucceed_wav = CreateSpiritualSword_sound
+
+properties:
+
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&Emerald,20],plReagents);
+      plReagents = Cons([&OrcTooth,30],plReagents);
+
+      return;
+   }
+
+   GetNumSpellTargets()
+   {
+      return 0;
+   }
+
+
+   CastSpell(who = $, lTargets = $,iSpellPower = $)
+   {
+      local oSpiritualSword, iToHitBonus;
+
+      iToHitBonus = (iSpellPower * 3) / 2;
+      oSpiritualSword = Create(&SpiritualSword,#iToHitBonus=iToHitBonus);
+
+      if Send(who,@ReqNewHold,#what=oSpiritualSword)
+      {
+         Send(who,@NewHold,#what=oSpiritualSword);
+         Send(who,@MsgSendUser,#message_rsc=CreateSpiritualSword_cast_rsc);
+      }
+      else
+      {
+         Send(oSpiritualSword,@Delete);
+         Send(who,@MsgSendUser,#message_rsc=CreateSpiritualSword_inv_full_rsc);
+      }
+
+      propagate;
+   }
+
+end
+
+////////////////////////////////////////////////////////////////////////////////

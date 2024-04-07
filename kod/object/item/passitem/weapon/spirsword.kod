@@ -1,0 +1,117 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+SpiritualSword is Weapon
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   SpiritSword_name_rsc = "spiritual sword"
+   SpiritSword_icon_rsc = spirsword.bgf
+   SpiritSword_desc_rsc = \
+      "Inherently having holy blessings, this sword is even more powerful "
+      "than the standard variation."
+   SpiritSword_window_overlay_rsc = povspirsword.bgf
+   SpiritSword_player_overlay = spirswordov.bgf
+
+classvars:
+   vrName = SpiritSword_name_rsc
+   vrIcon = SpiritSword_icon_rsc
+   vrDesc = SpiritSword_desc_rsc
+
+   viWeaponType = WEAPON_TYPE_THRUST
+   viWeaponQuality = WEAPON_QUALITY_HIGH
+
+   viProficiency_Needed = SKID_PROFICIENCY_SWORD
+
+   viValue_average = 0
+   viWeight = 10
+   viBulk = 40
+
+   vrWeapon_window_overlay = SpiritSword_window_overlay_rsc
+   vrWeapon_overlay = SpiritSword_player_overlay
+
+   viGround_group = 1
+   viInventory_group = 3
+   viBroken_group = 2
+
+   viHits_init_min = 500
+   viHits_init_max = 1000
+
+   viDamage_min = 10
+   viDamage_max = 30
+
+properties:
+
+   piAttack_type = ATCK_WEAP_MAGIC+ATCK_WEAP_BLUDGEON
+   piHitBonus = 0
+
+messages:
+
+   Constructor(iToHitBonus=$)
+   {
+      local oWeapAtt;
+
+      if iToHitBonus <> $
+      {
+         piHitBonus = iToHitBonus;
+      }
+
+      Send(self,@SetSpellFlag,#flag=ATCK_SPELL_HOLY,#value=TRUE);
+
+      propagate;
+   }
+
+   WeaponHitTarget()
+   {
+      // Return here so that spiritual hammers don't get damaged.
+      return;
+   }
+
+   CanEnchant()
+   {
+      return FALSE;
+   }
+
+   CanBeGivenToNPC()
+   {
+      return FALSE;
+   }
+
+   CanShatter()
+   {
+      return FALSE;
+   }
+
+   CanSwap()
+   {
+      return FALSE;
+   }
+
+   CanWeaken()
+   {
+      return FALSE;
+   }
+
+   GetBaseSpellModifier(oSpell=$)
+   {
+      if oSpell <> $ AND Send(oSpell,@GetSchool) = SS_SHALILLE
+      {
+         return 15;
+      }
+
+      return 0;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

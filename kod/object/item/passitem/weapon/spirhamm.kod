@@ -162,9 +162,13 @@ messages:
       return FALSE;
    }
 
-   GetBaseSpellModifier()
+   GetBaseSpellModifier(oSpell=$)
    {
-      // It's mystically created and temporary.  No penalties.
+      if oSpell <> $ AND Send(oSpell,@GetSchool) = SS_SHALILLE
+      {
+         return 10;
+      }
+
       return 0;
    }
 
