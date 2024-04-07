@@ -120,6 +120,8 @@ resources:
    Goad_not_ready = \
       "You are not ready to learn how to craft that.  "
 
+   Goad_already_have_one = "You may only be on one side of the war and every fighter is only permited one artifact! "
+
 classvars:
 
    vrName = Goad_name_rsc
@@ -163,6 +165,7 @@ classvars:
    vrRetainTitle = Goad_retain_title
    vrVictor = Goad_victor
    vrNoCmdsDuringFight = Goad_not_during_fight
+   vrLm_mrcnt_cant_give = Goad_already_have_one
 
    vrCmdOneOnOne = Goad_style_one_on_one
    vrCmdLastManStanding = Goad_style_last_man_standing
@@ -293,7 +296,10 @@ messages:
    SetForSale()
    {
       plFor_sale = [
-         $,$,
+         [ 
+            Create(&HunterSword),
+            Create(&NecromancerAmulet)
+         ],$,
          [
             SID_CRAFTCIRCLET,
             SID_CRAFTDAEMONHELM,

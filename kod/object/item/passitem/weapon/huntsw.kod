@@ -6,7 +6,6 @@
 //
 // Meridian is a registered trademark.
 
-
 ////////////////////////////////////////////////////////////////////////////////
 HunterSword is Weapon
 
@@ -112,7 +111,7 @@ classvars:
    viInventory_group = 4
    viBroken_group = 2
 
-   viValue_average = 4000
+   viValue_average = 40000
    viBulk = 50
    viWeight = 70
 
@@ -131,7 +130,6 @@ properties:
    plStatmods = $
 
    pbIn_use = FALSE     // No longer used.
-   pbWarned = FALSE
    piHunger = 0
    piFineHunger = 0
    ptHungerTimer = $
@@ -163,7 +161,7 @@ messages:
 
    NewOwner(what = $)
    {
-      pbWarned = FALSE;
+      //pbWarned = FALSE;
 
       if ptHoldingDamage <> $
       {
@@ -285,13 +283,13 @@ messages:
          return FALSE;
       }
 
-      if pbWarned = FALSE
-      {
-         Send(what,@MsgSendUser,#message_rsc=HunterSword_warning);
-         pbWarned = TRUE;
+      //if pbWarned = FALSE 
+      //{
+      //   Send(what,@MsgSendUser,#message_rsc=HunterSword_warning);
+      //   pbWarned = TRUE;
 
-         return FALSE;
-      }
+      //   return FALSE;
+      //}
 
       propagate;
    }

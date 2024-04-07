@@ -5,8 +5,6 @@
 // the LICENSE file that accompanies it.
 //
 // Meridian is a registered trademark.
-
-
 NecromancerAmulet is ActiveItem
 
 // originally derived from necklace, moved here to
@@ -147,7 +145,7 @@ classvars:
    vrIcon = necamulet_icon_rsc
    vrDesc = necamulet_desc_rsc
 
-   viValue_average = 100
+   viValue_average = 40000
 
    viBulk = 25
    viWeight = 25

@@ -364,6 +364,7 @@ classvars:
    vrLm_bnkr_did_withdraw           = Lm_bnkr_did_withdraw
    vrLm_bnkr_player_full            = Lm_bnkr_player_full
    vrLm_bnkr_player_all_full        = Lm_bnkr_player_all_full
+   vrLm_mrcnt_cant_give             = Lm_mrcnt_cant_give
 
    // Obsolete, but still included here for safety's sake.
    vrSound_hit = $
@@ -4890,7 +4891,7 @@ messages:
                else
                {
                   // Buyer can't accept the item for some reason.
-                  Post(poOwner,@SomeoneSaid,#what=self,#string=Lm_mrcnt_cant_give,
+                  Post(poOwner,@SomeoneSaid,#what=self,#string=vrLm_mrcnt_cant_give,
                         #type=SAY_RESOURCE,#parm1=Send(oBuy,@GetDef),
                         #parm2=Send(oBuy,@GetName));
                   Send(oBuy,@Delete);
