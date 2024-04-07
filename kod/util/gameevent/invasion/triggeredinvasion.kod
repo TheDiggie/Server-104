@@ -17,17 +17,17 @@ constants:
 resources:
 
    TriggeredInvasion_start_msg = \
-      "~B~k[Event]~n ~B~v A %s has appeared at %s, summoning its empowered minons."
+      "~B~k[Event]~n ~B~r A %s has appeared at %s, summoning its empowered minons."
 
    TriggeredInvasion_end_msg = \
-      "~B~k[Event]~n ~B~v The army of the %s has been defeated! "
+      "~B~k[Event]~n ~B~r The army of the %s has been defeated! "
    TriggeredInvasion_end_msg2 = \
-      "~B~k[Event]~n ~B~v The army of the %s has left the area! "
+      "~B~k[Event]~n ~B~r The army of the %s has left the area! "
 
-   Next_Wave   = "~B~k[Event]~n ~B~v The next wave of enemies has spawned!"
-   Final_Wave  = "~B~k[Event]~n ~B~v The final wave of enemies has spawned!"
-   Boss        = "~B~k[Event]~n ~B~v His minions are gone! Now is the time to take out leader!"
-   Alert       = "~B~k[Event]~n ~B~v The %s is still roaming around %s!"
+   Next_Wave   = "~B~k[Event]~n ~B~r The next wave of enemies has spawned!"
+   Final_Wave  = "~B~k[Event]~n ~B~r The final wave of enemies has spawned!"
+   Boss        = "~B~k[Event]~n ~B~r His minions are gone! Now is the time to take out leader!"
+   Alert       = "~B~k[Event]~n ~B~r The %s is still roaming around %s!"
 
    redbackground = redsky.bgf
 
@@ -559,6 +559,17 @@ messages:
       DeleteTimer(ptCancelEvent);
 
       ptCancelEvent = CreateTimer(self,@CheckForPlayers,2*60*60*1000);
+
+      return;
+   }
+
+   UserLogon(who = $)
+   {
+      local oRoom;
+
+      oRoom = Send(SYS,@FindRoomByNum,#num=piActiveRoom);
+
+      Send(who,@MsgSendUser,#message_rsc=vrAlert,#parm1=Send(poLeader,@GetName),#parm2=Send(oRoom,@GetName));
 
       return;
    }

@@ -22,7 +22,7 @@ BGFS = neeleme.bgf neelemeX.bgf iunholyt.bgf xeoneru.bgf xeoneruX.bgf \
        prism1.bgf nerushld.bgf woice.bgf iwallice.bgf sickle.bgf povsickle.bgf \
        sickleov.bgf woodaxeov.bgf povwoodaxe.bgf woodaxe.bgf skinknife.bgf \
        povskinknife.bgf skinknifeov.bgf iskinning.bgf lootboxes.bgf lootmaster.bgf \
-       povspirsword.bgf spirswordov.bgf spirsword.bgf ispirsword.bgf
+       povspirsword.bgf spirswordov.bgf spirsword.bgf ispirsword.bgf cougarbrew.bgf
 
 !include $(RESOURCEDIR)\copy.mak
 
