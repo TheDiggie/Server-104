@@ -116,6 +116,11 @@ messages:
                viOutlaw = FALSE;
             }
       }
+      else
+      {
+         viHarmful = TRUE;
+         viOutlaw = TRUE;
+      }
 
       propagate;
    }
