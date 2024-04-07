@@ -2905,6 +2905,10 @@ messages:
          Send(self,@NewHold,#what=Create(&DarkRedDust,#number=20));
          Send(self,@NewHold,#what=Create(&DarkOrangeDust,#number=20));
          Send(self,@NewHold,#what=Create(&DarkBrownDust,#number=20));
+         Send(self,@NewHold,#what=Create(&PotentBlueDust,#number=20));
+         Send(self,@NewHold,#what=Create(&PotentGreenDust,#number=20));
+         Send(self,@NewHold,#what=Create(&PotentRedDust,#number=20));
+         Send(self,@NewHold,#what=Create(&PotentWhiteDust,#number=20));
       }
       else if StringEqual(string,dm_get_heartstones_command)
       {

@@ -88,6 +88,18 @@ resources:
    color_dorange_dec   = "dark orange dye."
    color_dorange       = "dark orange"
 
+   color_pwhite_dec    = "potent white dye."
+   color_pwhite        = "potent white"
+
+   color_pred_dec      = "potent red dye."
+   color_pred          = "potent red"
+
+   color_pblue_dec     = "potent blue dye."
+   color_pblue         = "potent blue"
+
+   color_pgreen_dec    = "potent green dye."
+   color_pgreen        = "potent green"
+
 classvars:
 
    vrName  = DyeBottle_name_rsc
@@ -231,6 +243,26 @@ messages:
       {
          vrColorDec = color_dorange_dec;
          vrColor    = color_dorange;
+      }
+      else if Color = 78
+      {
+         vrColorDec = color_pblue_dec;
+         vrColor    = color_pblue;
+      }
+      else if Color = 89
+      {
+         vrColorDec = color_pgreen_dec;
+         vrColor    = color_pgreen;
+      }
+      else if Color = 77
+      {
+         vrColorDec = color_pred_dec;
+         vrColor    = color_pred;
+      }
+      else if Color = 6007
+      {
+         vrColorDec = color_pwhite_dec;
+         vrColor    = color_pwhite;
       }
 
       if poOwner <> $
