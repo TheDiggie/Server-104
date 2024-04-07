@@ -6969,8 +6969,6 @@ messages:
          }
       }
 
-      Debug("player has none of this class!");
-
       return FALSE;
     }
 

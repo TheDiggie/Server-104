@@ -51,6 +51,8 @@ classvars:
 
 properties:
 
+   plEachTarget = $
+
 messages:
 
    ResetReagents()
@@ -67,7 +69,7 @@ messages:
 
    CastSpell(who = $, lTargets = $)
    {
-      local oTarget, oVault, iFee, oMoney, iCash;
+      local i, oTarget, oVault, iFee, oMoney, iCash, iAmount, lEachTarget;
 
       if (lTargets = $)
       {
@@ -78,6 +80,19 @@ messages:
 
       if (oTarget = $)
       {
+         return;
+      }
+
+      if IsClass(oTarget,&Bag)
+      {
+         lTargets = send(oTarget,@GetBagContents);
+         foreach i in lTargets
+         {
+            plEachTarget = Cons(i,plEachTarget);
+            Send(self,@CastSpell,#who=who,#lTargets=plEachTarget);
+            plEachTarget = $;
+         }
+
          return;
       }
 
@@ -98,12 +113,12 @@ messages:
          return;
       }
 
-      if NOT Send(who,@IsHolding,#what=oTarget)
-      {
-         Send(who,@MsgSendUser,#message_rsc=conveyance_not_holding);
+      //if NOT Send(who,@IsHolding,#what=oTarget)
+      //{
+      //   Send(who,@MsgSendUser,#message_rsc=conveyance_not_holding);
 
-         return;
-      }
+      //   return;
+      //}
 
       oVault = Send(SYS,@FindVaultByNum,#num=VID_BARLOQUE);
       iFee = Send(oTarget,@GetBulk);
@@ -143,6 +158,9 @@ messages:
          Send(oVault,@DepositItems,#lItems=lTargets,#who=who);
          Send(who,@MsgSendUser,#message_rsc=Conveyance_cast,
                #parm1=Send(oTarget,@GetDef),#parm2=Send(oTarget,@GetName));
+
+         iAmount = Send(oTarget,@getnumber);
+         Send(oTarget,@SubtractNumber,#number=iAmount);
 
          if iFee > 0
          {
