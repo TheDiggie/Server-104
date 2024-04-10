@@ -137,6 +137,7 @@ resources:
       "As your essence dissolves away from this plane of existence, the "
       "amulet slips out of your hands and drops to the ground."
 
+   ao3_no_spiritw = "The amulet forces your weapon out of your grip!"
 classvars:
 
    viIndefinite = ARTICLE_AN
@@ -254,6 +255,8 @@ messages:
 
    NewOwner(what = $)
    {
+      local oSpiritS, oSpiritH;
+
       pbWarned = FALSE;
 
       if ptHoldingDamage <> $
@@ -266,6 +269,28 @@ messages:
          AND IsClass(what,&User)
       {
          Post(self,@HoldingDamageTrigger);
+      }
+
+      if what <> $
+         AND IsClass(what,&User)
+      {
+         oSpiritH = Send(what,@FindUsing,#class=&SpiritualHammer);
+         oSpiritS = Send(what,@FindUsing,#class=&SpiritualSword);
+
+         if oSpiritH <> $ OR oSpiritS <> $
+         {
+            if oSpiritH <> $
+            {
+               Send(what,@TryUnuseItem,#what=oSpiritH);
+            }
+
+            if oSpiritS <> $
+            {
+               Send(what,@TryUnuseItem,#what=oSpiritS);
+            }
+
+            Send(what,@MsgSendUser,#message_rsc = ao3_no_spiritw);
+         }
       }
 
       propagate;

@@ -84,9 +84,6 @@ messages:
 
          Send(poOwner,@NewHold,#what=oWasp,#new_row=Send(self,@GetRow),
                #new_col=Send(self,@GetCol));
-
-         Send(oWasp,@SetMonsterFlag,#flag=MFLAG_INVADER_MOB | MFLAG_DONT_DISPOSE,
-               #value=TRUE);
       }
 
       return;
