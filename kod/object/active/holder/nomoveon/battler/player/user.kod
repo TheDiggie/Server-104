@@ -8947,7 +8947,7 @@ messages:
       iTraining_send = Send(self,@GetTrainingPoints);
 
       AddPacket(1,8, 4,user_stat_training, 1,STAT_VALUE, 1,STAT_INTEGER,
-                4,iTraining_send, 4,0, 4,1000, 4,iTraining_send);
+                4,iTraining_send, 4,0, 4,10000, 4,iTraining_send);
 
       return;
    }
