@@ -8,7 +8,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-DesertShore1 is DesertRoom
+DesertMazeEntrance is DesertRoom
 
 constants:
 
@@ -16,17 +16,15 @@ constants:
 
 resources:
 
-   include desertshore1.lkod
-
-   room_desertshore1 = desertshore1.roo
-   room_name_desertshore1 = "Solitary Shoreline"
+   room_DesertMazeEntrance = DesertMazeEntrance.roo
+   room_name_DesertMazeEntrance = "A labyrinth lost in the sands"
 
 classvars:
 
-   vrName = room_name_desertshore1
+   vrName = room_name_DesertMazeEntrance
 
-   viTeleport_row = 60
-   viTeleport_col = 102
+   viTeleport_row = 48
+   viTeleport_col = 148
 
 properties:
 
@@ -35,24 +33,15 @@ properties:
 
    piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
 
-   prRoom = room_desertshore1
-   piRoom_num = RID_DESERTSHORE1
+   prRoom = room_DesertMazeEntrance
+   piRoom_num = RID_DESERTMAZEENTRANCE
 
 messages:
 
- 
    Constructed()
    {
-      plMonsters = [ [&XeoAcid, 10],
-                     [&XeoAir, 10],
-                     [&XeoEarth, 10],
-                     [&XeoFire, 10],
-                     [&XeoHoly, 10],
-                     [&XeoIll, 10],
-                     [&XeoUnholy, 10],
-                     [&XeoWater, 10],
-                     [&EarthElemental, 10],
-                     [&FireElemental, 10]
+      plMonsters = [ [&XeoHoly, 50],
+                     [&XeoUnholy, 50]
                       ];
       
       plGenerators = [ [25, 25],  [25, 50],  [25, 75],  [25, 100], 
@@ -66,13 +55,14 @@ messages:
 
       propagate;
    }
-
+ 
    CreateStandardExits()
    {
       plEdge_Exits = $;
-      plEdge_Exits = Cons([ LEAVE_NORTH, RID_DESERTSHORE2, 60, 102, ROTATE_NONE ],plEdge_Exits);
-      plEdge_Exits = Cons([ LEAVE_SOUTH, RID_DESERTSHORE3, 60, 102, ROTATE_NONE ],plEdge_Exits);
-      plEdge_Exits = Cons([ LEAVE_EAST, RID_DESERTDUNES3, 60, 102, ROTATE_NONE ],plEdge_Exits);
+      plEdge_Exits = Cons([ LEAVE_NORTH, RID_DESERTDUNES8, 60, 102, ROTATE_NONE ],plEdge_Exits);
+      plEdge_Exits = Cons([ LEAVE_SOUTH, RID_DESERTDUNES5, 60, 102, ROTATE_NONE ],plEdge_Exits);
+      plEdge_Exits = Cons([ LEAVE_WEST, RID_DESERTDUNES4, 60, 102, ROTATE_NONE ],plEdge_Exits);
+      plEdge_Exits = Cons([ LEAVE_EAST, RID_DESERTDUNES9, 60, 102, ROTATE_NONE ],plEdge_Exits);
 
       propagate;
    }

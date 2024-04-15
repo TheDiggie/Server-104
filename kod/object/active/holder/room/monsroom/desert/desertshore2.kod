@@ -71,7 +71,7 @@ messages:
       plEdge_Exits = $;
       plEdge_Exits = Cons([ LEAVE_NORTH, RID_DESERTSHORE3, 60, 102, ROTATE_NONE ],plEdge_Exits);
       plEdge_Exits = Cons([ LEAVE_SOUTH, RID_DESERTSHORE1, 60, 102, ROTATE_NONE ],plEdge_Exits);
-      plEdge_Exits = Cons([ LEAVE_EAST, RID_DESERTDUNES, 60, 102, ROTATE_NONE ],plEdge_Exits);
+      plEdge_Exits = Cons([ LEAVE_EAST, RID_DESERTDUNES2, 60, 102, ROTATE_NONE ],plEdge_Exits);
 
       propagate;
    }

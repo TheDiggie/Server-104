@@ -8,7 +8,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-DesertCliffNoAccess3 is DesertRoom
+DesertDunes3 is DesertDunes
 
 constants:
 
@@ -16,30 +16,14 @@ constants:
 
 resources:
 
-   include desertcliffnoaccess3.lkod
-
-   room_desertcliffnoaccess3 = desertcliffnoaccess3.roo
-   room_name_desertcliffnoaccess3 = "Sandbreak Cliffs"
-
 classvars:
-
-   vrName = room_name_desertcliffnoaccess3
-
-   viTeleport_row = 50
-   viTeleport_col = 40
 
 properties:
 
-   piBaseLight = LIGHT_DARK
-   piOutside_factor = OUTDOORS_5 
-
-   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
-
-   prRoom = room_desertcliffnoaccess3
-   piRoom_num = RID_DESERTCLIFFNOACCESS3
+   piRoom_num = RID_DESERTDUNES3
 
 messages:
-
+ 
    Constructed()
    {
       plMonsters = [ [&XeoAcid, 10],
@@ -53,10 +37,6 @@ messages:
                      [&EarthElemental, 10],
                      [&FireElemental, 10]
                       ];
-      
-      plGenerators = [ [10, 10], [10, 70], [10, 35], [35, 10], [70, 10], 
-                      [35, 35], [35, 70], [70, 35], [70, 70], [20, 25],
-                      [20, 58], [59, 32], [59, 61] ];
 
       propagate;
    }
@@ -64,9 +44,10 @@ messages:
    CreateStandardExits()
    {
       plEdge_Exits = $;
-      plEdge_Exits = Cons([ LEAVE_NORTH, RID_DESERTCLIFFACCESS, 70, 30, ROTATE_NONE ],plEdge_Exits);
-      plEdge_Exits = Cons([ LEAVE_SOUTH, RID_DESERTCLIFFNOACCESS2, 10, 30, ROTATE_NONE ],plEdge_Exits);
-      plEdge_Exits = Cons([ LEAVE_WEST, RID_DESERTDUNES12, 60, 102, ROTATE_NONE ],plEdge_Exits);
+      plEdge_Exits = Cons([ LEAVE_NORTH, RID_DESERTDUNES2, 60, 102, ROTATE_NONE ],plEdge_Exits);
+      plEdge_Exits = Cons([ LEAVE_SOUTH, RID_DESERTDUNES4, 60, 102, ROTATE_NONE ],plEdge_Exits);
+      plEdge_Exits = Cons([ LEAVE_WEST, RID_DESERTSHORE1, 60, 102, ROTATE_NONE ],plEdge_Exits);
+      plEdge_Exits = Cons([ LEAVE_EAST, RID_DESERTDUNES7, 10, 39, ROTATE_NONE ],plEdge_Exits);
 
       propagate;
    }

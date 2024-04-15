@@ -58,7 +58,7 @@ messages:
       Send(self,@NewHold,#what=Create(&Firepit),#new_row=5,#new_col=192);
 
       Send(self,@NewHold,#what=Create(&ManaNode,#node_num=NODE_DESERT),
-           #new_row=13,#new_col=182,#new_angle=ANGLE_WEST);
+           #new_row=16,#new_col=167,#new_angle=ANGLE_WEST);
 
       propagate;
    }
@@ -67,7 +67,6 @@ messages:
    {
       plEdge_Exits = $;
       plEdge_Exits = Cons([ LEAVE_WEST, RID_WAYLAYOASIS, 47, 128, ROTATE_NONE ],plEdge_Exits);
-      plEdge_Exits = Cons([ LEAVE_EAST, RID_DESERTDUNES, 5, 5, ROTATE_NONE ],plEdge_Exits);
 
       propagate;
    }

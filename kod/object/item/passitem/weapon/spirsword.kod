@@ -56,7 +56,7 @@ classvars:
 
 properties:
 
-   piAttack_type = ATCK_WEAP_MAGIC+ATCK_WEAP_BLUDGEON
+   piAttack_type = ATCK_WEAP_MAGIC+ATCK_WEAP_THRUST
    piHitBonus = 0
 
 messages:

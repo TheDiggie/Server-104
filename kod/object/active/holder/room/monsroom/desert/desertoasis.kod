@@ -1,0 +1,56 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DesertOasis is DesertRoom
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   room_Desertoasis = desertoasis.roo
+   room_name_Desertoasis = "Desert Oasis"
+
+classvars:
+
+   vrName = room_name_Desertoasis
+
+   viTeleport_row = 58
+   viTeleport_col = 51
+
+   viPermanent_flags = ROOM_NO_COMBAT | ROOM_SAFELOGOFF
+   
+properties:
+
+   piBaseLight = LIGHT_DARK
+   piOutside_factor = OUTDOORS_5 
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+   prRoom = room_Desertoasis
+   piRoom_num = RID_DESERTOASIS
+
+messages:
+
+   CreateStandardExits()
+   {
+      plEdge_Exits = $;
+      plEdge_Exits = Cons([ LEAVE_NORTH, RID_DESERTDUNES6, 60, 102, ROTATE_NONE ],plEdge_Exits);
+      plEdge_Exits = Cons([ LEAVE_SOUTH, RID_DESERTDUNES7, 60, 102, ROTATE_NONE ],plEdge_Exits);
+      plEdge_Exits = Cons([ LEAVE_WEST, RID_DESERTDUNES2, 60, 102, ROTATE_NONE ],plEdge_Exits);
+      plEdge_Exits = Cons([ LEAVE_EAST, RID_DESERTDUNES11, 10, 39, ROTATE_NONE ],plEdge_Exits);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////
+
