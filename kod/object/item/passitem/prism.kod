@@ -136,28 +136,28 @@ messages:
    {
       if numSides = 0
       {
-         piNumSides = random(1,12);
+         piNumSides = random(1,20);
       }
       else
       {
          piNumSides = numSides;
       }
 
-      if piNumSides = 1
+      if piNumSides >= 1 AND piNumSides <= 4
       {
          vrIcon = prism_1_icon_rsc;
       }
-      else if piNumSides >= 2 AND piNumSides <= 3
+      else if piNumSides >= 5 AND piNumSides <= 9
       {
          piNumSides = 3;
          vrIcon = prism_3_icon_rsc;
       }
-      else if piNumSides >= 4 AND piNumSides <= 6
+      else if piNumSides >= 10 AND piNumSides <= 14
       {
          piNumSides = 5;
          vrIcon = prism_5_icon_rsc;
       }
-      else if piNumSides > 6 
+      else if piNumSides > 15
       {
          piNumSides = 7;
          vrIcon = prism_7_icon_rsc;
