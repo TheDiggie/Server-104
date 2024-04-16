@@ -20,8 +20,8 @@ resources:
    quartermaster_icon_rsc = lootmaster.bgf
    quartermaster_desc_rsc = \
       "As the quartermaster of the ship he keeps a log of all the boats treasures. "
-      "If you have the coin perhaps you can take some of his hands. Altho pirates only deal "
-      "in silver. Ran er'Hoth or Moxal ix'Hanak are know for selling rare metals."
+      "If you have the coins perhaps you can take some of his hands. Altho pirates only deal "
+      "in silver coins, Moxal ix'Hanak is known for selling rare metals."
 classvars:
 
    vrName = quartermaster_name_rsc

@@ -64,7 +64,7 @@ resources:
 
    KocatanInkeeper_silver = \
       "Ah dealing with those pirates are you? Sure I have some "
-      "silver but it will cost you a arm and a leg!"
+      "silver coins but it will cost you a arm and a leg!"
 
    KoIk_room_command = "room"
    KoIk_rent_command = "rent"
