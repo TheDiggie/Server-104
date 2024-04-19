@@ -18,11 +18,11 @@ resources:
 
    include UBScroll.lkod
 
-   UBScroll_name_rsc = "unbound enery scroll"
+   UBScroll_name_rsc = "unbound energy scroll"
    UBScroll_icon_rsc = scr06.bgf
-   UBScroll_desc_rsc = "This is a unbound enery scroll. Using it will grant you 1000 unbound enery. "   
+   UBScroll_desc_rsc = "This is a unbound energy scroll. Using it will grant you 1000 unbound energy. "   
 
-   UBScroll_warning = "~r~BWarning using this scroll will consume it and grant the player 1000 unbound enery. "
+   UBScroll_warning = "~r~BWarning using this scroll will consume it and grant the player 1000 unbound energy. "
 
 classvars:
 
