@@ -63,6 +63,9 @@ resources:
    system_user_killed_shield = "~B~U~k[###]~n ~B~v%q was bested by faction rival %s%q."
    system_user_killed_guild = \
       "~B~U~k[###]~n ~B~v%q of %s%q has been slaughtered by %s%q of %s%q in guild combat."
+   system_user_killed_AO3 = \
+      "~B~U~k[###]~n ~B~vThe necromancer %q has been defeated by the hunter %s%q."
+   system_user_killed_SOTH = "~B~U~k[###]~n ~B~vThe hunter %q has been defeated by the necromancer %s%q."
       
    guildwar_kill_title1 = " has slaughtered "
    guildwar_kill_body1 = "Let it be known that "
@@ -1709,7 +1712,7 @@ messages:
       return $;
    }
 
-   UserKilled(what = $,killer = $, oRoom = $,stroke_obj = $)
+   UserKilled(what = $,killer = $, oRoom = $,stroke_obj = $, Sword = FALSE, Amulet = FALSE)
    {
       local i, rMessage, bMurder, oSoldierShield, oToken, oGuild, oKillerGuild,
             param2, param3, param4, param5, param6, param7, type5, type7,
@@ -1902,6 +1905,17 @@ messages:
                param3 = $;
             }
          }
+      }
+
+      
+      if Sword
+      {
+         rMessage = system_user_killed_SOTH;
+      }
+      
+      if Amulet
+      {
+         rMessage = system_user_killed_AO3;
       }
 
       // Set a default message.

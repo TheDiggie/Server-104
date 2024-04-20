@@ -6082,7 +6082,7 @@ messages:
    "Called when the player killed something."
    {
       local bReflection, i, oSoldierShield, monstkarma, iChance, oEnemyGuild,
-            oVictimRoom, oObject, oHunterSword, oNecromancerAmulet;
+            oVictimRoom, oObject, oHunterSword, oNecromancerAmulet, oHunterSword1, oNecromancerAmulet1;
 
       // If we killed someone or something, we did damage.
       Send(self,@SetPlayerFlag,#flag=PFLAG_DID_DAMAGE,#value=TRUE);
@@ -6128,6 +6128,22 @@ messages:
          }
 
          Send(poOwner,@SomethingKilled,#what=self,#victim=what);
+      }
+
+      if IsClass(what,&User)
+      {
+         oNecromancerAmulet = Send(self,@FindHoldingActive,#class=&NecromancerAmulet);
+         oHunterSword = Send(self,@FindHoldingActive,#class=&HunterSword);
+         oNecromancerAmulet1 = Send(what,@FindHoldingActive,#class=&NecromancerAmulet);
+         oHunterSword1 = Send(what,@FindHoldingActive,#class=&HunterSword);
+
+         if (oNecromancerAmulet <> $ AND oHunterSword1 <> $)
+             OR (oHunterSword <> $ AND oNecromancerAmulet1 <> $)
+         {
+            Send(what,@Killed,#what=self,#stroke_obj=stroke_obj,#use_weapon=use_weapon);
+
+            return;
+         }
       }
 
       // Let our shield know we killed something.
@@ -6189,8 +6205,6 @@ messages:
                // they can whack on each other freely, without murderer or
                // faction penalty.
                oEnemyGuild = Send(what,@GetGuild);
-               oNecromancerAmulet = Send(self,@FindUsing,#class=&NecromancerAmulet);
-               oHunterSword = Send(self,@FindUsing,#class=&HunterSword);
 
                // Check for various murderer things if any are true:
                // We're not in a guild, opponent wasn't in a guild, we're
@@ -6202,12 +6216,6 @@ messages:
                    OR NOT Send(poGuild,@IsMutualEnemy,#otherguild=oEnemyGuild))
                   AND (oSoldierShield = $
                        OR NOT Send(oSoldierShield,@IsEnemyAttack,
-                                    #what=what,#damage=TRUE))
-                  AND (oNecromancerAmulet = $
-                       OR NOT Send(oNecromancerAmulet,@IsEnemyAttack,
-                                    #what=what,#damage=TRUE))
-                  AND (oHunterSword = $
-                       OR NOT Send(oHunterSword,@IsEnemyAttack,
                                     #what=what,#damage=TRUE))
                {
                   // SUBTLE BUG: Somehow, the faction check is missed when you
@@ -6866,8 +6874,13 @@ messages:
    FindUsing(class=$)
    "Find the first instance of 'class' that player has equipped. "
    "Returns $ if nothing is found."
-   {
-      return GetListElemByClass(plUsing,class);
+   {  
+      if class <> $
+      {
+         return GetListElemByClass(plUsing,class);
+      }
+
+      return;
    }
 
    ChooseArmorPosition()
@@ -9660,7 +9673,8 @@ messages:
    {
       local lItems,i, j, amount, oBody, oSoldierShield, bNo_drop_death, oItemAtt,
             oRoom, iRow, iCol, iFine_Row, iFine_Col, iAngle, oItem,
-            iRoom, lInventoryContents, lBagContents, oSkull;
+            iRoom, lInventoryContents, lBagContents, oSkull, oSword, oAmulet,
+            oHunterSword, oNecromancerAmulet;
 
       // If this player has created any evil twins, delete them.
       Send(self,@RemoveAllCreatedEvilTwins);
@@ -9798,9 +9812,24 @@ messages:
          }
       }
 
+      
+      oNecromancerAmulet = Send(self,@FindHoldingActive,#class=&NecromancerAmulet);
+      oHunterSword = Send(self,@FindHoldingActive,#class=&HunterSword);
+
+      if oNecromancerAmulet <> $
+      {
+         oAmulet = TRUE;
+      }
+      
+      if oHunterSword <> $
+      {
+         oSword = TRUE;
+      }
+
       // Record-keeping. Keep this before the token check,
       // so we can give proper message.
-      Send(SYS,@UserKilled,#what=self,#killer=what,#oRoom=oRoom,#stroke_obj=stroke_obj);
+      Send(SYS,@UserKilled,#what=self,#killer=what,#oRoom=oRoom,#stroke_obj=stroke_obj,
+                           #Sword=oSword,#Amulet=oAmulet);
       Send(Send(SYS,@GetStatistics),@PlayerDiedCounter);
 
       // Token death?
