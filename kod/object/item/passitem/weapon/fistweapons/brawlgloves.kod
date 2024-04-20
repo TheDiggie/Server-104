@@ -52,7 +52,7 @@ classvars:
 
 properties:
 
-   piDamageBonus = 3
+   piDamageBonus = 6
    piHitBonus = 125
 
    piAttack_type = ATCK_WEAP_UNARMED+ATCK_WEAP_PUNCH
