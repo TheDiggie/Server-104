@@ -128,11 +128,6 @@ messages:
       return FALSE;
    }
 
-   CanBeGivenToNPC()
-   {
-      return FALSE;
-   }
-
    CanShatter()
    {
       return FALSE;
