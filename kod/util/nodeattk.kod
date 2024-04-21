@@ -81,7 +81,7 @@ properties:
    // Base percent chance to actually be severed from the node.
    piSeveredChance = 2
    // Number of users that must be on before a node attack goes on.
-   piNumIPsOnForAttack = 10
+   piNumIPsOnForAttack = 15
 
    // NOTE: See specific notes in Recreate() for more information.
    // The current node being attacked.

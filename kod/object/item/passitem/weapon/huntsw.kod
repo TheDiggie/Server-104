@@ -989,48 +989,5 @@ messages:
       return TRUE;
    }
 
-   setnewkarma()
-   {
-      piKarmaWorthyThreshold = -1;
-
-      return;
-   }
-
-   setpikarma(karma=0)
-   {
-      piKarma = karma;
-
-      return;
-   }
-
-   IsEnemyAttack(what=$,damage=FALSE)
-   {
-      local oNecromancerAmulet;
-
-      if what <> $
-         AND IsClass(what,&Player)
-         AND what <> poOwner
-      {
-         oNecromancerAmulet = Send(what,@FindHoldingActive,#class=&NecromancerAmulet);
-
-         // Gotta have a shield, and it can't be the same faction as us.
-         if oNecromancerAmulet <> $
-         {
-            Send(oNecromancerAmulet,@AttackedByEnemy,#who=what);
-
-            return TRUE;
-         }
-      }
-
-      return FALSE;
-   }
-
-   AttackedByEnemy(who=$)
-   {
-      poLastEnemyToAttack = who;
-
-      return;
-   }
-
 end
 ////////////////////////////////////////////////////////////////////////////////
