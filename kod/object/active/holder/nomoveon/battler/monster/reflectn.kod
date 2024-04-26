@@ -244,6 +244,13 @@ messages:
          return;
       }
 
+      if IsClass(poOriginal,&Monster)
+      {
+         Send(self,@Delete);
+         
+         return;
+      }
+
       if IsClass(poOriginal,&Player)
          AND NOT Send(poOriginal,@IsLoggedOn)
       {
