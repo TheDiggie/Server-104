@@ -15616,6 +15616,19 @@ messages:
    {
       return poWonDR;
    }
-   
+    
+   SomethingAttacked(what = $,victim = $,use_weapon = $)
+   {
+      if what <> victim
+      AND IsClass(what,&Player)
+      AND IsClass(victim,&Player)
+      {
+         Send(what,@WipeUnboundEnergy);
+         Send(victim,@WipeUnboundEnergy);
+      }
+
+      propagate;
+   }
+
 end
 ////////////////////////////////////////////////////////////////////////////////

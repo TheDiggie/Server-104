@@ -127,6 +127,8 @@ resources:
       "Your Location is: `bRow: `k`B%i`n `bCol: `k`B%i`n `bfRow: `k`B%i`n "
       "`bfCol: `k`B%i`n `bHeight: `k`B%i`n."
 
+   dm_ips = "There are %i individual players online. "
+
    // dm_disguise_command uses StringSubstitute, do not add separate language
    // string for this resource as it won't be substituted correctly.
    dm_disguise_command = "disguise"
@@ -934,6 +936,13 @@ messages:
                #parm1=Send(poOwner,@GetName),
                #parm2=Send(poOwner,@GetRoomResource),
                #parm3=Send(poOwner,@GetRoomNum));
+
+         return;
+      }
+      
+      if StringEqual(string,"get ips")
+      {
+         Send(self,@MsgSendUser,#message_rsc=dm_ips,#parm1=Send(SYS,@GetUniqueIPs));
 
          return;
       }
