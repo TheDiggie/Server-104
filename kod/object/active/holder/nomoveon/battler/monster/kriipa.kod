@@ -91,6 +91,8 @@ properties:
 
    ptDrop = $
 
+   ptDrop2 = $
+
 messages:
 
    Constructed()
@@ -101,8 +103,20 @@ messages:
                         [ATCK_WEAP_SLASH, -25 ],
                         [ATCK_WEAP_NERUDITE, -25 ]
                       ];
+      ptDrop2 = CreateTimer(self,@DropDown,50);
 
       propagate;
+   }
+
+   DropDown()
+   {
+      if Send(self,@CheckMonsterFlag,#flag=MFLAG_INVADER_MOB)
+      {
+         piRoofState = STATE_JUMPINGDOWN;
+         Send(self,@MonsterJumpDown,#what=self);
+      }
+
+      return;
    }
 
    GetObjectFlags()
@@ -186,27 +200,27 @@ messages:
          return;
       }
 
-      if piRoofState = STATE_JUMPINGDOWN
+      if piRoofState = STATE_JUMPINGDOWN OR piRoofState = STATE_READY
       {
          piRoofState = STATE_READY;
+         ptDrop=CreateTimer(self,@DropTimer,1800);
+         Send(poBrain,@PostAttackTimer,#mob=self,#state=piState);
          Send(self,@TryAttack,#what=poTarget);
-         ptDrop=CreateTimer(self,@DropTimer,2000);
 
          return;
       }
 
-      if piRoofState = STATE_READY
-      {
-         piRoofState = STATE_JUMPINGUP;
-         Send(self,@MonsterJumpUp);
-         ptDrop=CreateTimer(self,@DropTimer,950);
-         Send(poBrain,@PostAttackTimer,#mob=self,#state=piState);
-      }
+      //if piRoofState = STATE_READY
+      //{
+      //   piRoofState = STATE_JUMPINGUP;
+      //   Send(self,@MonsterJumpUp);
+      //   ptDrop=CreateTimer(self,@DropTimer,950);
+      //   Send(poBrain,@PostAttackTimer,#mob=self,#state=piState);
+      //}
 
       if piRoofState = STATE_JUMPINGUP
       {
          piRoofState = STATE_ONROOF;
-         piBehavior = (piBehavior & ~AI_NOMOVE);
          Send(poOwner,@SomethingChanged,#what=self);
       }
 
@@ -301,9 +315,8 @@ messages:
       {
          // Carry out attack.
          piRoofState = STATE_JUMPINGDOWN;
-         piBehavior = (piBehavior | AI_NOMOVE);
          Send(self,@MonsterJumpDown);
-         ptDrop=CreateTimer(self,@DropTimer,1200);
+         ptDrop=CreateTimer(self,@DropTimer,1800);
       }
 
       return;
