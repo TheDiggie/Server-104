@@ -278,7 +278,7 @@ messages:
          Send(self,@SpawnMonsters,#iWave=1);
          Send(self,@SpawnMonsters,#iWave=2);
          piPhase++;
-         Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,#string=vrNextWave);
+         Send(oRoom,@SomeoneSaidRoom,#what=poLeader,#type=SAY_MESSAGE,#string=Next_Wave);
       }
       else if piPhase = 2
          AND Send(oRoom,@CountMonstersWithMonsterFlag,#flag=MFLAG_INVADER_MOB) = 0
@@ -291,7 +291,7 @@ messages:
          Send(self,@SpawnMonsters,#iWave=2);
          Send(self,@SpawnMonsters,#iWave=3);
          piPhase++;
-         Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,#string=vrNextWave);
+         Send(oRoom,@SomeoneSaidRoom,#what=poLeader,#type=SAY_MESSAGE,#string=Next_Wave);
       }
       else if piPhase = 3
          AND Send(oRoom,@CountMonstersWithMonsterFlag,#flag=MFLAG_INVADER_MOB) = 0
@@ -303,7 +303,7 @@ messages:
          Send(self,@SpawnMonsters,#iWave=3);
          Send(self,@SpawnMonsters,#iWave=4);
          piPhase++;
-         Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,#string=vrFinalWave);
+         Send(oRoom,@SomeoneSaidRoom,#what=poLeader,#type=SAY_MESSAGE,#string=Final_Wave);
       }
       else if piPhase = 4
          AND Send(oRoom,@CountMonstersWithMonsterFlag,#flag=MFLAG_INVADER_MOB) = 0
@@ -314,7 +314,7 @@ messages:
          Send(self,@AddToLeaderTreasure);
          Send(poLeader,@EnableAttackMode,#bEnabled=TRUE);
          piPhase++;
-         Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,#string=vrBoss);
+         Send(oRoom,@SomeoneSaidRoom,#what=poLeader,#type=SAY_MESSAGE,#string=Boss);
          
          oDoubloon = Create(&Doubloon,#number=piRewardAmount);
          Send(poLeader,@NewHold,#what=oDoubloon);
