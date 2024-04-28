@@ -315,6 +315,7 @@ messages:
          Send(poLeader,@EnableAttackMode,#bEnabled=TRUE);
          piPhase++;
          Send(oRoom,@SomeoneSaidRoom,#what=poLeader,#type=SAY_MESSAGE,#string=Boss);
+         Send(poLeader,@ResetBehaviorFlags);
          
          oDoubloon = Create(&Doubloon,#number=piRewardAmount);
          Send(poLeader,@NewHold,#what=oDoubloon);

@@ -1773,6 +1773,19 @@ messages:
 
    TweakBehavior()
    {
+      if poInvasionLeader = self
+      {
+         if pbAttackMode
+         {
+            piBehavior |= AI_MOVE_OPTIMAL_RANGE | AI_FIGHT_SWITCHALOT
+               | AI_FIGHT_HYPERAGGRESSIVE | AI_FIGHT_LASHOUT;
+         }
+         else
+         {
+            piBehavior = AI_NPC | AI_NOMOVE | AI_NOFIGHT;
+         }
+      }
+
       return;
    }
 
@@ -7523,6 +7536,8 @@ messages:
       {
          piMax_hit_points *= piEventHealthFactor;
       }
+      
+      Send(self,@ResetBehaviorFlags);
 
       piHit_points = piMax_hit_points * 100;
 
