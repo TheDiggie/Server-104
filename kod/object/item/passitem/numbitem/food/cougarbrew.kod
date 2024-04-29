@@ -23,7 +23,7 @@ resources:
    Cougar_Brew_name_plural_rsc = "Cougar's brew"
    
    Cougar_Brew_eat_wav = drink.ogg
-   Cougar_Brew_use = "The strong drink throws you off balance, almost passing out the moment u swallowed!  "
+   Cougar_Brew_use = "The strong drink throws you off balance, almost passing out the moment you swallowed!  "
 
 classvars:
 
