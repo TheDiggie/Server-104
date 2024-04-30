@@ -9674,7 +9674,7 @@ messages:
       local lItems,i, j, amount, oBody, oSoldierShield, bNo_drop_death, oItemAtt,
             oRoom, iRow, iCol, iFine_Row, iFine_Col, iAngle, oItem,
             iRoom, lInventoryContents, lBagContents, oSkull, oSword, oAmulet,
-            oHunterSword, oNecromancerAmulet;
+            oHunterSword, oNecromancerAmulet, oHunterSword1, oNecromancerAmulet1;
 
       // If this player has created any evil twins, delete them.
       Send(self,@RemoveAllCreatedEvilTwins);
@@ -9815,13 +9815,15 @@ messages:
       
       oNecromancerAmulet = Send(self,@FindHoldingActive,#class=&NecromancerAmulet);
       oHunterSword = Send(self,@FindHoldingActive,#class=&HunterSword);
+      oNecromancerAmulet1 = Send(what,@FindHoldingActive,#class=&NecromancerAmulet);
+      oHunterSword1 = Send(what,@FindHoldingActive,#class=&HunterSword);
 
-      if oNecromancerAmulet <> $
+      if (oNecromancerAmulet <> $ AND oHunterSword1 <> $)
       {
          oAmulet = TRUE;
       }
       
-      if oHunterSword <> $
+      if (oHunterSword <> $ AND oNecromancerAmulet1 <> $)
       {
          oSword = TRUE;
       }

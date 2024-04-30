@@ -1907,15 +1907,17 @@ messages:
          }
       }
 
-      
-      if Sword
+      if IsClass(killer,&User)
       {
-         rMessage = system_user_killed_SOTH;
-      }
-      
-      if Amulet
-      {
-         rMessage = system_user_killed_AO3;
+         if Sword
+         {
+            rMessage = system_user_killed_SOTH;
+         }
+
+         if Amulet
+         {
+            rMessage = system_user_killed_AO3;
+         }
       }
 
       // Set a default message.
