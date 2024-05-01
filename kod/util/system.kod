@@ -331,6 +331,9 @@ resources:
 
    system_message_sound = system.ogg
    
+   system_user_logged = \
+      "~B~U~k[###]~n ~B~v%q has fled the battlefield."
+
 classvars:
 
    viGuild_price = 5000
@@ -8596,6 +8599,25 @@ messages:
       }
 
       return $;
+   }
+
+   UserGotLogged(who = $)
+   {
+      local i;
+
+      if (who = $)
+      {
+         return;
+      }
+
+      foreach i in plUsers_logged_on
+      {
+         Send(i,@MsgSendUser,#message_rsc=system_user_logged,
+            #parm1=Send(who,@GetTrueName),#type1=STRING_RESOURCE);
+         Send(i,@WaveSendUser,#wave_rsc=system_message_sound,#what=self);
+      }
+
+      return;
    }
 
 end
