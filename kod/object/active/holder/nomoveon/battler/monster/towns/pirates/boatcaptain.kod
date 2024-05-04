@@ -53,14 +53,6 @@ properties:
 
 messages:
 
-   //Constructor()
-   //{
-   //   // We came into existence.
-	//  Send(self,@SetForSale);
-	//  
-   //   propagate;
-   //}
-   
    Recreate()
    {
       Send(self,@SetForSale);
@@ -88,30 +80,39 @@ messages:
 
    SetForSale()
    {
-      local lDestinations;
+      local lDestinations, oOne, oTwo;
 	  
-	  // We only accept boat tickets.
-	  plWantedItems = [&BoatTicket];
-	  
-	  if poOwner <> $ AND Send(poOwner,@GetRoomNum) = RID_KOC_SOUTH
-	  {
-	     // Boat on Ko'catan sells tickets to these destinations
-	     lDestinations = [
-		    Create(&BoatTicket,#model=$,#destination=RID_BAR_PORT)
-		 ];
-	  }
-	  
-	  if poOwner <> $ AND Send(poOwner,@GetRoomNum) = RID_BAR_PORT
-	  {
-	     // Boat on Barloque Port sells tickets to these destinations
-	     lDestinations = [
-		    Create(&BoatTicket,#model=$,#destination=RID_KOC_SOUTH)
-		 ];
-	  }
-
-      plFor_sale = [ 
-         lDestinations,
-      $,$,$];
+	   plWantedItems = [&BoatTicket];
+	   
+	   if poOwner <> $ AND Send(poOwner,@GetRoomNum) = RID_KOC_SOUTH
+	   {
+         plFor_sale = [ 
+            [
+               Create(&BoatTicket,#model=$,#destination=RID_BAR_PORT),
+               Create(&BoatTicket,#model=$,#destination=RID_DESERTSHORE4)
+            ],
+         $,$,$];
+	   }  
+	   
+	   if poOwner <> $ AND Send(poOwner,@GetRoomNum) = RID_BAR_PORT
+	   {
+         plFor_sale = [ 
+            [
+               Create(&BoatTicket,#model=$,#destination=RID_DESERTSHORE4),
+               Create(&BoatTicket,#model=$,#destination=RID_KOC_SOUTH)
+            ],
+         $,$,$];
+	   }
+ 
+	   if poOwner <> $ AND Send(poOwner,@GetRoomNum) = RID_DESERTSHORE4
+	   {
+         plFor_sale = [ 
+            [
+               Create(&BoatTicket,#model=$,#destination=RID_BAR_PORT),
+               Create(&BoatTicket,#model=$,#destination=RID_KOC_SOUTH)
+            ],
+         $,$,$];
+	   }
 
       return;
    }
