@@ -5850,6 +5850,14 @@ messages:
       plItemTemplates = cons(create(&VaultLoadoutScroll),plItemTemplates);
       plItemTemplates = cons(create(&MirthScroll),plItemTemplates);
       plItemTemplates = cons(create(&MelancholyScroll),plItemTemplates);
+
+      //Enchantment scrolls
+      plItemTemplates = cons(create(&EnchantmentScroll),plItemTemplates);
+      plItemTemplates = cons(create(&EnchantmentScrollFaren),plItemTemplates);
+      plItemTemplates = cons(create(&EnchantmentScrollQor),plItemTemplates);
+      plItemTemplates = cons(create(&EnchantmentScrollShal),plItemTemplates);
+      plItemTemplates = cons(create(&EnchantmentScrollRiija),plItemTemplates);
+      plItemTemplates = cons(create(&EnchantmentScrollKraanan),plItemTemplates);
 	  
       // Wands
       plItemTemplates = cons(create(&BonkStick),plItemTemplates);

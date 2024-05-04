@@ -2862,5 +2862,12 @@ messages:
       return poCrafter;
    }
 
+   SetItemEnchantment(ItemSpell=$)
+   {
+      poSpell = ItemSpell;
+
+      return;
+   }
+
 end
 ////////////////////////////////////////////////////////////////////////////////

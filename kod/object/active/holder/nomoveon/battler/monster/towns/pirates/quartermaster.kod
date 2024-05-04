@@ -8,7 +8,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-QuarterMaster is BarloqueTown
+QuarterMaster is Pirates
 
 constants:
 
@@ -63,7 +63,13 @@ messages:
             Create(&DeathRealmWeaponGift),
             Create(&DeathRealmArmorGift),
             Create(&MaskGift),
-            Create(&InstrumentGift)
+            Create(&InstrumentGift),
+            Create(&EnchantmentScroll),
+            Create(&EnchantmentScrollFaren),
+            Create(&EnchantmentScrollQor),
+            Create(&EnchantmentScrollKraanan),
+            Create(&EnchantmentScrollShal),
+            Create(&EnchantmentScrollRiija)
          ],
       $,$,$];
 

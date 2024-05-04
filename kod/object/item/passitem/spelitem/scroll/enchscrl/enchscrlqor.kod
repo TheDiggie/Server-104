@@ -1,0 +1,40 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+EnchantmentScrollQor is EnchantmentScroll
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   EnchantmentScrollqor_label_name_rsc = "item qor enchantment scroll"
+   
+classvars:
+
+   viValue_average = 10000
+
+properties:
+
+   vrLabelName = EnchantmentScrollqor_label_name_rsc
+
+messages:
+
+   Constructor()
+   {
+      plContents =  [ SID_GAZE_OF_THE_BASILISK, SID_CLOAK, SID_DETECT_GOOD, SID_UNHOLY_RESOLVE,  
+                      SID_ACID_TOUCH, SID_KARAHOLS_CURSE, SID_DEATH_LINK, SID_INVISIBILITY, SID_UNHOLY_TOUCH ];
+      
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

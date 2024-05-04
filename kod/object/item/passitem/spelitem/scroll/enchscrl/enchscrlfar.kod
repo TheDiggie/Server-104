@@ -1,0 +1,39 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+EnchantmentScrollFaren is EnchantmentScroll
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   EnchantmentScrollfaren_label_name_rsc = "item faren enchantment scroll"
+
+classvars:
+
+   viValue_average = 10000
+
+properties:
+
+   vrLabelName = EnchantmentScrollfaren_label_name_rsc
+
+messages:
+
+   Constructor()
+   {
+      plContents =  [ SID_ZAP, SID_ICY_FINGERS, SID_RESIST_COLD, SID_TOUCH_OF_FLAME, SID_RESIST_FIRE, SID_RESIST_SHOCK ];
+      
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

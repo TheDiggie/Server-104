@@ -1,0 +1,39 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+EnchantmentScrollRiija is EnchantmentScroll
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   EnchantmentScrollriija_label_name_rsc = "item riija enchantment scroll"
+
+classvars:
+
+   viValue_average = 10000
+
+properties:
+
+   vrLabelName = EnchantmentScrollriija_label_name_rsc
+
+messages:
+
+   Constructor()
+   {
+      plContents =  [ SID_ANONYMITY, SID_SHADOW_FORM, SID_EAVESDROP, SID_MORPH ];
+      
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

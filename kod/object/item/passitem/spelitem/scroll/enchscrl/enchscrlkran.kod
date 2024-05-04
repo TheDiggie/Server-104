@@ -1,0 +1,42 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+EnchantmentScrollKraanan is EnchantmentScroll
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   EnchantmentScrollkraanan_label_name_rsc = "item kraanan enchantment scroll"
+
+classvars:
+
+   viValue_average = 10000
+
+properties:
+
+   vrLabelName = EnchantmentScrollkraanan_label_name_rsc
+
+messages:
+
+   Constructor()
+   {
+      local lspell;
+
+      plContents =  [ SID_BLESS, SID_HASTE, SID_RESIST_POISON, SID_SUPERSTRENGTH, SID_FREE_ACTION, SID_MAGICSHIELD, 
+                      SID_NIGHTVISION, SID_DEFLECT, SID_EAGLE_EYES, SID_ARMOR_OF_GORT, SID_RESIST_MAGIC, SID_DETECT_INVIS ];
+      
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

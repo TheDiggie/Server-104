@@ -1,0 +1,167 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+EnchantmentScroll is Scroll
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   EnchantmentScroll_label_name_rsc = "item enchantment scroll"
+   EnchantmentScroll_icon_rsc = scr10.bgf
+   EnchantmentScroll_desc_rsc = \
+      "This scroll can empower an item with a personal enchatment. It will maintain that spell on is bearer. "
+      "This scroll contains the power of "
+
+   Unsold = "a random spell."
+
+   period = "."
+
+   cant_enchant = "~r~BYou can not enchant that!"
+   enchanted_item = "~g~BYou have enchanted the %s with the spell %s!"
+   enchant_warning = "~r~BUsing this on a item that is already enchanted will replace the old one."
+
+classvars:
+
+   vrLabelName = EnchantmentScroll_label_name_rsc
+   vrIcon = EnchantmentScroll_icon_rsc
+   viColor = XLAT_TO_BLUE
+   vrperiod = period
+   viValue_average = 5000
+
+properties:
+
+   vrDesc = EnchantmentScroll_desc_rsc
+   vrDesc_blank = Unsold
+   viObject_flags = OF_APPLYABLE
+   plContents = $
+   piSpellEnchantment = $
+   pbWarned = FALSE
+
+messages:
+
+   Constructor()
+   {
+      local lspell;
+
+      if plContents = $
+      {
+         plContents =  [   SID_ZAP,           SID_ICY_FINGERS,  SID_RESIST_COLD,     SID_TOUCH_OF_FLAME,  SID_RESIST_FIRE,
+                           SID_RESIST_SHOCK,  SID_BLESS,        SID_HASTE,           SID_RESIST_POISON,   SID_SUPERSTRENGTH,   
+                           SID_FREE_ACTION,   SID_MAGICSHIELD,  SID_NIGHTVISION,     SID_DEFLECT,         SID_EAGLE_EYES,
+                           SID_ARMOR_OF_GORT, SID_RESIST_MAGIC, SID_DETECT_INVIS,    SID_UMBRELLA,        SID_GAZE_OF_THE_BASILISK,
+                           SID_CLOAK,         SID_DETECT_GOOD,  SID_UNHOLY_RESOLVE,  SID_ACID_TOUCH,      SID_KARAHOLS_CURSE,
+                           SID_DEATH_LINK,    SID_INVISIBILITY, SID_HOLY_RESOLVE,    SID_UNHOLY_TOUCH,    SID_DETECT_EVIL,
+                           SID_ANONYMITY,     SID_SHADOW_FORM,  SID_EAVESDROP,       SID_MORPH,           SID_HOLY_TOUCH, 
+                           SID_RESIST_ACID ];
+      }
+
+      plContents = Cons(lspell,plContents);
+      
+      send(self,@Randomize);
+      
+      propagate;
+   }
+
+   Randomize()
+   {
+      piSpellEnchantment = Nth(plContents,Random(1,length(plContents)));
+
+      return;
+   }
+
+   ShowDesc()
+   {
+      if piSpellEnchantment = $
+      {
+         Send(self,@Randomize);
+      }
+
+      propagate;
+   }
+
+   ReqNewApply(what = $,apply_on = $)
+   {
+
+      if pbWarned = FALSE
+      {
+         Send(what,@MsgSendUser,#message_rsc=enchant_warning);
+
+         pbWarned = TRUE;
+         return FALSE;
+      }
+
+      if NOT IsClass(poOwner,&User)
+      {
+         return;
+      }
+      
+      if IsClass(apply_on,&LeatherArmor)
+      {
+         Send(what,@MsgSendUser,#message_rsc=cant_enchant);
+
+         return;
+      }
+
+      if IsClass(apply_on,&Item)
+      {
+         return TRUE;
+      }
+
+      Send(what,@MsgSendUser,#message_rsc=cant_enchant);
+
+      return;
+   }
+
+   NewApplied(what = $,apply_on = $)
+   {
+      local oSpell;
+
+      Send(apply_on,@SetItemEnchantment,#ItemSpell=piSpellEnchantment);
+
+      oSpell = Send(SYS,@FindSpellByNum,#num=piSpellEnchantment);
+
+      Send(what,@MsgSendUser,#message_rsc=enchanted_item,#parm1=send(apply_on,@GetName),#parm2=Send(oSpell,@GetName));
+
+      Send(poOwner,@SomethingChanged,#what=apply_on);
+
+      Send(self,@Delete);
+
+      return;
+   }
+
+   AppendDesc()
+   {
+      local oSpell;
+
+      if poOwner = $
+      {
+         AddPacket(4,Unsold);
+      }
+      else
+      {
+         oSpell = Send(SYS,@FindSpellByNum,#num=piSpellEnchantment);
+
+         AddPacket(4,Send(oSpell,@GetName));
+         AddPacket(4,vrperiod);
+      }
+
+      return;
+   }
+
+   CombineSpellItems()
+   {
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////
