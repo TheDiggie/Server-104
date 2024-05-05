@@ -62,7 +62,7 @@ messages:
                            SID_CLOAK,         SID_DETECT_GOOD,  SID_UNHOLY_RESOLVE,  SID_ACID_TOUCH,      SID_KARAHOLS_CURSE,
                            SID_DEATH_LINK,    SID_INVISIBILITY, SID_HOLY_RESOLVE,    SID_UNHOLY_TOUCH,    SID_DETECT_EVIL,
                            SID_ANONYMITY,     SID_SHADOW_FORM,  SID_EAVESDROP,       SID_MORPH,           SID_HOLY_TOUCH, 
-                           SID_RESIST_ACID ];
+                           SID_RESIST_ACID, SID_FADE ];
       }
 
       plContents = Cons(lspell,plContents);

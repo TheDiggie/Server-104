@@ -30,7 +30,7 @@ messages:
 
    Constructor()
    {
-      plContents =  [ SID_GAZE_OF_THE_BASILISK, SID_CLOAK, SID_DETECT_GOOD, SID_UNHOLY_RESOLVE,  
+      plContents =  [ SID_GAZE_OF_THE_BASILISK, SID_CLOAK, SID_DETECT_GOOD, SID_UNHOLY_RESOLVE, SID_FADE,
                       SID_ACID_TOUCH, SID_KARAHOLS_CURSE, SID_DEATH_LINK, SID_INVISIBILITY, SID_UNHOLY_TOUCH ];
       
       propagate;
