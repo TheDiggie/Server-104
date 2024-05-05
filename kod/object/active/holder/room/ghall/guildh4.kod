@@ -55,8 +55,8 @@ classvars:
    viTeleport_col = 27
 
    viFoyer_north = 44
-   viFoyer_south = 52
-   viFoyer_east = 29
+   viFoyer_south = 54
+   viFoyer_east = 30
    viFoyer_west = 21
 
    viLever_row = 1
