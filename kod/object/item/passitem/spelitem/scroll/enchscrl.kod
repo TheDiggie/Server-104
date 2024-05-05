@@ -91,6 +91,16 @@ messages:
 
    ReqNewApply(what = $,apply_on = $)
    {
+      if NOT IsClass(apply_on,&AttackModifier)
+      AND NOT IsClass(apply_on,&DefenseModifier)
+      AND NOT IsClass(apply_on,&Weapon)
+      AND NOT IsClass(apply_on,&Instrument)
+      AND NOT IsClass(apply_on,&Necklace)
+      AND NOT IsClass(apply_on,&Ring)
+      {
+         Send(what,@MsgSendUser,#message_rsc=cant_enchant);
+         return FALSE;
+      }
 
       if pbWarned = FALSE
       {
@@ -104,22 +114,8 @@ messages:
       {
          return;
       }
-      
-      if IsClass(apply_on,&LeatherArmor)
-      {
-         Send(what,@MsgSendUser,#message_rsc=cant_enchant);
 
-         return;
-      }
-
-      if IsClass(apply_on,&Item)
-      {
-         return TRUE;
-      }
-
-      Send(what,@MsgSendUser,#message_rsc=cant_enchant);
-
-      return;
+      return TRUE;
    }
 
    NewApplied(what = $,apply_on = $)
