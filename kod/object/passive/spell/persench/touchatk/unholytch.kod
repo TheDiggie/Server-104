@@ -180,13 +180,13 @@ messages:
                
                if oFound = TRUE
                {
-                  iDamage = iDamage + Random(500,1500);
+                  iDamage = iDamage + Random(600,1500);
                }
             }
             else
             {
                iKarma = Send(victim,@GetKarma,#detect=TRUE);
-               iDamage = iDamage + ((iKarma/10)*100);
+               iDamage = iDamage + ((iKarma/8)*100);
             }
          }
       }
