@@ -438,14 +438,23 @@ messages:
            #fine_row=32,#fine_col=32);
 
       Send(self,@NewHold,#what=Create(&Chest),
-            #new_row=43,#new_col=15,#fine_row=32,#fine_col=40,
+            #new_row=44,#new_col=11,#fine_row=48,#fine_col=48,
+            #new_angle=ANGLE_EAST);
+      Send(self,@NewHold,#what=Create(&Chest),
+            #new_row=46,#new_col=11,#fine_row=48,#fine_col=48,
+            #new_angle=ANGLE_EAST);
+      Send(self,@NewHold,#what=Create(&Chest),
+            #new_row=48,#new_col=14,#fine_row=0,#fine_col=42,
             #new_angle=ANGLE_NORTH);
       Send(self,@NewHold,#what=Create(&Chest),
-            #new_row=43,#new_col=12,#fine_row=16,#fine_col=48,
-            #new_angle=ANGLE_NORTH_EAST);
+            #new_row=48,#new_col=17,#fine_row=0,#fine_col=42,
+            #new_angle=ANGLE_NORTH);
       Send(self,@NewHold,#what=Create(&Chest),
-            #new_row=43,#new_col=18,#fine_row=16,#fine_col=16,
-            #new_angle=ANGLE_NORTH_WEST);
+            #new_row=47,#new_col=19,#fine_row=0,#fine_col=16,
+            #new_angle=ANGLE_WEST);
+      Send(self,@NewHold,#what=Create(&Chest),
+            #new_row=44,#new_col=19,#fine_row=16,#fine_col=0,
+            #new_angle=ANGLE_WEST);
 
       Send(self,@NewHold,#what=Create(&SpinningWheel),
            #new_row=6,#new_col=6,#fine_row=0,#fine_col=0);
