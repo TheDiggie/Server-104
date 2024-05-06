@@ -104,6 +104,15 @@ messages:
       poArrow = Create(&Arrow);
       piDamagePercent = viDamagePercent;
 
+      if Send(oMaster,@HasSpell,#num=SID_LIGHTNING_BOLT)
+      {
+         plSpellBook = [ [SID_LIGHTNING_BOLT,10,70], [SID_FIREBALL,10,70] ];
+      }
+      else if Send(oMaster,@HasSpell,#num=SID_FIREBALL)
+      {
+         plSpellBook = [ [SID_FIREBALL,10,70] ];
+      }
+
       propagate;
    }
 
