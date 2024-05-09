@@ -119,7 +119,7 @@ messages:
          if Send(victim,@IsUndead)
          {
             // Automatically do extra 100// damage to undead.
-            iDamage = 2*iDamage;
+            iDamage = iDamage + Random(800,1200);
          }
          else
          {
