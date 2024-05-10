@@ -1,0 +1,5 @@
+CraftWizardHat_name_rsc = pt "fabricar chapéu de mago"
+CraftWizardHat_desc_rsc = pt \
+      "Fabricar chapéu de mago de uma escola escolhida em um tear. " 
+      "Ao fabricar, diga o nome da escola que deseja capacitar na veste. " 
+      "Requer 100 fios de seda, 10 asas de fada."

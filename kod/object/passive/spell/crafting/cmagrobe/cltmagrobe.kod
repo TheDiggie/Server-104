@@ -1,0 +1,59 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CraftLightMagicRobes is CraftMagicRobes
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include cltmagrobe.lkod
+
+   CraftLightMagicRobes_name_rsc = "craft light magic robes"
+   CraftLightMagicRobes_icon_rsc = icraftlightrobe.bgf
+   CraftLightMagicRobes_desc_rsc = \
+      "Craft light robes of disciple of a chosen school at a loom. "
+      "When crafting say the name of the school you want to empower to the robe.  "
+      "Requires 200 silk thread. "
+
+   CraftLightMagicRobes_sound = kraanan.ogg
+
+classvars:
+
+   vrName = CraftLightMagicRobes_name_rsc
+   vrIcon = CraftLightMagicRobes_icon_rsc
+   vrDesc = CraftLightMagicRobes_desc_rsc
+
+   viSpell_num = SID_CRAFTLIGHTMAGICROBES
+   viSpell_level = 6
+   viCast_time = 10000
+   viSpellExertion = 5
+
+   vrGear = &LightDiscipleRobe
+   viBench  = &Loom
+
+properties:
+
+   piSchool = -1
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&SilkThread,200],plReagents);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////
