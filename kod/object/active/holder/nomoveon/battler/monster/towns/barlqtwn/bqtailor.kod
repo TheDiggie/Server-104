@@ -175,7 +175,7 @@ messages:
          ],         
          $,
          [
-            SID_CRAFTMAGICROBES
+            SID_CRAFTMAGICROBES, SID_CRAFTLIGHTMAGICROBES, SID_CRAFTWIZARDHAT
          ],
          $];
 
@@ -184,7 +184,7 @@ messages:
 
    CanDoTeach(who=$,sid=0)
    {
-      if sid = SID_CRAFTMAGICROBES
+      if sid = SID_CRAFTMAGICROBES OR sid = SID_CRAFTLIGHTMAGICROBES OR sid = SID_CRAFTWIZARDHAT
       {
          if NOT Send(self,@SpecialTeachChecks,#report=TRUE,#who=who,#num=sid)
          {
@@ -238,7 +238,7 @@ messages:
       bFound = FALSE;
       iSchoolRequired=0;
 
-      if num = SID_CRAFTMAGICROBES
+      if num = SID_CRAFTMAGICROBES OR num = SID_CRAFTLIGHTMAGICROBES OR num = SID_CRAFTWIZARDHAT
       {
          iSchoolRequired = SS_FAREN;
       }

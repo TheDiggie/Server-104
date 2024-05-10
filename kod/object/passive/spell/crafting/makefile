@@ -13,6 +13,7 @@ BOFS = cmace.bof  	 	caxe.bof 		cchnarmr.bof	chammer.bof   \
 	   cneruarmr.bof	cnerushld.bof	cpltarmr.bof	cscim.bof	  \
 	   csclarmr.bof		capparel.bof	cmagrobe.bof    cpickaxe.bof  \
 	   cwoodaxe.bof     cwoodaxe.bof    cskinknife.bof  cmsh.bof      \
-	   cnerubow.bof     csickle.bof     cbrawlglove.bof
+	   cnerubow.bof     csickle.bof     cknthelm.bof	cbrawlglove.bof	\
+	   cltmagrobe.bof	cwizhat.bof
 
 !include $(KODDIR)\kod.mak

@@ -1,0 +1,4 @@
+CraftKnightsHelmet_name_rsc = pt "capacete de cavaleiro"
+CraftKnightsHelmet_desc_rsc = pt \
+      "Fabricar um capacete de cavaleiro em uma bigorna com um martelo de ferreiro. "
+      "Requer 25 lingotes de ferro e 5 couro."

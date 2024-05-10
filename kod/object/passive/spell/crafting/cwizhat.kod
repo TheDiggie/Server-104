@@ -1,0 +1,60 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CraftWizardHat is CraftMagicRobes
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include cwizhat.lkod
+
+   CraftWizardHat_name_rsc = "craft wizard's hat"
+   CraftWizardHat_icon_rsc = icraftwizardhat.bgf
+   CraftWizardHat_desc_rsc = \
+      "Craft wizard's hat of a chosen school at a loom. "
+      "When crafting say the name of the school you want to empower to the robe.  "
+      "Requires 100 silk thread, 10 fairy wings. "
+
+   CraftWizardHat_sound = kraanan.ogg
+
+classvars:
+
+   vrName = CraftWizardHat_name_rsc
+   vrIcon = CraftWizardHat_icon_rsc
+   vrDesc = CraftWizardHat_desc_rsc
+
+   viSpell_num = SID_CRAFTWIZARDHAT
+   viSpell_level = 3
+   viCast_time = 10000
+   viSpellExertion = 5
+
+   vrGear = &Wizardhat
+   viBench  = &Loom
+
+properties:
+
+   piSchool = -1
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&SilkThread,200],plReagents);
+      plReagents = Cons([&FairyWing,10],plReagents);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////
