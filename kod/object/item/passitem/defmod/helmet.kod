@@ -41,7 +41,7 @@ classvars:
    vrCondition_broken = helmet_condition_broken
 
    // Circlets and Ivy Circlets are layer 1, to be worn over helmets and masks.
-   viLayer = 0
+   viLayer = 1
 
 properties:
 

@@ -39,6 +39,8 @@ classvars:
    vrMaleIcon = FaceMask_icon_male_rsc
    vrFemaleIcon = FaceMask_icon_female_rsc
 
+   viLayer = 0
+
 properties:
 
 messages:

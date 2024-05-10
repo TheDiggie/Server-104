@@ -53,7 +53,7 @@ classvars:
    // This is the default value for piDefense_bonus
    viDefense_base = 10
 
-   viLayer = 1
+   viLayer = 2
 
 properties:
 
