@@ -36,9 +36,16 @@ classvars:
 
 properties:
 
+   piItem_flags = 33
 
 messages:
 
+   SetDuskRatColor()
+   {  
+      piItem_flags = 33;
+
+      return;
+   }
 
 end
 ////////////////////////////////////////////////////////////////////////////////
