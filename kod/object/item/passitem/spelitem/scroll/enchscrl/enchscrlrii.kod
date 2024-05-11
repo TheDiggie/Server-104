@@ -30,7 +30,7 @@ messages:
 
    Constructor()
    {
-      plContents =  [ SID_ANONYMITY, SID_SHADOW_FORM, SID_EAVESDROP, SID_MORPH ];
+      plContents =  [ SID_ANONYMITY, SID_SHADOW_FORM, SID_EAVESDROP, SID_MORPH, SID_ILLUSIONARY_FORM ];
       
       propagate;
    }
