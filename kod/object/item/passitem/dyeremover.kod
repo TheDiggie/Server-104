@@ -1,0 +1,80 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DyeRemover is PassiveItem
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   DyeRemover_name_rsc = "dye remover"
+   DyeRemover_icon_rsc = dyeremover.bgf
+   DyeRemover_desc_rsc = "This is a bottle of dye remover. "
+
+   no_dye_remove      = "~r~BThere no dye to remove!"
+   removed_dye        = "~g~BYou remove all the color from the %s!"
+
+classvars:
+
+   vrName  = DyeRemover_name_rsc
+   vrIcon = DyeRemover_icon_rsc
+
+   viBulk = 1
+   viWeight = 1
+   viValue_average = 10000
+
+   viGround_group = 1
+   viInventory_group = 1
+
+   viUse_type = ITEM_SINGLE_USE
+   viItem_type = ITEMTYPE_ROD
+
+properties:
+
+   vrDesc  = DyeRemover_desc_rsc
+
+   viObject_flags = OF_APPLYABLE | OF_GETTABLE
+
+messages:
+
+   ReqNewApply(what = $,apply_on = $)
+   {
+      if NOT IsClass(poOwner,&User)
+      {
+         return;
+      }
+      
+      if NOT Send(apply_on,@IsColored)
+      {
+         Send(what,@MsgSendUser,#message_rsc=no_dye_remove);
+
+         return;
+      }
+
+      return TRUE;
+   }
+
+   NewApplied(what = $,apply_on = $)
+   {
+      Send(apply_on,@RemoveDye);
+
+      Send(what,@MsgSendUser,#message_rsc=removed_dye,#parm1=send(apply_on,@GetName));
+
+      Send(poOwner,@SomethingChanged,#what=apply_on);
+
+      Send(self,@Delete);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

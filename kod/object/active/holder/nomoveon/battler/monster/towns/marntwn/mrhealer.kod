@@ -55,7 +55,8 @@ messages:
             Create(&CurePoisonPotion,#labelled=TRUE),
             Create(&CureDiseasePotion,#labelled=TRUE),
             Create(&Flask),
-            Create(&DyeBottle)
+            Create(&DyeBottle),
+            Create(&DyeRemover)
          ],
          $,
          [

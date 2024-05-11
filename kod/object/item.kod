@@ -152,6 +152,7 @@ properties:
 
    plItem_attributes = $
    piItem_flags = 0
+   piOriginalColor = 0
 
    piUsed = 2
    pbIn_use = FALSE
@@ -206,6 +207,8 @@ messages:
             Send(oItemAtt,@AddToItem,#oItem=self,#state1=oDMCreator);
          }
       }
+
+      piOriginalColor = piItem_flags;
 
       propagate;
    }
@@ -2872,6 +2875,15 @@ messages:
    GetItemEnchantment()
    {
       return poSpell;
+   }
+
+   RemoveDye()
+   {
+      piItem_flags = piOriginalColor;
+
+      pbColored = FALSE;
+
+      return;
    }
 
 end

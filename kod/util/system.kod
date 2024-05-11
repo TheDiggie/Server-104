@@ -6167,7 +6167,9 @@ messages:
       
       //Dye Stuff
       plItemTemplates = cons(create(&DyeBottle),plItemTemplates);
+      plItemTemplates = cons(create(&DyeRemover),plItemTemplates);
 
+      //Pigment dust
       plItemTemplates = cons(create(&BlackDust),plItemTemplates);
       plItemTemplates = cons(create(&WhiteDust),plItemTemplates);
 
