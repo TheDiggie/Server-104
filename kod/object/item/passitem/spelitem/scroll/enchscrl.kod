@@ -41,7 +41,6 @@ classvars:
 properties:
 
    vrDesc = EnchantmentScroll_desc_rsc
-   vrDesc_blank = Unsold
    viObject_flags = OF_APPLYABLE | OF_GETTABLE
    plContents = $
    piSpellEnchantment = $
@@ -138,6 +137,11 @@ messages:
    AppendDesc()
    {
       local oSpell;
+
+      if piSpellEnchantment = $
+      {
+         return;
+      }
 
       if poOwner = $
       {

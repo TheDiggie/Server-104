@@ -5861,6 +5861,7 @@ messages:
       plItemTemplates = cons(create(&EnchantmentScrollShal),plItemTemplates);
       plItemTemplates = cons(create(&EnchantmentScrollRiija),plItemTemplates);
       plItemTemplates = cons(create(&EnchantmentScrollKraanan),plItemTemplates);
+      plItemTemplates = cons(create(&EnchantmentScrollBlank),plItemTemplates);
 	  
       // Wands
       plItemTemplates = cons(create(&BonkStick),plItemTemplates);

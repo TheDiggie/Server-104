@@ -1,0 +1,100 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+EnchantmentScrollBlank is EnchantmentScroll
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   EnchantmentScrollBlank_label_name_rsc = "item enchantment absorbtion scroll"
+
+   blank = \
+      "This scroll can absorb a personal enchantment from an item and apply it to another."
+
+   cant_absorb = "~r~BThere is no personal enchantment to absorb!"
+   absorbed = "~g~BYou absorbed the power of %s out of the %s!"
+
+classvars:
+
+   viValue_average = 1000
+properties:
+
+   vrLabelName = EnchantmentScrollBlank_label_name_rsc
+
+   vrDesc_blank = blank
+
+   piSpellEnchantment = $
+
+messages:
+
+   Constructor()
+   {
+      plContents = $;
+      
+      propagate;
+   }
+
+   ReqNewApply(what = $,apply_on = $)
+   {
+      if piSpellEnchantment = $
+      {
+         if Send(apply_on,@GetItemEnchantment) = $
+         {
+            Send(what,@MsgSendUser,#message_rsc=cant_absorb);
+            return FALSE;
+         }
+      }
+
+      if piSpellEnchantment = $
+      {  
+         return TRUE;
+      }
+
+      propagate;
+   }
+
+   NewApplied(what = $,apply_on = $)
+   {
+      if piSpellEnchantment = $
+      {
+         piSpellEnchantment = Send(apply_on,@GetItemEnchantment);
+         
+         Send(apply_on,@SetItemEnchantment,#ItemSpell=$);
+
+         Send(what,@MsgSendUser,#message_rsc=absorbed,
+               #parm1=Send(Send(SYS,@FindSpellByNum,#num=piSpellEnchantment),@GetName),
+               #parm2=Send(apply_on,@GetName));
+
+         return;
+      }
+
+      propagate;
+   }
+
+   Randomize()
+   {
+      return;
+   }
+
+   ShowDesc()
+   {
+      if piSpellEnchantment = $
+      {
+         AddPacket(4,vrDesc_blank);
+      }
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

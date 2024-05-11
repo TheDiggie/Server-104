@@ -69,7 +69,8 @@ messages:
             Create(&EnchantmentScrollQor),
             Create(&EnchantmentScrollKraanan),
             Create(&EnchantmentScrollShal),
-            Create(&EnchantmentScrollRiija)
+            Create(&EnchantmentScrollRiija),
+            Create(&EnchantmentScrollBlank)
          ],
       $,$,$];
 
