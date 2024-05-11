@@ -64,6 +64,8 @@ properties:
 
    pbIsFlying = TRUE
 
+   poCurrency = &Shillings
+   
 messages:
 
    Constructed()

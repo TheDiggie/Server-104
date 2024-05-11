@@ -95,15 +95,15 @@ messages:
                            &NeruditeOre ];
 
       plRewards_Special = [ &LongSword,  &NeruditeSword, &Scimitar, &Hammer, &Axe,
-                            &ShortSword, &MysticSword,   &Maul,     &BerserkerAxe, 
+                            &ShortSword, &MysticSword, &PolishedSeraphym, &PurpleMushroom,
                             &BlueDragonScale,  &DarkAngelFeather,   &PolishedSeraphym,
                             &GrayMushroom, &CyanMushroom, &YellowMushroom,   &GreenMushroom,
-                            &ShamanBlood, &YrxlSap, &PolishedSeraphym, &PurpleMushroom ];
+                            &ShamanBlood, &YrxlSap ];
 
       plEventBoss = [ &GrandpaTrent, &Lich, &SpiderQueen, &AvarChieftain, &Yeti, &OrcPitBoss, &XeoNeru, &GiantRatKing ];
 
-      plEventRooms = [ RID_E2,    RID_F2,   RID_F3,       RID_H3,     RID_D5, 
-                       RID_CAVE2, RID_F8,   RID_G9,       RID_H7,     RID_D4, 
+      plEventRooms = [ RID_E2,    RID_F2,   RID_F3,       RID_D5, RID_D4,
+                       RID_CAVE2, RID_F8,   RID_G9,       RID_H7,      
                        RID_G6,    RID_VALE, RID_CASTLE2B, RID_DUNGEON ];
 
       if piActiveRoom = 0
@@ -126,10 +126,6 @@ messages:
       else if piActiveRoom = RID_F3
       {
          plSpawnRects = [ [[15,28],[27,72]] ];
-      }
-      else if piActiveRoom = RID_H3
-      {
-         plSpawnRects = [ [[30,17],[41,47]] ];
       }
       else if piActiveRoom = RID_D5
       {
