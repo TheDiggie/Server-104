@@ -36,9 +36,6 @@ resources:
 
 classvars:
 
-   viHits_init_min = 350
-   viHits_init_max = 450
-
    viValue_average = 40
 
 properties:

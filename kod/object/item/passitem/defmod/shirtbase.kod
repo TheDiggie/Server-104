@@ -54,8 +54,8 @@ classvars:
 
    vrDesc = shirt_desc_rsc
 
-   viHits_init_min = 450
-   viHits_init_max = 650
+   viHits_init_min = $
+   viHits_init_max = $
 
    viValue_average = 50
    viWeight = 10
