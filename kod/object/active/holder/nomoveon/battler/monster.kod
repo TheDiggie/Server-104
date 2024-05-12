@@ -5008,6 +5008,22 @@ messages:
    {
       local i, iDistance, oSpell, iRandom, lTargets, iSpellNum, iManaCost;
 
+      if isClass(self,&Reflection)
+      {
+         if NOT send(poMaster,@AllowBattlerAttack,#victim=poTarget)
+         {
+            return FALSE;
+         }
+      }
+      
+      if isClass(self,&Reflection)
+      {
+         if NOT send(poMaster,@AllowBattlerAttack,#victim=poTarget)
+         {
+            return FALSE;
+         }
+      }
+
       // If monster knows no spells, or has no target, return.
       if plSpellBook = $
          OR poTarget = $
