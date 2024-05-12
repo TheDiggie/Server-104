@@ -91,7 +91,9 @@ messages:
    SetForSale()
    {
       plFor_Sale = [
-         $,$,
+         [
+            Create(&Lute)
+         ],$,
          [
             SID_TRUTH,
             SID_MIRTH,
