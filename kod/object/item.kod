@@ -183,6 +183,7 @@ messages:
 
       piHits_init = Random(viHits_init_min,viHits_init_max);
       piHits = piHits_init;
+      
       if corpse <> $
       {
          oItemAtt = Send(SYS,@FindItemAttByNum,#num=IA_CORPSEPOINTER);

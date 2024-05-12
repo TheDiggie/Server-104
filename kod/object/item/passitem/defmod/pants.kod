@@ -31,8 +31,6 @@ resources:
 
 classvars:
 
-   vbShow_condition = TRUE
-
    viUse_type = ITEM_USE_LEGS
    viUse_amount = 1
    vrPoss_article = object_article_cap_these_rsc
@@ -40,8 +38,8 @@ classvars:
    vrDesc = pants_desc_rsc
    vrName = pants_name_rsc
 
-   viHits_init_min = $
-   viHits_init_max = $
+   viHits_init_min = 5
+   viHits_init_max = 5
 
    viValue_average = 50
    viWeight = 10
@@ -50,7 +48,7 @@ classvars:
    viGround_group = 1
    viInventory_group = 2
 
-   vrShow_condition = TRUE
+   vrShow_condition = FALSE
    vrCondition_exc = pants_condition_exc 
    vrCondition_exc_mended = pants_condition_exc_mended 
    vrCondition_good = pants_condition_good 

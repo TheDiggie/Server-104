@@ -54,8 +54,8 @@ classvars:
 
    vrDesc = shirt_desc_rsc
 
-   viHits_init_min = $
-   viHits_init_max = $
+   viHits_init_min = 5
+   viHits_init_max = 5
 
    viValue_average = 50
    viWeight = 10
@@ -77,7 +77,7 @@ classvars:
    vrLeftarm_female = shirt_leftarm_female 
    vrRightarm_female = shirt_rightarm_female 
 
-   vbShow_Condition = TRUE
+   vbShow_Condition = FALSE
 
    viDefense_base = 5               // This is the default value for piDefense_bonus
 

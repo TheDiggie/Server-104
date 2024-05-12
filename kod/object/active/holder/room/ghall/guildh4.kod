@@ -349,6 +349,16 @@ messages:
          return TRUE;
       }
 
+      if  (row>=49) AND (row<=50)
+      AND (col>=31) AND (col<=32)
+      {
+         Send(what,@WaveSendUser,#wave_rsc=Send(self,@GetDoorSound));
+         Send(SYS,@UtilGoNearSquare,#what=what,
+               #where=Send(SYS,@FindRoomByNum,#num=RID_JASPER),#new_row=75,#new_col=33);
+
+         return TRUE;
+      }
+      
       propagate;
    }
 
