@@ -13,9 +13,6 @@ TosForgotten is TosRoom
 constants:
 
    include blakston.khd
-   COLOR_BLUE = 1
-   COLOR_GREEN = 2
-   COLOR_YELLOW = 3
 
 resources:
 

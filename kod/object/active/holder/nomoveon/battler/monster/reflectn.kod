@@ -883,6 +883,11 @@ messages:
          return -1000;
       }
 
+      if NOT send(poMaster,@AllowBattlerAttack,#victim=what)
+      {
+         return -1000;
+      }
+
       return 0;
    }
 

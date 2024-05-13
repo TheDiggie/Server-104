@@ -2087,6 +2087,14 @@ messages:
    {
       local oRoom, bWasBad, lMinions;
 
+      if isClass(self,&Reflection)
+      {
+         if NOT send(poMaster,@AllowBattlerAttack,#victim=poTarget)
+         {
+            return FALSE;
+         }
+      }
+
       // Must be in a room to attack, must have target.
       if (poOwner = $
          OR victim = $)
@@ -4995,6 +5003,14 @@ messages:
    MonsterCanCastSpell()
    "Returns FALSE if a monster can't currently cast a spell for some reason."
    {
+      if isClass(self,&Reflection)
+      {
+         if NOT send(poMaster,@AllowBattlerAttack,#victim=poTarget)
+         {
+            return FALSE;
+         }
+      }
+
       if (piBehavior & AI_NOFIGHT)
       {
          return FALSE;
@@ -5007,22 +5023,6 @@ messages:
    "Handle monster spellcasting here."
    {
       local i, iDistance, oSpell, iRandom, lTargets, iSpellNum, iManaCost;
-
-      if isClass(self,&Reflection)
-      {
-         if NOT send(poMaster,@AllowBattlerAttack,#victim=poTarget)
-         {
-            return FALSE;
-         }
-      }
-      
-      if isClass(self,&Reflection)
-      {
-         if NOT send(poMaster,@AllowBattlerAttack,#victim=poTarget)
-         {
-            return FALSE;
-         }
-      }
 
       // If monster knows no spells, or has no target, return.
       if plSpellBook = $
@@ -5049,7 +5049,6 @@ messages:
       // Check LoS to target here so we don't waste mana casting
       // when we can't get our target. Instead, we use that time
       // walking to the target.
-
       if iDistance > (piAttackRange * piAttackRange)
          AND iDistance <= piSpellRange * piSpellRange
          AND Send(poOwner,@LineOfSight,#obj1=self,#obj2=poTarget)

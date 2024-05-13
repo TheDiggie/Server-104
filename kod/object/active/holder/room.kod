@@ -1334,17 +1334,7 @@ messages:
    ReqSomethingAttack(what = $,victim = $, use_weapon = $, stroke_obj = $,
                       report = TRUE)
    {
-      local oWatcher, i, each_obj, oSpell, oMaster;
-
-      if isClass(what,&Reflection)
-      {
-         oMaster = send(what,@GetMaster);
-
-         if NOT send(oMaster,@AllowBattlerAttack,#victim=victim)
-         {
-            return FALSE;
-         }
-      }
+      local oWatcher, i, each_obj, oSpell;
 
       if what <> $
          AND IsClass(what,&User)
