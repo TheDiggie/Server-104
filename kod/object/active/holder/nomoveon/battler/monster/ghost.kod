@@ -106,7 +106,7 @@ messages:
                         [-ATCK_SPELL_ACID, 90],
                         [ATCK_WEAP_NONMAGIC, 90],
                         [ATCK_WEAP_MAGIC, -50],
-                        [-ATCK_SPELL_HOLY, -50]
+                        [-ATCK_SPELL_HOLY, -30]
                       ];
 
       plSpellBook = [ [ SID_FIREBALL, 3, 100 ] ];
