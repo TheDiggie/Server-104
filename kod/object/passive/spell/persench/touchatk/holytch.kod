@@ -73,8 +73,8 @@ classvars:
 
    // It's alright if Holy Touch has high base damage.
    // It gets no intrinsic proficiency damage, instead doing double base against undead.
-   viMin_Damage = 6
-   viMax_Damage = 10
+   viMin_Damage = 5
+   viMax_Damage = 9
 
    viSpellType = ATCK_SPELL_HOLY+ATCK_SPELL_ALL
    viStroke = STROKE_HOLY_TOUCH
@@ -118,8 +118,7 @@ messages:
       {
          if Send(victim,@IsUndead)
          {
-            // Automatically do extra 100// damage to undead.
-            iDamage = iDamage + Random(800,1200);
+            iDamage = iDamage;
          }
          else
          {
