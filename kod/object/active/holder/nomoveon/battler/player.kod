@@ -4890,6 +4890,11 @@ messages:
             // have your 'safety' off to attack anyone.
             if report
             {
+               if stroke_obj = $
+               {
+                  return FALSE;
+               }
+
                if IsClass(self,&Guest)
                {
                   Send(self,@MsgSendUser,#message_rsc=player_guardian_angel,
