@@ -8,6 +8,6 @@ armageddon_desc_rsc = de "Tötet ALLE Monster in der Karte."
 
 armageddon_name_rsc = pt "armagedom"
 armageddon_monster_death_msg = pt "~bVocê ouve um grito abafado quando %s%s é vaporizado instantaneamente."
-armageddon_casted_msg = pt "Com um floreio e um grito de guerra, %s%s lança suas mãos aos céus!"
+armageddon_casted_msg = pt "Com um floreio e um grito de guerra, %s%s lança %s mãos aos céus!"
 armageddon_unworthy = pt "Você foi considerado indigno de conjurar um feitiço tão poderoso, e ele foi retirado de você."
 armageddon_desc_rsc = pt "Mata todos os monstros em uma sala com um floreio."

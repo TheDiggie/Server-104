@@ -35,7 +35,6 @@ admin_logoffghost_temp_off = de \
    "Strafpunkte für das Beenden des Spiels werden jetzt zeitweise nicht vergeben."
 
 admin_login = pt "Bem-vindo ao jogo, Administrador %s."
-admin_admin_module = pt "admin.dll"
 admin_morphed = pt "Você não está em sua forma humana normal."
 admin_anonymous = pt "Agora você está anônimo."
 admin_anonymous_hint = pt "(Repita o comando para restaurar seu nome.)"

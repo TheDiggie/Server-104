@@ -8,6 +8,6 @@ blinder_info_desc = de "15%% Chance deinen Gegner beim Schlag zu Blenden\n"
 
 weapattblinder_desc = pt "\n\nA insígnia de Q está estampada no metal da arma."
 blinder_fail_use = pt "Você ainda não está pronto para usar %s%s."
-blinder_worked = pt "%s%s se afasta cambaleando, gritando e segurando os olhos!"
+blinder_worked = pt "%s%s se afasta cambaleando, gritando e segurando %s olhos!"
 blinder_dm = pt "cegueira"
 blinder_info_desc = pt "Chance de 15%% de lançar Cegar ao acertar\n"

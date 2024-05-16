@@ -170,7 +170,7 @@ system_killed_self = pt \
 system_user_killed_room = pt \
       "~B~U~k[###]~n ~B~v%q encontrou um fim infeliz em %s."
 system_user_killed_bridge_faith = pt \
-      "~B~U~k[###]~n ~B~v%q acabou de se atirar dos penhascos de Riija para encontrar um túmulo aquático."
+      "~B~U~k[###]~n ~B~v%q %s acabou de se atirar dos penhascos de Riija para encontrar um túmulo aquático."
 system_user_killed_token = pt \
       "~B~U~k[###]~n ~B~v%q perdeu um token para %s%q."
 system_user_killed_arena = pt \

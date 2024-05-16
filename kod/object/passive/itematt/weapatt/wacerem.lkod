@@ -4,6 +4,6 @@ weapattcerem_desc = de \
 weapatt_ceremonial_name = de "Zeremoniell %s"
 ceremonial_dm = de "Zeremoniell"
 
-weapattcerem_desc = pt "\n\nBonito e ornamentado, esta arma é obviamente inadequada para combate sangrento, embora possa proporcionar uma vantagem em jogos e torneios."
+weapattcerem_desc = pt "\n\nBonito e ornamentado, esta arma é obviamente inadequada para combate sangrento, embora possa proporcionar uma %s em jogos e torneios."
 weapatt_ceremonial_name = pt "cerimonial %s"
 ceremonial_dm = pt "cerimonial"
