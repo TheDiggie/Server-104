@@ -7533,7 +7533,6 @@ messages:
 
       if (piFlags & PFLAG_NO_MOVE)
          OR Send(self,@IsEnchanted,#byClass=&Blind)
-		 OR Send(self,@IsEnchanted,#byClass=&Dazzle)
       {         
          Send(self,@MsgSendUser,#message_rsc=user_cant_go);
          Send(self, @WaveSendUser, #what = self,

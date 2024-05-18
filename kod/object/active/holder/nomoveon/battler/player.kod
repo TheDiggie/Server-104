@@ -4547,7 +4547,12 @@ messages:
                OR Send(oGuild,@IsAlly,#otherguild=oVictimGuild))
          {
             if report
-            {
+            {  
+               if stroke_obj = $ AND use_weapon = $
+               {
+                  return FALSE;
+               }
+
                if oGuild = oVictimGuild
                {
                   Send(self,@MsgSendUser,#message_rsc=cannot_attack_guildmate,

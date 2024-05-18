@@ -1394,6 +1394,11 @@ messages:
 
       if (piRoom_flags & ROOM_NO_COMBAT)
       {
+          if use_weapon = $ and stroke_obj = $
+          {
+             return FALSE;
+          }
+
          if report
          {
             Send(what,@MsgSendUser,#message_rsc=room_no_attack);
