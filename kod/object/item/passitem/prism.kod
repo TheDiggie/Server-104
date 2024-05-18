@@ -157,7 +157,7 @@ messages:
          piNumSides = 5;
          vrIcon = prism_5_icon_rsc;
       }
-      else if piNumSides > 15
+      else if piNumSides >= 15
       {
          piNumSides = 7;
          vrIcon = prism_7_icon_rsc;
