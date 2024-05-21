@@ -23,7 +23,27 @@ BGFS = neeleme.bgf neelemeX.bgf iunholyt.bgf xeoneru.bgf xeoneruX.bgf \
        sickleov.bgf woodaxeov.bgf povwoodaxe.bgf woodaxe.bgf skinknife.bgf \
        povskinknife.bgf skinknifeov.bgf iskinning.bgf lootboxes.bgf lootmaster.bgf \
        povspirsword.bgf spirswordov.bgf spirsword.bgf ispirsword.bgf cougarbrew.bgf \
-       dyeremover.bgf
+       dyeremover.bgf icraftapparel.bgf icraftaxe.bgf icraftbbow.bgf icraftbrawl.bgf \
+       icraftchaina.bgf icraftcirclet.bgf icraftdaemhelm.bgf icraftgaunt.bgf icraftgldshld.bgf \
+       icraftgoldshld.bgf icraftham.bgf icrafthelm.bgf icraftivy.bgf icraftknightsh.bgf \
+       icraftknightshld.bgf icraftlbow.bgf icraftleatha.bgf icraftlightrobe.bgf \
+       icraftlongsword.bgf icraftmace.bgf icraftmagicrobe.bgf icraftmsh.bgf icraftmyssword.bgf \
+       icraftnerua.bgf icraftnerubow.bgf icraftnerushld.bgf icraftnerusword.bgf icraftpickaxe.bgf \
+       icraftplatea.bgf icraftscalea.bgf icraftscim.bgf icraftshortsword.bgf icraftsickle.bgf \
+       icraftskinknife.bgf icraftsmallshld.bgf icraftwizardhat.bgf icraftwoodaxe.bgf hydrab.bgf \
+       hydrabX.bgf hydrag.bgf hydragX.bgf hydrar.bgf hydrarX.bgf hydray.bgf hydrayX.bgf \
+       seekera.bgf seekeraX.bgf seekerb.bgf seekerbX.bgf seekerc.bgf seekercX.bgf \
+       chimera.bgf chimeraX.bgf croco.bgf crocoX.bgf crusher.bgf crusherX.bgf cyclops.bgf \
+       cyclopsX.bgf dthmitea.bgf dthmiteaX.bgf dthmiteb.bgf dthmitebX.bgf dthmitec.bgf \
+       dthmitecX.bgf dthmited.bgf dthmitedX.bgf dulahan.bgf dulahanX.bgf fallenmonk.bgf \
+       fallenmonkX.bgf followerofqor.bgf followerofqorX.bgf frenzy.bgf frenzyX.bgf \
+       grandpatrent.bgf grandpatrentX.bgf hellwasp.bgf hellwaspX.bgf reavera.bgf \
+       reaveraX.bgf reaverb.bgf reaverbX.bgf reaverc.bgf reavercX.bgf minotaurb.bgf \
+       minotaurbX.bgf snake.bgf snakeX.bgf spitter.bgf spitterX.bgf tyrant.bgf tyrantX.bgf \
+       tyranthorns.bgf vajra.bgf vajraX.bgf vozun.bgf vozunX.bgf wasphive.bgf doubloon.bgf \
+       dragon.bgf dragonX.bgf maul.bgf maulov.bgf povmaul.bgf neruaxe.bgf neruaxeov.bgf \
+       povneruaxe.bgf povshalblade.bgf shalblade.bgf shalbladeov.bgf lightsw.bgf lightswov.bgf \
+       povlightsw.bgf bersaxe.bgf bersaxeov.bgf pocbersaxe.bgf 
 
 !include $(RESOURCEDIR)\copy.mak
 
