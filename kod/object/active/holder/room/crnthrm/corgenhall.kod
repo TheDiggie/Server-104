@@ -568,15 +568,15 @@ messages:
       }
       if iHomeRoom <> 0
       {
-         if NOT Send(what,@CanChangeHomeroom)
-         {
-            Post(what,@MsgSendUser,#message_rsc=corgenhall_no_change);
-         }
-         else
-         {
+         //if NOT Send(what,@CanChangeHomeroom)
+         //{
+         //   Post(what,@MsgSendUser,#message_rsc=corgenhall_no_change);
+         //}
+         //else
+         //{
             Send(what,@SetHomeRoom,#RID=iHomeRoom,#lock=TRUE);
             Send(self,@RoomChangeMessage,#iHomeRoom=iHomeRoom,#who=what);
-         }
+         //}
       }
 
       propagate;
