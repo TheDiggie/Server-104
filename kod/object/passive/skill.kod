@@ -232,6 +232,10 @@ messages:
       }
    
       if (viSkill_Num = SKID_SECOND_WIND)
+         OR (viSkill_Num = SKID_SKINNING)
+         OR (viSkill_Num = SKID_GATHERING)
+         OR (viSkill_Num = SKID_MINING)
+         OR (viSkill_Num = SKID_LOGGING)
       {
          return STAT_ID_STAMINA;
       }

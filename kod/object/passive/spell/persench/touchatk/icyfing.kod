@@ -23,7 +23,7 @@ resources:
    IcyFingers_desc_rsc = \
          "Coats your fingers with ice which can freeze a patch of flesh "
          "on your target, painfully destroying the outer layer of tissue.  "
-         "Requires a red mushroom."
+         "Requires a blue mushroom."
 
    IcyFingers_already_enchanted_rsc = "Your hands are already shrouded in frost."
    IcyFingers_On_rsc = "A frost of absolute cold shrouds your hands."
@@ -90,7 +90,7 @@ messages:
   ResetReagents()
   {
      plReagents = $;
-     plReagents = cons([&RedMushroom,1],plReagents);
+     plReagents = cons([&BlueMushroom,1],plReagents);
      
      return;
   }

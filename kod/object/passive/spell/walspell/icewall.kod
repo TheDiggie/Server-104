@@ -18,8 +18,8 @@ resources:
    IceWall_name_rsc = "icewall"
    IceWall_icon_rsc = iwallice.bgf
    IceWall_desc_rsc = \
-      "Creates a wall of ice in front of the caster."
-      "Requires red mushrooms and firesand to cast."
+      "Creates a wall of ice in front of the caster. "
+      "Requires blue mushrooms and firesand to cast."
 
    IceWall_cast_rsc = "Chilling spikes of ice appear before you!"
    IceWall_sound = faren.ogg
@@ -54,7 +54,7 @@ messages:
    ResetReagents()
    {
       plReagents = $;
-      plReagents = Cons([&RedMushroom,3],plReagents);
+      plReagents = Cons([&BlueMushroom,3],plReagents);
       plReagents = Cons([&Firesand,2], plReagents);
 
       return;

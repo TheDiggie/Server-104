@@ -23,7 +23,7 @@ resources:
    resistcold_desc_rsc = \
       "Infuses the target with the magical fire of Faren, "
       "reducing damage from cold attacks for several minutes.  "
-      "Requires one red mushroom to cast."
+      "Requires one blue mushroom to cast."
 
    resistcold_already_enchanted = "You are already resistant to cold."
 
@@ -62,7 +62,7 @@ messages:
    ResetReagents()
    {
       plReagents = $;
-      plReagents = Cons([&RedMushroom,1],plReagents);
+      plReagents = Cons([&BlueMushroom,1],plReagents);
 
       return;
    }
