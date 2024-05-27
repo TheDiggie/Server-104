@@ -22,7 +22,7 @@ resources:
    SporeBurst_icon_rsc = isporecl.bgf
    SporeBurst_desc_rsc = \
       "Summons forth noxious clouds that paralyze any within it's bounds.  "
-      "Requires potent reagents specific to both Qor and Faren."
+      "Requires two purple mushrooms and one shaman blood."
       
    SporeBurst_cast_rsc = \
       "Following a loud popping sound, the room is filled with a cloud of "

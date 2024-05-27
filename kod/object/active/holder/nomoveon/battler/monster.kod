@@ -1067,7 +1067,9 @@ messages:
       else
       {
          ptBehavior = CreateTimer(self,@AttackTimer,Send(self,@GetAttackTime));
+         Debug(self);
       }
+
 
       return;
    }
