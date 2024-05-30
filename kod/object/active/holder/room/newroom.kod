@@ -1,0 +1,44 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+NewRoom is Room
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   room_Newroom = newroom.roo
+   room_name_Newroom ="New room"
+   Newroom_music = main.ogg
+
+classvars:
+
+   vrName = room_name_Newroom
+   viTerrain_type = TERRAIN_MYSTICAL | TERRAIN_WATERFALL
+   viPermanent_flags = ROOM_SAFELOGOFF
+
+   viTeleport_row = 20
+   viTeleport_col = 20
+
+properties:
+
+   prRoom = room_Newroom
+   piRoom_num = RID_NEWROOM
+   prMusic = Newroom_music
+
+   piBaseLight = LIGHT_NICE
+   piOutside_factor = 8
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -2587,6 +2587,7 @@ messages:
       Send(self,@CreateOneRoomIfNew,#num=RID_UNIVERSITY,#class=&University);
       Send(self,@CreateOneRoomIfNew,#num=RID_GALLERY,#class=&Gallery);
       Send(self,@CreateOneRoomIfNew,#num=RID_GODROOM,#class=&GodRoom);
+      Send(self,@CreateOneRoomIfNew,#num=RID_NEWROOM,#class=&NewRoom);
 
       Send(self,@CreateOneRoomIfNew,#num=RID_NECROAREA1,#class=&Necropolis1);
       Send(self,@CreateOneRoomIfNew,#num=RID_NECROAREA2,#class=&Necropolis2);
