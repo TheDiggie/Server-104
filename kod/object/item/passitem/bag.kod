@@ -120,7 +120,7 @@ messages:
          iSum = iSum + Send(i,@GetBulk);
       }
 
-      //iSum = iSum/4;
+      iSum = iSum/4;
 
       return iSum;
    }
@@ -136,7 +136,7 @@ messages:
          iSum = iSum + Send(i,@GetWeight);
       }
 
-      //iSum = iSum/4;
+      iSum = iSum/4;
 
       return iSum;
    }
