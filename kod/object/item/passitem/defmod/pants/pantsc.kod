@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   pantsC_name_rsc = "baggy pants"   
+
    pantsC_icon_rsc = pantsC.bgf
 
    pantsC_male_player_rsc = bfe.bgf
@@ -23,6 +25,7 @@ resources:
 
 classvars:
 
+   vrName = pantsC_name_rsc
    vrIcon = pantsC_icon_rsc
 
    viGender = GENDER_MALE
@@ -50,8 +53,6 @@ messages:
 	      
 	      propagate;
       }     
-
-      Send(self,@SetPaletteTranslation,#translation=PT_GRAY_TO_RED);
 	   
       propagate;
    }

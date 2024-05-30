@@ -137,8 +137,16 @@ messages:
 
       foreach i in Send(SYS,@GetItemTemplates)
       {
-         if(StringEqual(string,Send(i,@GetName)))
+
+         if (StringEqual(string,Send(i,@GetName))) OR (StringEqual(string,"baggy pants"))
          {
+            if (StringEqual(string,"baggy pants"))
+            {
+               oGear = Create(&pantsC,#color=oColor);
+               isGearCreateable = true;
+               break;
+            }
+
             if(NOT Send(self,@CanCreateGear,#sGear=Send(i,@GetName)))
             {
                return;
@@ -213,6 +221,10 @@ messages:
          return true;
       }
       if(StringEqual("pants",sGear))
+      {
+         return true;
+      }
+      if(StringEqual("baggy pants",sGear))
       {
          return true;
       }

@@ -74,7 +74,10 @@ messages:
    {
       local oTool;
 
-      oTool = Send(who,@FindHolding,#class=voTool);
+      if voTool <> $
+      {
+         oTool = Send(who,@FindHolding,#class=voTool);
+      }
 
       if voTool <> $
       {
