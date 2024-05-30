@@ -70,7 +70,8 @@ messages:
             Create(&EnchantmentScrollKraanan),
             Create(&EnchantmentScrollShal),
             Create(&EnchantmentScrollRiija),
-            Create(&EnchantmentScrollBlank)
+            Create(&EnchantmentScrollBlank),
+            Create(&IndestructibleScroll)
          ],
       $,$,$];
 

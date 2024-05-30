@@ -1,0 +1,85 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+IndestructibleScroll is Scroll
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   IndestructibleScroll_label_name_rsc = "scroll of indestructible"
+   IndestructibleScroll_icon_rsc = scr10.bgf
+   IndestructibleScroll_desc_rsc = \
+      "This scroll is covered with mystical writing in a spidery hand. It will make any item with durability indestructible. "
+
+   cant_indes = "~B~rYou can not make this item indestructible. "
+   indes_item = "~B~gThe %s is now indestructible!"
+   already_indes = "~B~rThis item is already indestructible!"
+
+classvars:
+
+   vrLabelName = IndestructibleScroll_label_name_rsc
+   vrIcon = IndestructibleScroll_icon_rsc
+   viSpellEffect = SID_INDEST
+   viColor = XLAT_TO_GREEN
+
+   viValue_average = 5000
+
+properties:
+
+   vrDesc = IndestructibleScroll_desc_rsc
+   viObject_flags = OF_APPLYABLE | OF_GETTABLE
+
+messages:
+
+   Constructed()
+   {
+      piItem_flags = 151;
+
+      propagate;
+   }
+
+   ReqNewApply(what = $,apply_on = $)
+   {
+      if send(apply_on,@IsIndestructible)
+      {
+         Send(what,@MsgSendUser,#message_rsc=already_indes);
+         return FALSE;
+      }
+
+      if NOT IsClass(apply_on,&AttackModifier)
+      AND NOT IsClass(apply_on,&DefenseModifier)
+      AND NOT IsClass(apply_on,&Weapon)
+      OR IsClass(apply_on,&SoldierShield)
+      OR IsClass(apply_on,&FaceMask)
+      {
+         Send(what,@MsgSendUser,#message_rsc=cant_indes);
+         return FALSE;
+      }
+
+      if NOT IsClass(poOwner,&User)
+      {
+         return;
+      }
+
+      return TRUE;
+   }
+
+   NewApplied(what = $,apply_on = $)
+   {
+      Send(what,@MsgSendUser,#message_rsc=indes_item,#parm1=send(apply_on,@GetName));
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

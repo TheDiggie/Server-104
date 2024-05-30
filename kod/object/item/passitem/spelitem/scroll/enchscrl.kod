@@ -96,6 +96,8 @@ messages:
       AND NOT IsClass(apply_on,&Instrument)
       AND NOT IsClass(apply_on,&Necklace)
       AND NOT IsClass(apply_on,&Ring)
+      OR IsClass(apply_on,&SoldierShield)
+      OR IsClass(apply_on,&FaceMask)
       {
          Send(what,@MsgSendUser,#message_rsc=cant_enchant);
          return FALSE;
