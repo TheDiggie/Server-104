@@ -25,8 +25,8 @@ resources:
 
 classvars:
 
-   viTeleport_Row = 60
-   viTeleport_Col = 18
+   viTeleport_Row = 33
+   viTeleport_Col = 27
 
    viWeatherMask = WEATHER_MASK_DEFAULT
 
@@ -85,8 +85,8 @@ messages:
       plExits = Cons([ 57, 3, RID_DH6, 27, 40, ROTATE_NONE ],plExits);
       plExits = Cons([ 58, 3, RID_DH6, 27, 40, ROTATE_NONE ],plExits);
 
-      plExits = Cons([ 12, 18, RID_DDUKE1, 42, 29, ROTATE_NONE ],plExits);
-      plExits = Cons([ 12, 19, RID_DDUKE1, 42, 29, ROTATE_NONE ],plExits);
+      plExits = Cons([ 12, 18, RID_DDUKE1, 80, 33, ROTATE_NONE ],plExits);
+      plExits = Cons([ 12, 19, RID_DDUKE1, 80, 33, ROTATE_NONE ],plExits);
 
       // entrances to the inn
 
