@@ -146,6 +146,9 @@ resources:
    cannot_cast_on_phased_out = \
       "You can't cast anything on %s while %s is phased out of existence!"
 
+   Jala_hindered = "~rThe sound of jala hinders your cast!"
+   Jala_you_hindered = "~gYou hindered the spell of %s!"
+   
 classvars:
 
    vrName = spell_name_rsc
@@ -1291,8 +1294,9 @@ messages:
    "This is always TRUE for touch attack spells, because touch attacks"
    "figure their success in player.kod."
    {
-      local num, iRequisiteStat, iability, lJalaInfo, oJalaSpell, lJalaState,
-      iDistance, oTarget, oRing, i;
+      local iCastSP, iJalaSP, iFinalSP, oTarget, oRing, i, iRan, iHindered, oEnchan, oJalaOwner;
+
+      iHindered = FALSE;
 
       oRing = Send(who,@FindHolding,#class=&ReagentRing);
 
@@ -1313,48 +1317,49 @@ messages:
          return TRUE;
       }
 
-      iRequisiteStat = Send(self,@GetRequisiteStat,#who=who);
-      num = ((100-iRequisiteStat)*iSpellpower/100) + iRequisiteStat;
-
       // Modify chance to succeed due to Jala's hinder spells.
       // Hinder spell effects stack.
+      //Diggie - 5/31/2024
+      //So the previous jala hinder code used a mix of distance between caster and target
+      //and spell power. I was not a fan of that and think this method is much better.
+      //Caster spell power vs spellpower of the jala spell.
+      //Final Spellpower = Caster spellpower +1 - Jala spellpower +1 / 2
+      //The goal is 99 Jala spellpower vs 99 Spell power "example spell" will result in a
+      //50% chance to block the spell. The highest/lowest block chance is 90%/10%
+       
       foreach i in Send(who,@GetRadiusEnchantments)
       {
-         num = Send(Nth(i,2),@GetAlteredChance,#chance=num,#what=self,
-                     #lRadiusState=Nth(i,3));
+         if isClass(Nth(i,2),&HinderSpell)
+         {  
+            if Send(Nth(i,2),@IsAltered,#what=self)
+            {
+               iJalaSP = Send(Nth(i,2),@GetSpellPower,#who=who);
+               iJalaSP = bound(iJalaSP,5,99);
+               iHindered = TRUE;
+               oJalaOwner = Send(Nth(i,2),@GetCaster,#state=Nth(i,3));
+            }
+         }
       }
 
-      num = bound(num,5,99);
-
-      if lTargets <> $
+      if lTargets <> $ AND iHindered
          AND Send(self,@GetNumSpellTargets) = 1
          AND IsClass(First(lTargets),&Battler)
-         AND NOT Send(Send(who,@GetOwner),@LineOfSight,#obj1=who,
+         AND Send(Send(who,@GetOwner),@LineOfSight,#obj1=who,
                       #obj2=First(lTargets))
-         AND NOT(IsClass(who,&DM) AND Send(who,@PlayerIsImmortal))
+         AND NOT(IsClass(who,&DM) AND NOT Send(who,@PlayerIsImmortal))
       {
-         Send(who,@MsgSendUser,#message_rsc=no_line_of_sight);
+         iCastSP = (iSpellpower + 1) - ((iJalaSP+1)/2);
+         iFinalSP = bound(iCastSP,10,90);
 
-         oTarget = First(lTargets);
+         iRan = Random(1,100);
 
-         iDistance = Send(who,@SquaredDistanceTo,#what=oTarget);
-
-         iDistance = iDistance / 4;
-
-         if iDistance > num / 2
+         if iRan > iFinalSP
+            AND (oRing = $ OR NOT Send(oRing,@InUse))
          {
-            num = num / 2;
+            Send(who,@MsgSendUser,#message_rsc=Jala_hindered);
+            Send(oJalaOwner,@MsgSendUser,#message_rsc=Jala_you_hindered,#parm1=Send(who,@GetName));
+            return FALSE;
          }
-         else if iDistance < num / 2
-         {
-            num = num - iDistance;
-         }
-      }
-
-      if Random(1,100) > num
-         AND (oRing = $ OR NOT Send(oRing,@InUse))
-      {
-         return FALSE;
       }
 
       return TRUE;
