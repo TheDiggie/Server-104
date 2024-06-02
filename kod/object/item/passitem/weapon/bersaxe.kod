@@ -13,7 +13,7 @@ BerserkerAxe is Weapon
 constants:
 
    include blakston.khd
-
+   include bersaxe.lkod
 resources:
 
    BerserkerAxe_name_rsc = "berserker axe"
