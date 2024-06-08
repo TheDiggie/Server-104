@@ -56,12 +56,16 @@ messages:
 
          oSkill = Send(SYS,@FindSkillByNum,#num=iSkillNum);
 
-         // Delete all skills!
-         Send(poApply_target,@RemoveSkill,#num=iSkillNum);
-         Send(poApply_target,@MsgSendUser,
-               #message_rsc=forgetpotionskills_forget_skill,
-               #parm1=Send(oSkill,@GetName));
-         piCount = piCount + 1;
+         if send(oskill,@GetSchool) <> SS_CRAFTING
+         {
+            // Delete all skills!
+            Send(poApply_target,@RemoveSkill,#num=iSkillNum);
+            Send(poApply_target,@MsgSendUser,
+                  #message_rsc=forgetpotionskills_forget_skill,
+                  #parm1=Send(oSkill,@GetName));
+            piCount = piCount + 1;
+         }
+
       }
 
       if piCount = 0

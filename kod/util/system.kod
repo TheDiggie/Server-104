@@ -5992,6 +5992,8 @@ messages:
       plItemTemplates = cons(create(&EntrootBerry),plItemTemplates);
       plItemTemplates = cons(create(&Elderberry),plItemTemplates);
       plItemTemplates = cons(create(&Herbs),plItemTemplates);
+
+      //Death Realm Reagents
       plItemTemplates = cons(create(&BlackHydraHead),plItemTemplates);
       plItemTemplates = cons(create(&BrownDragonScale),plItemTemplates);
       plItemTemplates = cons(create(&GoldHydraHead),plItemTemplates);
@@ -6004,6 +6006,22 @@ messages:
       plItemTemplates = cons(create(&RedHydraScale),plItemTemplates);
       plItemTemplates = cons(create(&BlackDragonScale),plItemTemplates);
       plItemTemplates = cons(create(&TyrantHorns),plItemTemplates);
+
+      //Crafting Reagents
+      plItemTemplates = cons(create(&DenseWood),plItemTemplates);
+      plItemTemplates = cons(create(&DenseLumber),plItemTemplates);
+      plItemTemplates = cons(create(&TrollHide),plItemTemplates);
+      plItemTemplates = cons(create(&Leather),plItemTemplates);
+      plItemTemplates = cons(create(&Wood),plItemTemplates);
+      plItemTemplates = cons(create(&Lumber),plItemTemplates);
+      plItemTemplates = cons(create(&NeruditeIngot),plItemTemplates);
+      plItemTemplates = cons(create(&IronIngot),plItemTemplates);
+      plItemTemplates = cons(create(&RawSilk),plItemTemplates);
+      plItemTemplates = cons(create(&SilkThread),plItemTemplates);
+      plItemTemplates = cons(create(&KriipaHide),plItemTemplates);
+      plItemTemplates = cons(create(&KriipaLeather),plItemTemplates);
+      plItemTemplates = cons(create(&IronOre),plItemTemplates);
+      plItemTemplates = cons(create(&NeruditeOre),plItemTemplates);
 
       // Edibles
       plItemTemplates = cons(create(&KocatanMug),plItemTemplates);
@@ -6140,21 +6158,6 @@ messages:
       plItemTemplates = cons(create(&PilgrimHat),plItemTemplates);
       plItemTemplates = cons(create(&IndianHat),plItemTemplates);
 
-      //Crafting Reagents
-      plItemTemplates = cons(create(&DenseWood),plItemTemplates);
-      plItemTemplates = cons(create(&DenseLumber),plItemTemplates);
-      plItemTemplates = cons(create(&TrollHide),plItemTemplates);
-      plItemTemplates = cons(create(&Leather),plItemTemplates);
-      plItemTemplates = cons(create(&Wood),plItemTemplates);
-      plItemTemplates = cons(create(&Lumber),plItemTemplates);
-      plItemTemplates = cons(create(&NeruditeIngot),plItemTemplates);
-      plItemTemplates = cons(create(&IronIngot),plItemTemplates);
-      plItemTemplates = cons(create(&RawSilk),plItemTemplates);
-      plItemTemplates = cons(create(&SilkThread),plItemTemplates);
-      plItemTemplates = cons(create(&KriipaHide),plItemTemplates);
-      plItemTemplates = cons(create(&KriipaLeather),plItemTemplates);
-      plItemTemplates = cons(create(&IronOre),plItemTemplates);
-      plItemTemplates = cons(create(&NeruditeOre),plItemTemplates);
       
       //Crafting tools
       plItemTemplates = cons(create(&DrawKnife),plItemTemplates);
