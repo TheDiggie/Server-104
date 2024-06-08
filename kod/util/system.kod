@@ -2336,6 +2336,7 @@ messages:
       Send(self,@CreateOneRoomIfNew,#num=RID_MAR_ELDER_HUT,#class=&MarionElderHut);
       Send(self,@CreateOneRoomIfNew,#num=RID_MAR_HALL,#class=&MarHall);
       Send(self,@CreateOneRoomIfNew,#num=RID_MAR_HEALER_SHOP,#class=&MarionHealerShop);
+      Send(self,@CreateOneRoomIfNew,#num=RID_MARION_PLAN,#class=&MarionPlantation);
 
       // Cor Noth stuff
       Send(self,@CreateOneRoomIfNew,#num=RID_CORNOTH,#class=&CorNoth);

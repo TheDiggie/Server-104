@@ -89,7 +89,8 @@ messages:
          plFor_sale = [ 
             [
                Create(&BoatTicket,#model=$,#destination=RID_BAR_PORT),
-               Create(&BoatTicket,#model=$,#destination=RID_DESERTSHORE4)
+               Create(&BoatTicket,#model=$,#destination=RID_DESERTSHORE4),
+               Create(&BoatTicket,#model=$,#destination=RID_MARION_PLAN)
             ],
          $,$,$];
 	   }  
@@ -99,7 +100,8 @@ messages:
          plFor_sale = [ 
             [
                Create(&BoatTicket,#model=$,#destination=RID_DESERTSHORE4),
-               Create(&BoatTicket,#model=$,#destination=RID_KOC_SOUTH)
+               Create(&BoatTicket,#model=$,#destination=RID_KOC_SOUTH),
+               Create(&BoatTicket,#model=$,#destination=RID_MARION_PLAN)
             ],
          $,$,$];
 	   }
@@ -109,7 +111,19 @@ messages:
          plFor_sale = [ 
             [
                Create(&BoatTicket,#model=$,#destination=RID_BAR_PORT),
-               Create(&BoatTicket,#model=$,#destination=RID_KOC_SOUTH)
+               Create(&BoatTicket,#model=$,#destination=RID_KOC_SOUTH),
+               Create(&BoatTicket,#model=$,#destination=RID_MARION_PLAN)
+            ],
+         $,$,$];
+	   }
+
+	   if poOwner <> $ AND Send(poOwner,@GetRoomNum) = RID_MARION_PLAN
+	   {
+         plFor_sale = [ 
+            [
+               Create(&BoatTicket,#model=$,#destination=RID_BAR_PORT),
+               Create(&BoatTicket,#model=$,#destination=RID_KOC_SOUTH),
+               Create(&BoatTicket,#model=$,#destination=RID_DESERTSHORE4)
             ],
          $,$,$];
 	   }

@@ -1,0 +1,117 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+MarionPlantation is MarionRoom
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   room_name_marionplantation = "Green Acres Plantation"
+   room_marionplantation = GreenPlantation.roo
+
+   mar_plan_music = city02.ogg
+
+   wind_sound_marionplantation = rs_wind.ogg
+
+classvars:
+
+   vrName = room_name_marionplantation
+   
+   viPermanent_flags = ROOM_GUILD_PK_ONLY
+
+   viTeleport_row = 15
+   viTeleport_col = 5
+
+   viTerrain_type = \
+      TERRAIN_CITY | TERRAIN_ROAD | TERRAIN_FIELDS | TERRAIN_FOREST
+
+   viWeatherMask = WEATHER_MASK_DEFAULT
+
+properties:
+
+   piBaseLight = LIGHT_NICE
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+   prRoom = room_marionplantation
+   piRoom_num = RID_MARION_PLAN
+
+   prMusic = mar_plan_music
+
+messages:
+
+   CreateStandardObjects()
+   {
+      Send(self,@NewHold,#what=Create(&BoatCaptain),
+           #new_row=14,#new_col=11,#fine_row=26,#fine_col=25);
+
+      Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Orange),
+           #new_row=80,#new_col=71,#fine_row=63,#fine_col=63);
+      Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Orange),
+           #new_row=82,#new_col=67,#fine_row=31,#fine_col=33);
+      Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Orange),
+           #new_row=84,#new_col=67,#fine_row=30,#fine_col=1);
+      Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Orange),
+           #new_row=83,#new_col=69,#fine_row=34,#fine_col=28);
+      Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Orange),
+           #new_row=84,#new_col=70,#fine_row=63,#fine_col=33);
+      Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Orange),
+           #new_row=83,#new_col=72,#fine_row=32,#fine_col=33);
+
+      Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Pear),
+           #new_row=83,#new_col=74,#fine_row=31,#fine_col=4);
+      Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Pear),
+           #new_row=83,#new_col=75,#fine_row=32,#fine_col=2);
+      Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Pear),
+           #new_row=83,#new_col=76,#fine_row=32,#fine_col=2);
+      Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Pear),
+           #new_row=84,#new_col=78,#fine_row=33,#fine_col=2);
+      Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Pear),
+           #new_row=83,#new_col=74,#fine_row=31,#fine_col=4);
+      Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Pear),
+           #new_row=83,#new_col=80,#fine_row=33,#fine_col=29);
+
+      Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Apple),
+           #new_row=84,#new_col=82,#fine_row=33,#fine_col=31);
+      Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Apple),
+           #new_row=82,#new_col=82,#fine_row=0,#fine_col=4);
+      Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Apple),
+           #new_row=81,#new_col=79,#fine_row=17,#fine_col=58);
+      Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Apple),
+           #new_row=81,#new_col=77,#fine_row=1,#fine_col=34);
+      Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Apple),
+           #new_row=81,#new_col=74,#fine_row=29,#fine_col=63);
+
+      propagate;
+   }
+
+
+   CreateStandardExits()
+   {
+      plEdge_Exits = $;
+
+      plEdge_Exits = Cons([ LEAVE_EAST , RID_MARION, 15, 2, ROTATE_NONE ],plEdge_Exits);
+
+      propagate;
+   }
+
+   CreatePeriodicSounds()
+   {
+      // Add the wind sound to the possible periodic sounds.
+      plPeriodic_sounds = [ wind_sound_marion ];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////
