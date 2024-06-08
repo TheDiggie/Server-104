@@ -55,22 +55,29 @@ properties:
 
 messages:
 
-   GetAlteredChance(chance = 0, what = $, lRadiusState = 0)
+   IsAltered(what=$)
    {
-      local iAltChance, iSongSpellpower;
-
       if what = $
          OR Send(what,@GetSchool) <> viHinderedSchool
       {
-         return chance;
+         return FALSE;
       }
 
-      iSongSpellpower = Nth(lRadiusState,5);
+      return TRUE;
+   }
+   
+   GetAlteredChance(who = $)
+   {
+      local iSongSpellpower;
 
-      iAltChance = chance - Random(iSongSpellpower/2,(iSongSpellpower*2)/3);
+      if who <> $
+      {
+         iSongSpellpower = send(self,@GetSpellPower,#who=who);
+         Debug(iSongSpellpower);
+      }
 
       // Don't worry about bounding, that's done the level above us.
-      return iAltChance;
+      return iSongSpellpower;
    }
 
 end

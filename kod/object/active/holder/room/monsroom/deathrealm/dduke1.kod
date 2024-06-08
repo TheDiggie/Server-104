@@ -50,22 +50,21 @@ messages:
 
   /// TO TOWN
 
-      plExits = Cons([ 43, 29, RID_DTOS, 13, 18, ROTATE_NONE ],plExits);
-      plExits = Cons([ 44, 29, RID_DTOS, 13, 18, ROTATE_NONE ],plExits);
+      plExits = Cons([ 81, 32, RID_DTOS, 13, 18, ROTATE_NONE ],plExits);
+      plExits = Cons([ 81, 33, RID_DTOS, 13, 18, ROTATE_NONE ],plExits);
 
-      plExits = Cons([ 13, 28, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 13, 29, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 13, 30, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 3, 49, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 2, 50, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 3, 50, ROOM_LOCKED_DOOR ],plExits);
 
-      plExits = Cons([ 14, 15, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 14, 16, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 15, 15, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 15, 16, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 50, 32, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 50, 33, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 50, 34, ROOM_LOCKED_DOOR ],plExits);
 
-      plExits = Cons([ 14, 42, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 14, 43, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 15, 42, ROOM_LOCKED_DOOR ],plExits);
-      plExits = Cons([ 15, 43, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 51, 19, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 51, 20, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 51, 46, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 51, 47, ROOM_LOCKED_DOOR ],plExits);
 
       propagate;
    }
