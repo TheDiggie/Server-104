@@ -23,6 +23,7 @@ resources:
    CraftLightMagicRobes_desc_rsc = \
       "Craft light robes of disciple of a chosen school at a loom. "
       "When crafting say the name of the school you want to empower to the robe.  "
+      "Choosing a school will remove you chance to improve, you will need to complete the conentration to imp. "
       "Requires 200 silk thread. "
 
    CraftLightMagicRobes_sound = kraanan.ogg
