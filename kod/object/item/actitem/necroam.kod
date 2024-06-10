@@ -171,7 +171,7 @@ properties:
    ptHungerTimer = $
    ptHoldingDamage = $
    piHoldingDamageInterval = 10 * 1000     // ten seconds
-   piHpWorthyThreshold = 49
+   piHpWorthyThreshold = 50
    piKarmaWorthyThreshold = 1
 
    pbIllusioned = TRUE
@@ -305,7 +305,7 @@ messages:
       }
       
       if (Send(poOwner,@GetKarma) < piKarmaWorthyThreshold)
-         AND (Send(poOwner,@GetBaseMaxHealth) > piHpWorthyThreshold)
+         AND (Send(poOwner,@GetBaseMaxHealth) >= piHpWorthyThreshold)
       {
          if pbIn_Use
          {
@@ -408,7 +408,7 @@ messages:
       plStatmods = [ 0, 0, 0, 0, 0, 0 ];
 
       if Send(poOwner,@GetKarma) < piKarmaWorthyThreshold
-         AND Send(poOwner,@GetBaseMaxHealth) > piHpWorthyThreshold
+         AND Send(poOwner,@GetBaseMaxHealth) >= piHpWorthyThreshold
       {
          Send(poOwner,@MsgSendUser,#message_rsc=necamulet_used_rsc);
       }
@@ -699,7 +699,7 @@ messages:
 
       // Check that owner still satisfies amulet restrictions.
       if NOT ((Send(poOwner,@GetKarma) < piKarmaWorthyThreshold)
-            AND (Send(poOwner,@GetBaseMaxHealth) > piHpWorthyThreshold))
+            AND (Send(poOwner,@GetBaseMaxHealth) >= piHpWorthyThreshold))
          AND ptHoldingDamage = $
       {
          Send(self,@HoldingDamageTrigger);
