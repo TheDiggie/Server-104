@@ -541,7 +541,7 @@ messages:
 
       // Check that owner still satisfies sword restrictions.
       if NOT ((Send(poOwner,@GetKarma) > piKarmaWorthyThreshold)
-            AND(Send(poOwner,@GetBaseMaxHealth) > piHpWorthyThreshold))
+            AND(Send(poOwner,@GetBaseMaxHealth) >= piHpWorthyThreshold))
          AND ptHoldingDamage = $
       {
          Send(self,@HoldingDamageTrigger);
@@ -629,7 +629,7 @@ messages:
       }
 
       if Send(poOwner,@GetKarma) > piKarmaWorthyThreshold
-         AND Send(poOwner,@GetBaseMaxHealth) > piHpWorthyThreshold
+         AND Send(poOwner,@GetBaseMaxHealth) >= piHpWorthyThreshold
          AND (NOT Send(poOwner,@CheckPlayerFlag,#flag=PFLAG_OUTLAW))
          AND (NOT Send(poOwner,@CheckPlayerFlag,#flag=PFLAG_MURDERER))
       {

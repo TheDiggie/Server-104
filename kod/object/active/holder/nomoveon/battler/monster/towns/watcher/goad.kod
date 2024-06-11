@@ -120,7 +120,9 @@ resources:
    Goad_not_ready = \
       "You are not ready to learn how to craft that.  "
 
-   Goad_already_have_one = "You may only be on one side of the war and every fighter is only permited one artifact! "
+   Goad_already_have_one = \
+   "You may only be on one side of the war and every fighter is only permited one artifact! Or perhaps you "
+   "do not have enough hitpoints to join the war. "
 
 classvars:
 
