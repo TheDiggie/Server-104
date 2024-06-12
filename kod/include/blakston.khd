@@ -1952,6 +1952,7 @@
    TID_KRIIPA_CORPSE = 125
 
    TID_BLACK_DRAGON = 126
+   TID_COW  = 127
    
    // English articles
 

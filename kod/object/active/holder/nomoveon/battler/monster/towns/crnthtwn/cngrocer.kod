@@ -114,7 +114,8 @@ messages:
             Create(&Elderberry,#number=4),
             Create(&Bread,#number=4),
             Create(&Apple,#number=4),
-            Create(&Waterskin,#number=4)
+            Create(&Waterskin,#number=4),
+            Create(&LunchBox)
          ],
       $,$,$];
 

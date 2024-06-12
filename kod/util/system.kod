@@ -4108,6 +4108,7 @@ messages:
       Create(&WormQueenTreasure);
 
       Create(&DarkAngelTreasure);
+      Create(&CowTreasure);
 
       Create(&ThrasherTreasure);
 
@@ -6058,6 +6059,8 @@ messages:
       plItemTemplates = cons(create(&SteakMeal),plItemTemplates);
       plItemTemplates = cons(create(&Gingermen),plItemTemplates);
       plItemTemplates = cons(create(&CougarBrew),plItemTemplates);
+      plItemTemplates = cons(create(&RawSteak),plItemTemplates);
+      plItemTemplates = cons(create(&Tomatoe),plItemTemplates);
 
       // Head
       plItemTemplates = cons(create(&Helm),plItemTemplates);

@@ -20,7 +20,8 @@ resources:
    Quiver_icon_rsc = baghold.bgf
 
    Quiver_desc_rsc = "A sturdy quiver made out of dense lumber from the Ko'catan island. "
-                     "This case can be used to hold a variety of arrows."
+                     "This case can be used to hold a variety of arrows. This box will "
+                     "reduce the weight and bulk of arrows by 75%. "
 
 classvars:
 

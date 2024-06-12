@@ -1,0 +1,69 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Tomatoe is Food
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Tomatoe_name_rsc = "tomatoe"
+   Tomatoe_icon_rsc = Tomatoe.bgf
+   Tomatoe_desc_rsc = \
+   "This bright red tomatoe, a great addition to any meal. "
+
+   Tomatoe_name_plural_rsc = "tomatoes"
+
+   Tomatoe_disp_name = "tomatoe plant"
+   Tomatoe_disp_icon = Tomatoeplant.bgf
+   Tomatoe_disp_desc = \
+     "This tomatoe plant is only found here on the plantation. Several of them look ripe "
+     "enough for you to pick."
+
+   Tomatoe_got_one = "You pick an tomatoe from the plant."
+
+classvars:
+
+   vrName = Tomatoe_name_rsc
+   vrIcon = Tomatoe_icon_rsc
+   vrDesc = Tomatoe_desc_rsc
+
+   vrDisp_name = Tomatoe_disp_name
+   vrDisp_icon = Tomatoe_disp_icon
+   vrDisp_desc = Tomatoe_disp_desc
+
+   vrName_plural = Tomatoe_name_plural_rsc
+
+   viIndefinite = ARTICLE_AN
+
+   viBulk = 2
+   viWeight = 2
+   viValue_average = 2
+
+properties:
+
+   viNutrition = 5
+   viFilling = 3
+   piNumber = 3
+
+messages:
+
+   NewHoldMessage(who=$,disp=$)
+   "Called whenever a number item is created from a dispenser."
+   {
+      Send(who,@MsgSendUser,#message_rsc=Tomatoe_got_one);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

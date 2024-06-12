@@ -17,9 +17,10 @@ constants:
 resources:
 
    LunchBox_name_rsc = "lunch box"
-   LunchBox_icon_rsc = baghold.bgf
+   LunchBox_icon_rsc = lunchbox.bgf
 
-   LunchBox_desc_rsc = "A wooden box for holding your treasured lunch!"
+   LunchBox_desc_rsc = "A wooden box for holding your treasured lunch! This box will reduce the weight and bulk of food "
+                       "items by 75%. "
 
 classvars:
 
@@ -27,7 +28,7 @@ classvars:
    vrIcon = LunchBox_icon_rsc
    vrDesc = LunchBox_desc_rsc
 
-   viValue_average = 500
+   viValue_average = 15000
    viBulk_hold_max = 12000
    viWeight_hold_max = $
 

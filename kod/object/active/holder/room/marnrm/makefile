@@ -7,7 +7,7 @@
 DEPEND = ..\marnrm.bof
 
 BOFS =  marion.bof \
-	marhall.bof marhlshp.bof marplan.bof
+	marhall.bof marhlshp.bof
 
 !include $(KODDIR)\kod.mak
 
