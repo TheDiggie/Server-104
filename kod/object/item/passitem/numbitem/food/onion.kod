@@ -1,0 +1,48 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Onion is Food
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Onion_name_rsc = "onion"
+   Onion_icon_rsc = Onion.bgf
+   Onion_desc_rsc = \
+      "A big onion full of flavor and great cooked down with meats. "
+
+   Onion_name_plural_rsc = "onions"
+
+classvars:
+
+   vrName = Onion_name_rsc
+   vrIcon = Onion_icon_rsc
+   vrDesc = Onion_desc_rsc
+
+   vrName_plural = Onion_name_plural_rsc
+
+   viBulk = 1
+   viWeight = 2
+
+   viValue_average = 5
+
+properties:
+
+   viFilling = 3
+   viNutrition = 6
+   piNumber = 2
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

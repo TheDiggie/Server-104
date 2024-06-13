@@ -1,0 +1,48 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Broccoli is Food
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Broccoli_name_rsc = "broccoli"
+   Broccoli_icon_rsc = Broccoli.bgf
+   Broccoli_desc_rsc = \
+      "A strange green vegtable not from around here. "
+
+   Broccoli_name_plural_rsc = "broccoli"
+
+classvars:
+
+   vrName = Broccoli_name_rsc
+   vrIcon = Broccoli_icon_rsc
+   vrDesc = Broccoli_desc_rsc
+
+   vrName_plural = Broccoli_name_plural_rsc
+
+   viBulk = 1
+   viWeight = 2
+
+   viValue_average = 5
+
+properties:
+
+   viFilling = 3
+   viNutrition = 6
+   piNumber = 2
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

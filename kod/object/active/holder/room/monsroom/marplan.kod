@@ -150,6 +150,55 @@ messages:
      Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Tomato),
           #new_row=84,#new_col=25,#fine_row=48,#fine_col=0);
 
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&EarCorn),
+          #new_row=44,#new_col=56,#fine_row=48,#fine_col=32);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&EarCorn),
+          #new_row=44,#new_col=57,#fine_row=48,#fine_col=32);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&EarCorn),
+          #new_row=44,#new_col=58,#fine_row=48,#fine_col=32);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&EarCorn),
+          #new_row=44,#new_col=59,#fine_row=48,#fine_col=32);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&EarCorn),
+          #new_row=44,#new_col=60,#fine_row=48,#fine_col=32);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&EarCorn),
+          #new_row=44,#new_col=61,#fine_row=48,#fine_col=32);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&EarCorn),
+          #new_row=45,#new_col=56,#fine_row=48,#fine_col=32);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&EarCorn),
+          #new_row=45,#new_col=57,#fine_row=48,#fine_col=32);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&EarCorn),
+          #new_row=45,#new_col=58,#fine_row=48,#fine_col=32);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&EarCorn),
+          #new_row=45,#new_col=59,#fine_row=48,#fine_col=32);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&EarCorn),
+          #new_row=45,#new_col=60,#fine_row=48,#fine_col=32);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&EarCorn),
+          #new_row=45,#new_col=61,#fine_row=48,#fine_col=32);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&EarCorn),
+          #new_row=46,#new_col=56,#fine_row=48,#fine_col=32);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&EarCorn),
+          #new_row=46,#new_col=57,#fine_row=48,#fine_col=32);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&EarCorn),
+          #new_row=46,#new_col=58,#fine_row=48,#fine_col=32);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&EarCorn),
+          #new_row=46,#new_col=59,#fine_row=48,#fine_col=32);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&EarCorn),
+          #new_row=46,#new_col=60,#fine_row=48,#fine_col=32);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&EarCorn),
+          #new_row=46,#new_col=61,#fine_row=48,#fine_col=32);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&EarCorn),
+          #new_row=47,#new_col=56,#fine_row=48,#fine_col=32);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&EarCorn),
+          #new_row=47,#new_col=57,#fine_row=48,#fine_col=32);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&EarCorn),
+          #new_row=47,#new_col=58,#fine_row=48,#fine_col=32);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&EarCorn),
+          #new_row=47,#new_col=59,#fine_row=48,#fine_col=32);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&EarCorn),
+          #new_row=47,#new_col=60,#fine_row=48,#fine_col=32);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&EarCorn),
+          #new_row=47,#new_col=61,#fine_row=48,#fine_col=32);
+
       propagate;
    }
 

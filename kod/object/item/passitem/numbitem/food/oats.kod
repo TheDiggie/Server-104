@@ -1,0 +1,48 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Oats is Food
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Oats_name_rsc = "oats"
+   Oats_icon_rsc = Oats.bgf
+   Oats_desc_rsc = \
+      "A small piled of oats "
+
+   Oats_name_plural_rsc = "oats"
+
+classvars:
+
+   vrName = Oats_name_rsc
+   vrIcon = Oats_icon_rsc
+   vrDesc = Oats_desc_rsc
+
+   vrName_plural = Oats_name_plural_rsc
+
+   viBulk = 1
+   viWeight = 2
+
+   viValue_average = 5
+
+properties:
+
+   viFilling = 5
+   viNutrition = 2
+   piNumber = 2
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////
