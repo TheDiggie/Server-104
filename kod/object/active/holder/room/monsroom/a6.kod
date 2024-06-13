@@ -72,10 +72,35 @@ messages:
       propagate;
    }
 
+   SomethingMoved(what = $,new_row = $, new_col = $)
+   {
+      if isClass(what,&User)
+      {
+         if (new_row < 4) AND (new_col > 47)
+         {
+            Send(SYS,@UtilGoNearSquare,#what=what,
+                  #where=Send(SYS,@FindRoomByNum,#num=RID_MARION_PLAN),
+                  #new_row=87,#new_col=49,#new_angle=ANGLE_NORTH);
+
+            return;
+         }
+
+         if (new_row < 1) AND (new_col < 21)
+         {
+            Send(SYS,@UtilGoNearSquare,#what=what,
+                  #where=Send(SYS,@FindRoomByNum,#num=RID_A5),
+                  #new_row=50,#new_col=31,#new_angle=ANGLE_NORTH);
+
+            return;
+         }
+      }
+
+      propagate;
+   }
+
    CreateStandardExits()
    {
       plEdge_Exits = $;
-      plEdge_Exits = Cons([LEAVE_NORTH, RID_A5, 50,31, ROTATE_NONE], plEdge_exits);
       plEdge_Exits = Cons([LEAVE_SOUTH, RID_B6, 1,6, ROTATE_NONE], plEdge_exits);
 
       return;

@@ -109,6 +109,7 @@ messages:
      plEdge_Exits = $;
 
      plEdge_Exits = Cons([ LEAVE_EAST , RID_MARION, 15, 2, ROTATE_NONE ],plEdge_Exits);
+     plEdge_Exits = Cons([ LEAVE_SOUTH , RID_A6, 5, 47, ROTATE_NONE ],plEdge_Exits);
 
      plExits = $;
 
