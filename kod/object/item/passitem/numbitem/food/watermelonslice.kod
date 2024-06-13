@@ -1,0 +1,48 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+WatermelonSlice is Food
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   WatermelonSlice_name_rsc = "watermelon slice"
+   WatermelonSlice_icon_rsc = WatermelonSlice.bgf
+   WatermelonSlice_desc_rsc = \
+      "A big slice of juicy watermelon. "
+
+   WatermelonSlice_name_plural_rsc = "watermelon slices"
+
+classvars:
+
+   vrName = WatermelonSlice_name_rsc
+   vrIcon = WatermelonSlice_icon_rsc
+   vrDesc = WatermelonSlice_desc_rsc
+
+   vrName_plural = WatermelonSlice_name_plural_rsc
+
+   viBulk = 5
+   viWeight = 3
+
+   viValue_average = 5
+
+properties:
+
+   viFilling = 10
+   viNutrition = 20
+   piNumber = 2
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

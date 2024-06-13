@@ -1,0 +1,70 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Carrot is Food
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Carrot_name_rsc = "carrot"
+   Carrot_icon_rsc = carrot.bgf
+   Carrot_desc_rsc = \
+   "This bright orange carrot full of flavor! "
+
+   Carrot_name_plural_rsc = "carrots"
+
+   Carrot_disp_name = "carrots"
+   Carrot_disp_icon = carrotplant.bgf
+   Carrot_disp_desc = \
+     "These are the green leaves of the carrot under the soil. "
+
+   Carrot_got_one = "You reach down and uproot some carrots."
+
+classvars:
+
+   vrName = Carrot_name_rsc
+   vrIcon = Carrot_icon_rsc
+   vrDesc = Carrot_desc_rsc
+
+   vrDisp_name = Carrot_disp_name
+   vrDisp_icon = Carrot_disp_icon
+   vrDisp_desc = Carrot_disp_desc
+
+   vrName_plural = Carrot_name_plural_rsc
+
+   viIndefinite = ARTICLE_AN
+
+   viBulk = 2
+   viWeight = 2
+   viValue_average = 5
+
+   viGround_group = 2
+   
+properties:
+
+   viNutrition = 5
+   viFilling = 4
+   piNumber = 1
+
+messages:
+
+   NewHoldMessage(who=$,disp=$)
+   "Called whenever a number item is created from a dispenser."
+   {
+      Send(who,@MsgSendUser,#message_rsc=Carrot_got_one);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

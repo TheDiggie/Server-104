@@ -13,6 +13,6 @@ BOFS = inkycap.bof snack.bof watrskin.bof meatpie.bof apple.bof \
        pecanpie.bof pumppie.bof mashtaters.bof stuffing.bof ham.bof rouladen.bof \
        qorcite.bof steakmeal.bof gingermen.bof cougarbrew.bof rawsteak.bof \
        tomato.bof banana.bof cuttomato.bof broccoli.bof eggs.bof oats.bof onion.bof \
-       cucumber.bof earcorn.bof
+       cucumber.bof earcorn.bof watermelon.bof carrot.bof potatoes.bof watermelonslice.bof 
 
 !include $(KODDIR)\kod.mak

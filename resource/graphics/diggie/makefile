@@ -45,7 +45,8 @@ BGFS = neeleme.bgf neelemeX.bgf iunholyt.bgf xeoneru.bgf xeoneruX.bgf \
        povneruaxe.bgf povshalblade.bgf shalblade.bgf shalbladeov.bgf lightsw.bgf lightswov.bgf \
        povlightsw.bgf bersaxe.bgf bersaxeov.bgf pocbersaxe.bgf lunchbox.bgf cowX.bgf rawsteak.bgf \
        tomatoplant.bgf tomato.bgf banana.bgf cuttomato.bgf cucumber.bgf onion.bgf oats.bgf eggs.bgf \
-       broccoli.bgf cornstalk.bgf earcorn.bgf 
+       broccoli.bgf cornstalk.bgf earcorn.bgf watermelon.bgf watermelonslice.bgf watermelonpatch.bgf \
+       carrot.bgf carrotplant.bgf potatoes.bgf potatoplant.bgf
 
 !include $(RESOURCEDIR)\copy.mak
 

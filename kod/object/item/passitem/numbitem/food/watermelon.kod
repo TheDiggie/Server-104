@@ -1,0 +1,68 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Watermelon is Food
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Watermelon_name_rsc = "watermelon"
+   Watermelon_icon_rsc = watermelon.bgf
+   Watermelon_desc_rsc = \
+   "A huge watermelon dense with water. "
+
+   Watermelon_name_plural_rsc = "watermelons"
+
+   Watermelon_disp_name = "watermelon patch"
+   Watermelon_disp_icon = Watermelonpatch.bgf
+   Watermelon_disp_desc = \
+     "A lovly patch of fresh watermelons. "
+
+   Watermelon_got_one = "You reach down and pick up a watermelon from the patch."
+
+classvars:
+
+   vrName = Watermelon_name_rsc
+   vrIcon = Watermelon_icon_rsc
+   vrDesc = Watermelon_desc_rsc
+
+   vrDisp_name = Watermelon_disp_name
+   vrDisp_icon = Watermelon_disp_icon
+   vrDisp_desc = Watermelon_disp_desc
+
+   vrName_plural = Watermelon_name_plural_rsc
+
+   viIndefinite = ARTICLE_AN
+
+   viBulk = 10
+   viWeight = 15
+   viValue_average = 5
+
+properties:
+
+   viNutrition = 25
+   viFilling = 35
+   piNumber = 1
+
+messages:
+
+   NewHoldMessage(who=$,disp=$)
+   "Called whenever a number item is created from a dispenser."
+   {
+      Send(who,@MsgSendUser,#message_rsc=Watermelon_got_one);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////
