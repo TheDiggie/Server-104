@@ -101,6 +101,55 @@ messages:
      Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Apple),
           #new_row=81,#new_col=74,#fine_row=29,#fine_col=63);
 
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Tomato),
+          #new_row=81,#new_col=20,#fine_row=48,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Tomato),
+          #new_row=81,#new_col=21,#fine_row=48,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Tomato),
+          #new_row=81,#new_col=22,#fine_row=48,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Tomato),
+          #new_row=81,#new_col=23,#fine_row=48,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Tomato),
+          #new_row=81,#new_col=24,#fine_row=48,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Tomato),
+          #new_row=81,#new_col=25,#fine_row=48,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Tomato),
+          #new_row=82,#new_col=20,#fine_row=48,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Tomato),
+          #new_row=82,#new_col=21,#fine_row=48,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Tomato),
+          #new_row=82,#new_col=22,#fine_row=48,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Tomato),
+          #new_row=82,#new_col=23,#fine_row=48,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Tomato),
+          #new_row=82,#new_col=24,#fine_row=48,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Tomato),
+          #new_row=82,#new_col=25,#fine_row=48,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Tomato),
+          #new_row=83,#new_col=20,#fine_row=48,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Tomato),
+          #new_row=83,#new_col=21,#fine_row=48,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Tomato),
+          #new_row=83,#new_col=22,#fine_row=48,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Tomato),
+          #new_row=83,#new_col=23,#fine_row=48,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Tomato),
+          #new_row=83,#new_col=24,#fine_row=48,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Tomato),
+          #new_row=83,#new_col=25,#fine_row=48,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Tomato),
+          #new_row=84,#new_col=20,#fine_row=48,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Tomato),
+          #new_row=84,#new_col=21,#fine_row=48,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Tomato),
+          #new_row=84,#new_col=22,#fine_row=48,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Tomato),
+          #new_row=84,#new_col=23,#fine_row=48,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Tomato),
+          #new_row=84,#new_col=24,#fine_row=48,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Tomato),
+          #new_row=84,#new_col=25,#fine_row=48,#fine_col=0);
+
       propagate;
    }
 

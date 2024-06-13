@@ -6060,7 +6060,7 @@ messages:
       plItemTemplates = cons(create(&Gingermen),plItemTemplates);
       plItemTemplates = cons(create(&CougarBrew),plItemTemplates);
       plItemTemplates = cons(create(&RawSteak),plItemTemplates);
-      plItemTemplates = cons(create(&Tomatoe),plItemTemplates);
+      plItemTemplates = cons(create(&Tomato),plItemTemplates);
 
       // Head
       plItemTemplates = cons(create(&Helm),plItemTemplates);

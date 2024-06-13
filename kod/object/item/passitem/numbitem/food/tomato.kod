@@ -8,7 +8,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-Tomatoe is Food
+Tomato is Food
 
 constants:
 
@@ -16,32 +16,32 @@ constants:
 
 resources:
 
-   Tomatoe_name_rsc = "tomatoe"
-   Tomatoe_icon_rsc = Tomatoe.bgf
-   Tomatoe_desc_rsc = \
-   "This bright red tomatoe, a great addition to any meal. "
+   Tomato_name_rsc = "Tomato"
+   Tomato_icon_rsc = Tomato.bgf
+   Tomato_desc_rsc = \
+   "This bright red Tomato, a great addition to any meal. "
 
-   Tomatoe_name_plural_rsc = "tomatoes"
+   Tomato_name_plural_rsc = "Tomatoes"
 
-   Tomatoe_disp_name = "tomatoe plant"
-   Tomatoe_disp_icon = Tomatoeplant.bgf
-   Tomatoe_disp_desc = \
-     "This tomatoe plant is only found here on the plantation. Several of them look ripe "
+   Tomato_disp_name = "Tomato plant"
+   Tomato_disp_icon = Tomatoplant.bgf
+   Tomato_disp_desc = \
+     "This Tomato plant is only found here on the plantation. Several of them look ripe "
      "enough for you to pick."
 
-   Tomatoe_got_one = "You pick an tomatoe from the plant."
+   Tomato_got_one = "You pick an Tomato from the plant."
 
 classvars:
 
-   vrName = Tomatoe_name_rsc
-   vrIcon = Tomatoe_icon_rsc
-   vrDesc = Tomatoe_desc_rsc
+   vrName = Tomato_name_rsc
+   vrIcon = Tomato_icon_rsc
+   vrDesc = Tomato_desc_rsc
 
-   vrDisp_name = Tomatoe_disp_name
-   vrDisp_icon = Tomatoe_disp_icon
-   vrDisp_desc = Tomatoe_disp_desc
+   vrDisp_name = Tomato_disp_name
+   vrDisp_icon = Tomato_disp_icon
+   vrDisp_desc = Tomato_disp_desc
 
-   vrName_plural = Tomatoe_name_plural_rsc
+   vrName_plural = Tomato_name_plural_rsc
 
    viIndefinite = ARTICLE_AN
 
@@ -60,7 +60,7 @@ messages:
    NewHoldMessage(who=$,disp=$)
    "Called whenever a number item is created from a dispenser."
    {
-      Send(who,@MsgSendUser,#message_rsc=Tomatoe_got_one);
+      Send(who,@MsgSendUser,#message_rsc=Tomato_got_one);
 
       return;
    }
