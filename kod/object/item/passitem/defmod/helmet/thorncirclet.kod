@@ -8,7 +8,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-IvyCirclet is Helmet
+ThornCirclet is Helmet
 
 constants:
 
@@ -16,31 +16,27 @@ constants:
 
 resources:
 
-   include ivycircl.lkod
+   ThornCirclet_name_rsc = "thorn circlet"
+   ThornCirclet_icon_rsc = thocircl.bgf
+   ThornCirclet_desc_rsc = \
+      "Thorny vines of poison ivy are wrapped around a splintered wreath.  "
+      "This looks like it would be unpleasant against your brow."
 
-   IvyCirclet_name_rsc = "ivy circlet"
-   IvyCirclet_icon_rsc = ivycircl.bgf
-   IvyCirclet_desc_rsc = \
-      "Healthy, green leaves of ivy are wrapped around a wooden wreath.  "
-      "This looks like it would be cool and refreshing against your brow."
+   ThornCirclet_cant = \
+      "The thorn circlet stubbornly resists your attempts to place it on your brow. Only followers of Qor may use this. "
 
-   ivycirclet_cant = \
-      "The ivy circlet stubbornly resists your attempts to place it on your brow."
-
-   ivy_not_shal = "Only a follower of Shal'ille can wear this circlet."
-
-   IvyCirclet_overlay_rsc = IvyCirov.bgf
+   ThornCirclet_overlay_rsc = thocirclov.bgf
 
 classvars:
 
-   vrName = IvyCirclet_name_rsc
-   vrIcon = IvyCirclet_icon_rsc
-   vrDesc = IvyCirclet_desc_rsc
+   vrName = ThornCirclet_name_rsc
+   vrIcon = ThornCirclet_icon_rsc
+   vrDesc = ThornCirclet_desc_rsc
 
    viHits_init_min = 255
-   viHits_init_max = 300
+   viHits_init_max = 450
 
-   viValue_average = 450
+   viValue_average = 8000
    viWeight = 10
    viBulk = 20
 
@@ -65,26 +61,20 @@ messages:
    GetOverlay(animation = $)
    {
       // Uses different file for the overlay.
-      return IvyCirclet_overlay_rsc;
+      return ThornCirclet_overlay_rsc;
    }
 
    GetResistanceModifiers()
    {
       return [ [-ATCK_SPELL_FIRE,-10],
-               [-ATCK_SPELL_UNHOLY,-15],
-               [-ATCK_SPELL_HOLY,15]
+               [-ATCK_SPELL_HOLY,-15],
+               [-ATCK_SPELL_UNHOLY,15]
              ];
    }
 
    ReqUse()
    {
       local i, oSpell, oFound;
-
-      if Send(poOwner,@PlayerIsImmortal)
-         OR IsClass(poOwner,&EscapedConvict)
-      {
-         return TRUE;
-      }
 
       oFound = FALSE;
 
@@ -94,7 +84,7 @@ messages:
          {
             oSpell = Send(SYS,@FindSpellByNum,
                            #num=Send(poOwner,@DecodeSpellNum,#compound=i));
-            if Send(oSpell,@GetSchool) = SS_SHALILLE
+            if Send(oSpell,@GetSchool) = SS_QOR
             {
                oFound = TRUE;
 
@@ -104,8 +94,7 @@ messages:
 
          if oFound = FALSE
          {
-            Send(poOwner,@MsgSendUser,#message_rsc=ivy_not_shal);
-            
+            Send(poOwner,@MsgSendUser,#message_rsc=ThornCirclet_cant);
             return FALSE;
          }
 		}
@@ -115,7 +104,7 @@ messages:
 
    GetBaseSpellModifier(oSpell=$)
    {
-      if Send(oSpell,@GetSchool) = SS_SHALILLE
+      if Send(oSpell,@GetSchool) = SS_QOR
       {
          return 15;
       }

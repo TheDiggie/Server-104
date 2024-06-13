@@ -8,36 +8,44 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-MolluskTreasure is TreasureType
+Banana is Food
 
 constants:
 
    include blakston.khd
 
+resources:
+
+   Banana_name_rsc = "banana"
+   Banana_icon_rsc = banana.bgf
+   Banana_desc_rsc = \
+   "A yellowish fruit from a unknown land. "
+
+   Banana_name_plural_rsc = "bananas"
+
 classvars:
 
-   viTreasure_num = TID_MOLLUSK
+   vrName = Banana_name_rsc
+   vrIcon = Banana_icon_rsc
+   vrDesc = Banana_desc_rsc
 
+   vrName_plural = Banana_name_plural_rsc
+
+   viBulk = 2
+   viWeight = 2
+
+   viValue_average = 80
+
+   viGround_group = 2
+   
 properties:
 
-   piDiff_seed = 5
-   piItem_att_chance = 2
+
+   viFilling = 5   
+   viNutrition = 10
+   piNumber = 2
 
 messages:
-
-   Constructed()
-   {
-      plTreasure = [ [ &GreenMushroom, 1 ],
-                   [ &BlueDragonScale, 26],
-                   [ &Ruby, 20],
-                   [ &InkyCap, 20],
-                   [ &ThornCirclet, 7],
-                   [ &AcidArrow, 1],
-				       [ &DarkAngelFeather, 25 ]
-                 ];
-
-      propagate;
-   }
 
 end
 ////////////////////////////////////////////////////////////////////////////////

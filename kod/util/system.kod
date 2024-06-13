@@ -6059,8 +6059,11 @@ messages:
       plItemTemplates = cons(create(&SteakMeal),plItemTemplates);
       plItemTemplates = cons(create(&Gingermen),plItemTemplates);
       plItemTemplates = cons(create(&CougarBrew),plItemTemplates);
+
+      //Cooking foods
       plItemTemplates = cons(create(&RawSteak),plItemTemplates);
       plItemTemplates = cons(create(&Tomato),plItemTemplates);
+      plItemTemplates = cons(create(&Banana),plItemTemplates);
 
       // Head
       plItemTemplates = cons(create(&Helm),plItemTemplates);
@@ -6068,6 +6071,7 @@ messages:
       plItemTemplates = cons(create(&QormasHelm),plItemTemplates);
       plItemTemplates = cons(create(&IvyCirclet),plItemTemplates);
       plItemTemplates = cons(create(&Circlet),plItemTemplates);
+      plItemTemplates = cons(create(&ThornCirclet),plItemTemplates);
 	   plItemTemplates = cons(create(&DaemonHelm),plItemTemplates);
       plItemTemplates = cons(create(&KnightsHelm),plItemTemplates);
       plItemTemplates = cons(create(&LegionHelm),plItemTemplates);
