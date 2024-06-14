@@ -436,6 +436,17 @@ messages:
      Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Oats),
           #new_row=11,#new_col=72,#fine_row=16,#fine_col=32);
 
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Eggs),
+          #new_row=74,#new_col=5,#fine_row=0,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Eggs),
+          #new_row=75,#new_col=5,#fine_row=0,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Eggs),
+          #new_row=76,#new_col=5,#fine_row=0,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Eggs),
+          #new_row=77,#new_col=5,#fine_row=0,#fine_col=0);
+     Send(self,@NewHold,#what=Create(&FoodDispenser,#classtype=&Eggs),
+          #new_row=78,#new_col=5,#fine_row=0,#fine_col=0);
+
       propagate;
    }
 

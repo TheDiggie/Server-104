@@ -1,0 +1,48 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+RawChicken is Food
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   RawChicken_name_rsc = "raw chicken"
+   RawChicken_icon_rsc = RawChicken.bgf
+   RawChicken_desc_rsc = \
+   "A whole raw chicken. "
+
+   RawChicken_name_plural_rsc = "raw chickens"
+
+classvars:
+
+   vrName = RawChicken_name_rsc
+   vrIcon = RawChicken_icon_rsc
+   vrDesc = RawChicken_desc_rsc
+
+   vrName_plural = RawChicken_name_plural_rsc
+
+   viBulk = 5
+   viWeight = 5
+
+   viValue_average = 20
+
+properties:
+
+   viNutrition = 0
+   viFilling = 500
+   piNumber = 1
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -23,13 +23,26 @@ resources:
 
    Eggs_name_plural_rsc = "eggs"
 
+   Eggs_disp_name = "hen house"
+   Eggs_disp_icon = henhouse.bgf
+   Eggs_disp_desc = \
+     "A sturdy hen house built by the Green family, its full of hens and eggs. "
+
+   Eggs_got_one = "You gather some eggs out of the hen house."
+
 classvars:
 
    vrName = Eggs_name_rsc
    vrIcon = Eggs_icon_rsc
    vrDesc = Eggs_desc_rsc
 
+   vrDisp_name = Eggs_disp_name
+   vrDisp_icon = Eggs_disp_icon
+   vrDisp_desc = Eggs_disp_desc
+
    vrName_plural = Eggs_name_plural_rsc
+
+   viIndefinite = ARTICLE_AN
 
    viBulk = 1
    viWeight = 2
@@ -43,6 +56,14 @@ properties:
    piNumber = 2
 
 messages:
+
+   NewHoldMessage(who=$,disp=$)
+   "Called whenever a number item is created from a dispenser."
+   {
+      Send(who,@MsgSendUser,#message_rsc=Eggs_got_one);
+
+      return;
+   }
 
 end
 ////////////////////////////////////////////////////////////////////////////////

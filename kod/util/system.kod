@@ -6076,6 +6076,7 @@ messages:
       plItemTemplates = cons(create(&Potatoes),plItemTemplates);
       plItemTemplates = cons(create(&WatermelonSlice),plItemTemplates);
       plItemTemplates = cons(create(&Flour),plItemTemplates);
+      plItemTemplates = cons(create(&RawChicken),plItemTemplates);
 
       // Head
       plItemTemplates = cons(create(&Helm),plItemTemplates);
