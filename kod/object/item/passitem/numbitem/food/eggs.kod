@@ -24,7 +24,7 @@ resources:
    Eggs_name_plural_rsc = "eggs"
 
    Eggs_disp_name = "hen house"
-   Eggs_disp_icon = henhouse.bgf
+   Eggs_disp_icon = henhouse.bgf 
    Eggs_disp_desc = \
      "A sturdy hen house built by the Green family, its full of hens and eggs. "
 
