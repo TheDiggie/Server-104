@@ -3398,6 +3398,7 @@ messages:
       Send(self,@CreateOneSpellIfNew,#num=SID_NODEBURST,#class=&Nodeburst);
       Send(self,@CreateOneSpellIfNew,#num=SID_PURIFY,#class=&Purify);
       Send(self,@CreateOneSpellIfNew,#num=SID_ARMOR_OF_GORT,#class=&ArmorOfGort);
+      Send(self,@CreateOneSpellIfNew,#num=SID_MANA_SHIELD,#class=&ManaShield);
       Send(self,@CreateOneSpellIfNew,#num=SID_SAND_STORM,#class=&Sandstorm);
 
       Send(self,@CreateOneSpellIfNew,#num=SID_SHADOW_FORM,#class=&Shadowform);
