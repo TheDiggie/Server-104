@@ -3642,7 +3642,7 @@ messages:
    ReactivateAllEnchantments()
    "Called when a player logs on."
    {
-      local i, tTimer, iTime, state;
+      local i, tTimer, iTime, state, oSpell;
 
       foreach i in plEnchantments
       {
@@ -3669,17 +3669,28 @@ messages:
             {
                // Give them a short timer, and log this for debugging purposes.
                // We include timers since we're not supposed to have one here.
-               Debug("Trying to make an invalid timer ",iTime," for ",
+               if iTime = $
+               {
+                  Send(self,@ResetPlayerFlagList,#who=self);
+
+                  return;
+               }
+               else if Send(Nth(i,2),@IsHarmful)
+               {  
+                  Debug("Trying to make an invalid timer ",iTime," for ",
                      Send(Nth(i,2),@GetTrueName)," on player ",
                      self,Send(self,@GetTrueName));
-               if Send(Nth(i,2),@IsHarmful)
-               {
+
                   iTime = 5000;
                }
                else
                {
+                  Debug("Trying to make an invalid timer ",iTime," for ",
+                     Send(Nth(i,2),@GetTrueName)," on player ",
+                     self,Send(self,@GetTrueName));
                   iTime = 20000;
                }
+
             }
 
             if Send(Nth(i,2),@IsPeriodic,#state=state,#who=self)
