@@ -319,6 +319,7 @@ messages:
       OR IsClass(apply_on,&Armor)
       OR IsClass(apply_on,&Shield)
       OR IsClass(apply_on,&Helmet)
+      OR IsClass(apply_on,&Pants)
       {
          return TRUE;
       }
