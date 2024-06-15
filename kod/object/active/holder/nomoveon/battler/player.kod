@@ -5737,7 +5737,7 @@ messages:
       precision=FALSE)
    {
       local i, j, iResistance, oSoldierShield, gainchance, color_rsc,
-            iDuration, oSpell, oGort,iLimit, origdamage, oWeapon, shrunken;
+            iDuration, oSpell, oGort,iLimit, origdamage, oWeapon, shrunken, manaSheild;
 
       if NOT precision
       {
@@ -5892,7 +5892,15 @@ messages:
          }
       }
 
-      Send(self,@LoseHealth,#amount=damage,#precision=TRUE);
+      manaSheild = Send(SYS,@FindSpellByNum,#Num=SID_MANA_SHIELD);
+      if Send(self,@IsEnchanted,#what=manaSheild)
+         {
+            Send(self,@LoseMana,#amount=damage,#precision=TRUE);
+            damage=0;
+         }
+      else {
+         Send(self,@LoseHealth,#amount=damage,#precision=TRUE);
+      }
 
       if piHealth <= 0
       {
