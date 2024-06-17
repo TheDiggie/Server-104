@@ -107,13 +107,5 @@ messages:
       propagate;
    }
 
-
-   EffectDesc(who=$)
-   {
-      AddPacket(4,ManaShield_enchantment_rsc, 4,Send(self,@GetName),
-                4,Send(who,@GetEnchantedState,#what=self));
-      return;
-   }
-
 end
 ////////////////////////////////////////////////////////////////////////////////
