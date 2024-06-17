@@ -1065,9 +1065,16 @@ messages:
          Send(self,@AttackTimer);
       }
       else
-      {
-         ptBehavior = CreateTimer(self,@AttackTimer,Send(self,@GetAttackTime));
-         Debug(vrname);
+      {  
+         if Send(self,@GetAttackTime) = $
+         {
+            ptBehavior = CreateTimer(self,@AttackTimer,2000);
+         }
+         else
+         {
+            ptBehavior = CreateTimer(self,@AttackTimer,Send(self,@GetAttackTime));
+         }
+      
       }
 
 

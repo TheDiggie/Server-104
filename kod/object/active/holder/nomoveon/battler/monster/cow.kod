@@ -54,7 +54,8 @@ classvars:
    viAttributes = MOB_NOFIGHT
    viTreasure_type = TID_COW
    viSpeed = 8
-   viLevel = 100
+   viLevel = 50
+   viDifficulty = 5
    viCashmin = 0
    viCashmax = 0
 
