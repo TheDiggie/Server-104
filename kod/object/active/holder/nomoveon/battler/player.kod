@@ -5737,7 +5737,7 @@ messages:
       precision=FALSE)
    {
       local i, j, iResistance, oSoldierShield, gainchance, color_rsc,
-            iDuration, oSpell, oGort,iLimit, origdamage, oWeapon, shrunken, manaSheild;
+            iDuration, oSpell, oGort,iLimit, origdamage, oWeapon, shrunken, manaShield, manaDamage, playerMP;
 
       if NOT precision
       {
@@ -5892,11 +5892,21 @@ messages:
          }
       }
 
-      manaSheild = Send(SYS,@FindSpellByNum,#Num=SID_MANA_SHIELD);
-      if Send(self,@IsEnchanted,#what=manaSheild)
+      manaShield = Send(SYS,@FindSpellByNum,#Num=SID_MANA_SHIELD);
+      if Send(self,@IsEnchanted,#what=manaShield)
          {
-            Send(self,@LoseMana,#amount=damage,#precision=TRUE);
-            damage=0;
+            manaDamage = damage / 100; // LoseMana is without precision -> dmg/100
+            playerMP = Send(self,@GetMana);
+
+            if playerMP > manaDamage {
+               Send(self,@LoseMana,#amount=manaDamage,#precision=TRUE); 
+            }  else { //If the player does not have enough mana to cover the hit, first substract mana, followed by health
+               manaDamage = playerMP;
+               Send(self,@LoseMana,#amount=manaDamage,#precision=TRUE); 
+               Send(self,@RemoveEnchantment,#what=manaShield);
+
+               Send(self,@LoseHealth,#amount=damage - (manaDamage * 100),#precision=TRUE); //Player would loose the remainder of damage from health
+            }
          }
       else {
          Send(self,@LoseHealth,#amount=damage,#precision=TRUE);

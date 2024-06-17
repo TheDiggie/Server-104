@@ -60,8 +60,10 @@ classvars:
    viChance_To_Increase = 20
    viMeditate_ratio = 50
    viFlash = FLASH_GOOD_SELF
-
+   vbCanCastonOthers = FALSE
    viDefensive = TRUE
+
+   viManaDrain = 1
 
 properties:
 
@@ -75,7 +77,7 @@ messages:
    ResetReagents()
    {
       plReagents = $;
-      plReagents = Cons([&BlueDragonScale,2],plReagents);
+      plReagents = Cons([&Diamond,5],plReagents);
 
       return;
    }
@@ -96,16 +98,6 @@ messages:
       Send(Target,@AddDefenseModifier,#what=self);
 
       return iSpellPower;
-   }
-
-  PriorityModifyDefenseDamage(who=$,what=$,damage=$,atype=0,aspell =0)
-   {
-     return damage;
-   }
-
-   ModifyDefenseDamage(who=$,what=$,damage=$,atype=0,aspell=0)
-   {
-      return damage;
    }
 
    EndEnchantment(who=$,report=TRUE,state=0)
