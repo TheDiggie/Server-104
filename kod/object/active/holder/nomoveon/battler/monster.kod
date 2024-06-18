@@ -5546,8 +5546,16 @@ messages:
 
    GetAttackTime()
    {
-      return Send(self,@Fuzzy,#num=MOB_ATTACK_TIMER_WAIT)
-             + 3500-70*(3*viDifficulty+viSpeed);
+      local itime;
+
+      iTime = Send(self,@Fuzzy,#num=MOB_ATTACK_TIMER_WAIT) + 3500-70*(3*viDifficulty+viSpeed);
+      
+      if iTime < 0
+      {
+         iTime = Random(1000,2000);
+      }
+      
+      return iTime;
    }
 
    GetMoveTime()
