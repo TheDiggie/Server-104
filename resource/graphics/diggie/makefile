@@ -47,7 +47,7 @@ BGFS = neeleme.bgf neelemeX.bgf iunholyt.bgf xeoneru.bgf xeoneruX.bgf \
        tomatoplant.bgf tomato.bgf banana.bgf cuttomato.bgf cucumber.bgf onion.bgf oats.bgf eggs.bgf \
        broccoli.bgf cornstalk.bgf earcorn.bgf watermelon.bgf watermelonslice.bgf watermelonpatch.bgf \
        carrot.bgf carrotplant.bgf potatoes.bgf potatoplant.bgf commonoats.bgf flour.bgf wheatplant.bgf \
-       henhouse.bgf rawchicken.bgf 
+       henhouse.bgf rawchicken.bgf GRD61042.bgf
 
 !include $(RESOURCEDIR)\copy.mak
 
