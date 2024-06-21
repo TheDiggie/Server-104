@@ -15653,5 +15653,12 @@ messages:
       propagate;
    }
 
+   IsOfflineOrCannotInteract()
+   {
+      return (NOT pbLogged_on)
+         OR (piFlags & PFLAG_PHASED)
+         OR (piFlags & PFLAG_SPECTATOR);
+   }
+   
 end
 ////////////////////////////////////////////////////////////////////////////////
