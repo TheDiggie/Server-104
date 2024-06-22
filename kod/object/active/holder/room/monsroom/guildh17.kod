@@ -23,6 +23,9 @@ resources:
 
    secret_code = "open chest"
 
+   Secret_Signname = "Chest room"
+   Secret_Sign = "Say 'open chest' to open the chest room door. "
+
 classvars:
 
    vrName = room_name_GuildHall17
@@ -250,6 +253,11 @@ messages:
 
    CreateStandardObjects()
    {
+      local oObj;
+
+      oObj = Create(&Sign,#desc=Secret_sign,#newbie=TRUE,#name=Secret_signname);
+      Send(self,@NewHold,#what=oObj,#new_row=30,#new_col=17,#fine_row=11,#fine_col=60);
+
       Send(self,@NewHold,#what=Create(&Tree,#top=TREE_PINE,#bottom=TREE_PINE),
           #new_row=6,#new_col=50);
           
