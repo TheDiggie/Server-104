@@ -8,7 +8,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-GuildHall17 is MonsterRoom
+GuildHall17 is ObjectRoom
 
 constants:
 
@@ -48,6 +48,9 @@ properties:
    piBaseLight = LIGHT_NICE
 
    piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+   
+   // Every 5 min.
+   piGen_object_time = 30000
 
    ptCloseNorth  = $
    ptCloseSouth  = $
@@ -255,12 +258,107 @@ messages:
    {
       local oObj;
 
+      Send(self,@NewHold,#what=Create(&Chest),
+            #new_row=22,#new_col=17,#fine_row=48,#fine_col=16,#new_angle=ANGLE_EAST);
+      Send(self,@NewHold,#what=Create(&Chest),
+            #new_row=26,#new_col=17,#fine_row=0,#fine_col=16,#new_angle=ANGLE_EAST);
+      Send(self,@NewHold,#what=Create(&Chest),
+            #new_row=22,#new_col=22,#fine_row=48,#fine_col=16,#new_angle=ANGLE_WEST);
+      Send(self,@NewHold,#what=Create(&Chest),
+            #new_row=26,#new_col=22,#fine_row=0,#fine_col=16,#new_angle=ANGLE_WEST);
+
+      Send(self,@NewHold,#what=Create(&Chest),
+            #new_row=21,#new_col=23,#fine_row=48,#fine_col=32,#new_angle=ANGLE_EAST);
+      Send(self,@NewHold,#what=Create(&Chest),
+            #new_row=29,#new_col=33,#fine_row=48,#fine_col=32,#new_angle=ANGLE_EAST);
+
+      Send(self,@NewHold,#what=Create(&Fountain),#new_row=42,#new_col=24,#fine_row=12,#fine_col=8);
+      Send(self,@NewHold,#what=Create(&Firepit,#iSoundRadius=5),#new_row=45,#new_col=6,#fine_row=32,#fine_col=4);
+
+      Send(self,@NewHold,#what=Create(&Dice,#pair=FALSE),
+           #new_row=39,#new_col=12,#fine_row=4,#fine_col=0,#new_angle=ANGLE_NORTH);
+      Send(self,@NewHold,#what=Create(&Dice,#pair=TRUE),
+           #new_row=39,#new_col=13,#fine_row=4,#fine_col=16,#new_angle=ANGLE_NORTH);
+      Send(self,@NewHold,#what=Create(&Dice,#pair=FALSE),
+           #new_row=40,#new_col=13,#fine_row=20,#fine_col=16,#new_angle=ANGLE_NORTH);
+      Send(self,@NewHold,#what=Create(&Dice,#pair=TRUE),
+           #new_row=40,#new_col=12,#fine_row=20,#fine_col=0,#new_angle=ANGLE_NORTH);
+
+      Send(self,@NewHold,#what=Create(&Pillow),
+            #new_row=21,#new_col=32,#fine_row=48,#fine_col=16,#new_angle=ANGLE_WEST);
+
       oObj = Create(&Sign,#desc=Secret_sign,#newbie=TRUE,#name=Secret_signname);
       Send(self,@NewHold,#what=oObj,#new_row=30,#new_col=17,#fine_row=11,#fine_col=60);
 
-      Send(self,@NewHold,#what=Create(&Tree,#top=TREE_PINE,#bottom=TREE_PINE),
-          #new_row=6,#new_col=50);
+      Send(self,@NewHold,#what=Create(&Tree,#top=TREE_PINE,#bottom=TREE_PINE),#new_row=6,#new_col=50);
           
+      Send(self,@NewHold,#what=Create(&Throne),#new_row=42,#new_col=10,#fine_row=32,#fine_col=40,#new_angle=ANGLE_SOUTH);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=45,#new_col=14,#fine_row=0,#fine_col=48);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=45,#new_col=13,#fine_row=32,#fine_col=48);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=47,#new_col=13,#fine_row=0,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=48,#new_col=13,#fine_row=16,#fine_col=0);
+
+      Send(self,@NewHold,#what=Create(&Table),#new_row=40,#new_col=9,#fine_row=48,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=40,#new_col=8,#fine_row=48,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=40,#new_col=9,#fine_row=48,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=35,#new_col=10,#fine_row=56,#fine_col=48);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=35,#new_col=12,#fine_row=56,#fine_col=0);
+
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=40,#new_col=36,#fine_row=32,#fine_col=16);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=41,#new_col=37,#fine_row=48,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=42,#new_col=38,#fine_row=24,#fine_col=16);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=42,#new_col=39,#fine_row=24,#fine_col=56);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=41,#new_col=41,#fine_row=48,#fine_col=16);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=40,#new_col=42,#fine_row=48,#fine_col=0);
+
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=37,#new_col=34,#fine_row=32,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=38,#new_col=35,#fine_row=0,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=38,#new_col=36,#fine_row=48,#fine_col=8);
+
+      Send(self,@NewHold,#what=Create(&Table),#new_row=42,#new_col=33,#fine_row=40,#fine_col=40);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=42,#new_col=33,#fine_row=0,#fine_col=8);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=43,#new_col=34,#fine_row=16,#fine_col=8);
+
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=49,#new_col=41,#fine_row=0,#fine_col=16);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=49,#new_col=42,#fine_row=0,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=49,#new_col=43,#fine_row=0,#fine_col=48);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=49,#new_col=45,#fine_row=0,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=49,#new_col=46,#fine_row=0,#fine_col=16);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=47,#new_col=46,#fine_row=48,#fine_col=16);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=46,#new_col=46,#fine_row=32,#fine_col=16);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=45,#new_col=46,#fine_row=12,#fine_col=16);
+
+      Send(self,@NewHold,#what=Create(&Table),#new_row=44,#new_col=34,#fine_row=16,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=44,#new_col=33,#fine_row=16,#fine_col=30);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=44,#new_col=34,#fine_row=16,#fine_col=30);
+
+      Send(self,@NewHold,#what=Create(&Table),#new_row=45,#new_col=37,#fine_row=16,#fine_col=16);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=44,#new_col=37,#fine_row=32,#fine_col=16);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=46,#new_col=37,#fine_row=0,#fine_col=16);
+
+      Send(self,@NewHold,#what=Create(&Table),#new_row=48,#new_col=33,#fine_row=32,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=49,#new_col=32,#fine_row=6,#fine_col=62);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=47,#new_col=34,#fine_row=58,#fine_col=2);
+
+      Send(self,@NewHold,#what=Create(&Table),#new_row=49,#new_col=35,#fine_row=0,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=48,#new_col=35,#fine_row=16,#fine_col=16);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=49,#new_col=35,#fine_row=40,#fine_col=48);
+
+      propagate;
+   }
+
+   CreateObjectGeneration()
+   {
+      plObject_gen = $;
+
+      // some mugs
+
+      plObject_gen = Cons([ &WineGoblet, GEN_ONE, 1, 40, 37,  16, 16 ],plObject_gen);
+      plObject_gen = Cons([ &WineGoblet, GEN_ONE, 1, 41, 37, 8, 40 ],plObject_gen);
+      plObject_gen = Cons([ &WineGoblet, GEN_ONE, 1,  41, 38, 32, 40 ],plObject_gen);
+      plObject_gen = Cons([ &WineGoblet, GEN_ONE, 1,  41, 40, 32, 0 ],plObject_gen);      
+      plObject_gen = Cons([ &WineGoblet, GEN_ONE, 1,  40, 41, 56, 0 ],plObject_gen);
+
       propagate;
    }
 
