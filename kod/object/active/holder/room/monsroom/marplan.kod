@@ -452,19 +452,26 @@ messages:
 
    CreateStandardExits()
    {
-     plEdge_Exits = $;
+      plEdge_Exits = $;
+ 
+      plEdge_Exits = Cons([ LEAVE_EAST , RID_MARION, 15, 2, ROTATE_NONE ],plEdge_Exits);
+      plEdge_Exits = Cons([ LEAVE_SOUTH , RID_A6, 5, 47, ROTATE_NONE ],plEdge_Exits);
+ 
+      plExits = $;
+ 
+      plExits = Cons([ 84, 32, RID_MARION_PLAN, 84, 33, ROTATE_NONE ],plExits);
+      plExits = Cons([ 84, 33, RID_MARION_PLAN, 84, 32, ROTATE_NONE ],plExits);
 
-     plEdge_Exits = Cons([ LEAVE_EAST , RID_MARION, 15, 2, ROTATE_NONE ],plEdge_Exits);
-     plEdge_Exits = Cons([ LEAVE_SOUTH , RID_A6, 5, 47, ROTATE_NONE ],plEdge_Exits);
-
-     plExits = $;
-
-     plExits = Cons([ 84, 32, RID_MARION_PLAN, 84, 33, ROTATE_NONE ],plExits);
-     plExits = Cons([ 84, 33, RID_MARION_PLAN, 84, 32, ROTATE_NONE ],plExits);
 
       plExits = Cons([ 82, 47, RID_MARION_PLAN, 82, 48, ROTATE_NONE ],plExits);
       plExits = Cons([ 83, 47, RID_MARION_PLAN, 82, 48, ROTATE_NONE ],plExits);
       plExits = Cons([ 82, 48, RID_MARION_PLAN, 82, 47, ROTATE_NONE ],plExits);
+
+      plExits = Cons([ 3, 84, RID_GUILDH17, 50, 27, ROTATE_NONE ],plExits);
+      plExits = Cons([ 3, 85, RID_GUILDH17, 50, 28, ROTATE_NONE ],plExits);
+
+      plExits = Cons([ 6, 84, RID_GUILDH17, 59, 27, ROTATE_NONE ],plExits);
+      plExits = Cons([ 6, 85, RID_GUILDH17, 59, 28, ROTATE_NONE ],plExits);
 
       propagate;
    }

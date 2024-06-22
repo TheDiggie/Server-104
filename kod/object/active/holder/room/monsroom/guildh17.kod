@@ -1,0 +1,260 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+GuildHall17 is MonsterRoom
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   room_GuildHall17 = guildh17.roo
+   room_name_GuildHall17 ="Green's workshop"
+   GuildHall17_music = walk7.ogg
+   GuildHall17_sound = down2.ogg
+
+   secret_code = "open chest"
+
+classvars:
+
+   vrName = room_name_GuildHall17
+
+   viTeleport_row = 30
+   viTeleport_col = 21
+
+   viTerrain_type = TERRAIN_CITY | TERRAIN_GUILDHALL
+
+   viWeatherZone = WEATHER_ZONE_MARION
+
+   vrsecret = secret_code
+
+properties:
+
+   prRoom = room_GuildHall17
+   prMusic = GuildHall17_music
+   piRoom_num = RID_GUILDH17
+
+   piBaseLight = LIGHT_NICE
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+   ptCloseNorth  = $
+   ptCloseSouth  = $
+   ptCloseSecret = $
+   
+messages:
+
+   CreateStandardExits()
+   {
+      plExits = $;
+
+      plExits = Cons([ 50, 27, RID_MARION_PLAN, 3, 84, ROTATE_NONE ],plExits);
+      plExits = Cons([ 50, 28, RID_MARION_PLAN, 3, 85, ROTATE_NONE ],plExits);
+
+      plExits = Cons([ 60, 27, RID_MARION_PLAN, 7, 84, ROTATE_NONE ],plExits);
+      plExits = Cons([ 60, 28, RID_MARION_PLAN, 7, 85, ROTATE_NONE ],plExits);
+
+      plEdge_Exits = $;
+
+      plEdge_Exits = Cons([LEAVE_NORTH, RID_A1, 49, 23, ROTATE_NONE], plEdge_exits);
+
+      return;
+   }
+
+   SomeoneSaid(what=$,string=$)
+   {
+      if isClass(what,&User)
+      {
+         if StringEqual(string,vrsecret)
+         {
+            Send(self,@OpenSecretDoor);
+         }
+      }
+
+      return;
+   }
+
+   SomethingTryGo(what = $,row = $,col = $)
+   {
+      local iFineRow, iFineCOl;
+
+      iFineRow = Send(what,@GetFineRow);
+      iFineCOl = Send(what,@GetFineCol);
+
+      if Send(what,@GetSectorIDAtObject) = 55
+      {
+         Send(self,@OpenNorthDoor);
+
+         return TRUE;
+      }
+
+      if Send(what,@GetSectorIDAtObject) = 65
+      {
+         Send(self,@OpenSouthDoor);
+
+         return TRUE;
+      }
+
+      if ((row = 32 AND (iFineRow >= 60 AND iFineRow <= 64)) OR (row = 33 AND (iFineRow >= 0 AND iFineRow <= 16))) AND (col >= 19 AND col <= 20)
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=33,#new_col=19,#fine_row=26,#fine_col=48);
+         return TRUE;
+      }
+      
+      if row = 33 AND (iFineRow >= 16 AND iFineRow <= 32) AND (col = 19 OR col = 20)
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=32,#new_col=19,#fine_row=60,#fine_col=48);
+         return TRUE;
+      }
+
+      if ((row = 32 AND (iFineRow >= 60 AND iFineRow <= 64)) OR (row = 33 AND (iFineRow >= 0 AND iFineRow <= 16))) AND (col >= 27 AND col <= 28)
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=33,#new_col=27,#fine_row=32,#fine_col=32);
+         return TRUE;
+      }
+      
+      if row = 33 AND (iFineRow >= 16 AND iFineRow <= 32) AND (col = 27 OR col = 28)
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=33,#new_col=27,#fine_row=0,#fine_col=32);
+         return TRUE;
+      }
+
+      if (row = 38 OR row = 39) AND col = 15 AND (iFineCOl >= 24 AND iFineCOl <= 46)
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=38,#new_col=16,#fine_row=48,#fine_col=0);
+         return TRUE;
+      }
+      
+      if (row = 38 OR row = 39) AND ((col = 15 AND (iFineCOl >= 48 AND iFineCOl <= 64)) OR (col = 16 AND (iFineCOl >= 0 AND iFineCOl <= 4)))
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=38,#new_col=15,#fine_row=48,#fine_col=32);
+         return TRUE;
+      }
+      
+      if (row = 43 OR row = 44) AND col = 15 AND (iFineCOl >= 24 AND iFineCOl <= 46)
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=43,#new_col=16,#fine_row=32,#fine_col=0);
+         return TRUE;
+      }
+      
+      if (row = 43 OR row = 44) AND ((col = 15 AND (iFineCOl >= 48 AND iFineCOl <= 64)) OR (col = 16 AND (iFineCOl >= 0 AND iFineCOl <= 4)))
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=43,#new_col=15,#fine_row=32,#fine_col=32);
+         return TRUE;
+      }
+
+      if (row = 38 OR row = 39) AND ((col = 32 AND (iFineCOl >= 0 AND iFineCOl <= 16)) OR (col = 31 AND (iFineCOl >= 60 AND iFineCOl <= 64)))
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=38,#new_col=32,#fine_row=48,#fine_col=32);
+         return TRUE;
+      }
+      
+      if (row = 38 OR row = 39) AND (col = 32 AND (iFineCOl >= 16 AND iFineCOl <= 48))
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=38,#new_col=32,#fine_row=48,#fine_col=0);
+         return TRUE;
+      }
+
+      if (row = 45 OR row = 46) AND ((col = 32 AND (iFineCOl >= 0 AND iFineCOl <= 16)) OR (col = 31 AND (iFineCOl >= 60 AND iFineCOl <= 64)))
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=46,#new_col=32,#fine_row=0,#fine_col=32);
+         return TRUE;
+      }
+      
+      if (row = 45 OR row = 46) AND (col = 32 AND (iFineCOl >= 16 AND iFineCOl <= 48))
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=46,#new_col=32,#fine_row=0,#fine_col=0);
+         return TRUE;
+      }
+
+      if (row = 21 OR row = 22) AND ((col = 42 AND iFineCOl >= 28) OR (col = 43 AND iFineCOl <= 20))
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=18,#new_col=43,#fine_row=44,#fine_col=52);
+         return TRUE;
+      }
+      
+      if (row = 18 OR row = 19) AND ((col = 43 AND iFineCOl >= 16) OR (col = 44 AND iFineCOl <= 20))
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=21,#new_col=42,#fine_row=60,#fine_col=56);
+         return TRUE;
+      }
+
+      propagate;
+   }
+
+   OpenNorthDoor()
+   {
+      Send(self,@SetSector,#sector=20,#animation=ANIMATE_CEILING_LIFT,#height=200,#speed=25);
+      Send(self,@SetSector,#sector=30,#animation=ANIMATE_CEILING_LIFT,#height=200,#speed=35);
+
+      ptCloseNorth = CreateTimer(self,@CloseNorthDoor,7000);
+
+      return;
+   }
+
+   CloseNorthDoor()
+   {
+      Send(self,@SetSector,#sector=20,#animation=ANIMATE_CEILING_LIFT,#height=128,#speed=35);
+      Send(self,@SetSector,#sector=30,#animation=ANIMATE_CEILING_LIFT,#height=128,#speed=25);
+
+      return;
+   }
+
+   OpenSouthDoor()
+   {
+      Send(self,@SetSector,#sector=2,#animation=ANIMATE_CEILING_LIFT,#height=200,#speed=25);
+      Send(self,@SetSector,#sector=3,#animation=ANIMATE_CEILING_LIFT,#height=200,#speed=35);
+
+      ptCloseSouth = CreateTimer(self,@CloseSouthDoor,7000);
+
+      return;
+   }
+
+   CloseSouthDoor()
+   {
+      Send(self,@SetSector,#sector=2,#animation=ANIMATE_CEILING_LIFT,#height=128,#speed=35);
+      Send(self,@SetSector,#sector=3,#animation=ANIMATE_CEILING_LIFT,#height=128,#speed=25);
+
+      return;
+   }
+
+   OpenSecretDoor()
+   {
+      Send(self,@SetSector,#sector=5,#animation=ANIMATE_CEILING_LIFT,#height=308,#speed=35);
+      Send(self,@SetSector,#sector=6,#animation=ANIMATE_CEILING_LIFT,#height=308,#speed=28);
+      Send(self,@SetSector,#sector=7,#animation=ANIMATE_CEILING_LIFT,#height=308,#speed=21);
+      Send(self,@SetSector,#sector=8,#animation=ANIMATE_CEILING_LIFT,#height=308,#speed=14);
+
+      ptCloseSecret = CreateTimer(self,@CloseSecretDoor,9000);
+
+      return;
+   }
+
+   CloseSecretDoor()
+   {
+      Send(self,@SetSector,#sector=5,#animation=ANIMATE_CEILING_LIFT,#height=218,#speed=14);
+      Send(self,@SetSector,#sector=6,#animation=ANIMATE_CEILING_LIFT,#height=218,#speed=21);
+      Send(self,@SetSector,#sector=7,#animation=ANIMATE_CEILING_LIFT,#height=218,#speed=28);
+      Send(self,@SetSector,#sector=8,#animation=ANIMATE_CEILING_LIFT,#height=218,#speed=35);
+
+      return;
+   }
+
+   CreateStandardObjects()
+   {
+      Send(self,@NewHold,#what=Create(&Tree,#top=TREE_PINE,#bottom=TREE_PINE),
+          #new_row=6,#new_col=50);
+          
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

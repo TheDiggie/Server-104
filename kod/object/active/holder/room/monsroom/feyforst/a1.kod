@@ -50,7 +50,9 @@ messages:
    CreateStandardExits()
    {   
       plEdge_Exits = $;
+
       plEdge_Exits = Cons([LEAVE_EAST, RID_C1, 6, 1, ROTATE_NONE], plEdge_exits);
+      plEdge_Exits = Cons([LEAVE_SOUTH, RID_GUILDH17, 3, 55, ROTATE_NONE], plEdge_exits);
       propagate;
    }
 
