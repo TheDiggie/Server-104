@@ -41,8 +41,7 @@ messages:
 
    Constructor()
    {
-      plContents = [ &MagicBow, &NeruditeBow, &HolyBow, &QorBow, &Longbow, &BattleBow, 
-                     &PracticeBow ];
+      plContents = [ &MagicBow, &NeruditeBow, &HolyBow, &QorBow, &Longbow, &BattleBow ];
 
       plItematt = [ IA_TRANSCENDANT, IA_DURABLE, IA_INDESTRUCTIBLE, IA_XP_KILL_BONUS,
                     WA_BLINDER, WA_PARALYZER, WA_VAMPER, WA_BONKER, WA_FACTION,
