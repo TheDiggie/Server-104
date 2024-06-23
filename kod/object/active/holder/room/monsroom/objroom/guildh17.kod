@@ -26,6 +26,9 @@ resources:
    Secret_Signname = "Chest room"
    Secret_Sign = "Say 'open chest' to open the chest room door. "
 
+   guildhall17_entrancedoor_open_sound = doorrsup.ogg
+   guildhall17_entrancedoor_close_sound = doordown.ogg
+
 classvars:
 
    vrName = room_name_GuildHall17
@@ -38,6 +41,12 @@ classvars:
    viWeatherZone = WEATHER_ZONE_MARION
 
    vrsecret = secret_code
+
+   viPermanent_flags = ROOM_NO_COMBAT | ROOM_SANCTUARY | ROOM_SAFELOGOFF
+
+
+   vrEntrance_open_sound = guildhall17_entrancedoor_open_sound
+   vrEntrance_close_sound = guildhall17_entrancedoor_close_sound
 
 properties:
 
@@ -200,6 +209,7 @@ messages:
    {
       Send(self,@SetSector,#sector=20,#animation=ANIMATE_CEILING_LIFT,#height=200,#speed=25);
       Send(self,@SetSector,#sector=30,#animation=ANIMATE_CEILING_LIFT,#height=200,#speed=35);
+      Send(self,@SomethingWaveRoom,#wave_rsc=vrEntrance_open_sound); 
 
       ptCloseNorth = CreateTimer(self,@CloseNorthDoor,7000);
 
@@ -210,6 +220,7 @@ messages:
    {
       Send(self,@SetSector,#sector=20,#animation=ANIMATE_CEILING_LIFT,#height=128,#speed=35);
       Send(self,@SetSector,#sector=30,#animation=ANIMATE_CEILING_LIFT,#height=128,#speed=25);
+      Send(self,@SomethingWaveRoom,#wave_rsc=vrEntrance_close_sound); 
 
       return;
    }
@@ -218,6 +229,7 @@ messages:
    {
       Send(self,@SetSector,#sector=2,#animation=ANIMATE_CEILING_LIFT,#height=200,#speed=25);
       Send(self,@SetSector,#sector=3,#animation=ANIMATE_CEILING_LIFT,#height=200,#speed=35);
+      Send(self,@SomethingWaveRoom,#wave_rsc=vrEntrance_open_sound); 
 
       ptCloseSouth = CreateTimer(self,@CloseSouthDoor,7000);
 
@@ -228,6 +240,7 @@ messages:
    {
       Send(self,@SetSector,#sector=2,#animation=ANIMATE_CEILING_LIFT,#height=128,#speed=35);
       Send(self,@SetSector,#sector=3,#animation=ANIMATE_CEILING_LIFT,#height=128,#speed=25);
+      Send(self,@SomethingWaveRoom,#wave_rsc=vrEntrance_close_sound); 
 
       return;
    }
@@ -238,6 +251,7 @@ messages:
       Send(self,@SetSector,#sector=6,#animation=ANIMATE_CEILING_LIFT,#height=308,#speed=28);
       Send(self,@SetSector,#sector=7,#animation=ANIMATE_CEILING_LIFT,#height=308,#speed=21);
       Send(self,@SetSector,#sector=8,#animation=ANIMATE_CEILING_LIFT,#height=308,#speed=14);
+      Send(self,@SomethingWaveRoom,#wave_rsc=vrEntrance_open_sound); 
 
       ptCloseSecret = CreateTimer(self,@CloseSecretDoor,9000);
 
@@ -250,6 +264,7 @@ messages:
       Send(self,@SetSector,#sector=6,#animation=ANIMATE_CEILING_LIFT,#height=218,#speed=21);
       Send(self,@SetSector,#sector=7,#animation=ANIMATE_CEILING_LIFT,#height=218,#speed=28);
       Send(self,@SetSector,#sector=8,#animation=ANIMATE_CEILING_LIFT,#height=218,#speed=35);
+      Send(self,@SomethingWaveRoom,#wave_rsc=vrEntrance_close_sound); 
 
       return;
    }
@@ -343,6 +358,33 @@ messages:
       Send(self,@NewHold,#what=Create(&Table),#new_row=49,#new_col=35,#fine_row=0,#fine_col=32);
       Send(self,@NewHold,#what=Create(&Stool),#new_row=48,#new_col=35,#fine_row=16,#fine_col=16);
       Send(self,@NewHold,#what=Create(&Stool),#new_row=49,#new_col=35,#fine_row=40,#fine_col=48);
+
+      Send(self,@NewHold,#what=Create(&SpinningWheel),
+           #new_row=27,#new_col=33,#fine_row=0,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&Loom),
+           #new_row=24,#new_col=46,#fine_row=32,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&Forge),
+           #new_row=21,#new_col=34,#fine_row=32,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&KocatanForge),
+           #new_row=21,#new_col=37,#fine_row=32,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&CraftingAnvil),
+           #new_row=27,#new_col=37,#fine_row=0,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&ShaveHorse),
+           #new_row=33,#new_col=46,#fine_row=32,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&TanningRack),
+           #new_row=35,#new_col=39,#fine_row=0,#fine_col=0,
+            #new_angle=ANGLE_NORTH);
+      Send(self,@NewHold,#what=Create(&KocatanTanningRack),
+           #new_row=35,#new_col=43,#fine_row=0,#fine_col=0,
+            #new_angle=ANGLE_NORTH);
+      Send(self,@NewHold,#what=Create(&SplittingStump),
+           #new_row=27,#new_col=43,#fine_row=0,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&KocatanSplittingStump),
+           #new_row=32,#new_col=37,#fine_row=0,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&GoadsAnvil),
+           #new_row=38,#new_col=39,#fine_row=48,#fine_col=16);
+      Send(self,@NewHold,#what=Create(&KocatanAnvil),
+           #new_row=32,#new_col=43,#fine_row=0,#fine_col=0);
 
       propagate;
    }
