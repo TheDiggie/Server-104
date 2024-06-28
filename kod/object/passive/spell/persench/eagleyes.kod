@@ -37,11 +37,11 @@ resources:
       "will be reduced by %i%%."
    EagleEyes_resist = \
       "Krannan's magic fights to penetrate the veil of darkness."
-   EagleEyes_evade = "The magic of Krannan preserves your sight."
+   EagleEyes_evade = "~gThe magic of Krannan preserves your sight."
    EagleEyes_resist_caster = \
       "You sense a force resisting your blinding spell."
    EagleEyes_evade_caster = \
-      "The magic of Krannan preserves the sight of your target."
+      "~rThe magic of Krannan preserves the sight of your target."
 
    EagleEyes_sound = keagleye.ogg
 

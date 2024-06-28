@@ -25,8 +25,9 @@ resources:
    Meditate_desc_rsc = \
       "Allows you to channel your experience in meditation in order to "
       "open your mind and improve your abilities.  To do so, speak the "
-      "name of the ability you wish to improve while in trance.  This "
-      "will use up accumulated training points."
+      "name of the ability you wish to improve while in trance.  \n\n"
+      "Say a number up to 9 to advance the ability that many improvements. "
+      "Not saying a number will spend all available training points. "
 
    Meditate_begin_trance = \
       "You begin your meditation and let your mind wander.  Which ability "
@@ -46,6 +47,8 @@ resources:
       "progress any further in its mastery."
    Meditate_cast_finished = \
       "You wake from your trance and feel your mental energies refreshed!"
+   Meditate_bad_number = \
+      "You may only say numbers up to 9 or don't say any numbers to spend all your points. "
 
 classvars:
 
@@ -113,10 +116,11 @@ messages:
    SomethingSaidDuringTrance(who=$,string=$,lTargets=$)
    {
       local i, bFound, oSpell, sSpell, oSkill, sSkill, iPercent,
-            iRatio, iGain, iNum, iPoints;
+            iRatio, iGain, iNum, iPoints, iAmount;
 
       Send(who,@BreakTrance,#event=EVENT_STEER);  /// Don't print fizzle message
 
+      iAmount = $;
       bFound = FALSE;
 
       iPoints = Send(who,@GetTrainingPoints);
@@ -127,7 +131,7 @@ messages:
          oSpell = Send(SYS,@FindSpellByNum,#num=iNum);
          sSpell = Send(oSpell,@GetName);
 
-         if StringEqual(string,sSpell)
+         if StringContain(string,sSpell)
          {
             bFound = TRUE;
             iPercent = Send(oSpell,@GetAbility,#who=who);
@@ -148,6 +152,20 @@ messages:
                return;
             }
 
+            iAmount = Send(SYS,@GetNumberFromString,#string=string);
+            
+            if iAmount = -1
+            {
+               iAmount = $;
+            }
+
+            if iAmount = 0
+            {
+               Send(who,@MsgSendUser,#message_rsc=Meditate_bad_number);
+
+               return;
+            }
+
             if iPoints < iRatio
             {
                Send(who,@MsgSendUser,#message_rsc=Meditate_not_enough_points,
@@ -157,7 +175,16 @@ messages:
             }
             else
             {
-               iGain = iPoints/iRatio;
+               if iAmount <> $
+               {  
+                  iAmount = iRatio * iAmount;
+                  iGain = iAmount/iRatio;
+               }
+               else
+               {
+                  iGain = iPoints/iRatio;
+               }
+               
                if iGain > 99 - iPercent
                {
                   iGain = 99 - iPercent;
