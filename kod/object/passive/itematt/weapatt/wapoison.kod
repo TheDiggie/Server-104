@@ -42,7 +42,6 @@ classvars:
 
    viDifficulty = 9
    vrDM_trigger = Poison_dm
-   vbAllowSpecialAttributes = FALSE
 
 properties:
 
