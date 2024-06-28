@@ -145,6 +145,7 @@ messages:
 
       if piNumSides >= 1 AND piNumSides <= 4
       {
+         piNumSides = 1;
          vrIcon = prism_1_icon_rsc;
       }
       else if piNumSides >= 5 AND piNumSides <= 9
