@@ -116,11 +116,17 @@ messages:
    {
       local iSpellPower, iAbsorbed, iMax, iFinalDamage, iFinalAbsorbed;
 
+      // Don't bother with 0 damage hits.
+      if (damage = 0)
+      {
+         return damage;
+      }
+
       iSpellPower = Send(who,@GetEnchantedState,#what=self);
       iMax = 1500;
       iAbsorbed = bound(random(0,iSpellPower*4),0,400);
 
-      if aspell <> 0
+      if aspell <> 0 OR (atype & ATCK_WEAP_MAGIC)
       {
          // Reduce damage if part of the damage is spell
          if atype <> 0
@@ -144,7 +150,7 @@ messages:
       if IsClass(what,&User)
          AND iFinalAbsorbed > 0
       {
-         if aspell <> 0
+         if aspell <> 0 OR (atype & ATCK_WEAP_MAGIC)
          {
             if atype <> 0
             {
