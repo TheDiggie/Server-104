@@ -241,7 +241,7 @@ messages:
       lAvailable = $;
 
       // 84 spellpower for Island (7 locations, divide by 12)
-      if oGuild
+      if Send(oGuild,@GetGuildHall) <> $
       {
          iNumLocations = Bound(iSpellPower/12,1,8);
       }

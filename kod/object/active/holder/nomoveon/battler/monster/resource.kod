@@ -97,6 +97,11 @@ messages:
    {
       local i, oResource, iAmount, cSkillAbility, iBonus;
 
+      if NOT IsClass(what,&User)
+      {
+         propagate;
+      }
+
       cSkillAbility = Send(what,@GetSkillAbility,#skill_num=viSkill);
 
       iBonus = 0;

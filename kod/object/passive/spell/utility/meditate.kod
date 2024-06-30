@@ -213,7 +213,7 @@ messages:
          oSkill = Send(SYS,@FindSkillByNum,#num=iNum);
          sSkill = Send(oSkill,@GetName);
 
-         if StringEqual(string,sSkill)
+         if StringContain(string,sSkill)
          {
             bFound = TRUE;
             iPercent = Send(oSkill,@GetAbility,#who=who);
@@ -234,6 +234,20 @@ messages:
                      return;
             }
 
+            iAmount = Send(SYS,@GetNumberFromString,#string=string);
+            
+            if iAmount = -1
+            {
+               iAmount = $;
+            }
+
+            if iAmount = 0
+            {
+               Send(who,@MsgSendUser,#message_rsc=Meditate_bad_number);
+
+               return;
+            }
+
             if iPoints < iRatio
             {
                Send(who,@MsgSendUser,#message_rsc=Meditate_not_enough_points,
@@ -242,8 +256,17 @@ messages:
                return;
             }
             else
-            {
-               iGain = iPoints/iRatio;
+            {  
+               if iAmount <> $
+               {  
+                  iAmount = iRatio * iAmount;
+                  iGain = iAmount/iRatio;
+               }
+               else
+               {
+                  iGain = iPoints/iRatio;
+               }
+               
                if iGain > 99 - iPercent
                {
                   iGain = 99 - iPercent;

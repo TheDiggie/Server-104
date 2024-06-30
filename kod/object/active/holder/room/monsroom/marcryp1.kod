@@ -511,7 +511,7 @@ messages:
       {
          each_obj = First(i);
          if count = COUNT_MONSTERS
-               AND IsClass(each_obj,&Monster)
+               AND (IsClass(each_obj,&Monster) AND NOT IsClass(each_obj,&Reflection))
             OR count = COUNT_PLAYERS
                AND IsClass(each_obj,&User)
          {
