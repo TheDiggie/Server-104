@@ -3690,7 +3690,10 @@ messages:
 
             }
 
-            if Send(Nth(i,2),@IsPeriodic,#state=state,#who=self)
+            if iTime = $
+            {
+            }
+            else if Send(Nth(i,2),@IsPeriodic,#state=state,#who=self)
             {
                SetFirst(i,CreateTimer(self,@PeriodicEnchantmentTimer,iTime));
             }

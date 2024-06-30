@@ -110,6 +110,7 @@ messages:
       }
 
       if IsClass(what,&Shield)
+         OR IsClass(what,&JewelOfFroz)
       {
          iJewelNumber = 0;
 

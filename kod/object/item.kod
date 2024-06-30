@@ -892,7 +892,7 @@ messages:
          }
       }
 
-      if poSpell <> $
+      if poSpell <> $ AND NOT IsClass(self,&Prism)
       {
          oSpell = Send(SYS,@FindSpellByNum,#Num=poSpell);
          AddPacket(4,item_cast_spell, 4,Send(self,@GetName), 4,Send(oSpell,@GetName));
