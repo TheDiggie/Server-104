@@ -18,7 +18,7 @@ resources:
    include manashield.lkod
 
    ManaShield_name_rsc = "mana shield"
-   ManaShield_icon_rsc = igort.bgf
+   ManaShield_icon_rsc = imanashld.bgf
    ManaShield_desc_rsc = \
       "Surrounds the caster with a powerful field which mitigates "
       "damage as long as you have mana.  "
@@ -52,10 +52,10 @@ classvars:
 
    vrSpell_intro = ManaShield_spell_intro
 
-   viMana = 10
+   viMana = 20
 
    viSpell_level = 5
-   viSchool = SS_KRAANAN
+   viSchool = SS_FAREN
 
    viChance_To_Increase = 20
    viMeditate_ratio = 50
@@ -77,8 +77,9 @@ messages:
    ResetReagents()
    {
       plReagents = $;
-      plReagents = Cons([&Diamond,5],plReagents);
-
+      plReagents = Cons([&KriipaClaw,5],plReagents);
+      plReagents = Cons([&BlueDragonScale,5],plReagents);
+      plReagents = Cons([&Solagh,5],plReagents);
       return;
    }
 

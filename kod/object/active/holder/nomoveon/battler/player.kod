@@ -5910,7 +5910,7 @@ messages:
             playerMP = Send(self,@GetMana);
 
             if playerMP > manaDamage {
-               Send(self,@LoseMana,#amount=manaDamage,#precision=TRUE); 
+               Send(self,@LoseMana,#amount=(manaDamage * 150 / 100),#precision=TRUE); 
             }  else { //If the player does not have enough mana to cover the hit, first substract mana, followed by health
                manaDamage = playerMP;
                Send(self,@LoseMana,#amount=manaDamage,#precision=TRUE); 
