@@ -42,8 +42,7 @@ classvars:
 
    vrsecret = secret_code
 
-   viPermanent_flags = ROOM_NO_COMBAT | ROOM_SANCTUARY | ROOM_SAFELOGOFF
-
+   viPermanent_flags = ROOM_GUILD_PK_ONLY
 
    vrEntrance_open_sound = guildhall17_entrancedoor_open_sound
    vrEntrance_close_sound = guildhall17_entrancedoor_close_sound

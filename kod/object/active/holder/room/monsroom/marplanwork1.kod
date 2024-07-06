@@ -1,0 +1,76 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+MarionPlantationWorker1 is MonsterRoom
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   room_name_marplantWorker1 = "Workers quaters"
+   room_marplantWorker1 = workerhome1.roo
+
+   wind_sound_marplantWorker1 = rs_wind.ogg
+
+classvars:
+
+   vrName = room_name_marplantWorker1
+
+   viPermanent_flags = ROOM_NO_COMBAT
+
+   viTeleport_row = 9
+   viTeleport_col = 13
+
+   viTerrain_type = TERRAIN_CITY 
+
+   viWeatherMask = WEATHER_MASK_DEFAULT
+
+properties:
+
+   piBaseLight = LIGHT_NICE
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+   prRoom = room_marplantWorker1
+   piRoom_num = RID_MARION_PLAN_WORKER1
+
+messages:
+
+   CreateStandardExits()
+   {
+      plExits = $;
+
+      plExits = Cons([ 11, 6, RID_MARION_PLAN, 16, 35, ROTATE_NONE ],plExits);
+      plExits = Cons([ 11, 7, RID_MARION_PLAN, 16, 35, ROTATE_NONE ],plExits);
+
+      plExits = Cons([ 11, 12, RID_MARION_PLAN, 16, 40, ROTATE_NONE ],plExits);
+      plExits = Cons([ 11, 13, RID_MARION_PLAN, 16, 40, ROTATE_NONE ],plExits);
+
+      plExits = Cons([ 11, 18, RID_MARION_PLAN, 16, 45, ROTATE_NONE ],plExits);
+      plExits = Cons([ 11, 19, RID_MARION_PLAN, 16, 45, ROTATE_NONE ],plExits);
+
+      plExits = Cons([ 11, 24, RID_MARION_PLAN, 16, 49, ROTATE_NONE ],plExits);
+      plExits = Cons([ 11, 25, RID_MARION_PLAN, 16, 49, ROTATE_NONE ],plExits);
+      
+      propagate;
+   }
+
+   CreateStandardObjects()
+   {
+      Send(self,@NewHold,#what=Create(&Fountain),
+          #new_row=21,#new_col=41,#fine_row=0,#fine_col=0);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////
