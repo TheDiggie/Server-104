@@ -1,0 +1,407 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+GuildHall17 is ObjectRoom
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   room_GuildHall17 = guildh17.roo
+   room_name_GuildHall17 ="Green's workshop"
+   GuildHall17_music = walk7.ogg
+   GuildHall17_sound = down2.ogg
+
+   secret_code = "open chest"
+
+   Secret_Signname = "Chest room"
+   Secret_Sign = "Say 'open chest' to open the chest room door. "
+
+   guildhall17_entrancedoor_open_sound = doorrsup.ogg
+   guildhall17_entrancedoor_close_sound = doordown.ogg
+
+classvars:
+
+   vrName = room_name_GuildHall17
+
+   viTeleport_row = 30
+   viTeleport_col = 21
+
+   viTerrain_type = TERRAIN_CITY | TERRAIN_GUILDHALL
+
+   viWeatherZone = WEATHER_ZONE_MARION
+
+   vrsecret = secret_code
+
+   viPermanent_flags = ROOM_GUILD_PK_ONLY
+
+   vrEntrance_open_sound = guildhall17_entrancedoor_open_sound
+   vrEntrance_close_sound = guildhall17_entrancedoor_close_sound
+
+properties:
+
+   prRoom = room_GuildHall17
+   prMusic = GuildHall17_music
+   piRoom_num = RID_GUILDH17
+
+   piBaseLight = LIGHT_NICE
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+   
+   // Every 5 min.
+   piGen_object_time = 30000
+
+   ptCloseNorth  = $
+   ptCloseSouth  = $
+   ptCloseSecret = $
+   
+messages:
+
+   CreateStandardExits()
+   {
+      plExits = $;
+
+      plExits = Cons([ 50, 27, RID_MARION_PLAN, 3, 84, ROTATE_NONE ],plExits);
+      plExits = Cons([ 50, 28, RID_MARION_PLAN, 3, 85, ROTATE_NONE ],plExits);
+
+      plExits = Cons([ 60, 27, RID_MARION_PLAN, 7, 84, ROTATE_NONE ],plExits);
+      plExits = Cons([ 60, 28, RID_MARION_PLAN, 7, 85, ROTATE_NONE ],plExits);
+
+      plEdge_Exits = $;
+
+      plEdge_Exits = Cons([LEAVE_NORTH, RID_A1, 49, 23, ROTATE_NONE], plEdge_exits);
+
+      return;
+   }
+
+   SomeoneSaid(what=$,string=$)
+   {
+      if isClass(what,&User)
+      {
+         if StringEqual(string,vrsecret)
+         {
+            Send(self,@OpenSecretDoor);
+         }
+      }
+
+      return;
+   }
+
+   SomethingTryGo(what = $,row = $,col = $)
+   {
+      local iFineRow, iFineCOl;
+
+      iFineRow = Send(what,@GetFineRow);
+      iFineCOl = Send(what,@GetFineCol);
+
+      if Send(what,@GetSectorIDAtObject) = 55
+      {
+         Send(self,@OpenNorthDoor);
+
+         return TRUE;
+      }
+
+      if Send(what,@GetSectorIDAtObject) = 65
+      {
+         Send(self,@OpenSouthDoor);
+
+         return TRUE;
+      }
+
+      if ((row = 32 AND (iFineRow >= 60 AND iFineRow <= 64)) OR (row = 33 AND (iFineRow >= 0 AND iFineRow <= 16))) AND (col >= 19 AND col <= 20)
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=33,#new_col=19,#fine_row=26,#fine_col=48);
+         return TRUE;
+      }
+      
+      if row = 33 AND (iFineRow >= 16 AND iFineRow <= 32) AND (col = 19 OR col = 20)
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=32,#new_col=19,#fine_row=60,#fine_col=48);
+         return TRUE;
+      }
+
+      if ((row = 32 AND (iFineRow >= 60 AND iFineRow <= 64)) OR (row = 33 AND (iFineRow >= 0 AND iFineRow <= 16))) AND (col >= 27 AND col <= 28)
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=33,#new_col=27,#fine_row=32,#fine_col=32);
+         return TRUE;
+      }
+      
+      if row = 33 AND (iFineRow >= 16 AND iFineRow <= 32) AND (col = 27 OR col = 28)
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=33,#new_col=27,#fine_row=0,#fine_col=32);
+         return TRUE;
+      }
+
+      if (row = 38 OR row = 39) AND col = 15 AND (iFineCOl >= 24 AND iFineCOl <= 46)
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=38,#new_col=16,#fine_row=48,#fine_col=0);
+         return TRUE;
+      }
+      
+      if (row = 38 OR row = 39) AND ((col = 15 AND (iFineCOl >= 48 AND iFineCOl <= 64)) OR (col = 16 AND (iFineCOl >= 0 AND iFineCOl <= 4)))
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=38,#new_col=15,#fine_row=48,#fine_col=32);
+         return TRUE;
+      }
+      
+      if (row = 43 OR row = 44) AND col = 15 AND (iFineCOl >= 24 AND iFineCOl <= 46)
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=43,#new_col=16,#fine_row=32,#fine_col=0);
+         return TRUE;
+      }
+      
+      if (row = 43 OR row = 44) AND ((col = 15 AND (iFineCOl >= 48 AND iFineCOl <= 64)) OR (col = 16 AND (iFineCOl >= 0 AND iFineCOl <= 4)))
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=43,#new_col=15,#fine_row=32,#fine_col=32);
+         return TRUE;
+      }
+
+      if (row = 38 OR row = 39) AND ((col = 32 AND (iFineCOl >= 0 AND iFineCOl <= 16)) OR (col = 31 AND (iFineCOl >= 60 AND iFineCOl <= 64)))
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=38,#new_col=32,#fine_row=48,#fine_col=32);
+         return TRUE;
+      }
+      
+      if (row = 38 OR row = 39) AND (col = 32 AND (iFineCOl >= 16 AND iFineCOl <= 48))
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=38,#new_col=32,#fine_row=48,#fine_col=0);
+         return TRUE;
+      }
+
+      if (row = 45 OR row = 46) AND ((col = 32 AND (iFineCOl >= 0 AND iFineCOl <= 16)) OR (col = 31 AND (iFineCOl >= 60 AND iFineCOl <= 64)))
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=46,#new_col=32,#fine_row=0,#fine_col=32);
+         return TRUE;
+      }
+      
+      if (row = 45 OR row = 46) AND (col = 32 AND (iFineCOl >= 16 AND iFineCOl <= 48))
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=46,#new_col=32,#fine_row=0,#fine_col=0);
+         return TRUE;
+      }
+
+      if (row = 21 OR row = 22) AND ((col = 42 AND iFineCOl >= 28) OR (col = 43 AND iFineCOl <= 20))
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=18,#new_col=43,#fine_row=44,#fine_col=52);
+         return TRUE;
+      }
+      
+      if (row = 18 OR row = 19) AND ((col = 43 AND iFineCOl >= 16) OR (col = 44 AND iFineCOl <= 20))
+      {
+         Send(self,@SomethingMoved,#what=what,#new_row=21,#new_col=42,#fine_row=60,#fine_col=56);
+         return TRUE;
+      }
+
+      propagate;
+   }
+
+   OpenNorthDoor()
+   {
+      Send(self,@SetSector,#sector=20,#animation=ANIMATE_CEILING_LIFT,#height=200,#speed=25);
+      Send(self,@SetSector,#sector=30,#animation=ANIMATE_CEILING_LIFT,#height=200,#speed=35);
+      Send(self,@SomethingWaveRoom,#wave_rsc=vrEntrance_open_sound); 
+
+      ptCloseNorth = CreateTimer(self,@CloseNorthDoor,7000);
+
+      return;
+   }
+
+   CloseNorthDoor()
+   {
+      Send(self,@SetSector,#sector=20,#animation=ANIMATE_CEILING_LIFT,#height=128,#speed=35);
+      Send(self,@SetSector,#sector=30,#animation=ANIMATE_CEILING_LIFT,#height=128,#speed=25);
+      Send(self,@SomethingWaveRoom,#wave_rsc=vrEntrance_close_sound); 
+
+      return;
+   }
+
+   OpenSouthDoor()
+   {
+      Send(self,@SetSector,#sector=2,#animation=ANIMATE_CEILING_LIFT,#height=200,#speed=25);
+      Send(self,@SetSector,#sector=3,#animation=ANIMATE_CEILING_LIFT,#height=200,#speed=35);
+      Send(self,@SomethingWaveRoom,#wave_rsc=vrEntrance_open_sound); 
+
+      ptCloseSouth = CreateTimer(self,@CloseSouthDoor,7000);
+
+      return;
+   }
+
+   CloseSouthDoor()
+   {
+      Send(self,@SetSector,#sector=2,#animation=ANIMATE_CEILING_LIFT,#height=128,#speed=35);
+      Send(self,@SetSector,#sector=3,#animation=ANIMATE_CEILING_LIFT,#height=128,#speed=25);
+      Send(self,@SomethingWaveRoom,#wave_rsc=vrEntrance_close_sound); 
+
+      return;
+   }
+
+   OpenSecretDoor()
+   {
+      Send(self,@SetSector,#sector=5,#animation=ANIMATE_CEILING_LIFT,#height=308,#speed=35);
+      Send(self,@SetSector,#sector=6,#animation=ANIMATE_CEILING_LIFT,#height=308,#speed=28);
+      Send(self,@SetSector,#sector=7,#animation=ANIMATE_CEILING_LIFT,#height=308,#speed=21);
+      Send(self,@SetSector,#sector=8,#animation=ANIMATE_CEILING_LIFT,#height=308,#speed=14);
+      Send(self,@SomethingWaveRoom,#wave_rsc=vrEntrance_open_sound); 
+
+      ptCloseSecret = CreateTimer(self,@CloseSecretDoor,9000);
+
+      return;
+   }
+
+   CloseSecretDoor()
+   {
+      Send(self,@SetSector,#sector=5,#animation=ANIMATE_CEILING_LIFT,#height=218,#speed=14);
+      Send(self,@SetSector,#sector=6,#animation=ANIMATE_CEILING_LIFT,#height=218,#speed=21);
+      Send(self,@SetSector,#sector=7,#animation=ANIMATE_CEILING_LIFT,#height=218,#speed=28);
+      Send(self,@SetSector,#sector=8,#animation=ANIMATE_CEILING_LIFT,#height=218,#speed=35);
+      Send(self,@SomethingWaveRoom,#wave_rsc=vrEntrance_close_sound); 
+
+      return;
+   }
+
+   CreateStandardObjects()
+   {
+      local oObj;
+
+      Send(self,@NewHold,#what=Create(&Chest),
+            #new_row=22,#new_col=17,#fine_row=48,#fine_col=16,#new_angle=ANGLE_EAST);
+      Send(self,@NewHold,#what=Create(&Chest),
+            #new_row=26,#new_col=17,#fine_row=0,#fine_col=16,#new_angle=ANGLE_EAST);
+      Send(self,@NewHold,#what=Create(&Chest),
+            #new_row=22,#new_col=22,#fine_row=48,#fine_col=16,#new_angle=ANGLE_WEST);
+      Send(self,@NewHold,#what=Create(&Chest),
+            #new_row=26,#new_col=22,#fine_row=0,#fine_col=16,#new_angle=ANGLE_WEST);
+
+      Send(self,@NewHold,#what=Create(&Chest),
+            #new_row=21,#new_col=23,#fine_row=48,#fine_col=32,#new_angle=ANGLE_EAST);
+      Send(self,@NewHold,#what=Create(&Chest),
+            #new_row=29,#new_col=33,#fine_row=48,#fine_col=32,#new_angle=ANGLE_EAST);
+
+      Send(self,@NewHold,#what=Create(&Fountain),#new_row=42,#new_col=24,#fine_row=12,#fine_col=8);
+      Send(self,@NewHold,#what=Create(&Firepit,#iSoundRadius=5),#new_row=45,#new_col=6,#fine_row=32,#fine_col=4);
+
+      Send(self,@NewHold,#what=Create(&Dice,#pair=FALSE),
+           #new_row=39,#new_col=12,#fine_row=4,#fine_col=0,#new_angle=ANGLE_NORTH);
+      Send(self,@NewHold,#what=Create(&Dice,#pair=TRUE),
+           #new_row=39,#new_col=13,#fine_row=4,#fine_col=16,#new_angle=ANGLE_NORTH);
+      Send(self,@NewHold,#what=Create(&Dice,#pair=FALSE),
+           #new_row=40,#new_col=13,#fine_row=20,#fine_col=16,#new_angle=ANGLE_NORTH);
+      Send(self,@NewHold,#what=Create(&Dice,#pair=TRUE),
+           #new_row=40,#new_col=12,#fine_row=20,#fine_col=0,#new_angle=ANGLE_NORTH);
+
+      Send(self,@NewHold,#what=Create(&Pillow),
+            #new_row=21,#new_col=32,#fine_row=48,#fine_col=16,#new_angle=ANGLE_WEST);
+
+      oObj = Create(&Sign,#desc=Secret_sign,#newbie=TRUE,#name=Secret_signname);
+      Send(self,@NewHold,#what=oObj,#new_row=30,#new_col=17,#fine_row=11,#fine_col=60);
+
+      Send(self,@NewHold,#what=Create(&Tree,#top=TREE_PINE,#bottom=TREE_PINE),#new_row=6,#new_col=50);
+          
+      Send(self,@NewHold,#what=Create(&Throne),#new_row=42,#new_col=10,#fine_row=32,#fine_col=40,#new_angle=ANGLE_SOUTH);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=45,#new_col=14,#fine_row=0,#fine_col=48);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=45,#new_col=13,#fine_row=32,#fine_col=48);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=47,#new_col=13,#fine_row=0,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=48,#new_col=13,#fine_row=16,#fine_col=0);
+
+      Send(self,@NewHold,#what=Create(&Table),#new_row=40,#new_col=9,#fine_row=48,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=40,#new_col=8,#fine_row=48,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=40,#new_col=9,#fine_row=48,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=35,#new_col=10,#fine_row=56,#fine_col=48);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=35,#new_col=12,#fine_row=56,#fine_col=0);
+
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=40,#new_col=36,#fine_row=32,#fine_col=16);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=41,#new_col=37,#fine_row=48,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=42,#new_col=38,#fine_row=24,#fine_col=16);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=42,#new_col=39,#fine_row=24,#fine_col=56);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=41,#new_col=41,#fine_row=48,#fine_col=16);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=40,#new_col=42,#fine_row=48,#fine_col=0);
+
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=37,#new_col=34,#fine_row=32,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=38,#new_col=35,#fine_row=0,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=38,#new_col=36,#fine_row=48,#fine_col=8);
+
+      Send(self,@NewHold,#what=Create(&Table),#new_row=42,#new_col=33,#fine_row=40,#fine_col=40);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=42,#new_col=33,#fine_row=0,#fine_col=8);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=43,#new_col=34,#fine_row=16,#fine_col=8);
+
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=49,#new_col=41,#fine_row=0,#fine_col=16);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=49,#new_col=42,#fine_row=0,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=49,#new_col=43,#fine_row=0,#fine_col=48);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=49,#new_col=45,#fine_row=0,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=49,#new_col=46,#fine_row=0,#fine_col=16);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=47,#new_col=46,#fine_row=48,#fine_col=16);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=46,#new_col=46,#fine_row=32,#fine_col=16);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=45,#new_col=46,#fine_row=12,#fine_col=16);
+
+      Send(self,@NewHold,#what=Create(&Table),#new_row=44,#new_col=34,#fine_row=16,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=44,#new_col=33,#fine_row=16,#fine_col=30);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=44,#new_col=34,#fine_row=16,#fine_col=30);
+
+      Send(self,@NewHold,#what=Create(&Table),#new_row=45,#new_col=37,#fine_row=16,#fine_col=16);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=44,#new_col=37,#fine_row=32,#fine_col=16);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=46,#new_col=37,#fine_row=0,#fine_col=16);
+
+      Send(self,@NewHold,#what=Create(&Table),#new_row=48,#new_col=33,#fine_row=32,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=49,#new_col=32,#fine_row=6,#fine_col=62);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=47,#new_col=34,#fine_row=58,#fine_col=2);
+
+      Send(self,@NewHold,#what=Create(&Table),#new_row=49,#new_col=35,#fine_row=0,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=48,#new_col=35,#fine_row=16,#fine_col=16);
+      Send(self,@NewHold,#what=Create(&Stool),#new_row=49,#new_col=35,#fine_row=40,#fine_col=48);
+
+      Send(self,@NewHold,#what=Create(&SpinningWheel),
+           #new_row=27,#new_col=33,#fine_row=0,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&Loom),
+           #new_row=24,#new_col=46,#fine_row=32,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&Forge),
+           #new_row=21,#new_col=34,#fine_row=32,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&KocatanForge),
+           #new_row=21,#new_col=37,#fine_row=32,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&CraftingAnvil),
+           #new_row=27,#new_col=37,#fine_row=0,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&ShaveHorse),
+           #new_row=33,#new_col=46,#fine_row=32,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&TanningRack),
+           #new_row=35,#new_col=39,#fine_row=0,#fine_col=0,
+            #new_angle=ANGLE_NORTH);
+      Send(self,@NewHold,#what=Create(&KocatanTanningRack),
+           #new_row=35,#new_col=43,#fine_row=0,#fine_col=0,
+            #new_angle=ANGLE_NORTH);
+      Send(self,@NewHold,#what=Create(&SplittingStump),
+           #new_row=27,#new_col=43,#fine_row=0,#fine_col=0);
+      Send(self,@NewHold,#what=Create(&KocatanSplittingStump),
+           #new_row=32,#new_col=37,#fine_row=0,#fine_col=32);
+      Send(self,@NewHold,#what=Create(&GoadsAnvil),
+           #new_row=38,#new_col=39,#fine_row=48,#fine_col=16);
+      Send(self,@NewHold,#what=Create(&KocatanAnvil),
+           #new_row=32,#new_col=43,#fine_row=0,#fine_col=0);
+
+      propagate;
+   }
+
+   CreateObjectGeneration()
+   {
+      plObject_gen = $;
+
+      // some mugs
+
+      plObject_gen = Cons([ &WineGoblet, GEN_ONE, 1, 40, 37,  16, 16 ],plObject_gen);
+      plObject_gen = Cons([ &WineGoblet, GEN_ONE, 1, 41, 37, 8, 40 ],plObject_gen);
+      plObject_gen = Cons([ &WineGoblet, GEN_ONE, 1,  41, 38, 32, 40 ],plObject_gen);
+      plObject_gen = Cons([ &WineGoblet, GEN_ONE, 1,  41, 40, 32, 0 ],plObject_gen);      
+      plObject_gen = Cons([ &WineGoblet, GEN_ONE, 1,  40, 41, 56, 0 ],plObject_gen);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

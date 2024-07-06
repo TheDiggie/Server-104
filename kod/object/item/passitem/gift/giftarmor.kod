@@ -44,7 +44,7 @@ messages:
    {
       plContents = [ &LeatherArmor, &ChainArmor, &ScaleArmor, 
                      &NeruditeArmor, &PlateArmor, &Gauntlet, 
-                     &BrawlGloves, &SimpleHelm, &KnightsHelm ];
+                     &BrawlGloves, &SimpleHelm, &KnightsHelm, &Daemonhelm ];
 
       plItematt = [ IA_TRANSCENDANT, IA_DURABLE, IA_INDESTRUCTIBLE, IA_XP_KILL_BONUS ];
 

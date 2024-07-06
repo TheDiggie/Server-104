@@ -35,11 +35,11 @@ resources:
    FreeAction_succeed_rsc = "You grant free action to %s%s."
 
    FreeAction_resist = "You can feel Kraanan's magic working to free you."
-   FreeAction_evade = "You evade an attempt to restrict your movement."
+   FreeAction_evade = "~gYou evade an attempt to restrict your movement."
    FreeAction_resist_caster = \
       "You sense a force struggling to break free of your magic."
    FreeAction_evade_caster = \
-      "Kraanan's magic prevents you from hindering the free flow of battle."
+      "~rKraanan's magic prevents you from hindering the free flow of battle."
 
    FreeAction_sound = kfreeact.ogg
 

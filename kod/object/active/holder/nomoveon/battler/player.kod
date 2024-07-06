@@ -3671,9 +3671,6 @@ messages:
                // We include timers since we're not supposed to have one here.
                if iTime = $
                {
-                  Send(self,@ResetPlayerFlagList,#who=self);
-
-                  return;
                }
                else if Send(Nth(i,2),@IsHarmful)
                {  
@@ -3693,7 +3690,10 @@ messages:
 
             }
 
-            if Send(Nth(i,2),@IsPeriodic,#state=state,#who=self)
+            if iTime = $
+            {
+            }
+            else if Send(Nth(i,2),@IsPeriodic,#state=state,#who=self)
             {
                SetFirst(i,CreateTimer(self,@PeriodicEnchantmentTimer,iTime));
             }
@@ -15671,5 +15671,12 @@ messages:
       propagate;
    }
 
+   IsOfflineOrCannotInteract()
+   {
+      return (NOT pbLogged_on)
+         OR (piFlags & PFLAG_PHASED)
+         OR (piFlags & PFLAG_SPECTATOR);
+   }
+   
 end
 ////////////////////////////////////////////////////////////////////////////////

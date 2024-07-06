@@ -82,11 +82,21 @@ messages:
    }
 	 
 
-   CastSpell(who = $, iSpellPower = 0)
+   CastSpell(who = $, iSpellPower = 0, SpecialItem = FALSE)
    {
       Send(who,@MsgSendUser,#message_rsc=fade_on);
-      Send(who,@StartEnchantment,#what=self,
-           #time=send(self,@GetDuration,#iSpellPower=iSpellPower));      
+
+      if SpecialItem
+      {
+         Send(who,@StartEnchantment,#what=self,
+              #time=$);
+      }
+      else
+      {
+         Send(who,@StartEnchantment,#what=self,
+              #time=send(self,@GetDuration,#iSpellPower=iSpellPower));    
+      }  
+
       send(who,@ResetPlayerFlagList);
       
       propagate;

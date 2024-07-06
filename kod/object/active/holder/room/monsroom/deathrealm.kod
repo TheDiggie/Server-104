@@ -93,15 +93,14 @@ messages:
 
       if prMonsters = TRUE
       {
-         plMonsters = [ [&HeadlessSkeleton, 10],
-                        [&Spirit, 10],
-                        [&Revenantb, 1],
+         plMonsters = [ [&Spirit, 10],
+                        [&Revenantb, 4],
                         [&Chimera, 7],
                         [&Cyclops, 7],
-                        [&FollowerOfQor, 2],
-                        [&MinotaurBerserker, 2],
+                        [&FollowerOfQor, 5],
+                        [&MinotaurBerserker, 5],
                         [&Tyrant, 6],
-                        [&FallenMonk, 4],
+                        [&FallenMonk, 5],
                         [&HellWasp, 6],
                         [&Croco, 6],
                         [&Vozun, 6],

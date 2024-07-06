@@ -1,0 +1,71 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+PlantationHouse is MarionRoom
+
+constants:
+
+   include blakston.khd
+  
+
+resources:
+
+   room_PlantationHouse = plantationhouse.roo
+   room_name_PlantationHouse = "The Green's Home"
+
+   PlantationHouse_music = main.ogg
+
+classvars:
+
+   vrName = room_name_PlantationHouse
+
+   viTeleport_row = 18
+   viTeleport_col = 10
+
+   viTerrain_type = TERRAIN_CITY
+
+properties:
+
+   viPermanent_flags = ROOM_NO_COMBAT | ROOM_SAFELOGOFF | ROOM_SANCTUARY
+
+   prRoom = room_PlantationHouse
+   piRoom_num = RID_PLANTHOUSE
+
+   piBaseLight = LIGHT_NICE
+   piOutside_factor = 3
+
+   prMusic = PlantationHouse_music
+
+messages:
+
+
+   CreateStandardExits()
+   {
+      plExits = $;
+
+      plExits = Cons([ 19, 6, RID_MARION_PLAN, 41, 71, ROTATE_NONE ],plExits);
+      plExits = Cons([ 20, 6, RID_MARION_PLAN, 41, 71, ROTATE_NONE ],plExits);
+
+      plExits = Cons([ 18, 13, RID_MARION_PLAN, 41, 78, ROTATE_NONE ],plExits);
+      plExits = Cons([ 19, 13, RID_MARION_PLAN, 41, 78, ROTATE_NONE ],plExits);
+
+      propagate;
+   }
+
+   CreateStandardObjects()
+   {
+      Send(self,@NewHold,#what=Create(&MarionHealer),#new_row=5,#new_col=3,#fine_row=14,#fine_col=32);
+
+      propagate;
+   }
+
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -415,8 +415,6 @@ messages:
    {
       ptDoor = $;
 
-      Send(self,@CloseFinalDoor,#speed=128);
-
       Send(poLever1,@SetSwitched,#switched=FALSE);
       Send(poLever2,@SetSwitched,#switched=FALSE);
 
@@ -427,11 +425,9 @@ messages:
    {
       ptDoor = $;
 
-      if Send(self,@CountInFinal,#count=COUNT_PLAYERS) = 0
+      if send(self,@CountInFinal,#count=COUNT_MONSTERS) = 0
       {
          Send(self,@ResetFinal);
-
-         return;
       }
       
       ptDoor = CreateTimer(self,@FightTimer,FIGHT_TIME);
@@ -450,8 +446,13 @@ messages:
       Send(poLever1,@SetSwitched,#switched=FALSE);
       Send(poLever2,@SetSwitched,#switched=FALSE);
 
-      Send(self,@CloseDoorDown);
-      Send(self,@CloseFinalDoor,#speed=32);
+
+      if Send(self,@CountInFinal,#count=COUNT_PLAYERS) = 0
+      {
+         Send(self,@CloseDoorDown);
+         Send(self,@CloseFinalDoor,#speed=32);
+      }
+
 
       Send(self,@ResetMonstersInFinal);
 
@@ -510,7 +511,7 @@ messages:
       {
          each_obj = First(i);
          if count = COUNT_MONSTERS
-               AND IsClass(each_obj,&Monster)
+               AND (IsClass(each_obj,&Monster) AND NOT IsClass(each_obj,&Reflection))
             OR count = COUNT_PLAYERS
                AND IsClass(each_obj,&User)
          {
@@ -586,9 +587,9 @@ messages:
    CloseDoorDown()
    {
       Send(self,@SetSector,#sector=SECTOR_EXIT1,#animation=ANIMATE_CEILING_LIFT,
-            #height=200,#speed=16);
+            #height=200,#speed=32);
       Send(self,@SetSector,#sector=SECTOR_EXIT2,#animation=ANIMATE_CEILING_LIFT,
-            #height=88,#speed=16);
+            #height=88,#speed=32);
 
       return;
    }

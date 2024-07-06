@@ -24,7 +24,7 @@ resources:
       "Craft wizard's hat of a chosen school at a loom. "
       "When crafting say the name of the school you want to empower to the robe. "
       "Choosing a school will remove you chance to improve, you will need to complete the conentration to imp. "
-      "Requires 100 silk thread, 10 fairy wings. "
+      "Requires 200 silk thread, 10 fairy wings. "
 
    CraftWizardHat_sound = kraanan.ogg
 
