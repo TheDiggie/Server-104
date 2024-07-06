@@ -50,8 +50,8 @@ messages:
    {
       plExits = $;
 
-      plExits = Cons([ 19, 6, RID_MARION_PLAN, 41, 71, ROTATE_NONE ],plExits);
-      plExits = Cons([ 20, 6, RID_MARION_PLAN, 41, 71, ROTATE_NONE ],plExits);
+      plExits = Cons([ 19, 7, RID_MARION_PLAN, 41, 71, ROTATE_NONE ],plExits);
+      plExits = Cons([ 20, 7, RID_MARION_PLAN, 41, 71, ROTATE_NONE ],plExits);
 
       plExits = Cons([ 18, 13, RID_MARION_PLAN, 41, 78, ROTATE_NONE ],plExits);
       plExits = Cons([ 19, 13, RID_MARION_PLAN, 41, 78, ROTATE_NONE ],plExits);
