@@ -22,7 +22,7 @@ resources:
    ManaShield_desc_rsc = \
       "Surrounds the caster with a powerful field which mitigates "
       "damage as long as you have mana.  "
-      "Requires two blue dragon scales to cast."
+      "Requires five blue dragon scales to cast, five kriipa claws and five vials of solagh."
    ManaShield_enchantment_rsc = \
       "\n\nYour mana shield enchantment reduces damage as long as you have mana"
     
