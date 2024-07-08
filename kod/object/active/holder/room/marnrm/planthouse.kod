@@ -59,13 +59,12 @@ messages:
       propagate;
    }
 
-   CreateStandardObjects()
-   {
-      Send(self,@NewHold,#what=Create(&MarionHealer),#new_row=5,#new_col=3,#fine_row=14,#fine_col=32);
-
-      propagate;
-   }
-
+   //CreateStandardObjects()
+   //{
+   //   Send(self,@NewHold,#what=Create(&MarionHealer),#new_row=5,#new_col=3,#fine_row=14,#fine_col=32);
+//
+   //   propagate;
+   //}
 
 end
 ////////////////////////////////////////////////////////////////////////////////
