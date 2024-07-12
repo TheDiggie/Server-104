@@ -93,7 +93,7 @@ messages:
          }
       }
 
-      return;
+      propagate;
    }
 
    SomethingTryGo(what = $,row = $,col = $)
