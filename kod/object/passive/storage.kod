@@ -317,6 +317,11 @@ messages:
             oItem = Create(cClass,#number=count);
             Send(what,@SubtractNumber,#number=count);
             Send(who,@NewHold,#what=oItem);
+
+            if iCanHold = count
+            {
+               return FALSE;
+            }
          }
          else
          {
@@ -353,7 +358,7 @@ messages:
       return TRUE;
    }
 
-   //This is diabled because when a toon suicides it deletes the vault which inturn
+   //This is disabled because when a toon suicides it deletes the vault which inturn
    //means that any toon linked to that vault looses there stuff
 
    //DestroyPlayersVault(who=$)

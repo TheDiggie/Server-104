@@ -4922,6 +4922,11 @@ messages:
       {
          if IsClass(what,&NumberItem)
          {
+            if number = $
+            {
+               number = Send(what,@GetNumber);
+            }
+
             if bFromBag
             {
                iCan_hold = number;

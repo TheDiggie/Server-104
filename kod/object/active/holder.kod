@@ -327,7 +327,7 @@ messages:
 
    GetNumberCanHold(what = $)
    {
-      local iBulk_can_hold, iWeight_can_hold, iUnit_bulk, iUnit_weight;
+      local iBulk_can_hold, iWeight_can_hold, iUnit_bulk, iUnit_weight, lBags, oBag;
 
       if NOT (IsClass(what,&NumberItem)
             OR IsClass(what,&SpellItem))
@@ -342,8 +342,24 @@ messages:
       iWeight_can_hold = Bound(Send(self,@GetWeightMax)
                            - Send(self,@GetWeightHold),0,$);
 
+      if Send(self,@GetBag) <> $
+      {
+         lBags = Send(self,@GetBag);
+
+         foreach oBag in lBags
+         {
+            if Send(obag,@IsWhitelisted,#what=what)
+            {
+               iBulk_can_hold = (Bound(Send(self,@GetBulkMax) - Send(self,@GetBulkHold),0,$)) * 4;
+               iWeight_can_hold = (Bound(Send(self,@GetWeightMax) - Send(self,@GetWeightHold),0,$)) * 4;
+
+               break;
+            }
+         }
+      }
+
       return Send(what,@GetNumberCanHold,#weight=iWeight_can_hold,
-                  #bulk=iBulk_can_hold);
+                  #bulk=iBulk_can_hold);    
    }
 
    NewHold(what = $)

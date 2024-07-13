@@ -4349,15 +4349,7 @@ messages:
               #message_rsc=vaultman_nowithdraw_cash);
 
          return;
-      }         
-
-      //if Send(what, @GetBulkMax) <> $ AND
-      //   (iBulk + Send(what,@GetBulkHold)) > Send(what,@GetBulkMax)
-      //{
-      //   Send(self,@SayToOne,#target=what,#message_rsc=vaultman_no_room);
-      //
-      //   return;
-      //}   
+      }            
       
       // The next line added to handle player specified amounts
       lNumbers = number_list;
