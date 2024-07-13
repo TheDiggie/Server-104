@@ -8,9 +8,21 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-GuildHall17 is ObjectRoom
+GuildHall17 is GuildHall
 
 constants:
+
+   LEVER_REACTIVATE_DELAY = 2000
+
+   TREASURE_ROW_MIN = 20
+   TREASURE_ROW_MAX = 29
+   TREASURE_COL_MIN = 16
+   TREASURE_COL_MAX = 23
+       
+   STATUS_OKAY = 3
+   
+   GH17_FOYER_S = 1
+   GH17_FOYER_N = 2
 
    include blakston.khd
 
@@ -21,10 +33,8 @@ resources:
    GuildHall17_music = walk7.ogg
    GuildHall17_sound = down2.ogg
 
-   secret_code = "open chest"
-
-   Secret_Signname = "Chest room"
-   Secret_Sign = "Say 'open chest' to open the chest room door. "
+   guildhall17_cant_open = \
+      "%s's magic defenses prevent you from opening the outer door."
 
    guildhall17_entrancedoor_open_sound = doorrsup.ogg
    guildhall17_entrancedoor_close_sound = doordown.ogg
@@ -33,19 +43,33 @@ classvars:
 
    vrName = room_name_GuildHall17
 
-   viTeleport_row = 30
-   viTeleport_col = 21
+   viTeleport_row = 58
+   viTeleport_col = 27
 
    viTerrain_type = TERRAIN_CITY | TERRAIN_GUILDHALL
 
    viWeatherZone = WEATHER_ZONE_MARION
 
-   vrsecret = secret_code
-
    viPermanent_flags = ROOM_GUILD_PK_ONLY
 
    vrEntrance_open_sound = guildhall17_entrancedoor_open_sound
    vrEntrance_close_sound = guildhall17_entrancedoor_close_sound
+
+   viNews_row = 25
+   viNews_col = 24
+   viNews_finerow = 24
+   viNews_finecol = 56
+
+   viLever_row = 31
+   viLever_col = 15
+   viLever_fine_row = 32
+   viLever_fine_col = 52
+
+   viQuality = 9
+
+   viInner_teleport_row = 34
+   viInner_teleport_col = 40
+   viSeconds_til_close = 24
 
 properties:
 
@@ -56,15 +80,19 @@ properties:
    piBaseLight = LIGHT_NICE
 
    piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
-   
-   // Every 5 min.
-   piGen_object_time = 30000
 
    ptCloseNorth  = $
    ptCloseSouth  = $
    ptCloseSecret = $
    
 messages:
+
+   Constructor()
+   {
+      plGuild_doors = [[52,23],[52,24],[52,25]];
+
+      propagate;
+   }
 
    CreateStandardExits()
    {
@@ -83,19 +111,52 @@ messages:
       return;
    }
 
-   SomeoneSaid(what=$,string=$)
+   InFoyer(who=$)
    {
-      if isClass(what,&User)
+      local iSectorID;
+
+      if who <> $
       {
-         if StringEqual(string,vrsecret)
+         if Send(who,@GetOwner) <> self
          {
-            Send(self,@OpenSecretDoor);
+            return FALSE;
          }
       }
+      
+      if who = $
+      {
+         return FALSE;
+      }
 
-      propagate;
+      iSectorID = Send(who,@GetSectorIDAtObject);
+
+      if iSectorID = 54 OR iSectorID = 55
+      {
+         return GH17_FOYER_N;
+      }
+
+      if iSectorID = 50 OR iSectorID = 51
+      {
+         return GH17_FOYER_S;
+      }
+
+      return FALSE;
    }
 
+   ValidEntry(what=$)
+   {
+
+      if Send(self,@InFoyer,#who=what)
+      {
+         // Since we have multiple foyers, let people enter the appropriate foyer
+         return;
+      }
+
+      // Superclass teleports people to the One True Foyer(tm) if they enter
+      // (or log on) inside when they're not normally allowed to enter.
+      propagate;
+   }
+   
    SomethingTryGo(what = $,row = $,col = $)
    {
       local iFineRow, iFineCOl;
@@ -103,16 +164,51 @@ messages:
       iFineRow = Send(what,@GetFineRow);
       iFineCOl = Send(what,@GetFineCol);
 
-      if Send(what,@GetSectorIDAtObject) = 55
+      if Send(what,@GetSectorIDAtObject) = 52 OR Send(what,@GetSectorIDAtObject) = 56
       {
-         Send(self,@OpenNorthDoor);
-
-         return TRUE;
+         if Send(what,@GetSectorIDAtObject) = 52
+         {
+            Send(self,@OpenSouthDoor);
+            return TRUE;
+         }
+         else
+         {
+            Send(self,@OpenNorthDoor);
+            return TRUE;
+         }
       }
 
-      if Send(what,@GetSectorIDAtObject) = 65
-      {
-         Send(self,@OpenSouthDoor);
+      if Send(what,@GetSectorIDAtObject) = 55
+      {            
+         if piStatus = STATUS_OKAY
+            AND NOT Send(self,@CanEnter,#who=what)
+         {
+            // Send a message saying 'only members and their allies may enter.' 
+            Send(what,@MsgSendUser,#message_rsc=guildhall17_cant_open,#parm1=vrName);
+            return TRUE;
+         }
+         else
+         {
+            Send(self,@OpenNorthDoor);
+            return TRUE;
+         }
+
+      }
+
+      if Send(what,@GetSectorIDAtObject) = 51
+      {        
+         if piStatus = STATUS_OKAY
+            AND NOT Send(self,@CanEnter,#who=what)
+         {
+            // Send a message saying 'only members and their allies may enter.' 
+            Send(what,@MsgSendUser,#message_rsc=guildhall17_cant_open,#parm1=vrName);
+            return TRUE;
+         }
+         else
+         {
+            Send(self,@OpenSouthDoor);
+            return TRUE;
+         }
 
          return TRUE;
       }
@@ -206,11 +302,14 @@ messages:
 
    OpenNorthDoor()
    {
-      Send(self,@SetSector,#sector=20,#animation=ANIMATE_CEILING_LIFT,#height=200,#speed=25);
-      Send(self,@SetSector,#sector=30,#animation=ANIMATE_CEILING_LIFT,#height=200,#speed=35);
-      Send(self,@SomethingWaveRoom,#wave_rsc=vrEntrance_open_sound); 
+      if ptCloseNorth = $
+      {
+         Send(self,@SetSector,#sector=20,#animation=ANIMATE_CEILING_LIFT,#height=200,#speed=25);
+         Send(self,@SetSector,#sector=30,#animation=ANIMATE_CEILING_LIFT,#height=200,#speed=35);
+         Send(self,@SomethingWaveRoom,#wave_rsc=vrEntrance_open_sound); 
 
-      ptCloseNorth = CreateTimer(self,@CloseNorthDoor,7000);
+         ptCloseNorth = CreateTimer(self,@CloseNorthDoor,7000);
+      }
 
       return;
    }
@@ -219,18 +318,23 @@ messages:
    {
       Send(self,@SetSector,#sector=20,#animation=ANIMATE_CEILING_LIFT,#height=128,#speed=35);
       Send(self,@SetSector,#sector=30,#animation=ANIMATE_CEILING_LIFT,#height=128,#speed=25);
-      Send(self,@SomethingWaveRoom,#wave_rsc=vrEntrance_close_sound); 
+      Send(self,@SomethingWaveRoom,#wave_rsc=vrEntrance_close_sound);
+
+      ptCloseNorth = $;
 
       return;
    }
 
    OpenSouthDoor()
    {
-      Send(self,@SetSector,#sector=2,#animation=ANIMATE_CEILING_LIFT,#height=200,#speed=25);
-      Send(self,@SetSector,#sector=3,#animation=ANIMATE_CEILING_LIFT,#height=200,#speed=35);
-      Send(self,@SomethingWaveRoom,#wave_rsc=vrEntrance_open_sound); 
+      if ptCloseSouth = $
+      {
+         Send(self,@SetSector,#sector=2,#animation=ANIMATE_CEILING_LIFT,#height=200,#speed=25);
+         Send(self,@SetSector,#sector=3,#animation=ANIMATE_CEILING_LIFT,#height=200,#speed=35);
+         Send(self,@SomethingWaveRoom,#wave_rsc=vrEntrance_open_sound); 
 
-      ptCloseSouth = CreateTimer(self,@CloseSouthDoor,7000);
+         ptCloseSouth = CreateTimer(self,@CloseSouthDoor,7000);
+      }
 
       return;
    }
@@ -241,18 +345,23 @@ messages:
       Send(self,@SetSector,#sector=3,#animation=ANIMATE_CEILING_LIFT,#height=128,#speed=25);
       Send(self,@SomethingWaveRoom,#wave_rsc=vrEntrance_close_sound); 
 
+      ptCloseSouth = $;
+
       return;
    }
 
    OpenSecretDoor()
    {
-      Send(self,@SetSector,#sector=5,#animation=ANIMATE_CEILING_LIFT,#height=308,#speed=35);
-      Send(self,@SetSector,#sector=6,#animation=ANIMATE_CEILING_LIFT,#height=308,#speed=28);
-      Send(self,@SetSector,#sector=7,#animation=ANIMATE_CEILING_LIFT,#height=308,#speed=21);
-      Send(self,@SetSector,#sector=8,#animation=ANIMATE_CEILING_LIFT,#height=308,#speed=14);
-      Send(self,@SomethingWaveRoom,#wave_rsc=vrEntrance_open_sound); 
+      if ptCloseSecret = $
+      {
+         Send(self,@SetSector,#sector=5,#animation=ANIMATE_CEILING_LIFT,#height=308,#speed=35);
+         Send(self,@SetSector,#sector=6,#animation=ANIMATE_CEILING_LIFT,#height=308,#speed=28);
+         Send(self,@SetSector,#sector=7,#animation=ANIMATE_CEILING_LIFT,#height=308,#speed=21);
+         Send(self,@SetSector,#sector=8,#animation=ANIMATE_CEILING_LIFT,#height=308,#speed=14);
+         Send(self,@SomethingWaveRoom,#wave_rsc=vrEntrance_open_sound); 
 
-      ptCloseSecret = CreateTimer(self,@CloseSecretDoor,9000);
+         ptCloseSecret = CreateTimer(self,@CloseSecretDoor,9000);
+      }
 
       return;
    }
@@ -263,15 +372,15 @@ messages:
       Send(self,@SetSector,#sector=6,#animation=ANIMATE_CEILING_LIFT,#height=218,#speed=21);
       Send(self,@SetSector,#sector=7,#animation=ANIMATE_CEILING_LIFT,#height=218,#speed=28);
       Send(self,@SetSector,#sector=8,#animation=ANIMATE_CEILING_LIFT,#height=218,#speed=35);
-      Send(self,@SomethingWaveRoom,#wave_rsc=vrEntrance_close_sound); 
+      Send(self,@SomethingWaveRoom,#wave_rsc=vrEntrance_close_sound);
+
+      ptCloseSecret = $;
 
       return;
    }
 
    CreateStandardObjects()
    {
-      local oObj;
-
       Send(self,@NewHold,#what=Create(&Chest),
             #new_row=22,#new_col=17,#fine_row=48,#fine_col=16,#new_angle=ANGLE_EAST);
       Send(self,@NewHold,#what=Create(&Chest),
@@ -300,9 +409,6 @@ messages:
 
       Send(self,@NewHold,#what=Create(&Pillow),
             #new_row=21,#new_col=32,#fine_row=48,#fine_col=16,#new_angle=ANGLE_WEST);
-
-      oObj = Create(&Sign,#desc=Secret_sign,#newbie=TRUE,#name=Secret_signname);
-      Send(self,@NewHold,#what=oObj,#new_row=30,#new_col=17,#fine_row=11,#fine_col=60);
 
       Send(self,@NewHold,#what=Create(&Tree,#top=TREE_PINE,#bottom=TREE_PINE),#new_row=6,#new_col=50);
           
@@ -384,21 +490,6 @@ messages:
            #new_row=38,#new_col=39,#fine_row=48,#fine_col=16);
       Send(self,@NewHold,#what=Create(&KocatanAnvil),
            #new_row=32,#new_col=43,#fine_row=0,#fine_col=0);
-
-      propagate;
-   }
-
-   CreateObjectGeneration()
-   {
-      plObject_gen = $;
-
-      // some mugs
-
-      plObject_gen = Cons([ &WineGoblet, GEN_ONE, 1, 40, 37,  16, 16 ],plObject_gen);
-      plObject_gen = Cons([ &WineGoblet, GEN_ONE, 1, 41, 37, 8, 40 ],plObject_gen);
-      plObject_gen = Cons([ &WineGoblet, GEN_ONE, 1,  41, 38, 32, 40 ],plObject_gen);
-      plObject_gen = Cons([ &WineGoblet, GEN_ONE, 1,  41, 40, 32, 0 ],plObject_gen);      
-      plObject_gen = Cons([ &WineGoblet, GEN_ONE, 1,  40, 41, 56, 0 ],plObject_gen);
 
       propagate;
    }

@@ -73,7 +73,7 @@ messages:
 
    Constructor()
    {
-      plGuild_doors = [[16,24],[17,24]];
+      plGuild_doors = [[16,24],[17,24],[16,25],[17,25]];
 
       propagate;
    }

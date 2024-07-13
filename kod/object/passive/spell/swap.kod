@@ -28,6 +28,8 @@ resources:
 
    swap_no_target = "Your target is out of range."
 
+   cant_in_gh = "~rYou may not cast swap in guildhalls! "
+
    swap_sound = qswap.ogg
 
 classvars:
@@ -87,6 +89,13 @@ messages:
          Send(who,@MsgSendUser,#message_rsc=spell_bad_target,
               #parm1=vrName,#parm2=Send(target,@GetDef),
               #parm3=Send(target,@GetName));
+
+         return FALSE;
+      }
+
+      if IsClass(Send(who,@GetOwner),&GuildHall)
+      {
+         Send(who,@MsgSendUser,#message_rsc=cant_in_gh);
 
          return FALSE;
       }
