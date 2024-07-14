@@ -350,8 +350,8 @@ messages:
          {
             if Send(obag,@IsWhitelisted,#what=what)
             {
-               iBulk_can_hold = (Bound(Send(self,@GetBulkMax) - Send(self,@GetBulkHold),0,$)) * 4;
-               iWeight_can_hold = (Bound(Send(self,@GetWeightMax) - Send(self,@GetWeightHold),0,$)) * 4;
+               iBulk_can_hold = (Bound(Send(self,@GetBulkMax) - Send(self,@GetBulkHold),0,$)) * Send(oBag,@GetWeightReduction);
+               iWeight_can_hold = (Bound(Send(self,@GetWeightMax) - Send(self,@GetWeightHold),0,$)) * Send(oBag,@GetWeightReduction);
 
                break;
             }

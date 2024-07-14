@@ -29,6 +29,8 @@ properties:
 
    viObject_flags = OF_CONTAINER | OF_GETTABLE
 
+   piWeightReduction = 4
+
 messages:
 
    Constructor(owner=$)
@@ -120,7 +122,7 @@ messages:
          iSum = iSum + Send(i,@GetBulk);
       }
 
-      iSum = iSum/4;
+      iSum = iSum / piWeightReduction;
 
       return iSum;
    }
@@ -136,7 +138,7 @@ messages:
          iSum = iSum + Send(i,@GetWeight);
       }
 
-      iSum = iSum/4;
+      iSum = iSum / piWeightReduction;
 
       return iSum;
    }
@@ -288,6 +290,11 @@ messages:
       }
 
       return;
+   }
+
+   GetWeightReduction()
+   {
+      return piWeightReduction;
    }
 
    CanBeGivenToNPC()
