@@ -69,6 +69,7 @@ classvars:
    viOffensive = FALSE
    viResistanceType = 0
 
+   vbCanCancelEnchantment = FALSE
 properties:
 
 messages:
@@ -136,6 +137,10 @@ messages:
          if who = oTarget AND
             Send(SETTINGS_OBJECT,@CanRecastSelfEnchantment)
          {
+            if(vbCanCancelEnchantment) {
+               Send(oTarget,@RemoveEnchantment,#what=self,#report=TRUE);
+               return false;
+            }
             propagate;
          }
 

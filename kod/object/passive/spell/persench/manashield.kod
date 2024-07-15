@@ -62,7 +62,7 @@ classvars:
    viFlash = FLASH_GOOD_SELF
    vbCanCastonOthers = FALSE
    viDefensive = TRUE
-
+   vbCanCancelEnchantment = TRUE
    viManaDrain = 1
 
 properties:
