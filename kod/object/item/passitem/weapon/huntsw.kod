@@ -130,6 +130,7 @@ properties:
    plStatmods = $
 
    pbIn_use = FALSE     // No longer used.
+   pbWarned = FALSE
    piHunger = 0
    piFineHunger = 0
    ptHungerTimer = $
@@ -154,8 +155,6 @@ messages:
    {
       pbCounted = TRUE;
       Send(Send(SYS,@GetNecromancerBalance),@IncrementSwordCount);
-      Send(self,@AdjustColor);
-
       propagate;
    }
 
@@ -184,7 +183,6 @@ messages:
 
          // Post these so that they happen after 'what' actually becomes our owner.
          Post(self,@AdjustStats);
-         Post(self,@AdjustColor);
 
          ptHungerTimer = CreateTimer(self,@HungerTrigger,Send(Send(SYS,@GetNecromancerBalance),
                               @GetHungerInterval));
@@ -443,56 +441,6 @@ messages:
       return;
    }
 
-   AdjustColor()
-   {
-      local Xlat;
-
-      if piHunger > HUNGER_5
-      {
-         Xlat = (XLAT_BASE_VALUE + XLAT_TO_RED);
-      }
-      else
-      {
-         if piHunger > (HUNGER_5*3/5)
-         {
-            Xlat = (XLAT_BASE_VALUE + XLAT_TO_YELLOW);
-         }
-         else
-         {
-            if piHunger > (HUNGER_5*1/5)
-            {
-               Xlat = (XLAT_BASE_VALUE + XLAT_TO_ORANGE);
-            }
-            else
-            {
-               if piHunger > (-HUNGER_5*1/5)
-               {
-                  Xlat = (XLAT_BASE_VALUE + XLAT_TO_SKIN1);
-               }
-               else
-               {
-                  if piHunger > (-HUNGER_5*3/5)
-                  {
-                     Xlat = (XLAT_BASE_VALUE + XLAT_TO_SKIN2);
-                  }
-                  else
-                  {
-                     Xlat = (XLAT_BASE_VALUE + XLAT_TO_SKIN4);
-                  }
-               }
-            }
-         }
-      }
-      Send(self,@SetPaletteTranslation,#translation=Xlat);
-
-      if poOwner <> $
-      {
-         Send(poOwner,@SomethingChanged,#what=self);
-      }
-
-      return;
-   }
-
    HungerTrigger()
    {
       local oSword;
@@ -555,7 +503,6 @@ messages:
       }
 
       Send(self,@AdjustStats);
-      Send(self,@AdjustColor);
 
       if piHunger > HUNGER_5 {
          // Start doing mild damage, losing vigor (4 each time).
@@ -758,14 +705,12 @@ messages:
       // Can 'save up', but only to a point.
       piHunger = Bound(piHunger,-HUNGER_5,$);
       Send(self,@AdjustStats);
-      Send(self,@AdjustColor);
 
       return;
    }
 
    Delete()
    {
-      Send(self,@NewOwner,#what=$);
 
       if pbCounted
       {
@@ -849,23 +794,6 @@ messages:
       }
 
       AddPacket(1,ANIMATE_NONE,2,viGround_group);
-
-      return;
-   }
-
-   SendInventoryAnimation()
-   {
-      local iXLAT;
-      if (piItem_flags & ITEM_PALETTE_MASK) <> 0
-      {
-         // The artists made the gem red in the inv/dropped views
-         // (blue in the look view), so we have to juggle this a little (ugh).
-         iXLAT = Send(SYS,@DecodeSecondaryColor,#xlat=(piItem_flags & ITEM_PALETTE_MASK));
-         iXLAT = Send(SYS,@EncodeTwoColorXLAT,#color1=iXLAT);
-         AddPacket(1,ANIMATE_TRANSLATION,1,iXLAT);
-      }
-
-      AddPacket(1,ANIMATE_NONE,2,viInventory_group);
 
       return;
    }
