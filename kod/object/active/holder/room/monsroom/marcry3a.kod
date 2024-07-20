@@ -215,7 +215,7 @@ properties:
    piBaseLight = LIGHT_VERY_DARK
    piOutside_factor = OUTDOORS_NONE
 
-   piMonster_count_max = 15
+   piMonster_count_max = 13
 
    poChest = $
 

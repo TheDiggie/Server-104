@@ -306,7 +306,6 @@ messages:
       OR IsClass(apply_on,&Circlet)
       OR IsClass(apply_on,&IvyCirclet)
       OR IsClass(apply_on,&Wizardhat)
-      OR IsClass(apply_on,&HunterSword)
       OR IsClass(apply_on,&GoldShield)
       {
          Send(what,@MsgSendUser,#message_rsc=cant_dye);
