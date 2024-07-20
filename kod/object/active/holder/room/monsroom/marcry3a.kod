@@ -215,7 +215,7 @@ properties:
    piBaseLight = LIGHT_VERY_DARK
    piOutside_factor = OUTDOORS_NONE
 
-   piMonster_count_max = 13
+   piMonster_count_max = 15
 
    poChest = $
 
@@ -233,7 +233,7 @@ messages:
 
       plGenerators = [ [17, 5], [17, 19], [21, 16],
                        [24, 9], [13, 17], [24, 28], 
-                       [27, 31]
+                       [27, 31], [17, 9], [18, 29]
                      ];
 
       // Set the treasure for the final chest.
@@ -1115,36 +1115,45 @@ messages:
    ResetTreasureList()
    {
       // All chances (first number) should add up to 100.
-      plTreasuresList = [ [ 1, TREASURE_OBJECT, &Rose, 1 ],
-						        [ 3, TREASURE_OBJECT, &NeruditeBow, 1 ],
+      plTreasuresList = [ [ 2, TREASURE_OBJECT, &Rose, 1 ],
+						  [ 2, TREASURE_OBJECT, &NeruditeBow, 1 ],
                           [ 2, TREASURE_WEAPON, &Scimitar, WA_BLINDER ],
-                          [ 2, TREASURE_WEAPON, &Scimitar, WA_PURGER ],
+                          [ 1, TREASURE_WEAPON, &Scimitar, WA_PURGER ],
                           [ 2, TREASURE_WEAPON, &Scimitar, WA_PARALYZER ],
-                          [ 2, TREASURE_WEAPON, &LongSword, WA_PARALYZER ],
-                          [ 3, TREASURE_WEAPON, &LongSword, WA_BLINDER ],
+						  [ 2, TREASURE_WEAPON, &BrawlGloves, WA_BLINDER ],
+						  [ 2, TREASURE_WEAPON, &BrawlGloves, WA_PARALYZER ],
                           [ 1, TREASURE_WEAPON, &MysticSword, WA_PURGER ],
-                          [ 1, TREASURE_WEAPON, &MysticSword, WA_PARALYZER ],
-                          [ 4, TREASURE_WEAPON, &NeruditeSword, WA_PURGER ],
-                          [ 3, TREASURE_WEAPON, &NeruditeSword, WA_PARALYZER ],
-                          [ 3, TREASURE_WEAPON, &NeruditeSword, WA_BLINDER ],
-                          [ 3, TREASURE_WEAPON, &Axe, WA_BLINDER ],
-                          [ 3, TREASURE_WEAPON, &Axe, WA_PARALYZER ],
+                          [ 2, TREASURE_WEAPON, &MysticSword, WA_PARALYZER ],
+						  [ 2, TREASURE_WEAPON, &MysticSword, WA_BLINDER ],
+                          [ 1, TREASURE_WEAPON, &NeruditeSword, WA_PURGER ],						  
+                          [ 2, TREASURE_WEAPON, &NeruditeSword, WA_PARALYZER ],						  
+                          [ 2, TREASURE_WEAPON, &NeruditeSword, WA_BLINDER ],
+                          [ 2, TREASURE_WEAPON, &Axe, WA_BLINDER ],
+                          [ 2, TREASURE_WEAPON, &Axe, WA_PARALYZER ],
                           [ 3, TREASURE_OBJECT, &OfferingKraanan, 1 ],
                           [ 3, TREASURE_OBJECT, &OfferingShalille, 1 ],
                           [ 3, TREASURE_OBJECT, &OfferingRiija, 1 ],
                           [ 3, TREASURE_OBJECT, &OfferingQor, 1 ],
                           [ 3, TREASURE_OBJECT, &OfferingFaren, 1 ],
-                          [ 2, TREASURE_OBJECT, &OfferingJala, 1 ],
+                          [ 3, TREASURE_OBJECT, &OfferingJala, 1 ],
                           [ 2, TREASURE_OBJECT, &Prism, 1 ],
-                          [ 3, TREASURE_OBJECT, &TrueLute, 1 ],
+                          [ 2, TREASURE_OBJECT, &TrueLute, 1 ],
                           [ 5, TREASURE_OBJECT, &PurpleMushroom, 500 ],
                           [ 5, TREASURE_OBJECT, &InkyCap, 150 ],
                           [ 5, TREASURE_OBJECT, &BlueDragonScale, 250 ],
                           [ 5, TREASURE_OBJECT, &DarkAngelFeather, 250 ],
                           [ 5, TREASURE_OBJECT, &EntrootBerry, 350 ],
-                          [ 5, TREASURE_OBJECT, &Yrxlsap, 150 ],
-                          [ 6, TREASURE_OBJECT, &Ruby, 250 ],
-                          [ 3, TREASURE_OBJECT, &Shillings, 50000 ]
+                          [ 5, TREASURE_OBJECT, &Yrxlsap, 250 ],
+                          [ 5, TREASURE_OBJECT, &Ruby, 250 ],
+                          [ 6, TREASURE_OBJECT, &Shillings, 100000 ],
+						  [ 2, TREASURE_OBJECT, &specialgift, 1 ],
+						  [ 2, TREASURE_OBJECT, &specialgift2, 1 ],
+						  [ 1, TREASURE_OBJECT, &ShrunkenHead, 1 ],
+						  [ 1, TREASURE_OBJECT, &NeruditeAxe, 1 ],
+						  [ 1, TREASURE_OBJECT, &BerserkerAxe, 1 ],
+						  [ 1, TREASURE_OBJECT, &Maul, 1 ],
+						  [ 1, TREASURE_OBJECT, &MasterWand, 1 ],
+						  [ 1, TREASURE_OBJECT, &StatsResetToken, 1 ]
                         ];
 
       return;
