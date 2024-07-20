@@ -121,6 +121,11 @@ messages:
          }
       }
 
+      if IsClass(who,&Player) AND NOT IsClass(who,&DM)
+      {
+         Send(who,@WipeUnboundEnergy);
+      }
+      
       propagate;
    }
 
@@ -176,20 +181,6 @@ messages:
 
       lAllTargets = lTargets;
 
-      // Special bonus!  Warp to guild hall with high enough spellpower.
-      // Spellpower has to be high enough that you were already going to 5
-      // or more places.
-      //if Length(lTargets) >= 5
-      //{
-      //   oGuildHall = Send(who,@GetGuildHall);
-//
-      //   if oGuildHall <> $
-      //      AND Send(who,@CanPlayerPvP)
-      //   {
-      //      lAllTargets = Cons(oGuildHall,lAllTargets);
-      //   }
-      //}
-
       foreach oRoom in lAllTargets
       {
          sRoomName = Send(oRoom,@GetName);
@@ -240,7 +231,6 @@ messages:
 
       lAvailable = $;
 
-      // 84 spellpower for Island (7 locations, divide by 12)
       if oGuild <> $
       {  
          if Send(oGuild,@GetGuildHall) <> $
@@ -251,13 +241,11 @@ messages:
          {
             iNumLocations = Bound(iSpellPower/12,1,7);
          }
-         
       }
       else
       {
          iNumLocations = Bound(iSpellPower/12,1,7);
       }
-      
 
       if Send(Send(target,@GetOwner),@GetRegion) = RID_KOCATAN
          OR iNumLocations > 6

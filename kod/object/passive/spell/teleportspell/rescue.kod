@@ -113,6 +113,11 @@ messages:
       Send(who,@StartRescueTimer,#time=iDelay);
       Send(who,@MsgSendUser,#message_rsc=Rescue_Start);
 
+      if IsClass(who,&Player) AND NOT IsClass(who,&DM)
+      {
+         Send(who,@WipeUnboundEnergy);
+      }
+
       propagate;
    }
 
