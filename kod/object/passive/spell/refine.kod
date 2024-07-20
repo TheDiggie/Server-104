@@ -246,17 +246,17 @@ messages:
             }
          }
 
-         Send(who,@NewHold,#what=Create(cProduct,#number=iMake));
+         oProduct = Create(cProduct,#number=iMake);
 
-         oProduct = Send(who,@FindHolding,#class=cProduct);
+         Send(who,@NewHold,#what=oProduct);
       
-         Send(who,@MsgSendUser,#message_rsc=Made_Product,#parm1=iRequired,#parm2=Send(cResource,@GetName),#parm3=iMake,#parm4=Send(oProduct,@GetName));
+         Send(who,@MsgSendUser,#message_rsc=Made_Product,#parm1=iRequired,#parm2=oResource,#parm3=iMake,#parm4=Send(oProduct,@GetName));
       }
 
       if iStock < iRequired
       {
 
-         Send(who,@MsgSendUser,#message_rsc=Not_Enough,#parm1=Send(cResource,@GetName));
+         Send(who,@MsgSendUser,#message_rsc=Not_Enough,#parm1=oResource);
 
          return FALSE;
       }
