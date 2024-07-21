@@ -112,12 +112,6 @@ messages:
                #fine_row=piFine_row,#fine_col=piFine_col);
       }
 
-
-      oKey = Create(&BasementKey,#corpse=corpse);
-      Send(poOwner,@NewHold,#what=oKey,
-            #new_row=piRow,#new_col=piCol,
-            #fine_row=piFine_row,#fine_col=piFine_col);
-
       plUsing = $;
 
       propagate;

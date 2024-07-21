@@ -74,14 +74,6 @@ messages:
       return;
    }
 
-   Enter(who=$)
-   {
-      Send(self,@NewHold,#what=who,#new_row=22,#new_col=5,
-            #new_angle=ROTATE_NONE);
-
-      return;
-   }
-
    FirstUserEntered()
    {
       Send(self,@SpawnFarnohl);

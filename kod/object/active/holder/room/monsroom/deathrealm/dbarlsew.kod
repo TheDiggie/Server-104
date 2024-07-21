@@ -46,21 +46,51 @@ messages:
       propagate;
    }
 
-   EnterLockedTown(who=$)
+   SomethingTryGo(what=$,row=$,col=$)
    {
-      local iRow, iCol;
+      local i, each_obj;
 
-      iRow = send(who,@GetRow);
-      iCol = send(who,@GetCol);
-      
-      if ( iRow = 56
-           AND (iCol = 8))
+      if (IsClass(what,&User)
+         AND (row = 56 AND col = 8))
       {
-         return TRUE;
-      }
+          if send(what,@HasBeatDR)
+		    OR IsClass(what,&DM)
+		  {
+		     foreach i in Send(what,@GetHolderPassive)
+            {
+               each_obj = Send(what,@HolderExtractObject,#data=i);
+               if IsClass(each_obj,&SewerKey)
+               {
+                  Send(each_obj,@Delete);
+			   }
+			}
+			 
+			 Send(what,@MsgSendUser,#message_rsc=Beat_DR);
+             Send(SYS,@UtilGoNearSquare,#what=what,
+                    #where=Send(SYS,@FindRoomByNum,#num=RID_DBAR_NORTH),
+                    #new_row=47,#new_col=40,#new_angle=ANGLE_WEST);
+			 
+			 return TRUE;
+		  }
 
-      return FALSE;
-   }
+      	  
+   		     foreach i in Send(what,@GetHolderPassive)
+            {
+               each_obj = Send(what,@HolderExtractObject,#data=i);
+               if IsClass(each_obj,&SewerKey)
+               {
+                  Send(each_obj,@Delete);
+                  Send(what,@MsgSendUser,#message_rsc=Key_Open);
+                  Send(SYS,@UtilGoNearSquare,#what=what,
+                      #where=Send(SYS,@FindRoomByNum,#num=RID_DBAR_NORTH),
+                      #new_row=47,#new_col=40,#new_angle=ANGLE_WEST);
+
+                  return TRUE;
+               }
+            }
+		  }
+ 		 propagate;
+      }
 
 end
 ////////////////////////////////////////////////////////////////////////////////
