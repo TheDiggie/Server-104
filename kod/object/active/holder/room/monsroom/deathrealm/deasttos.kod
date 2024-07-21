@@ -63,68 +63,59 @@ messages:
 
       plExits = Cons([ 28, 51, ROOM_LOCKED_DOOR ],plExits);
       plExits = Cons([ 29, 51, ROOM_LOCKED_DOOR ],plExits);
+	  
+	  plEdge_Exits = $;
+	  
+	  plEdge_Exits = Cons([ LEAVE_SOUTH, RID_DI6, 2, 47, ANGLE_SOUTH ], plEdge_exits);
 
       propagate;
    }
 
-   SomethingMoved(what = $,new_row = $, new_col = $)
+   SomethingTryGo(what=$,row=$,col=$)
    {
-      if (new_row = 57) AND (new_col = 34)
+      local i, each_obj;
+
+      if (IsClass(what,&User)
+         AND (row = 29 AND col = 3) OR (row = 28 AND col = 3))
       {
-         Send(SYS,@UtilGoNearSquare,#what=what,
-               #where=Send(SYS,@FindRoomByNum,#num=RID_DI6),
-               #new_row=2,#new_col=47,#new_angle=ANGLE_EAST);
+          if send(what,@HasBeatDR)
+		    OR IsClass(what,&DM)
+		  {
+		     foreach i in Send(what,@GetHolderPassive)
+            {
+               each_obj = Send(what,@HolderExtractObject,#data=i);
+               if IsClass(each_obj,&TosKey)
+               {
+                  Send(each_obj,@Delete);
+			   }
+			}
+		  
+		     Send(what,@MsgSendUser,#message_rsc=Beat_DR);
+			 Send(SYS,@UtilGoNearSquare,#what=what,
+                  #where=Send(SYS,@FindRoomByNum,#num=RID_DTOS),
+                  #new_row=57,#new_col=39,#new_angle=ANGLE_WEST);
+			 
+			 return TRUE;
+		  }
 
-         return;
+      	  
+   		     foreach i in Send(what,@GetHolderPassive)
+            {
+               each_obj = Send(what,@HolderExtractObject,#data=i);
+               if IsClass(each_obj,&TosKey)
+               {
+                  Send(each_obj,@Delete);
+                  Send(what,@MsgSendUser,#message_rsc=Key_Open);
+                  Send(SYS,@UtilGoNearSquare,#what=what,
+                      #where=Send(SYS,@FindRoomByNum,#num=RID_DTOS),
+                      #new_row=57,#new_col=39,#new_angle=ANGLE_WEST);
+
+                  return TRUE;
+               }
+            }
+		  }
+ 		 propagate;
       }
-
-      if (new_row = 57) AND (new_col = 35)
-      {
-         Send(SYS,@UtilGoNearSquare,#what=what,
-               #where=Send(SYS,@FindRoomByNum,#num=RID_DI6),
-               #new_row=2,#new_col=47,#new_angle=ANGLE_EAST);
-
-         return;
-      }
-
-      if (new_row = 57) AND (new_col = 36)
-      {
-         Send(SYS,@UtilGoNearSquare,#what=what,
-               #where=Send(SYS,@FindRoomByNum,#num=RID_DI6),
-               #new_row=2,#new_col=47,#new_angle=ANGLE_EAST);
-
-         return;
-      }
-      
-      if (new_row = 57) AND (new_col = 37)
-      {
-         Send(SYS,@UtilGoNearSquare,#what=what,
-               #where=Send(SYS,@FindRoomByNum,#num=RID_DI6),
-               #new_row=2,#new_col=47,#new_angle=ANGLE_EAST);
-
-         return;
-      }
-
-      propagate;
-   }
-
-   EnterLockedTown(who=$)
-   {
-      local iRow, iCol;
-
-      iRow = send(who,@GetRow);
-      iCol = send(who,@GetCol);
-      
-      if ( iRow = 28
-           AND (iCol = 3))
-           OR ( iRow = 29
-           AND (iCol = 3))
-      {
-         return TRUE;
-      }
-
-      return FALSE;
-   }
 
 end
 ////////////////////////////////////////////////////////////////////////////////

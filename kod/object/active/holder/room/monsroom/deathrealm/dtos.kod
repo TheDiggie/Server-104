@@ -25,8 +25,8 @@ resources:
 
 classvars:
 
-   viTeleport_Row = 33
-   viTeleport_Col = 27
+   viTeleport_Row = 62
+   viTeleport_Col = 18
 
    viWeatherMask = WEATHER_MASK_DEFAULT
 
@@ -129,21 +129,6 @@ messages:
       propagate;
    }
 
-   Enter(who=$)
-   {
-      Send(self,@NewHold,#what=who,#new_row=58,#new_col=4,
-            #new_angle=ROTATE_NONE);
-
-      return;
-   }
-
-   Enterb(who=$)
-   {
-      Send(self,@NewHold,#what=who,#new_row=56,#new_col=39,
-            #new_angle=ROTATE_NONE);
-
-      return;
-   }
 
 end
 ////////////////////////////////////////////////////////////////////////////////

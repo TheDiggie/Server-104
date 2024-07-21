@@ -89,6 +89,8 @@ resources:
 
    item_cast_spell = "\n\nEmblazoned with mystic symbols, this %s grants its wielder the unyielding force of %s on its user."
 
+   item_no_drop = "This item cannot be dropped or traded."
+   
 classvars:
 
    vrItem_broken = item_broken_battle
@@ -162,6 +164,7 @@ properties:
    piSpecial = $
 
    piIndestructible = FALSE
+   pbIs_Dropable = TRUE
 
    viMiningBonus     = 0
    viGatheringBonus  = 0
@@ -1229,7 +1232,18 @@ messages:
 
    ReqNewOwner(what=$)
    {      
-      return ((poOwner = $) OR Send(poOwner,@ReqLeaveHold,#what=self));
+      if pbIs_Dropable = FALSE
+	   AND NOT (isClass(poOwner,&DM)
+	             OR isClass(what,&DM) 
+				 OR isClass(poOwner,&Room) 
+				 OR isClass(what,&Assassin))
+	   {	 
+		 Send(poOwner,@MsgSendUser,#message_rsc=item_no_drop);
+		
+		 return FALSE;
+	   }
+	   
+      return ((poOwner = $) OR Send(poOwner,@ReqLeaveHold,#what=self)); 
    }
 
    ReqLeaveOwner()
@@ -1723,6 +1737,7 @@ messages:
          iNum = Send(self,@GetNumFromCompound,#compound=First(i));
          oItemAtt = Send(SYS,@FindItemAttByNum,#num=iNum);
          if NOT Send(oItemAtt,@ItemDropOnDeath)
+		  OR pbIs_Dropable = FALSE
          {
             return FALSE;
          }
