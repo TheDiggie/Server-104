@@ -32,7 +32,7 @@ classvars:
 
    viBulk = 5
    viWeight = 6
-   viValue_average = 100
+   viValue_average = 10
 
    viItem_type = ITEMTYPE_REAGENT
 
