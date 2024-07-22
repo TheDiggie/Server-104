@@ -18,7 +18,8 @@ resources:
 
    TosKey_name_rsc = "old Tos key"
    TosKey_icon_rsc = key7.bgf
-   TosKey_desc_rsc = "This is a old golden key to the city."
+   TosKey_desc_rsc = \
+     "This is a old golden key to the city.\n It cannot be dropped or traded."
    
 classvars:
 

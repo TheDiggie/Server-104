@@ -18,7 +18,8 @@ resources:
 
    BarloqueKey_name_rsc = "old Barloque key"
    BarloqueKey_icon_rsc = key1.bgf
-   BarloqueKey_desc_rsc = "This is a old golden key to the city."
+   BarloqueKey_desc_rsc = \
+     "This is a old golden key to the city.\n It cannot be dropped or traded."
    
 classvars:
 

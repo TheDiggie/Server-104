@@ -164,7 +164,7 @@ properties:
    piSpecial = $
 
    piIndestructible = FALSE
-   pbIs_Dropable = TRUE
+   pbIs_Droppable = TRUE
 
    viMiningBonus     = 0
    viGatheringBonus  = 0
@@ -1232,7 +1232,7 @@ messages:
 
    ReqNewOwner(what=$)
    {      
-      if pbIs_Dropable = FALSE
+      if pbIs_Droppable = FALSE
 	   AND NOT (isClass(poOwner,&DM)
 	             OR isClass(what,&DM) 
 				 OR isClass(poOwner,&Room) 
@@ -1737,7 +1737,7 @@ messages:
          iNum = Send(self,@GetNumFromCompound,#compound=First(i));
          oItemAtt = Send(SYS,@FindItemAttByNum,#num=iNum);
          if NOT Send(oItemAtt,@ItemDropOnDeath)
-		  OR pbIs_Dropable = FALSE
+		  OR pbIs_Droppable = FALSE
          {
             return FALSE;
          }
@@ -1768,6 +1768,11 @@ messages:
    CanBeStoredInVault()
    "Black daggers and tokens, especially, cannot be stored in vaults."
    {
+      if pbIs_Droppable = FALSE
+	  {
+	     return FALSE;
+	  }
+	  
       return TRUE;
    }
 
@@ -2863,11 +2868,23 @@ messages:
 
       return;
    }
-
+   
    IsIndestructible()
    {
       return piIndestructible;
    }
+
+   SetNotDroppable()
+   {
+      pbIs_Droppable = FALSE;
+	  
+	  return;
+   }
+
+   IsDroppable()
+   {
+      return pbIs_Droppable;
+   }	
 
    SetCrafter(Crafter=$)
    {
