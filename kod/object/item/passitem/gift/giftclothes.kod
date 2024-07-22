@@ -1,0 +1,52 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+ClothesGift is Gift
+
+constants:
+
+   include blakston.khd
+   include protocol.khd
+
+resources:
+
+   ClothesGift_name_rsc = "clothes box"
+   ClothesGift_icon_rsc = lootboxes.bgf
+   ClothesGift_desc_rsc = \
+      "This is a gift from the gods, it contains a random clothes!\n\n"
+      "clothes  ONLY HAVE 10% CHANCE TO HAVE A ENCHANTMENT.\n\n"
+      "Items have a 30% chance to be colored.\n\n"
+      "This box has a chance to contain the following items : \n"
+      "Pants, Baggy Pants, Shirt, Royal Shirt, Light Jerkin, Long Skirt, Short Skirt.\n\n"
+      "These items have a chance to be enchanted with :\n bond, bonus xp."
+
+classvars:
+
+   vrName = ClothesGift_name_rsc
+   vrIcon = ClothesGift_icon_rsc
+   vrDesc = ClothesGift_desc_rsc
+   
+   viValue_average = 2000
+
+properties:
+
+messages:
+
+   Constructor()
+   {
+      plContents = [ &PantsA, &PantsB, &PantsC, &PantsD, &ShortSkirt, &Skirt, &Shirt, &RoyalShirt, &Tanktop ];
+
+      plItematt = [ IA_TRANSCENDANT, IA_XP_KILL_BONUS ];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

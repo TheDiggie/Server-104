@@ -149,10 +149,12 @@ messages:
       {
          if IsClass(poContents,&Necklace)
          OR IsClass(poContents,&FaceMask)
+         OR IsClass(poContents,&ShirtBase)
+         OR IsClass(poContents,&Pants)
          {
             iChance = Random(1,100);
 
-            if iChance < 10
+            if iChance <= 10
             {
                poItematt = Nth(plItematt,Random(1,length(plItematt)));
                oItemAtt = Send(SYS,@FindItemAttByNum,#num=poItematt);
