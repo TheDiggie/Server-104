@@ -5840,6 +5840,7 @@ messages:
       plItemTemplates = cons(create(&DeathRealmArmorGift),plItemTemplates);
       plItemTemplates = cons(create(&MaskGift),plItemTemplates);
       plItemTemplates = cons(create(&InstrumentGift),plItemTemplates);
+      plItemTemplates = cons(create(&ClothesGift),plItemTemplates);
 
       // Scrolls
       plItemTemplates = cons(create(&DarknessScroll),plItemTemplates);
