@@ -31,7 +31,7 @@ classvars:
 
    viBulk = 3
    viWeight = 4
-   viValue_average = 100
+   viValue_average = 10
 
    viItem_type    = ITEMTYPE_REAGENT
    viRefined      = &Leather

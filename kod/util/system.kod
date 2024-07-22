@@ -5724,7 +5724,6 @@ messages:
       plItemTemplates = cons(create(&SanctuaryKey),plItemTemplates);
       plItemTemplates = cons(create(&Key),plItemTemplates);
       plItemTemplates = cons(create(&BarloqueKey),plItemTemplates);
-      plItemTemplates = cons(create(&BasementKey),plItemTemplates);
       plItemTemplates = cons(create(&CastleKey),plItemTemplates);
       plItemTemplates = cons(create(&CorNothKey),plItemTemplates);
       plItemTemplates = cons(create(&SewerKey),plItemTemplates);
@@ -5843,6 +5842,7 @@ messages:
       plItemTemplates = cons(create(&DeathRealmArmorGift),plItemTemplates);
       plItemTemplates = cons(create(&MaskGift),plItemTemplates);
       plItemTemplates = cons(create(&InstrumentGift),plItemTemplates);
+      plItemTemplates = cons(create(&ClothesGift),plItemTemplates);
 
       // Scrolls
       plItemTemplates = cons(create(&DarknessScroll),plItemTemplates);
