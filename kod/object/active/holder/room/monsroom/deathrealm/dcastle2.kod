@@ -50,14 +50,6 @@ messages:
       return;
    }
 
-   Enter(who=$)
-   {
-      Send(self,@NewHold,#what=who,#new_row=24,#new_col=2,
-            #new_angle=ROTATE_NONE);
-
-      return;
-   }
-
    CreateStandardObjects()
    {
       poPortalDR = Create(&DeathRealmExit,#desc=portal_dre);

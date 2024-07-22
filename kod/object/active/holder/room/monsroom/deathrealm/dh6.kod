@@ -17,6 +17,9 @@ constants:
 resources:
 
    room_DeathRealm_H6 = h6.roo
+   
+   Key_Open = "As you use the key to unlock the door it mysteriously disappears. You walk through unaware of the dangers beyond."
+   Beat_DR = "Having extensive knowledge of the Death Realm, you find the door opens for you."
 
 classvars:
 
@@ -34,20 +37,6 @@ properties:
 
 messages:
 
-   SomethingMoved(what = $,new_row = $, new_col = $)
-   {
-      if (new_row = 56) AND (new_col = 44)
-      {
-         Send(SYS,@UtilGoNearSquare,#what=what,
-               #where=Send(SYS,@FindRoomByNum,#num=RID_DI6),
-               #new_row=8,#new_col=2,#new_angle=ANGLE_NORTH_EAST);
-
-         return;
-      }
-
-      propagate;
-   }
-   
    CreateStandardExits()
    {
       plExits = $;
@@ -56,27 +45,57 @@ messages:
       plExits = Cons([ 27, 41, ROOM_LOCKED_DOOR, Needs_Key ],plExits);
 
       plEdge_Exits = $;
+      plEdge_Exits = Cons([LEAVE_EAST, RID_DI6, 8, 4, ROTATE_NONE], plEdge_exits);
       plEdge_Exits = Cons([LEAVE_NORTH, RID_DH5, 45, 11, ROTATE_NONE], plEdge_exits);
       plEdge_Exits = Cons([LEAVE_WEST, RID_DH7, 8, 66, ROTATE_NONE], plEdge_exits);
- 
+
       propagate;
    }
-
-   EnterLockedTown(who=$)
+   
+   SomethingTryGo(what=$,row=$,col=$)
    {
-      local iRow, iCol;
+      local i, each_obj;
 
-      iRow = send(who,@GetRow);
-      iCol = send(who,@GetCol);
-      
-      if ( iRow = 27
-           AND (iCol = 41))
+      if (IsClass(what,&User)
+         AND (row = 27 AND col = 41))
       {
-         return TRUE;
+          if send(what,@HasBeatDR)
+		    OR IsClass(what,&DM)
+		  {
+		     foreach i in Send(what,@GetHolderPassive)
+            {
+               each_obj = Send(what,@HolderExtractObject,#data=i);
+               if IsClass(each_obj,&TosKey)
+               {
+                  Send(each_obj,@Delete);
+			   }
+			}
+			 
+			 Send(what,@MsgSendUser,#message_rsc=Beat_DR);
+             Send(SYS,@UtilGoNearSquare,#what=what,
+                    #where=Send(SYS,@FindRoomByNum,#num=RID_DTOS),
+                    #new_row=58,#new_col=4,#new_angle=ANGLE_EAST);
+			 
+			 return TRUE;
+		  }
+
+      	  
+   		     foreach i in Send(what,@GetHolderPassive)
+            {
+               each_obj = Send(what,@HolderExtractObject,#data=i);
+               if IsClass(each_obj,&TosKey)
+               {
+                  Send(each_obj,@Delete);
+                  Send(what,@MsgSendUser,#message_rsc=Key_Open);
+                  Send(SYS,@UtilGoNearSquare,#what=what,
+                      #where=Send(SYS,@FindRoomByNum,#num=RID_DTOS),
+                      #new_row=58,#new_col=4,#new_angle=ANGLE_EAST);
+
+                  return TRUE;
+               }
+            }
+		  }
+ 		 propagate;
       }
-
-      return FALSE;
-   }
-
 end
 ////////////////////////////////////////////////////////////////////////////////

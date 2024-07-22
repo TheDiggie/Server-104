@@ -2034,6 +2034,7 @@
    IA_XP_KILL_BONUS        = 22
    IA_CRAFTED              = 23
    IA_INDESTRUCTIBLE       = 24
+   IA_NOTDROPPABLE       = 25
 
    // Weapon Attributes.  These are attributes only applied to weapons.
    WA_TRAINING             = 51
@@ -2452,6 +2453,7 @@
    
    SID_ICEWALL = 241
    SID_INDEST  = 242
+   SID_NODROP = 253
 
    // Depreciated spell IDs
    SID_LIGHTNING = 1                   // use SID_LIGHTNING_BOLT

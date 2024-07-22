@@ -65,22 +65,51 @@ messages:
       propagate;
    }
 
-   EnterLockedTown(who=$)
+   SomethingTryGo(what=$,row=$,col=$)
    {
-      local iRow, iCol;
+      local i, each_obj;
 
-      iRow = send(who,@GetRow);
-      iCol = send(who,@GetCol);
-      
-      if ( iRow = 6
-           AND (iCol = 11
-                 OR iCol = 12))
+      if (IsClass(what,&User)
+         AND (row = 6 AND col = 11) OR (row = 6 AND col = 12))
       {
-         return TRUE;
-      }
+          if send(what,@HasBeatDR)
+		    OR IsClass(what,&DM)
+		  {
+		     foreach i in Send(what,@GetHolderPassive)
+            {
+               each_obj = Send(what,@HolderExtractObject,#data=i);
+               if IsClass(each_obj,&BarloqueKey)
+               {
+                  Send(each_obj,@Delete);
+			   }
+			}
+		  
+		     Send(what,@MsgSendUser,#message_rsc=Beat_DR);
+			 Send(SYS,@UtilGoNearSquare,#what=what,
+                  #where=Send(SYS,@FindRoomByNum,#num=RID_DBAR_SOUTH),
+                  #new_row=46,#new_col=31,#new_angle=ANGLE_NORTH);
+			 
+			 return TRUE;
+		  }
 
-      return FALSE;
-   }
+      	  
+   		     foreach i in Send(what,@GetHolderPassive)
+            {
+               each_obj = Send(what,@HolderExtractObject,#data=i);
+               if IsClass(each_obj,&BarloqueKey)
+               {
+                  Send(each_obj,@Delete);
+                  Send(what,@MsgSendUser,#message_rsc=Key_Open);
+                  Send(SYS,@UtilGoNearSquare,#what=what,
+                      #where=Send(SYS,@FindRoomByNum,#num=RID_DBAR_SOUTH),
+                      #new_row=46,#new_col=31,#new_angle=ANGLE_NORTH);
+
+                  return TRUE;
+               }
+            }
+		  }
+ 		 propagate;
+      }
 
 end
 ////////////////////////////////////////////////////////////////////////////////
