@@ -26,8 +26,8 @@ classvars:
    viTerrain_type = TERRAIN_MYSTICAL | TERRAIN_WATERFALL
    viPermanent_flags = ROOM_SAFELOGOFF
 
-   viTeleport_row = 20
-   viTeleport_col = 20
+   viTeleport_row = 16
+   viTeleport_col = 15
 
 properties:
 
