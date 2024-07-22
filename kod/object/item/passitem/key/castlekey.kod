@@ -18,7 +18,8 @@ resources:
 
    CastleKey_name_rsc = "old key to Castle Victoria"
    CastleKey_icon_rsc = key3.bgf
-   CastleKey_desc_rsc = "This is a old golden key."
+   CastleKey_desc_rsc =  \
+     "This is a old golden key.\n It cannot be dropped or traded."
 
 classvars:
 

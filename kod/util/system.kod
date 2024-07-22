@@ -3321,6 +3321,7 @@ messages:
       Send(self,@CreateOneSpellIfNew,#num=SID_DM_ITEMATT,#class=&DivineEnchantment);
       Send(self,@CreateOneSpellIfNew,#num=SID_SLITHERBOLT,#class=&Slitherbolt);
       Send(self,@CreateOneSpellIfNew,#num=SID_INDEST,#class=&Indestructible);
+	  Send(self,@CreateOneSpellIfNew,#num=SID_NODROP,#class=&NotDroppable);
 
       Send(self,@CreateOneSpellIfNew,#num=SID_CURSE_WEAPON,#class=&CurseWeapon);
       Send(self,@CreateOneSpellIfNew,#num=SID_PARDON,#class=&Pardon);
@@ -3634,6 +3635,7 @@ messages:
       Send(self,@CreateOneItemAttIfNew,#num=IA_MADE,#class=&ItemAttMade);
       Send(self,@CreateOneItemAttIfNew,#num=IA_CRAFTED,#class=&ItemAttCrafted);
       Send(self,@CreateOneItemAttIfNew,#num=IA_INDESTRUCTIBLE,#class=&ItemAttIndestructible);
+	  Send(self,@CreateOneItemAttIfNew,#num=IA_NOTDROPPABLE,#class=&ItemAttNotDroppable);
 
       // Keep these last, it's called the most often
       Send(self,@CreateOneItemAttIfNew,#num=IA_PKPOINTER,#class=&ItemAttPKPointer);

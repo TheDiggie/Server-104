@@ -18,7 +18,8 @@ resources:
 
    SewerKey_name_rsc = "old key to the sewers."
    SewerKey_icon_rsc = key5.bgf
-   SewerKey_desc_rsc = "This is a old golden key."
+   SewerKey_desc_rsc = \
+     "This is a old golden key.\n It cannot be dropped or traded."
 
 classvars:
 

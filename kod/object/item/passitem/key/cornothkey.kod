@@ -18,7 +18,8 @@ resources:
 
    CorNothKey_name_rsc = "old Cor Noth key"
    CorNothKey_icon_rsc = key4.bgf
-   CorNothKey_desc_rsc = "This is a old golden key to the city."
+   CorNothKey_desc_rsc = \
+     "This is a old golden key to the city.\n It cannot be dropped or traded."
 
 classvars:
 
