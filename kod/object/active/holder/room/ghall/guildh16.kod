@@ -189,7 +189,7 @@ messages:
          Send(self,@SetSector,#sector=4,
                #animation=ANIMATE_FLOOR_LIFT,
                #height=0,#speed=16);
-         ptSecret = CreateTimer(self,@CloseSecretDoor,LIFT_DELAY);
+         ptSecret = CreateTimer(self,@CloseSecretDoor,10000);
          Send(self,@OpenSecretDoorSound);
       }
 
