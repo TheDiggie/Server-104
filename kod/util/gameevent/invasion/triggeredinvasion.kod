@@ -100,7 +100,7 @@ messages:
                             &GrayMushroom, &CyanMushroom, &YellowMushroom,   &GreenMushroom,
                             &ShamanBlood, &YrxlSap ];
 
-      plEventBoss = [ &GrandpaTrent, &Lich, &SpiderQueen, &AvarChieftain, &Yeti, &OrcPitBoss, &XeoNeru, &GiantRatKing, &Ghost ];
+      plEventBoss = [ &GrandpaTrent, &Lich, &SpiderQueen, &AvarChieftain, &Yeti, &OrcPitBoss, &XeoNeru, &GiantRatKing, &Ghost, &CaptainKnight ];
 
       plEventRooms = [ RID_E2,    RID_F2,   RID_F3,       RID_D5, RID_D4,
                        RID_CAVE2, RID_F8,   RID_G9,       RID_H7,      
@@ -635,6 +635,13 @@ messages:
                              [&Skeleton, 15], [&TuskedSkeleton, 10] ];
                              
          piRewardAmount = 5;
+      }
+      else if isClass(poLeader,&CaptainKnight)
+      {
+         plEventMonsters = [ [&HeadlessSkeleton, 15],   [&Skeleton, 15], 
+                             [&HalfKnight, 15], [&KnightA, 10] ];
+                             
+         piRewardAmount = 8;
       }
       
       return;
