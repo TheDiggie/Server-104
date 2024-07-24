@@ -52,8 +52,6 @@ classvars:
 properties:
 
    piAnimation = ANIM_IDLE
-
-   poCurrency = &Shillings
    
 messages:
 
