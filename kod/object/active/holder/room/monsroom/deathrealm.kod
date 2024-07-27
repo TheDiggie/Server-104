@@ -32,6 +32,10 @@ resources:
 
    Needs_Key = "You need a key for this door, ask the town folk for help."
 
+   Beat_DR = "Having extensive knowledge of the Death Realm, you find the door opens for you."
+   
+   Key_Open = "As you use the key to unlock the door it mysteriously disappears. You walk through unaware of the dangers beyond."
+
    DeathRealm_music = drmusic.mp3
 
 classvars:

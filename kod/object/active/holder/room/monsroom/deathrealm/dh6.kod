@@ -17,9 +17,6 @@ constants:
 resources:
 
    room_DeathRealm_H6 = h6.roo
-   
-   Key_Open = "As you use the key to unlock the door it mysteriously disappears. You walk through unaware of the dangers beyond."
-   Beat_DR = "Having extensive knowledge of the Death Realm, you find the door opens for you."
 
 classvars:
 

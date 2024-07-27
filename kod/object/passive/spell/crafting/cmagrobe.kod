@@ -70,6 +70,7 @@ messages:
 
       iCount = 0;
       iSpellPower = Send(self,@GetSpellPower,#who=who);
+      isGearCreateable = false;
 
       foreach i in lSchools
       {
@@ -82,11 +83,59 @@ messages:
 
             oSchool = piSchool;
             oGear = Create(vrGear,#school=oSchool);
-
-            Send(who,@BreakTrance,#event=EVENT_STEER);
-
+            isGearCreateable = true;
             break;
          }
+      }
+
+      if(isGearCreateable = true)
+      {
+         if iSpellPower = 99
+         {
+            iChance = Random(1,100);
+
+            if iChance < 2
+            {
+               oItemAtt = Send(SYS,@FindItemAttByNum,#num=IA_INDESTRUCTIBLE);
+               iCurrentSpell = Send(oGear,@GetAttributeData,#ItemAtt=IA_INDESTRUCTIBLE);
+
+               Send(oItemAtt,@AddtoItem,#oItem=oGear);
+
+               Send(who,@MsgSendUser,#message_rsc=Crafted_Indestructible,
+                     #parm1=Send(oGear,@GetName));
+
+               Send(oGear,@SetIndestructible);
+            }
+         }
+
+         Send(who,@BreakTrance,#event=EVENT_STEER);
+         Send(oGear,@SetDefense,#number=((1+iSpellPower)/5));
+
+         if Send(who,@ReqNewHold,#what=oGear)
+         {
+            Send(who,@NewHold,#what=oGear);
+            Send(who,@BreakTrance,#event=EVENT_STEER);
+
+            if NOT send(oGear,@IsIndestructible)
+            {
+               Send(who,@MsgSendUser,#message_rsc=Crafting_cast_rsc,
+                     #parm1=Send(oGear,@GetCapIndef),#parm2=Send(oGear,@GetName));
+            }
+         }
+         else
+         {
+            Send(Send(who,@GetOwner),@NewHold,#what=oGear,
+                  #new_row=Send(who,@GetRow),#new_col=Send(who,@GetCol),
+                  #fine_row=(Send(who,@GetFineRow)+2),
+                  #fine_col=(Send(who,@GetFineCol)+2));
+            Send(who,@MsgSendUser,#message_rsc=Crafting_inv_full_rsc,
+                  #parm1=Send(oGear,@GetCapIndef),#parm2=Send(oGear,@GetName));
+            return;
+         }
+
+         oItemAtt = Send(SYS,@FindItemAttByNum,#num=IA_CRAFTED);
+         Send(oItemAtt,@AddtoItem,#oItem=oGear);
+
       }
 
       return;
