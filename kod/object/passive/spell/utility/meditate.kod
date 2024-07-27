@@ -116,7 +116,7 @@ messages:
    SomethingSaidDuringTrance(who=$,string=$,lTargets=$)
    {
       local i, bFound, oSpell, sSpell, oSkill, sSkill, iPercent,
-            iRatio, iGain, iNum, iPoints, iAmount;
+            iRatio, iGain, iNum, iPoints, iAmount, iFull_Amount;
 
       Send(who,@BreakTrance,#event=EVENT_STEER);  /// Don't print fizzle message
 
@@ -166,7 +166,9 @@ messages:
                return;
             }
 
-            if iPoints < iRatio
+            iFull_Amount = iRatio * iAmount;
+
+            if iPoints < iFull_Amount
             {
                Send(who,@MsgSendUser,#message_rsc=Meditate_not_enough_points,
                      #parm1=sSpell);
