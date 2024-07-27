@@ -165,7 +165,7 @@ messages:
       }
       else if piActiveRoom = RID_DUNGEON
       {
-         plSpawnRects = [ [[16,5],[26,24  ]] ];
+         plSpawnRects = [ [[16,5],[26,24]] ];
       }
 
       propagate;
