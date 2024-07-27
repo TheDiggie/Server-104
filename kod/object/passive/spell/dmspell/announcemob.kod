@@ -1,0 +1,80 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+AnnounceMob is DMSpell
+
+constants:
+   include blakston.khd
+
+resources:
+
+   AnnounceMob_name_rsc = "announce death"
+   AnnounceMob_icon_rsc = lightnin.bgf
+
+   AnnounceMob_desc_rsc = "This will make a mob announce its killer and death location.  "
+
+classvars:
+   vrName = AnnounceMob_name_rsc
+   vrIcon = AnnounceMob_icon_rsc
+   vrDesc = AnnounceMob_desc_rsc
+
+   viSpell_num = SID_ANNOUNCEMOB
+
+   viMana = 0
+
+properties:
+
+messages:
+
+   GetNumSpellTargets()
+   {
+      return 1;
+   }
+
+   SuccessChance(who=$)
+   "DMs are always successful with their spells."
+   {
+      return TRUE;
+   }
+
+   ResetReagents()
+   {
+      plReagents = $;
+
+      return;
+   }
+
+   CanPayCosts(who=$,lTargets=$)
+   {
+      local oTarget;
+
+      oTarget = First(lTargets);
+
+      if NOT isClass(oTarget,&Monster)
+      {
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+   CastSpell(who=$,lTargets=$,bItemCast=FALSE)
+   {
+      local oTarget;
+
+      oTarget = First(lTargets);
+
+      Send(oTarget,@SetAnnounce);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

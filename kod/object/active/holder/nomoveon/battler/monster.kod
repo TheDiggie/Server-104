@@ -259,6 +259,8 @@ resources:
    monster_faction_frogmen = "Frogmen"
    monster_faction_heretic = "Cult of the Three"
    monster_faction_undead = "Minions of Death"
+
+   Announce_Death = "~B~r%s has slain the %s at %s!!"
    
 classvars:
 
@@ -365,6 +367,7 @@ classvars:
    vrLm_bnkr_player_full            = Lm_bnkr_player_full
    vrLm_bnkr_player_all_full        = Lm_bnkr_player_all_full
    vrLm_mrcnt_cant_give             = Lm_mrcnt_cant_give
+   vrAnnounce = Announce_Death
 
    // Obsolete, but still included here for safety's sake.
    vrSound_hit = $
@@ -522,6 +525,7 @@ properties:
    poInvasionLeader = $
    pbAttackMode = TRUE
    poEventObject = $
+   pbAnnounce = FALSE
 
 messages:
 
@@ -3960,6 +3964,13 @@ messages:
                }
             }
          }
+
+         if pbAnnounce
+         {
+            Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,#string=vrAnnounce,
+            #parm1=Send(what,@GetName),#parm2=Send(self,@GetName),#parm3=Send(poOwner,@GetName));
+         }
+
          // Delete here so we don't accidentally "kill" then delete system
          //  template monsters.
          Send(self,@Delete);
@@ -7585,5 +7596,12 @@ messages:
       return;
    }
 
+   SetAnnounce()
+   {
+      pbAnnounce = TRUE;
+
+      return;
+   }
+   
 end
 ////////////////////////////////////////////////////////////////////////////////

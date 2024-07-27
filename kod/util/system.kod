@@ -3577,6 +3577,7 @@ messages:
       Send(self,@CreateOneSpellIfNew,#num=SID_CRAFTKNIGHTSHELMET,#class=&CraftKnightsHelmet);
       Send(self,@CreateOneSpellIfNew,#num=SID_CRAFTLIGHTMAGICROBES,#class=&CraftLightMagicRobes);
       Send(self,@CreateOneSpellIfNew,#num=SID_CRAFTWIZARDHAT,#class=&CraftWizardHat);
+      Send(self,@CreateOneSpellIfNew,#num=SID_ANNOUNCEMOB,#class=&AnnounceMob);
 
       return;
    }
