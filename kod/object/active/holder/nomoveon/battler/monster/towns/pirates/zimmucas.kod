@@ -1,0 +1,62 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Zimmucas is Pirates
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Zimmucas_name_rsc = "Zimmucas"
+   Zimmucas_icon_rsc = zimmucas.bgf
+   Zimmucas_desc_rsc = \
+      "Zimmucas was a well traveled hunter in the old days. Now he spends his time "
+      "in the desert hunting elemental monsters. Tho the land in barren and can lead to "
+      "loneliness, he spends time on the pirates ship chatting and selling his spoils "
+      "and sending adventurers on quest. "
+
+classvars:
+
+   vrName = Zimmucas_name_rsc
+   vrIcon = Zimmucas_icon_rsc
+   vrDesc = Zimmucas_desc_rsc
+
+   viAttributes = \
+      MOB_NOFIGHT | MOB_NOMOVE | MOB_RANDOM | MOB_LISTEN \
+      | MOB_RECEIVE | MOB_SELLER
+
+   viOccupation = MOB_ROLE_MERCHANT 
+
+   viMerchant_markup = MERCHANT_FLAT
+
+properties:
+
+   //poCurrency = &Doubloon
+
+messages:
+
+   //Constructor()
+   //{
+   //   plWantedItems = [&Doubloon];
+//
+   //   propagate;
+   //}
+//
+   SetForSale()
+   {
+      plFor_sale = [$,$,$,$];
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////
