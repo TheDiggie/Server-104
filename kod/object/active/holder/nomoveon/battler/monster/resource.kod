@@ -92,12 +92,17 @@ messages:
       return viTool;
    }
 
-   AssessDamage(what=$)
+   AssessDamage(what=$,aspell=0)
    "This is called when something causes damage to us."
    {
       local i, oResource, iAmount, cSkillAbility, iBonus;
 
       if NOT IsClass(what,&User)
+      {
+         propagate;
+      }
+
+      if aspell > 0
       {
          propagate;
       }
