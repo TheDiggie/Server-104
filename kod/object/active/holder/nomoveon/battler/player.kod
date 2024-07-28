@@ -845,7 +845,7 @@ classvars:
    viBody_space = 1
 
    viQuiver_space = 1
-   viNeck_space = 1
+   viNeck_space = 2
    viHead_space = 1
    viLeg_space = 1
 
@@ -4113,11 +4113,6 @@ messages:
          {
             bToken = TRUE;
          }
-		 
-		 if IsClass(i, &NecromancerAmulet)
-		 {
-		    iSpace += 1;
-		 }
       }
 
       if iSpace < Send(what,@GetItemUseAmount)

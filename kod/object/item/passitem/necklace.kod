@@ -32,6 +32,7 @@ messages:
       // Check for necklaces or Jala necklace.  The Jala necklace is an "instrument".
       if IsClass(what,&Necklace)
          OR IsClass (what,&JalaNecklace)
+         AND NOT IsClass(what,&NecromancerAmulet)
       {
          // Try to remove ourselves, unless we're cursed.
          // This is to avoid problems with the Amulets of Shadow exploits.

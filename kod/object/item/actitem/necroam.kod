@@ -1036,13 +1036,7 @@ messages:
 
    ReqUseSomething(what = $)
    {
-      if IsClass(what,&Necklace)
-	  {
-	     propagate;
-	  }
-	  
-      if IsClass(what,&Necklace)
-         OR IsClass(what,&NecromancerAmulet)
+      if IsClass(what,&NecromancerAmulet)
       {
          if Send(poOwner,@TryUnuseItem,#what=self)
          {
