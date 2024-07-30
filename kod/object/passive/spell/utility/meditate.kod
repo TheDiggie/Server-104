@@ -166,43 +166,48 @@ messages:
                return;
             }
 
-            iFull_Amount = iRatio * iAmount;
 
-            if iPoints < iFull_Amount
+            if iAmount <> $
             {
-               Send(who,@MsgSendUser,#message_rsc=Meditate_not_enough_points,
-                     #parm1=sSpell);
+               iFull_Amount = iRatio * iAmount;
+               
+               if iPoints < iFull_Amount
+               {
+                     Send(who,@MsgSendUser,#message_rsc=Meditate_not_enough_points,
+                              #parm1=sSpell);
 
-               return;
+                     return;
+               }
+            }
+
+            if iAmount <> $
+            {  
+               iAmount = iRatio * iAmount;
+               iGain = iAmount/iRatio;
             }
             else
             {
-               if iAmount <> $
-               {  
-                  iAmount = iRatio * iAmount;
-                  iGain = iAmount/iRatio;
-               }
-               else
-               {
-                  iGain = iPoints/iRatio;
-               }
-               
-               if iGain > 99 - iPercent
-               {
-                  iGain = 99 - iPercent;
-               }
+               iGain = iPoints/iRatio;
+            }
+            
+            if iGain > 99 - iPercent
+            {
+               iGain = 99 - iPercent;
+            }
 
-               Send(who,@MsgSendUser,#message_rsc=Meditate_cast_success,
-                     #parm1=sSpell,#parm2=iGain);
-               Send(who,@ChangeSpellAbility,#spell_num=iNum,
-                     #amount=iGain,#report=FALSE);
-               Send(who,@AddTrainingPoints,#points=(-iGain*iRatio));
-               if iGain*iRatio > Random(0,99)
-               AND NOT StringEqual(string,Meditate_name_rsc)
-               {
-                  Send(who,@ChangeSpellAbility,#spell_num=vispell_Num,
-                        #amount=1,#report=TRUE);
-               }
+            Send(who,@MsgSendUser,#message_rsc=Meditate_cast_success,
+                  #parm1=sSpell,#parm2=iGain);
+
+            Send(who,@ChangeSpellAbility,#spell_num=iNum,
+                  #amount=iGain,#report=FALSE);
+
+            Send(who,@AddTrainingPoints,#points=(-iGain*iRatio));
+
+            if iGain*iRatio > Random(0,99)
+            AND NOT StringEqual(string,Meditate_name_rsc)
+            {
+               Send(who,@ChangeSpellAbility,#spell_num=vispell_Num,
+                     #amount=1,#report=TRUE);
             }
 
             break;
