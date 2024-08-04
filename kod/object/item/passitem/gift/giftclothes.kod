@@ -24,7 +24,7 @@ resources:
       "clothes  ONLY HAVE 10% CHANCE TO HAVE A ENCHANTMENT.\n\n"
       "Items have a 30% chance to be colored.\n\n"
       "This box has a chance to contain the following items : \n"
-      "Pants, Baggy Pants, Shirt, Royal Shirt, Light Jerkin, Long Skirt, Short Skirt.\n\n"
+      "Pants, Baggy Pants, Shirt, Light Jerkin, Long Skirt, Short Skirt.\n\n"
       "These items have a chance to be enchanted with :\n bond, bonus xp."
 
 classvars:
@@ -41,7 +41,7 @@ messages:
 
    Constructor()
    {
-      plContents = [ &PantsA, &PantsB, &PantsC, &PantsD, &ShortSkirt, &Skirt, &Shirt, &RoyalShirt, &Tanktop ];
+      plContents = [ &PantsA, &PantsB, &PantsC, &PantsD, &ShortSkirt, &Skirt, &Shirt, &Tanktop ];
 
       plItematt = [ IA_TRANSCENDANT, IA_XP_KILL_BONUS ];
 

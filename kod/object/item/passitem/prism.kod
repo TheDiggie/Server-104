@@ -143,12 +143,12 @@ messages:
          piNumSides = numSides;
       }
 
-      if piNumSides >= 1 AND piNumSides <= 4
+      if piNumSides >= 1 AND piNumSides <= 2
       {
          piNumSides = 1;
          vrIcon = prism_1_icon_rsc;
       }
-      else if piNumSides >= 5 AND piNumSides <= 9
+      else if piNumSides >= 3 AND piNumSides <= 9
       {
          piNumSides = 3;
          vrIcon = prism_3_icon_rsc;

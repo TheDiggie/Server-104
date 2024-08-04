@@ -89,7 +89,7 @@ messages:
       if SpecialItem
       {
          Send(who,@StartEnchantment,#what=self,
-              #time=$);
+              #time=SPELL_INDEFINITE_DURATION);
       }
       else
       {
