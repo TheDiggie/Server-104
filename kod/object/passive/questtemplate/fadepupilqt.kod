@@ -204,7 +204,7 @@ messages:
       // QNT_ID_FADE_PUPIL_THREE
       if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MONSTER,
                #NPC_modifier=QN_NPCMOD_SAME,#monsterlist=[&CaveOrc, &Troll],
-               #timelimit=3600,#quest_node_index=QNT_ID_FADE_PUPIL_THREE)
+               #timelimit=3600,#quest_node_index=QNT_ID_FADE_PUPIL_THREE,#amount_needed=1)
       {
          Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_FADE_PUPIL_THREE,
                #new_hint=fadelearn_assign_3);

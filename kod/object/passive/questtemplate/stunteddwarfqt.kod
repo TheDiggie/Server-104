@@ -250,7 +250,7 @@ messages:
       // QNT_ID_STUNTED_DWARF_SIX
       if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MONSTER,
                #NPC_modifier=QN_NPCMOD_SAME,#monsterlist=[ &Kriipa ],
-               #timelimit=2 * 3600,#quest_node_index=QNT_ID_STUNTED_DWARF_SIX)
+               #timelimit=2 * 3600,#quest_node_index=QNT_ID_STUNTED_DWARF_SIX,#amount_needed=1)
       {
          Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_STUNTED_DWARF_SIX,
                #new_hint=stunteddwarf_assign_6);
