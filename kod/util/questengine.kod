@@ -863,7 +863,8 @@ messages:
 
    AddQuestNodeTemplate(NPC_modifier = $, questnode_type = $, cargolist = $,
                         monsterlist = $, prizelist = $, penaltylist = $,
-                        timelimit = $, quest_node_index = $, bDuplicate = FALSE)
+                        timelimit = $, quest_node_index = $, bDuplicate = FALSE,
+                        amount_needed = $)
    "Adds a new questnode template to plQuestNodeTemplates.  Returns index "
    "number of new questnode template if successful, 0 otherwise.  bDuplicate "
    "indicates more than one QuestTemplate will be sending the same quest node."
@@ -956,7 +957,7 @@ messages:
       lQNTemplate = [ quest_node_index, plDefaultNPCList, NPC_modifier, \
                       questnode_type, cargolist, monsterlist, prizelist, \
                       penaltylist, CreateString(),CreateString(), \
-                      CreateString(), timelimit ];
+                      CreateString(), timelimit, amount_needed ];
 
       // Quest nodes no longer need to be in order.
       plQuestNodeTemplates = Cons(lQNTemplate, plQuestNodeTemplates);
@@ -970,10 +971,15 @@ messages:
       return quest_node_index;
    }
 
-   GetQuestNodeNPCModifier( index = $)
+   GetQuestNodeNPCModifier(index = $)
    "Return the NPC modifier from a quest node template."
    {
       return Nth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_NPC_MODIFIER);
+   }
+
+   GetAmountToKill(index = $)
+   {
+      return Nth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_AMOUNT_NEEDED);
    }
 
    GetQuestNodeType(index = 0)
@@ -2198,7 +2204,7 @@ messages:
                            4,sQuesters ]);
          if piDebug
          {
-            Debug("Quest ",iQTIndex,": ",iAvailable," available; ",iUnassigned,
+            Debug("Quest ",iQTIndex,": ",iAvailable," available ",iUnassigned,
                   " unassigned and ",iAssigned," assigned.");
          }
          if piDebug > 1

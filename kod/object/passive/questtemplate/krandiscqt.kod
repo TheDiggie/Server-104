@@ -120,7 +120,7 @@ messages:
                #NPC_modifier=QN_NPCMOD_SAME,#timelimit=piTimeLimit,
 	           #prizelist=[ [ QN_PRIZETYPE_ITEMCLASS, &DiscipleRobe, 1, SS_KRAANAN ] ],
                #monsterlist=[&FungusBeast, &RedAnt, &Skeleton],
-               #quest_node_index=QNT_ID_KRAN_DISCIPLE_TWO)
+               #quest_node_index=QNT_ID_KRAN_DISCIPLE_TWO,#amount_needed=1)
       {
          Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_KRAN_DISCIPLE_TWO,
                #new_hint=kraanandisciple_assign);

@@ -3291,6 +3291,7 @@
    QNT_SUCCESS_HINT  = 10
    QNT_FAILURE_HINT  = 11
    QNT_TIME_LIMIT    = 12
+   QNT_AMOUNT_NEEDED = 13
 
    // Quest Template IDs
    QST_ID_NONE                   = 0
