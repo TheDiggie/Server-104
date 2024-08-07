@@ -2884,6 +2884,8 @@ messages:
          Send(self,@NewHold,#what=Create(&WolfMask));
          Send(self,@NewHold,#what=Create(&XeoMask));
          Send(self,@NewHold,#what=Create(&CarrotNoseMask));
+         Send(self,@NewHold,#what=Create(&PlagueMask));
+         Send(self,@NewHold,#what=Create(&PumpkinMask));
       }
       else if StringEqual(string,dm_get_dye_command)
       {
