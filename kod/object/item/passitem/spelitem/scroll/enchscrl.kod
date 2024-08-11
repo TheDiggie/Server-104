@@ -90,6 +90,8 @@ messages:
 
    ReqNewApply(what = $,apply_on = $)
    {
+      local ovSpell;
+      
       if NOT IsClass(apply_on,&AttackModifier)
       AND NOT IsClass(apply_on,&DefenseModifier)
       AND NOT IsClass(apply_on,&Weapon)
@@ -114,6 +116,21 @@ messages:
       {
          return;
       }
+	  
+       if (send(apply_on,@GetItemEnchantment)<>$)
+       {
+         ovSpell = send(apply_on,@GetItemEnchantment);
+         ovSpell = Send(SYS,@FindSpellByNum,#Num=ovSpell);
+		 
+         if (send(poOwner,@IsEnchanted,#what=ovSpell))
+		 {
+             send (poOwner,@RemoveEnchantment,#what=ovSpell);
+		
+             propagate;
+        }
+		  
+         propagate; 
+        }
 
       return TRUE;
    }
