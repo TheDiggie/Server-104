@@ -112,7 +112,7 @@ messages:
       // QNT_ID_REBEL_SOLDIER_TWO
       if Send(oQE,@AddQuestNodeTemplate,#NPC_modifier=QN_NPCMOD_SAME,
                #questnode_type=QN_TYPE_MONSTER,#monsterlist=[&PrincessTroop],
-               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_REBEL_SOLDIER_TWO)
+               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_REBEL_SOLDIER_TWO,#amount_needed=1)
       {
          Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_REBEL_SOLDIER_TWO,
                #new_hint=rebel_faction_soldier_assign_1);
@@ -129,7 +129,7 @@ messages:
       if Send(oQE,@AddQuestNodeTemplate,#NPC_modifier=QN_NPCMOD_SAME,
                #questnode_type=QN_TYPE_MONSTER,#monsterlist=[&DukeTroop],
                #prizelist=[ [ QN_PRIZETYPE_ITEMCLASS, &RebelShield, 1 ] ],
-               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_REBEL_SOLDIER_THREE)
+               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_REBEL_SOLDIER_THREE,#amount_needed=1)
       {
          Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_REBEL_SOLDIER_THREE,
                #new_hint=rebel_faction_soldier_assign_2);

@@ -3,7 +3,7 @@ scimprofquest_desc_rsc = de \
    "Quintor hat dich losgeschickt, ein Monster zu töten um Dir die Künste des Säbelkampfes zu lehren."
 scimprofquest_kill_rsc = de \
    "Quintor wird dir beibringen, wie man einen Säbel benutzt, aber zuerst musst du"
-   " %s töten. Erledige den Auftrag und kehre dann zu ihm zurück."
+   " a %s töten. Erledige den Auftrag und kehre dann zu ihm zurück."
 scimprofquest_return_rsc = de \
    "Kehre zurück zu Quintor und teile ihm mit, dass der Auftrag abgeschlossen wurde."
 scimprofquest_completed = de \
@@ -47,7 +47,7 @@ scimitarlearn_failure_4 = de \
 
 scimprofquest_name_rsc = pt "Missão do aprendiz de Quintor"
 scimprofquest_desc_rsc = pt "Quintor enviou você para matar um monstro, para que ele possa ensiná-lo a manejar um cimitarra."
-scimprofquest_kill_rsc = pt "Quintor ensinará você como usar uma cimitarra, mas primeiro você deve matar um(a) %s. Complete esta tarefa e relate de volta a ele."
+scimprofquest_kill_rsc = pt "Quintor ensinará você como usar uma cimitarra, mas primeiro você deve matar um(a) a %s. Complete esta tarefa e relate de volta a ele."
 scimprofquest_return_rsc = pt "Volte para Quintor e informe que a tarefa foi concluída."
 scimprofquest_completed = pt "Você completou a missão do aprendiz de cimitarra de Quintor. Quintor agora estará disposto a treiná-lo na arte de manejar uma cimitarra."
 scimitarlearn_trigger = pt "aprendiz"

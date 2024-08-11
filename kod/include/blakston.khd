@@ -3291,6 +3291,7 @@
    QNT_SUCCESS_HINT  = 10
    QNT_FAILURE_HINT  = 11
    QNT_TIME_LIMIT    = 12
+   QNT_AMOUNT_NEEDED = 13
 
    // Quest Template IDs
    QST_ID_NONE                   = 0
@@ -3369,6 +3370,7 @@
    QST_ID_PRINCESS_SOLDIER       = 73
    QST_ID_REBEL_SOLDIER          = 74
    QST_ID_ABSTAIN_PVP            = 75
+   QST_ID_FAMS_RATS              = 76
 
    // Quest Node Template IDs. Each quest has multple Quest Nodes.
    QNT_ID_DUKE_JOIN_ONE          = 1
@@ -3655,6 +3657,11 @@
 
    QNT_ID_ABSTAIN_PVP_ONE        = 217
    QNT_ID_ABSTAIN_PVP_TWO        = 218
+
+   QNT_ID_FAMS_RATS_ONE          = 219
+   QNT_ID_FAMS_RATS_TWO          = 220
+   QNT_ID_FAMS_RATS_THREE        = 221
+   QNT_ID_FAMS_RATS_FOUR         = 222
 
    // Quest misc constants
 
