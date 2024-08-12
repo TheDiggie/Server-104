@@ -54,7 +54,7 @@ resources:
    // Quest resources.
    FamsRatsQuest_trigger = "problems"
    FamsRatsQuest_assign_2 = \
-      "Problems? Yea I got a few right now. Bunch rodents running around in "
+      "Problems? Yea I got a few right now. Bunch of rodents running around in "
       "the cellar as of late. I'd be in your debt if you dealt with them for me. "
       "Go see if you can clear out those 20 small rats in the cellar. "
    FamsRatsQuest_failure_2 = \
