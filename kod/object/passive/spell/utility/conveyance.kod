@@ -105,7 +105,7 @@ messages:
       }
 
       if NOT Send(oTarget,@CanBeStoredInVault)
-         OR IsClass(oTarget,&Shillings)
+         OR IsClass(oTarget,&Money)
       {
          Send(who,@MsgSendUser,#message_rsc=conveyance_cant,
                #parm1=Send(oTarget,@GetDef),#parm2=Send(oTarget,@GetName));
@@ -113,12 +113,15 @@ messages:
          return;
       }
 
-      //if NOT Send(who,@IsHolding,#what=oTarget)
-      //{
-      //   Send(who,@MsgSendUser,#message_rsc=conveyance_not_holding);
+      if NOT Send(who,@IsHolding,#what=oTarget)
+      {
+         if NOT Send(who,@IsHolding,#what=Send(oTarget,@GetOwner))
+         {
+            Send(who,@MsgSendUser,#message_rsc=conveyance_not_holding);
 
-      //   return;
-      //}
+            return;
+         }
+      }
 
       oVault = Send(SYS,@FindVaultByNum,#num=VID_BARLOQUE);
       iFee = Send(oTarget,@GetBulk);
