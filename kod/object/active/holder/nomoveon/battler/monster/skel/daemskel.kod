@@ -94,6 +94,11 @@ messages:
    {
       local oSpell;
 
+      if NOT IsClass(what,&Battler)
+      {
+         return;
+      }
+      
       oSpell = Send(SYS,@FindSpellByNum,#num=SID_DEMENT);
       if NOT Send(what,@IsEnchanted,#what=oSpell)
          AND Random(1,DEMENTIA_CHANCE) = 1
