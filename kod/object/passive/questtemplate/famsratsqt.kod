@@ -52,7 +52,6 @@ resources:
       "You have completed Rats in the cellar quest.  Paddock will thrilled! "
 
    // Quest resources.
-   FamsRatsQuest_trigger = "problems"
    FamsRatsQuest_assign_2 = \
       "Problems? Yea I got a few right now. Bunch of rodents running around in "
       "the cellar as of late. I'd be in your debt if you dealt with them for me. "
@@ -114,8 +113,7 @@ messages:
       oQE = Send(SYS,@GetQuestEngine);
       oLib = Send(SYS,@GetLibrary);
 
-      if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MESSAGE,
-               #cargolist=[ FamsRatsQuest_trigger ],
+      if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_SHOWUP,
                #quest_node_index=QNT_ID_FAMS_RATS_ONE)
       {
          Send(oQE,@SetQuestNodeNPCList,#index=QNT_ID_FAMS_RATS_ONE,

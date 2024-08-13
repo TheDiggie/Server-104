@@ -3371,6 +3371,7 @@
    QST_ID_REBEL_SOLDIER          = 74
    QST_ID_ABSTAIN_PVP            = 75
    QST_ID_FAMS_RATS              = 76
+   QST_ID_AVAR_KILL              = 77
 
    // Quest Node Template IDs. Each quest has multple Quest Nodes.
    QNT_ID_DUKE_JOIN_ONE          = 1
@@ -3662,6 +3663,11 @@
    QNT_ID_FAMS_RATS_TWO          = 220
    QNT_ID_FAMS_RATS_THREE        = 221
    QNT_ID_FAMS_RATS_FOUR         = 222
+   
+   QNT_ID_AVAR_KILL_ONE          = 223
+   QNT_ID_AVAR_KILL_TWO          = 224
+   QNT_ID_AVAR_KILL_THREE        = 225
+   QNT_ID_AVAR_KILL_FOUR         = 226
 
    // Quest misc constants
 
