@@ -92,16 +92,16 @@ messages:
       propagate;
    }
 
-   CastSpell(who = $, iSpellPower = 0)
+   CastSpell(who = $, iSpellPower = 0,SpecialItem=FALSE)
    {
       Send(self,@PerformIllusionaryForm,#caster=who,#victim=who,
-           #iSpellpower=iSpellpower);
+           #iSpellpower=iSpellpower,#SpecialItem=SpecialItem);
       Send(who,@ResetPlayerFlagList);
 
       propagate;
    }
 
-   PerformIllusionaryForm(caster = $,victim = $,iIllusion_type = $, iSpellpower = 0)
+   PerformIllusionaryForm(caster = $,victim = $,iIllusion_type = $, iSpellpower = 0,SpecialItem=FALSE)
    "A secondary function so that a potion can cast this easily"
    {
       local oIllusion,iTime;
@@ -126,11 +126,20 @@ messages:
       Send(victim,@MsgSendUser,#message_rsc=illusionaryform_on,
            #parm1=Send(oIllusion,@GetIndef),#parm2=Send(oIllusion,@GetName));
 
-      iTime = 1000*(90 + 2*iSpellPower); 
-      iTime = Random(iTime/2,iTime);
+      if SpecialItem
+      {
+         Send(victim,@StartEnchantment,#what=self,#time=SPELL_INDEFINITE_DURATION,
+               #state=iIllusion_type,#iSpellPower=iSpellPower);
+      }
+      else
+      {
+         iTime = 1000*(90 + 2*iSpellPower); 
+         iTime = Random(iTime/2,iTime);
 
-      Send(victim,@StartEnchantment,#what=self,#time=iTime,
-            #state=iIllusion_type,#iSpellPower=iSpellPower);
+         Send(victim,@StartEnchantment,#what=self,#time=iTime,
+               #state=iIllusion_type,#iSpellPower=iSpellPower);
+      }
+
       Send(victim,@SetPlayerIllusion,#what=self);
       
       return;
