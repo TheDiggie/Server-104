@@ -67,9 +67,7 @@ resources:
       "Still alive aye! So those rats gota be coming from some where. See if you can find there "
       "leader and take him out. that'll put a stop to them. "
    FamsRatsQuest_success_4 = \
-      "Finally.  The first thing I must teach you is to snap to it.  Come "
-      "to me and we shall begin to learn how to effectively use the greatest "
-      "weapon in the land: the scimitar."
+      "Finally.  Good job getting rid of those rodents!"
    FamsRatsQuest_failure_4 = \
       "Dam rats. Some better adventurer will handle them. "
 
