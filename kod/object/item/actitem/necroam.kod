@@ -448,6 +448,7 @@ messages:
          iLichFactor = 15 - (5 * Send(Send(poOwner,@GetGuild),@GetRentDue));
          iLichFactor = Bound(iLichFactor,-10,15);
       }
+
       iModifier = (2 * iHungerFactor + iKarmaFactor) / 3 + iLichFactor;
 
       if plStatmods = $
@@ -456,6 +457,7 @@ messages:
       }
 
       iStatMod = (110 * iModifier / 1000);
+
       if (iStatMod -  Nth(plStatmods,2)) <> 0
       {
          iStatMod = Send(poOwner,@AddIntellect,#points=(iStatMod - Nth(plStatmods,2)))
@@ -464,6 +466,7 @@ messages:
       }
 
       iStatMod = (110 * iModifier / 1000);
+
       if (iStatMod - Nth(plStatmods,6)) <> 0
       {
          iStatMod = Send(poOwner,@AddMysticism,#points=(iStatMod - Nth(plStatmods,6)))
@@ -472,6 +475,7 @@ messages:
       }
 
       iStatMod = (-35 * iModifier / 1000) - 2;
+
       if (iStatMod -  Nth(plStatmods,1)) <> 0
       {
          iStatMod = Send(poOwner,@AddMight,#points=(iStatMod - Nth(plStatmods,1)))
@@ -480,6 +484,7 @@ messages:
       }
 
       iStatMod = (-35 * iModifier / 1000) - 2;
+
       if (iStatMod - Nth(plStatmods,4)) <> 0
       {
          iStatMod = Send(poOwner,@AddAim,#points=(iStatMod - Nth(plStatmods,4)))
@@ -488,6 +493,7 @@ messages:
       }
 
       iStatMod = (59 * iModifier / 1000) - 2;
+
       if (iStatMod - Nth(plStatmods,5)) <> 0
       {
          iStatMod = Send(poOwner,@AddStamina,#points=(iStatMod - Nth(plStatmods,5)))
@@ -496,6 +502,7 @@ messages:
       }
 
       iStatMod = (59 * iModifier / 1000) - 2;
+
       if (iStatMod - Nth(plStatmods,3)) <> 0
       {
          iStatMod = Send(poOwner,@AddAgility,#points=(iStatMod - Nth(plStatmods,3)))
@@ -806,6 +813,7 @@ messages:
       }
 
       oPlayerOwner = Send(poOwner,@GetOwner);
+
       if oPlayerOwner = $
       {
          return;
@@ -876,6 +884,7 @@ messages:
          }
 
          oGuild = Send(poOwner,@GetGuild);
+
          if oGuild <> $
             AND IsClass(oGuild,&NecromancerGuild)
          {
@@ -897,6 +906,7 @@ messages:
 
       // Satsify hunger.
       piFineHunger = piFineHunger - amount;
+      
       while piFineHunger < 0
       {
          piHunger = piHunger - 1;
@@ -1262,20 +1272,6 @@ messages:
       Send(oMaster,@Killed,#what=self);
 
       return;
-   }
-
-   UserLogoff()
-   {
-      if NOT pbIn_Use
-      {
-         Send(poOwner,@MsgSendUser,#message_rsc=necamulet_drops);
-         Send(Send(poOwner,@GetOwner),@NewHold,#what=self,
-               #new_row=Send(poOwner,@GetRow),#new_col=Send(poOwner,@GetCol),
-               #fine_row=Send(poOwner,@GetFineRow),
-               #fine_col=Send(poOwner,@GetFineCol));
-      }
-
-      propagate;
    }
 
    DestroyDisposable()
