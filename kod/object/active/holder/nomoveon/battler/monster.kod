@@ -261,6 +261,8 @@ resources:
    monster_faction_undead = "Minions of Death"
 
    Announce_Death = "~B~r%s has slain the %s at %s!!"
+
+   user_pickup_past_limit2 = "You can't carry more than 130 mil of a item."
    
 classvars:
 
@@ -4591,7 +4593,7 @@ messages:
 
    BankWithdraw(who = $, amount = 0, funds = $)
    {
-      local iPlayerAmt, iBankAmt, oMoney, oBank;
+      local iPlayerAmt, iBankAmt, oMoney, oBank, oHelditem, iHeldAmount;
 
       if NOT Send(self,@MobIsBanker)
       {
@@ -4607,6 +4609,24 @@ messages:
       {
          Debug("BAD: Banker has no bankID",vrname,self);
 
+         return;
+      }
+
+      oHelditem = Send(self,@FindHolding,#class=poCurrency);
+
+      if oHelditem = $
+      {
+         oHelditem = 0;
+         iHeldAmount = 0;
+      }
+      else
+      {
+         iHeldAmount = Send(oHelditem,@GetNumber);
+      }
+
+      if (amount + iHeldAmount) > 130000000
+      {
+         Send(who,@MsgSendUser,#message_rsc=user_pickup_past_limit2);
          return;
       }
 
