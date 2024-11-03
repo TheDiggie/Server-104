@@ -21,7 +21,7 @@ resources:
    ClothesGift_icon_rsc = lootboxes.bgf
    ClothesGift_desc_rsc = \
       "This is a gift from the gods, it contains a random clothes!\n\n"
-      "clothes  ONLY HAVE 10% CHANCE TO HAVE A ENCHANTMENT.\n\n"
+      "CLOTHES ONLY HAVE 10% CHANCE TO HAVE A ENCHANTMENT.\n\n"
       "Items have a 30% chance to be colored.\n\n"
       "This box has a chance to contain the following items : \n"
       "Pants, Baggy Pants, Shirt, Light Jerkin, Long Skirt, Short Skirt.\n\n"

@@ -8,7 +8,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-DesertRoom is MonsterRoom
+MazeRoom is MonsterRoom
 
 constants:
 
@@ -18,19 +18,19 @@ resources:
 
 classvars:
 
-   viTerrain_type = TERRAIN_BADLANDS 
+   viTerrain_type = TERRAIN_NECROPOLIS
 
 properties:
 
-   piMonster_count_max = 40
+   piMonster_count_max = 30
    piInit_count_min = 5
-   piInit_count_max = 15
+   piInit_count_max = 10
 
 messages:
 
    GetRegion()
    {
-      return RID_DESERT;
+      return RID_MAZE;
    }
 
 end

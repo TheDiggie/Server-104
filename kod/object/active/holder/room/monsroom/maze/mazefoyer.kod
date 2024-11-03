@@ -1,0 +1,70 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+MazeFoyer is MazeRoom
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   room_MazeFoyer = MazeFoyer.roo
+   room_name_MazeFoyer = "A labyrinth lost in the sands"
+
+classvars:
+
+   vrName = room_name_MazeFoyer
+
+   viTeleport_row = 48
+   viTeleport_col = 148
+
+properties:
+
+   piBaseLight = LIGHT_DARK
+   piOutside_factor = 1 
+
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+   prRoom = room_MazeFoyer
+   piRoom_num = RID_MAZEFOYER
+
+messages:
+
+   Constructed()
+   {
+      plMonsters = [ [&XeoHoly, 50],
+                     [&XeoUnholy, 50]
+                      ];
+      
+      plGenerators = [ [2, 35], [6, 35], [6, 17], [11, 14], [15, 17],
+                       [17, 14], [20, 15], [28, 17], [32, 14], [36, 14],
+                       [37, 18], [38, 21]];
+
+      propagate;
+   }
+ 
+   CreateStandardExits()
+   {
+      plExits = $;
+
+      plExits = Cons([ 1, 44, RID_DESERTMAZEENTRANCE, 100, 99, SET_ANGLE_SOUTH ],plExits);
+      plExits = Cons([ 2, 44, RID_DESERTMAZEENTRANCE, 100, 99, SET_ANGLE_SOUTH ],plExits);
+
+      plEdge_Exits = $;
+      
+      plEdge_Exits = Cons([ LEAVE_EAST, RID_MAZEFOYER2, 5, 2, ROTATE_NONE ],plEdge_Exits);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////
+

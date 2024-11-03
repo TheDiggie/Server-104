@@ -2622,6 +2622,7 @@ messages:
       Send(self,@CreateOneRoomIfNew,#num=RID_RATCAVE2,#class=&RatCave2);
       Send(self,@CreateOneRoomIfNew,#num=RID_RATCAVE3,#class=&RatCave3);
       
+      //Desert
       Send(self,@CreateOneRoomIfNew,#num=RID_DESERTPATH1,#class=&DesertPath1);
       Send(self,@CreateOneRoomIfNew,#num=RID_DESERTCLIFFACCESS,#class=&DesertCliffAccess);
       Send(self,@CreateOneRoomIfNew,#num=RID_DESERTCLIFFNOACCESS1,#class=&DesertCliffNoAccess1);
@@ -2649,6 +2650,10 @@ messages:
       Send(self,@CreateOneRoomIfNew,#num=RID_DESERTBRIDGE,#class=&DesertBridge);
       Send(self,@CreateOneRoomIfNew,#num=RID_DESERTOASIS,#class=&DesertOasis);
       Send(self,@CreateOneRoomIfNew,#num=RID_DESERTMAZEENTRANCE,#class=&DesertMazeEntrance);
+
+      //Maze
+      Send(self,@CreateOneRoomIfNew,#num=RID_MAZEFOYER,#class=&MazeFoyer);
+      Send(self,@CreateOneRoomIfNew,#num=RID_MAZEFOYER2,#class=&MazeFoyer2);
 
       //Death Realm
       Send(self,@CreateOneRoomIfNew,#num=RID_DH4,#class=&DeathRealmH4);

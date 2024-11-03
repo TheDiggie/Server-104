@@ -58,6 +58,11 @@ messages:
  
    CreateStandardExits()
    {
+      plExits = $;
+
+      plExits = Cons([ 100, 99, RID_MAZEFOYER, 1, 44, SET_ANGLE_WEST ],plExits);
+      plExits = Cons([ 100, 100, RID_MAZEFOYER, 1, 44, SET_ANGLE_WEST ],plExits);
+
       plEdge_Exits = $;
       plEdge_Exits = Cons([ LEAVE_NORTH, RID_DESERTDUNES8, 60, 102, ROTATE_NONE ],plEdge_Exits);
       plEdge_Exits = Cons([ LEAVE_SOUTH, RID_DESERTDUNES5, 60, 102, ROTATE_NONE ],plEdge_Exits);
