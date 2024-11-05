@@ -121,6 +121,11 @@ messages:
    {
       local i, each_obj, oCurrentRoom, oTargetRoom, oGuild, iCurrentRegion;
 
+      if IsClass(who,&Player) AND NOT IsClass(who,&DM)
+      {
+         Send(who,@WipeUnboundEnergy);
+      }
+
       Send(who,@MsgSendUser,#message_rsc=Rescue_Success);
 
       oCurrentRoom = Send(who,@GetOwner);
@@ -169,11 +174,6 @@ messages:
          }
       }
 
-      if IsClass(who,&Player) AND NOT IsClass(who,&DM)
-      {
-         Send(who,@WipeUnboundEnergy);
-      }
-      
       // Default: Go to our home room.
       Post(who,@AdminGoToSafety);
 
