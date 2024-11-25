@@ -167,15 +167,13 @@ messages:
    
    CreateTreasure()
    {
-      local oResource;
+      local i, lTreasureItems;
 
-      foreach oResource in plPassive
+      foreach i in plPassive
       {
-         Send(poOwner,@NewHold,#what=oUsedItem,
-               #new_row=piRow,#new_col=piCol,
-               #fine_row=piFine_row,#fine_col=piFine_col);
+         lTreasureItems = Cons(i,lTreasureItems);
       }
-
+      
       propagate;
    }
 

@@ -1128,7 +1128,8 @@ messages:
       pbIn_use = TRUE;
 
       Send(self,@DoPlayerArt);
-      If IsClass(poOwner,&Player)
+
+      if IsClass(poOwner,&Player)
       {
          Post(poOwner,@RefreshPlayerVisualGear);
       }
@@ -1139,13 +1140,17 @@ messages:
          Send(poOwner,@SetPlayerFlag,#flag=iSpecial,#value=TRUE);
       }
 
-      if poSpell <> $
-      {
-         oSpell = Send(SYS,@FindSpellByNum,#Num=poSpell);
-
-         if NOT Send(what,@IsEnchanted,#what=oSpell)
+      if poSpell <> $ AND IsClass(poOwner,&Player)
+      {  
+         Debug(Send(what,@IsRecentPvPCombatant));
+         if NOT Send(what,@IsRecentPvPCombatant)
          {
-	            Send(oSpell,@CastSpell,#who=what,#iSpellPower=99,#bItemCast=TRUE,#SpecialItem=TRUE);
+            oSpell = Send(SYS,@FindSpellByNum,#Num=poSpell);
+
+            if NOT Send(what,@IsEnchanted,#what=oSpell)
+            {
+	               Send(oSpell,@CastSpell,#who=what,#iSpellPower=99,#bItemCast=TRUE,#SpecialItem=TRUE);
+            }
          }
       }
 
