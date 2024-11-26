@@ -1134,7 +1134,7 @@ messages:
          Post(poOwner,@RefreshPlayerVisualGear);
       }
       
-      if(iSpecial <> $)
+      if iSpecial <> $
       {
          oRoom = Send(poOwner, @GetOwner);
          Send(poOwner,@SetPlayerFlag,#flag=iSpecial,#value=TRUE);
@@ -1142,7 +1142,6 @@ messages:
 
       if poSpell <> $ AND IsClass(poOwner,&Player)
       {  
-         Debug(Send(what,@IsRecentPvPCombatant));
          if NOT Send(what,@IsRecentPvPCombatant)
          {
             oSpell = Send(SYS,@FindSpellByNum,#Num=poSpell);
