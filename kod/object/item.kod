@@ -87,6 +87,11 @@ resources:
    item_weight    = "%i weight and %i bulk\n"
    item_bulk      = "%i bulk\n"
 
+   mining_bonus      = "%i bonus Mining Yield\n"
+   logging_bonus     = "%i bonus Logging Yield\n"
+   gathering_bonus   = "%i bonus Gathering Yield\n"
+   skinning_bonus    = "%i bonus Skinning Yield\n"
+
    item_cast_spell = "\n\nEmblazoned with mystic symbols, this %s grants its wielder the unyielding force of %s on its user."
 
    item_no_drop = "This item cannot be dropped or traded."
@@ -254,7 +259,7 @@ messages:
 
       if Send(self,@GetRange) <> 0
       {
-         AddPacket(4,system_rsc_template_17, 4,special_properties_header,
+         AddPacket(4,system_rsc_template_21, 4,special_properties_header,
                    4,item_stats_range, 4,Send(self,@GetRange)/FINENESS);
          bFoundProperties = TRUE;
       }
@@ -269,7 +274,7 @@ messages:
          else
          {
             // bFoundProperties FALSE, add headers.
-            AddPacket(4,system_rsc_template_16, 4,special_properties_header,
+            AddPacket(4,system_rsc_template_20, 4,special_properties_header,
                       4,item_stats_offense, 4,Send(self,@GetHitBonus));
             bFoundProperties = TRUE;
          }
@@ -289,7 +294,7 @@ messages:
          }
          else
          {
-            AddPacket(4,system_rsc_template_15, 4,special_properties_header,
+            AddPacket(4,system_rsc_template_19, 4,special_properties_header,
                       4,item_stats_armor, 4,Send(self,@GetDamageReduction));
             bFoundProperties = TRUE;
          }
@@ -307,7 +312,7 @@ messages:
          }
          else
          {
-            AddPacket(4,system_rsc_template_14,4,special_properties_header,
+            AddPacket(4,system_rsc_template_18,4,special_properties_header,
                       4,item_stats_defense, 4,Send(self,@GetDefenseBonus));
             bFoundProperties = TRUE;
          }
@@ -325,7 +330,7 @@ messages:
          }
          else
          {
-            AddPacket(4,system_rsc_template_13, 4,special_properties_header,
+            AddPacket(4,system_rsc_template_17, 4,special_properties_header,
                       4,item_stats_melee, 4,Send(self,@GetMeleeDamageBonus));
             bFoundProperties = TRUE;
          }
@@ -340,7 +345,7 @@ messages:
       {
          if NOT bFoundProperties
          {
-            AddPacket(4,system_rsc_template_12, 4,special_properties_header);
+            AddPacket(4,system_rsc_template_16, 4,special_properties_header);
             bFoundProperties = TRUE;
          }
          if Send(self,@GetMaxDamage) <> iMinDamage
@@ -365,7 +370,7 @@ messages:
       {
          if NOT bFoundProperties
          {
-            AddPacket(4,system_rsc_template_11, 4,special_properties_header);
+            AddPacket(4,system_rsc_template_15, 4,special_properties_header);
             bFoundProperties = TRUE;
          }
          if Send(self,@GetMaxDamageWithOwnerStats)
@@ -390,7 +395,7 @@ messages:
       {
          if NOT bFoundProperties
          {
-            AddPacket(4,system_rsc_template_10, 4,special_properties_header);
+            AddPacket(4,system_rsc_template_14, 4,special_properties_header);
             bFoundProperties = TRUE;
          }
          if Send(self,@GetMaxSpecialDamage) <> Send(self,@GetMinSpecialDamage)
@@ -416,7 +421,7 @@ messages:
       {
          if NOT bFoundProperties
          {
-            AddPacket(4,system_rsc_template_9, 4,special_properties_header);
+            AddPacket(4,system_rsc_template_13, 4,special_properties_header);
             bFoundProperties = TRUE;
          }
          if Send(self,@GetMaxSpecialDamageWithOwnerStats)
@@ -445,7 +450,7 @@ messages:
          }
          else
          {
-            AddPacket(4,system_rsc_template_8, 4,special_properties_header,
+            AddPacket(4,system_rsc_template_12, 4,special_properties_header,
                       4,item_stats_dmg_bonus, 4,Send(self,@GetDamageBonus));
             bFoundProperties = TRUE;
          }
@@ -495,7 +500,7 @@ messages:
          {
             if NOT bFoundProperties
             {
-               AddPacket(4,system_rsc_template_7, 4,special_properties_header);
+               AddPacket(4,system_rsc_template_11, 4,special_properties_header);
                bFoundProperties = TRUE;
             }
             AddPacket(4,item_stats_gen_sp, 4,iFarenPower);
@@ -504,7 +509,7 @@ messages:
          {
             if NOT bFoundProperties
             {
-               AddPacket(4,system_rsc_template_7, 4,special_properties_header);
+               AddPacket(4,system_rsc_template_11, 4,special_properties_header);
                bFoundProperties = TRUE;
             }
 
@@ -586,7 +591,7 @@ messages:
       {
          if NOT bFoundProperties
          {
-            AddPacket(4,system_rsc_template_6, 4,special_properties_header);
+            AddPacket(4,system_rsc_template_10, 4,special_properties_header);
             bFoundProperties = TRUE;
          }
 
@@ -612,7 +617,7 @@ messages:
       {
          if NOT bFoundProperties
          {
-            AddPacket(4,system_rsc_template_6, 4,special_properties_header);
+            AddPacket(4,system_rsc_template_10, 4,special_properties_header);
             bFoundProperties = TRUE;
          }
 
@@ -646,7 +651,7 @@ messages:
          iLen = Length(Send(SYS,@GetSpellTypeList));
          if NOT bFoundProperties
          {
-            AddPacket(4,system_rsc_template_4, 4,special_properties_header);
+            AddPacket(4,system_rsc_template_8, 4,special_properties_header);
             bFoundProperties = TRUE;
          }
 
@@ -689,13 +694,85 @@ messages:
             if NOT bFoundProperties
                AND Send(oItemAtt,@GetInfoDesc) <> system_blank_resource
             {
-               AddPacket(4,system_rsc_template_3, 4,special_properties_header);
+               AddPacket(4,system_rsc_template_7, 4,special_properties_header);
                bFoundProperties = TRUE;
             }
 
             // Each item attribute can add a description, or possibly
             // a blank resource if it isn't identified.
             Send(oItemAtt,@AppendDescInfo,#oItem=self,#compound=First(i));
+         }
+      }
+      else if bFoundProperties
+      {
+         AddPacket(4,system_blank_resource);
+      }
+
+      if viMiningBonus <> 0
+      {
+         if bFoundProperties = FALSE
+         {
+            AddPacket(4,system_rsc_template_6, 4,special_properties_header);
+            AddPacket(4,mining_bonus,4,viMiningBonus);
+            bFoundProperties = TRUE;
+         }
+         else
+         {
+            AddPacket(4,mining_bonus,4,viMiningBonus);
+         }
+      }
+      else if bFoundProperties
+      {
+         AddPacket(4,system_blank_resource);
+      }
+
+      if viLoggingBonus <> 0
+      {
+         if bFoundProperties = FALSE
+         {
+            AddPacket(4,system_rsc_template_5, 4,special_properties_header);
+            AddPacket(4,logging_bonus,4,viLoggingBonus);
+            bFoundProperties = TRUE;
+         }
+         else
+         {
+            AddPacket(4,logging_bonus,4,viLoggingBonus);
+         }
+      }
+      else if bFoundProperties
+      {
+         AddPacket(4,system_blank_resource);
+      }
+
+      if viGatheringBonus <> 0
+      {
+         if bFoundProperties = FALSE
+         {
+            AddPacket(4,system_rsc_template_4, 4,special_properties_header);
+            AddPacket(4,gathering_bonus,4,viGatheringBonus);
+            bFoundProperties = TRUE;
+         }
+         else
+         {
+            AddPacket(4,gathering_bonus,4,viGatheringBonus);
+         }
+      }
+      else if bFoundProperties
+      {
+         AddPacket(4,system_blank_resource);
+      }
+      
+      if viSkinningBonus <> 0
+      {
+         if bFoundProperties = FALSE
+         {
+            AddPacket(4,system_rsc_template_3, 4,special_properties_header);
+            AddPacket(4,skinning_bonus,4,viSkinningBonus);
+            bFoundProperties = TRUE;
+         }
+         else
+         {
+            AddPacket(4,skinning_bonus,4,viSkinningBonus);
          }
       }
       else if bFoundProperties
@@ -716,7 +793,7 @@ messages:
             AddPacket(4,item_weight,4,viWeight,4,viBulk);
          }
       }
-      
+
       return;
    }
 

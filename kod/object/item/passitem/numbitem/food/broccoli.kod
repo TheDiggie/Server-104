@@ -19,7 +19,7 @@ resources:
    Broccoli_name_rsc = "broccoli"
    Broccoli_icon_rsc = Broccoli.bgf
    Broccoli_desc_rsc = \
-      "A strange green vegtable not from around here. "
+      "A strange green vegetable not from around here. "
 
    Broccoli_name_plural_rsc = "broccoli"
 
