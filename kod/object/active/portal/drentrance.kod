@@ -102,8 +102,6 @@ messages:
 
       Send(what,@MsgSendUser,#message_rsc=DeathRealm_entrance_enter);
       propagate;
-
-      return;
    }
 
    PortalDisappear()

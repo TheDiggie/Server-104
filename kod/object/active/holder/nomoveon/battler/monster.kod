@@ -4624,7 +4624,7 @@ messages:
          iHeldAmount = Send(oHelditem,@GetNumber);
       }
 
-      if (amount + iHeldAmount) > 130000000
+      if ((amount/2) + (iHeldAmount/2)) > 65000000
       {
          Send(who,@MsgSendUser,#message_rsc=user_pickup_past_limit2);
          return;

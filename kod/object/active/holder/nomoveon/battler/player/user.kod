@@ -5040,7 +5040,7 @@ messages:
             iHeldAmount = Send(oHelditem,@GetNumber);
          }
 
-         if (Send(what,@GetNumber) + iHeldAmount) > 130000000
+         if ((Send(what,@GetNumber)/2) + (iHeldAmount/2)) > 65000000
          {
             Send(self,@MsgSendUser,#message_rsc=user_pickup_past_limit);
             return FALSE;
