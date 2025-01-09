@@ -37,8 +37,34 @@ properties:
 
    piBaseLight = LIGHT_NICE
    piOutside_factor = 8
+   pimove = TRUE
 
 messages:
+
+   SomethingMoved(what=$)
+   {
+      if IsClass(what,&User)
+      {
+         if Send(what,@GetSectorIDAtObject,#what=what) = 1
+         {
+            if pimove
+            {
+               pimove = FALSE;
+
+               Send(SYS,@UtilGoNearSquare,#what=what,#where=self,
+                    #new_row=11,#new_col=8);
+
+               propagate;
+            }
+            
+            propagate;
+         }
+      }
+
+      pimove = TRUE;
+
+      propagate;
+   }
 
 end
 ////////////////////////////////////////////////////////////////////////////////

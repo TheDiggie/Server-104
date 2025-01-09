@@ -65,7 +65,7 @@ messages:
    // Finds ammo and uses it if not used.
    FindLikelyAmmo(who=$,report=FALSE)
    {
-      local oWeapon, oLikelyAmmo, oAmmo, cAmmoType, iAmmoValue, i;
+      local oWeapon, oLikelyAmmo, oAmmo, cAmmoType, iAmmoValue, i, lArrows;
 
       oWeapon = Send(who,@LookupPlayerWeapon);
       if oWeapon = $
@@ -88,6 +88,26 @@ messages:
          if Send(i,@GetItemUseType) = ITEM_USE_QUIVER
          {
             oLikelyAmmo = i;
+            
+            break;
+         }
+         
+         if cAmmoType = AMMO_ARROW
+         {
+            foreach i in Send(who,@GetHolderPassive)
+            {
+               if IsClass(i,&Quiver)
+               {
+                  lArrows = Send(i,@GetBagContents);
+
+                  foreach i in lArrows
+                  {
+                     oLikelyAmmo = i;
+
+                     break;
+                  }
+               }
+            }
          }
       }
 

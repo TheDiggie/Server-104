@@ -109,7 +109,8 @@ messages:
          [ 
             Create(&Arrow),
             Create(&LongBow),
-            Create(&DrawKnife)
+            Create(&DrawKnife),
+            Create(&Quiver)
          ],
          $,
          [
