@@ -49,6 +49,7 @@ properties:
    piAttack_spell = 0
 
    viObject_flags = OF_GETTABLE
+   viArrow_Reclaim_Rate = 20
 
 messages:
 
@@ -92,8 +93,10 @@ messages:
       return LIGHT_FLAG_NONE;
    }
 
-   GetDamage()
+   GetDamage(target=$)
    {
+      Send(self,@ReclaimArrow,#target=target);
+
       return Random(viMinDamage,viMaxDamage);
    }
 
@@ -174,6 +177,21 @@ messages:
       return  (piAttack_spell & flag);
    }
 
+   ReclaimArrow(target=$)
+   {
+      local iChance, oArrow;
+
+      iChance = Random(1,100);
+      Debug(iChance);
+      if iChance <= viArrow_Reclaim_Rate
+      {
+      Debug("win");
+         oArrow = Create(GetClass(self),#number=1);
+         Send(target,@Newhold,#what=oArrow);
+      }
+
+      return;
+   }
 
 end
 ////////////////////////////////////////////////////////////////////////////////
