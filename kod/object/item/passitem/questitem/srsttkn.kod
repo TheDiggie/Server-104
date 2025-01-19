@@ -39,7 +39,7 @@ classvars:
    vrIcon = StatsResetToken_icon_rsc
    vrDesc = StatsResetToken_desc_rsc
    viIndefinite = ARTICLE_AN
-   viValue_average = 200000
+   viValue_average = 2000
    viWeight = 0
    viBulk = 0
 

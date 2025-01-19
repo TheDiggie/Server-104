@@ -61,8 +61,8 @@ resources:
    color_brown_dec    = "brown dye."
    color_brown        = "brown"
 
-   color_dbrown_dec    = "down brown dye."
-   color_dbrown        = "down brown"
+   color_dbrown_dec    = "dark brown dye."
+   color_dbrown        = "dark brown"
 
    color_yellow_dec   = "yellow dye."
    color_yellow       = "yellow"

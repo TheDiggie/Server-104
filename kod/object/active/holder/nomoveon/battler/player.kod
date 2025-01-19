@@ -9496,6 +9496,11 @@ messages:
    {
       local iXPNeeded;
 
+      if piXP_total = 20000000
+      {
+         piXP_total = 1226435;
+      }
+
       // Add to total.
       piXP_total = Bound(piXP_total + iAmount,0,MAX_XP);
 
