@@ -154,7 +154,8 @@ messages:
 
       foreach i in lPlayerUsed
       {
-         if NOT IsClass(i,&SoldierShield)
+         if (NOT IsClass(i,&SoldierShield))
+            and (NOT IsClass(i,&NecromancerAmulet))
          {
             Send(victim,@UnuseItem,#what=i);
          }
