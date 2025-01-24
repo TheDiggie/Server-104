@@ -58,44 +58,35 @@ messages:
       if (IsClass(what,&User)
          AND (row = 3 AND col = 44) OR (row = 4 AND col = 44) OR (row = 5 AND col = 44))
       {
-          if send(what,@HasBeatDR)
-		    OR IsClass(what,&DM)
-		  {
-		     foreach i in Send(what,@GetHolderPassive)
-            {
-               each_obj = Send(what,@HolderExtractObject,#data=i);
-               if IsClass(each_obj,&CastleKey)
-               {
-                  Send(each_obj,@Delete);
-			   }
-			}
+         if send(what,@HasBeatDR)
+		      OR IsClass(what,&DM)
+		   {
+		      Send(what,@MsgSendUser,#message_rsc=Beat_DR);
+            Send(SYS,@UtilGoNearSquare,#what=what,
+               #where=Send(SYS,@FindRoomByNum,#num=RID_DCASTLE1),
+               #new_row=16,#new_col=18,#fine_row=25, #fine_col=25, #new_angle=ANGLE_NORTH);
 			 
-			 Send(what,@MsgSendUser,#message_rsc=Beat_DR);
-             Send(SYS,@UtilGoNearSquare,#what=what,
-                    #where=Send(SYS,@FindRoomByNum,#num=RID_DCASTLE1),
-                    #new_row=16,#new_col=18,#fine_row=25, #fine_col=25, #new_angle=ANGLE_NORTH);
-			 
-			 return TRUE;
-		  }
-
+			    return TRUE;
+		   }
       	  
-   		     foreach i in Send(what,@GetHolderPassive)
-            {
-               each_obj = Send(what,@HolderExtractObject,#data=i);
-               if IsClass(each_obj,&CastleKey)
-               {
-                  Send(each_obj,@Delete);
-                  Send(what,@MsgSendUser,#message_rsc=Key_Open);
-                  Send(SYS,@UtilGoNearSquare,#what=what,
-                      #where=Send(SYS,@FindRoomByNum,#num=RID_DCASTLE1),
-                      #new_row=16,#new_col=18,#fine_row=25, #fine_col=25, #new_angle=ANGLE_NORTH);
+   		foreach i in Send(what,@GetHolderPassive)
+         {
+            each_obj = Send(what,@HolderExtractObject,#data=i);
 
-                  return TRUE;
-               }
+            if IsClass(each_obj,&CastleKey)
+            {
+               Send(what,@MsgSendUser,#message_rsc=Key_Open);
+               Send(SYS,@UtilGoNearSquare,#what=what,
+                   #where=Send(SYS,@FindRoomByNum,#num=RID_DCASTLE1),
+                   #new_row=16,#new_col=18,#fine_row=25, #fine_col=25, #new_angle=ANGLE_NORTH);
+
+               return TRUE;
             }
-		  }
- 		 propagate;
-      }
+         }
+		}
+
+ 		propagate;
+   }
 
 end
 ////////////////////////////////////////////////////////////////////////////////

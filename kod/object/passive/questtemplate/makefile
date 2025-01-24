@@ -19,7 +19,8 @@ BOFS = shaldiscqt.bof krandiscqt.bof farendiscqt.bof qordiscqt.bof \
        barrestockqt.bof cateringqt.bof apothecaryqt.bof kocweaponqt.bof \
        kocaleqt.bof warletterqt.bof idpotionqt.bof idwandqt.bof \
        jalanecklaceqt.bof murderqt.bof abstainpvp.bof famsratsqt.bof \
-       avarkillqt.bof
+       avarkillqt.bof cornothkeyqt.bof barlkeyqt.bof toskeyqt.bof \
+       thronekeyqt.bof castlevickeyqt.bof
       
 
 !include $(KODDIR)\kod.mak

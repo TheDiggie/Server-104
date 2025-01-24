@@ -45,14 +45,14 @@ classvars:
 
 properties:
 
-   piBaseLevel = 80
+   piBaseLevel = 120
    piBaseDifficulty = 6
 
    //Here so they can be set
    vrIcon = human_male_icon_rsc
    vrDead_Icon = human_dead_male_icona_rsc
    vrDead_Legs = human_dead_male_iconb_rsc
-   viLevel = 80         // piBaseLevel
+   viLevel = 120         // piBaseLevel
    viDifficulty = 4     // piBaseDifficulty
    piGender = GENDER_MALE
    viKarma = 0

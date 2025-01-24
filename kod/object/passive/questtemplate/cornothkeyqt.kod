@@ -1,0 +1,200 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+/////////////////////////////////////////////////////////////////////////////////
+CorNothKeyQuest is QuestTemplate
+// Quest nodes 227, 228, 229, 230
+// QNT_ID_CORNOTH_KEY_ONE, QNT_ID_CORNOTH_KEY_TWO,
+// QNT_ID_CORNOTH_KEY_THREE, QNT_ID_CORNOTH_KEY_FOUR
+
+// QuestTemplate is
+// [ quest template index
+//   quest template object
+//   number of players,
+//   type of quest,
+//   eligible player restrictions,
+//   quest nodes,
+//   max number active,
+//   currently active quests,
+//   percent chance of scheduling (on timer firing)
+//   special restrictions ]
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   // Quest description.
+   CorNothKeyQuest_icon_rsc = key4.bgf
+   CorNothKeyQuest_name_rsc = "Key to Cor Noth quest"
+
+   // This description is used if there is an error preventing the others
+   // from being displayed.
+   CorNothKeyQuest_desc_rsc = \
+      "Amerantha is angry at Joline and her kind. "
+
+   CorNothKeyQuest_kill_rsc = \
+      "Amerantha is angry at Joline. Go slay %i %s. "
+      "Complete this task and report back to her."
+
+   CorNothKeyQuest_return_rsc = \
+      "Return to Amerantha and let her know the task has been "
+      "completed."
+
+   CorNothKeyQuest_completed = \
+      "You have completed Key to Cor Noth quest.  Amerantha will thrilled! "
+
+   Cornoth_Key = "help"
+
+   // Quest resources.
+   CorNothKeyQuest_assign_2 = \
+      "Help? Yea I could use some help. Joline lets her overgrown offspring "
+      "run around all over the place. I can't stand seeing them. Go cull "
+      "them and I will give youa  key to Cor Noth. Go kill 10 red hydras for me."
+   CorNothKeyQuest_failure_2 = \
+      "Damn reptiles. Some better adventurer will handle them. "
+   CorNothKeyQuest_assign_3 = \
+      "Got some of the red ones? Good, I've seen green ones around as well. "
+      "Go kill 10 green hydras for me."
+   CorNothKeyQuest_failure_3 = \
+      "Damn reptiles. Some better adventurer will handle them. "
+   CorNothKeyQuest_assign_4 = \
+      "Good, there some darker ones out there, little harder to see but I have "
+      "caught a few of them in the town before. "
+      "Go kill 10 black hydras for me."
+   CorNothKeyQuest_success_4 = \
+      "Finally.  Good job getting rid of those reptiles!"
+   CorNothKeyQuest_failure_4 = \
+      "Damn reptiles. Some better adventurer will handle them. "
+
+classvars:
+
+   vrIcon = CorNothKeyQuest_icon_rsc
+   vrName = CorNothKeyQuest_name_rsc
+   vrDesc = CorNothKeyQuest_desc_rsc
+
+   vrKill = CorNothKeyQuest_kill_rsc
+   vrReturn = CorNothKeyQuest_return_rsc
+   vrCompleted = CorNothKeyQuest_completed
+
+   // The QST_ID constant for this quest.
+   viQuestID = QST_ID_CORNOTH_KEY
+
+properties:
+
+   piNumPlayers = 1
+   piPlayerRestrict = Q_PLAYER_NOTTRIED_RECENTLY
+   plSpecialRestrict = $
+   piMaxPlayers = 30
+   piSchedulePct = 100
+   piTimeLimit = 2 * 3600 // 2 hours.
+
+messages:
+
+   Constructor()
+   {
+      // Quest node list to send to QuestEngine.
+      plQuestNodes = [QNT_ID_CORNOTH_KEY_ONE, QNT_ID_CORNOTH_KEY_TWO,
+                      QNT_ID_CORNOTH_KEY_THREE, QNT_ID_CORNOTH_KEY_FOUR];
+
+      propagate;
+   }
+
+   SendQuestNodeTemplates()
+   {
+      local lNPCs, oQE, oLib;
+
+      oQE = Send(SYS,@GetQuestEngine);
+      oLib = Send(SYS,@GetLibrary);
+
+      if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MESSAGE,
+               #cargolist=[Cornoth_Key],#quest_node_index=QNT_ID_CORNOTH_KEY_ONE)
+      {
+         Send(oQE,@SetQuestNodeNPCList,#index=QNT_ID_CORNOTH_KEY_ONE,
+               #new_NPC_list=Send(oLib,@GetOccupationList,
+                                 #cNPC_class=&Amerantha));
+      }
+      else
+      {
+         Debug("Error building QN: QNT_ID_CORNOTH_KEY_ONE");
+      }
+
+      if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MONSTER,
+               #NPC_modifier=QN_NPCMOD_SAME,#monsterlist=[&RedHydra],
+               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_CORNOTH_KEY_TWO,#amount_needed=10)
+      {
+         Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_CORNOTH_KEY_TWO,
+               #new_hint=CorNothKeyQuest_assign_2);
+         Send(oQE,@SetQuestNodeFailureHint,#index=QNT_ID_CORNOTH_KEY_TWO,
+               #new_hint=CorNothKeyQuest_failure_2);
+      }
+      else
+      {
+         Debug("Error building QN: QNT_ID_CORNOTH_KEY_TWO");
+      }
+
+      if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MONSTER,
+               #NPC_modifier=QN_NPCMOD_SAME,#monsterlist=[&GreenHydra],
+               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_CORNOTH_KEY_THREE,#amount_needed=10)
+      {
+         Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_CORNOTH_KEY_THREE,
+               #new_hint=CorNothKeyQuest_assign_3);
+         Send(oQE,@SetQuestNodeFailureHint,#index=QNT_ID_CORNOTH_KEY_THREE,
+               #new_hint=CorNothKeyQuest_failure_3);
+      }
+      else
+      {
+         Debug("Error building QN: QNT_ID_CORNOTH_KEY_THREE");
+      }
+
+      if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MONSTER,
+               #NPC_modifier=QN_NPCMOD_SAME,#monsterlist=[&BlackHydra],
+               #prizelist=[ [ [ QN_PRIZETYPE_ITEMCLASS, &CorNothKey ]] ],
+               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_CORNOTH_KEY_FOUR,#amount_needed=10)
+      {
+         Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_CORNOTH_KEY_FOUR,
+               #new_hint=CorNothKeyQuest_assign_4);
+         Send(oQE,@SetQuestNodeSuccessHint,#index=QNT_ID_CORNOTH_KEY_FOUR,
+               #new_hint=CorNothKeyQuest_success_4);
+         Send(oQE,@SetQuestNodeFailureHint,#index=QNT_ID_CORNOTH_KEY_FOUR,
+               #new_hint=CorNothKeyQuest_failure_4);
+      }
+      else
+      {
+         Debug("Error building QN: QNT_ID_CORNOTH_KEY_FOUR");
+      }
+
+      return;
+   }
+
+   MainDesc(who=$,index=$,oQuestNode=$)
+   {
+      local oMob, oQE, iAmount;
+
+      oQE = Send(SYS,@GetQuestEngine);
+
+      oMob = Send(oQuestNode,@GetQuestMonster);
+
+      iAmount = Send(oQE,@GetAmountToKill,#index=index);
+
+      if oMob = $
+      {
+         AddPacket(4,vrReturn);
+      }
+      else
+      {
+         AddPacket(4,vrKill,4,iAmount,4,Send(oMob,@GetName));
+      }
+
+      return;
+   }
+
+end
+/////////////////////////////////////////////////////////////////////////////////

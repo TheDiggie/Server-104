@@ -161,28 +161,28 @@ messages:
 
    ActivateScenario()
    {
-      if pbScenarioActivated
-      {
-         Debug("Tried to activate Necromancer/Hunter Scenario more than once!");
+      //if pbScenarioActivated
+      //{
+      //   Debug("Tried to activate Necromancer/Hunter Scenario more than once!");
 
-         return;
-      }
+      //   return;
+      //}
 
-      pbScenarioActivated = TRUE;
-      if ptTriggerAmuletGeneration <> $
-      {
-         DeleteTimer(ptTriggerAmuletGeneration);
-         ptTriggerAmuletGeneration = $;
-      }
-      if ptTriggerSwordGeneration <> $
-      {
-         DeleteTimer(ptTriggerSwordGeneration);
-         ptTriggerSwordGeneration = $;
-      }
-      //piNumAmuletsGenerated = 0;
-      //piNumSwordsGenerated = 0;
-      Send(self,@TriggerAmuletGeneration);
-      Send(self,@TriggerSwordGeneration);
+      //pbScenarioActivated = TRUE;
+      //if ptTriggerAmuletGeneration <> $
+      //{
+      //   DeleteTimer(ptTriggerAmuletGeneration);
+      //   ptTriggerAmuletGeneration = $;
+      //}
+      //if ptTriggerSwordGeneration <> $
+      //{
+      //   DeleteTimer(ptTriggerSwordGeneration);
+      //   ptTriggerSwordGeneration = $;
+      //}
+      ////piNumAmuletsGenerated = 0;
+      ////piNumSwordsGenerated = 0;
+      //Send(self,@TriggerAmuletGeneration);
+      //Send(self,@TriggerSwordGeneration);
 
       return;
    }

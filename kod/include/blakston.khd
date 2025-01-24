@@ -3377,6 +3377,11 @@
    QST_ID_ABSTAIN_PVP            = 75
    QST_ID_FAMS_RATS              = 76
    QST_ID_AVAR_KILL              = 77
+   QST_ID_CORNOTH_KEY            = 78
+   QST_ID_BARLOQUE_KEY           = 79
+   QST_ID_TOS_KEY                = 80
+   QST_ID_THRONEROOM_KEY         = 81
+   QST_ID_CASTLEVICTORIA_KEY     = 82
 
    // Quest Node Template IDs. Each quest has multple Quest Nodes.
    QNT_ID_DUKE_JOIN_ONE          = 1
@@ -3673,6 +3678,31 @@
    QNT_ID_AVAR_KILL_TWO          = 224
    QNT_ID_AVAR_KILL_THREE        = 225
    QNT_ID_AVAR_KILL_FOUR         = 226
+
+   QNT_ID_CORNOTH_KEY_ONE        = 227
+   QNT_ID_CORNOTH_KEY_TWO        = 228
+   QNT_ID_CORNOTH_KEY_THREE      = 229
+   QNT_ID_CORNOTH_KEY_FOUR       = 230
+
+   QNT_ID_BARLOQUE_KEY_ONE        = 231
+   QNT_ID_BARLOQUE_KEY_TWO        = 232
+   QNT_ID_BARLOQUE_KEY_THREE      = 233
+   QNT_ID_BARLOQUE_KEY_FOUR       = 234
+
+   QNT_ID_TOS_KEY_ONE             = 235
+   QNT_ID_TOS_KEY_TWO             = 236
+   QNT_ID_TOS_KEY_THREE           = 237
+   QNT_ID_TOS_KEY_FOUR            = 238
+      
+   QNT_ID_THRONEROOM_KEY_ONE      = 239
+   QNT_ID_THRONEROOM_KEY_TWO      = 240
+   QNT_ID_THRONEROOM_KEY_THREE    = 241
+   QNT_ID_THRONEROOM_KEY_FOUR     = 242
+
+   QNT_ID_CASTLEVICTORIA_KEY_ONE  = 243
+   QNT_ID_CASTLEVICTORIA_KEY_TWO  = 244
+   QNT_ID_CASTLEVICTORIA_KEY_THREE = 245
+   QNT_ID_CASTLEVICTORIA_KEY_FOUR  = 246
 
    // Quest misc constants
 

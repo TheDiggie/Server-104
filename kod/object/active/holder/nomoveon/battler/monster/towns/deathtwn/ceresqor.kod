@@ -47,6 +47,7 @@ classvars:
       | MOB_NOMOVE | MOB_SELLER
       
    viMerchant_markup = MERCHANT_FLAT
+   viOccupation = MOB_ROLE_MERCHANT
 
    vrUnwanted_keep = CeresofQor_unwanted_keep
    vrUnwanted_pay = CeresofQor_unwanted_pay
@@ -62,7 +63,6 @@ messages:
    {
       plFor_sale = [
          [
-            Create(&BarloqueKey),
             Create(&NeruditeAxe),
             Create(&OfferingQor),
             Create(&EntrootBerry),

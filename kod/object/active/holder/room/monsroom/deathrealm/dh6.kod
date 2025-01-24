@@ -56,43 +56,35 @@ messages:
       if (IsClass(what,&User)
          AND (row = 27 AND col = 41))
       {
-          if send(what,@HasBeatDR)
-		    OR IsClass(what,&DM)
-		  {
-		     foreach i in Send(what,@GetHolderPassive)
-            {
-               each_obj = Send(what,@HolderExtractObject,#data=i);
-               if IsClass(each_obj,&TosKey)
-               {
-                  Send(each_obj,@Delete);
-			   }
-			}
+         if send(what,@HasBeatDR)
+		      OR IsClass(what,&DM)
+		   {
+			   Send(what,@MsgSendUser,#message_rsc=Beat_DR);
+            Send(SYS,@UtilGoNearSquare,#what=what,
+               #where=Send(SYS,@FindRoomByNum,#num=RID_DTOS),
+               #new_row=58,#new_col=4,#new_angle=ANGLE_EAST);
 			 
-			 Send(what,@MsgSendUser,#message_rsc=Beat_DR);
-             Send(SYS,@UtilGoNearSquare,#what=what,
-                    #where=Send(SYS,@FindRoomByNum,#num=RID_DTOS),
-                    #new_row=58,#new_col=4,#new_angle=ANGLE_EAST);
-			 
-			 return TRUE;
-		  }
-
+			   return TRUE;
+		   }
       	  
-   		     foreach i in Send(what,@GetHolderPassive)
-            {
-               each_obj = Send(what,@HolderExtractObject,#data=i);
-               if IsClass(each_obj,&TosKey)
-               {
-                  Send(each_obj,@Delete);
-                  Send(what,@MsgSendUser,#message_rsc=Key_Open);
-                  Send(SYS,@UtilGoNearSquare,#what=what,
-                      #where=Send(SYS,@FindRoomByNum,#num=RID_DTOS),
-                      #new_row=58,#new_col=4,#new_angle=ANGLE_EAST);
+   		foreach i in Send(what,@GetHolderPassive)
+         {
+            each_obj = Send(what,@HolderExtractObject,#data=i);
 
-                  return TRUE;
-               }
+            if IsClass(each_obj,&TosKey)
+            {
+               Send(what,@MsgSendUser,#message_rsc=Key_Open);
+               Send(SYS,@UtilGoNearSquare,#what=what,
+                   #where=Send(SYS,@FindRoomByNum,#num=RID_DTOS),
+                   #new_row=58,#new_col=4,#new_angle=ANGLE_EAST);
+
+               return TRUE;
             }
-		  }
- 		 propagate;
-      }
+         }
+		}
+
+ 		propagate;
+   }
+
 end
 ////////////////////////////////////////////////////////////////////////////////

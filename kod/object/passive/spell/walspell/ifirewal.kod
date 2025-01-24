@@ -18,7 +18,7 @@ resources:
 
    include ifirewal.lkod
 
-   IllusionaryFireWall_name_rsc = "illusionary firewall"
+   IllusionaryFireWall_name_rsc = "illusionary fire wall"
    IllusionaryFireWall_icon_rsc = iwallill.bgf
    IllusionaryFireWall_desc_rsc = \
       "Creates an illusionary wall of fire.  This wall will cause illusionary "

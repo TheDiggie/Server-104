@@ -48,6 +48,7 @@ classvars:
       | MOB_NOMOVE | MOB_SELLER
       
    viMerchant_markup = MERCHANT_FLAT
+   viOccupation = MOB_ROLE_MERCHANT
 
    vrUnwanted_keep = Joline_unwanted_keep
    vrUnwanted_pay = Joline_unwanted_pay
@@ -63,7 +64,6 @@ messages:
    {
       plFor_sale = [
          [
-            Create(&CastleKey),
             Create(&BerserkerAxe),
             Create(&OfferingJala),
             Create(&Fairywing),

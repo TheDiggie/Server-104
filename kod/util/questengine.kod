@@ -597,11 +597,14 @@ messages:
       // QST_ID_MURDER_JONAS_3
       Create(&JonasMurderThreeQuest);
 
-      //QST_ID_FAMS_RATS
       Create(&FamsRatsQuest);
-
-      //QST_ID_AVAR_KILL
       Create(&AvarKillQuest);
+
+      Create(&CorNothKeyQuest);
+      Create(&BarloqueKeyQuest);
+      Create(&TosKeyQuest);
+      Create(&ThroneRoomKeyQuest);
+      Create(&CastleVictoriaKeyQuest);
 
       // Now we fix up the faction service quests, since they need to have as
       // many scheduled as members. This worked well enough for low numbers of

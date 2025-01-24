@@ -60,44 +60,35 @@ messages:
       if (IsClass(what,&User)
          AND (row = 55 AND col = 24) OR (row = 55 AND col = 25))
       {
-          if send(what,@HasBeatDR)
-		    OR IsClass(what,&DM)
-		  {
-		     foreach i in Send(what,@GetHolderPassive)
-            {
-               each_obj = Send(what,@HolderExtractObject,#data=i);
-               if IsClass(each_obj,&CorNothKey)
-               {
-                  Send(each_obj,@Delete);
-			   }
-			}
+         if send(what,@HasBeatDR)
+		      OR IsClass(what,&DM)
+		   {
+			   Send(what,@MsgSendUser,#message_rsc=Beat_DR);
+            Send(SYS,@UtilGoNearSquare,#what=what,
+               #where=Send(SYS,@FindRoomByNum,#num=RID_DCORNOTH),
+               #new_row=2,#new_col=57,#new_angle=ANGLE_SOUTH);
 			 
-			 Send(what,@MsgSendUser,#message_rsc=Beat_DR);
-             Send(SYS,@UtilGoNearSquare,#what=what,
-                    #where=Send(SYS,@FindRoomByNum,#num=RID_DCORNOTH),
-                    #new_row=2,#new_col=57,#new_angle=ANGLE_SOUTH);
-			 
-			 return TRUE;
-		  }
-
+			   return TRUE;
+		   }
       	  
-   		     foreach i in Send(what,@GetHolderPassive)
-            {
-               each_obj = Send(what,@HolderExtractObject,#data=i);
-               if IsClass(each_obj,&CorNothKey)
-               {
-                  Send(each_obj,@Delete);
-                  Send(what,@MsgSendUser,#message_rsc=Key_Open);
-                  Send(SYS,@UtilGoNearSquare,#what=what,
-                      #where=Send(SYS,@FindRoomByNum,#num=RID_DCORNOTH),
-                      #new_row=2,#new_col=57,#new_angle=ANGLE_SOUTH);
+   		  foreach i in Send(what,@GetHolderPassive)
+         {
+            each_obj = Send(what,@HolderExtractObject,#data=i);
 
-                  return TRUE;
-               }
+            if IsClass(each_obj,&CorNothKey)
+            {
+               Send(what,@MsgSendUser,#message_rsc=Key_Open);
+               Send(SYS,@UtilGoNearSquare,#what=what,
+                   #where=Send(SYS,@FindRoomByNum,#num=RID_DCORNOTH),
+                   #new_row=2,#new_col=57,#new_angle=ANGLE_SOUTH);
+
+               return TRUE;
             }
-		  }
- 		 propagate;
-      }
+         }
+		}
+
+ 		propagate;
+   }
 
 end
 ////////////////////////////////////////////////////////////////////////////////

@@ -16,7 +16,7 @@ constants:
 
 resources:
 
-   Throne2Key_name_rsc = "old key to Castle Victoria's throne room."
+   Throne2Key_name_rsc = "old key to Castle Victoria's throne room"
    Throne2Key_icon_rsc = key6.bgf
    Throne2Key_desc_rsc = \
      "This is a old golden key.\n It cannot be dropped or traded."
