@@ -3326,7 +3326,8 @@ messages:
       Send(self,@CreateOneSpellIfNew,#num=SID_DM_ITEMATT,#class=&DivineEnchantment);
       Send(self,@CreateOneSpellIfNew,#num=SID_SLITHERBOLT,#class=&Slitherbolt);
       Send(self,@CreateOneSpellIfNew,#num=SID_INDEST,#class=&Indestructible);
-	  Send(self,@CreateOneSpellIfNew,#num=SID_NODROP,#class=&NotDroppable);
+	   Send(self,@CreateOneSpellIfNew,#num=SID_NODROP,#class=&NotDroppable);
+	   Send(self,@CreateOneSpellIfNew,#num=SID_ADDPETOITEM,#class=&AddPEtoItem);
 
       Send(self,@CreateOneSpellIfNew,#num=SID_CURSE_WEAPON,#class=&CurseWeapon);
       Send(self,@CreateOneSpellIfNew,#num=SID_PARDON,#class=&Pardon);

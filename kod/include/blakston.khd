@@ -2457,9 +2457,10 @@
    SID_CRAFTWIZARDHAT      = 251
    SID_CRAFTLIGHTMAGICROBES = 252
    
-   SID_ICEWALL = 241
-   SID_INDEST  = 242
-   SID_NODROP = 253
+   SID_ICEWALL             = 241
+   SID_INDEST              = 242
+   SID_NODROP              = 253
+   SID_ADDPETOITEM         = 254
 
    // Depreciated spell IDs
    SID_LIGHTNING = 1                   // use SID_LIGHTNING_BOLT
