@@ -270,41 +270,41 @@ messages:
    "meter (to prevent random walk) and handles triggering the artifact "
    "generation at somewhat random times."
    {
-      local iPeriod;
-
-      // General principle: # of artifacts generated rises from 0 to
-      // piSteadyStateNumOfArtifacts in about piRechargeTime days, then
-      // rises from piSteadyStateNumOfArtifacts to piCriticalMassOfArtifacts
-      // in the next piSteadyStateTime days.
-      if piNumAmuletsGenerated < (piAmuletPercentOfArtifacts
-         * (piNumAmuletsGenerated+piNumSwordsGenerated) / 100)
-      {
-         // We're off-balance, better hurry up!
-         Debug("Had to bump up Amulet generation to balance numbers.");
-         iPeriod = 1000;
-      }
-      else
-      {
-         if piNumAmuletsGenerated
-            < (piSteadyStateNumOfArtifacts * piAmuletPercentOfArtifacts/100)
-         {
-            iPeriod = ((MS_PER_DAY / (piSteadyStateNumOfArtifacts
-                        * piAmuletPercentOfArtifacts/100)) * piRechargeTime);
-         }
-         else
-         {
-            iPeriod = ((MS_PER_DAY /
-                     ((piCriticalMassOfArtifacts - piSteadyStateNumOfArtifacts)
-                     * piAmuletPercentOfArtifacts/100)) * piSteadyStateTime);
-         }
-      }
-      ptTriggerAmuletGeneration = $;
-      ptTriggerAmuletGeneration = CreateTimer(self,@TriggerAmuletGeneration,iPeriod);
-
-      if ptGenerateAmulet = $
-      {
-         ptGenerateAmulet = CreateTimer(self,@GenerateAmulet,Random(0,iPeriod/5));
-      }
+      //local iPeriod;
+//
+      //// General principle: # of artifacts generated rises from 0 to
+      //// piSteadyStateNumOfArtifacts in about piRechargeTime days, then
+      //// rises from piSteadyStateNumOfArtifacts to piCriticalMassOfArtifacts
+      //// in the next piSteadyStateTime days.
+      //if piNumAmuletsGenerated < (piAmuletPercentOfArtifacts
+      //   * (piNumAmuletsGenerated+piNumSwordsGenerated) / 100)
+      //{
+      //   // We're off-balance, better hurry up!
+      //   Debug("Had to bump up Amulet generation to balance numbers.");
+      //   iPeriod = 1000;
+      //}
+      //else
+      //{
+      //   if piNumAmuletsGenerated
+      //      < (piSteadyStateNumOfArtifacts * piAmuletPercentOfArtifacts/100)
+      //   {
+      //      iPeriod = ((MS_PER_DAY / (piSteadyStateNumOfArtifacts
+      //                  * piAmuletPercentOfArtifacts/100)) * piRechargeTime);
+      //   }
+      //   else
+      //   {
+      //      iPeriod = ((MS_PER_DAY /
+      //               ((piCriticalMassOfArtifacts - piSteadyStateNumOfArtifacts)
+      //               * piAmuletPercentOfArtifacts/100)) * piSteadyStateTime);
+      //   }
+      //}
+      //ptTriggerAmuletGeneration = $;
+      //ptTriggerAmuletGeneration = CreateTimer(self,@TriggerAmuletGeneration,iPeriod);
+//
+      //if ptGenerateAmulet = $
+      //{
+      //   ptGenerateAmulet = CreateTimer(self,@GenerateAmulet,Random(0,iPeriod/5));
+      //}
 
       return;
    }
@@ -369,40 +369,40 @@ messages:
    "meter (to prevent random walk) and handles triggering the artifact "
    "generation at somewhat random times."
    {
-      local iPeriod;
-
-      // General principle: # of artifacts generated rises from 0 to
-      // piSteadyStateNumOfArtifacts in about piRechargeTime days, then
-      // rises from piSteadyStateNumOfArtifacts to piCriticalMassOfArtifacts
-      // in the next piSteadyStateTime days.
-      if piNumSwordsGenerated < ((100-piAmuletPercentOfArtifacts)
-         * (piNumAmuletsGenerated+piNumSwordsGenerated) / 100)
-      {
-         // We're off-balance, better hurry up!
-         Debug("Had to bump up Sword generation to balance numbers.");
-         iPeriod = 1000;
-      }
-      else
-      {
-         if piNumSwordsGenerated
-            < (piSteadyStateNumOfArtifacts * (100 - piAmuletPercentOfArtifacts)/100)
-         {
-            iPeriod = ((MS_PER_DAY / (piSteadyStateNumOfArtifacts
-               * (100 - piAmuletPercentOfArtifacts)/100)) * piRechargeTime);
-         }
-         else
-         {
-            iPeriod = ((MS_PER_DAY /
-                  ((piCriticalMassOfArtifacts - piSteadyStateNumOfArtifacts)
-                  * (100 - piAmuletPercentOfArtifacts)/100)) * piSteadyStateTime);
-         }
-      }
-      ptTriggerSwordGeneration = $;
-      ptTriggerSwordGeneration = CreateTimer(self,@TriggerSwordGeneration,iPeriod);
-      if ptGenerateSword = $
-      {
-         ptGenerateSword = CreateTimer(self,@GenerateSword,Random(0,iPeriod/5));
-      }
+      //local iPeriod;
+//
+      //// General principle: # of artifacts generated rises from 0 to
+      //// piSteadyStateNumOfArtifacts in about piRechargeTime days, then
+      //// rises from piSteadyStateNumOfArtifacts to piCriticalMassOfArtifacts
+      //// in the next piSteadyStateTime days.
+      //if piNumSwordsGenerated < ((100-piAmuletPercentOfArtifacts)
+      //   * (piNumAmuletsGenerated+piNumSwordsGenerated) / 100)
+      //{
+      //   // We're off-balance, better hurry up!
+      //   Debug("Had to bump up Sword generation to balance numbers.");
+      //   iPeriod = 1000;
+      //}
+      //else
+      //{
+      //   if piNumSwordsGenerated
+      //      < (piSteadyStateNumOfArtifacts * (100 - piAmuletPercentOfArtifacts)/100)
+      //   {
+      //      iPeriod = ((MS_PER_DAY / (piSteadyStateNumOfArtifacts
+      //         * (100 - piAmuletPercentOfArtifacts)/100)) * piRechargeTime);
+      //   }
+      //   else
+      //   {
+      //      iPeriod = ((MS_PER_DAY /
+      //            ((piCriticalMassOfArtifacts - piSteadyStateNumOfArtifacts)
+      //            * (100 - piAmuletPercentOfArtifacts)/100)) * piSteadyStateTime);
+      //   }
+      //}
+      //ptTriggerSwordGeneration = $;
+      //ptTriggerSwordGeneration = CreateTimer(self,@TriggerSwordGeneration,iPeriod);
+      //if ptGenerateSword = $
+      //{
+      //   ptGenerateSword = CreateTimer(self,@GenerateSword,Random(0,iPeriod/5));
+      //}
 
       return;
    }
