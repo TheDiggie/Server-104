@@ -990,21 +990,22 @@
    RID_TOSAREN2 = 73
 
    // Barloque
-   RID_BARLN = 101
-   RID_BARLS = 102
-   RID_BARLBAR1 = 103
-   RID_BARAPOTH = 104
-   RID_BARHALL = 105
-   RID_BARINN = 106
-   RID_BARLPORT = 107
-   RID_BARLSEW = 108
-   RID_BARMERCH = 109
-   RID_BARLSEW2 = 111
-   RID_BARLSEW3 = 112
-   RID_BARSMITH = 113
-   RID_BARVAULT = 114
-   RID_BARCOURT = 115
-   RID_BARJAIL =  116
+   RID_BARLN      = 101
+   RID_BARLS      = 102
+   RID_BARLBAR1   = 103
+   RID_BARAPOTH   = 104
+   RID_BARHALL    = 105
+   RID_BARINN     = 106
+   RID_BARLPORT   = 107
+   RID_BARLSEW    = 108
+   RID_BARMERCH   = 109
+   RID_BARLSEW2   = 111
+   RID_BARLSEW3   = 112
+   RID_BARSMITH   = 113
+   RID_BARVAULT   = 114
+   RID_BARCOURT   = 115
+   RID_BARJAIL    = 116
+   RID_BAR_MARKET = 117
 
    // Cor Noth
    RID_CORGROC = 151
@@ -1709,6 +1710,7 @@
    MOB_ROLE_SCHOLAR        = 0x16
    MOB_ROLE_WIZARD         = 0x17
    MOB_ROLE_BARD           = 0x18
+   MOB_ROLE_PMARKET        = 0x19
 
    // Monster behaviors, or "states"
    STATE_LIMBO       = 0x00001
@@ -2039,7 +2041,8 @@
    IA_XP_KILL_BONUS        = 22
    IA_CRAFTED              = 23
    IA_INDESTRUCTIBLE       = 24
-   IA_NOTDROPPABLE       = 25
+   IA_NOTDROPPABLE         = 25
+   IA_APPRAISE             = 26
 
    // Weapon Attributes.  These are attributes only applied to weapons.
    WA_TRAINING             = 51
@@ -2461,6 +2464,7 @@
    SID_INDEST              = 242
    SID_NODROP              = 253
    SID_ADDPETOITEM         = 254
+   SID_APPRAISE            = 255
 
    // Depreciated spell IDs
    SID_LIGHTNING = 1                   // use SID_LIGHTNING_BOLT
@@ -3257,6 +3261,7 @@
    SHRINE_ISLAND     = 3
    SHRINE_BRAX       = 4
    SHRINE_FOREST     = 5
+   SHRINE_MARKET     = 6
 
    // Server types
 

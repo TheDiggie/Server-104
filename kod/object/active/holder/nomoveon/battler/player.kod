@@ -2994,6 +2994,7 @@ messages:
       Send(self,@AddSpell,#num=SID_VAULT_LOADOUT,#initial=TRUE);
       Send(self,@AddSpell,#num=SID_LOADOUT,#initial=TRUE);
       Send(self,@AddSpell,#num=SID_SET,#initial=TRUE);
+      Send(self,@AddSpell,#num=SID_APPRAISE,#initial=TRUE);
 
       return;
    }
@@ -14901,6 +14902,11 @@ messages:
       if poOwner = $ OR what = $
       {
          return FALSE;
+      }
+
+      if IsClass(what,&Bag)
+      {
+         return TRUE;
       }
 
       found = FALSE;

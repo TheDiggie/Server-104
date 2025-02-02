@@ -1098,16 +1098,7 @@ messages:
 
             i = i + 1;
          }
-
-         if oObject = $
-         {
-            Debug("Didnt make loot");
-            
-         }
-         
       }
-
-      Debug("Thrasher chest loot ", send(oObject,@getname));
       
       return;
    }

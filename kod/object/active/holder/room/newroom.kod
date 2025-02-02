@@ -16,7 +16,7 @@ constants:
 
 resources:
 
-   room_Newroom = newroom.roo
+   room_Newroom = barlmarket.roo
    room_name_Newroom ="New room"
    Newroom_music = main.ogg
 
@@ -26,8 +26,8 @@ classvars:
    viTerrain_type = TERRAIN_MYSTICAL | TERRAIN_WATERFALL
    viPermanent_flags = ROOM_SAFELOGOFF
 
-   viTeleport_row = 16
-   viTeleport_col = 15
+   viTeleport_row = 17
+   viTeleport_col = 18
 
 properties:
 

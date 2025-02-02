@@ -299,7 +299,7 @@ messages:
 
    CanBeGivenToNPC()
    {
-      return FALSE;
+      return TRUE;
    }
 
    CanSwap()
