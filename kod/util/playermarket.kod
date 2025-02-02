@@ -1,0 +1,154 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+PlayerMarket is UtilityFunctions
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+classvars:
+
+properties:
+
+   plPassive = $
+
+messages:
+
+   Constructor()
+   {
+      Send(self,@Constructed);
+
+      return;
+   }
+
+   Constructed()
+   {
+      return;
+   }
+
+   GetPlayerMarketItems()
+   {
+      return plPassive;
+   }
+
+   NewHold(what = $)
+   {
+      local i, each_obj;
+      if what = $
+         OR what = self
+      {
+         return;
+      }
+
+      if NOT IsClass(what,&TradeBond)
+      {
+         Debug("ITEM PLACED ON MARKET", Send(what,@GetAppraiser),Send(Send(what,@GetAppraiser),@GetTrueName),what,Send(what,@Getname),"price",Send(what,@GetAppraisalPrice));
+      }
+
+      if IsClass(what,&NumberItem)
+      {
+         foreach i in plPassive
+         {
+            each_obj = Send(self,@HolderExtractObject,#data=i);
+
+            if each_obj <> what
+            {
+               if GetClass(what) = GetClass(each_obj)
+               {
+                  // should only be one of these, so can quit loop if found
+
+                  Send(each_obj,@AddNumber,#number=Send(what,@GetNumber));
+                  Send(what,@Delete);
+
+                  return;
+               }
+            }
+         }
+      }
+
+      Send(self,@NewHoldObject,#what=what);
+
+      return;
+   }
+
+   NewHoldObject(what = $)
+   {
+      if IsClass(what,&TradeBond)
+      {
+         Send(what,@Delete);
+         return TRUE;
+      }
+
+      Send(self,@HolderAddNode,#node=what);
+
+      return;
+   }
+
+   HolderAddNode(node = $)
+   {
+      local i, oThing, each_obj;
+
+      oThing = Send(self,@HolderExtractObject,#data=node);
+
+      plPassive = Cons(node,plPassive);
+      Send(oThing,@NewOwner,#what=self);
+
+      return;
+   }
+
+   HolderExtractObject(data = $)
+   {
+      return data;
+   }
+
+   ReqLeaveHold(what = $)
+   {
+      local i, each_obj;
+
+      if NOT Send(what,@ReqLeaveOwner)
+      {
+         return FALSE;
+      }
+
+      return TRUE;
+   }
+
+   LeaveHold(what = $)
+   {
+      local i,each_obj, iRow, iCol;
+
+      iRow = 0;
+      iCol = 0;
+
+      foreach i in plPassive
+      {
+         each_obj = Send(self,@HolderExtractObject,#data=i);
+         if each_obj = what
+         {
+            if IsClass(self,&Room)
+            {
+               iRow = Nth(i,3);
+               iCol = Nth(i,4);
+            }
+
+            plPassive = DelListElem(plPassive,i);
+
+            break;
+         }
+      }
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

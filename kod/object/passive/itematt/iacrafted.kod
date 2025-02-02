@@ -38,7 +38,7 @@ properties:
 
 messages:
 
-   AppendDesc(oItem =$)
+   AppendDesc(oItem=$)
    {
       local oCrafter;
 

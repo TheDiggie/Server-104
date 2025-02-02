@@ -217,7 +217,7 @@ messages:
       local i;
 
       // Don't take money for resale.  That's just silly.
-      if IsClass(what,&Shillings)
+      if IsClass(what,&Money)
       {
          return FALSE;
       }
@@ -242,7 +242,7 @@ messages:
          }
       }
 
-      if Send(what,@HasAttribute,#ItemAtt=IA_BONDED)
+      if Send(what,@HasAttribute,#ItemAtt=IA_TRANSCENDANT)
          OR Send(what,@IsItemType,#type=ITEMTYPE_SPECIAL)
       {
          return FALSE;

@@ -74,8 +74,7 @@ messages:
       OR IsClass(oTarget,&NumberItem)
       OR IsClass(oTarget,&SpellItem)
       {
-         Send(who,@MsgSendUser,#message_rsc=AddPEtoItem_fails,
-               #parm1=Send(oTarget,@GetCapDef),#parm2=Send(oTarget,@GetName));
+         Send(who,@MsgSendUser,#message_rsc=AddPEtoItem_fails);
 
         return FALSE;
       }

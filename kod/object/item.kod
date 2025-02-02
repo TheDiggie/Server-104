@@ -180,8 +180,10 @@ properties:
    viAlmost = FALSE
    viVery   = FALSE
 
-   poCrafter      = $
-   poSpell        = $
+   poCrafter         = $
+   poSpell           = $
+   piAppraisal_Price = 0
+   poAppraiser       = $
 
 messages:
 
@@ -2996,6 +2998,32 @@ messages:
       piItem_flags = piOriginalColor;
 
       pbColored = FALSE;
+
+      return;
+   }
+
+   SetAppraisalPrice(Price=$,Appraiser=$)
+   {
+      piAppraisal_Price = Price;
+      poAppraiser       = Appraiser;
+
+      return;
+   }
+
+   GetAppraisalPrice()
+   {
+      return piAppraisal_Price;
+   }
+
+   GetAppraiser()
+   {
+      return poAppraiser;
+   }
+
+   ClearAppraisal()
+   {
+      piAppraisal_Price = 0;
+      poAppraiser       = $;
 
       return;
    }

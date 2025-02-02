@@ -182,10 +182,9 @@ messages:
       local iChance, oArrow;
 
       iChance = Random(1,100);
-      Debug(iChance);
+      
       if iChance <= viArrow_Reclaim_Rate
       {
-      Debug("win");
          oArrow = Create(GetClass(self),#number=1);
          Send(target,@Newhold,#what=oArrow);
       }

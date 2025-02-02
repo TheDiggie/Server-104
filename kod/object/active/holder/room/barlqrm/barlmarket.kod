@@ -1,0 +1,63 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+/////////////////////////////////////////////////////////////////////////////////
+BarloqueMarket is BarloqueRoom
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   room_name_BarloqueMarket = "The citizen's market of Barloque"
+   room_BarloqueMarket = barlmarket.roo
+   BarloqueMarket_music = corloth.ogg
+   
+classvars:
+
+   viTeleport_row = 17
+   viTeleport_col = 18
+
+   viTerrain_Type = TERRAIN_CITY | TERRAIN_SHOP
+
+   vrName = room_name_BarloqueMarket
+
+properties:
+
+   viPermanent_flags = ROOM_NO_COMBAT
+   prRoom = room_BarloqueMarket
+   piRoom_num = RID_BAR_MARKET
+
+   piBaseLight = LIGHT_MAX
+
+   prMusic = barvault_music
+
+messages:
+
+   CreateStandardObjects()
+   {
+      Send(self,@NewHold,#what=Create(&Veydran),
+         #new_row=36,#new_col=22,#fine_row=62,#fine_col=40,#new_angle=ANGLE_NORTH);
+
+      propagate;
+   }
+
+   CreateStandardExits()
+   {
+      plExits = $;
+      plExits = Cons([ 6, 1, RID_BAR_PORT, 36, 55, ANGLE_NORTH_WEST ],plExits);
+      plExits = Cons([ 5, 1, RID_BAR_PORT, 36, 55, ANGLE_NORTH_WEST ],plExits);
+
+      propagate;
+   }
+
+
+end
+////////////////////////////////////////////////////////////////////////////////
