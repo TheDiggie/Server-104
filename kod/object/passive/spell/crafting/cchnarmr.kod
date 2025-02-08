@@ -34,6 +34,7 @@ classvars:
 
    viSpell_num = SID_CRAFTCHAINARMOR
    viSpell_level = 4
+   viMeditate_ratio = 80
    viSpellExertion = 5
 
    vrGear = &ChainArmor

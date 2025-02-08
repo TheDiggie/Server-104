@@ -41,6 +41,7 @@ classvars:
    viSkill_num = SKID_MINING
    viSchool = SS_CRAFTING
    viSkill_Level = 1
+   viMeditate_ratio = 20
    viChance_to_Increase = 15
    viMeditate_ratio = 0
 

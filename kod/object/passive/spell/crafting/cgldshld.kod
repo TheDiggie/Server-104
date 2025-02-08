@@ -34,6 +34,7 @@ classvars:
 
    viSpell_num = SID_CRAFTGUILDSHIELD
    viSpell_level = 6
+   viMeditate_ratio = 120
    viSpellExertion = 5
 
    vrGear = &GuildShield
