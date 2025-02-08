@@ -513,6 +513,8 @@ properties:
 
    plAttackTypes = $
    plSpellTypes = $
+   
+   poPlayerMarket = $
 
 messages:
 
@@ -586,6 +588,7 @@ messages:
       Send(self,@RefigureAllAbilityTotals);
       Send(self,@RecomputeShrineTotals);
       Send(self,@RecreateLearnAdvice);
+      Send(self,@SetupPlayerMarket);
 
       psTemp = CreateString();
 
@@ -2397,6 +2400,7 @@ messages:
       Send(self,@CreateOneRoomIfNew,#num=RID_BAR_JAIL,#class=&BarloqueJail);
       Send(self,@CreateOneRoomIfNew,#num=RID_BAR_SMITHY,#class=&BarloqueSmithy);
       Send(self,@CreateOneRoomIfNew,#num=RID_BAR_VAULT,#class=&BarVault);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BAR_MARKET,#class=&BarloqueMarket);
 
       // Kocatan
       Send(self,@CreateOneRoomIfNew,#num=RID_KOCATAN,#class=&Kocatan);
@@ -3535,6 +3539,7 @@ messages:
       Send(self,@CreateOneSpellIfNew,#num=SID_CONVEYANCE,#class=&Conveyance);
 	   Send(self,@CreateOneSpellIfNew,#num=SID_TRANSFERENCE,#class=&Transference);
       Send(self,@CreateOneSpellIfNew,#num=SID_PHASE,#class=&Phase);
+      Send(self,@CreateOneSpellIfNew,#num=SID_APPRAISE,#class=&Appraise);
 	  
       Send(self,@CreateOneSpellIfNew,#num=SID_VAULT_LOADOUT,#class=&VaultLoadout);
 
@@ -3625,6 +3630,7 @@ messages:
       Send(self,@CreateOneItemAttIfNew,#num=IA_XP_KILL_BONUS,#class=&ItemAttXPKillBonus);
       Send(self,@CreateOneItemAttIfNew,#num=WA_PUNISHER,#class=&WeapAttPunisher);
       Send(self,@CreateOneItemAttIfNew,#num=IA_TRANSCENDANT,#class=&ItemAttTranscendant);
+      Send(self,@CreateOneItemAttIfNew,#num=IA_APPRAISE,#class=&ItemAttAppraise);
       Send(self,@CreateOneItemAttIfNew,#num=IA_SELL_INFO,#class=&ItemAttSellInfo);
       Send(self,@CreateOneItemAttIfNew,#num=IA_NEW_DESCRIPTION,#class=&ItemAttNewDescription);
       Send(self,@CreateOneItemAttIfNew,#num=IA_APPEND_DESCRIPTION,#class=&ItemAttAppendDescription);
@@ -6205,6 +6211,7 @@ messages:
       plItemTemplates = cons(create(&XPScroll),plItemTemplates);
       plItemTemplates = cons(create(&UBScroll),plItemTemplates);
       plItemTemplates = cons(create(&TPScroll),plItemTemplates);
+      plItemTemplates = cons(create(&tradebond),plItemTemplates);
       
       //Dye Stuff
       plItemTemplates = cons(create(&DyeBottle),plItemTemplates);
@@ -8673,6 +8680,21 @@ messages:
       }
 
       return;
+   }
+
+   SetupPlayerMarket()
+   {
+      if poPlayerMarket = $
+      {
+         poPlayerMarket = Create(&PlayerMarket);
+      }
+      
+      return;
+   }
+
+   GetPlayerMarket()
+   {
+      return poPlayerMarket;
    }
 
 end

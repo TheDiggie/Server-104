@@ -205,12 +205,12 @@ messages:
    {
       if poGhostedPlayer <> $
       {
-         Addpacket(4,vrDesc);
+         AddPacket(4,vrDesc);
          AddPacket(STRING_RESOURCE,Send(poGhostedPlayer,@GetTrueName));
       }
       else
       {
-         Addpacket(4,vrDesc);
+         AddPacket(4,vrDesc);
          AddPacket(STRING_RESOURCE,logoffghost_someone);
          Post(self,@Delete);
       }
