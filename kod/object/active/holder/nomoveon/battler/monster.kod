@@ -267,6 +267,7 @@ resources:
 
    pm_not_appraised = "I can not list items on the market that have not yet been appraised!"
    pm_sold_item = "~g~BYou sold a %s on the citizen's market for %i, you have been given a trades bond for the value."
+   To_much_value = "Sorry but I can only offer you 130 million shillings at a time, please hand over less trade bonds at a time. "
    
 classvars:
 
@@ -374,6 +375,7 @@ classvars:
    vrLm_bnkr_player_full            = Lm_bnkr_player_full
    vrLm_bnkr_player_all_full        = Lm_bnkr_player_all_full
    vrLm_mrcnt_cant_give             = Lm_mrcnt_cant_give
+   vrTo_much_value                  = To_much_value
    vrAnnounce = Announce_Death
 
    // Obsolete, but still included here for safety's sake.
@@ -4103,6 +4105,15 @@ messages:
             }
          }
          
+         if iValue_offered < 0
+         {
+            Post(self,@SayToOne,#target=what,#message_rsc=vrTo_much_value);
+            Send(what,@OfferCanceled);
+            Send(self,@OfferCanceled);
+
+            return;
+         }
+
          if bFound
          {
             plOffer_items = [ Create(poCurrency,#number=iValue_offered) ];

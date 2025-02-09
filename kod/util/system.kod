@@ -588,7 +588,6 @@ messages:
       Send(self,@RefigureAllAbilityTotals);
       Send(self,@RecomputeShrineTotals);
       Send(self,@RecreateLearnAdvice);
-      Send(self,@SetupPlayerMarket);
 
       psTemp = CreateString();
 
@@ -664,6 +663,7 @@ messages:
       Send(self,@RecreateRentableRoomMaintenance);
       Send(self,@RecreateSurvivalRoomMaintenance);
       Send(self,@RecreateWarEvent);
+      Send(self,@SetupPlayerMarket);
 
       // These don't need to be done here.
       // RecreateAllRooms calls CreateAllRoomsIfNew. Calling it again here

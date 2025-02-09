@@ -19,7 +19,7 @@ resources:
    Trade_Bond_name_rsc = "trade bond"
    Trade_Bond_icon_rsc = scr06.bgf
    Trade_Bond_desc_rsc = "This is a trade bond for %i shillings from something you sold on the citizen's market. Turn it into "
-         "Veydran Goldleaf in Barloque for your funds."   
+         "Veydran Goldleaf in Barloque for your funds. \n\nThis item will not drop on death."   
 
 classvars:
 
@@ -65,5 +65,10 @@ messages:
       return;
    }
    
+   DropOnDeath()
+   {
+      return FALSE;
+   }
+
 end
 ////////////////////////////////////////////////////////////////////////////////
