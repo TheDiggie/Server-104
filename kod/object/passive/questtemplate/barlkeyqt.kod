@@ -94,7 +94,7 @@ properties:
    plSpecialRestrict = $
    piMaxPlayers = 30
    piSchedulePct = 100
-   piTimeLimit = 2 * 3600 // 2 hours.
+   piTimeLimit = 10 * 3600 // 10 hours.
 
 messages:
 
@@ -128,7 +128,7 @@ messages:
 
       if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MONSTER,
                #NPC_modifier=QN_NPCMOD_SAME,#monsterlist=[&DeathMiteScout],
-               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_BARLOQUE_KEY_TWO,#amount_needed=10)
+               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_BARLOQUE_KEY_TWO,#amount_needed=5)
       {
          Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_BARLOQUE_KEY_TWO,
                #new_hint=BarloqueKeyQuest_assign_2);
@@ -142,7 +142,7 @@ messages:
 
       if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MONSTER,
                #NPC_modifier=QN_NPCMOD_SAME,#monsterlist=[&DeathMiteSoldier],
-               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_BARLOQUE_KEY_THREE,#amount_needed=10)
+               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_BARLOQUE_KEY_THREE,#amount_needed=5)
       {
          Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_BARLOQUE_KEY_THREE,
                #new_hint=BarloqueKeyQuest_assign_3);
@@ -157,7 +157,7 @@ messages:
       if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MONSTER,
                #NPC_modifier=QN_NPCMOD_SAME,#monsterlist=[&DeathMiteMage],
                #prizelist=[ [ [ QN_PRIZETYPE_ITEMCLASS, &BarloqueKey ]] ],
-               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_BARLOQUE_KEY_FOUR,#amount_needed=10)
+               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_BARLOQUE_KEY_FOUR,#amount_needed=5)
       {
          Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_BARLOQUE_KEY_FOUR,
                #new_hint=BarloqueKeyQuest_assign_4);

@@ -150,7 +150,7 @@ messages:
                           [QNT_ID_JALA_NECKLACE_SIX, vrNodeSix],
                           [QNT_ID_JALA_NECKLACE_SEVEN, vrNodeSeven] ];
 
-      plSpecialRestrict = [ [ Q_R2_HAS_SPELL_SCHOOL, SS_JALA, 11 ],
+      plSpecialRestrict = [ [ Q_R2_HAS_SPELL_SCHOOL, SS_JALA, 10 ],
                             [ Q_R2_DOES_NOT_HAVE_ITEM, &JalaNecklace ] ];
 
       propagate;

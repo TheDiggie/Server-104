@@ -89,7 +89,7 @@ properties:
    plSpecialRestrict = $
    piMaxPlayers = 30
    piSchedulePct = 100
-   piTimeLimit = 2 * 3600 // 2 hours.
+   piTimeLimit = 10 * 3600 // 10 hours.
 
 messages:
 
@@ -152,7 +152,7 @@ messages:
       if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MONSTER,
                #NPC_modifier=QN_NPCMOD_SAME,#monsterlist=[&Spirit],
                #prizelist=[ [ [ QN_PRIZETYPE_ITEMCLASS, &CastleKey ]] ],
-               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_CASTLEVICTORIA_KEY_FOUR,#amount_needed=20)
+               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_CASTLEVICTORIA_KEY_FOUR,#amount_needed=15)
       {
          Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_CASTLEVICTORIA_KEY_FOUR,
                #new_hint=CastleVictoriaKeyQuest_assign_4);
