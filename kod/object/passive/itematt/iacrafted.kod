@@ -63,7 +63,8 @@ messages:
 
    AddToTreasureTable()
    {
-      return;
+      /// do nothing
+      return FALSE;
    }
 
    CanBeSpoofed()

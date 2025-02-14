@@ -49,5 +49,11 @@ messages:
       return TRUE;
    }
 
+   AddToTreasureTable()
+   {
+      /// do nothing
+      return FALSE;
+   }
+   
 end
 ////////////////////////////////////////////////////////////////////////////////
