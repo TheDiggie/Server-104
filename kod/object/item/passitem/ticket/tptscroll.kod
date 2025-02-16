@@ -1,0 +1,115 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+TpTranferScroll is Ticket
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   TpTranferScroll_name_rsc = "training point transfer scroll"
+   TpTranferScroll_icon_rsc = scr06.bgf
+   TpTranferScroll_desc_rsc = "This is a training point tranfer scroll. Using it will grant you %i training points. "   
+   TpTranferScroll_desc2_rsc = "This scroll will consume all your training points and allow you to tranfer half "
+      "of them to this scroll. You may then use this scroll to gain the training points. "   
+
+   TpTranferScroll_warning = "~r~BWarning using this scroll will consume all your training points. "
+   TpTranferScroll_warning2 = "~r~BWarning using this scroll will consume it and grant the player %i training points. "
+
+classvars:
+
+   vrName = TpTranferScroll_name_rsc
+   vrIcon = TpTranferScroll_icon_rsc
+   vrDesc = TpTranferScroll_desc_rsc
+   vrDesc2 = TpTranferScroll_desc2_rsc
+
+   viUse_type = ITEM_SINGLE_USE
+
+   viBulk = 1
+   viWeight = 1
+   viValue_average = 100
+   
+properties:
+
+   pbIn_use  = FALSE
+   pbWarned  = FALSE
+   pbWarned2 = FALSE
+
+   piPoints = $
+   
+messages:
+   
+   ShowDesc()
+   {
+      if piPoints = $
+      {
+         AddPacket(4,vrDesc2);
+      }
+      else 
+      {
+         AddPacket(4,vrDesc,4,piPoints);
+      }
+
+      propagate;
+   }
+
+   ReqNewApply(what = $,use_item = $)
+   {
+
+      if pbWarned = FALSE
+      {
+         Send(what,@MsgSendUser,#message_rsc=TpTranferScroll_warning);
+
+         pbWarned = TRUE;
+
+         return FALSE;
+      }
+      else if piPoints = $
+      {
+         piPoints = (Send(what,@GetTrainingPoints)/2);
+         Send(what,@AddTrainingPoints,#points=((piPoints*2)*-1));
+
+         return FALSE;
+      }
+
+      if pbWarned2 = FALSE
+      {
+         Send(what,@MsgSendUser,#message_rsc=TpTranferScroll_warning2,#parm1=piPoints);
+
+         pbWarned2 = TRUE;
+
+         return FALSE;
+      }
+      else
+      {
+         Send(what,@AddTrainingPoints,#points=(piPoints));
+
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   NewApplied(what = $)
+   {
+      send(self,@delete);
+
+      return;
+   }
+
+   CanBeStoredInVault()
+   {
+      return TRUE;
+   }
+   
+end
+////////////////////////////////////////////////////////////////////////////////

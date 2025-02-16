@@ -204,7 +204,6 @@ messages:
          return what;
       }
 
-      Debug(what,Send(what,@getname));
       if IsClass(what,&Bag)
       {  
          if NOT IsClass(Send(what,@GetOwner),&Player)

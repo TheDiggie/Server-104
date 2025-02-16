@@ -54,8 +54,8 @@ properties:
 
    plGenerators = $
    piMonster_count_max = 30
-   piInit_count_min = 5
-   piInit_count_max = 10
+   piInit_count_min = 10
+   piInit_count_max = 20
    
    // Lava damage
    piLava_damage = 3
@@ -99,8 +99,8 @@ messages:
       {
          plMonsters = [ [&Spirit, 10],
                         [&Revenantb, 4],
-                        [&Chimera, 7],
-                        [&Cyclops, 7],
+                        [&Chimera, 5],
+                        [&Cyclops, 5],
                         [&FollowerOfQor, 5],
                         [&MinotaurBerserker, 5],
                         [&Tyrant, 6],
@@ -109,19 +109,17 @@ messages:
                         [&Croco, 6],
                         [&Vozun, 6],
                         [&Dulahan, 4],
-                        [&BlackHydra, 2],
-                        [&RedHydra, 2],
-                        [&GoldHydra, 2],
-                        [&GreenHydra, 2],
+                        [&BlackHydra, 5],
+                        [&RedHydra, 5],
+                        [&GoldHydra, 5],
+                        [&GreenHydra, 5],
                         [&GreySeeker, 4],
-                        [&GreenSeeker, 4],
-                        [&BrownSeeker, 4],
-                        [&DeathMiteSoldier, 6],
+                        [&DeathMiteSoldier, 5],
                         [&Snake, 8],
-                        [&DeathMiteScout, 6],
-                        [&DeathMiteTank, 4],
-                        [&DeathMiteMage, 4]
-                         ];
+                        [&DeathMiteScout, 5],
+                        [&DeathMiteTank, 5],
+                        [&DeathMiteMage, 5]
+                      ];
       }
 
       plLooping_sounds = [[ DeathRealm_music, 1, 1, 30000, 500 ]];

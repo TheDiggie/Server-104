@@ -6212,6 +6212,7 @@ messages:
       plItemTemplates = cons(create(&UBScroll),plItemTemplates);
       plItemTemplates = cons(create(&TPScroll),plItemTemplates);
       plItemTemplates = cons(create(&tradebond),plItemTemplates);
+      plItemTemplates = cons(create(&TpTranferScroll),plItemTemplates);
       
       //Dye Stuff
       plItemTemplates = cons(create(&DyeBottle),plItemTemplates);
