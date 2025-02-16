@@ -4985,6 +4985,14 @@ messages:
             }
             else
             {
+               if viOccupation = MOB_ROLE_PMARKET
+               {
+                  Post(poOwner,@SomeoneSaid,#what=self,#string=vrLm_mrcnt_cant_give,
+                        #type=SAY_RESOURCE,#parm1=Send(oBuy,@GetDef),
+                        #parm2=Send(oBuy,@GetName));
+                  return FALSE;
+               } 
+
                // Check if this is a number item we're buying too much of.
                if IsClass(oBuy,&NumberItem)
                   AND Send(what,@GetNumberCanHold,#what=oBuy) > 0
