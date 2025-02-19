@@ -16,12 +16,14 @@ constants:
 
 resources:
 
-   ItemAttAppraise_desc = "\n\nThis item is appraised for %i shillings by %s."
+   ItemAttAppraise_desc = "\n\nThis item is appraised for %i shillings by %q."
+   ItemAttAppraise_desc2 = "\n\nThis item is appraised."
 
 classvars:
 
    viItem_Att_Num = IA_APPRAISE
    vrDesc = ItemAttAppraise_desc
+   vrDesc2 = ItemAttAppraise_desc2
 
    viDifficulty = 3
 
@@ -38,8 +40,17 @@ messages:
 
       iAppraisal_Price = Send(oItem,@GetAppraisalPrice);
       oAppraiser       = Send(oItem,@GetAppraiser);
-
-      AddPacket(4,vrDesc,4,iAppraisal_Price,4,Send(oAppraiser,@GetTrueName));
+      Debug(Send(oItem,@GetAppraisalPrice));
+      Debug(Send(oItem,@GetAppraiser));
+      Debug(Send(oAppraiser,@GetName));
+      if oAppraiser <> $
+      {
+         AddPacket(4,vrDesc,4,iAppraisal_Price,6,Send(oAppraiser,@GetName));
+      }
+      else 
+      {
+         AddPacket(4,vrDesc2);
+      }
 
       return;
    }

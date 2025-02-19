@@ -36,7 +36,7 @@ classvars:
 
    viBulk = 1
    viWeight = 1
-   viValue_average = 100
+   viValue_average = 40
    
 properties:
 
@@ -91,7 +91,7 @@ messages:
       }
       else
       {
-         Send(what,@AddTrainingPoints,#points=(piPoints));
+         Send(what,@AddTrainingPoints,#points=(piPoints),#bCap=FALSE);
 
          return TRUE;
       }

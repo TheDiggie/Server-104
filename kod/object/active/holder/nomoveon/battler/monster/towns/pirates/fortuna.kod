@@ -56,7 +56,8 @@ messages:
          [
             Create(&Xpscroll),
             Create(&Ubscroll),
-            Create(&Tpscroll)
+            Create(&Tpscroll),
+            Create(&TpTranferScroll)
          ],
       $,$,$];
 
