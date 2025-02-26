@@ -95,6 +95,12 @@ messages:
          return FALSE;
       }
 
+      if IsClass(oTarget,&Money)
+      {
+         Send(who,@MsgSendUser,#message_rsc=bond_bad_target);
+         return FALSE;
+      }
+
       if NOT Send(oTarget,@CanMend)
 	     AND NOT IsClass(oTarget,&Item)
       {
