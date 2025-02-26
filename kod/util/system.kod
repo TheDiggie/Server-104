@@ -5839,6 +5839,7 @@ messages:
       plItemTemplates = cons(create(&KriipaMask),plItemTemplates);
       plItemTemplates = cons(create(&PumpkinMask),plItemTemplates);
       plItemTemplates = cons(create(&PlagueMask),plItemTemplates);
+      plItemTemplates = cons(create(&HornedSkullMask),plItemTemplates);
 
       plItemTemplates = cons(create(&FarenCharm),plItemTemplates);
       plItemTemplates = cons(create(&RiijaCharm),plItemTemplates);
