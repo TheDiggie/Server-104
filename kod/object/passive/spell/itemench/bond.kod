@@ -96,6 +96,8 @@ messages:
       }
 
       if IsClass(oTarget,&Money)
+         OR IsClass(oTarget,&Reagent)
+         OR IsClass(oTarget,&Ammo)
       {
          Send(who,@MsgSendUser,#message_rsc=bond_bad_target);
          return FALSE;

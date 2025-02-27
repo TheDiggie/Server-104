@@ -184,7 +184,6 @@ messages:
          {
             Send(oCaster,@MsgSendUser,#message_rsc=DeathsDoor_succeeded2);
          }
-
       }
 
       return;
