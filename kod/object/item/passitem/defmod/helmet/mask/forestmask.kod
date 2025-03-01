@@ -1,0 +1,46 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+ForestMask is FaceMask
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   ForestMask_name_rsc = "verdant veil of the wilds"
+   ForestMask_icon_male_rsc = mmforest.bgf
+   ForestMask_icon_female_rsc = mfforest.bgf
+   ForestMask_desc_rsc = \
+      "Worn by the guardians of the ancient groves, this mask pulses with the spirit of the forest. "
+      "Twisting roots and emerald leaves whisper secrets of the wild, while the dark gemstone holds "
+      "the wisdom of ages past. A perfect disguise for those who walk between the realms of nature and magic!"
+
+classvars:
+
+   vrName = ForestMask_name_rsc
+   vrDesc = ForestMask_desc_rsc
+   vrIcon = ForestMask_icon_male_rsc
+
+   vrMaleIcon = ForestMask_icon_male_rsc
+   vrFemaleIcon = ForestMask_icon_female_rsc
+
+properties:
+
+   piItem_flags = 9
+
+messages:
+
+
+end
+////////////////////////////////////////////////////////////////////////////////
+
+
