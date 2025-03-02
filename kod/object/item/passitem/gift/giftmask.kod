@@ -52,7 +52,7 @@ messages:
                      &CircleMask,    &CowMask,          &ShrunkenHeadMask,
                      &FeyMaskEvil,   &FeyMask,          &MummyMask,
                      &DaemonMask,    &XeoMask,          &PlagueMask,
-                     &PumpkinMask ];
+                     &PumpkinMask,   &HornedSkullMask,  &ForestMask ];
 
       plItematt = [ IA_TRANSCENDANT, IA_XP_KILL_BONUS ];
 
