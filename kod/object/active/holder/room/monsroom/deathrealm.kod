@@ -98,27 +98,27 @@ messages:
       if prMonsters = TRUE
       {
          plMonsters = [ [&Spirit, 10],
-                        [&Revenantb, 4],
-                        [&Chimera, 5],
-                        [&Cyclops, 5],
-                        [&FollowerOfQor, 5],
-                        [&MinotaurBerserker, 5],
-                        [&Tyrant, 6],
-                        [&FallenMonk, 5],
-                        [&HellWasp, 6],
-                        [&Croco, 6],
-                        [&Vozun, 6],
-                        [&Dulahan, 4],
-                        [&BlackHydra, 5],
-                        [&RedHydra, 5],
-                        [&GoldHydra, 5],
-                        [&GreenHydra, 5],
-                        [&GreySeeker, 4],
-                        [&DeathMiteSoldier, 5],
-                        [&Snake, 8],
                         [&DeathMiteScout, 5],
                         [&DeathMiteTank, 5],
-                        [&DeathMiteMage, 5]
+                        [&DeathMiteMage, 5],
+                        [&BlackHydra, 5],
+                        [&DeathMiteSoldier, 5],
+                        [&Snake, 4],
+                        [&RedHydra, 5],
+                        [&GoldHydra, 4],
+                        [&GreenHydra, 4],
+                        [&Tyrant, 4],
+                        [&Croco, 4],
+                        [&Vozun, 4],
+                        [&Dulahan, 4],
+                        [&MinotaurBerserker, 4],
+                        [&FollowerOfQor, 4],
+                        [&FallenMonk, 4],
+                        [&HellWasp, 4],
+                        [&GreySeeker, 4],
+                        [&Revenantb, 4],
+                        [&Chimera, 4],
+                        [&Cyclops, 4]
                       ];
       }
 
@@ -178,6 +178,11 @@ messages:
       }
 
       propagate;
+   }
+
+   CanHavePlayerPortal()
+   {
+      return FALSE;
    }
 
 end

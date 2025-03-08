@@ -28,7 +28,8 @@ resources:
       "rat mask, skull mask, rice hat mask, wolf mask, soldier mask, "
       "manager mask, worker mask, front man mask, cow mask, mummy mask, "
       "shrunken head mask, fey elhai mask, fey derhai mask, daemon skeleton mask, "
-      "xeochicatl mask, plague doctor mask, pumpkin mask.\n\n"
+      "xeochicatl mask, plague doctor mask, pumpkin mask, horned skull mask, "
+      "verdant veil of the wilds.\n\n"
       "These items have a chance to be enchanted with :\n bond, bonus xp."
 
 classvars:

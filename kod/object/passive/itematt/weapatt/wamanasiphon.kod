@@ -56,8 +56,8 @@ properties:
    piEffect_percent = 15
 
    // Range of mana that is taken
-   piMinManaStolen = 2
-   piMaxManaStolen = 6
+   piMinManaStolen = 5
+   piMaxManaStolen = 20
 
    // Percent of mana to give the attacker
    piSiphonFactor = 150

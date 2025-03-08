@@ -37,8 +37,6 @@ classvars:
 
 properties:
 
-   pbIs_Dropable = FALSE
-
 messages:
 
    ReqNewApply(what=$)
@@ -48,6 +46,11 @@ messages:
       return FALSE;
    }
 
+   ReqNewOwner()
+   {
+      return FALSE;
+   }
+   
    CanSwap()
    {
       return FALSE;
