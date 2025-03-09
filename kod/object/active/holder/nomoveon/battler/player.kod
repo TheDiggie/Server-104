@@ -1153,6 +1153,8 @@ properties:
 
    poWonDR = FALSE
 
+   voMeditating = $
+
 messages:
 
    Constructor()
@@ -15684,5 +15686,17 @@ messages:
          OR (piFlags & PFLAG_SPECTATOR);
    }
    
+   SetMeditating(iNum=$)
+   {
+      voMeditating = iNum;
+
+      return;
+   }
+   
+   GetMeditating()
+   {
+      return voMeditating;
+   }
+
 end
 ////////////////////////////////////////////////////////////////////////////////

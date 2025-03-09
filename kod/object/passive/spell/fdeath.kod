@@ -312,7 +312,7 @@ messages:
       return;
    }
 
-   //// Stuff we handle to be a defense modifier.
+   // Stuff we handle to be a defense modifier.
 
    ModifyDefensePower(who = $, what = $, defense_power = 0, state = $)
    {

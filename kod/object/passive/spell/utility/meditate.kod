@@ -47,8 +47,8 @@ resources:
       "progress any further in its mastery."
    Meditate_cast_finished = \
       "You wake from your trance and feel your mental energies refreshed!"
-   Meditate_bad_number = \
-      "You may only say numbers up to 9 or don't say any numbers to spend all your points. "
+   fails_notnumbers = "You may only say a number between 1-98"
+   Amount_to_imp = "How many improvements would you like?"
 
 classvars:
 
@@ -90,8 +90,6 @@ messages:
 
    GetTranceTime(iSpellpower=0,who=$)
    {
-      // Since this spell uses the trance, don't scale it down
-      // depending on iSpellpower
       return viCast_time;
    }
 
@@ -99,210 +97,207 @@ messages:
    {
       local oTrance;
 
-      // Get rid of the regular casting trance, we need a special
-      // one put on below.
       Send(who,@BreakTrance,#event=EVENT_STEER);
+      Send(who,@SetMeditating,#iNum=$);
 
       oTrance = Send(SYS,@FindSpellByNum,#num=SID_TRANCE);
 
-      Send(who,@MsgSendUser,#message_rsc=Meditate_begin_trance);
-
       Send(oTrance,@BeginCastingTrance,#what=self,#who=who,
             #lTargets=$,#time=TRANCE_TIME);
+
+      Send(who,@MsgSendUser,#message_rsc=Meditate_begin_trance);
 
       propagate;
    }
 
    SomethingSaidDuringTrance(who=$,string=$,lTargets=$)
    {
-      local i, bFound, oSpell, sSpell, oSkill, sSkill, iPercent,
-            iRatio, iGain, iNum, iPoints, iAmount, iFull_Amount;
-
-      Send(who,@BreakTrance,#event=EVENT_STEER);  /// Don't print fizzle message
+      local i, bFound, oSpell, oSkill, sAbility, bType, iGain, iNum,
+      iPoints, iAmount, iFull_Amount, iRatio, iPercent, oAbility;
 
       iAmount = $;
-      bFound = FALSE;
 
       iPoints = Send(who,@GetTrainingPoints);
+      oAbility = Send(who,@GetMeditating);
 
-      foreach i in Send(who,@GetSpellList)
+      if oAbility = $
       {
-         iNum = Send(who,@DecodeSpellNum,#compound=i);
-         oSpell = Send(SYS,@FindSpellByNum,#num=iNum);
-         sSpell = Send(oSpell,@GetName);
-
-         if StringContain(string,sSpell)
+         foreach i in Send(who,@GetSkillList)
          {
-            bFound = TRUE;
-            iPercent = Send(oSpell,@GetAbility,#who=who);
-            iRatio = Send(oSpell,@GetMeditateRatio);
-
-            if iPercent = 99
-            {
-               Send(who,@MsgSendUser,#message_rsc=Meditate_maxed_skill,
-                     #parm1=sSpell);
-
-               return;
-            }
-
-            if iRatio = 0
-            { 
-               Send(who,@MsgSendUser,#message_rsc=Meditate_cast_failure);
-
-               return;
-            }
-
-            iAmount = Send(SYS,@GetNumberFromString,#string=string);
+            iNum = Send(who,@DecodeSkillNum,#compound=i);
+            oSkill = Send(SYS,@FindSkillByNum,#num=iNum);
+            sAbility = Send(oSkill,@GetName);
             
-            if iAmount = -1
+            if StringEqual(string,sAbility)
             {
-               iAmount = $;
-            }
+               bFound = TRUE;
+               iPercent = Send(oSkill,@GetAbility,#who=who);
+               iRatio = Send(oSkill,@GetMeditateRatio);
 
-            if iAmount = 0
-            {
-               Send(who,@MsgSendUser,#message_rsc=Meditate_bad_number);
-
-               return;
-            }
-
-            if iAmount <> $
-            {
-               iFull_Amount = iRatio * iAmount;
-               
-               if iPoints < iFull_Amount
+               if iPercent = 99
                {
-                     Send(who,@MsgSendUser,#message_rsc=Meditate_not_enough_points,
-                              #parm1=sSpell);
+                  Send(who,@MsgSendUser,#message_rsc=Meditate_maxed_skill,
+                        #parm1=sAbility);
+                  Send(who,@BreakTrance,#event=EVENT_STEER);
+                  Send(who,@SetMeditating,#iNum=$);
+
+                  return;
+               }
+
+               if iRatio = 0
+               { 
+                  Send(who,@MsgSendUser,#message_rsc=Meditate_cast_failure);
+                  Send(who,@BreakTrance,#event=EVENT_STEER);
+                  Send(who,@SetMeditating,#iNum=$);
+
+                  return;
+               }
+
+               Send(who,@SetMeditating,#iNum=oSkill);
+               Send(self,@SecondCastingTrance,#who=who,#lTargets=lTargets,#iSpellpower=1);
+            }
+         }
+
+         if bFound <> TRUE
+         {
+            foreach i in Send(who,@GetSpellList)
+            {
+               iNum = Send(who,@DecodeSpellNum,#compound=i);
+               oSpell = Send(SYS,@FindSpellByNum,#num=iNum);
+               sAbility = Send(oSpell,@GetName);
+
+               if StringEqual(string,sAbility)
+               {
+                  bFound = TRUE;
+                  iPercent = Send(oSpell,@GetAbility,#who=who);
+                  iRatio = Send(oSpell,@GetMeditateRatio);
+
+                  if iPercent = 99
+                  {
+                     Send(who,@MsgSendUser,#message_rsc=Meditate_maxed_skill,
+                           #parm1=sAbility);
+                     Send(who,@BreakTrance,#event=EVENT_STEER);
+                     Send(who,@SetMeditating,#iNum=$);
 
                      return;
+                  }
+
+                  if iRatio = 0
+                  { 
+                     Send(who,@MsgSendUser,#message_rsc=Meditate_cast_failure);
+                     Send(who,@BreakTrance,#event=EVENT_STEER);
+                     Send(who,@SetMeditating,#iNum=$);
+
+                     return;
+                  }
+
+                  Send(who,@SetMeditating,#iNum=oSpell);
+                  Send(self,@SecondCastingTrance,#who=who,#lTargets=lTargets,#iSpellpower=1);
+
+                  break;
                }
             }
+         }
 
-            if iAmount <> $
-            {  
-               iAmount = iRatio * iAmount;
-               iGain = iAmount/iRatio;
-            }
-            else
-            {
-               iGain = iPoints/iRatio;
-            }
-            
-            if iGain > 99 - iPercent
-            {
-               iGain = 99 - iPercent;
-            }
+         if bFound <> TRUE
+         {
+            Send(who,@MsgSendUser,#message_rsc=Meditate_cast_failure);
+            Send(who,@BreakTrance,#event=EVENT_STEER);
+            Send(who,@SetMeditating,#iNum=$);
+         }
 
-            Send(who,@MsgSendUser,#message_rsc=Meditate_cast_success,
-                  #parm1=sSpell,#parm2=iGain);
+         return;
+      }
+      else
+      {
+         
 
-            Send(who,@ChangeSpellAbility,#spell_num=iNum,
+         iPercent = Send(oAbility,@GetAbility,#who=who);
+         iRatio = Send(oAbility,@GetMeditateRatio);
+         sAbility = Send(oAbility,@GetName);
+
+         if NOT StringConsistsOf(string,"1234567890")
+         {
+            Send(who,@MsgSendUser,#message_rsc=fails_notnumbers);
+            Send(who,@BreakTrance,#event=EVENT_STEER);
+            Send(who,@SetMeditating,#iNum=$);
+
+            return;
+         }
+
+         iAmount = StringToNumber(string);
+
+         if iAmount <= 0 OR iAmount = $ OR iAmount > 98 
+         {
+            Send(who,@MsgSendUser,#message_rsc=fails_notnumbers);
+            Send(who,@BreakTrance,#event=EVENT_STEER);
+            Send(who,@SetMeditating,#iNum=$);
+
+            return;
+         }
+
+         iFull_Amount = iRatio * iAmount;
+         
+         if iPoints < iFull_Amount
+         {
+               Send(who,@MsgSendUser,#message_rsc=Meditate_not_enough_points,
+                        #parm1=sAbility);
+               Send(who,@BreakTrance,#event=EVENT_STEER);
+               Send(who,@SetMeditating,#iNum=$);
+
+               return;
+         }
+
+         iGain = iAmount;
+         
+         if iGain > 99 - iPercent
+         {
+            iGain = 99 - iPercent;
+         }
+
+         Send(who,@MsgSendUser,#message_rsc=Meditate_cast_success,
+               #parm1=sAbility,#parm2=iGain);
+
+         if IsClass(oAbility,&Spell)
+         {
+            oAbility = Send(oAbility,@GetSpellNum);
+            Send(who,@ChangeSpellAbility,#spell_num=oAbility,
                   #amount=iGain,#report=FALSE);
+         }
+         else
+         {
+            oAbility = Send(oAbility,@GetSkillNum);
+            Send(who,@ChangeSkillAbility,#Skill_num=oAbility,
+                  #amount=iGain,#report=FALSE);
+         }
 
-            Send(who,@AddTrainingPoints,#points=(-iGain*iRatio));
+         Send(who,@AddTrainingPoints,#points=(-iGain*iRatio));
 
-            if iGain*iRatio > Random(0,99)
-            AND NOT StringEqual(string,Meditate_name_rsc)
-            {
-               Send(who,@ChangeSpellAbility,#spell_num=vispell_Num,
-                     #amount=1,#report=TRUE);
-            }
-
-            break;
+         if iGain*iRatio > Random(0,99)
+         AND NOT StringEqual(string,Meditate_name_rsc)
+         {
+            Send(who,@ChangeSpellAbility,#spell_num=vispell_Num,
+                  #amount=1,#report=TRUE);
          }
       }
 
-      foreach i in Send(who,@GetSkillList)
-      {
-         iNum = Send(who,@DecodeSkillNum,#compound=i);
-         oSkill = Send(SYS,@FindSkillByNum,#num=iNum);
-         sSkill = Send(oSkill,@GetName);
+      Send(who,@BreakTrance,#event=EVENT_STEER);
+      Send(who,@SetMeditating,#iNum=$);
+      return;
+   }
 
-         if StringContain(string,sSkill)
-         {
-            bFound = TRUE;
-            iPercent = Send(oSkill,@GetAbility,#who=who);
-            iRatio = Send(oSkill,@GetMeditateRatio);
+   SecondCastingTrance(who=$,lTargets=$,iSpellpower=$)
+   {
+      local oTrance;
 
-            if iRatio = 0
-            { 
-               Send(who,@MsgSendUser,#message_rsc=Meditate_cast_failure);
+      Send(who,@BreakTrance,#event=EVENT_STEER);
 
-               return;
-            }
-            
-            if iPercent = 99
-            {
-               Send(who,@MsgSendUser,#message_rsc=Meditate_maxed_skill,
-                     #parm1=sSkill);
+      oTrance = Send(SYS,@FindSpellByNum,#num=SID_TRANCE);
 
-                     return;
-            }
+      Send(who,@MsgSendUser,#message_rsc=Amount_to_imp);
 
-            iAmount = Send(SYS,@GetNumberFromString,#string=string);
-            
-            if iAmount = -1
-            {
-               iAmount = $;
-            }
-
-            if iAmount = 0
-            {
-               Send(who,@MsgSendUser,#message_rsc=Meditate_bad_number);
-
-               return;
-            }
-
-            if iAmount <> $
-            {
-               iFull_Amount = iRatio * iAmount;
-               
-               if iPoints < iFull_Amount
-               {
-                     Send(who,@MsgSendUser,#message_rsc=Meditate_not_enough_points,
-                              #parm1=sSkill);
-
-                     return;
-               }
-            }
-            if iAmount <> $
-            {  
-               iAmount = iRatio * iAmount;
-               iGain = iAmount/iRatio;
-            }
-            else
-            {
-               iGain = iPoints/iRatio;
-            }
-            
-            if iGain > 99 - iPercent
-            {
-               iGain = 99 - iPercent;
-            }
-
-            Send(who,@MsgSendUser,#message_rsc=Meditate_cast_success,
-                  #parm1=sSkill,#parm2=iGain);
-
-            Send(who,@ChangeSkillAbility,#Skill_num=iNum,
-                  #amount=iGain,#report=FALSE);
-
-            Send(who,@AddTrainingPoints,#points=(-iGain*iRatio));
-
-            if iGain*iRatio > Random(0,99)
-            {
-               Send(who,@ChangeSpellAbility,#spell_num=vispell_Num,
-                     #amount=1,#report=TRUE);
-            }
-
-            break;
-         }
-      }
-
-      if NOT bFound
-      {
-         Send(who,@MsgSendUser,#message_rsc=Meditate_cast_failure);
-      }
+      Send(oTrance,@BeginCastingTrance,#what=self,#who=who,
+            #lTargets=$,#time=TRANCE_TIME);
 
       return;
    }
