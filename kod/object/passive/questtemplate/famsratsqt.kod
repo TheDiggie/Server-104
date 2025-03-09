@@ -57,11 +57,13 @@ resources:
       "the cellar as of late. I'd be in your debt if you dealt with them for me. "
       "Go see if you can clear out those 20 small rats in the cellar. "
    FamsRatsQuest_failure_2 = \
+      "Subject: Rats in the cellar.\n"
       "Dam rats. Some better adventurer will handle them. "
    FamsRatsQuest_assign_3 = \
       "Got the little bastards? Good, but I've seen bigger ones around as well. "
       "Go kill 15 rat soldiers in the cellars for me."
    FamsRatsQuest_failure_3 = \
+      "Subject: Rats in the cellar.\n"
       "Dam rats. Some better adventurer will handle them. "
    FamsRatsQuest_assign_4 = \
       "Still alive aye! So those rats gota be coming from some where. See if you can find there "
@@ -69,6 +71,7 @@ resources:
    FamsRatsQuest_success_4 = \
       "Finally.  Good job getting rid of those rodents!"
    FamsRatsQuest_failure_4 = \
+      "Subject: Rats in the cellar.\n"
       "Dam rats. Some better adventurer will handle them. "
 
 classvars:
@@ -91,7 +94,8 @@ properties:
    plSpecialRestrict = $
    piMaxPlayers = 30
    piSchedulePct = 100
-   piTimeLimit = 2 * 3600 // 2 hours.
+   //piTimeLimit = 2 * 3600 // 2 hours.
+   piTimeLimit = 60
 
 messages:
 

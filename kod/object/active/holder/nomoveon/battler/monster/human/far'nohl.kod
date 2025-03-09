@@ -122,7 +122,7 @@ messages:
       return;
    }
 
-   Killed()
+   Killed(what=$)
    {
       if IsClass(what,&player)
       {

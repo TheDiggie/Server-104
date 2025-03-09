@@ -56,11 +56,13 @@ resources:
       "A strong warrior are thee? The war has taken a toll on us. If your willing to lend a hand "
       "the people will be thankful. "
    AvarKillQuest_failure_2 = \
+      "Subject: Aid in the War quest.\n"
       "Dam avars. We can't afford to lose this war. "
    AvarKillQuest_assign_3 = \
       "Those warriors are just the fodder. We need to target there magical forces. "
       "Go kill 15 avar shamans in the jungle."
    AvarKillQuest_failure_3 = \
+      "Subject: Aid in the War quest.\n"
       "Dam avars. We can't afford to lose this war. "
    AvarKillQuest_assign_4 = \
       "A true warrior of blood! You are strong! Last thing we need to do is take out there command. "
@@ -68,6 +70,7 @@ resources:
    AvarKillQuest_success_4 = \
       "Good work warrior. Your efforts will be noted in the books. "
    AvarKillQuest_failure_4 = \
+      "Subject: Aid in the War quest.\n"
       "Dam avars. We can't afford to lose this war. "
 
 classvars:

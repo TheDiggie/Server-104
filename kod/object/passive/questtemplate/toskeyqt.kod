@@ -57,16 +57,19 @@ resources:
    TosKeyQuest_assign_2 = \
       "Help?....yes.....snakes....go.....key...tos....."
    TosKeyQuest_failure_2 = \
+      "Subject: Key to tos quest.\n"
       "..."
    TosKeyQuest_assign_3 = \
       "...good....yes....gold....hydras....go...."
    TosKeyQuest_failure_3 = \
+      "Subject: Key to tos quest.\n"
       "..."
    TosKeyQuest_assign_4 = \
       "...good....yess....tyrants.....go....."
    TosKeyQuest_success_4 = \
       "...gooood...."
    TosKeyQuest_failure_4 = \
+      "Subject: Key to tos quest.\n"
       "..."
 
 classvars:

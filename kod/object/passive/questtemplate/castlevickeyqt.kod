@@ -57,16 +57,19 @@ resources:
    CastleVictoriaKeyQuest_assign_2 = \
       "Help?..Some souls have gone free...spirits...put them back in there place..."
    CastleVictoriaKeyQuest_failure_2 = \
+      "Subject: Key to Castle Victoria quest.\n"
       "Damn spirits. Some better adventurer will handle them. "
    CastleVictoriaKeyQuest_assign_3 = \
       "MORE!...MORE!.."
    CastleVictoriaKeyQuest_failure_3 = \
+      "Subject: Key to Castle Victoria quest.\n"
       "Damn spirits. Some better adventurer will handle them. "
    CastleVictoriaKeyQuest_assign_4 = \
       "MORE!...MORE!..MORE!...MORE!..MORE!...MORE!.."
    CastleVictoriaKeyQuest_success_4 = \
       "Good harvest...the spirits are damned once more..."
    CastleVictoriaKeyQuest_failure_4 = \
+      "Subject: Key to Castle Victoria quest.\n"
       "Damn spirits. Some better adventurer will handle them. "
 
 classvars:

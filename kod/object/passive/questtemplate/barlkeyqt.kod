@@ -59,11 +59,13 @@ resources:
       "Why did they even go around marion! It must have been Beelzebub! "
       "His colony must have scared my babies. Go kill 5 death mite scouts for me."
    BarloqueKeyQuest_failure_2 = \
+      "Subject: Key to Barloque quest.\n"
       "Damn insects. Some better adventurer will handle them. "
    BarloqueKeyQuest_assign_3 = \
       "Got some of the scouts? Good, now go take out the soldiers. "
       "Go kill 5 death mite soldiers for me."
    BarloqueKeyQuest_failure_3 = \
+      "Subject: Key to Barloque quest.\n"
       "Damn insects. Some better adventurer will handle them. "
    BarloqueKeyQuest_assign_4 = \
       "Good, there some magic ones out there, little harder to deal with "
@@ -72,6 +74,7 @@ resources:
    BarloqueKeyQuest_success_4 = \
       "Finally.  Good job getting rid of those insects!"
    BarloqueKeyQuest_failure_4 = \
+      "Subject: Key to Barloque quest.\n"
       "Damn insects. Some better adventurer will handle them. "
 
 classvars:

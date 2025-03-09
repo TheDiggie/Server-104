@@ -59,11 +59,13 @@ resources:
       "run around all over the place. I can't stand seeing them. Go cull "
       "them and I will give youa  key to Cor Noth. Go kill 5 red hydras for me."
    CorNothKeyQuest_failure_2 = \
+      "Subject: Key to Cor Noth quest.\n"
       "Damn reptiles. Some better adventurer will handle them. "
    CorNothKeyQuest_assign_3 = \
       "Got some of the red ones? Good, I've seen green ones around as well. "
       "Go kill 5 green hydras for me."
    CorNothKeyQuest_failure_3 = \
+      "Subject: Key to Cor Noth quest.\n"
       "Damn reptiles. Some better adventurer will handle them. "
    CorNothKeyQuest_assign_4 = \
       "Good, there some darker ones out there, little harder to see but I have "
@@ -72,6 +74,7 @@ resources:
    CorNothKeyQuest_success_4 = \
       "Finally.  Good job getting rid of those reptiles!"
    CorNothKeyQuest_failure_4 = \
+      "Subject: Key to Cor Noth quest.\n"
       "Damn reptiles. Some better adventurer will handle them. "
 
 classvars:

@@ -58,16 +58,19 @@ resources:
       "Help? Yea I could use some help. A certain someone, or something rather, "
       "is running wild around here. Go kill Vozun for me."
    ThroneRoomKeyQuest_failure_2 = \
+      "Subject: Key to Castle Victoria's throne room quest.\n"
       "Damn him. Some better adventurer will handle them. "
    ThroneRoomKeyQuest_assign_3 = \
       "Got him? Great, he has a brother, find him as well. Go kill Croco for me."
    ThroneRoomKeyQuest_failure_3 = \
+      "Subject: Key to Castle Victoria's throne room quest.\n"
       "Damn him. Some better adventurer will handle them. "
    ThroneRoomKeyQuest_assign_4 = \
       "Good, your quite the warrior! Find Dulahan and slay him!"
    ThroneRoomKeyQuest_success_4 = \
       "Finally.  Good job getting rid of them!"
    ThroneRoomKeyQuest_failure_4 = \
+      "Subject: Key to Castle Victoria's throne room quest.\n"
       "Damn him. Some better adventurer will handle them. "
 
 classvars:
