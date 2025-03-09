@@ -117,21 +117,21 @@ messages:
       propagate;
    }
 
-   Killed(what=$)
-   {
-      if IsClass(what,&player)
-      {
-         send(what,@BeatDR,#won=TRUE);
-      }
-
-      propagate;
-   }
-
    SetGender()
    {
       return;
    }
 
+   Killed()
+   {
+      if IsClass(what,&player)
+      {
+         send(what,@BeatDR,#won=TRUE);
+      }
+      
+      propagate;
+   }
+   
    SetHair()
    {
       return;

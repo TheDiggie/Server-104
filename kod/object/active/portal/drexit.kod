@@ -61,7 +61,7 @@ messages:
 
       Send(what,@MsgSendUser,#message_rsc=DeathRealm_exit_enter);
       Post(what,@AdminGoToSafety);
-
+      
       return;
    }
 
