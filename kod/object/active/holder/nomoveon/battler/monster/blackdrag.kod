@@ -66,11 +66,20 @@ messages:
 
    Constructed()
    {
+      local oLoot;
+
       plResistances = [ [ATCK_SPELL_FIRE, 30],
                         [ATCK_SPELL_COLD, 30],
                         [ATCK_WEAP_BLUDGEON, 30],
                         [ATCK_WEAP_PIERCE, 80],
                         [ATCK_WEAP_SLASH, 50] ];
+                        
+      oLoot = Create(&BlueDragonScale,#number=Random(75,150));
+      Send(self,@NewHold,#what=oLoot);
+               
+      oLoot = Create(&BlackDragonScale,#number=Random(50,75));
+      Send(self,@NewHold,#what=oLoot);
+
       propagate;
    }
 
@@ -137,26 +146,6 @@ messages:
       }
    
       return FALSE;
-   }
-
-   Killed()
-   {
-      local oLoot;
-
-      if poOwner <> $
-      {
-         oLoot = Create(&BlueDragonScale,#number=150);
-         Send(poOwner,@NewHold,#what=oLoot,
-               #new_row=piRow,#new_col=piCol,
-               #fine_row=piFine_row,#fine_col=piFine_col);
-               
-         oLoot = Create(&BlackDragonScale,#number=75);
-         Send(poOwner,@NewHold,#what=oLoot,
-               #new_row=piRow,#new_col=piCol,
-               #fine_row=piFine_row,#fine_col=piFine_col);
-      }
-
-      propagate;
    }
 
 end

@@ -93,6 +93,7 @@ messages:
 
    Constructed()
    {
+      local oLoot;
     
       plResistances = [ [-ATCK_SPELL_FIRE, 40],
                         [-ATCK_SPELL_SHOCK, 60],
@@ -109,6 +110,12 @@ messages:
                             [SID_SPORE_BURST,3,100, Random(90,99)],
                             [SID_SAND_STORM,1,80, Random(70,99)],
                             [SID_HEAT,1,100, Random(70,99)] ];
+
+      oLoot = Create(&BlueDragonScale,#number=Random(75,150));
+      Send(self,@NewHold,#what=oLoot);
+               
+      oLoot = Create(&BrownDragonScale,#number=Random(50,75));
+      Send(self,@NewHold,#what=oLoot);
 
       propagate;
    }
@@ -266,26 +273,6 @@ messages:
             #lTargets=lFinalTargets);
 
       return;
-   }
-
-   Killed()
-   {
-      local oLoot;
-
-      if poOwner <> $
-      {
-         oLoot = Create(&BlueDragonScale,#number=150);
-         Send(poOwner,@NewHold,#what=oLoot,
-               #new_row=piRow,#new_col=piCol,
-               #fine_row=piFine_row,#fine_col=piFine_col);
-               
-         oLoot = Create(&BrownDragonScale,#number=75);
-         Send(poOwner,@NewHold,#what=oLoot,
-               #new_row=piRow,#new_col=piCol,
-               #fine_row=piFine_row,#fine_col=piFine_col);
-      }
-
-      propagate;
    }
 
 end
