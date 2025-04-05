@@ -1,0 +1,95 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Iceshard is BoltSpell
+
+constants:
+   include blakston.khd
+
+resources:
+
+   Iceshard_name_rsc = "ice shard"
+   Iceshard_icon_rsc = icebolt.bgf
+   Iceshard_look_icon = icebolt.bgf
+   Iceshard_desc_rsc = \
+      "Sends a ice shard at the target.  "
+      "Requires two blue mushrooms and orc teeth to cast."
+
+   Iceshard_hit_rsc = "A shard of ice strikes %s%s!"
+
+   Iceshard_sound = ficefing.ogg
+
+classvars:
+
+   vrName = Iceshard_name_rsc
+   vrIcon = Iceshard_look_icon
+   vrDesc = Iceshard_desc_rsc
+   vrProjectile_icon = Iceshard_icon_rsc
+
+   viSpell_num = SID_ICESHARD
+
+   viAttack_spell = ATCK_SPELL_ALL+ATCK_SPELL_COLD
+
+   viMana = 7
+   viSchool = SS_FAREN
+   viSpell_level = 4
+
+   vrSucceed_wav = Iceshard_sound
+   
+   viPostCast_time = 2        // in seconds, since it works off gettime()
+
+   // Projectile lighting information.
+   viProjectileLightFlags = LIGHT_FLAG_ON | LIGHT_FLAG_DYNAMIC
+   // Medium light range, out of 255.
+   viProjectileLightIntensity = 100
+   // Color is orange.
+   viProjectileLightColor = LIGHT_BBLUE
+
+properties:
+   
+   piDamageMin = 9
+   piDamageMax = 15
+   prSpellHit = Iceshard_hit_rsc
+
+messages:
+
+   ResetReagents()
+   {
+      // separate message so can change, then set from admin mode
+
+      plReagents = $;
+      plReagents = Cons([&BlueMushroom,2],plReagents);
+      plReagents = Cons([&OrcTooth,1],plReagents);
+
+      return;
+   }
+
+   GetProjectileSpeed()
+   {
+      return 10;
+   }
+
+   SendLookAnimation()
+   {
+      AddPacket(1,ANIMATE_NONE, 2,2);
+
+      return;
+   }
+
+   SendProjectileAnimation()
+   {
+      // 40ms between animations, between frames 1-2
+      AddPacket(1,ANIMATE_CYCLE, 4,40, 2,1, 2,2);   
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

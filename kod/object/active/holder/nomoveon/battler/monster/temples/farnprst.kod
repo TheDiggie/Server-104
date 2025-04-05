@@ -77,6 +77,8 @@ messages:
             SID_MANA_FOCUS,
             SID_BRITTLE,
             SID_FIREBALL,
+            SID_ICESHARD,
+            SID_FREEZING,
             SID_EARTHQUAKE,
             SID_ICE_NOVA,
             SID_SAND_STORM,

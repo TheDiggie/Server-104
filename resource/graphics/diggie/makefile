@@ -50,7 +50,7 @@ BGFS = neeleme.bgf neelemeX.bgf iunholyt.bgf xeoneru.bgf xeoneruX.bgf \
        henhouse.bgf rawchicken.bgf GRD61042.bgf grd19081.bgf grd00101.bgf grd00102.bgf grd00103.bgf \
        grd00050.bgf grd61043.bgf grd61044.bgf zimmucas.bgf playerquiver.bgf Veydran.bgf iappraise.bgf \
        icrafttcirclet.bgf mmhornskull.bgf mfhornskull.bgf mmforest.bgf mfforest.bgf dazzlestar.bgf \
-       blindring.bgf
+       blindring.bgf icebolt.bgf
 
 !include $(RESOURCEDIR)\copy.mak
 

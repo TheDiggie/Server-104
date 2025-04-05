@@ -3317,6 +3317,7 @@ messages:
       Send(self,@CreateOneSpellIfNew,#num=SID_MINOR_HEAL,#class=&MinorHeal);
       Send(self,@CreateOneSpellIfNew,#num=SID_NIGHT_VISION,#class=&NightVision);
       Send(self,@CreateOneSpellIfNew,#num=SID_FIREBALL,#class=&Fireball);
+      Send(self,@CreateOneSpellIfNew,#num=SID_ICESHARD,#class=&Iceshard);
       Send(self,@CreateOneSpellIfNew,#num=SID_DMRESCUE,#class=&DMRescue);
       Send(self,@CreateOneSpellIfNew,#num=SID_DELIVERANCE_TOUCH,#class=&DeliveranceTouch);
       Send(self,@CreateOneSpellIfNew,#num=SID_SPECTATE,#class=&Spectate);
