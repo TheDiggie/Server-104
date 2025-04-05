@@ -8,56 +8,52 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-Heat is RoomEnchantment
+Freezing is RoomEnchantment
 
 constants:
 
    include blakston.khd
 
    // Total duration: 10 realtime minutes
-   HEAT_TIME = 300000
+   FREEZING_TIME = 300000
 
 resources:
 
-   include heat.lkod
-
-   heat_name_rsc = "heat"
-   heat_icon_rsc = iheat.bgf
-   heat_desc_rsc = \
-      "Fills the room with the earth magic of Faren, heating "
-      "all armor to a primordial molten state and searing the "
-      "flesh of those who wear it.  "
-      "Requires red mushroom and firesand to cast."
+   Freezing_name_rsc = "freezing"
+   Freezing_icon_rsc = iicenova.bgf
+   Freezing_desc_rsc = \
+      "Fills the room with the earth magic of Faren, freezing "
+      "all armor causing frostbite. "
    
-   heat_already_enchanted = "This place already has a heat enchantment."
+   Freezing_already_enchanted = "This place already has a freezing enchantment."
 
-   heat_on = \
-      "Faren earth magic fills the room, heating all armor to a molten state "
-      "and searing the flesh of those who wear it."
-   heat_off = "The armor-heating field dissipates."
-   heat_new_entrant = \
-      "Faren earth magic fills the room heating all armor to a molten state."
-   heat_kills_you = "You expire from burns caused by your armor."
-   heat_kills_him = "%s%s expires from armor-induced burns."
+   Freezing_on = \
+      "Fills the room with the earth magic of Faren, freezing "
+      "all armor causing frostbite. "
+   Freezing_off = "The armor-freezing field dissipates."
+   Freezing_new_entrant = \
+      "Faren earth magic fills the room freezing all armor causing frostbite."
+   Freezing_kills_you = "Your body freezes into solid ice."
+   Freezing_kills_him = "%s%s freezes solid."
 
-   heat_hurts_you = \
-      "You offer a yelp of pain as your red-hot armor presses against your skin."
+   Freezing_hurts_you = \
+      "You offer a yelp of pain as your armor freezes to your skin."
 
-   heat_sound = fheat.ogg
+   Freezing_sound = fheat.ogg
 
 classvars:
 
-   vrName = heat_name_rsc
-   vrIcon = heat_icon_rsc
-   vrDesc = heat_desc_rsc
+   vrName = Freezing_name_rsc
+   vrIcon = Freezing_icon_rsc
+   vrDesc = Freezing_desc_rsc
 
-   vrAlreadyEnchanted = heat_already_enchanted
-   vrRoomEnchKilled = heat_kills_you
-   vrRoomEnchKiller = heat_kills_him
-   vrRoomEnchHit = heat_hurts_you
+   vrAlreadyEnchanted = Freezing_already_enchanted
+   vrRoomEnchKilled = Freezing_kills_you
+   vrRoomEnchKiller = Freezing_kills_him
+   vrRoomEnchHit = Freezing_hurts_you
 
-   viAttack_spell = ATCK_SPELL_FIRE
-   viSpell_num = SID_HEAT
+   viAttack_spell = ATCK_SPELL_COLD
+   viSpell_num = SID_FREEZING
    viSchool = SS_FAREN
    viSpell_level = 3
    viMana = 8
@@ -65,7 +61,7 @@ classvars:
    viHarmful = TRUE
    viNoNewbieOffense = TRUE
 
-   vrSucceed_wav = heat_sound
+   vrSucceed_wav = Freezing_sound
    viChance_To_Increase = 35
    viMeditate_ratio = 30
 
@@ -76,7 +72,7 @@ messages:
    ResetReagents()
    {
       plReagents = $;
-      plReagents = Cons([&RedMushroom,1],plReagents);
+      plReagents = Cons([&BlueMushroom,1],plReagents);
       plReagents = Cons([&FireSand,1],plReagents);
 
       return;
@@ -94,13 +90,13 @@ messages:
       foreach i in lEnchantments
       {
          oSpell = Nth(i,2);
-         if isClass(oSpell,&Freezing)
+         if isClass(oSpell,&Heat)
          {
             Send(oRoom,@RemoveEnchantment,#what=oSpell);
          }
       }
 
-      Send(oRoom,@SomeoneSaid,#type=SAY_MESSAGE,#string=heat_on,#what=self);
+      Send(oRoom,@SomeoneSaid,#type=SAY_MESSAGE,#string=Freezing_on,#what=self);
 
       // ranges from 7 to 17 seconds
       iPeriod = (170-iSpellPower)/10;
@@ -132,10 +128,10 @@ messages:
       // Global effects of the enchantment
       // State is elapsed time in ms
       iNext_time = iCombined + iPeriod;
-      if iNext_time >= HEAT_TIME
+      if iNext_time >= FREEZING_TIME
       {
-         Send(where,@RoomStartEnchantment,#what=self,#time=HEAT_TIME-iCombined,
-               #state=[HEAT_TIME + iPower, Nth(state,2)],#addicon=False,
+         Send(where,@RoomStartEnchantment,#what=self,#time=FREEZING_TIME-iCombined,
+               #state=[FREEZING_TIME + iPower, Nth(state,2)],#addicon=False,
                #lastcall=TRUE);
 
          return;
@@ -154,7 +150,7 @@ messages:
    StartEnchantmentNewOccupant(who = $,state = $)
    "Called on new occupants of the enchanted room."
    {
-      Send(who,@MsgSendUser,#message_rsc=heat_new_entrant);
+      Send(who,@MsgSendUser,#message_rsc=Freezing_new_entrant);
       Send(self,@StartEnchantment,#who=who,#state=state);
 
       return;
@@ -192,7 +188,7 @@ messages:
    EndSpell(where = $, state = $)
    "Called when spell expires."
    {
-      Send(where,@SomeoneSaid,#type=SAY_MESSAGE,#string=heat_off,#what=self);
+      Send(where,@SomeoneSaid,#type=SAY_MESSAGE,#string=Freezing_off,#what=self);
 
       return;
    }

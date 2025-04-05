@@ -3360,6 +3360,7 @@ messages:
 
       Send(self,@CreateOneSpellIfNew,#num=SID_BLINK,#class=&Blink);
       Send(self,@CreateOneSpellIfNew,#num=SID_HEAT,#class=&Heat);
+      Send(self,@CreateOneSpellIfNew,#num=SID_FREEZING,#class=&Freezing);
       Send(self,@CreateOneSpellIfNew,#num=SID_PAGE,#class=&Page);
 
       Send(self,@CreateOneSpellIfNew,#num=SID_UNHOLY_RESOLVE,#class=&ResistGood);
