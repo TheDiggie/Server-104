@@ -104,15 +104,36 @@ messages:
 
    ModifyHitRoll(who = $,what = $,hit_roll = $,state = $)
    {
+      local i, oFound, oSpell;
+
+      oFound = FALSE;
+
       if what = $
       {
          return hit_roll;
       }
 
-      // Only affect the good ones...
-      if Send(what,@GetKarma,#detect=TRUE) > 0
+      if IsClass(what,&Player)
       {
-         // Give a small bonus
+         foreach i in Send(what,@GetSpellList)
+         {
+            oSpell = Send(SYS,@FindSpellByNum,
+                           #num=Send(what,@DecodeSpellNum,#compound=i));
+            if Send(oSpell,@GetSchool) = SS_SHALILLE
+            {
+               oFound = TRUE;
+
+               break;
+            }
+         }
+
+         if oFound = TRUE
+         {
+            return hit_roll + Nth(state,5);
+         }
+		}
+      else if Send(what,@GetKarma,#detect=TRUE) > 0
+      {
          return hit_roll + Nth(state,5);
       }
 
@@ -121,15 +142,37 @@ messages:
 
    ModifyDamage(who = $,what = $,damage = $,state = $)
    {
-      local iPower;
+      local i, iPower, oFound, oSpell;
+
+      oFound = FALSE;
 
       if what = $
       {
          return damage;
       }
 
-      // Only affect the good ones...
-      if Send(what,@GetKarma,#detect=TRUE) > 0
+      if IsClass(what,&Player)
+      {
+         foreach i in Send(what,@GetSpellList)
+         {
+            oSpell = Send(SYS,@FindSpellByNum,
+                           #num=Send(what,@DecodeSpellNum,#compound=i));
+            if Send(oSpell,@GetSchool) = SS_SHALILLE
+            {
+               oFound = TRUE;
+
+               break;
+            }
+         }
+
+         if oFound = TRUE
+         {
+            iPower = Bound(Nth(state,5) / 24,1,4);
+
+            return damage + Random(1,iPower);
+         }
+		}
+      else if Send(what,@GetKarma,#detect=TRUE) > 0
       {
          iPower = Bound(Nth(state,5) / 24,1,4);
 
