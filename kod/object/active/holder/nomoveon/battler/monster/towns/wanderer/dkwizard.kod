@@ -187,51 +187,6 @@ messages:
          return FALSE;
       }
 
-      bFound = FALSE;
-      iSchoolRequired=0;
-      
-      if num = SID_SPORE_BURST
-      {
-         iSchoolRequired = SS_QOR;
-      }
-
-      if num = SID_CURSE_WEAPON
-      {
-         iSchoolRequired = SS_KRAANAN;
-      }
-
-      if iSchoolRequired = 0
-      {
-         return TRUE;
-      }
-
-      // Special checks for high level spells: need a high level spell in 
-      // a particular school.
-      foreach i in Send(who,@GetSpellList)
-      {
-         oSpell = Send(SYS,@FindSpellByNum,
-                        #num=Send(who,@DecodeSpellNum,#compound=i));
-         if Send(oSpell,@GetLevel) > 4
-            AND Send(oSpell,@GetSchool) = iSchoolRequired
-         {
-            bFound = TRUE;
-
-            break;
-         }
-      }
-
-      if bFound = FALSE
-      {
-         // Player doesn't have a fifth level spell
-         // in the required school, denied.
-         if report
-         {
-            Post(self,@SayToOne,#target=who,#message_rsc=DarkWizard_not_ready);
-         }
-
-         return FALSE;
-      }
-
       return TRUE;
    }
 
