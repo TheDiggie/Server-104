@@ -26,11 +26,126 @@ properties:
    piInit_count_min = 5
    piInit_count_max = 15
 
+   piElemental_Effects = TRUE
+
 messages:
 
    GetRegion()
    {
       return RID_DESERT;
+   }
+
+   TryCreateMonster()
+   {
+      Send(self,@DoElementalEffects);
+
+      propagate;
+   }
+
+   NewHold(what=$)
+   {
+      if IsClass(what,&Player)
+      {
+         Send(self,@DoElementalEffects);
+      }
+      
+      propagate;
+   }
+
+   DoElementalEffects()
+   {
+      local i, oSpell, lEnchantments, iHour, oHeat, oFreezing;
+
+      if NOT piElemental_Effects
+      {
+         return;
+      }
+      
+      iHour = Send(SYS,@GetHour);
+
+      if NOT pbUser_in_room
+      {
+         return;
+      }
+
+      if iHour >= 8 AND iHour <= 17
+      {
+         oHeat = Send(SYS,@FindSpellByNum,#num=SID_HEAT);
+
+         if Send(self,@IsEnchanted,#what=oHeat)
+         {
+            return;
+         }
+
+         Send(self,@RoomStartEnchantment,#what=oHeat,#state=[150,self]);
+      }
+      else if iHour >= 6 AND iHour <= 7
+      {  
+         Send(self,@RemoveFreezing);
+      }
+      else if iHour >= 18 AND iHour <= 19
+      {
+         Send(self,@RemoveHeat);
+      }
+      else
+      {
+         oFreezing = Send(SYS,@FindSpellByNum,#num=SID_FREEZING);
+
+         if Send(self,@IsEnchanted,#what=oFreezing)
+         {
+            return;
+         }
+
+         Send(self,@RoomStartEnchantment,#what=oFreezing,#state=[150,self]);
+      }
+
+      return;
+   }
+
+   AllowBattlerAttack(victim=$)
+   {
+      if IsClass(victim,&Player)
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   RemoveFreezing()
+   {
+      local i, oSpell, lEnchantments;
+
+      lEnchantments = Send(self,@GetEnchantmentList);
+
+      foreach i in lEnchantments
+      {
+         oSpell = Nth(i,2);
+         if isClass(oSpell,&Freezing)
+         {
+            Send(self,@RemoveEnchantment,#what=oSpell);
+         }
+      }
+   
+      return;
+   }
+
+   RemoveHeat()
+   {
+      local i, oSpell, lEnchantments;
+
+      lEnchantments = Send(self,@GetEnchantmentList);
+
+      foreach i in lEnchantments
+      {
+         oSpell = Nth(i,2);
+         if isClass(oSpell,&Heat)
+         {
+            Send(self,@RemoveEnchantment,#what=oSpell);
+         }
+      }
+
+      return;
    }
 
 end
