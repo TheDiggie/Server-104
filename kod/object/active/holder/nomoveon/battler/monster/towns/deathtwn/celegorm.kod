@@ -8,7 +8,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-Kailor is DeathTown
+Celegorm is DeathTown
 
 constants:
 
@@ -16,18 +16,18 @@ constants:
 
 resources:
 
-   Kailor_name_rsc = "Kailor"
-   Kailor_icon_rsc = Duke.bgf
-   Kailor_desc_rsc = \
-      "Commanding and straightforward, he influences many. Currently deceased. He was brutally assasinated. "
+   Celegorm_name_rsc = "Celegorm"
+   Celegorm_icon_rsc = celegorm.bgf
+   Celegorm_desc_rsc = \
+      "Strange man with a aura of strength."
 
-   Kailor_entry_welcome = "Greetings.  May you live to see my years."
+   Celegorm_entry_welcome = "Greetings.  May you live to see my years."
 
-   Kailor_unwanted_keep = \
+   Celegorm_unwanted_keep = \
       "~k%s%s tells you, \"Perhaps I may find some use for that.~n~k\""
-   Kailor_unwanted_pay = \
+   Celegorm_unwanted_pay = \
       "~k%s%s tells you, \"How convenient.~n~k\""
-   Kailor_unwanted_give = \
+   Celegorm_unwanted_give = \
       "~k%s%s tells you, \"Most material goods are of little consequence "
       "to an old duke like me.~n~k\""
 
@@ -35,9 +35,9 @@ classvars:
 
    viDefinite = ARTICLE_NONE
    viIndefinite = ARTICLE_NONE
-   vrName = Kailor_name_rsc
-   vrIcon = Kailor_icon_rsc
-   vrDesc = Kailor_desc_rsc
+   vrName = Celegorm_name_rsc
+   vrIcon = Celegorm_icon_rsc
+   vrDesc = Celegorm_desc_rsc
    viAttributes = \
       MOB_RANDOM | MOB_LISTEN | MOB_RECEIVE | MOB_NOFIGHT \
       | MOB_NOMOVE | MOB_SELLER
@@ -45,9 +45,9 @@ classvars:
    viMerchant_markup = MERCHANT_FLAT
    viOccupation = MOB_ROLE_MERCHANT
 
-   vrUnwanted_keep = Kailor_unwanted_keep
-   vrUnwanted_pay = Kailor_unwanted_pay
-   vrUnwanted_give = Kailor_unwanted_give
+   vrUnwanted_keep = Celegorm_unwanted_keep
+   vrUnwanted_pay = Celegorm_unwanted_pay
+   vrUnwanted_give = Celegorm_unwanted_give
 
 properties:
 
@@ -59,13 +59,9 @@ messages:
    {
       plFor_sale = [
          [
-            Create(&TwinBlade),
-            Create(&OfferingKraanan),
-            Create(&Elderberry),
-            Create(&Mushroom),
-            Create(&PurpleMushroom),
-            Create(&OrcTooth),
-            Create(&BlueDragonScale)
+            Create(&DWeaponsGift),
+            Create(&DeathRegsGift),
+            Create(&DMaskGift)
          ],
       $,$,$];
 

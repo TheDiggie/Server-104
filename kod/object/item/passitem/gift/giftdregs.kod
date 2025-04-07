@@ -1,0 +1,50 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DeathRegsGift is Gift
+
+constants:
+
+   include blakston.khd
+   include protocol.khd
+
+resources:
+
+   DeathRegsGift_name_rsc = "death realm reagents box"
+   DeathRegsGift_icon_rsc = lootboxes.bgf
+   DeathRegsGift_desc_rsc = \
+      "This is a gift from the gods, it contains a large amount of reagents!\n\n"
+      "This box has a chance to contain the following items : \n"
+      "tyrant horns, black hydra head, black hydra scale, golden hydra head, golden hydra scale, "
+      "green hydra head, green hydra scale, red hydra head, red hydra scale, vial of venom. "
+
+classvars:
+
+   vrName = DeathRegsGift_name_rsc
+   vrIcon = DeathRegsGift_icon_rsc
+   vrDesc = DeathRegsGift_desc_rsc
+
+   viValue_average = 10000
+
+properties:
+
+messages:
+
+   Constructor()
+   {
+      plContents = [ &TyrantHorns, &BlackHydraHead, &BlackHydraScale, 
+                     &GoldHydraHead, &BlackHydraScale, &GreenHydraHead, 
+                     &GreenHydraScale, &RedHydraHead, &RedHydraScale, &VialOfVenom ];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

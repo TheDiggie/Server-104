@@ -5859,10 +5859,13 @@ messages:
       plItemTemplates = cons(create(&ShieldGift),plItemTemplates);
       plItemTemplates = cons(create(&MageGift),plItemTemplates);
       plItemTemplates = cons(create(&DeathRealmWeaponGift),plItemTemplates);
+      plItemTemplates = cons(create(&DWeaponsGift),plItemTemplates);
       plItemTemplates = cons(create(&DeathRealmArmorGift),plItemTemplates);
       plItemTemplates = cons(create(&MaskGift),plItemTemplates);
+      plItemTemplates = cons(create(&DMaskGift),plItemTemplates);
       plItemTemplates = cons(create(&InstrumentGift),plItemTemplates);
       plItemTemplates = cons(create(&ClothesGift),plItemTemplates);
+      plItemTemplates = cons(create(&DeathRegsGift),plItemTemplates);
 
       // Scrolls
       plItemTemplates = cons(create(&DarknessScroll),plItemTemplates);

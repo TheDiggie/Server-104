@@ -72,26 +72,6 @@ messages:
       propagate;
    }
 
-   GetBulk()
-   {
-      if poContents <> $
-      {
-         return Send(poContents,@GetBulk) + 1;
-      }
-
-      propagate;
-   }
-
-   GetWeight()
-   {
-      if poContents <> $
-      {
-         return Send(poContents,@GetWeight) + 1;
-      }
-
-      propagate;
-   }
-
    GetValue()
    {
       return 10;
@@ -140,12 +120,13 @@ messages:
       AND NOT IsClass(poContents,&Necklace)
       AND NOT IsClass(poContents,&Instrument)
       AND NOT IsClass(poContents,&AttackModifier)
+      AND NOT IsClass(poContents,&NumberItem)
       {
          poColor = send(self,@GetColor);
          Send(poContents,@SetItemColor,#flags=poColor);
       }
 
-      if plItematt <> $
+      if plItematt <> $ AND NOT IsClass(poContents,&NumberItem)
       {
          if IsClass(poContents,&Necklace)
          OR IsClass(poContents,&FaceMask)
@@ -169,6 +150,12 @@ messages:
             Send(oItemAtt,@AddtoItem,#oItem=poContents,#iPower=random(1,9));
             send(poContents,@RevealHiddenAttributes);
          }
+      }
+
+
+      if IsClass(poContents,&Reagent)
+      {
+         Send(poContents,@AddNumber,#number=Random(2499,3499));
       }
 
       Send(poOwner,@MsgSendUser,#message_rsc=gift_open,
