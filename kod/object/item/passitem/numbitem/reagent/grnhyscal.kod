@@ -31,7 +31,7 @@ classvars:
 
    vrName_plural = GreenHydraScale_name_plural_rsc
 
-   viValue_average = 100
+   viValue_average = 1000
    viWeight = 5
    viBulk = 5
 
