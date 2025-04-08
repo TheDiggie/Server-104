@@ -78,9 +78,6 @@ properties:
    //Toggels
    prMapChanges = TRUE
    prMonsters = TRUE
-   prHeat = TRUE
-   prQuake = TRUE
-   prFireRing = TRUE
    
 messages:
 

@@ -23,6 +23,8 @@ resources:
 
 classvars:
 
+   viPermanent_flags = ROOM_NO_COMBAT | ROOM_SAFELOGOFF
+
    viTeleport_row = 13
    viTeleport_col = 2
 
@@ -33,9 +35,6 @@ properties:
 
    prMapChanges = FALSE
    prMonsters = FALSE
-   prHeat = FALSE
-   prQuake = FALSE
-   prFireRing = FALSE
 
    poPortalDR = $
 

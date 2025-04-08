@@ -37,9 +37,6 @@ properties:
 
    prMapChanges = FALSE
    prMonsters = FALSE
-   prHeat = FALSE
-   prQuake = FALSE
-   prFireRing = FALSE
 
 messages:
 

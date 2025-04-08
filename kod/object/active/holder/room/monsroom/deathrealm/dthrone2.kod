@@ -32,8 +32,6 @@ properties:
 
    prMapChanges = FALSE
    prMonsters = FALSE
-   prQuake = FALSE
-   prFireRing = FALSE
 
    ptFarnohl = $
 
