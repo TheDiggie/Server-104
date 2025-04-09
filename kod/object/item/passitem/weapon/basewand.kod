@@ -32,7 +32,7 @@ classvars:
    vrDesc = basewand_desc_rsc
 
    viWeaponQuality = WEAPON_QUALITY_LOW
-   viProficiency_needed = SKID_KICK
+   viProficiency_needed = SKID_PROFICIENCY_MACE
    viWeaponType = WEAPON_TYPE_SLASH
 
    viValue_average = 1000
