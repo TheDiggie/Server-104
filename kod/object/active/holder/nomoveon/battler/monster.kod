@@ -4133,7 +4133,10 @@ messages:
          iValue_offered = 0;
          foreach i in item_list
          {
-            x = Send(i,@GetValue) * (100 - 10*viMerchant_markup) / 100;
+            x = Send(i,@GetValue);
+            y = x / 10 * viMerchant_markup;
+            x = x - y;
+
             iAdd = Bound(x,1,$);
 
             iValue_offered = iValue_offered + iAdd;
