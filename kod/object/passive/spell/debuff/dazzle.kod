@@ -91,10 +91,9 @@ messages:
 
       Send(self,@DoSpell,#what=who,#oTarget=oTarget,#iDuration=iDuration);
       
-      // Show bolt flying through the air.
-      foreach i in lTargets
+      if oOwner <> $
       {
-         Send(oOwner,@SomethingShot,#who=who,#target=i,#projectile=self);
+         Send(oOwner,@SomethingShot,#who=who,#target=oTarget,#projectile=self);
       }
       
       propagate;

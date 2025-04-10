@@ -101,13 +101,12 @@ messages:
       // Spell effects
       Send(self,@DoSpell,#what=who,#oTarget=oTarget,
             #iDuration=Send(self,@GetDuration,#iSpellPower=iSpellPower));
-      
-      // Show bolt flying through the air.
-      foreach i in lTargets
-      {
-         Send(oOwner,@SomethingShot,#who=who,#target=i,#projectile=self);
-      }
 
+      if oOwner <> $
+      {
+         Send(oOwner,@SomethingShot,#who=who,#target=oTarget,#projectile=self);
+      }
+      
       propagate;
    }
 
