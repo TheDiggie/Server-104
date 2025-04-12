@@ -145,40 +145,5 @@ messages:
       return piSchool;
    }
 
-   GetHitBonus()
-   {
-      return 0;
-   }
-
-   GetBaseDamage()
-   {
-      return 0;
-   }
-
-   GetMinDamage()
-   {
-      return viDamage_min;
-   }
-
-   GetMaxDamage()
-   {
-      return viDamage_max;
-   }
-
-   GetMinDamageWithOwnerStats()
-   {
-      return 0;
-   }
-
-   GetMaxDamageWithOwnerStats()
-   {
-      return 0;
-   }
-
-   GetDamage()
-   {
-      return 0;
-   }
-
 end
 ////////////////////////////////////////////////////////////////////////////////
