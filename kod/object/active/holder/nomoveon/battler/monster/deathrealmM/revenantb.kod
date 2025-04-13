@@ -49,7 +49,7 @@ classvars:
    vrIcon = revenantb_icon_rsc
    vrDesc = revenantb_desc_rsc
 
-   viTreasure_type = TID_REVENANT_B
+   viTreasure_type = TID_CRUSHER_SPROUT
 
    viAttack_type = ATCK_WEAP_SLASH
 
