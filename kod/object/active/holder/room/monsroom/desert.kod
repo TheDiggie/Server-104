@@ -63,11 +63,6 @@ messages:
       
       iHour = Send(SYS,@GetHour);
 
-      if NOT pbUser_in_room
-      {
-         return;
-      }
-
       if iHour >= 8 AND iHour <= 17
       {
          oHeat = Send(SYS,@FindSpellByNum,#num=SID_HEAT);
