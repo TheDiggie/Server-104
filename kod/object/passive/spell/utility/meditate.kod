@@ -240,12 +240,20 @@ messages:
          
          if iPoints < iFull_Amount
          {
+            if iPoints >= iRatio
+            {
+               iAmount = iPoints/iRatio;
+               iFull_Amount = iRatio * iAmount;
+            }
+            else
+            {
                Send(who,@MsgSendUser,#message_rsc=Meditate_not_enough_points,
                         #parm1=sAbility);
                Send(who,@BreakTrance,#event=EVENT_STEER);
                Send(who,@SetMeditating,#iNum=$);
 
                return;
+            }
          }
 
          iGain = iAmount;
