@@ -4680,7 +4680,7 @@ messages:
          return;
       }
 
-      oHelditem = Send(self,@FindHolding,#class=poCurrency);
+      oHelditem = Send(who,@FindHolding,#class=poCurrency);
 
       if oHelditem = $
       {
