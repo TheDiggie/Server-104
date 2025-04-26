@@ -40,10 +40,6 @@ messages:
 
    Constructed()
    {
-      plMonsters = [ [&XeoHoly, 50],
-                     [&XeoUnholy, 50]
-                      ];
-      
       plGenerators = [ [25, 25],  [25, 50],  [25, 75],  [25, 100], 
                        [42, 25],  [42, 50],  [42, 75],  [42, 100],
                        [60, 25],  [60, 50],  [60, 75],  [60, 100],
@@ -56,6 +52,28 @@ messages:
       propagate;
    }
  
+   TryCreateMonster()
+   {
+      local iHour;
+      
+      iHour = Send(SYS,@GetHour);
+
+      if iHour >= 1 AND iHour <= 7
+      {
+         plMonsters = [ [&XeoUnholy, 100] ];
+      }
+      else if iHour >= 8 AND iHour <= 20
+      {
+         plMonsters = [ [&XeoHoly, 100] ];
+      }
+      else if iHour >= 20 AND iHour <= 24
+      {
+         plMonsters = [ [&XeoUnholy, 100] ];
+      }
+
+      propagate;
+   }
+
    CreateStandardExits()
    {
       plExits = $;

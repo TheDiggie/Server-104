@@ -40,7 +40,7 @@ classvars:
    vrDead_icon = BlackDragon_dead_icon_rsc
    vrDead_name = BlackDragon_dead_name_rsc
 
-   viTreasure_type = TID_BLACK_DRAGON
+   viTreasure_type = TID_GHOST
 
    viSpeed = SPEED_FAST
    viAttack_type = ATCK_WEAP_CLAW

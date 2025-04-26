@@ -5617,6 +5617,7 @@ messages:
       plMonsterTemplates = cons(create(&NeruElemental),plMonsterTemplates);
       plMonsterTemplates = cons(create(&NeruElementalChampion),plMonsterTemplates);
       plMonsterTemplates = cons(create(&EarthDragon),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&IceDragon),plMonsterTemplates);
 
       plMonsterTemplates = cons(create(&Mimic),plMonsterTemplates);
       plMonsterTemplates = cons(create(&BlackDragon),plMonsterTemplates);
@@ -6009,6 +6010,7 @@ messages:
       plItemTemplates = cons(create(&Sapphire),plItemTemplates);
       plItemTemplates = cons(create(&Emerald),plItemTemplates);
       plItemTemplates = cons(create(&BlueDragonScale),plItemTemplates);
+      plItemTemplates = cons(create(&IceDragonScale),plItemTemplates);
       plItemTemplates = cons(create(&DarkAngelFeather),plItemTemplates);
       plItemTemplates = cons(create(&Fairywing),plItemTemplates);
       plItemTemplates = cons(create(&OrcTooth),plItemTemplates);

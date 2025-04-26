@@ -27,6 +27,7 @@ properties:
    piInit_count_max = 15
 
    piElemental_Effects = TRUE
+   piChange_Spawns = FALSE
 
 messages:
 
@@ -54,7 +55,7 @@ messages:
 
    DoElementalEffects()
    {
-      local i, oSpell, lEnchantments, iHour, oHeat, oFreezing;
+      local iHour, oHeat, oFreezing;
 
       if NOT piElemental_Effects
       {
@@ -71,6 +72,18 @@ messages:
          {
             return;
          }
+
+         plMonsters = [ [&XeoAcid, 10],
+                        [&XeoAir, 10],
+                        [&XeoEarth, 10],
+                        [&XeoFire, 10],
+                        [&XeoHoly, 10],
+                        [&XeoIll, 10],
+                        [&XeoWater, 10],
+                        [&EarthElemental, 10],
+                        [&FireElemental, 10],
+                        [&FireElementalChampion, 10]
+                         ];
 
          Send(self,@RoomStartEnchantment,#what=oHeat,#state=[150,self]);
       }
@@ -90,6 +103,18 @@ messages:
          {
             return;
          }
+
+         plMonsters = [ [&XeoAcid, 10],
+                        [&XeoAir, 10],
+                        [&XeoEarth, 10],
+                        [&IceDragon, 10],
+                        [&XeoUnholy, 10],
+                        [&XeoIll, 10],
+                        [&XeoWater, 10],
+                        [&EarthElemental, 10],
+                        [&IceElemental, 10],
+                        [&IceElementalChampion, 10]
+                         ];
 
          Send(self,@RoomStartEnchantment,#what=oFreezing,#state=[150,self]);
       }
