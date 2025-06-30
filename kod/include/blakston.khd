@@ -2416,7 +2416,12 @@
    SID_VAULT_LOADOUT = 200
    SID_FREEZING = 201
    SID_ICESHARD = 202
-
+   SID_ICEWALL             = 241
+   SID_INDEST              = 242
+   SID_NODROP              = 253
+   SID_ADDPETOITEM         = 254
+   SID_APPRAISE            = 255
+   
    //Crafting
    SID_CRAFTMACE           = 210
    SID_CRAFTAXE            = 211
@@ -2449,8 +2454,6 @@
    SID_HEWING              = 238
    SID_TANNING             = 239
    SID_SPINNING            = 240
-   SID_ICEWALL             = 241
-   SID_INDEST              = 242
    SID_CRAFTPICKAXE        = 243
    SID_CRAFTWOODAXE        = 244
    SID_CRAFTSICKLE         = 245
@@ -2461,10 +2464,9 @@
    SID_CRAFTKNIGHTSHELMET  = 250
    SID_CRAFTWIZARDHAT      = 251
    SID_CRAFTLIGHTMAGICROBES = 252
-   SID_NODROP              = 253
-   SID_ADDPETOITEM         = 254
-   SID_APPRAISE            = 255
    SID_CRAFTTHORNCIRCLET   = 256
+
+
    
 
    // Depreciated spell IDs
