@@ -3,26 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4E237A90-C6F7-4C12-9E2E-4B852E859E70}|clientd3d\\clientd3d.vcxproj|C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\buy.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{4E237A90-C6F7-4C12-9E2E-4B852E859E70}|clientd3d\\clientd3d.vcxproj|solutionrelative:clientd3d\\buy.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4E237A90-C6F7-4C12-9E2E-4B852E859E70}|clientd3d\\clientd3d.vcxproj|C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\buy.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{4E237A90-C6F7-4C12-9E2E-4B852E859E70}|clientd3d\\clientd3d.vcxproj|solutionrelative:clientd3d\\buy.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4E237A90-C6F7-4C12-9E2E-4B852E859E70}|clientd3d\\clientd3d.vcxproj|C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\server.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{4E237A90-C6F7-4C12-9E2E-4B852E859E70}|clientd3d\\clientd3d.vcxproj|solutionrelative:clientd3d\\server.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{4E237A90-C6F7-4C12-9E2E-4B852E859E70}|clientd3d\\clientd3d.vcxproj|C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\login.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4E237A90-C6F7-4C12-9E2E-4B852E859E70}|clientd3d\\clientd3d.vcxproj|solutionrelative:clientd3d\\login.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4E237A90-C6F7-4C12-9E2E-4B852E859E70}|clientd3d\\clientd3d.vcxproj|C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\client.rc||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{4E237A90-C6F7-4C12-9E2E-4B852E859E70}|clientd3d\\clientd3d.vcxproj|solutionrelative:clientd3d\\client.rc||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{4E237A90-C6F7-4C12-9E2E-4B852E859E70}|clientd3d\\clientd3d.vcxproj|C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\server.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4E237A90-C6F7-4C12-9E2E-4B852E859E70}|clientd3d\\clientd3d.vcxproj|solutionrelative:clientd3d\\server.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files (x86)\\MSBuild\\Microsoft.Cpp\\v4.0\\v140\\Microsoft.CppBuild.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{4E237A90-C6F7-4C12-9E2E-4B852E859E70}|clientd3d\\clientd3d.vcxproj|C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\buy.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4E237A90-C6F7-4C12-9E2E-4B852E859E70}|clientd3d\\clientd3d.vcxproj|solutionrelative:clientd3d\\buy.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E237A90-C6F7-4C12-9E2E-4B852E859E70}|clientd3d\\clientd3d.vcxproj|C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\buy.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4E237A90-C6F7-4C12-9E2E-4B852E859E70}|clientd3d\\clientd3d.vcxproj|solutionrelative:clientd3d\\buy.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -37,15 +35,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "login.c",
+              "DocumentMoniker": "C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\login.c",
+              "RelativeDocumentMoniker": "clientd3d\\login.c",
+              "ToolTip": "C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\login.c",
+              "RelativeToolTip": "clientd3d\\login.c",
+              "ViewState": "AgIAACcAAAAAAAAAAAAtwEEAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2025-07-08T02:26:11.754Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "buy.h",
               "DocumentMoniker": "C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\buy.h",
               "RelativeDocumentMoniker": "clientd3d\\buy.h",
               "ToolTip": "C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\buy.h",
               "RelativeToolTip": "clientd3d\\buy.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA5AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-01-27T03:06:46.458Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-27T03:06:46.458Z"
             },
             {
               "$type": "Document",
@@ -55,59 +65,36 @@
               "RelativeDocumentMoniker": "clientd3d\\server.c",
               "ToolTip": "C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\server.c",
               "RelativeToolTip": "clientd3d\\server.c",
-              "ViewState": "AgIAANgEAAAAAAAAAAAtwPsEAAADAAAAAAAAAA==",
+              "ViewState": "AgIAABwAAAAAAAAAAAAYwDYAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-01-27T03:06:48.094Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "buy.c",
               "DocumentMoniker": "C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\buy.c",
               "RelativeDocumentMoniker": "clientd3d\\buy.c",
               "ToolTip": "C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\buy.c",
               "RelativeToolTip": "clientd3d\\buy.c",
-              "ViewState": "AgIAANUAAAAAAAAAAAAAAJsAAAA/AAAAAAAAAA==",
+              "ViewState": "AgIAADgAAAAAAAAAAAAtwEwAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-01-27T03:03:14.776Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "client.rc",
               "DocumentMoniker": "C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\client.rc",
               "RelativeDocumentMoniker": "clientd3d\\client.rc",
               "ToolTip": "C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\client.rc",
               "RelativeToolTip": "clientd3d\\client.rc",
-              "ViewState": "AgIAAEsEAAAAAAAAAAAwwFIEAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAC0EAAAAAAAAAAAwwFcEAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
-              "WhenOpened": "2025-01-27T02:45:37.519Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Microsoft.CppBuild.targets",
-              "DocumentMoniker": "C:\\Program Files (x86)\\MSBuild\\Microsoft.Cpp\\v4.0\\v140\\Microsoft.CppBuild.targets",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files (x86)\\MSBuild\\Microsoft.Cpp\\v4.0\\v140\\Microsoft.CppBuild.targets",
-              "ToolTip": "C:\\Program Files (x86)\\MSBuild\\Microsoft.Cpp\\v4.0\\v140\\Microsoft.CppBuild.targets",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files (x86)\\MSBuild\\Microsoft.Cpp\\v4.0\\v140\\Microsoft.CppBuild.targets",
-              "ViewState": "AgIAAIgEAAAAAAAAAAAMwJsEAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
-              "WhenOpened": "2025-01-26T00:03:33.949Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Microsoft.Common.CurrentVersion.targets",
-              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
-              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
-              "ViewState": "AgIAAEwMAAAAAAAAAAAMwFoMAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
-              "WhenOpened": "2025-01-25T23:42:17.569Z"
+              "WhenOpened": "2025-01-27T02:45:37.519Z",
+              "EditorCaption": ""
             }
           ]
         }
