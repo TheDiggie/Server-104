@@ -40,7 +40,7 @@
               "RelativeDocumentMoniker": "clientd3d\\login.c",
               "ToolTip": "C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\login.c",
               "RelativeToolTip": "clientd3d\\login.c",
-              "ViewState": "AgIAACcAAAAAAAAAAAAtwEEAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAtwDEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-07-08T02:26:11.754Z",
               "EditorCaption": ""
@@ -67,8 +67,7 @@
               "RelativeToolTip": "clientd3d\\server.c",
               "ViewState": "AgIAABwAAAAAAAAAAAAYwDYAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-01-27T03:06:48.094Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-27T03:06:48.094Z"
             },
             {
               "$type": "Document",
@@ -80,8 +79,7 @@
               "RelativeToolTip": "clientd3d\\buy.c",
               "ViewState": "AgIAADgAAAAAAAAAAAAtwEwAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-01-27T03:03:14.776Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-27T03:03:14.776Z"
             },
             {
               "$type": "Document",
@@ -93,8 +91,7 @@
               "RelativeToolTip": "clientd3d\\client.rc",
               "ViewState": "AgIAAC0EAAAAAAAAAAAwwFcEAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
-              "WhenOpened": "2025-01-27T02:45:37.519Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-27T02:45:37.519Z"
             }
           ]
         }

@@ -33,7 +33,7 @@ messages:
                      [ &Knightshield, 3 ],
                      [ &Scimitar, 23 ],
                      [ &DiscordScroll, 1 ],
-		             [ &DarkAngelFeather, 5 ]
+		               [ &DarkAngelFeather, 5 ]
                    ];
 
       propagate;
