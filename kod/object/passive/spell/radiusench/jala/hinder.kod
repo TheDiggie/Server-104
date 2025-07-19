@@ -65,20 +65,6 @@ messages:
 
       return TRUE;
    }
-   
-   GetAlteredChance(who = $)
-   {
-      local iSongSpellpower;
-
-      if who <> $
-      {
-         iSongSpellpower = send(self,@GetSpellPower,#who=who);
-         Debug(iSongSpellpower);
-      }
-
-      // Don't worry about bounding, that's done the level above us.
-      return iSongSpellpower;
-   }
 
 end
 ////////////////////////////////////////////////////////////////////////////////

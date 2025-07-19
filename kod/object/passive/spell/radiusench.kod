@@ -948,11 +948,6 @@ messages:
       return iSpellPower;
    }
 
-   GetAlteredChance(chance=0,what=$,lRadiusState=0)
-   {
-      return chance;
-   }
-
    AdjustHealthTime(time=0, lRadiusState=0)
    {
       return time;

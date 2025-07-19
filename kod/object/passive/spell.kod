@@ -1294,9 +1294,7 @@ messages:
    "This is always TRUE for touch attack spells, because touch attacks"
    "figure their success in player.kod."
    {
-      local iCastSP, iJalaSP, iFinalSP, oTarget, oRing, i, iRan, iHindered, oEnchan, oJalaOwner;
-
-      iHindered = FALSE;
+      local iCastSP, iJalaSP, iFinalSP, oTarget, oRing, i, iRan, oEnchan, oJalaOwner;
 
       oRing = Send(who,@FindHolding,#class=&ReagentRing);
 
@@ -1325,40 +1323,39 @@ messages:
       //Caster spell power vs spellpower of the jala spell.
       //Final Spellpower = Caster spellpower +1 - Jala spellpower +1 / 2
       //The goal is 99 Jala spellpower vs 99 Spell power "example spell" will result in a
-      //50% chance to block the spell. The highest/lowest block chance is 90%/10%
+      //50% chance to block the spell.
        
       foreach i in Send(who,@GetRadiusEnchantments)
-      {
+      {  
          if isClass(Nth(i,2),&HinderSpell)
          {  
             if Send(Nth(i,2),@IsAltered,#what=self)
             {
-               iJalaSP = Send(Nth(i,2),@GetSpellPower,#who=who);
-               iJalaSP = bound(iJalaSP,5,99);
-               iHindered = TRUE;
                oJalaOwner = Send(Nth(i,2),@GetCaster,#state=Nth(i,3));
+               iJalaSP = Send(Nth(i,2),@GetSpellPower,#who=oJalaOwner);
+               iJalaSP = bound(iJalaSP,5,99);
+
+               if lTargets <> $
+                  AND Send(self,@GetNumSpellTargets) = 1
+                  AND IsClass(First(lTargets),&Battler)
+                  AND Send(Send(who,@GetOwner),@LineOfSight,#obj1=who,
+                               #obj2=First(lTargets))
+                  AND NOT(IsClass(who,&DM) AND NOT Send(who,@PlayerIsImmortal))
+               {
+                  iCastSP = (iSpellpower + 1) - ((iJalaSP+1)/2);
+                  iFinalSP = bound(iCastSP,1,90);
+
+                  iRan = Random(1,100);
+                  if iRan > iFinalSP
+                     AND (oRing = $ OR NOT Send(oRing,@InUse))
+                  {
+                     Send(who,@MsgSendUser,#message_rsc=Jala_hindered);
+                     Send(oJalaOwner,@MsgSendUser,#message_rsc=Jala_you_hindered,#parm1=Send(who,@GetName));
+                     
+                     return FALSE;
+                  }
+               }
             }
-         }
-      }
-
-      if lTargets <> $ AND iHindered
-         AND Send(self,@GetNumSpellTargets) = 1
-         AND IsClass(First(lTargets),&Battler)
-         AND Send(Send(who,@GetOwner),@LineOfSight,#obj1=who,
-                      #obj2=First(lTargets))
-         AND NOT(IsClass(who,&DM) AND NOT Send(who,@PlayerIsImmortal))
-      {
-         iCastSP = (iSpellpower + 1) - ((iJalaSP+1)/2);
-         iFinalSP = bound(iCastSP,10,90);
-
-         iRan = Random(1,100);
-
-         if iRan > iFinalSP
-            AND (oRing = $ OR NOT Send(oRing,@InUse))
-         {
-            Send(who,@MsgSendUser,#message_rsc=Jala_hindered);
-            Send(oJalaOwner,@MsgSendUser,#message_rsc=Jala_you_hindered,#parm1=Send(who,@GetName));
-            return FALSE;
          }
       }
 
