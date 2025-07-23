@@ -2855,32 +2855,7 @@ messages:
       }
       else if StringEqual(string,dm_get_mask_command)
       {
-         Send(self,@NewHold,#what=Create(&AntMask));
-         Send(self,@NewHold,#what=Create(&CircleMask));
-         Send(self,@NewHold,#what=Create(&CowMask));
-         Send(self,@NewHold,#what=Create(&DuskRatMask));
-         Send(self,@NewHold,#what=Create(&DaemonMask));
-         Send(self,@NewHold,#what=Create(&FeyMask));
-         Send(self,@NewHold,#what=Create(&FeyMaskEvil));
-         Send(self,@NewHold,#what=Create(&FrontMask));
-         Send(self,@NewHold,#what=Create(&IndianHat));
-         Send(self,@NewHold,#what=Create(&KriipaMask));
-         Send(self,@NewHold,#what=Create(&MummyMask));
-         Send(self,@NewHold,#what=Create(&PilgrimHat));
-         Send(self,@NewHold,#what=Create(&RatMask));
-         Send(self,@NewHold,#what=Create(&RiceMask));
-         Send(self,@NewHold,#what=Create(&ShrunkenHeadMask));
-         Send(self,@NewHold,#what=Create(&SkullMask));
-         Send(self,@NewHold,#what=Create(&SquareMask));
-         Send(self,@NewHold,#what=Create(&StoneTrollMask));
-         Send(self,@NewHold,#what=Create(&SuperStoneTrollMask));
-         Send(self,@NewHold,#what=Create(&TriangleMask));
-         Send(self,@NewHold,#what=Create(&TrollMask));
-         Send(self,@NewHold,#what=Create(&WolfMask));
-         Send(self,@NewHold,#what=Create(&XeoMask));
-         Send(self,@NewHold,#what=Create(&CarrotNoseMask));
-         Send(self,@NewHold,#what=Create(&PlagueMask));
-         Send(self,@NewHold,#what=Create(&PumpkinMask));
+         Send(self,@GetOneOfEach,#type=ITEMTYPE_MASK);
       }
       else if StringEqual(string,dm_get_dye_command)
       {

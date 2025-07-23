@@ -95,7 +95,14 @@ messages:
    {
       local i, oSpell, oRoom, lEnchantments, iPeriod;
 
-      oRoom = Send(who,@GetOwner);
+      if isClass(who,&Room)
+      {
+         oRoom = who;
+      }
+      else
+      {
+         oRoom = Send(who,@GetOwner);
+      }
 
       lEnchantments = Send(oRoom,@GetEnchantmentList);
 

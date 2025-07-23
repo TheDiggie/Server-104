@@ -88,7 +88,7 @@ messages:
                             ];
          }
 
-         Send(self,@RoomStartEnchantment,#what=oHeat,#state=[150,self]);
+         Send(oHeat,@CastSpell,#who=self,#spellpower=99);
       }
       else if iHour >= 6 AND iHour <= 7
       {  
@@ -122,7 +122,7 @@ messages:
                             ];
          }
 
-         Send(self,@RoomStartEnchantment,#what=oFreezing,#state=[150,self]);
+         Send(oFreezing,@CastSpell,#who=self,#spellpower=99);
       }
 
       return;
