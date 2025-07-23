@@ -93,6 +93,7 @@ resources:
    skinning_bonus    = "%i bonus Skinning Yield\n"
 
    item_cast_spell = "\n\nEmblazoned with mystic symbols, this %s grants its wielder the unyielding force of %s on its user."
+   spell_too_soon_since_attacking_2 = "~r~BYou have taken part in battle to recently to activate your item enchantments! "
 
    item_no_drop = "This item cannot be dropped or traded."
    
@@ -1221,7 +1222,12 @@ messages:
 
       if poSpell <> $ AND IsClass(poOwner,&Player)
       {  
-         if NOT Send(what,@IsRecentPvPCombatant)
+         if Send(poOwner,@GetLastPlayerAttackTime) - GetTime()  > -480
+            or Send(poOwner,@GetLastAttackedByPlayerTime) - GetTime() > -480
+         {
+            Send(poOwner,@MsgSendUser,#message_rsc=spell_too_soon_since_attacking_2);
+         }
+         else
          {
             oSpell = Send(SYS,@FindSpellByNum,#Num=poSpell);
 
