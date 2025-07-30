@@ -16,7 +16,7 @@ constants:
 
 resources:
 
-   room_name_marplantWorker1 = "Workers quaters"
+   room_name_marplantWorker1 = "Workers quarters"
    room_marplantWorker1 = workerhome1.roo
 
    wind_sound_marplantWorker1 = rs_wind.ogg
