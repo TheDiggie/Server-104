@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4E237A90-C6F7-4C12-9E2E-4B852E859E70}|clientd3d\\clientd3d.vcxproj|C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\login.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{4E237A90-C6F7-4C12-9E2E-4B852E859E70}|clientd3d\\clientd3d.vcxproj|solutionrelative:clientd3d\\login.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{4E237A90-C6F7-4C12-9E2E-4B852E859E70}|clientd3d\\clientd3d.vcxproj|C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\config.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{4E237A90-C6F7-4C12-9E2E-4B852E859E70}|clientd3d\\clientd3d.vcxproj|solutionrelative:clientd3d\\config.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E237A90-C6F7-4C12-9E2E-4B852E859E70}|clientd3d\\clientd3d.vcxproj|C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\login.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4E237A90-C6F7-4C12-9E2E-4B852E859E70}|clientd3d\\clientd3d.vcxproj|solutionrelative:clientd3d\\login.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4E237A90-C6F7-4C12-9E2E-4B852E859E70}|clientd3d\\clientd3d.vcxproj|C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\client.rc||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -34,24 +34,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "config.c",
               "DocumentMoniker": "C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\config.c",
               "RelativeDocumentMoniker": "clientd3d\\config.c",
               "ToolTip": "C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\config.c",
               "RelativeToolTip": "clientd3d\\config.c",
-              "ViewState": "AgIAAGQAAAAAAAAAAAAAAIIAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAGEAAAAAAAAAAAAAAIEAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-08-01T00:42:15.611Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "login.c",
               "DocumentMoniker": "C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\login.c",
               "RelativeDocumentMoniker": "clientd3d\\login.c",
