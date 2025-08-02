@@ -48,7 +48,7 @@ classvars:
    vrDesc = BarloqueBlacksmith_desc_rsc
    viAttributes = \
       MOB_NOFIGHT | MOB_SELLER | MOB_RANDOM | MOB_NOMOVE | MOB_LISTEN \
-      | MOB_BUYER | MOB_TEACHER | MOB_COND_SELLER | MOB_LAWFUL
+      | MOB_BUYER | MOB_TEACHER | MOB_LAWFUL
    viOccupation = MOB_ROLE_BLACKSMITH
    viMerchant_markup = MERCHANT_EXPENSIVE
 
@@ -93,18 +93,6 @@ messages:
       return;
    }
 
-   InitCondSale()
-   {
-      local oObj;
-
-      oObj=Create(&Mace);
-      Send(Send(SYS,@GetLibrary),@AddToMobLib,#mob=self,
-            #triggers=[Send(oObj,@GetName)],
-            #action=[LIBACT_CONDITIONAL,oObj,100,BQSm_mace_sale]);
-
-      return;
-   }
-
    UserEntered(who=$)
    {
       Post(who,@SomeoneSaid,#what=self,#string=BQSmith_entry_welcome,
@@ -112,16 +100,6 @@ messages:
             #parm1=Send(who,@GetDef),#parm2=Send(who,@GetName));
 
       return;
-   }
-
-   CanAddSpell(who=$,num=0,report=FALSE)
-   {
-      if NOT Send(self,@SpecialTeachChecks,#report=report,#who=who,#num=num)
-      {
-         return FALSE;
-      }
-
-      propagate;
    }
    
 end
