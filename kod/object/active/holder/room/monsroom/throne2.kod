@@ -21,7 +21,7 @@ resources:
 
    include throne2.lkod
 
-   name_throne2 = "The Throne Room of Victoria Castle" 
+   name_throne2 = "The Throne Room of Castle Victoria " 
    room_throne2 = throne2.roo
 
    throne2_music = castle2.ogg
