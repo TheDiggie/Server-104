@@ -1,0 +1,212 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+TransmogrifyMonster is Spell
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include transmon.lkod
+
+   transmon_name_rsc = "transmogrify monster"
+   transmon_icon_rsc = imorph.bgf
+   transmon_desc_rsc = \
+      "Twists a creature into another monster. Requires web moss and rainbow fern to cast."
+
+   transmon_cast_rsc = "%s%s warps and reforms into %s%s!"
+   transmon_bad_target = "You can only transmogrify a living monster."
+
+   transmon_sound = rmorph.ogg
+
+classvars:
+
+   vrName = transmon_name_rsc
+   vrIcon = transmon_icon_rsc
+   vrDesc = transmon_desc_rsc
+
+   viSpell_num = SID_MONSTER_MORPH
+   viSchool = SS_RIIJA
+   viSpell_level = 5
+   viMana = 20
+   viSpellExertion = 3
+   viChance_To_Increase = 20
+   viMeditate_ratio = 50
+   
+   viFlash = FLASH_BAD
+
+   vrSucceed_wav = transmon_sound
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&WebMoss,1],plReagents);
+      plReagents = Cons([&RainbowFern,1],plReagents);
+
+      return;
+   }
+
+   GetNumSpellTargets()
+   {
+      return 1;
+   }
+
+   CanPayCosts(who=$, lTargets=$)
+   {
+      local oTarget;
+
+      oTarget = First(lTargets);
+
+      if oTarget = $
+         OR NOT IsClass(oTarget,&Monster)
+      {
+         Send(who,@MsgSendUser,#message_rsc=transmon_bad_target);
+         return FALSE;
+      }
+
+      // Don't allow transmogrifying immobile or special monsters
+      if (Send(oTarget,@GetAttributes) & MOB_NOMOVE)
+      {
+         Send(who,@MsgSendUser,#message_rsc=transmon_bad_target);
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+   CastSpell(who=$, lTargets=$, iSpellPower=0)
+   {
+      local oTarget;
+
+      oTarget = First(lTargets);
+
+      Send(self,@DoTransmogrify,#caster=who,#victim=oTarget,#iSpellPower=iSpellPower);
+
+      propagate;
+   }
+
+   DoTransmogrify(caster=$, victim=$, iSpellPower=0)
+   {
+      local oRoom, iRow, iCol, iFine_Row, iFine_Col, iAngle,
+            oNewMonster, oMaster, iHatred, oTarget, iIllusionType,
+            oTemplate, iChosenIndex, iCount, i, iLevel, iAmount, iMax;
+
+      if victim = $ OR NOT IsClass(victim,&Monster)
+      {
+         return;
+      }
+
+      oRoom = Send(victim,@GetOwner);
+      if oRoom = $
+      {
+         return;
+      }
+
+      // Position/orientation
+      iRow = Send(victim,@GetRow);
+      iCol = Send(victim,@GetCol);
+      iFine_Row = Send(victim,@GetFineRow);
+      iFine_Col = Send(victim,@GetFineCol);
+      iAngle = Send(victim,@GetAngle);
+
+      // Preserve aggression target and master
+      oTarget = Send(victim,@GetTarget);
+      iHatred = Send(victim,@GetHatred);
+      oMaster = Send(victim,@GetMaster);
+
+      // Choose a new monster template using Morph/Illusion weighting but ensuring CanMorphTo
+      iMax = 0;
+      foreach i in Send(SYS,@GetMonsterTemplates)
+      {
+         iLevel = Send(i,@GetLevel);
+         if Send(i,@CanMorphTo)
+         {
+            iAmount = iSpellPower - iLevel;
+            if iAmount < 0
+            {
+               iAmount = abs(iAmount*2);
+            }
+            iAmount = bound((iSpellPower - iAmount),1,100);
+            iMax = iMax + iAmount;
+         }
+      }
+
+      iChosenIndex = random(0,iMax);
+      iCount = 1;
+      oTemplate = $;
+      foreach i in Send(SYS,@GetMonsterTemplates)
+      {
+         iLevel = Send(i,@GetLevel);
+         if Send(i,@CanMorphTo)
+         {
+            iAmount = iSpellPower - iLevel;
+            if iAmount < 0
+            {
+               iAmount = abs(iAmount*2);
+            }
+            iAmount = bound((iSpellPower - iAmount),1,100);
+            iChosenIndex = iChosenIndex - iAmount;
+            if iChosenIndex <= 0
+            {
+               oTemplate = i;
+               break;
+            }
+         }
+         iCount = iCount + 1;
+      }
+
+      if oTemplate = $
+      {
+         return;
+      }
+
+      oNewMonster = Create(GetClass(oTemplate));
+
+      // Place in same spot
+      Send(oRoom,@NewHold,#what=oNewMonster,#new_row=iRow,#new_col=iCol,
+            #fine_row=iFine_Row,#fine_col=iFine_Col);
+
+      // Carry over illusion/summoned flags if meaningful
+      if Send(victim,@IsIllusion)
+      {
+         Send(oNewMonster,@SetIllusion,#value=TRUE);
+      }
+
+      // Preserve master/minion relationship
+      if oMaster <> $
+      {
+         Send(oNewMonster,@SetMaster,#oMaster=oMaster);
+      }
+
+      // Re-target
+      if oTarget <> $
+      {
+         Send(oNewMonster,@TargetSwitch,#what=oTarget,#iHatred=iHatred);
+      }
+
+      // Announce and remove old
+      Send(caster,@MsgSendUser,#message_rsc=transmon_cast_rsc,
+            #parm1=Send(victim,@GetCapDef),#parm2=Send(victim,@GetName),
+            #parm3=Send(oNewMonster,@GetCapDef),#parm4=Send(oNewMonster,@GetName));
+
+      Post(victim,@Delete);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////
+

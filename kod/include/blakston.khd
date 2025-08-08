@@ -2421,6 +2421,7 @@
    SID_NODROP              = 253
    SID_ADDPETOITEM         = 254
    SID_APPRAISE            = 255
+   SID_MONSTER_MORPH       = 300
    
    //Crafting
    SID_CRAFTMACE           = 210
