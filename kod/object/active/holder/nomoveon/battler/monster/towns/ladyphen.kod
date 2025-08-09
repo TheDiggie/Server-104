@@ -28,6 +28,7 @@ constants:
    POSE_CAST = 3   
    POSE_WEAPON_ATTACK = 4
    POSE_BOW_ATTACK = 5
+   COLOR_BLUE = 1
 
 resources:
 
@@ -311,7 +312,7 @@ messages:
 
    ResetFrames(pose = $)
    {
-      if Pose = POSE_PUNCH
+      if piPose = POSE_PUNCH
       {
          piIcon_frame = 4;
          piLeft_frame = 6;
@@ -484,7 +485,7 @@ messages:
             {
                AddPacket(1,ANIMATE_TRANSLATION,1,piWeapon_translation);
             }
-            AddPacket(1,ANIMATE_NONE,2,PiWeapon_frame);
+                         AddPacket(1,ANIMATE_NONE,2,piWeapon_frame);
          }
          else
          {
