@@ -28,7 +28,6 @@ constants:
    POSE_CAST = 3   
    POSE_WEAPON_ATTACK = 4
    POSE_BOW_ATTACK = 5
-   COLOR_BLUE = 1
 
 resources:
 
@@ -517,7 +516,7 @@ messages:
 
       iFlags = viObject_flags | piDrawEffectFlag;
 
-      if piColor = COLOR_BLUE
+      if piColor = 1
       {
          iFlags = iFlags | OF_DISPLAY_NAME;
       }
@@ -531,7 +530,7 @@ messages:
 
       iFlags = 0;
 
-      if piColor = COLOR_BLUE
+      if piColor = 1
       {
          iFlags = iFlags | NC_DM;
       }
@@ -545,7 +544,7 @@ messages:
 
       iFlags = 0;
 
-      if piColor = COLOR_BLUE
+      if piColor = 1
       {
          iFlags = iFlags | OT_DM;
       }
