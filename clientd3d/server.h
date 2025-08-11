@@ -58,6 +58,11 @@ M59EXPORT list_type    ExtractOverlays(char **ptr);
 M59EXPORT void         ExtractOverlay(char **ptr, Overlay *overlay);
 BackgroundOverlay *ExtractNewBackgroundOverlay(char **ptr);
 
+// Missing function declarations
+void ChangeObjectFlags(object_node *o);
+void PingGotReplyUDP(void);
+void SetMovementSpeedPct(int speed);
+
 Bool HandleMessage(char *message, int len);
 void WaitForMessage(WORD type);
 void ClearWaitMessage(void);
@@ -132,6 +137,12 @@ Bool HandleSectorLight(char *ptr, long len);
 Bool HandleSetView(char *ptr, long len);
 Bool HandleResetView(char *ptr, long len);
 Bool HandleSectorChange(char *ptr, long len);
+Bool HandleRoomContentsFlags(char *ptr, long len);
+Bool HandleChangeFlags(char *ptr, long len);
+Bool HandleLookSpell(char *ptr, long len);
+Bool HandleLookSkill(char *ptr, long len);
+Bool HandleEchoUDPPing(char *ptr, long len);
+Bool HandleMovementSpeed(char *ptr, long len);
 
 /* Login mode handlers */
 Bool HandleLoginOk(char *ptr,long len);

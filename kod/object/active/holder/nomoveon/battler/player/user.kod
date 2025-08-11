@@ -207,6 +207,8 @@ resources:
    user_completed_quests_header = "Completed Quests: "
    user_no_completed_quests_header = "No Completed Quests"
 
+   user_no_quest_item = "You don't have the required quest item."
+
    user_got_offer = "You have a trade offer from %s%s."
    user_cant_offer = "You can't offer to %s%s."
    user_cant_offer_arena = \
@@ -1874,6 +1876,29 @@ messages:
          return;
       }
 
+      if liClient_cmd = BP_REQ_TRIGGER_QUEST
+      {
+         oWhat = Nth(client_msg,2);
+         if IsClass(oWhat,&Monster)
+         {
+            Send(self,@UserRequestTriggerQuest,#what=oWhat,
+                  #oQT=Nth(client_msg,3));
+         }
+
+         return;
+      }
+
+      if liClient_cmd = BP_REQ_NPC_QUESTS
+      {
+         oWhat = Nth(client_msg,2);
+         if IsClass(oWhat,&Monster)
+         {
+            Send(self,@UserRequestNPCQuests,#what=oWhat);
+         }
+
+         return;
+      }
+
       if liClient_cmd = BP_REQ_BUY_ITEMS
       {
          oWhat = Nth(client_msg,2);
@@ -3092,15 +3117,73 @@ messages:
       return Send(SYS,@GetSuccessRsc);
    }
 
-   ToCliObject(what=$,show_type=SHOW_NORMAL,bShow_all=FALSE)
-   "show_type is used to get the look or inventory animation and overlays "
-   "instead of the normal animation and overlays."
+   ToCliFlags(what=$,parm1=$)
+   "Sends just the ObjectFlags (OF, DF, MM, NC, OT, MT) for 'what'."
+   "parm1 is optional parameter if more information is required to resolve "
+   "flag status."
    {
       local iFlags, iEnemyKarma, iSelfKarma, iMinimapFlags, iDrawingFlags;
 
-      // Send given object's id number, name, icon, and animation info
+      iDrawingFlags = Send(what,@GetDrawingEffects);
+      iFlags = Send(what,@GetObjectFlags,#what=self);
+      // If we can see the invisible object, remove its invis drawing flag
+      // and set it to flash instead (in object flags).
+      if ((iDrawingFlags & DRAWFX_MASK) = DRAWFX_INVISIBLE
+         AND ((piFlags2 & PFLAG2_DETECT_INVIS)
+            OR (Send(poOwner,@IsArena)
+               AND Send(poOwner,@InPlay,#what=what)
+               AND NOT Send(poOwner,@InPlay,#what=self))))
+      {
+         iDrawingFlags &= (~DRAWFX_MASK);
+         iFlags &= (~OF_FLICKERING);
+         iFlags |= OF_FLASHING;
+      }
 
-      if IsClass(what,&NumberItem)
+      if IsClass(what,&Battler)
+      {
+         iEnemyKarma = Send(what,@GetKarma,#detect=TRUE);
+         iSelfKarma = Send(self,@GetKarma);
+
+         if (piFlags2 & PFLAG2_DETECT_EVIL)
+            AND iSelfKarma > 0
+            AND iEnemyKarma < -10
+         {
+            iFlags &= (~OF_FLICKERING);
+            iFlags |= OF_FLASHING;
+         }
+
+         if (piFlags2 & PFLAG2_DETECT_GOOD)
+            AND iSelfKarma < 0
+            AND iEnemyKarma > 10
+         {
+            iFlags &= (~OF_FLICKERING);
+            iFlags |= OF_FLASHING;
+         }
+      }
+
+      iMinimapFlags = Send(self,@BuildMinimapDotFlag,#what=what);
+      if iMinimapFlags = $
+      {
+         Debug("Got $ minimapflags for self ",self,Send(self,@GetTrueName),
+            " for object ",what,Send(what,@GetTrueName));
+         iMinimapFlags = 0;
+      }
+
+      AddPacket(4,iFlags, 1,iDrawingFlags, 4,iMinimapFlags,
+                4,Send(what,@GetPlayerNameColor),
+                1,Send(what,@GetClientObjectType,#who=self,#parm1=parm1),
+                1,Send(what,@GetMoveOnType));
+
+      return;
+   }
+
+   ToCliObject(what=$,show_type=SHOW_NORMAL,bShow_all=FALSE,parm1=$)
+   "show_type is used to get the look or inventory animation and overlays "
+   "instead of the normal animation and overlays. parm1 is optional parameter "
+   "passed on to ToCliFlags."
+   {
+      // Send given object's id number, name, icon, and animation info
+      if Send(what,@IsStackable)
       {
          AddPacket(NUMBER_OBJECT,what, 4,Send(what,@GetNumber),
                    4,Send(what,@GetIcon));
@@ -3121,56 +3204,7 @@ messages:
          AddPacket(4,Send(what,@GetApparentName));
       }
 
-      iDrawingFlags = Send(what,@GetDrawingEffects);
-      iFlags = Send(what,@GetObjectFlags,#what=self);
-      // If we can see the invisible object, remove its invis drawing flag
-      // and set it to flash instead (in object flags).
-      if (piFlags2 & PFLAG2_DETECT_INVIS)
-         AND (iDrawingFlags & DRAWFX_MASK) = DRAWFX_INVISIBLE
-      {
-         iDrawingFlags = (iDrawingFlags & (~DRAWFX_MASK));
-         iFlags = (iFlags & (~OF_FLICKERING));
-         iFlags = (iFlags | OF_FLASHING);
-      }
-
-      if IsClass(what,&Battler)
-      {
-         iEnemyKarma = Send(what,@GetKarma,#detect=TRUE);
-         iSelfKarma = Send(self,@GetKarma);
-
-         if (piFlags2 & PFLAG2_DETECT_EVIL)
-            AND iSelfKarma > 0
-            AND iEnemyKarma < -10
-            AND (IsClass(what,&Player)
-                 OR (IsClass(what,&Monster) AND abs(iEnemyKarma) > iSelfKarma))
-         {
-            iFlags = (iFlags & (~OF_FLICKERING));
-            iFlags = (iFlags | OF_FLASHING);
-         }
-
-         if (piFlags2 & PFLAG2_DETECT_GOOD)
-            AND iSelfKarma < 0
-            AND iEnemyKarma > 10
-            AND (IsClass(what,&Player)
-                 OR (IsClass(what,&Monster) AND iEnemyKarma > abs(iSelfKarma)))
-         {
-            iFlags = (iFlags & (~OF_FLICKERING));
-            iFlags = (iFlags | OF_FLASHING);
-         }
-      }
-
-      iMinimapFlags = Send(self,@BuildMinimapDotFlag,#what=what);
-      if iMinimapFlags = $
-      {
-         Debug("Got $ minimapflags for self ",self,Send(self,@GetTrueName),
-            " for object ",what,Send(what,@GetTrueName));
-         iMinimapFlags = 0;
-      }
-
-      AddPacket(4,iFlags, 1,iDrawingFlags, 4,iMinimapFlags,
-                4,Send(what,@GetPlayerNameColor),
-                1,Send(what,@GetClientObjectType),
-                1,Send(what,@GetMoveOnType));
+      Send(self,@ToCliFlags,#what=what,#parm1=parm1);
 
       // Send the lighting information.
       Send(what,@SendLightingInformation);
@@ -7600,11 +7634,121 @@ messages:
       return;
    }
 
+   UserRequestTriggerQuest(what = $, oQT = $)
+   "Client sends NPC and quest template object and wants to trigger that quest "
+   "for the given NPC. Need to find the appropriate quest node in that NPC's "
+   "quest list and trigger it server-side."
+   {
+      local i, oQN, iType, oItem, oCargo, sCargo;
+
+      oQN = Send(what,@GetActiveQuestForUser,#who=self,
+               #index=Send(oQT,@GetQuestID));
+      if (oQN = $)
+      {
+         Debug("User ",vrName," got $ oQN for index ",Send(oQT,@GetQuestID),
+            " from NPC ",Send(what,@GetName));
+
+         return;
+      }
+
+      // No point checking here? CheckCompletionCriteria should do this.
+      /*if (NOT Send(oQN,@CanPlayerStartQuest,#who=self))
+      {
+         // TODO: in production, give user a message.
+         Debug("User tried to start a quest they weren't qualified for!");
+
+         return;
+      }*/
+
+      iType = Send(Send(SYS,@GetQuestEngine),@GetQuestNodeType,
+                  #index=Send(oQN,@GetQuestNodeTemplateIndex));
+
+      switch(iType)
+      {
+      case QN_TYPE_MESSAGE:
+      case QN_TYPE_CHESSMOVE:
+      case QN_TYPE_USERNAME:
+      case QN_TYPE_LOGGEDONNAME:
+         // Make user say the message in cargo.
+         oCargo = Send(oQN,@GetCargo);
+         ClearTempString();
+         AppendTempString(oCargo);
+         // Echo only to user, not to room/NPC.
+         Send(self,@SomeoneSaid,#what=self,#type=SAY_NORMAL,
+               #string=GetTempString());
+         // Use the cargo directly - this bypasses any puzzle the user needs
+         // to figure out to complete the quest, but we'd have to exclude that
+         // type of quest from being completed via UI anyway (i.e. add a new
+         // quest type for it and not use QN_TYPE_MESSAGE).
+         Send(oQN,@CheckCompletionCriteria,#who_tried=self,#message=oCargo);
+         break;
+      case QN_TYPE_ITEM:
+         // Cargo is the same object the user is carrying.
+         oCargo = Send(oQN,@GetCargo);
+         if (Send(self,@IsHolding,#what=oCargo))
+         {
+            Send(what,@TryGiveQuestItem,#what=self,#item_list=[oCargo]);
+         }
+         else
+         {
+            Send(self,@MsgSendUser,#message_rsc=user_no_quest_item);
+         }
+         break;
+      case QN_TYPE_ITEMCLASS:
+      case QN_TYPE_ITEMFINDCLASS:
+      case QN_TYPE_MONSTER_ITEMCLASS:
+         // Give item to NPC, favor last items in inventory.
+         // Cargo is a duplicate of the item to give.
+         oCargo = Send(oQN,@GetCargo);
+         oItem = Send(self,@FindHoldingAP,#class=GetClass(oCargo),#sequence=1);
+         if (oItem <> $)
+         {
+            Send(what,@TryGiveQuestItem,#what=self,#item_list=[oItem]);
+         }
+         else
+         {
+            Send(self,@MsgSendUser,#message_rsc=user_no_quest_item);
+         }
+         break;
+      case QN_TYPE_SHOWUP:
+      case QN_TYPE_MONSTER:
+      case QN_TYPE_MONSTER_BRING:
+      case QN_TYPE_MONSTER_MULTIPLE:
+         // Just let NPC know we're here
+         Send(oQN,@CheckCompletionCriteria,#who_tried=self);
+         break;
+      }
+
+      return;
+   }
+
+   UserRequestNPCQuests(what = $)
+   {
+      local i, lQuests;
+
+      AddPacket(1,BP_NPC_QUEST_LIST);
+
+      Send(self,@ToCliObject,#what=what);
+
+      lQuests = Send(what,@GetQuestsForUser,#who=self);
+
+      AddPacket(2,Length(lQuests));
+
+      foreach i in lQuests
+      {
+         Send(self,@ToCliObject,#what=First(i),#parm1=Nth(i,2));
+         Send(First(i),@ShowQuestUIDesc,#who=self,#oNPC=what);
+      }
+
+      SendPacket(poSession);
+
+      return;
+   }
+
    UserBuy(what = $)
    {
       local i,lSaleItems;
 
-      lSaleItems = $;
       lSaleItems = Send(what,@GetForSale,#who=self);
       if lSaleItems = $
       {
@@ -7642,7 +7786,6 @@ messages:
    {
       local i,lSaleItems;
 
-      lSaleItems = $;
       lSaleItems = Send(what,@GetForSale,#who=self);
       if lSaleItems = $
       {

@@ -7,7 +7,7 @@
 // Meridian is a registered trademark.
 /*
  * server.c:  Handle messages from the server.
- * 
+ *
  * The main function here searches through the table of message handlers and calls
  * the one that matches.  There are separate tables for login and game modes, since
  * the protocol is completely different in these modes.
@@ -22,7 +22,7 @@ extern Bool            gD3DRedrawAll;
 
 static handler_struct connecting_handler_table[] = {
 { 0, NULL},   // must end table this way
-}; 
+};
 
 static handler_struct login_handler_table[] = {
 { AP_GETLOGIN,          HandleGetLogin },
@@ -43,10 +43,9 @@ static handler_struct login_handler_table[] = {
 { AP_DELETERSC,         HandleDeleteRsc },
 { AP_DELETEALLRSC,      HandleDeleteAllRsc },
 { AP_NOCHARACTERS,      HandleNoCharacters },
-{ AP_GUEST,             HandleGuest },
 { AP_CLIENT_PATCH,      HandleClientPatch },
 { 0, NULL},   // must end table this way
-}; 
+};
 
 static handler_struct game_handler_table[] = {
 { BP_MOVE,              HandleMove },
@@ -54,7 +53,10 @@ static handler_struct game_handler_table[] = {
 { BP_CREATE,            HandleCreate },
 { BP_REMOVE,            HandleRemove },
 { BP_CHANGE,            HandleChange },
+{ BP_CHANGE_FLAGS,      HandleChangeFlags },
 { BP_LOOK,              HandleLook },
+{ BP_LOOK_SPELL,        HandleLookSpell },
+{ BP_LOOK_SKILL,        HandleLookSkill },
 { BP_USE,               HandleUse },
 { BP_UNUSE,             HandleUnuse },
 { BP_USE_LIST,          HandleUseList },
@@ -69,6 +71,7 @@ static handler_struct game_handler_table[] = {
 { BP_MESSAGE,           HandleStringMessage },
 { BP_SYS_MESSAGE,       HandleSysMessage },
 { BP_ECHO_PING,         HandleEchoPing },
+{ BP_ECHO_UDP_PING,     HandleEchoUDPPing },
 { BP_OFFER_CANCELED,    HandleOfferCanceled },
 { BP_OFFER,             HandleOffer },
 { BP_OFFERED,           HandleOffered },
@@ -80,6 +83,7 @@ static handler_struct game_handler_table[] = {
 { BP_INVENTORY,         HandleInventory },
 { BP_PLAYER,            HandlePlayer },
 { BP_ROOM_CONTENTS,     HandleRoomContents },
+{ BP_ROOM_CONTENTS_FLAGS, HandleRoomContentsFlags },
 { BP_PLAYERS,           HandlePlayers },
 { BP_WAIT,              HandleWait },
 { BP_UNWAIT,            HandleUnwait },
@@ -88,6 +92,7 @@ static handler_struct game_handler_table[] = {
 { BP_PLAY_MUSIC,        HandlePlayMusic },
 { BP_STOP_WAVE,         HandleStopWave },
 { BP_EFFECT,            HandleEffect },
+{ BP_MOVEMENT_SPEED,    HandleMovementSpeed },
 { BP_SHOOT,             HandleShoot },
 { BP_RADIUS_SHOOT,      HandleRadiusShoot },
 { BP_LIGHT_AMBIENT,     HandleLightAmbient },
@@ -110,12 +115,12 @@ static handler_struct game_handler_table[] = {
 { BP_ROUNDTRIP1,        HandleRoundtrip },
 { BP_CHANGE_TEXTURE,    HandleChangeTexture },
 { BP_SECTOR_LIGHT,      HandleSectorLight },
-{ BP_SET_VIEW,      HandleSetView },
-{ BP_RESET_VIEW,   HandleResetView },
+{ BP_SET_VIEW,          HandleSetView },
+{ BP_RESET_VIEW,        HandleResetView },
 { 0, NULL},   // must end table this way
 };
 
-static BYTE ExtractPaletteTranslation(char **ptr, BYTE *translation, BYTE *effect);
+static BYTE ExtractPaletteTranslation(char** ptr, BYTE* translation, BYTE* effect);
 
 static unsigned int server_secure_token = 0;
 static char* server_sliding_token = NULL;
@@ -124,68 +129,87 @@ static ID _redbook = 0;
 
 void ResetSecurityToken()
 {
-   _redbook = 0;
+    _redbook = 0;
 
-   if (_redbookstring)
-      free(_redbookstring);
-   _redbookstring = NULL;
+    if (_redbookstring)
+        free(_redbookstring);
+    _redbookstring = NULL;
 
-   server_secure_token = 0;
-   server_sliding_token = NULL;
+    server_secure_token = 0;
+    server_sliding_token = NULL;
 }
 
 void UpdateSecurityRedbook(ID idRedbook)
 {
-   if (_redbookstring)
-      free(_redbookstring);
-   _redbookstring = NULL;
+    if (_redbookstring)
+        free(_redbookstring);
+    _redbookstring = NULL;
 
-   _redbook = idRedbook;
-   if (_redbook)
-      _redbookstring = LookupRscRedbook(_redbook);
+    _redbook = idRedbook;
+    if (_redbook)
+        _redbookstring = LookupRscRedbook(_redbook);
 
-   if (_redbook && !_redbookstring)
-   {
-      debug(("UpdateSecurityRedbook: can't load resource %i for redbook\n", _redbook));
-     _redbook = 0;
-   }
+    if (_redbook && !_redbookstring)
+    {
+        debug(("UpdateSecurityRedbook: can't load resource %i for redbook\n", _redbook));
+        _redbook = 0;
+    }
 
-   if (_redbookstring)
-       _redbookstring = strdup(_redbookstring);
+    if (_redbookstring)
+        _redbookstring = strdup(_redbookstring);
 }
 
 char* GetSecurityRedbook()
 {
-   if (!_redbookstring)
-      return "BLAKSTON: Greenwich Q Zjiria";
+    if (!_redbookstring)
+        return "BLAKSTON: Greenwich Q Zjiria";
 
-   return _redbookstring;
+    return _redbookstring;
 }
 
 /********************************************************************/
-/* 
+/*
  * Extract: Copy numbytes bytes from buf to result, and increment
  *    buf by numbytes.
  */
-void Extract(char **buf, void *result, UINT numbytes)
+void Extract(char** buf, void* result, UINT numbytes)
 {
-   memcpy(result, *buf, numbytes);
-   *buf += numbytes;    
+    memcpy(result, *buf, numbytes);
+    *buf += numbytes;
 }
 /********************************************************************/
-/* 
+/*
  * ExtractCoordinates:  Get a set of coordinates from ptr, and put
  *   it in the given variables.  Converts from 1-based server coordinates
  *   to 0-based client coordinates.  Also converts kod fineness to client fineness.
  */
-void ExtractCoordinates(char **ptr, int *x, int *y)
+void ExtractCoordinates(char** ptr, int* x, int* y)
 {
-   WORD word;
+    WORD word;
 
-   Extract(ptr, &word, SIZE_COORD);
-   *y = FinenessKodToClient(((int) word) - KOD_FINENESS);
-   Extract(ptr, &word, SIZE_COORD);
-   *x = FinenessKodToClient(((int) word) - KOD_FINENESS);
+    Extract(ptr, &word, SIZE_COORD);
+    *y = FinenessKodToClient(((int)word) - KOD_FINENESS);
+    Extract(ptr, &word, SIZE_COORD);
+    *x = FinenessKodToClient(((int)word) - KOD_FINENESS);
+}
+/********************************************************************/
+/*
+ * ExtractFlags:  Extract the object flag fields (obj flags, drawingflags,
+ *   minimap, name color, object type, moveon type).
+ */
+void ExtractFlags(char** ptr, object_node* o)
+{
+    Extract(ptr, &o->flags, SIZE_VALUE);
+    Extract(ptr, &o->drawingtype, SIZE_TYPE);
+    Extract(ptr, &o->minimapflags, SIZE_VALUE);
+    Extract(ptr, &o->namecolor, SIZE_VALUE);
+
+    BYTE temptype = 0;
+    Extract(ptr, &temptype, SIZE_TYPE);
+    o->objecttype = (object_type)temptype;
+
+    Extract(ptr, &temptype, SIZE_TYPE);
+    o->moveontype = (moveon_type)temptype;
 }
 /********************************************************************/
 /*
@@ -193,321 +217,304 @@ void ExtractCoordinates(char **ptr, int *x, int *y)
  *   ptr, and increment ptr appropriately.  Return the translation
  *   type.
  */
-BYTE ExtractPaletteTranslation(char **ptr, BYTE *translation, BYTE *effect)
+BYTE ExtractPaletteTranslation(char** ptr, BYTE* translation, BYTE* effect)
 {
-   BYTE animation_type;
-   char* oldptr = *ptr;
+    BYTE animation_type;
+    char* oldptr = *ptr;
 
-   *translation = 0;
-   *effect = 0;
+    *translation = 0;
+    *effect = 0;
 
-   // For special animation type, get palette translation info,
-   // otherwise, back up 1 byte and read actual animation info.
-   Extract(ptr, &animation_type, 1);
-   if (animation_type == ANIMATE_TRANSLATION)
-   {
-      Extract(ptr, translation, 1);
-   }
-   else if (animation_type == ANIMATE_EFFECT)
-   {
-      Extract(ptr, effect, 1);
-   }
-   else
-   {
-      *ptr = oldptr;
-   }
+    // For special animation type, get palette translation info,
+    // otherwise, back up 1 byte and read actual animation info.
+    Extract(ptr, &animation_type, 1);
+    if (animation_type == ANIMATE_TRANSLATION)
+    {
+        Extract(ptr, translation, 1);
+    }
+    else if (animation_type == ANIMATE_EFFECT)
+    {
+        Extract(ptr, effect, 1);
+    }
+    else
+    {
+        *ptr = oldptr;
+    }
 
-   return *translation | *effect;
+    return *translation | *effect;
 }
 /********************************************************************/
 /*
  * ExtractAnimation: Get an animation structure from ptr, and increment
  *   ptr appropriately.  Place data in given animation structure.
  */
-void ExtractAnimation(char **ptr, Animate *a)
+void ExtractAnimation(char** ptr, Animate* a)
 {
-   Extract(ptr, &a->animation, SIZE_ANIMATE);
+    Extract(ptr, &a->animation, SIZE_ANIMATE);
 
-   // Read animation-type dependent stuff
-   switch(a->animation)
-   {
-   case ANIMATE_NONE:
-      Extract(ptr, &a->group, SIZE_ANIMATE_GROUP);
-      a->group = BitmapGroupSToC(a->group);
-      break;
+    // Read animation-type dependent stuff
+    switch (a->animation)
+    {
+    case ANIMATE_NONE:
+        Extract(ptr, &a->group, SIZE_ANIMATE_GROUP);
+        a->group = BitmapGroupSToC(a->group);
+        break;
 
-   case ANIMATE_CYCLE:
-      Extract(ptr, &a->period, 4);
-      Extract(ptr, &a->group_low, SIZE_ANIMATE_GROUP);
-      Extract(ptr, &a->group_high, SIZE_ANIMATE_GROUP);
-      a->group_low  = BitmapGroupSToC(a->group_low);
-      a->group_high = BitmapGroupSToC(a->group_high);
-      a->group = a->group_low;
-      a->tick  = a->period;
-      break;
+    case ANIMATE_CYCLE:
+        Extract(ptr, &a->period, 4);
+        Extract(ptr, &a->group_low, SIZE_ANIMATE_GROUP);
+        Extract(ptr, &a->group_high, SIZE_ANIMATE_GROUP);
+        a->group_low = BitmapGroupSToC(a->group_low);
+        a->group_high = BitmapGroupSToC(a->group_high);
+        a->group = a->group_low;
+        a->tick = a->period;
+        break;
 
-   case ANIMATE_ONCE:
-      Extract(ptr, &a->period, 4);
-      Extract(ptr, &a->group_low, SIZE_ANIMATE_GROUP);
-      Extract(ptr, &a->group_high, SIZE_ANIMATE_GROUP);
-      Extract(ptr, &a->group_final, SIZE_ANIMATE_GROUP);
-      a->group_low   = BitmapGroupSToC(a->group_low);
-      a->group_high  = BitmapGroupSToC(a->group_high);
-      a->group_final = BitmapGroupSToC(a->group_final);
-      a->group = a->group_low;
-      a->tick  = a->period;
-      break;
+    case ANIMATE_ONCE:
+        Extract(ptr, &a->period, 4);
+        Extract(ptr, &a->group_low, SIZE_ANIMATE_GROUP);
+        Extract(ptr, &a->group_high, SIZE_ANIMATE_GROUP);
+        Extract(ptr, &a->group_final, SIZE_ANIMATE_GROUP);
+        a->group_low = BitmapGroupSToC(a->group_low);
+        a->group_high = BitmapGroupSToC(a->group_high);
+        a->group_final = BitmapGroupSToC(a->group_final);
+        a->group = a->group_low;
+        a->tick = a->period;
+        break;
 
-   default:
-      debug(("Unknown animation type %d read from server\n", a->animation));
-      a->group  = 0;
-      break;
-   }
+    default:
+        debug(("Unknown animation type %d read from server\n", a->animation));
+        a->group = 0;
+        break;
+    }
 }
 /********************************************************************/
 /*
  * ExtractOverlays: Get overlay structures from ptr,
  *   and increment ptr appropriately.  Return list of overlays.
  */
-list_type ExtractOverlays(char **ptr)
+list_type ExtractOverlays(char** ptr)
 {
-   int i;
-   list_type l = NULL;
-   BYTE num_overlays;
+    int i;
+    list_type l = NULL;
+    BYTE num_overlays;
 
-   Extract(ptr, &num_overlays, 1);
+    Extract(ptr, &num_overlays, 1);
 
-   if (num_overlays == 0)
-      return NULL;
+    if (num_overlays == 0)
+        return NULL;
 
-   for (i=0; i < num_overlays; i++)
-   {
-      Overlay *overlay = (Overlay *) ZeroSafeMalloc(sizeof(Overlay));
-      ExtractOverlay(ptr, overlay);
-      l = list_add_item(l, overlay);
-   }
-   return l;
+    for (i = 0; i < num_overlays; i++)
+    {
+        Overlay* overlay = (Overlay*)ZeroSafeMalloc(sizeof(Overlay));
+        ExtractOverlay(ptr, overlay);
+        l = list_add_item(l, overlay);
+    }
+    return l;
 }
 /********************************************************************/
 /*
  * ExtractOverlay:  Fill overlay with data fom ptr,
  *   and increment ptr appropriately.
  */
-void ExtractOverlay(char **ptr, Overlay *overlay)
+void ExtractOverlay(char** ptr, Overlay* overlay)
 {
-   Extract(ptr, &overlay->icon_res, SIZE_ID);
-   Extract(ptr, &overlay->hotspot, SIZE_HOTSPOT);
+    Extract(ptr, &overlay->icon_res, SIZE_ID);
+    Extract(ptr, &overlay->hotspot, SIZE_HOTSPOT);
 
-   ExtractPaletteTranslation(ptr,&overlay->translation,&overlay->effect);
-   ExtractAnimation(ptr, &overlay->animate);
+    ExtractPaletteTranslation(ptr, &overlay->translation, &overlay->effect);
+    ExtractAnimation(ptr, &overlay->animate);
 }
 
-void ExtractDLighting(char **ptr, d_lighting *dLighting)
+void ExtractDLighting(char** ptr, d_lighting* dLighting)
 {
-   Extract(ptr, &dLighting->flags, 2);
+    Extract(ptr, &dLighting->flags, 2);
 
-   if (LIGHT_FLAG_NONE == dLighting->flags)
-   {
-      dLighting->color = 0;
-      dLighting->intensity = 0;
-      return;
-   }
+    if (LIGHT_FLAG_NONE == dLighting->flags)
+    {
+        dLighting->color = 0;
+        dLighting->intensity = 0;
+        return;
+    }
 
-   Extract(ptr, &dLighting->intensity, 1);
-   Extract(ptr, &dLighting->color, 2);
+    Extract(ptr, &dLighting->intensity, 1);
+    Extract(ptr, &dLighting->color, 2);
 }
 /********************************************************************/
-/* 
+/*
  * ExtractObject: Get an object_node from ptr, and increment
  *   ptr appropriately.  Place data in given object node.
  */
-void ExtractObject(char **ptr, object_node *item)
+void ExtractObject(char** ptr, object_node* item)
 {
-   Extract(ptr, &item->id, SIZE_ID);
-   if (IsNumberObj(item->id))
-      Extract(ptr, &item->amount, SIZE_AMOUNT);
-   else
-      item->amount = 0;
-   Extract(ptr, &item->icon_res, SIZE_ID);
-   Extract(ptr, &item->name_res, SIZE_ID);
-   Extract(ptr, &item->flags, 4);
-   Extract(ptr, &item->drawingtype, 1);
-   Extract(ptr, &item->minimapflags, 4);
-   Extract(ptr, &item->namecolor, 4);
+    Extract(ptr, &item->id, SIZE_ID);
+    if (IsNumberObj(item->id))
+        Extract(ptr, &item->amount, SIZE_AMOUNT);
+    else
+        item->amount = 0;
+    Extract(ptr, &item->icon_res, SIZE_ID);
+    Extract(ptr, &item->name_res, SIZE_ID);
 
-   BYTE temptype = 0;
-   Extract(ptr, &temptype, 1);
-   item->objecttype = (object_type)temptype;
+    // Flag fields.
+    ExtractFlags(ptr, item);
 
-   Extract(ptr, &temptype, 1);
-   item->moveontype = (moveon_type)temptype;
+    ExtractDLighting(ptr, &item->dLighting);
 
-   ExtractDLighting(ptr, &item->dLighting);
+    ExtractPaletteTranslation(ptr, &item->translation, &item->effect);
+    item->normal_translation = item->translation;
+    item->secondtranslation = XLAT_FILTERWHITE90;
 
-   ExtractPaletteTranslation(ptr,&item->translation,&item->effect);
-   item->normal_translation = item->translation;
-   item->secondtranslation = XLAT_FILTERWHITE90;
+    ExtractAnimation(ptr, &item->normal_animate);
+    item->animate = &item->normal_animate;
 
-   ExtractAnimation(ptr, &item->normal_animate);
-   item->animate = &item->normal_animate;
+    item->normal_overlays = ExtractOverlays(ptr);
+    item->overlays = &item->normal_overlays;
 
-   item->normal_overlays = ExtractOverlays(ptr);
-   item->overlays = &item->normal_overlays;
-
-   if (OF_BOUNCING == (OF_BOUNCING & item->flags))
-   {
-      item->bounceTime = (WORD)(rand() % 1000);
-   }
-   if (OF_PHASING == (OF_PHASING & item->flags))
-   {
-      item->phaseTime = (WORD)(rand() % 1000);
-   }
+    if (OF_BOUNCING == (OF_BOUNCING & item->flags))
+    {
+        item->bounceTime = (WORD)(rand() % 1000);
+    }
+    if (OF_PHASING == (OF_PHASING & item->flags))
+    {
+        item->phaseTime = (WORD)(rand() % 1000);
+    }
 }
 
-void ExtractObjectNoLight(char **ptr, object_node *item)
-{  
-   Extract(ptr, &item->id, SIZE_ID);
-   if (IsNumberObj(item->id))
-      Extract(ptr, &item->amount, SIZE_AMOUNT);
-   else
-      item->amount = 0;
-   Extract(ptr, &item->icon_res, SIZE_ID);
-   Extract(ptr, &item->name_res, SIZE_ID);
-   Extract(ptr, &item->flags, 4);
-   Extract(ptr, &item->drawingtype, 1);
-   Extract(ptr, &item->minimapflags, 4);
-   Extract(ptr, &item->namecolor, 4);
+void ExtractObjectNoLight(char** ptr, object_node* item)
+{
+    Extract(ptr, &item->id, SIZE_ID);
+    if (IsNumberObj(item->id))
+        Extract(ptr, &item->amount, SIZE_AMOUNT);
+    else
+        item->amount = 0;
+    Extract(ptr, &item->icon_res, SIZE_ID);
+    Extract(ptr, &item->name_res, SIZE_ID);
 
-   BYTE temptype = 0;
-   Extract(ptr, &temptype, 1);
-   item->objecttype = (object_type)temptype;
+    ExtractFlags(ptr, item);
 
-   Extract(ptr, &temptype, 1);
-   item->moveontype = (moveon_type)temptype;
+    ExtractPaletteTranslation(ptr, &item->translation, &item->effect);
+    item->normal_translation = item->translation;
+    item->secondtranslation = XLAT_FILTERWHITE90;
 
-   ExtractPaletteTranslation(ptr,&item->translation,&item->effect);
-   item->normal_translation = item->translation;
-   item->secondtranslation = XLAT_FILTERWHITE90;
+    ExtractAnimation(ptr, &item->normal_animate);
+    item->animate = &item->normal_animate;
 
-   ExtractAnimation(ptr, &item->normal_animate);
-   item->animate = &item->normal_animate;
+    item->normal_overlays = ExtractOverlays(ptr);
+    item->overlays = &item->normal_overlays;
 
-   item->normal_overlays = ExtractOverlays(ptr);
-   item->overlays = &item->normal_overlays;
-
-   if (OF_BOUNCING == (OF_BOUNCING & item->flags))
-   {
-      item->bounceTime = (WORD)(rand() % 1000);
-   }
-   if (OF_PHASING == (OF_PHASING & item->flags))
-   {
-      item->phaseTime = (WORD)(rand() % 1000);
-   }
+    if (OF_BOUNCING == (OF_BOUNCING & item->flags))
+    {
+        item->bounceTime = (WORD)(rand() % 1000);
+    }
+    if (OF_PHASING == (OF_PHASING & item->flags))
+    {
+        item->phaseTime = (WORD)(rand() % 1000);
+    }
 }
 
 /********************************************************************/
-/* 
+/*
  * ExtractNewObject: Get an object_node from ptr, and increment
  *    ptr appropriately.  Return a newly allocated object containing
  *    read info.
  */
-object_node *ExtractNewObject(char **ptr)
+object_node* ExtractNewObject(char** ptr)
 {
-   object_node *item = ObjectGetBlank();
-   ExtractObject(ptr, item);
-   return item;
+    object_node* item = ObjectGetBlank();
+    ExtractObject(ptr, item);
+    return item;
 }
 
-object_node *ExtractNewObjectNoLighting(char **ptr)
+object_node* ExtractNewObjectNoLighting(char** ptr)
 {
-   object_node *item = ObjectGetBlank();
-   ExtractObjectNoLight(ptr, item);
-   return item;
+    object_node* item = ObjectGetBlank();
+    ExtractObjectNoLight(ptr, item);
+    return item;
 }
 /********************************************************************/
-/* 
+/*
  * ExtractNewRoomObject:  Get a room_contents_node from ptr, and increment
  *   ptr appropriately.  Return a newly allocated object containing
  *   read info.
  */
-room_contents_node *ExtractNewRoomObject(char **ptr)
+room_contents_node* ExtractNewRoomObject(char** ptr)
 {
-   WORD word;
-   room_contents_node *r = (room_contents_node *) ZeroSafeMalloc(sizeof(room_contents_node));
+    WORD word;
+    room_contents_node* r = (room_contents_node*)ZeroSafeMalloc(sizeof(room_contents_node));
 
-   ExtractObject(ptr, &r->obj);
+    ExtractObject(ptr, &r->obj);
 
-//   ExtractDLighting(ptr, &r->obj.dLighting);
+    //   ExtractDLighting(ptr, &r->obj.dLighting);
 
-   ExtractCoordinates(ptr, &r->motion.x, &r->motion.y);
-   r->moving = False;
+    ExtractCoordinates(ptr, &r->motion.x, &r->motion.y);
+    r->moving = False;
 
-   Extract(ptr, &word, SIZE_ANGLE);
-   r->angle = ANGLE_STOC(word);   
+    Extract(ptr, &word, SIZE_ANGLE);
+    r->angle = ANGLE_STOC(word);
 
-   ExtractPaletteTranslation(ptr,&r->motion.translation,&r->motion.effect);
-   ExtractAnimation(ptr, &r->motion.animate);
-   r->motion.overlays = ExtractOverlays(ptr);
-   r->motion.move_animating = False;
+    ExtractPaletteTranslation(ptr, &r->motion.translation, &r->motion.effect);
+    ExtractAnimation(ptr, &r->motion.animate);
+    r->motion.overlays = ExtractOverlays(ptr);
+    r->motion.move_animating = False;
 
-   return r;
+    return r;
 }
 /********************************************************************/
-/* 
+/*
  * ExtractObjectList:  Get a list of objects from ptr, allocate space
  *   for the objects, and return the list.
  *   Len should be the remaining bytes at the beginning of the list,
  *   and the list should be the last component of the message.
  *   Return LIST_ERROR on error.
  */
-list_type ExtractObjectList(char **ptr, long len)
+list_type ExtractObjectList(char** ptr, long len)
 {
-   WORD list_len, i;
-   char *start;
-   list_type list = NULL;
+    WORD list_len, i;
+    char* start;
+    list_type list = NULL;
 
-   if (len < SIZE_LIST_LEN)
-      return LIST_ERROR;
-   len -= SIZE_LIST_LEN;
-   
-   Extract(ptr, &list_len, SIZE_LIST_LEN);
+    if (len < SIZE_LIST_LEN)
+        return LIST_ERROR;
+    len -= SIZE_LIST_LEN;
 
-   start = *ptr;
+    Extract(ptr, &list_len, SIZE_LIST_LEN);
 
-   for (i=0; i < list_len; i++)
-      list = list_add_item(list, ExtractNewObject(ptr));
-   len -= (*ptr - start);
-   if (len != 0)
-   {
-      ObjectListDestroy(list);
-      return LIST_ERROR;
-   }   
-   return list;
+    start = *ptr;
+
+    for (i = 0; i < list_len; i++)
+        list = list_add_item(list, ExtractNewObject(ptr));
+    len -= (*ptr - start);
+    if (len != 0)
+    {
+        ObjectListDestroy(list);
+        return LIST_ERROR;
+    }
+    return list;
 }
 /********************************************************************/
-/* 
+/*
  * ExtractNewBackgroundOverlay:  Allocate a new background overlay,
  *   read it from ptr, and return it.  Modifies ptr.
  */
-BackgroundOverlay *ExtractNewBackgroundOverlay(char **ptr)
+BackgroundOverlay* ExtractNewBackgroundOverlay(char** ptr)
 {
-   WORD word;
-   BackgroundOverlay *item = (BackgroundOverlay *) ZeroSafeMalloc(sizeof(BackgroundOverlay));
+    WORD word;
+    BackgroundOverlay* item = (BackgroundOverlay*)ZeroSafeMalloc(sizeof(BackgroundOverlay));
 
-   Extract(ptr, &item->obj.id, SIZE_ID);
-   Extract(ptr, &item->obj.icon_res, SIZE_ID);
-   Extract(ptr, &item->obj.name_res, SIZE_ID);
+    Extract(ptr, &item->obj.id, SIZE_ID);
+    Extract(ptr, &item->obj.icon_res, SIZE_ID);
+    Extract(ptr, &item->obj.name_res, SIZE_ID);
 
-   ExtractPaletteTranslation(ptr,&item->obj.translation,&item->obj.effect);
-   ExtractAnimation(ptr, &item->obj.normal_animate);
-   item->obj.animate = &item->obj.normal_animate;
+    ExtractPaletteTranslation(ptr, &item->obj.translation, &item->obj.effect);
+    ExtractAnimation(ptr, &item->obj.normal_animate);
+    item->obj.animate = &item->obj.normal_animate;
 
-   Extract(ptr, &word, 2);
-   item->x = (int) word;
-   Extract(ptr, &word, 2);
-   item->y = (int) word;
-   
-   return item;
+    Extract(ptr, &word, 2);
+    item->x = (int)word;
+    Extract(ptr, &word, 2);
+    item->y = (int)word;
+
+    return item;
 }
 /********************************************************************/
 /*
@@ -515,22 +522,22 @@ BackgroundOverlay *ExtractNewBackgroundOverlay(char **ptr)
  *   Extracts at most max_chars characters; returns -1 if length is bigger than this.
  *   Return new value of len (i.e. # of remaining bytes), or -1 on failure.
  */
-WORD ExtractString(char **ptr, long len, char *message, int max_chars)
+WORD ExtractString(char** ptr, long len, char* message, int max_chars)
 {
-   WORD string_len;
+    WORD string_len;
 
-   if (len < SIZE_STRING_LEN)
-      return (WORD) -1;
-   len -= SIZE_STRING_LEN;
-   
-   Extract(ptr, &string_len, SIZE_STRING_LEN);
-   if (len < string_len || string_len > max_chars)
-      return (WORD) -1;
-   Extract(ptr, message, string_len);
-   message[string_len] = '\0';
-   len -= string_len;
+    if (len < SIZE_STRING_LEN)
+        return (WORD)-1;
+    len -= SIZE_STRING_LEN;
 
-   return (WORD) len;
+    Extract(ptr, &string_len, SIZE_STRING_LEN);
+    if (len < string_len || string_len > max_chars)
+        return (WORD)-1;
+    Extract(ptr, message, string_len);
+    message[string_len] = '\0';
+    len -= string_len;
+
+    return (WORD)len;
 }
 /********************************************************************/
 /*
@@ -539,1564 +546,1716 @@ WORD ExtractString(char **ptr, long len, char *message, int max_chars)
  * using on the first byte of the packet.  The server can tell us a
  * new value to mangle/unmangle with, every now and then.
  */
-Bool DesecureByServerToken(char *message, int len)
+Bool DesecureByServerToken(char* message, int len)
 {
-   if (!message || len <= 0)
-      return False;
+    if (!message || len <= 0)
+        return False;
 
-   *message = (*message) ^ (server_secure_token & 0xFF);
+    *message = (*message) ^ (server_secure_token & 0xFF);
 
-//   debug(("Got msg type %u secured by %u\n", (unsigned char)message[0], (unsigned char)(server_secure_token & 0xFF)));
+    //   debug(("Got msg type %u secured by %u\n", (unsigned char)message[0], (unsigned char)(server_secure_token & 0xFF)));
 
-   if (server_sliding_token)
-   {
-      server_secure_token += ((*server_sliding_token) & 0x7F);
-     server_sliding_token++;
-     if (*server_sliding_token == '\0')
-        server_sliding_token = GetSecurityRedbook();
-   }
+    if (server_sliding_token)
+    {
+        server_secure_token += ((*server_sliding_token) & 0x7F);
+        server_sliding_token++;
+        if (*server_sliding_token == '\0')
+            server_sliding_token = GetSecurityRedbook();
+    }
 
-   return True;
+    return True;
 }
 /********************************************************************/
 /*
  * HandleMessage: Handle messages arriving from the server.  len should
- *   be the length of message INCLUDING type byte; 
+ *   be the length of message INCLUDING type byte;
  *   the first byte of the message should be the type (BP_CREATE, etc.).
  *   Return True iff message has correct format.
  */
-Bool HandleMessage(char *message, int len)
+Bool HandleMessage(char* message, int len)
 {
-   HandlerTable table;
-   Bool handled;
+    HandlerTable table;
+    Bool handled;
 
-   DesecureByServerToken(message, len);
+    DesecureByServerToken(message, len);
 
-   switch (state)
-   {
-   case STATE_CONNECTING:
-      table = connecting_handler_table;
-      break;
+    switch (state)
+    {
+    case STATE_CONNECTING:
+        table = connecting_handler_table;
+        break;
 
-   case STATE_LOGIN:
-      table = login_handler_table;
-      break;
+    case STATE_LOGIN:
+        table = login_handler_table;
+        break;
 
-   case STATE_GAME:
-      // See if a module wants to handle the message
-      if (ModuleEvent(EVENT_SERVERMSG, message, len) == False)
-    return True;
+    case STATE_GAME:
+        // See if a module wants to handle the message
+        if (ModuleEvent(EVENT_SERVERMSG, message, len) == False)
+            return True;
 
-      table = game_handler_table;
-      break;
+        table = game_handler_table;
+        break;
 
-   default:
-      return False;
-   }
+    default:
+        return False;
+    }
 
-   handled =  LookupMessage(message, len, table);
-   if (!handled)
-      debug(("Got unknown message type %d from server\n", (int) (unsigned char) message[0]));
-   return handled;
+    handled = LookupMessage(message, len, table);
+    if (!handled)
+        debug(("Got unknown message type %d from server\n", (int)(unsigned char)message[0]));
+    return handled;
 }
 /********************************************************************/
 /*
  * LookupMessage:  Dispatch the given message according to the given message
- *   handler table. 
+ *   handler table.
  *   Return True iff message successfully handled by one of the message handlers
  *   in the table.
  */
-Bool LookupMessage(char *message, int len, HandlerTable table)
+Bool LookupMessage(char* message, int len, HandlerTable table)
 {
-   char *ptr;
-   unsigned char type;
-   Bool success = False;
-   int index;
+    char* ptr;
+    unsigned char type;
+    Bool success = False;
+    int index;
 
-   memcpy(&type, message, SIZE_TYPE);
+    memcpy(&type, message, SIZE_TYPE);
 
-   ptr = message + SIZE_TYPE;
+    ptr = message + SIZE_TYPE;
 
-   /* Look for message handler in table */
-   index = 0;
-   while (table[index].msg_type != 0)
-   {
-      if (table[index].msg_type == type)
-      {
-         if (table[index].handler != NULL)
-         {                           
-            /* Don't count type byte in length for handler */
-            success = (*table[index].handler)(ptr, len - SIZE_TYPE);
-            if (!success)
+    /* Look for message handler in table */
+    index = 0;
+    while (table[index].msg_type != 0)
+    {
+        if (table[index].msg_type == type)
+        {
+            if (table[index].handler != NULL)
             {
-               // Don't print error message for "subprotocols"; these handle themselves
-               if (type != BP_USERCOMMAND)
-                  debug(("Error in message of type %d from server\n", type));
-               return False;
+                /* Don't count type byte in length for handler */
+                success = (*table[index].handler)(ptr, len - SIZE_TYPE);
+                if (!success)
+                {
+                    // Don't print error message for "subprotocols"; these handle themselves
+                    if (type != BP_USERCOMMAND)
+                        debug(("Error in message of type %d from server\n", type));
+                    return False;
+                }
             }
-         }
-      break;
-      }
-   index++;
-   }
+            break;
+        }
+        index++;
+    }
 
-   if (table[index].msg_type == 0)
-      return False;
-   return True;
+    if (table[index].msg_type == 0)
+        return False;
+    return True;
 }
 /********************************************************************/
 /*                      GAME MODE MESSAGES                          */
 /********************************************************************/
-Bool HandlePlayer(char *ptr, long len)
-{   
-   player_info player;
-   ID bkgnd_id;
-   BYTE ambient_light;
-   DWORD flags,depth;
-   char *start = ptr;
-
-   Extract(&ptr, &player.id, SIZE_ID);
-   Extract(&ptr, &player.icon_res, SIZE_ID);
-   Extract(&ptr, &player.name_res, SIZE_ID);
-   Extract(&ptr, &player.room_id, SIZE_ID);
-   Extract(&ptr, &player.room_res, SIZE_ID);
-   Extract(&ptr, &player.room_name_res, SIZE_ID);
-   Extract(&ptr, &player.room_security, 4);
-
-   Extract(&ptr, &ambient_light, SIZE_LIGHT);
-   Extract(&ptr, &player.light, SIZE_LIGHT);
-
-   Extract(&ptr, &bkgnd_id, SIZE_ID);
-
-   Extract(&ptr, &effects.wadingsound, SIZE_ID);
-
-   Extract(&ptr, &flags, SIZE_VALUE);
-   SetRoomFlags(flags);
-
-   Extract(&ptr, &depth, SIZE_VALUE);
-   SetOverrideRoomDepth(SF_DEPTH1,depth<<4);
-
-   Extract(&ptr, &depth, SIZE_VALUE);
-   SetOverrideRoomDepth(SF_DEPTH2,depth<<4);
-
-   Extract(&ptr, &depth, SIZE_VALUE);
-   SetOverrideRoomDepth(SF_DEPTH3,depth<<4);
-
-   len -= (ptr - start);
-   if (len != 0)
-      return False;
-
-   SetPlayerInfo(&player, ambient_light, bkgnd_id);
-   return True;   
-}
-/********************************************************************/
-Bool HandleRoomContents(char *ptr, long len)
-{   
-   room_contents_node *room_item;
-   list_type room_contents_list = NULL;
-   WORD list_len;
-   int i;
-   ID room_id;
-   char *start;
-
-   if (len < SIZE_ID + SIZE_LIST_LEN)
-      return False;
-   len -= SIZE_ID + SIZE_LIST_LEN;
-
-   Extract(&ptr, &room_id, SIZE_ID);
-
-//   Extract(&ptr, &effects.wadingsound, SIZE_ID);
-//   Extract(&ptr, &current_room.flags, SIZE_VALUE);
-
-   Extract(&ptr,&list_len, SIZE_LIST_LEN);
-
-   start = ptr;
-   for (i=0; i < list_len; i++)
-   {
-      room_item = ExtractNewRoomObject(&ptr);
-      room_contents_list = list_add_item(room_contents_list, room_item);
-   }
-   len -= (ptr - start);
-
-   if (len != 0)
-   {
-      RoomObjectListDestroy(room_contents_list);
-      return False;
-   }
-
-   SetPlayerRemoteView(0,0,0,0);
-   SetRoomInfo(room_id, room_contents_list);
-   return True;   
-}
-/********************************************************************/
-Bool HandleMove(char *ptr, long len)
-{    
-   ID obj_id;
-   int x, y;
-   BYTE speed;
-   char *start = ptr;
-   BOOL turnToFace = FALSE;
-
-   if (len < 1 * SIZE_ID + 2 * SIZE_COORD + 1)
-      return False;
-
-   Extract(&ptr, &obj_id, sizeof(obj_id));
-   ExtractCoordinates(&ptr, &x, &y);
-
-   Extract(&ptr, &speed, 1);
-   if (0x80 & speed)
-   {
-      speed &= ~0x80;
-      turnToFace = TRUE;
-   }
-   
-   len -= (ptr - start);
-   if (len != 0)
-      return False;
-
-   MoveObject2(obj_id, x, y, speed, turnToFace);
-
-   return True;   
-}
-/********************************************************************/
-Bool HandleTurn(char *ptr,long len)
-{    
-   ID obj_id;
-   WORD angle;
-
-   if (len != SIZE_ID + SIZE_ANGLE)
-      return False;
-
-   Extract(&ptr, &obj_id, sizeof(obj_id));
-   Extract(&ptr, &angle, sizeof(angle));
-   TurnObject(obj_id, angle);
-
-   return True;   
-}
-/********************************************************************/
-Bool HandleCreate(char *ptr,long len)
-{   
-   room_contents_node *room_item;
-   char *start = ptr;
-
-   room_item = ExtractNewRoomObject(&ptr);
-
-   len -= (ptr - start);
-   if (len != 0)
-   {
-      SafeFree(room_item);
-      return False;
-   }
-
-   CreateObject(room_item);
-
-   // something changed, so we probably need to rebuild static lists
-   gD3DRedrawAll |= D3DRENDER_REDRAW_ALL;
-
-   return True;   
-}
-/********************************************************************/
-Bool HandleRemove(char *ptr,long len)
-{   
-   ID obj_id;
-
-   if (len != 1 * SIZE_ID)
-      return False;
-   
-   Extract(&ptr, &obj_id, SIZE_ID);
-
-   RemoveObject(obj_id);
-
-   // something changed, so we probably need to rebuild static lists
-   gD3DRedrawAll |= D3DRENDER_REDRAW_ALL;
-
-   return True;   
-}
-/********************************************************************/
-Bool HandleChange(char *ptr, long len)
+Bool HandlePlayer(char* ptr, long len)
 {
-   object_node object;
-   Animate a;
-   list_type overlays;
-   BYTE translation = 255;
-   BYTE effect = 255;
-   char *start = ptr;
+    player_info player;
+    ID bkgnd_id;
+    BYTE ambient_light;
+    DWORD flags, depth;
+    char* start = ptr;
 
-   memset(&object,0,sizeof(object));
-   ExtractObject(&ptr, &object);
-//   ExtractDLighting(&ptr, &object.dLighting);
-   ExtractPaletteTranslation(&ptr,&translation,&effect);
-   ExtractAnimation(&ptr, &a);
-   overlays = ExtractOverlays(&ptr);
+    Extract(&ptr, &player.id, SIZE_ID);
+    Extract(&ptr, &player.icon_res, SIZE_ID);
+    Extract(&ptr, &player.name_res, SIZE_ID);
+    Extract(&ptr, &player.room_id, SIZE_ID);
+    Extract(&ptr, &player.room_res, SIZE_ID);
+    Extract(&ptr, &player.room_name_res, SIZE_ID);
+    Extract(&ptr, &player.room_security, 4);
 
-   len -= (ptr - start);
-   if (len != 0)
-      return False;
+    Extract(&ptr, &ambient_light, SIZE_LIGHT);
+    Extract(&ptr, &player.light, SIZE_LIGHT);
 
-   ChangeObject(&object, translation, effect, &a, overlays);
+    Extract(&ptr, &bkgnd_id, SIZE_ID);
 
-   // something changed, so we probably need to rebuild static lists
-//   gD3DRedrawAll |= D3DRENDER_REDRAW_UPDATE;
-   
-   return True;
+    Extract(&ptr, &effects.wadingsound, SIZE_ID);
+
+    Extract(&ptr, &flags, SIZE_VALUE);
+    SetRoomFlags(flags);
+
+    Extract(&ptr, &depth, SIZE_VALUE);
+    SetOverrideRoomDepth(SF_DEPTH1, depth << 4);
+
+    Extract(&ptr, &depth, SIZE_VALUE);
+    SetOverrideRoomDepth(SF_DEPTH2, depth << 4);
+
+    Extract(&ptr, &depth, SIZE_VALUE);
+    SetOverrideRoomDepth(SF_DEPTH3, depth << 4);
+
+    len -= (ptr - start);
+    if (len != 0)
+        return False;
+
+    SetPlayerInfo(&player, ambient_light, bkgnd_id);
+    return True;
 }
 /********************************************************************/
-Bool HandleObjectContents(char *ptr,long len)
+Bool HandleRoomContents(char* ptr, long len)
 {
-   list_type list = NULL;
-   ID object_id;
+    room_contents_node* room_item;
+    list_type room_contents_list = NULL;
+    WORD list_len;
+    int i;
+    ID room_id;
+    char* start;
 
-   if (len < SIZE_ID)
-      return False;
+    if (len < SIZE_ID + SIZE_LIST_LEN)
+        return False;
+    len -= SIZE_ID + SIZE_LIST_LEN;
 
-   Extract(&ptr, &object_id, SIZE_ID);
-   len -= SIZE_ID;
+    Extract(&ptr, &room_id, SIZE_ID);
 
-   if ((list = ExtractObjectList(&ptr, len)) == LIST_ERROR)
-      return False;
-      
-   GotObjectContents(object_id, list);
-   return True;
+    //   Extract(&ptr, &effects.wadingsound, SIZE_ID);
+    //   Extract(&ptr, &current_room.flags, SIZE_VALUE);
+
+    Extract(&ptr, &list_len, SIZE_LIST_LEN);
+
+    start = ptr;
+    for (i = 0; i < list_len; i++)
+    {
+        room_item = ExtractNewRoomObject(&ptr);
+        room_contents_list = list_add_item(room_contents_list, room_item);
+    }
+    len -= (ptr - start);
+
+    if (len != 0)
+    {
+        RoomObjectListDestroy(room_contents_list);
+        return False;
+    }
+
+    SetPlayerRemoteView(0, 0, 0, 0);
+    SetRoomInfo(room_id, room_contents_list);
+    return True;
 }
 /********************************************************************/
-Bool HandleInventoryAdd(char *ptr,long len)
+Bool HandleRoomContentsFlags(char* ptr, long len)
 {
-   object_node *obj;
-   char *start = ptr;
+    //StartWatch();
+    WORD list_len;
+    int i;
+    ID room_id;
+    char* start;
+    ID object_id;
+    room_contents_node* r;
 
-   obj = ExtractNewObject(&ptr);
-   len -= (ptr - start);
-   if (len != 0)
-   {
-      SafeFree(obj);
-      return False;
-   }
+    if (len < SIZE_ID + SIZE_LIST_LEN)
+        return False;
+    len -= SIZE_ID + SIZE_LIST_LEN;
 
-   AddToInventory(obj);
-   return True;
+    Extract(&ptr, &room_id, SIZE_ID);
+
+    Extract(&ptr, &list_len, SIZE_LIST_LEN);
+    start = ptr;
+    bool found = false;
+    for (i = 0; i < list_len; i++)
+    {
+        Extract(&ptr, &object_id, SIZE_ID);
+        r = GetRoomObjectById(object_id);
+        if (!r)
+        {
+            ptr += SIZE_OBJECTFLAGS;
+            continue;
+        }
+        ExtractFlags(&ptr, &r->obj);
+
+        found = true;
+    }
+
+    if (found)
+        RedrawAll();
+
+    len -= (ptr - start);
+
+    //char buffer[BORDER_DEBUG_LENGTH];
+    //sprintf(buffer, "Handled in %.3f us", StopWatch());
+    //DrawDebugDataInBorder(buffer);
+
+    return True;
 }
 /********************************************************************/
-Bool HandleInventoryRemove(char *ptr,long len)
+Bool HandleMove(char* ptr, long len)
 {
-   ID obj_id;
+    ID obj_id;
+    int x, y;
+    BYTE speed;
+    WORD angle;
+    char* start = ptr;
+    BOOL turnToFace = FALSE;
 
-   if (len != SIZE_ID)
-      return False;
+    if (len < 1 * SIZE_ID + 2 * SIZE_COORD + 1 + SIZE_ANGLE)
+        return False;
 
-   Extract(&ptr, &obj_id, SIZE_ID);
-   
-   RemoveFromInventory(obj_id);
+    Extract(&ptr, &obj_id, sizeof(obj_id));
+    ExtractCoordinates(&ptr, &x, &y);
 
-   return True;
+    Extract(&ptr, &speed, 1);
+    if (0x80 & speed)
+    {
+        speed &= ~0x80;
+        turnToFace = TRUE;
+    }
+
+    Extract(&ptr, &angle, sizeof(angle));
+
+    len -= (ptr - start);
+    if (len != 0)
+        return False;
+
+    TurnObject(obj_id, angle);
+    MoveObject2(obj_id, x, y, speed, turnToFace);
+
+    return True;
 }
 /********************************************************************/
-Bool HandleInventory(char *ptr,long len)
+Bool HandleTurn(char* ptr, long len)
 {
-   list_type list = NULL;
+    ID obj_id;
+    WORD angle;
 
-   if ((list = ExtractObjectList(&ptr, len)) == LIST_ERROR)
-      return False;
+    if (len != SIZE_ID + SIZE_ANGLE)
+        return False;
 
-   SetInventory(list);
-   return True;
+    Extract(&ptr, &obj_id, sizeof(obj_id));
+    Extract(&ptr, &angle, sizeof(angle));
+    TurnObject(obj_id, angle);
+
+    return True;
 }
 /********************************************************************/
-Bool HandleStringMessage(char *ptr,long len)
+Bool HandleCreate(char* ptr, long len)
 {
-   char message[MAXMESSAGE];
-   char* msg = message;
-   ID resource_id;
+    room_contents_node* room_item;
+    char* start = ptr;
 
-   if (len < SIZE_ID)
-      return False;
-   
-   Extract(&ptr, &resource_id, SIZE_ID);
-   len -= SIZE_ID;
+    room_item = ExtractNewRoomObject(&ptr);
 
-   // See if we need to reorder the message.
-   if (CheckMessageOrder(&ptr, &len, resource_id) < 0)
-      return False;
-   /* Remove format string id # from length */
-   if (!CheckServerMessage(&msg, &ptr, &len, resource_id))
-      return False;
+    len -= (ptr - start);
+    if (len != 0)
+    {
+        SafeFree(room_item);
+        return False;
+    }
 
-   GameMessage(msg);
-   return True;
+    CreateObject(room_item);
+
+    return True;
 }
 /********************************************************************/
-Bool HandleSysMessage(char *ptr,long len)
+Bool HandleRemove(char* ptr, long len)
 {
-   // System messages used to be handled and displayed separately; now
-   // we just display them in the main text area.
-   return HandleStringMessage(ptr, len);
+    ID obj_id;
+
+    if (len != 1 * SIZE_ID)
+        return False;
+
+    Extract(&ptr, &obj_id, SIZE_ID);
+
+    RemoveObject(obj_id);
+
+    return True;
 }
 /********************************************************************/
-Bool HandleSaid(char *ptr,long len)
+Bool HandleChange(char* ptr, long len)
 {
-   char message[MAXMESSAGE];
-   char* msg = message;
-   ID resource_id, sender_id, sender_name;
-   BYTE say_type;
+    object_node object;
+    Animate a;
+    list_type overlays;
+    BYTE translation = 255;
+    BYTE effect = 255;
+    char* start = ptr;
 
-   if (len < SIZE_ID)
-      return False;
-   
-   Extract(&ptr, &sender_id, SIZE_ID);
-   Extract(&ptr, &sender_name, SIZE_ID);
-   Extract(&ptr, &say_type, SIZE_SAY_INFO);
-   Extract(&ptr, &resource_id, SIZE_ID);
+    memset(&object, 0, sizeof(object));
+    ExtractObject(&ptr, &object);
+    //   ExtractDLighting(&ptr, &object.dLighting);
+    ExtractPaletteTranslation(&ptr, &translation, &effect);
+    ExtractAnimation(&ptr, &a);
+    overlays = ExtractOverlays(&ptr);
 
-   len -= 2 * SIZE_ID + SIZE_SAY_INFO;
+    len -= (ptr - start);
+    if (len != 0)
+        return False;
 
-   if (!CheckServerMessage(&msg, &ptr, &len, resource_id))
-      return False;
+    ChangeObject(&object, translation, effect, &a, overlays);
 
-   MessageSaid(sender_id, sender_name, say_type, msg);
-   return True;
+    return True;
 }
 /********************************************************************/
-Bool HandleInvalidateData(char *ptr,long len)
+Bool HandleChangeFlags(char* ptr, long len)
 {
-   if (len != 0)
-      return False;
-   ResetUserData();
-   return True;
+    char* start;
+    object_node o;
+
+    if (len < SIZE_ID + SIZE_OBJECTFLAGS)
+        return False;
+
+    start = ptr;
+
+    Extract(&ptr, &o.id, SIZE_ID);
+    ExtractFlags(&ptr, &o);
+
+    len -= (ptr - start);
+    if (len != 0)
+        return False;
+
+    ChangeObjectFlags(&o);
+
+    return True;
 }
 /********************************************************************/
-Bool HandleWait(char *ptr,long len)
+Bool HandleObjectContents(char* ptr, long len)
 {
-   if (len != 0)
-      return False;
+    list_type list = NULL;
+    ID object_id;
 
-   //   System is saving - clear user selected target as the ID will be invalid afterwards.
-   SetUserTargetID( INVALID_ID );
+    if (len < SIZE_ID)
+        return False;
 
-   GameWait();
-   return True;
+    Extract(&ptr, &object_id, SIZE_ID);
+    len -= SIZE_ID;
+
+    if ((list = ExtractObjectList(&ptr, len)) == LIST_ERROR)
+        return False;
+
+    GotObjectContents(object_id, list);
+    return True;
 }
 /********************************************************************/
-Bool HandleUnwait(char *ptr,long len)
+Bool HandleInventoryAdd(char* ptr, long len)
 {
-   if (len != 0)
-      return False;
+    object_node* obj;
+    char* start = ptr;
 
-   GameUnwait();
-   return True;
+    obj = ExtractNewObject(&ptr);
+    len -= (ptr - start);
+    if (len != 0)
+    {
+        SafeFree(obj);
+        return False;
+    }
+
+    AddToInventory(obj);
+    return True;
 }
 /********************************************************************/
-Bool HandleLook(char *ptr, long len)
+Bool HandleInventoryRemove(char* ptr, long len)
 {
-   char message[MAXMESSAGE];
-   char* msg = message;
-   char inscription[MAXMESSAGE];
-   char* inscr = inscription;
-   ID resource_id;
-   BYTE flags;
-   BOOL pane;
-   char *start = ptr;
-   object_node obj;
+    ID obj_id;
 
-   memset(&obj,0,sizeof(obj));
-   ExtractObject(&ptr, &obj);
-   Extract(&ptr, &flags, 1);
+    if (len != SIZE_ID)
+        return False;
 
-   // Remove format string id # & other ids from length
-   Extract(&ptr, &resource_id, SIZE_ID);
-   len -= (ptr - start);
-   // See if we need to reorder the message.
-   if (CheckMessageOrder(&ptr, &len, resource_id) < 0)
-      return False;
-   if (!CheckServerMessage(&msg, &ptr, &len, resource_id))
-      return False;
+    Extract(&ptr, &obj_id, SIZE_ID);
 
-   // Get inscription string
-   inscription[0] = '\0';
-   pane = TRUE && flags & (DF_EDITABLE | DF_INSCRIBED);
-   if (pane)
-   {
-      Extract(&ptr, &resource_id, SIZE_ID);
-      len -= SIZE_ID;
-      if (!CheckServerMessage(&inscr, &ptr, &len, resource_id))
-         return False;
-   }
+    RemoveFromInventory(obj_id);
 
-   DisplayDescription(&obj, flags, (pane? inscr : NULL), msg, NULL);
-   ObjectDestroy(&obj);
-
-   return True;
+    return True;
 }
 /********************************************************************/
-Bool HandleUseList(char *ptr,long len)
+Bool HandleInventory(char* ptr, long len)
 {
-   list_type use_list = NULL;
-   WORD list_len;
-   int i;
-   ID id;
-   char *start;
+    list_type list = NULL;
 
-   if (len < SIZE_LIST_LEN)
-      return False;
-   len -= SIZE_LIST_LEN;
+    if ((list = ExtractObjectList(&ptr, len)) == LIST_ERROR)
+        return False;
 
-   Extract(&ptr, &list_len, SIZE_LIST_LEN);
-
-   start = ptr;
-
-   for (i=0; i < list_len; i++)
-   {
-      Extract(&ptr, &id, SIZE_ID);
-      use_list = list_add_item(use_list, (void *) id);
-   }
-
-   len -= (ptr - start);
-   if (len != 0)
-   {
-      list_delete(use_list);
-      return False;
-   }
-            
-   UseListSet(use_list);
-   return True;
+    SetInventory(list);
+    return True;
 }
 /********************************************************************/
-Bool HandleUse(char *ptr,long len)
+Bool HandleStringMessage(char* ptr, long len)
 {
-   ID obj_id;
+    char message[MAXMESSAGE];
+    char* msg = message;
+    ID resource_id;
 
-   if (len != SIZE_ID)
-      return False;
-   
-   Extract(&ptr, &obj_id, SIZE_ID);
+    if (len < SIZE_ID)
+        return False;
 
-   UseObject(obj_id);
-   return True;
+    Extract(&ptr, &resource_id, SIZE_ID);
+    len -= SIZE_ID;
+
+    // See if we need to reorder the message.
+    if (CheckMessageOrder(&ptr, &len, resource_id) < 0)
+        return False;
+    /* Remove format string id # from length */
+    if (!CheckServerMessage(&msg, &ptr, &len, resource_id))
+        return False;
+
+    GameMessage(msg);
+    return True;
 }
 /********************************************************************/
-Bool HandleUnuse(char *ptr, long len)
+Bool HandleSysMessage(char* ptr, long len)
 {
-   ID obj_id;
-
-   if (len != SIZE_ID)
-      return False;
-
-   Extract(&ptr, &obj_id, SIZE_ID);
-
-   UnuseObject(obj_id);
-   return True;
+    // System messages used to be handled and displayed separately; now
+    // we just display them in the main text area.
+    return HandleStringMessage(ptr, len);
 }
 /********************************************************************/
-Bool HandleOffer(char *ptr,long len)
+Bool HandleSaid(char* ptr, long len)
 {
-   list_type list = NULL;
-   object_node offerer;
-   char *start;
+    char message[MAXMESSAGE];
+    char* msg = message;
+    ID resource_id, sender_id, sender_name;
+    BYTE say_type;
 
-   start = ptr;
+    if (len < SIZE_ID)
+        return False;
 
-   memset(&offerer,0,sizeof(offerer));
-   /* Object that offered to player */
-   ExtractObject(&ptr, &offerer);
-   len -= (ptr - start);
+    Extract(&ptr, &sender_id, SIZE_ID);
+    Extract(&ptr, &sender_name, SIZE_ID);
+    Extract(&ptr, &say_type, SIZE_SAY_INFO);
+    Extract(&ptr, &resource_id, SIZE_ID);
 
-   if ((list = ExtractObjectList(&ptr, len)) == LIST_ERROR)
-      return False;
+    len -= 2 * SIZE_ID + SIZE_SAY_INFO;
 
-   ReceiveOffer(offerer.id, offerer.icon_res, offerer.name_res, list);
-   return True;
+    if (!CheckServerMessage(&msg, &ptr, &len, resource_id))
+        return False;
+
+    MessageSaid(sender_id, sender_name, say_type, msg);
+    return True;
 }
 /********************************************************************/
-Bool HandleOfferCanceled(char *ptr,long len)
+Bool HandleInvalidateData(char* ptr, long len)
 {
-   if (len != 0)
-      return False;
-
-   OfferCanceled();
-   return True;
+    if (len != 0)
+        return False;
+    ResetUserData();
+    return True;
 }
 /********************************************************************/
-Bool HandleOffered(char *ptr,long len)
+Bool HandleWait(char* ptr, long len)
 {
-   list_type list = NULL;
+    if (len != 0)
+        return False;
 
-   if ((list = ExtractObjectList(&ptr, len)) == LIST_ERROR)
-      return False;
+    //   System is saving - clear user selected target as the ID will be invalid afterwards.
+    SetUserTargetID(INVALID_ID);
 
-   Offered(list);
-   return True;
+    GameWait();
+    return True;
 }
 /********************************************************************/
-Bool HandleCounteroffered(char *ptr,long len)
+Bool HandleUnwait(char* ptr, long len)
 {
-   list_type list = NULL;
+    if (len != 0)
+        return False;
 
-   if ((list = ExtractObjectList(&ptr, len)) == LIST_ERROR)
-      return False;
-
-   Counteroffered(list);
-   return True;
+    GameUnwait();
+    return True;
 }
 /********************************************************************/
-Bool HandleCounteroffer(char *ptr,long len)
+Bool HandleLook(char* ptr, long len)
 {
-   list_type list = NULL;
+    char message[MAXMESSAGE];
+    char* msg = message;
+    char inscription[MAXMESSAGE];
+    char* inscr = inscription;
+    ID resource_id;
+    BYTE flags;
+    BOOL pane;
+    char* start = ptr;
+    object_node obj;
 
-   if ((list = ExtractObjectList(&ptr, len)) == LIST_ERROR)
-      return False;
+    memset(&obj, 0, sizeof(obj));
+    ExtractObject(&ptr, &obj);
+    Extract(&ptr, &flags, 1);
 
-   Counteroffer(list);
-   return True;
+    // Remove format string id # & other ids from length
+    Extract(&ptr, &resource_id, SIZE_ID);
+    len -= (ptr - start);
+    // See if we need to reorder the message.
+    if (CheckMessageOrder(&ptr, &len, resource_id) < 0)
+        return False;
+    if (!CheckServerMessage(&msg, &ptr, &len, resource_id))
+        return False;
+
+    // Get inscription string
+    inscription[0] = '\0';
+    pane = TRUE && flags & (DF_EDITABLE | DF_INSCRIBED);
+    if (pane)
+    {
+        Extract(&ptr, &resource_id, SIZE_ID);
+        len -= SIZE_ID;
+        if (!CheckServerMessage(&inscr, &ptr, &len, resource_id))
+            return False;
+    }
+
+    DisplayDescription(&obj, flags, (pane ? inscr : NULL), msg, NULL, NULL, 0, 0, 0);
+    ObjectDestroy(&obj);
+
+    return True;
 }
 /********************************************************************/
-Bool HandlePlayers(char *ptr,long len)
+Bool HandleLookSpell(char* ptr, long len)
 {
-   list_type list = NULL;
-   WORD list_len;
-   int i;
-   char name[MAXNAME + 1];
-   char *start = ptr;
-   object_node *obj;
+    char message[MAXMESSAGE];
+    char* msg = message;
+    char school_name[MAXMESSAGE];
+    char* sname = school_name;
+    char spell_level[MAXMESSAGE];
+    char* slevel = spell_level;
+    char spell_mana[MAXMESSAGE];
+    char* smana = spell_mana;
+    char spell_vigor[MAXMESSAGE];
+    char* svigor = spell_vigor;
 
-   Extract(&ptr, &list_len, SIZE_LIST_LEN);
-   len -= SIZE_LIST_LEN;
+    ID resource_id;
+    char* start = ptr;
+    object_node obj;
 
-   for (i=0; i < list_len; i++)
-   {
-      obj = ObjectGetBlank();
+    memset(&obj, 0, sizeof(obj));
+    ExtractObject(&ptr, &obj);
 
-      Extract(&ptr, &obj->id, SIZE_ID);
-      Extract(&ptr, &obj->name_res, SIZE_ID);
-      len -= 2 * SIZE_ID;
+    len -= (ptr - start);
 
-      // Get username and add it as a resource
-      len = ExtractString(&ptr, len, name, MAXNAME);
-      ChangeResource(obj->name_res, name);
+    // School name.
+    Extract(&ptr, &resource_id, SIZE_ID);
+    len -= SIZE_ID;
+    if (!CheckServerMessage(&sname, &ptr, &len, resource_id))
+        return False;
+    // Spell level.
+    Extract(&ptr, &resource_id, SIZE_ID);
+    len -= SIZE_ID;
+    if (!CheckServerMessage(&slevel, &ptr, &len, resource_id))
+        return False;
+    // Spell mana cost.
+    Extract(&ptr, &resource_id, SIZE_ID);
+    len -= SIZE_ID;
+    if (!CheckServerMessage(&smana, &ptr, &len, resource_id))
+        return False;
+    // Spell vigor cost.
+    Extract(&ptr, &resource_id, SIZE_ID);
+    len -= SIZE_ID;
+    if (!CheckServerMessage(&svigor, &ptr, &len, resource_id))
+        return False;
 
-      Extract(&ptr, &obj->flags, SIZE_VALUE);
-      len -= SIZE_VALUE;
-      Extract(&ptr, &obj->drawingtype, SIZE_TYPE);
-      len -= SIZE_TYPE;
-      Extract(&ptr, &obj->minimapflags, SIZE_VALUE);
-      Extract(&ptr, &obj->namecolor, SIZE_VALUE);
-      len -= 2 * SIZE_VALUE;
+    // Description.
+    Extract(&ptr, &resource_id, SIZE_ID);
+    len -= SIZE_ID;
+    // See if we need to reorder the message.
+    if (CheckMessageOrder(&ptr, &len, resource_id) < 0)
+        return False;
+    if (!CheckServerMessage(&msg, &ptr, &len, resource_id))
+        return False;
 
-      BYTE temptype = 0;
-      Extract(&ptr, &temptype, SIZE_TYPE);
-      obj->objecttype = (object_type)temptype;
+    DisplayDescription(&obj, 0, NULL, msg, NULL, sname, slevel, smana, svigor);
+    ObjectDestroy(&obj);
 
-      Extract(&ptr, &temptype, SIZE_TYPE);
-      obj->moveontype = (moveon_type)temptype;
-      len -= 2 * SIZE_TYPE;
-
-      list = list_add_item(list, obj);
-   }
-
-   if (len != 0)
-   {
-      ObjectListDestroy(list);
-      return False;
-   }   
-
-   SetCurrentUsers(list);
-   return True;
+    return True;
 }
 /********************************************************************/
-Bool HandleAddPlayer(char *ptr,long len)
+Bool HandleLookSkill(char* ptr, long len)
 {
-   object_node *obj;
-   char *start = ptr;
-   char name[MAXNAME + 1];
+    char message[MAXMESSAGE];
+    char* msg = message;
+    char school_name[MAXMESSAGE];
+    char* sname = school_name;
+    char skill_level[MAXMESSAGE];
+    char* slevel = skill_level;
 
-   obj = ObjectGetBlank();
-   Extract(&ptr, &obj->id, SIZE_ID);
-   Extract(&ptr, &obj->name_res, SIZE_ID);
-   len -= 2 * SIZE_ID;
+    ID resource_id;
+    char* start = ptr;
+    object_node obj;
 
-   len = ExtractString(&ptr, len, name, MAXNAME);
-   ChangeResource(obj->name_res, name);
+    memset(&obj, 0, sizeof(obj));
+    ExtractObject(&ptr, &obj);
 
-   Extract(&ptr, &obj->flags, SIZE_VALUE);
-   len -= SIZE_VALUE;
-   Extract(&ptr, &obj->drawingtype, SIZE_TYPE);
-   len -= SIZE_TYPE;
-   Extract(&ptr, &obj->minimapflags, SIZE_VALUE);
-   Extract(&ptr, &obj->namecolor, SIZE_VALUE);
-   len -= 2 * SIZE_VALUE;
+    len -= (ptr - start);
 
-   BYTE temptype = 0;
-   Extract(&ptr, &temptype, SIZE_TYPE);
-   obj->objecttype = (object_type)temptype;
+    // School name.
+    Extract(&ptr, &resource_id, SIZE_ID);
+    len -= SIZE_ID;
+    if (!CheckServerMessage(&sname, &ptr, &len, resource_id))
+        return False;
+    // Skill level.
+    Extract(&ptr, &resource_id, SIZE_ID);
+    len -= SIZE_ID;
+    if (!CheckServerMessage(&slevel, &ptr, &len, resource_id))
+        return False;
 
-   Extract(&ptr, &temptype, SIZE_TYPE);
-   obj->moveontype = (moveon_type)temptype;
-   len -= 2 * SIZE_TYPE;
+    // Description.
+    Extract(&ptr, &resource_id, SIZE_ID);
+    len -= SIZE_ID;
+    // See if we need to reorder the message.
+    if (CheckMessageOrder(&ptr, &len, resource_id) < 0)
+        return False;
+    if (!CheckServerMessage(&msg, &ptr, &len, resource_id))
+        return False;
 
-   if (len != 0)
-   {
-      ObjectDestroyAndFree(obj);
-      return False;
-   }
-   
-   AddCurrentUser(obj);
-   return True;
+    DisplayDescription(&obj, 0, NULL, msg, NULL, sname, slevel, NULL, NULL);
+    ObjectDestroy(&obj);
+
+    return True;
 }
 /********************************************************************/
-Bool HandleBuyList(char *ptr, long len)
+Bool HandleUseList(char* ptr, long len)
 {
-   object_node seller;
-   buy_object *buy_obj;
-   list_type list = NULL;
-   WORD list_len;
-   char *start;
-   int i;
-   
-   start = ptr;
-   memset(&seller,0,sizeof(seller));
-   /* Get seller */
-   ExtractObject(&ptr, &seller);
-//   ExtractDLighting(&ptr, &seller.dLighting);
-   Extract(&ptr, &list_len, SIZE_LIST_LEN);
+    list_type use_list = NULL;
+    WORD list_len;
+    int i;
+    ID id;
+    char* start;
 
-   for (i=0; i < list_len; i++)
-   {
-      buy_obj = (buy_object *) ZeroSafeMalloc(sizeof(buy_object));
-      ExtractObject(&ptr, &buy_obj->obj);
-//     ExtractDLighting(&ptr, &buy_obj->obj.dLighting);
-      Extract(&ptr, &buy_obj->cost, SIZE_COST);
+    if (len < SIZE_LIST_LEN)
+        return False;
+    len -= SIZE_LIST_LEN;
 
-      list = list_add_item(list, buy_obj);
-   }
+    Extract(&ptr, &list_len, SIZE_LIST_LEN);
 
-   len -= (ptr - start);
-//   if (len != 0)
-   if (0)
-   {
-      ObjectListDestroy(list);
-      return False;
-   }
-   BuyList(seller, list);
+    start = ptr;
 
-   return True;
+    for (i = 0; i < list_len; i++)
+    {
+        Extract(&ptr, &id, SIZE_ID);
+        use_list = list_add_item(use_list, (void*)id);
+    }
+
+    len -= (ptr - start);
+    if (len != 0)
+    {
+        list_delete(use_list);
+        return False;
+    }
+
+    UseListSet(use_list);
+    return True;
 }
 /********************************************************************/
-Bool HandleWithdrawalList(char *ptr, long len)
+Bool HandleUse(char* ptr, long len)
 {
-   object_node seller;
-   buy_object *buy_obj;
-   list_type list = NULL;
-   WORD list_len;
-   char *start;
-   int i;
-   
-   start = ptr;
-   memset(&seller,0,sizeof(seller));
-   /* Get seller */
-   ExtractObject(&ptr, &seller);
-   Extract(&ptr, &list_len, SIZE_LIST_LEN);
+    ID obj_id;
 
-   for (i=0; i < list_len; i++)
-   {
-      buy_obj = (buy_object *) ZeroSafeMalloc(sizeof(buy_object));
-      ExtractObject(&ptr, &buy_obj->obj);
-      Extract(&ptr, &buy_obj->cost, SIZE_COST);
+    if (len != SIZE_ID)
+        return False;
 
-      list = list_add_item(list, buy_obj);
-   }
+    Extract(&ptr, &obj_id, SIZE_ID);
 
-   len -= (ptr - start);
-   if (len != 0)
-   {
-      ObjectListDestroy(list);
-      return False;
-   }
-   WithdrawalList(seller, list);
-
-   return True;
+    UseObject(obj_id);
+    return True;
 }
 /********************************************************************/
-Bool HandleRemovePlayer(char *ptr,long len)
+Bool HandleUnuse(char* ptr, long len)
 {
-   ID obj_id;
+    ID obj_id;
 
-   if (len != SIZE_ID)
-      return False;
+    if (len != SIZE_ID)
+        return False;
 
-   Extract(&ptr, &obj_id, SIZE_ID);
-   
-   RemoveCurrentUser(obj_id);
-   return True;
+    Extract(&ptr, &obj_id, SIZE_ID);
+
+    UnuseObject(obj_id);
+    return True;
 }
 /********************************************************************/
-Bool HandlePlayWave(char *ptr,long len)
+Bool HandleOffer(char* ptr, long len)
 {
-   ID rsc, obj;
-   BYTE flags;
-   int row, col;
-   int radius, maxvol;
+    list_type list = NULL;
+    object_node offerer;
+    char* start;
 
-   if (len != 6 * SIZE_ID + 1)
-      return False;
+    start = ptr;
 
-   Extract(&ptr, &rsc, SIZE_ID);
-   Extract(&ptr, &obj, SIZE_ID);
-   Extract(&ptr, &flags, 1);
-   Extract(&ptr, &row, sizeof(row));
-   Extract(&ptr, &col, sizeof(col));
-   Extract(&ptr, &radius, sizeof(radius));
-   Extract(&ptr, &maxvol, sizeof(maxvol));
-   
-   // client overrides any volume setting the server might think it should be
-   maxvol = config.sound_volume;
-   
-   GamePlaySound(rsc, obj, flags, row, col, radius, maxvol);
-   return True;
+    memset(&offerer, 0, sizeof(offerer));
+    /* Object that offered to player */
+    ExtractObject(&ptr, &offerer);
+    len -= (ptr - start);
+
+    if ((list = ExtractObjectList(&ptr, len)) == LIST_ERROR)
+        return False;
+
+    ReceiveOffer(offerer.id, offerer.icon_res, offerer.name_res, list);
+    return True;
 }
 /********************************************************************/
-Bool HandleStopWave(char *ptr,long len)
+Bool HandleOfferCanceled(char* ptr, long len)
 {
-   ID rsc, obj;
+    if (len != 0)
+        return False;
 
-   if (len != 2 * SIZE_ID)
-      return False;
-
-   Extract(&ptr, &rsc, SIZE_ID);
-   Extract(&ptr, &obj, SIZE_ID);
-
-   SoundStopResource(rsc, obj);
-   return True;
+    OfferCanceled();
+    return True;
 }
 /********************************************************************/
-Bool HandlePlayMidi(char *ptr,long len)
+Bool HandleOffered(char* ptr, long len)
 {
-   ID rsc;
+    list_type list = NULL;
 
-   if (len != SIZE_ID)
-      return False;
+    if ((list = ExtractObjectList(&ptr, len)) == LIST_ERROR)
+        return False;
 
-   Extract(&ptr, &rsc, SIZE_ID);
-   
-   MusicPlayResource(rsc);
-   return True;
+    Offered(list);
+    return True;
 }
 /********************************************************************/
-Bool HandlePlayMusic(char *ptr,long len)
+Bool HandleCounteroffered(char* ptr, long len)
 {
-   ID rsc;
+    list_type list = NULL;
 
-   if (len != SIZE_ID)
-      return False;
+    if ((list = ExtractObjectList(&ptr, len)) == LIST_ERROR)
+        return False;
 
-   Extract(&ptr, &rsc, SIZE_ID);
-   
-   MusicPlayResource(rsc);
-   return True;
+    Counteroffered(list);
+    return True;
 }
 /********************************************************************/
-Bool HandleQuit(char *ptr, long len)
+Bool HandleCounteroffer(char* ptr, long len)
 {
-   if (len != 0)
-      return False;
-   GameQuit();
-   return True;
+    list_type list = NULL;
+
+    if ((list = ExtractObjectList(&ptr, len)) == LIST_ERROR)
+        return False;
+
+    Counteroffer(list);
+    return True;
 }
 /********************************************************************/
-Bool HandleLightAmbient(char *ptr, long len)
+Bool HandlePlayers(char* ptr, long len)
 {
-   BYTE light;
+    list_type list = NULL;
+    WORD list_len;
+    int i;
+    char name[MAXNAME + 1];
+    char* start = ptr;
+    object_node* obj;
 
-   if (len != SIZE_LIGHT)
-      return False;
+    Extract(&ptr, &list_len, SIZE_LIST_LEN);
+    len -= SIZE_LIST_LEN;
 
-   Extract(&ptr, &light, SIZE_LIGHT);
-   SetAmbientLight(light);
-   gD3DRedrawAll |= D3DRENDER_REDRAW_UPDATE;
+    for (i = 0; i < list_len; i++)
+    {
+        obj = ObjectGetBlank();
 
-   return True;
+        Extract(&ptr, &obj->id, SIZE_ID);
+        Extract(&ptr, &obj->name_res, SIZE_ID);
+        len -= 2 * SIZE_ID;
+
+        // Get username and add it as a resource
+        len = ExtractString(&ptr, len, name, MAXNAME);
+        ChangeResource(obj->name_res, name);
+
+        // Flags
+        ExtractFlags(&ptr, obj);
+        len -= SIZE_OBJECTFLAGS;
+
+        list = list_add_item(list, obj);
+    }
+
+    if (len != 0)
+    {
+        ObjectListDestroy(list);
+        return False;
+    }
+
+    SetCurrentUsers(list);
+    return True;
 }
 /********************************************************************/
-Bool HandleLightPlayer(char *ptr, long len)
+Bool HandleAddPlayer(char* ptr, long len)
 {
-   BYTE light;
+    object_node* obj;
+    char* start = ptr;
+    char name[MAXNAME + 1];
 
-   if (len != SIZE_LIGHT)
-      return False;
+    obj = ObjectGetBlank();
+    Extract(&ptr, &obj->id, SIZE_ID);
+    Extract(&ptr, &obj->name_res, SIZE_ID);
+    len -= 2 * SIZE_ID;
 
-   Extract(&ptr, &light, SIZE_LIGHT);
-   SetPlayerLight(light);
-   gD3DRedrawAll |= D3DRENDER_REDRAW_UPDATE;
+    len = ExtractString(&ptr, len, name, MAXNAME);
+    ChangeResource(obj->name_res, name);
 
-   return True;
+    // Flags
+    ExtractFlags(&ptr, obj);
+    len -= SIZE_OBJECTFLAGS;
+
+    if (len != 0)
+    {
+        ObjectDestroyAndFree(obj);
+        return False;
+    }
+
+    AddCurrentUser(obj);
+    return True;
 }
 /********************************************************************/
-Bool HandleBackground(char *ptr, long len)
+Bool HandleBuyList(char* ptr, long len)
 {
-   ID bkgnd;
+    object_node seller;
+    buy_object* buy_obj;
+    list_type list = NULL;
+    WORD list_len;
+    char* start;
+    int i;
 
-   if (len != SIZE_ID)
-      return False;
+    start = ptr;
+    memset(&seller, 0, sizeof(seller));
+    /* Get seller */
+    ExtractObject(&ptr, &seller);
+    //   ExtractDLighting(&ptr, &seller.dLighting);
+    Extract(&ptr, &list_len, SIZE_LIST_LEN);
 
-   Extract(&ptr, &bkgnd, SIZE_ID);
-   SetBackground(bkgnd);
-   return True;   
+    for (i = 0; i < list_len; i++)
+    {
+        buy_obj = (buy_object*)ZeroSafeMalloc(sizeof(buy_object));
+        ExtractObject(&ptr, &buy_obj->obj);
+        //     ExtractDLighting(&ptr, &buy_obj->obj.dLighting);
+        Extract(&ptr, &buy_obj->cost, SIZE_COST);
+
+        list = list_add_item(list, buy_obj);
+    }
+
+    len -= (ptr - start);
+    //   if (len != 0)
+    if (0)
+    {
+        ObjectListDestroy(list);
+        return False;
+    }
+    BuyList(seller, list);
+
+    return True;
 }
 /********************************************************************/
-Bool HandleEffect(char *ptr, long len)
+Bool HandleWithdrawalList(char* ptr, long len)
 {
-   WORD effect_num;
+    object_node seller;
+    buy_object* buy_obj;
+    list_type list = NULL;
+    WORD list_len;
+    char* start;
+    int i;
 
-   Extract(&ptr, &effect_num, 2);
-   len -= 2;
-   return PerformEffect(effect_num, ptr, len);
+    start = ptr;
+    memset(&seller, 0, sizeof(seller));
+    /* Get seller */
+    ExtractObject(&ptr, &seller);
+    Extract(&ptr, &list_len, SIZE_LIST_LEN);
+
+    for (i = 0; i < list_len; i++)
+    {
+        buy_obj = (buy_object*)ZeroSafeMalloc(sizeof(buy_object));
+        ExtractObject(&ptr, &buy_obj->obj);
+        Extract(&ptr, &buy_obj->cost, SIZE_COST);
+
+        list = list_add_item(list, buy_obj);
+    }
+
+    len -= (ptr - start);
+    if (len != 0)
+    {
+        ObjectListDestroy(list);
+        return False;
+    }
+    WithdrawalList(seller, list);
+
+    return True;
 }
 /********************************************************************/
-Bool HandleShoot(char *ptr, long len)
+Bool HandleRemovePlayer(char* ptr, long len)
 {
-   Projectile *p = (Projectile *) ZeroSafeMalloc(sizeof(Projectile));
-   BYTE speed;
-   char *start = ptr;
-   ID source, dest;
-   WORD flags;
-   WORD reserved;
+    ID obj_id;
 
-   Extract(&ptr, &p->icon_res, SIZE_ID);
-   ExtractPaletteTranslation(&ptr,&p->translation,&p->effect);
-   ExtractAnimation(&ptr, &p->animate);
+    if (len != SIZE_ID)
+        return False;
 
-   Extract(&ptr, &source, SIZE_ID);
-   Extract(&ptr, &dest, SIZE_ID);
-   Extract(&ptr, &speed, 1);
-   Extract(&ptr, &flags, SIZE_PROJECTILE_FLAGS);
+    Extract(&ptr, &obj_id, SIZE_ID);
 
-   // no longer sent by the server
-   //Extract(&ptr, &reserved, SIZE_PROJECTILE_RESERVED);
-   reserved = 0;
-   ExtractDLighting(&ptr, &p->dLighting);
-
-   len -= (ptr - start);
-   if (len != 0)
-      return False;
-
-   ProjectileAdd(p, source, dest, speed, flags, reserved);
-   
-   return True;
+    RemoveCurrentUser(obj_id);
+    return True;
 }
 /********************************************************************/
-Bool HandleRadiusShoot(char *ptr, long len)
+Bool HandlePlayWave(char* ptr, long len)
 {
-   Projectile *p = (Projectile *) ZeroSafeMalloc(sizeof(Projectile));
-   BYTE speed, range;
-   char *start = ptr;
-   ID source;
-   WORD flags;
-   WORD reserved;
-   BYTE number;
+    ID rsc, obj;
+    BYTE flags;
+    int row, col;
+    int radius, maxvol;
 
-   Extract(&ptr, &p->icon_res, SIZE_ID);
-   ExtractPaletteTranslation(&ptr,&p->translation,&p->effect);
-   ExtractAnimation(&ptr, &p->animate);
+    if (len != 6 * SIZE_ID + 1)
+        return False;
 
-   Extract(&ptr, &source, SIZE_ID);
-   Extract(&ptr, &speed, 1);
-   Extract(&ptr, &flags, SIZE_PROJECTILE_FLAGS);
+    Extract(&ptr, &rsc, SIZE_ID);
+    Extract(&ptr, &obj, SIZE_ID);
+    Extract(&ptr, &flags, 1);
+    Extract(&ptr, &row, sizeof(row));
+    Extract(&ptr, &col, sizeof(col));
+    Extract(&ptr, &radius, sizeof(radius));
+    Extract(&ptr, &maxvol, sizeof(maxvol));
 
-   // no longer sent by the server
-   //Extract(&ptr, &reserved, SIZE_PROJECTILE_RESERVED);
-   reserved = 0;
-   Extract(&ptr, &range, 1);
-   Extract(&ptr, &number, 1);
-   ExtractDLighting(&ptr, &p->dLighting);
+    // client overrides any volume setting the server might think it should be
+    maxvol = config.sound_volume;
 
-   len -= (ptr - start);
-   if (len != 0)
-      return False;
-
-   RadiusProjectileAdd(p, source, speed, flags, reserved, range, number);
-
-   return True;
+    GamePlaySound(rsc, obj, flags, row, col, radius, maxvol);
+    return True;
 }
 /********************************************************************/
-Bool HandleLoadModule(char *ptr, long len)
+Bool HandleStopWave(char* ptr, long len)
 {
-   ID name_rsc;
+    ID rsc, obj;
 
-   if (len != SIZE_ID)
-      return False;
+    if (len != 2 * SIZE_ID)
+        return False;
 
-   Extract(&ptr, &name_rsc, SIZE_ID);
+    Extract(&ptr, &rsc, SIZE_ID);
+    Extract(&ptr, &obj, SIZE_ID);
 
-   ModuleLoadByRsc(name_rsc);
-   
-   return True;
+    SoundStopResource(rsc, obj);
+    return True;
 }
 /********************************************************************/
-Bool HandleUnloadModule(char *ptr, long len)
+Bool HandlePlayMidi(char* ptr, long len)
 {
-   ID name_rsc;
+    ID rsc;
 
-   if (len != SIZE_ID)
-      return False;
+    if (len != SIZE_ID)
+        return False;
 
-   Extract(&ptr, &name_rsc, SIZE_ID);
+    Extract(&ptr, &rsc, SIZE_ID);
 
-   ModuleExitByRsc(name_rsc);
-   
-   return True;
+    MusicPlayResource(rsc);
+    return True;
 }
 /********************************************************************/
-Bool HandleChangeResource(char *ptr, long len)
+Bool HandlePlayMusic(char* ptr, long len)
 {
-   char res_string[MAXNAME + 1];
-   ID res;
+    ID rsc;
 
-   if (len < SIZE_ID)
-      return False;
+    if (len != SIZE_ID)
+        return False;
 
-   Extract(&ptr, &res, SIZE_ID);
-   len -= SIZE_ID;
+    Extract(&ptr, &rsc, SIZE_ID);
 
-   len = ExtractString(&ptr, len, res_string, MAXNAME);
-   if (len != 0)
-      return False;
-
-   ChangeResource(res, res_string);
-
-   return True;
+    MusicPlayResource(rsc);
+    return True;
 }
 /********************************************************************/
-Bool HandlePlayerOverlay(char *ptr, long len)
+Bool HandleQuit(char* ptr, long len)
 {
-   object_node *poverlay;
-   char *start = ptr;
-   char hotspot;
-
-   Extract(&ptr, &hotspot, SIZE_HOTSPOT);
-
-   poverlay = ExtractNewObjectNoLighting(&ptr);
-
-   len -= (ptr - start);
-   if (len != 0)
-   {
-      ObjectDestroyAndFree(poverlay);
-      return False;
-   }
-
-   SetPlayerOverlay(hotspot, poverlay);
-   return True;
+    if (len != 0)
+        return False;
+    GameQuit();
+    return True;
 }
 /********************************************************************/
-Bool HandleSectorMove(char *ptr, long len)
+Bool HandleLightAmbient(char* ptr, long len)
 {
-   WORD sector_num, height;
-   BYTE speed, type;
+    BYTE light;
 
-   Extract(&ptr, &type, 1);
-   Extract(&ptr, &sector_num, 2);
-   Extract(&ptr, &height, 2);
-   Extract(&ptr, &speed, 1);
+    if (len != SIZE_LIGHT)
+        return False;
 
-   MoveSector(type, sector_num, height, speed);   
+    Extract(&ptr, &light, SIZE_LIGHT);
+    SetAmbientLight(light);
+    gD3DRedrawAll |= D3DRENDER_REDRAW_UPDATE;
 
-   return True;
+    return True;
 }
 /********************************************************************/
-Bool HandleWallAnimate(char *ptr, long len)
+Bool HandleLightPlayer(char* ptr, long len)
 {
-   WORD wall_num;
-   Animate a;
-   BYTE action;
+    BYTE light;
 
-   Extract(&ptr, &wall_num, 2);
-   ExtractAnimation(&ptr, &a);
-   Extract(&ptr, &action, 1);
+    if (len != SIZE_LIGHT)
+        return False;
 
-   WallChange(wall_num, &a, action);
-   return True;
+    Extract(&ptr, &light, SIZE_LIGHT);
+    SetPlayerLight(light);
+    gD3DRedrawAll |= D3DRENDER_REDRAW_UPDATE;
+
+    return True;
 }
 /********************************************************************/
-Bool HandleSectorAnimate(char *ptr, long len)
+Bool HandleBackground(char* ptr, long len)
 {
-   WORD sector_num;
-   Animate a;
-   BYTE action;
+    ID bkgnd;
 
-   Extract(&ptr, &sector_num, 2);
-   ExtractAnimation(&ptr, &a);
-   Extract(&ptr, &action, 1);
+    if (len != SIZE_ID)
+        return False;
 
-   SectorAnimate(sector_num, &a, action);
-   return True;
+    Extract(&ptr, &bkgnd, SIZE_ID);
+    SetBackground(bkgnd);
+    return True;
 }
 /********************************************************************/
-Bool HandleSectorChange(char *ptr, long len)
+Bool HandleEffect(char* ptr, long len)
 {
-   WORD sector_num;
-   BYTE depth, scroll;
+    WORD effect_num;
 
-   Extract(&ptr, &sector_num, 2);
-   Extract(&ptr, &depth,1);
-   Extract(&ptr, &scroll, 1);
-
-   SectorChange(sector_num, depth, scroll);
-   return True;
+    Extract(&ptr, &effect_num, 2);
+    len -= 2;
+    return PerformEffect(effect_num, ptr, len);
 }
 /********************************************************************/
-Bool HandleAddBackgroundOverlay(char *ptr, long len)
+Bool HandleMovementSpeed(char* ptr, long len)
 {
-   BackgroundOverlay *overlay;
-   char *start = ptr;
+    WORD movespeedpct;
 
-   overlay = ExtractNewBackgroundOverlay(&ptr);
-   
-   if (ptr - start != len)
-   {
-      BackgroundOverlayDestroyAndFree(overlay);
-      return False;
-   }
-
-   BackgroundOverlayAdd(overlay);
-   return True;
+    Extract(&ptr, &movespeedpct, 2);
+    len -= 2;
+    return True;
 }
 /********************************************************************/
-Bool HandleRemoveBackgroundOverlay(char *ptr, long len)
+Bool HandleShoot(char* ptr, long len)
 {
-   ID id;
-   
-   if (len != SIZE_ID)
-      return False;
+    Projectile* p = (Projectile*)ZeroSafeMalloc(sizeof(Projectile));
+    BYTE speed;
+    char* start = ptr;
+    ID source, dest;
+    WORD flags;
+    WORD reserved;
 
-   Extract(&ptr, &id, SIZE_ID);
-   
-   BackgroundOverlayRemove(id);
-   
-   return True;
+    Extract(&ptr, &p->icon_res, SIZE_ID);
+    ExtractPaletteTranslation(&ptr, &p->translation, &p->effect);
+    ExtractAnimation(&ptr, &p->animate);
+
+    Extract(&ptr, &source, SIZE_ID);
+    Extract(&ptr, &dest, SIZE_ID);
+    Extract(&ptr, &speed, 1);
+    Extract(&ptr, &flags, SIZE_PROJECTILE_FLAGS);
+
+    // no longer sent by the server
+    //Extract(&ptr, &reserved, SIZE_PROJECTILE_RESERVED);
+    reserved = 0;
+    ExtractDLighting(&ptr, &p->dLighting);
+
+    len -= (ptr - start);
+    if (len != 0)
+        return False;
+
+    ProjectileAdd(p, source, dest, speed, flags, reserved);
+
+    return True;
 }
 /********************************************************************/
-Bool HandleChangeBackgroundOverlay(char *ptr, long len)
+Bool HandleRadiusShoot(char* ptr, long len)
 {
-   BackgroundOverlay *overlay;
-   char *start = ptr;
+    Projectile* p = (Projectile*)ZeroSafeMalloc(sizeof(Projectile));
+    BYTE speed, range;
+    char* start = ptr;
+    ID source;
+    WORD flags;
+    WORD reserved;
+    BYTE number;
 
-   overlay = ExtractNewBackgroundOverlay(&ptr);
-   
-   if (ptr - start != len)
-   {
-      BackgroundOverlayDestroyAndFree(overlay);
-      return False;
-   }
+    Extract(&ptr, &p->icon_res, SIZE_ID);
+    ExtractPaletteTranslation(&ptr, &p->translation, &p->effect);
+    ExtractAnimation(&ptr, &p->animate);
 
-   BackgroundOverlayChange(overlay);
-   return True;
+    Extract(&ptr, &source, SIZE_ID);
+    Extract(&ptr, &speed, 1);
+    Extract(&ptr, &flags, SIZE_PROJECTILE_FLAGS);
+
+    // no longer sent by the server
+    //Extract(&ptr, &reserved, SIZE_PROJECTILE_RESERVED);
+    reserved = 0;
+    Extract(&ptr, &range, 1);
+    Extract(&ptr, &number, 1);
+    ExtractDLighting(&ptr, &p->dLighting);
+
+    len -= (ptr - start);
+    if (len != 0)
+        return False;
+
+    RadiusProjectileAdd(p, source, speed, flags, reserved, range, number);
+
+    return True;
 }
 /********************************************************************/
-Bool HandleRoundtrip(char *ptr, long len)
+Bool HandleLoadModule(char* ptr, long len)
 {
-  DWORD data;
-  
-  if (len != 4)
-    return False;
+    ID name_rsc;
 
-  Extract(&ptr, &data, 4);
-  RequestRoundtrip(data);
+    if (len != SIZE_ID)
+        return False;
 
-  return True;
+    Extract(&ptr, &name_rsc, SIZE_ID);
+
+    ModuleLoadByRsc(name_rsc);
+
+    return True;
 }
 /********************************************************************/
-Bool HandleChangeTexture(char *ptr, long len)
+Bool HandleUnloadModule(char* ptr, long len)
 {
-   WORD id_num, texture_num;
-   BYTE flags;
+    ID name_rsc;
 
-   char *start = ptr;
+    if (len != SIZE_ID)
+        return False;
 
-   Extract(&ptr, &id_num, 2);
-   Extract(&ptr, &texture_num, 2);
-   Extract(&ptr, &flags, 1);
-   
-   if (ptr - start != len)
-      return False;
+    Extract(&ptr, &name_rsc, SIZE_ID);
 
-   TextureChange(id_num, texture_num, flags);
-   gD3DRedrawAll |= D3DRENDER_REDRAW_ALL;
-   return True;
+    ModuleExitByRsc(name_rsc);
+
+    return True;
 }
 /********************************************************************/
-Bool HandleSectorLight(char *ptr, long len)
+Bool HandleChangeResource(char* ptr, long len)
 {
-   WORD sector_num;
-   BYTE type;
+    char res_string[MAXNAME + 1];
+    ID res;
 
-   char *start = ptr;
+    if (len < SIZE_ID)
+        return False;
 
-   Extract(&ptr, &sector_num, 2);
-   Extract(&ptr, &type, 1);
+    Extract(&ptr, &res, SIZE_ID);
+    len -= SIZE_ID;
 
-   if (ptr - start != len)
-      return False;
+    len = ExtractString(&ptr, len, res_string, MAXNAME);
+    if (len != 0)
+        return False;
 
-   SectorFlickerChange(sector_num, type);
-   return True;
+    ChangeResource(res, res_string);
+
+    return True;
 }
 /********************************************************************/
-Bool HandleLightShading(char *ptr, long len)
+Bool HandlePlayerOverlay(char* ptr, long len)
 {
-   WORD sun_x, sun_y;
-   BYTE directional_light;
-   char *start = ptr;
+    object_node* poverlay;
+    char* start = ptr;
+    char hotspot;
 
-   Extract(&ptr, &directional_light, SIZE_LIGHT);
-   Extract(&ptr, &sun_x, 2);
-   Extract(&ptr, &sun_y, 2);
+    Extract(&ptr, &hotspot, SIZE_HOTSPOT);
 
-   SetLightingInfo(sun_x, sun_y, directional_light);
-   return True;
+    poverlay = ExtractNewObjectNoLighting(&ptr);
+
+    len -= (ptr - start);
+    if (len != 0)
+    {
+        ObjectDestroyAndFree(poverlay);
+        return False;
+    }
+
+    SetPlayerOverlay(hotspot, poverlay);
+    return True;
 }
 /********************************************************************/
-Bool HandleEchoPing(char *ptr, long len)
+Bool HandleSectorMove(char* ptr, long len)
 {
-   if (len > 0 && ptr != NULL)
-   {
-      char ch;
-     int id;
+    WORD sector_num, height;
+    BYTE speed, type;
 
-      Extract(&ptr, &ch, 1);
-      Extract(&ptr, &id, 4);
-      len -= 5;
+    Extract(&ptr, &type, 1);
+    Extract(&ptr, &sector_num, 2);
+    Extract(&ptr, &height, 2);
+    Extract(&ptr, &speed, 1);
 
-      server_secure_token = (unsigned int)(ch ^ 0xED);
+    MoveSector(type, sector_num, height, speed);
 
-      UpdateSecurityRedbook(id);
+    return True;
+}
+/********************************************************************/
+Bool HandleWallAnimate(char* ptr, long len)
+{
+    WORD wall_num;
+    Animate a;
+    BYTE action;
 
-      server_sliding_token = GetSecurityRedbook();
+    Extract(&ptr, &wall_num, 2);
+    ExtractAnimation(&ptr, &a);
+    Extract(&ptr, &action, 1);
 
-      // debug(("New redbook is '%s'.\n", server_sliding_token));
-   }
+    WallChange(wall_num, &a, action);
+    return True;
+}
+/********************************************************************/
+Bool HandleSectorAnimate(char* ptr, long len)
+{
+    WORD sector_num;
+    Animate a;
+    BYTE action;
 
-   if (len != 0)
-      return False;
-   PingGotReply();
-   return True;
+    Extract(&ptr, &sector_num, 2);
+    ExtractAnimation(&ptr, &a);
+    Extract(&ptr, &action, 1);
+
+    SectorAnimate(sector_num, &a, action);
+    return True;
+}
+/********************************************************************/
+Bool HandleSectorChange(char* ptr, long len)
+{
+    WORD sector_num;
+    BYTE depth, scroll;
+
+    Extract(&ptr, &sector_num, 2);
+    Extract(&ptr, &depth, 1);
+    Extract(&ptr, &scroll, 1);
+
+    SectorChange(sector_num, depth, scroll);
+    return True;
+}
+/********************************************************************/
+Bool HandleAddBackgroundOverlay(char* ptr, long len)
+{
+    BackgroundOverlay* overlay;
+    char* start = ptr;
+
+    overlay = ExtractNewBackgroundOverlay(&ptr);
+
+    if (ptr - start != len)
+    {
+        BackgroundOverlayDestroyAndFree(overlay);
+        return False;
+    }
+
+    BackgroundOverlayAdd(overlay);
+    return True;
+}
+/********************************************************************/
+Bool HandleRemoveBackgroundOverlay(char* ptr, long len)
+{
+    ID id;
+
+    if (len != SIZE_ID)
+        return False;
+
+    Extract(&ptr, &id, SIZE_ID);
+
+    BackgroundOverlayRemove(id);
+
+    return True;
+}
+/********************************************************************/
+Bool HandleChangeBackgroundOverlay(char* ptr, long len)
+{
+    BackgroundOverlay* overlay;
+    char* start = ptr;
+
+    overlay = ExtractNewBackgroundOverlay(&ptr);
+
+    if (ptr - start != len)
+    {
+        BackgroundOverlayDestroyAndFree(overlay);
+        return False;
+    }
+
+    BackgroundOverlayChange(overlay);
+    return True;
+}
+/********************************************************************/
+Bool HandleRoundtrip(char* ptr, long len)
+{
+    DWORD data;
+
+    if (len != 4)
+        return False;
+
+    Extract(&ptr, &data, 4);
+    RequestRoundtrip(data);
+
+    return True;
+}
+/********************************************************************/
+Bool HandleChangeTexture(char* ptr, long len)
+{
+    WORD id_num, texture_num;
+    BYTE flags;
+
+    char* start = ptr;
+
+    Extract(&ptr, &id_num, 2);
+    Extract(&ptr, &texture_num, 2);
+    Extract(&ptr, &flags, 1);
+
+    if (ptr - start != len)
+        return False;
+
+    TextureChange(id_num, texture_num, flags);
+    gD3DRedrawAll |= D3DRENDER_REDRAW_ALL;
+    return True;
+}
+/********************************************************************/
+Bool HandleSectorLight(char* ptr, long len)
+{
+    WORD sector_num;
+    BYTE type;
+
+    char* start = ptr;
+
+    Extract(&ptr, &sector_num, 2);
+    Extract(&ptr, &type, 1);
+
+    if (ptr - start != len)
+        return False;
+
+    SectorFlickerChange(sector_num, type);
+    return True;
+}
+/********************************************************************/
+Bool HandleLightShading(char* ptr, long len)
+{
+    WORD sun_x, sun_y;
+    BYTE directional_light;
+    char* start = ptr;
+
+    Extract(&ptr, &directional_light, SIZE_LIGHT);
+    Extract(&ptr, &sun_x, 2);
+    Extract(&ptr, &sun_y, 2);
+
+    SetLightingInfo(sun_x, sun_y, directional_light);
+    gD3DRedrawAll |= D3DRENDER_REDRAW_UPDATE;
+
+    return True;
+}
+/********************************************************************/
+Bool HandleEchoPing(char* ptr, long len)
+{
+    if (len > 0 && ptr != NULL)
+    {
+        char ch;
+        int id;
+
+        Extract(&ptr, &ch, 1);
+        Extract(&ptr, &id, 4);
+        len -= 5;
+
+        server_secure_token = (unsigned int)(ch ^ 0xED);
+
+        UpdateSecurityRedbook(id);
+
+        server_sliding_token = GetSecurityRedbook();
+
+        // debug(("New redbook is '%s'.\n", server_sliding_token));
+    }
+
+    if (len != 0)
+        return False;
+    PingGotReply();
+    return True;
+}
+/********************************************************************/
+Bool HandleEchoUDPPing(char* ptr, long len)
+{
+    if (len != 0)
+        return False;
+    PingGotReplyUDP();
+    return True;
 }
 /********************************************************************/
 /*                      LOGIN MODE MESSAGES                         */
 /********************************************************************/
-Bool HandleLoginOk(char *ptr, long len)
+Bool HandleLoginOk(char* ptr, long len)
 {
-   BYTE admin;
+    BYTE admin;
+    int sessionid;
 
-   if (len != SIZE_ADMIN)
-      return False;
+    if (len != (SIZE_ADMIN + SIZE_SESSION_ID))
+        return False;
 
-   Extract(&ptr, &admin, SIZE_ADMIN);
-   LoginOk(admin);
-   return True;
+    Extract(&ptr, &admin, SIZE_ADMIN);
+    Extract(&ptr, &sessionid, SIZE_SESSION_ID);
+    LoginOk(admin, sessionid);
+    return True;
 }
 /********************************************************************/
-Bool HandleLoginFailed(char *ptr, long len)
+Bool HandleLoginFailed(char* ptr, long len)
 {
-   if (len != 0)
-      return False;
-   LoginError(IDS_BADLOGIN);
-   return True;
+    if (len != 0)
+        return False;
+    LoginError(IDS_BADLOGIN);
+    return True;
 }
 /********************************************************************/
-Bool HandleEnterGame(char *ptr, long len)
+Bool HandleEnterGame(char* ptr, long len)
 {
-   if (len != 0)
-      return False;
-   MainSetState(STATE_GAME);
-   return True;
+    if (len != 0)
+        return False;
+    MainSetState(STATE_GAME);
+    return True;
 }
 /********************************************************************/
-Bool HandleEnterAdmin(char *ptr, long len)
+Bool HandleEnterAdmin(char* ptr, long len)
 {
-   if (len != 0)
-      return False;
-   MainSetState(STATE_TERM);
-   return True;
+    if (len != 0)
+        return False;
+    MainSetState(STATE_TERM);
+    return True;
 }
 /********************************************************************/
-Bool HandleGetLogin(char *ptr, long len)
+Bool HandleGetLogin(char* ptr, long len)
 {
-   if (len != 0)
-      return False;
-   LoginSendInfo();
-   return True;
+    if (len != 0)
+        return False;
+    LoginSendInfo();
+    return True;
 }
 /********************************************************************/
-Bool HandleGetChoice(char *ptr, long len)
+Bool HandleGetChoice(char* ptr, long len)
 {
-   int i;
-   unsigned int seeds[NUM_STREAMS];
+    int i;
+    unsigned int seeds[NUM_STREAMS];
 
-   if (len != NUM_STREAMS * 4)
-      return False;
+    if (len != NUM_STREAMS * 4)
+        return False;
 
-   for (i=0; i < NUM_STREAMS; i++)
-      Extract(&ptr, &seeds[i], 4);
+    for (i = 0; i < NUM_STREAMS; i++)
+        Extract(&ptr, &seeds[i], 4);
 
-   RandomStreamsInit(seeds);
-   EnterGame();
-   return True;
+    RandomStreamsInit(seeds);
+    EnterGame();
+    return True;
 }
 /********************************************************************/
-Bool HandleLoginErrorMsg(char *ptr, long len)
+Bool HandleLoginErrorMsg(char* ptr, long len)
 {
-   char message[MAXMESSAGE + 1];
-   BYTE action;
+    char message[MAXMESSAGE + 1];
+    BYTE action;
 
-   len = ExtractString(&ptr, len, message, MAXMESSAGE);
-   if (len != 1)
-      return False;
-   Extract(&ptr, &action, 1);
-   LoginErrorMessage(message, action);
-   return True;
+    len = ExtractString(&ptr, len, message, MAXMESSAGE);
+    if (len != 1)
+        return False;
+    Extract(&ptr, &action, 1);
+    LoginErrorMessage(message, action);
+    return True;
 }
 /********************************************************************/
-Bool HandleAccountUsed(char *ptr, long len)
+Bool HandleAccountUsed(char* ptr, long len)
 {
-   if (len != 0)
-      return False;
-   LoginError(IDS_ACCOUNTUSED);
-   return True;
+    if (len != 0)
+        return False;
+    LoginError(IDS_ACCOUNTUSED);
+    return True;
 }
 /********************************************************************/
-Bool HandleTooManyLogins(char *ptr, long len)
+Bool HandleTooManyLogins(char* ptr, long len)
 {
-   if (len != 0)
-      return False;
-   LoginError(IDS_TOOMANYLOGINS);
-   return True;
+    if (len != 0)
+        return False;
+    LoginError(IDS_TOOMANYLOGINS);
+    return True;
 }
 /********************************************************************/
-Bool HandleTimeout(char *ptr, long len)
+Bool HandleTimeout(char* ptr, long len)
 {
-   if (len != 0)
-      return False;
-   LoginTimeout();
-   return True;
+    if (len != 0)
+        return False;
+    LoginTimeout();
+    return True;
 }
 /********************************************************************/
-Bool HandleDownload(char *ptr, long len)
+Bool HandleDownload(char* ptr, long len)
 {
-   char *start = ptr;
-   WORD i;
-   DownloadInfo *dinfo;
+    char* start = ptr;
+    WORD i;
+    DownloadInfo* dinfo;
 
-   dinfo = (DownloadInfo *) ZeroSafeMalloc(sizeof(DownloadInfo));
+    dinfo = (DownloadInfo*)ZeroSafeMalloc(sizeof(DownloadInfo));
 
-   Extract(&ptr, &dinfo->num_files, 2);
-   len -= 2;
-   len = ExtractString(&ptr, len, dinfo->machine, MAX_HOSTNAME);
-   len = ExtractString(&ptr, len, dinfo->path, MAX_PATH);
-   len = ExtractString(&ptr, len, dinfo->reason, MAX_TEXT_REASON);
-   len = ExtractString(&ptr, len, dinfo->demoPath, MAX_PATH);
-   dinfo->files = (DownloadFileInfo *) ZeroSafeMalloc(sizeof(DownloadFileInfo) * dinfo->num_files);
-   for (i=0; i < dinfo->num_files; i++)
-   {
-      DownloadFileInfo *info = &dinfo->files[i];
+    Extract(&ptr, &dinfo->num_files, 2);
+    len -= 2;
+    len = ExtractString(&ptr, len, dinfo->machine, MAX_HOSTNAME);
+    len = ExtractString(&ptr, len, dinfo->path, MAX_PATH);
+    len = ExtractString(&ptr, len, dinfo->reason, MAX_TEXT_REASON);
+    len = ExtractString(&ptr, len, dinfo->demoPath, MAX_PATH);
+    dinfo->files = (DownloadFileInfo*)ZeroSafeMalloc(sizeof(DownloadFileInfo) * dinfo->num_files);
+    for (i = 0; i < dinfo->num_files; i++)
+    {
+        DownloadFileInfo* info = &dinfo->files[i];
 
-      Extract(&ptr, &info->time, 4);
-      Extract(&ptr, &info->flags, 4);
-      Extract(&ptr, &info->size, 4);
-      len -= 3*4;
-      len = ExtractString(&ptr, len, info->filename, FILENAME_MAX);
-   }
-   
-   if (len != 0)
-   {
-      SafeFree(dinfo->files);
-      SafeFree(dinfo);
-      return False;
-   }
-   
-   DownloadFiles(dinfo);
-   return True;
+        Extract(&ptr, &info->time, 4);
+        Extract(&ptr, &info->flags, 4);
+        Extract(&ptr, &info->size, 4);
+        len -= 3 * 4;
+        len = ExtractString(&ptr, len, info->filename, FILENAME_MAX);
+    }
+
+    if (len != 0)
+    {
+        SafeFree(dinfo->files);
+        SafeFree(dinfo);
+        return False;
+    }
+
+    DownloadFiles(dinfo);
+    return True;
 }
 /********************************************************************/
-Bool HandleNoCredits(char *ptr, long len)
+Bool HandleNoCredits(char* ptr, long len)
 {
-   if (len != 0)
-      return False;
-   LoginError(IDS_NOCREDITS);
-   return True;
+    if (len != 0)
+        return False;
+    LoginError(IDS_NOCREDITS);
+    return True;
 }
 /********************************************************************/
-Bool HandlePasswordOk(char *ptr, long len)
+Bool HandlePasswordOk(char* ptr, long len)
 {
-   if (len != 0)
-      return False;
-   GameMessage(GetString(hInst, IDS_PASSWORDCHANGED));
-   return True;
+    if (len != 0)
+        return False;
+    GameMessage(GetString(hInst, IDS_PASSWORDCHANGED));
+    return True;
 }
 /********************************************************************/
-Bool HandlePasswordNotOk(char *ptr, long len)
+Bool HandlePasswordNotOk(char* ptr, long len)
 {
-   if (len != 0)
-      return False;
-   GameMessage(GetString(hInst, IDS_PASSWORDNOTCHANGED));
-   return True;
+    if (len != 0)
+        return False;
+    GameMessage(GetString(hInst, IDS_PASSWORDNOTCHANGED));
+    return True;
 }
 /********************************************************************/
-Bool HandleCredits(char *ptr, long len)
+Bool HandleCredits(char* ptr, long len)
 {
-   DWORD credits;
+    DWORD credits;
 
-   if (len != sizeof(credits))
-      return False;
+    if (len != sizeof(credits))
+        return False;
 
-   Extract(&ptr, &credits, 4);
-//   SetCredits(credits);
-   return True;
+    Extract(&ptr, &credits, 4);
+    //   SetCredits(credits);
+    return True;
 }
 /********************************************************************/
-Bool HandleDeleteRsc(char *ptr, long len)
+Bool HandleDeleteRsc(char* ptr, long len)
 {
-   list_type files = NULL;
-   char *file;
-   WORD num_files;
-   int i;
+    list_type files = NULL;
+    char* file;
+    WORD num_files;
+    int i;
 
-   Extract(&ptr, &num_files, 2);
-   len -= 2;
+    Extract(&ptr, &num_files, 2);
+    len -= 2;
 
-   for (i = 0; i < num_files; i++)
-   {
-      file = (char *) SafeMalloc(MAXMESSAGE + 1);   
-      if ((len = ExtractString(&ptr, len, file, MAXMESSAGE)) == -1)
-      {
-         list_destroy(files);
-         return False;
-      }
-      files = list_add_item(files, file);
-   }
+    for (i = 0; i < num_files; i++)
+    {
+        file = (char*)SafeMalloc(MAXMESSAGE + 1);
+        if ((len = ExtractString(&ptr, len, file, MAXMESSAGE)) == -1)
+        {
+            list_destroy(files);
+            return False;
+        }
+        files = list_add_item(files, file);
+    }
 
-   if (len == 0)
-      DeleteRscFiles(files);
-   list_destroy(files);
-   
-   return len == 0;
+    if (len == 0)
+        DeleteRscFiles(files);
+    list_destroy(files);
+
+    return len == 0;
 }
 /********************************************************************/
-Bool HandleDeleteAllRsc(char *ptr, long len)
+Bool HandleDeleteAllRsc(char* ptr, long len)
 {
-   if (len != 0)
-      return False;
-   DeleteAllRscFiles();
-   return True;
+    if (len != 0)
+        return False;
+    DeleteAllRscFiles();
+    return True;
 }
 
 /********************************************************************/
-Bool HandleLoginResync(char *ptr, long len)
+Bool HandleLoginResync(char* ptr, long len)
 {
-   if (len != 0)
-      return False;
-   /* Go into resynchronization */
-   MainSetState(STATE_STARTUP);
-   return True;
+    if (len != 0)
+        return False;
+    /* Go into resynchronization */
+    MainSetState(STATE_STARTUP);
+    return True;
 }
 /********************************************************************/
-Bool HandleGameResync(char *ptr, long len)
+Bool HandleGameResync(char* ptr, long len)
 {
-   if (len != 0)
-      return False;
-   GameDisplayResync();
-   /* Go into resynchronization */
-   GameSetState(GAME_RESYNC);
-   return True;
+    if (len != 0)
+        return False;
+    GameDisplayResync();
+    /* Go into resynchronization */
+    GameSetState(GAME_RESYNC);
+    return True;
 }
 /********************************************************************/
-Bool HandleNoCharacters(char *ptr, long len)
+Bool HandleNoCharacters(char* ptr, long len)
 {
-   if (len != 0)
-      return False;
-   LoginError(IDS_NOCHARACTERS);
-   Logoff();
-   return True;
+    if (len != 0)
+        return False;
+    LoginError(IDS_NOCHARACTERS);
+    Logoff();
+    return True;
 }
 /********************************************************************/
-Bool HandleGetClient(char *ptr, long len)
+Bool HandleGetClient(char* ptr, long len)
 {
-   char hostname[MAXMESSAGE], filename[MAXMESSAGE];
-   debug(("Got GetClient\n"));
-   
-   if ((len = ExtractString(&ptr, len, hostname, MAXMESSAGE)) == -1)
-      return False;
+    debug(("Protocol AP_GETCLIENT no longer supported!"));
 
-   if ((len = ExtractString(&ptr, len, filename, MAXMESSAGE)) == -1)
-      return False;
-
-   debug(("server = %s, filename = %s\n", hostname, filename));
-
-   DownloadNewClient(hostname, filename);
-
-   return True;
+    return True;
 }
 /********************************************************************/
-Bool HandleClientPatch(char *ptr, long len)
+Bool HandleClientPatch(char* ptr, long len)
 {
-   char patchhost[MAXMESSAGE], patchcachepath[MAXMESSAGE], patchpath[MAXMESSAGE];
-   char cachefile[MAXMESSAGE], clubfile[MAXMESSAGE], reason[MAXMESSAGE];
-   debug(("Got ClientPatch\n"));
+    char patchhost[MAXMESSAGE], patchcachepath[MAXMESSAGE], patchpath[MAXMESSAGE];
+    char cachefile[MAXMESSAGE], clubfile[MAXMESSAGE], reason[MAXMESSAGE];
+    debug(("Got ClientPatch\n"));
 
-   if ((len = ExtractString(&ptr, len, patchhost, MAXMESSAGE)) == -1)
-      return False;
-   if ((len = ExtractString(&ptr, len, patchpath, MAXMESSAGE)) == -1)
-      return False;
-   if ((len = ExtractString(&ptr, len, patchcachepath, MAXMESSAGE)) == -1)
-      return False;
-   if ((len = ExtractString(&ptr, len, cachefile, MAXMESSAGE)) == -1)
-      return False;
-   if ((len = ExtractString(&ptr, len, clubfile, MAXMESSAGE)) == -1)
-      return False;
-   if ((len = ExtractString(&ptr, len, reason, MAXMESSAGE)) == -1)
-      return False;
+    if ((len = ExtractString(&ptr, len, patchhost, MAXMESSAGE)) == -1)
+        return False;
+    if ((len = ExtractString(&ptr, len, patchpath, MAXMESSAGE)) == -1)
+        return False;
+    if ((len = ExtractString(&ptr, len, patchcachepath, MAXMESSAGE)) == -1)
+        return False;
+    if ((len = ExtractString(&ptr, len, cachefile, MAXMESSAGE)) == -1)
+        return False;
+    if ((len = ExtractString(&ptr, len, clubfile, MAXMESSAGE)) == -1)
+        return False;
+    if ((len = ExtractString(&ptr, len, reason, MAXMESSAGE)) == -1)
+        return False;
 
-   DownloadClientPatch(patchhost, patchpath, patchcachepath, cachefile,
-      clubfile, reason);
+    DownloadClientPatch(patchhost, patchpath, patchcachepath, cachefile,
+        clubfile, reason);
 
-   return True;
+    return True;
 }
 /********************************************************************/
-Bool HandleGuest(char *ptr, long len)
+Bool HandleResetView(char* ptr, long len)
 {
-   BYTE status;
-   int low, high;
-   char *start = ptr;
-
-   Extract(&ptr, &status, 1);
-   Extract(&ptr, &low, 4);
-   Extract(&ptr, &high, 4);
-   
-   len -= (ptr - start);
-   if (len != 0)
-      return False;
-
-   GuestLoggingIn(status, low, high);
-   return True;
+    SetPlayerRemoteView(0, 0, 0, 0);
+    return True;
 }
 /********************************************************************/
-Bool HandleResetView(char *ptr, long len)
+Bool HandleSetView(char* ptr, long len)
 {
-   SetPlayerRemoteView(0,0,0,0);
-   return True;
+    char* start = ptr;
+    ID objID;
+    int viewFlags;
+    int viewHeight;
+    BYTE viewLight;
+
+    Extract(&ptr, &objID, SIZE_ID);
+    Extract(&ptr, &viewFlags, 4);
+    Extract(&ptr, &viewHeight, 4);
+    Extract(&ptr, &viewLight, 1);
+
+    len -= (ptr - start);
+    if (len != 0)
+        return False;
+
+    SetPlayerRemoteView(objID, viewFlags, viewHeight, viewLight);
+    return True;
 }
+
 /********************************************************************/
-Bool HandleSetView(char *ptr, long len)
+// Missing function implementations
+void ChangeObjectFlags(object_node *o)
 {
-   char *start = ptr;
-   ID objID;
-   int viewFlags;
-   int viewHeight;
-   BYTE viewLight;
+    // This function should update the object flags in the game state
+    // For now, just a stub implementation
+}
 
-   Extract(&ptr, &objID, SIZE_ID);
-   Extract(&ptr, &viewFlags, 4);
-   Extract(&ptr, &viewHeight, 4);
-   Extract(&ptr, &viewLight, 1);
+void PingGotReplyUDP(void)
+{
+    // This function should handle UDP ping replies
+    // For now, just a stub implementation
+}
 
-   len -= (ptr - start);
-   if (len != 0)
-      return False;
-
-   SetPlayerRemoteView(objID,viewFlags,viewHeight,viewLight);
-   return True;
+void SetMovementSpeedPct(int speed)
+{
+    // This function should set the player's movement speed percentage
+    // For now, just a stub implementation
 }

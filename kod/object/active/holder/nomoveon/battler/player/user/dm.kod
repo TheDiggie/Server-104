@@ -394,6 +394,9 @@ properties:
    // What's this DM's "standard" icon? Nil means it's human.
    prStandardIcon = $
 
+   // Illusion set for the DM
+   poIllusion_set = $
+
    pbSetLowRoll = FALSE
    piLowRoll = 0
    piHighRoll = 0
@@ -2819,6 +2822,10 @@ messages:
       else if StringEqual(string,dm_get_scrolls_command)
       {
          Send(self,@GetOneOfEach,#type=ITEMTYPE_SCROLL);
+      }
+      else if StringEqual(string,dm_get_masks_command)
+      {
+         Send(self,@GetOneOfEach,#type=ITEMTYPE_MASK);
       }
       else if StringEqual(string,dm_get_crafting_command)
       {

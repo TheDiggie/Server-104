@@ -311,7 +311,7 @@ void Lagbox_Command(HWND hWnd, int id, HWND hwndCtrl, UINT uNotify)
 		0/*flags*/,
 		pszLagboxDescription, 
 		ttt.szText/*guild*/,
-		pszLagboxURL);
+						pszLagboxURL);
 	SetDescParams(hWnd, 0);
 }
 

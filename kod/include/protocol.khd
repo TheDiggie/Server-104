@@ -51,6 +51,8 @@
    BP_REQ_LOOKUP_NAMES      = 88
 
    BP_ACTION                = 90
+
+   BP_REQ_PERFORM           = 97
    BP_REQ_MOVE              = 100
    BP_REQ_TURN              = 101
    BP_REQ_GO                = 102
@@ -167,6 +169,9 @@
    BP_RESET_VIEW            = 238
    BP_SECTOR_CHANGE         = 239
    BP_REQ_GET_FROM_CONTAINER  = 240
+   BP_REQ_TRIGGER_QUEST      = 241
+   BP_REQ_NPC_QUESTS         = 242
+   BP_NPC_QUEST_LIST         = 243
 
    // user command protocol
    UC_SEND_QUIT = 1

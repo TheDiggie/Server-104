@@ -74,6 +74,17 @@
    OF_FLICKERING     = 0x00020000
    OF_FLASHING       = 0x00040000
    OF_PHASING        = 0x00080000
+   // Has a quest the user can start.
+   OF_NPCHASQUESTS   = 0x00100000
+   // Has a quest the user is currently completing.
+   OF_NPCACTIVEQUEST = 0x00200000
+   // Mob part of current kill quest for user.
+   OF_MOBKILLQUEST   = 0x00400000
+   // Has at least one quest that satisfies the following:
+   // 1. Has a quest the user can start.
+   // 2. Has a quest the user is currently completing.
+   // 3. Has a quest the user isn't eligible for, but could be in the future.
+   OF_NPCQUESTABLE   = 0x00800000
 
    // Client preference flags (stored in piPreferences in Player)
    // Default preferences - all on except safety (which is reverse)
@@ -144,7 +155,11 @@
    OT_SUPER        = 5   // Set if object is a "super DM".
    OT_MODERATOR    = 6   // Set if object is a "moderator".
    OT_EVENTCHAR    = 7   // Set if object is an event character.
-
+   // Used for Quest Template objects.
+   OT_QUESTACTIVE  = 8   // Quest in progress
+   OT_QUESTVALID   = 9   // Quest can be started
+   OT_QUESTINVALID = 10  // Quest cannot be started
+   
    // query flags for GetLocationInfoBSP
    LIQ_GET_SECTORINFO    = 0x000001
    LIQ_CHECK_THINGSBOX   = 0x000002
@@ -3770,6 +3785,7 @@
 
    // Does player have pvp enabled, i.e. not perma pvp off.
    Q_PLAYER_PVP_ENABLED          = 0x100000
+   Q_PLAYER_GUILDOFFICER         = 0x200000          // player is a guild officer, and guild has colors
 
    // quest player restrictions2
    //        used for restrictions which require parameter passing/setting
@@ -3786,6 +3802,8 @@
    Q_R2_HAS_HEALTH_LEVEL         = 9   // [Q_R2_, minHPs]             (calls GetMaxHealth)
    Q_R2_DOES_NOT_HAVE_ITEM       = 10  // [Q_R2_, itemclass]
    Q_R2_NECRO_GUILD_ACTIVE       = 11  // [Q_R2_, boolean]            (is necromancer guild active?)
+   Q_R2_HAS_COMPLETED_QUEST_ID   = 12  // [Q_R2_, quest ID]           (checks quest history, successful quest)
+   Q_R2_HAS_FAILED_QUEST_ID      = 13  // [Q_R2_, quest ID]           (checks quest history, failed quest)
 
    QUEST_HISTORY_MASK           = 0x0FFFFFF           // bits used in player quest history compound to indicate quest index
    QUEST_HISTORY_SUCCESS           = 0x1000000
@@ -3803,6 +3821,7 @@
    QN_TYPE_MONSTER            = 0x09         // Kill a monster of a certain type
    QN_TYPE_MONSTER_ITEMCLASS   = 0x10         // Kill a monster of a certain type, and deliver the newly created item you get after doing so
    QN_TYPE_MONSTER_BRING      = 0x0A         // Bring a charmed monster of this type
+   QN_TYPE_MONSTER_MULTIPLE  = 0x0B         // Kill multiple monsters of a certain type
 
    // Quest node status values
    QN_STATUS_UNINITIALIZED          = 0x0
@@ -3811,6 +3830,8 @@
    QN_STATUS_IN_PROGRESS            = 0x3
    QN_STATUS_AWAITING_MONSTER_DEATH = 0x4
    QN_STATUS_COMPLETED              = 0x5
+   // Used for assignable quests which need to unassign after deadline.
+   QN_STATUS_WAITING_FOR_PLAYERS_TIMED = 0x6
 
    // Quest node prize types
    QN_PRIZETYPE_ITEM                      = 0x01      // Specific item's object ID

@@ -660,7 +660,8 @@ void SetDescParams(HWND hParent, int flags)
 *   extra_string and url are used only in player descriptions.
 */
 void DisplayDescription(object_node *obj, BYTE flags, char *description, 
-                        char *extra_string, char *url)
+                        char *extra_string, char *url, char *school_name, 
+                        char *level, char *mana, char *vigor)
 {
 	DescDialogStruct info;
 	int template_id;
@@ -679,6 +680,12 @@ void DisplayDescription(object_node *obj, BYTE flags, char *description,
 	info.fixed_string = extra_string;
 	info.url          = url;
 	
+	// Store additional spell/skill info if provided
+	if (school_name) {
+		// For spells/skills, we might want to display additional info
+		// This could be extended to show school, level, mana cost, etc.
+	}
+	
 	// Different dialog for players
 	template_id = (obj->flags & OF_PLAYER) ? IDD_DESCPLAYER : IDD_DESC;
 	
@@ -689,6 +696,12 @@ void DisplayDescription(object_node *obj, BYTE flags, char *description,
 	SetDescParams(NULL, DESC_NONE);
 }
 
+// Overloaded version for backward compatibility
+void DisplayDescription(object_node *obj, BYTE flags, char *description, 
+                        char *extra_string, char *url)
+{
+	DisplayDescription(obj, flags, description, extra_string, url, NULL, NULL, NULL, NULL);
+}
 /*****************************************************************************/
 /*
 * AbortGameDialogs:  Close modal dialogs, for example when we lose the server

@@ -58,6 +58,8 @@ enum {
    BP_ROUNDTRIP1            = 4,
    BP_ROUNDTRIP2            = 5,
    BP_SYSTEM                = 6,
+   BP_UDP_PING              = 7,
+   BP_ECHO_UDP_PING         = 8,
 
    BP_LOGOFF                = 20,
    BP_WAIT                  = 21,
@@ -95,7 +97,8 @@ enum {
    BP_REQ_ADMIN_QUEST       = 62,
 
    BP_EFFECT                = 70,
-   
+   BP_MOVEMENT_SPEED        = 71,
+
    BP_MAIL                  = 80,
    BP_REQ_GET_MAIL          = 81,
    BP_SEND_MAIL             = 82,
@@ -108,6 +111,10 @@ enum {
    BP_REQ_LOOKUP_NAMES      = 88,
 
    BP_ACTION                = 90,
+
+   BP_REQ_PERFORM           = 97,
+   BP_REQ_TRIGGER_QUEST     = 98,
+   BP_REQ_NPC_QUESTS        = 99,
    BP_REQ_MOVE              = 100,
    BP_REQ_TURN              = 101,
    BP_REQ_GO                = 102,
@@ -136,7 +143,8 @@ enum {
    BP_REQ_BUY_ITEMS         = 125,
    BP_CHANGE_DESCRIPTION    = 126,
    BP_REQ_INVENTORY_MOVE    = 127,
-
+   BP_ROOM_CONTENTS_FLAGS   = 128,
+   BP_CHANGE_FLAGS          = 129,
    BP_PLAYER                = 130,
    BP_STAT                  = 131,
    BP_STAT_GROUP            = 132,
@@ -182,7 +190,10 @@ enum {
    BP_ARTICLE               = 182,
 
    BP_LOOKUP_NAMES          = 190,
+   BP_LOOK_SPELL            = 191,
+   BP_LOOK_SKILL            = 192,
 
+   BP_NPC_QUEST_LIST        = 199,
    BP_MOVE                  = 200,
    BP_TURN                  = 201,
    BP_SHOOT                 = 202,
@@ -223,7 +234,7 @@ enum {
    BP_SET_VIEW              = 237,
    BP_RESET_VIEW            = 238,
    BP_SECTOR_CHANGE         = 239,
-   BP_REQ_GET_FROM_CONTAINER  = 240,
+   BP_REQ_GET_FROM_CONTAINER = 240,
 };
 
 // User commands (in BP_USERCOMMAND message)
@@ -272,6 +283,8 @@ enum {
    UC_WITHDRAW = 36,
    UC_BALANCE = 37,
 
+   UC_GUILD_SHIELD_ERROR = 38,
+
    UC_APPEAL = 40,
    UC_REQ_RESCUE = 41,
 
@@ -283,6 +296,32 @@ enum {
 
    UC_REQ_TIME = 60,
 };
+
+// Character creation error enum
+enum {
+   CC_OK = 0,
+   CC_GENERIC_ERROR = 1, // Client uses this for e.g. broken protocol message.
+   CC_NOT_FIRST_TIME = 2, // Player has a restart time > 0.
+   CC_NAME_TOO_LONG = 3,
+   CC_NAME_BAD_CHARACTERS = 4, // Invalid letters in name.
+   CC_NAME_IN_USE = 5,
+   CC_NO_MOB_NAME = 6,
+   CC_NO_NPC_NAME = 7,
+   CC_NO_GUILD_NAME = 8,
+   CC_NO_BAD_WORDS = 9,
+   CC_NO_CONFUSING_NAME = 10, // Gods names, 'You' etc.
+   CC_RETIRED_NAME = 11, // Names of old designers/admins.
+   CC_DESC_TOO_LONG = 12,
+   CC_INVALID_GENDER = 13,
+};
+
+// Login data flags
+#define LF_HARDWARE_RENDERER 0x0001
+#define LF_LARGE_GRAPHICS    0x0002
+#define LF_MUSIC_ON          0x0004
+#define LF_DYNAMIC_LIGHTING  0x0008
+#define LF_WEATHER_EFFECTS   0x0010
+#define LF_WIREFRAME         0x0020
 
 // Login error action constants
 #define LA_NOTHING   0
@@ -382,11 +421,16 @@ enum {
 #define OF_ACTIVATABLE   0x00000800    // Set if object can be activated
 #define OF_APPLYABLE     0x00001000    // Set if object can be applied to another object
 #define OF_NPC           0x00002000    // Set if object is an NPC (not necessarily offerable/buyable)
+#define OF_EQUIPPED      0x00004000    // Set if object is equipped by another player/NPC/monster
 
 #define OF_BOUNCING      0x00010000    // If both flags on then object is bouncing
 #define OF_FLICKERING    0x00020000    // For players or objects if holding a flickering light.
 #define OF_FLASHING      0x00040000    // For players or objects if flashing with light.
 #define OF_PHASING       0x00080000    // For players or objects if phasing translucent/solid.
+#define OF_NPCHASQUESTS  0x00100000
+#define OF_NPCACTIVEQUEST 0x00200000
+#define OF_MOBKILLQUEST  0x00400000
+#define OF_NPCQUESTABLE  0x00800000
 
 #define GetItemFlags(flags)   ((flags))
 
@@ -408,21 +452,27 @@ enum {
 };
 
 // Minimap dot color bitfield. Now separate from object flags.
-#define MM_NONE          0x00000000    // No dot (default for all objects)
-#define MM_PLAYER        0x00000001    // Standard blue player dot
-#define MM_ENEMY         0x00000002    // Enemy (halo or attackable) player
-#define MM_FRIEND        0x00000004    // Friendly (guild ally) player
-#define MM_GUILDMATE     0x00000008    // Guildmate player
-#define MM_BUILDER_GROUP 0x00000010    // Player is in same building group
-#define MM_MONSTER       0x00000020    // Default monster dot
-#define MM_NPC           0x00000040    // NPC
-#define MM_MINION_OTHER  0x00000080    // Set if monster is other's minion
-#define MM_MINION_SELF   0x00000100    // Set if a monster is our minion
-#define MM_TEMPSAFE      0x00000200    // Set if player has a temporary angel.
-#define MM_MINIBOSS      0x00000400    // Set if mob is a miniboss (survival arena).
-#define MM_BOSS          0x00000800    // Set if mob is a boss (survival arena).
-#define MM_RARE_ITEM     0x00001000    // Set if item is rare.
-#define MM_NO_PVP         0x00002000    // Set if player has no PVP flag.
+#define MM_NONE            0x00000000    // No dot (default for all objects)
+#define MM_PLAYER          0x00000001    // Standard blue player dot
+#define MM_ENEMY           0x00000002    // Enemy (halo or attackable) player
+#define MM_FRIEND          0x00000004    // Friendly (guild ally) player
+#define MM_GUILDMATE       0x00000008    // Guildmate player
+#define MM_BUILDER_GROUP   0x00000010    // Player is in same building group
+#define MM_MONSTER         0x00000020    // Default monster dot
+#define MM_NPC             0x00000040    // NPC
+#define MM_MINION_OTHER    0x00000080    // Set if monster is other's minion
+#define MM_MINION_SELF     0x00000100    // Set if a monster is our minion
+#define MM_TEMPSAFE        0x00000200    // Set if player has a temporary angel.
+#define MM_MINIBOSS        0x00000400    // Set if mob is a miniboss (survival arena).
+#define MM_BOSS            0x00000800    // Set if mob is a boss (survival arena).
+#define MM_RARE_ITEM       0x00001000    // Set if item is rare.
+#define MM_NO_PVP          0x00002000    // Set if player has no PVP flag.
+#define MM_AGGRO_SELF      0x00004000    // Set if monster has aggro on the player.
+#define MM_AGGRO_OTHER     0x00008000    // Set if monster has aggro on another player.
+#define MM_MERCENARY       0x00010000    // Set if monster is our mercenary.
+#define MM_NPCHASQUEST     0x00020000    // Set if NPC has a quest for us
+#define MM_NPCCURRENTQUEST 0x00040000    // Set if NPC is part of an active quest
+#define MM_MOBKILLQUEST    0x00080000    // Set if monster is part of a kill quest
 
 /* Player name color sent as hex RGB value. Define constants
    for ease of use as needed. Requires OF_PLAYER boolean flag
@@ -449,6 +499,9 @@ typedef enum {
    OT_SUPER        = 5,   // Set if object is a "super DM".
    OT_MODERATOR    = 6,   // Set if object is a "moderator".
    OT_EVENTCHAR    = 7,   // Set if object is an event character.
+   OT_QUESTACTIVE  = 8,   // Quest in progress
+   OT_QUESTVALID   = 9,   // Quest can be started
+   OT_QUESTINVALID = 10   // Quest cannot be started
 } object_type;
 
 /* How objects allow or disallow motion onto their square */
@@ -465,8 +518,9 @@ typedef enum {
 #define CF_GROUPING      0x0004  // Player is grouping
 #define CF_AUTOLOOT      0x0008  // Player is automatically picking up loot
 #define CF_AUTOCOMBINE   0x0010  // Player automatically combines spell items
-#define CF_BAGS    0x0020  // Player automatically puts items into reagent bag
+#define CF_REAGENTBAG    0x0020  // Player automatically puts items into reagent bag
 #define CF_SPELLPOWER    0x0040  // Player gets spellpower readout from cast spells
+#define CF_BAGS          0x0080 
 
 // Lighting constants, used by D3D renderer for dynamic lighting
 // Bright colors, 100% saturation
@@ -511,9 +565,11 @@ enum {
    EFFECT_CLEARSAND     = 13,  // Stop sandstorm
    EFFECT_WAVER         = 14,  // Wavering sideways
    EFFECT_FLASHXLAT     = 15,  // Flashes screen with a given XLAT number
-   EFFECT_WHITEOUT	= 16,  // Got from full white and fade back to normal
-   EFFECT_XLATOVERRIDE	= 17,  // Use this xlat at end over the whole screen
-   EFFECT_FIREWORKS = 18,
+   EFFECT_WHITEOUT      = 16,  // Got from full white and fade back to normal
+   EFFECT_XLATOVERRIDE  = 17,  // Use this xlat at end over the whole screen
+   EFFECT_FIREWORKS     = 18,
+   EFFECT_CLEAVE        = 19,  // Effect used by cleave skill.
+   EFFECT_DODGE         = 20,  // Effect used by dodge passive skill.
 };
 
 /* Room animation action codes */
@@ -538,11 +594,10 @@ enum {
    DF_DIRCLIENT        = 0x04,   // File's location is client subdirectory
    DF_DIRWIN           = 0x08,   // File's location is Windows directory
    DF_DIRWINSYS        = 0x0c,   // File's location is Windows system directory
-   DF_DIRHELP          = 0x10,   // File's location is help subdirectory
-   DF_DIRMAIL          = 0x14,   // File's location is mail subdirectory
-   DF_ADVERTISEMENT    = 0x18,   // Identifies file as an advertisement (goes in client dir)
-
-   DF_GUEST            = 0x20,   // File should be downloaded by guests
+   DF_DIRHELP          = 0x14,   // File's location is help subdirectory
+   DF_DIRMAIL          = 0x18,   // File's location is mail subdirectory
+   DF_ADVERTISEMENT    = 0x1c,   // Identifies file as an advertisement (goes in client dir)
+   DF_GUEST            = 0x20,   // File is available to guest users
 };
 #define DownloadCommand(z)  ((z) & 0x03)
 #define DownloadLocation(z) ((z) & 0x1c)
@@ -569,6 +624,9 @@ enum {
    SL_FLICKER_ON       = 1,         // Turn flickering on
    SL_FLICKER_OFF      = 2,         // Turn flickering off
 };
+
+/* Size in bytes of UDP header (without TYPE byte) */
+#define SIZE_HEADER_UDP      11
 
 /* Size in bytes of numbers in protocol */
 #define SIZE_TYPE            1
@@ -603,6 +661,9 @@ enum {
 #define SIZE_FILTER          2
 #define SIZE_PROJECTILE_FLAGS 2
 #define SIZE_PROJECTILE_RESERVED 2
+#define SIZE_SESSION_ID      4
+#define SIZE_CHARINFO_ERROR 1
+#define SIZE_OBJECTFLAGS (3 * SIZE_VALUE + 3 * SIZE_TYPE)
 
 // new defines for dynamic lighting of d3d client
 #define LIGHT_FLAG_NONE		0x0000
