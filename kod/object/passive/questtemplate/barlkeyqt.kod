@@ -1,0 +1,203 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+/////////////////////////////////////////////////////////////////////////////////
+BarloqueKeyQuest is QuestTemplate
+// Quest nodes 231, 232, 233, 234
+// QNT_ID_BARLOQUE_KEY_ONE, QNT_ID_BARLOQUE_KEY_TWO,
+// QNT_ID_BARLOQUE_KEY_THREE, QNT_ID_BARLOQUE_KEY_FOUR
+
+// QuestTemplate is
+// [ quest template index
+//   quest template object
+//   number of players,
+//   type of quest,
+//   eligible player restrictions,
+//   quest nodes,
+//   max number active,
+//   currently active quests,
+//   percent chance of scheduling (on timer firing)
+//   special restrictions ]
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   // Quest description.
+   BarloqueKeyQuest_icon_rsc = key1.bgf
+   BarloqueKeyQuest_name_rsc = "Key to Barloque quest"
+
+   // This description is used if there is an error preventing the others
+   // from being displayed.
+   BarloqueKeyQuest_desc_rsc = \
+      "Joline is angry at Beelzebub and his kind. "
+
+   BarloqueKeyQuest_kill_rsc = \
+      "Joline is angry at Beelzebub. Go slay %i %s. "
+      "Complete this task and report back to her."
+
+   BarloqueKeyQuest_return_rsc = \
+      "Return to Joline and let her know the task has been "
+      "completed."
+
+   BarloqueKeyQuest_completed = \
+      "You have completed Key to Barloque quest.  Joline will thrilled! "
+
+   Barloque_Key = "help"
+
+   // Quest resources.
+   BarloqueKeyQuest_assign_2 = \
+      "Help? HELP! You are the one that has been killing my family! "
+      "Why did they even go around marion! It must have been Beelzebub! "
+      "His colony must have scared my babies. Go kill 5 death mite scouts for me."
+   BarloqueKeyQuest_failure_2 = \
+      "Subject: Key to Barloque quest.\n"
+      "Damn insects. Some better adventurer will handle them. "
+   BarloqueKeyQuest_assign_3 = \
+      "Got some of the scouts? Good, now go take out the soldiers. "
+      "Go kill 5 death mite soldiers for me."
+   BarloqueKeyQuest_failure_3 = \
+      "Subject: Key to Barloque quest.\n"
+      "Damn insects. Some better adventurer will handle them. "
+   BarloqueKeyQuest_assign_4 = \
+      "Good, there some magic ones out there, little harder to deal with "
+      "but I am sure you can handle them. "
+      "Go kill 5 death mite mages for me."
+   BarloqueKeyQuest_success_4 = \
+      "Finally.  Good job getting rid of those insects!"
+   BarloqueKeyQuest_failure_4 = \
+      "Subject: Key to Barloque quest.\n"
+      "Damn insects. Some better adventurer will handle them. "
+
+classvars:
+
+   vrIcon = BarloqueKeyQuest_icon_rsc
+   vrName = BarloqueKeyQuest_name_rsc
+   vrDesc = BarloqueKeyQuest_desc_rsc
+
+   vrKill = BarloqueKeyQuest_kill_rsc
+   vrReturn = BarloqueKeyQuest_return_rsc
+   vrCompleted = BarloqueKeyQuest_completed
+
+   // The QST_ID constant for this quest.
+   viQuestID = QST_ID_BARLOQUE_KEY
+
+properties:
+
+   piNumPlayers = 1
+   piPlayerRestrict = Q_PLAYER_NOTTRIED_RECENTLY
+   plSpecialRestrict = $
+   piMaxPlayers = 30
+   piSchedulePct = 100
+   piTimeLimit = 10 * 3600 // 10 hours.
+
+messages:
+
+   Constructor()
+   {
+      // Quest node list to send to QuestEngine.
+      plQuestNodes = [QNT_ID_BARLOQUE_KEY_ONE, QNT_ID_BARLOQUE_KEY_TWO,
+                      QNT_ID_BARLOQUE_KEY_THREE, QNT_ID_BARLOQUE_KEY_FOUR];
+
+      propagate;
+   }
+
+   SendQuestNodeTemplates()
+   {
+      local lNPCs, oQE, oLib;
+
+      oQE = Send(SYS,@GetQuestEngine);
+      oLib = Send(SYS,@GetLibrary);
+
+      if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MESSAGE,
+               #cargolist=[Barloque_Key],#quest_node_index=QNT_ID_BARLOQUE_KEY_ONE)
+      {
+         Send(oQE,@SetQuestNodeNPCList,#index=QNT_ID_BARLOQUE_KEY_ONE,
+               #new_NPC_list=Send(oLib,@GetOccupationList,
+                                 #cNPC_class=&Joline));
+      }
+      else
+      {
+         Debug("Error building QN: QNT_ID_BARLOQUE_KEY_ONE");
+      }
+
+      if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MONSTER,
+               #NPC_modifier=QN_NPCMOD_SAME,#monsterlist=[&DeathMiteScout],
+               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_BARLOQUE_KEY_TWO,#amount_needed=5)
+      {
+         Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_BARLOQUE_KEY_TWO,
+               #new_hint=BarloqueKeyQuest_assign_2);
+         Send(oQE,@SetQuestNodeFailureHint,#index=QNT_ID_BARLOQUE_KEY_TWO,
+               #new_hint=BarloqueKeyQuest_failure_2);
+      }
+      else
+      {
+         Debug("Error building QN: QNT_ID_BARLOQUE_KEY_TWO");
+      }
+
+      if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MONSTER,
+               #NPC_modifier=QN_NPCMOD_SAME,#monsterlist=[&DeathMiteSoldier],
+               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_BARLOQUE_KEY_THREE,#amount_needed=5)
+      {
+         Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_BARLOQUE_KEY_THREE,
+               #new_hint=BarloqueKeyQuest_assign_3);
+         Send(oQE,@SetQuestNodeFailureHint,#index=QNT_ID_BARLOQUE_KEY_THREE,
+               #new_hint=BarloqueKeyQuest_failure_3);
+      }
+      else
+      {
+         Debug("Error building QN: QNT_ID_BARLOQUE_KEY_THREE");
+      }
+
+      if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MONSTER,
+               #NPC_modifier=QN_NPCMOD_SAME,#monsterlist=[&DeathMiteMage],
+               #prizelist=[ [ [ QN_PRIZETYPE_ITEMCLASS, &BarloqueKey ]] ],
+               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_BARLOQUE_KEY_FOUR,#amount_needed=5)
+      {
+         Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_BARLOQUE_KEY_FOUR,
+               #new_hint=BarloqueKeyQuest_assign_4);
+         Send(oQE,@SetQuestNodeSuccessHint,#index=QNT_ID_BARLOQUE_KEY_FOUR,
+               #new_hint=BarloqueKeyQuest_success_4);
+         Send(oQE,@SetQuestNodeFailureHint,#index=QNT_ID_BARLOQUE_KEY_FOUR,
+               #new_hint=BarloqueKeyQuest_failure_4);
+      }
+      else
+      {
+         Debug("Error building QN: QNT_ID_BARLOQUE_KEY_FOUR");
+      }
+
+      return;
+   }
+
+   MainDesc(who=$,index=$,oQuestNode=$)
+   {
+      local oMob, oQE, iAmount;
+
+      oQE = Send(SYS,@GetQuestEngine);
+
+      oMob = Send(oQuestNode,@GetQuestMonster);
+
+      iAmount = Send(oQE,@GetAmountToKill,#index=index);
+
+      if oMob = $
+      {
+         AddPacket(4,vrReturn);
+      }
+      else
+      {
+         AddPacket(4,vrKill,4,iAmount,4,Send(oMob,@GetName));
+      }
+
+      return;
+   }
+
+end
+/////////////////////////////////////////////////////////////////////////////////

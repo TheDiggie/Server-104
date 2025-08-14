@@ -1,0 +1,145 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+AddPEtoItem is ItemEnchantment
+
+constants:
+
+   TRANCE_TIME = 20000
+
+   include blakston.khd
+
+resources:
+   
+   AddPEtoItem_name_rsc = "add personal enchantment to item"
+   AddPEtoItem_icon_rsc = light.bgf
+   AddPEtoItem_desc_rsc = \
+      "Makes a personal enchantment to a item."
+
+   AddPEtoItem_casting = "Say the name of the personal enchantment to assign the item."
+
+   AddPEtoItem_cast  = "You add the personal enchantment of %s to the %s."
+   AddPEtoItem_fails = "You can't do that."
+
+classvars:
+
+   vrName = AddPEtoItem_name_rsc
+   vrIcon = AddPEtoItem_icon_rsc
+   vrDesc = AddPEtoItem_desc_rsc
+
+   viSpell_num = SID_ADDPETOITEM
+   viSchool = SS_DM_COMMAND
+
+   viSpell_level = 3
+   viMana = 10
+   viSpellExertion = 3
+   viCast_time = 0
+
+   viChance_To_Increase = 25
+   viMeditate_ratio = 30
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&Mushroom,5],plReagents);
+      plReagents = Cons([&Elderberry,5],plReagents);
+
+      return;
+   }
+
+   CanPayCosts(who=$,lTargets=$)
+   {
+      local oWeapon, oTarget;
+
+      if lTargets = $
+      {
+         return FALSE;
+      }
+
+      oTarget = First(lTargets);
+
+      // Check that target is an item
+      if NOT IsClass(oTarget,&PassiveItem)
+      OR IsClass(oTarget,&NumberItem)
+      OR IsClass(oTarget,&SpellItem)
+      {
+         Send(who,@MsgSendUser,#message_rsc=AddPEtoItem_fails);
+
+        return FALSE;
+      }
+
+      propagate;
+   }
+
+   BeginCastingTrance(who=$,lTargets=$,iSpellpower=$)
+   {
+      local oTrance;
+
+      // Get rid of the regular casting trance, we need a special
+      // one put on below.
+      Send(who,@BreakTrance,#event=EVENT_STEER);
+
+      oTrance = Send(SYS,@FindSpellByNum,#num=SID_TRANCE);
+
+      Send(who,@MsgSendUser,#message_rsc=AddPEtoItem_casting);
+
+      Send(oTrance,@BeginCastingTrance,#what=self,#who=who,
+            #lTargets=lTargets,#time=TRANCE_TIME);
+
+      propagate;
+   }
+
+   SomethingSaidDuringTrance(who=$,string=$,lTargets=$)
+   {
+      local i, bFound, oSpell, iNum, sSpell, oTarget;
+
+      bFound = FALSE;
+      oTarget = First(lTargets);
+
+      Send(who,@BreakTrance,#event=EVENT_STEER);  /// Don't print fizzle message
+
+      foreach i in Send(who,@GetSpellList)
+      {
+         iNum = Send(who,@DecodeSpellNum,#compound=i);
+         oSpell = Send(SYS,@FindSpellByNum,#num=iNum);
+         sSpell = Send(oSpell,@GetName);
+
+         if StringContain(string,sSpell)
+         {
+            bFound = TRUE;
+
+            break;
+         }
+      }
+      
+      Send(oTarget,@SetItemEnchantment,#ItemSpell=iNum);
+
+      Send(who,@MsgSendUser,#message_rsc=AddPEtoItem_cast,
+            #parm1=Send(oSpell,@GetName),#parm2=Send(oTarget,@GetName));
+
+      if NOT bFound
+      {
+         Send(who,@MsgSendUser,#message_rsc=AddPEtoItem_fails);
+      }
+
+      return;
+   }
+
+   TranceBlocksSay()
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -21,7 +21,9 @@ resources:
    CraftApparel_name_rsc = "craft apparel"
    CraftApparel_icon_rsc = icraftapparel.bgf
    CraftApparel_desc_rsc = \
-      "Craft several different garments at a loom. "
+      "Craft several different garments at a loom. You may say the name of the apparel you want to craft. "
+      "The choices are, shirt, long skirt, pants, baggy pants, short skirt, light jerkin, and robes. "
+      "Choosing a apparel will remove you chance to improve, you will need to complete the conentration to imp. "
       "Requires 50 silk threads. "
 
    CraftApparel_sound = kraanan.ogg
@@ -34,6 +36,7 @@ classvars:
 
    viSpell_num = SID_CRAFTAPPAREL
    viSpell_level = 2
+   viMeditate_ratio = 40
    viCast_time = 5000
    viSpellExertion = 5
 

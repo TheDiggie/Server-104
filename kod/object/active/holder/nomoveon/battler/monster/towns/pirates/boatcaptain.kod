@@ -19,21 +19,21 @@ resources:
    // We'll need Tyran for German translation
    include boatcaptain.lkod
 
-   captain_name_rsc = "Captain of the Seaborn Legend"
+   captain_name_rsc = "Captain Seaborn"
    captain_icon_rsc = captain.bgf
    captain_desc_rsc = \
-      "If you want to travel to the land beyond, Captain of the Seaborn Legend "
+      "If you want to travel to the land beyond, Captain Seaborn "
 	  "charges a heavy price for such a luxurious experience."
 
-   captain_solicit_rsc = "~kCaptain of the Seaborn Legend says, ''Hey, over here! For a bargain, I can take you to the land beyond. Come aboard the Seaborn Legend.''~k"
+   captain_solicit_rsc = "~kCaptain Seaborn says, ''Hey, over here! For a bargain, I can take you to the land beyond. Come aboard the Seaborn Legend.''~k"
    
-   captain_Not_Interested = "~kCaptain of the Seaborn Legend tells you, ''~B~rIf you want to travel on my boat, you need to buy a ticket. If you're not buying a ticket, get off my boat.~B~r''~k"
+   captain_Not_Interested = "~kCaptain Seaborn tells you, ''~B~rIf you want to travel on my boat, you need to buy a ticket. If you're not buying a ticket, get off my boat.~B~r''~k"
 
    captain_sold_rsc = "When you're ready to travel, offer me your ticket. Hurry up, the boat is leaving soon."
    
-   captain_got_wanted_rsc = "~kCaptain of the Seaborn Legend tells you, ''Good luck and may Shal'ille bless you on your journey.''~k"
+   captain_got_wanted_rsc = "~kCaptain Seaborn tells you, ''Good luck and may Shal'ille bless you on your journey.''~k"
 
-   captain_wrong_ticket_rsc = "~kCaptain of the Seaborn Legend tells you, ''You're already at your destination. If you want to go somewhere else, buy a different ticket.''~k"
+   captain_wrong_ticket_rsc = "~kCaptain Seaborn tells you, ''You're already at your destination. If you want to go somewhere else, buy a different ticket.''~k"
    
 classvars:
 
@@ -89,7 +89,8 @@ messages:
          plFor_sale = [ 
             [
                Create(&BoatTicket,#model=$,#destination=RID_BAR_PORT),
-               Create(&BoatTicket,#model=$,#destination=RID_DESERTSHORE4)
+               Create(&BoatTicket,#model=$,#destination=RID_DESERTSHORE4),
+               Create(&BoatTicket,#model=$,#destination=RID_MARION_PLAN)
             ],
          $,$,$];
 	   }  
@@ -99,7 +100,8 @@ messages:
          plFor_sale = [ 
             [
                Create(&BoatTicket,#model=$,#destination=RID_DESERTSHORE4),
-               Create(&BoatTicket,#model=$,#destination=RID_KOC_SOUTH)
+               Create(&BoatTicket,#model=$,#destination=RID_KOC_SOUTH),
+               Create(&BoatTicket,#model=$,#destination=RID_MARION_PLAN)
             ],
          $,$,$];
 	   }
@@ -109,7 +111,19 @@ messages:
          plFor_sale = [ 
             [
                Create(&BoatTicket,#model=$,#destination=RID_BAR_PORT),
-               Create(&BoatTicket,#model=$,#destination=RID_KOC_SOUTH)
+               Create(&BoatTicket,#model=$,#destination=RID_KOC_SOUTH),
+               Create(&BoatTicket,#model=$,#destination=RID_MARION_PLAN)
+            ],
+         $,$,$];
+	   }
+
+	   if poOwner <> $ AND Send(poOwner,@GetRoomNum) = RID_MARION_PLAN
+	   {
+         plFor_sale = [ 
+            [
+               Create(&BoatTicket,#model=$,#destination=RID_BAR_PORT),
+               Create(&BoatTicket,#model=$,#destination=RID_KOC_SOUTH),
+               Create(&BoatTicket,#model=$,#destination=RID_DESERTSHORE4)
             ],
          $,$,$];
 	   }
@@ -144,7 +158,7 @@ messages:
 	  
       if who <> $ AND obj <> $ AND IsClass(obj,&BoatTicket)
 	  {
-	     // Rescue them to the destination of the Boat Ticket.
+	     // Rescue them to the destination Boat Ticket.
          oRoom = Send(SYS,@FindRoomByNum,#num=Send(obj,@GetDestination));
 
          if oRoom <> $

@@ -1,0 +1,203 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+/////////////////////////////////////////////////////////////////////////////////
+AvarKillQuest is QuestTemplate
+// Quest nodes 219, 220, 221, 222
+// QNT_ID_AVAR_KILL_ONE, QNT_ID_AVAR_KILL_TWO,
+// QNT_ID_AVAR_KILL_THREE, QNT_ID_AVAR_KILL_FOUR
+
+// QuestTemplate is
+// [ quest template index
+//   quest template object
+//   number of players,
+//   type of quest,
+//   eligible player restrictions,
+//   quest nodes,
+//   max number active,
+//   currently active quests,
+//   percent chance of scheduling (on timer firing)
+//   special restrictions ]
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   // Quest description.
+   AvarKillQuest_icon_rsc = avwar.bgf
+   AvarKillQuest_name_rsc = "Aid in the War quest"
+
+   // This description is used if there is an error preventing the others
+   // from being displayed.
+   AvarKillQuest_desc_rsc = \
+      "The war still conintues, the people of Ko'catan could use your help. "
+
+   AvarKillQuest_kill_rsc = \
+      "Cital ko'Manca need assistance in the war. Go "
+      "slay %i %s. Complete this task and report back to him."
+
+   AvarKillQuest_return_rsc = \
+      "Return to Cital ko'Manca and let him know the task has been "
+      "completed."
+
+   AvarKillQuest_completed = \
+      "You have completed Aid in the War quest. Alert Cital ko'Manca of your completion! "
+
+   // Quest resources.
+   AvarKillQuest_assign_2 = \
+      "A strong warrior are thee? The war has taken a toll on us. If your willing to lend a hand "
+      "the people will be thankful. "
+   AvarKillQuest_failure_2 = \
+      "Subject: Aid in the War quest.\n"
+      "Dam avars. We can't afford to lose this war. "
+   AvarKillQuest_assign_3 = \
+      "Those warriors are just the fodder. We need to target there magical forces. "
+      "Go kill 15 avar shamans in the jungle."
+   AvarKillQuest_failure_3 = \
+      "Subject: Aid in the War quest.\n"
+      "Dam avars. We can't afford to lose this war. "
+   AvarKillQuest_assign_4 = \
+      "A true warrior of blood! You are strong! Last thing we need to do is take out there command. "
+      "Go kill 10 avar chieftain in the jungle."
+   AvarKillQuest_success_4 = \
+      "Good work warrior. Your efforts will be noted in the books. "
+   AvarKillQuest_failure_4 = \
+      "Subject: Aid in the War quest.\n"
+      "Dam avars. We can't afford to lose this war. "
+
+classvars:
+
+   vrIcon = AvarKillQuest_icon_rsc
+   vrName = AvarKillQuest_name_rsc
+   vrDesc = AvarKillQuest_desc_rsc
+
+   vrKill = AvarKillQuest_kill_rsc
+   vrReturn = AvarKillQuest_return_rsc
+   vrCompleted = AvarKillQuest_completed
+
+   // The QST_ID constant for this quest.
+   viQuestID = QST_ID_AVAR_KILL
+
+properties:
+
+   piNumPlayers = 1
+   piPlayerRestrict = Q_PLAYER_NOTTRIED_RECENTLY
+   plSpecialRestrict = $
+   piMaxPlayers = 30
+   piSchedulePct = 100
+   piTimeLimit = 2 * 3600 // 2 hours.
+
+messages:
+
+   Constructor()
+   {
+      // Quest node list to send to QuestEngine.
+      plQuestNodes = [QNT_ID_AVAR_KILL_ONE, QNT_ID_AVAR_KILL_TWO,
+                      QNT_ID_AVAR_KILL_THREE, QNT_ID_AVAR_KILL_FOUR];
+
+      propagate;
+   }
+
+   SendQuestNodeTemplates()
+   {
+      local lNPCs, oQE, oLib;
+
+      oQE = Send(SYS,@GetQuestEngine);
+      oLib = Send(SYS,@GetLibrary);
+
+      if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_SHOWUP,
+               #quest_node_index=QNT_ID_AVAR_KILL_ONE)
+      {
+         Send(oQE,@SetQuestNodeNPCList,#index=QNT_ID_AVAR_KILL_ONE,
+               #new_NPC_list=Send(oLib,@GetOccupationList,
+                                 #cNPC_class=&KocatanCaptainGood));
+      }
+      else
+      {
+         Debug("Error building QN: QNT_ID_AVAR_KILL_ONE");
+      }
+
+      if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MONSTER,
+               #NPC_modifier=QN_NPCMOD_SAME,#monsterlist=[&Avar],
+               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_AVAR_KILL_TWO,#amount_needed=20)
+      {
+         Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_AVAR_KILL_TWO,
+               #new_hint=AvarKillQuest_assign_2);
+         Send(oQE,@SetQuestNodeFailureHint,#index=QNT_ID_AVAR_KILL_TWO,
+               #new_hint=AvarKillQuest_failure_2);
+      }
+      else
+      {
+         Debug("Error building QN: QNT_ID_AVAR_KILL_TWO");
+      }
+
+      if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MONSTER,
+               #NPC_modifier=QN_NPCMOD_SAME,#monsterlist=[&AvarShaman],
+               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_AVAR_KILL_THREE,#amount_needed=15)
+      {
+         Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_AVAR_KILL_THREE,
+               #new_hint=AvarKillQuest_assign_3);
+         Send(oQE,@SetQuestNodeFailureHint,#index=QNT_ID_AVAR_KILL_THREE,
+               #new_hint=AvarKillQuest_failure_3);
+      }
+      else
+      {
+         Debug("Error building QN: QNT_ID_AVAR_KILL_THREE");
+      }
+
+      if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MONSTER,
+               #NPC_modifier=QN_NPCMOD_SAME,#monsterlist=[&AvarChieftain],
+               #prizelist=[ [ [ QN_PRIZETYPE_ITEMCLASS, &Yrxlsap, 500 ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &WebMoss, 500 ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &KriipaClaw, 500 ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &RainbowFern, 500 ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &FireSand, 500 ]] ],
+               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_AVAR_KILL_FOUR,#amount_needed=1)
+      {
+         Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_AVAR_KILL_FOUR,
+               #new_hint=AvarKillQuest_assign_4);
+         Send(oQE,@SetQuestNodeSuccessHint,#index=QNT_ID_AVAR_KILL_FOUR,
+               #new_hint=AvarKillQuest_success_4);
+         Send(oQE,@SetQuestNodeFailureHint,#index=QNT_ID_AVAR_KILL_FOUR,
+               #new_hint=AvarKillQuest_failure_4);
+      }
+      else
+      {
+         Debug("Error building QN: QNT_ID_AVAR_KILL_FOUR");
+      }
+
+      return;
+   }
+
+   MainDesc(who=$,index=$,oQuestNode=$)
+   {
+      local oMob, oQE, iAmount;
+
+      oQE = Send(SYS,@GetQuestEngine);
+
+      oMob = Send(oQuestNode,@GetQuestMonster);
+
+      iAmount = Send(oQE,@GetAmountToKill,#index=index);
+
+      if oMob = $
+      {
+         AddPacket(4,vrReturn);
+      }
+      else
+      {
+         AddPacket(4,vrKill,4,iAmount,4,Send(oMob,@GetName));
+      }
+
+      return;
+   }
+
+end
+/////////////////////////////////////////////////////////////////////////////////

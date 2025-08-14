@@ -32,6 +32,10 @@ resources:
 
    Needs_Key = "You need a key for this door, ask the town folk for help."
 
+   Beat_DR = "Having extensive knowledge of the Death Realm, you find the door opens for you."
+   
+   Key_Open = "As you use the key to unlock the door it mysteriously disappears. You walk through unaware of the dangers beyond."
+
    DeathRealm_music = drmusic.mp3
 
 classvars:
@@ -50,8 +54,8 @@ properties:
 
    plGenerators = $
    piMonster_count_max = 30
-   piInit_count_min = 5
-   piInit_count_max = 10
+   piInit_count_min = 10
+   piInit_count_max = 20
    
    // Lava damage
    piLava_damage = 3
@@ -74,9 +78,6 @@ properties:
    //Toggels
    prMapChanges = TRUE
    prMonsters = TRUE
-   prHeat = TRUE
-   prQuake = TRUE
-   prFireRing = TRUE
    
 messages:
 
@@ -93,32 +94,29 @@ messages:
 
       if prMonsters = TRUE
       {
-         plMonsters = [ [&HeadlessSkeleton, 10],
-                        [&Spirit, 10],
-                        [&Revenantb, 1],
-                        [&Chimera, 7],
-                        [&Cyclops, 7],
-                        [&FollowerOfQor, 2],
-                        [&MinotaurBerserker, 2],
-                        [&Tyrant, 6],
-                        [&FallenMonk, 4],
-                        [&HellWasp, 6],
-                        [&Croco, 6],
-                        [&Vozun, 6],
+         plMonsters = [ [&Spirit, 10],
+                        [&DeathMiteScout, 5],
+                        [&DeathMiteTank, 5],
+                        [&DeathMiteMage, 5],
+                        [&BlackHydra, 5],
+                        [&DeathMiteSoldier, 5],
+                        [&Snake, 4],
+                        [&RedHydra, 5],
+                        [&GoldHydra, 4],
+                        [&GreenHydra, 4],
+                        [&Tyrant, 4],
+                        [&Croco, 4],
+                        [&Vozun, 4],
                         [&Dulahan, 4],
-                        [&BlackHydra, 2],
-                        [&RedHydra, 2],
-                        [&GoldHydra, 2],
-                        [&GreenHydra, 2],
+                        [&MinotaurBerserker, 4],
+                        [&FollowerOfQor, 4],
+                        [&FallenMonk, 4],
+                        [&HellWasp, 4],
                         [&GreySeeker, 4],
-                        [&GreenSeeker, 4],
-                        [&BrownSeeker, 4],
-                        [&DeathMiteSoldier, 6],
-                        [&Snake, 8],
-                        [&DeathMiteScout, 6],
-                        [&DeathMiteTank, 4],
-                        [&DeathMiteMage, 4]
-                         ];
+                        [&Revenantb, 4],
+                        [&Chimera, 4],
+                        [&Cyclops, 4]
+                      ];
       }
 
       plLooping_sounds = [[ DeathRealm_music, 1, 1, 30000, 500 ]];
@@ -177,6 +175,11 @@ messages:
       }
 
       propagate;
+   }
+
+   CanHavePlayerPortal()
+   {
+      return FALSE;
    }
 
 end

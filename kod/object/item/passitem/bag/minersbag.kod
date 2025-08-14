@@ -19,7 +19,7 @@ resources:
    MinersBag_name_rsc = "miners bag"
    MinersBag_icon_rsc = minersbag.bgf
 
-   MinersBag_desc_rsc = "A hefty bag for carring various ores."
+   MinersBag_desc_rsc = "A hefty bag for carring various ores. This box will reduce the weight and bulk of ore by 75%. "
 
 classvars:
 
@@ -41,7 +41,8 @@ messages:
    Constructor(owner=$)
    {
       plWhiteList = [ &IronOre,
-                      &NeruditeOre ];
+                      &NeruditeOre,
+                      &Qorcite ];
 
       propagate;
    }

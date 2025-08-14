@@ -1,0 +1,212 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Veydran is BarloqueTown
+
+constants:
+
+   include blakston.khd
+
+   MAX_FORSALE = 1000
+
+resources:
+
+   Veydran_name_rsc = "Veydran Goldleaf"
+   Veydran_icon_rsc = Veydran.bgf
+   Veydran_desc_rsc = \
+      "Veydran Goldleaf is the shrewd and silver-tongued master of the bustling players' market in Barloque. A seasoned merchant "
+      "with a sharp eye for value, he ensures that trade flows smoothly while always securing a favorable deal for himself. With "
+      "his elegantly tailored robes, he exudes an air of refinement that sets him apart from the common traders."
+      "Rumors whisper that he once served as a court treasurer before vanishing under mysterious circumstances, only to reappear years "
+      "later in Barloque, where he carved out his dominion over the marketplace. Some say he still has ties to powerful figures, subtly "
+      "influencing trade and politics in ways that benefit his own secretive interests. Despite his reputation for being a tough negotiator, "
+      "Veydran is fair—so long as one respects the rules of commerce. Those who try to cheat him or disrupt the balance of the market soon "
+      "find themselves blacklisted, or worse, on the receiving end of consequences only whispered about in back alleys."
+      "To adventurers, Veydran is a valuable contact, offering rare goods, insider knowledge, and lucrative deals—provided they have the "
+      "coin or something equally enticing to offer in return."
+
+   Veydran_Not_Interested = "I can only sell appraised items on the citizen's market."
+
+   Veydran_sold_rsc = "Here you go, I'll send the buyer his funds."
+
+   Market_Full_rsc = "The market is currently at capacity."
+
+classvars:
+
+   vrName = Veydran_name_rsc
+   vrIcon = Veydran_icon_rsc
+   vrDesc = Veydran_desc_rsc
+
+   viAttributes = \
+      MOB_NOFIGHT | MOB_RANDOM | MOB_LISTEN \
+      | MOB_NOMOVE | MOB_SELLER | MOB_BUYER
+   viOccupation = MOB_ROLE_PMARKET
+   viMerchant_markup = MERCHANT_FLAT
+
+   // We sell what other people have given us
+   vbSellFromInventory = TRUE
+
+properties:
+
+messages:
+
+   Constructed()
+   {
+      local oPlayerMarket;
+
+      oPlayerMarket = Send(SYS,@GetPlayerMarket);
+
+      plFor_Sale = [ Send(oPlayerMarket,@GetPlayerMarketItems), $, $ ];
+
+      propagate;
+   }
+
+   UserEntered(who=$)
+   {
+      if NOT Send(who,@GetFaction) = FACTION_NEUTRAL
+      {
+         Send(self,@SetMood,#new_mood=piMood+4);
+      }
+
+      propagate;
+   }
+
+   AffectMood(what=$,why=$)
+   {
+      if why = MOODMOD_DAWN
+      {
+         Send(self,@SetMood,#new_mood=piMood+1);
+         
+         return;
+      }
+
+      if why = MOODMOD_DUSK
+      {
+         Send(self,@SetMood,#new_mood=piMood+3);
+
+         return;
+      }
+
+      return;
+   }
+
+   ObjectDesired(what=$,report=TRUE)
+   "This is set in individual buyers.  It allows them to pick and choose"
+   "what they want to buy."
+   {
+      local i;
+
+      if Length(First(plFor_Sale)) > MAX_FORSALE
+      {
+         Post(poOwner,@SomeoneSaid,#what=self,
+               #string=Market_Full_rsc,#type=SAY_RESOURCE);
+
+         return FALSE;
+      }
+
+      // Don't take money for resale.  That's just silly.
+      if IsClass(what,&TradeBond)
+      {
+         return TRUE;
+      }
+
+      if IsClass(what,&Token) OR IsClass(what,&Totem)
+      {
+         return FALSE;
+      }
+
+      return TRUE;
+   }
+
+   AcceptOffer()
+   "Transfer the purchased merchandise - MOB_BUYER"
+   {
+      local i, j, oHolder, lTake_items, lForSale, oPlayerMarket;
+
+      oPlayerMarket = Send(SYS,@GetPlayerMarket);
+
+      plFor_Sale = [ Send(oPlayerMarket,@GetPlayerMarketItems), $, $ ];
+
+      lForSale = First(plFor_Sale);
+      // Set the stuff where the user can get to it.
+      oHolder = Send(SYS,@GetSystemHolder2);
+      foreach i in plOffer_items
+      {
+         Send(oHolder,@NewHold,#what=i);
+      }
+
+
+      // Take stuff the user put there.
+      oHolder = Send(SYS,@GetSystemHolder1);
+      foreach lTake_items in [ Send(oHolder,@GetHolderActive),
+                           Send(oHolder,@GetHolderPassive) ]
+      {
+         foreach i in lTake_items
+         {
+            Send(oPlayerMarket,@Newhold,#what=i);
+
+            // If this is a spell item, then stop the go bad timer.
+            if IsClass(i,&SpellItem)
+            {
+               Send(i,@StopGoBadTimer);
+            }
+
+            lForSale = Cons(i,lForSale);
+         }
+      }
+
+      // kill the cancel offer timer
+
+      
+      plFor_Sale = [ Send(oPlayerMarket,@GetPlayerMarketItems), $, $ ];
+      Send(self,@OfferCanceled);
+
+      return TRUE;
+   }
+
+   ItemBoughtHook(buyer = $)
+   {
+      Post(poOwner,@SomeoneSaid,#what=self,
+            #string=Veydran_sold_rsc,#type=SAY_RESOURCE);
+
+      return;
+   }
+
+   NewHoldObject(what=$)
+   {
+      local oOwner;
+
+      oOwner = Send(what,@GetOwner);
+
+      if oOwner <> $
+      {
+         Send(poOwner,@LeaveHold,#what=what);
+         Send(what,@NewOwner,#what=$);
+      }
+
+      return;
+   }
+
+   DeleteForSaleList()
+   {
+      local i;
+      
+      if plFor_sale = $
+      {
+         return;
+      }
+
+      plFor_sale = $;
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

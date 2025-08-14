@@ -18,7 +18,7 @@ resources:
 
    include light.lkod
 
-   light_name_rsc = "light"
+   light_name_rsc = "illuminate"
    light_icon_rsc = isunlite.bgf
    light_desc_rsc = \
       "Magical illumination fills the area where the spell is "

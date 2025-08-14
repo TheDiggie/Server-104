@@ -19,8 +19,8 @@ resources:
    Beelzebub_name_rsc = "Beelzebub"
    Beelzebub_icon_rsc = qw05i.bgf
    Beelzebub_desc_rsc = \
-            "This creautre has still has scraps of skin on it, as if it was wearing it as a suit. "
-            "Altho a terrifying site, he doesnt seem concerned with your presence. "
+      "This creautre has still has scraps of skin on it, as if it was wearing it as a suit. "
+      "Altho a terrifying site, he doesnt seem concerned with your presence. "
 
    Beelzebub_entry_welcome = "Greetings.  May you live to see my years."
 
@@ -31,8 +31,6 @@ resources:
    Beelzebub_unwanted_give = \
       "~k%s%s tells you, \"Most material goods are of little consequence "
       "to an old creature like me.~n~k\""
-
-   Beelzebub_stat_window_trigger = "change stats"
 
 classvars:
 
@@ -46,6 +44,7 @@ classvars:
       | MOB_NOMOVE | MOB_SELLER
       
    viMerchant_markup = MERCHANT_FLAT
+   viOccupation = MOB_ROLE_MERCHANT
 
    vrUnwanted_keep = Beelzebub_unwanted_keep
    vrUnwanted_pay = Beelzebub_unwanted_pay
@@ -61,7 +60,6 @@ messages:
    {
       plFor_sale = [
          [
-            Create(&TosKey),
             Create(&LightSword),
             Create(&OfferingFaren),
             Create(&RedMushroom),

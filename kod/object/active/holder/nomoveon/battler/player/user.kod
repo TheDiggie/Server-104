@@ -240,6 +240,7 @@ resources:
 
    user_not_have_number = "You don't have that amount of %s to drop."
    user_pickup_too_many = "You can't find that amount of %s to pick up."
+   user_pickup_past_limit = "You can't carry more than 130 mil of a item."
    user_cant_deal_number = "You can't do anything with %i items."
    user_cant_attack_non_battler = "You can't attack %s%s."
    user_no_say_guild = \
@@ -4916,12 +4917,22 @@ messages:
          return 0;
       }
 
+      if NOT Send(self,@CheckMaxAmount,#what=what)
+      {
+         return;
+      }
+
       //Either we pass in a number or we didn't but can't hold it all
       if number <> $
          OR NOT Send(self,@ReqNewHold,#what=what)
       {
          if IsClass(what,&NumberItem)
          {
+            if number = $
+            {
+               number = Send(what,@GetNumber);
+            }
+
             if bFromBag
             {
                iCan_hold = number;
@@ -5011,6 +5022,34 @@ messages:
       return 1;
    }
 
+   CheckMaxAmount(what=$)
+   {
+      local oHelditem, iHeldAmount;
+
+      if IsClass(what,&NumberItem)
+      {
+         oHelditem = Send(self,@FindHolding,#class=GetClass(what));
+
+         if oHelditem = $
+         {
+            oHelditem = 0;
+            iHeldAmount = 0;
+         }
+         else
+         {
+            iHeldAmount = Send(oHelditem,@GetNumber);
+         }
+
+         if ((Send(what,@GetNumber)/2) + (iHeldAmount/2)) > 65000000
+         {
+            Send(self,@MsgSendUser,#message_rsc=user_pickup_past_limit);
+            return FALSE;
+         }
+      }
+
+      return TRUE;
+   }
+   
    UserBlockedSend(what = $)
    "Sent by client when they're blocking messages from a user, and that "
    "user Sends a message."

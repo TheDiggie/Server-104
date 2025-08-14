@@ -41,12 +41,12 @@ resources:
    Deflect_sound = kdeflect.ogg
 
    Deflect_success_to_victim = \
-      "Your deflect enchantment bounces %s's spell back onto its caster!"
+      "~gYour deflect enchantment bounces %s's spell back onto its caster!"
    Deflect_success_to_caster = \
-      "A barrier of mystical energy coalesces in front of %s, bouncing "
+      "~rA barrier of mystical energy coalesces in front of %s, bouncing "
       "your spell back at you!"
    Deflect_failure_to_victim = \
-      "Your deflect enchantment attempts to bounce %s's spell back, "
+      "~rYour deflect enchantment attempts to bounce %s's spell back, "
       "but is not strong enough."
 
 classvars:

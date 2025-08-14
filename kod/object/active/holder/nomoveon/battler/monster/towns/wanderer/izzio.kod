@@ -56,7 +56,7 @@ classvars:
 
    viAttributes = \
       MOB_NOFIGHT | MOB_RANDOM | MOB_LISTEN \
-      | MOB_NOMOVE | MOB_BUYER | MOB_SELLER
+      | MOB_NOMOVE | MOB_SELLER | MOB_BUYER
    viOccupation = MOB_ROLE_MERCHANT
    viMerchant_markup = MERCHANT_DISCOUNT
 
@@ -295,7 +295,7 @@ messages:
          }
       }
 
-      if Send(what,@HasAttribute,#ItemAtt=IA_BONDED)
+      if Send(what,@HasAttribute,#ItemAtt=IA_TRANSCENDANT)
          OR Send(what,@IsItemType,#type=ITEMTYPE_SPECIAL)
       {
          return FALSE;
@@ -312,7 +312,7 @@ messages:
    AcceptOffer()
    "Transfer the purchased merchandise - MOB_BUYER"
    {
-      local i,j,oHolder,lTake_items, bHadSomeNum, lForSale;
+      local i, j, oHolder, lTake_items, bHadSomeNum, lForSale, oMoney;
 
       lForSale = First(plFor_Sale);
       // Set the stuff where the user can get to it.

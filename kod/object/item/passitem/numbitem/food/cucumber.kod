@@ -1,0 +1,50 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Cucumber is Food
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Cucumber_name_rsc = "cucumber"
+   Cucumber_icon_rsc = Cucumber.bgf
+   Cucumber_desc_rsc = \
+      "A firm and crisp cucumber. "
+
+   Cucumber_name_plural_rsc = "cucumbers"
+
+classvars:
+
+   vrName = Cucumber_name_rsc
+   vrIcon = Cucumber_icon_rsc
+   vrDesc = Cucumber_desc_rsc
+
+   vrName_plural = Cucumber_name_plural_rsc
+
+   viBulk = 1
+   viWeight = 2
+
+   viValue_average = 5
+   
+   viGround_group = 2
+
+properties:
+
+   viFilling = 2
+   viNutrition = 7
+   piNumber = 2
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

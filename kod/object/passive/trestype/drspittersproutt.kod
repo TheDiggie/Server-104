@@ -16,7 +16,7 @@ constants:
 
 classvars:
 
-   viTreasure_num = TID_VOZUN
+   viTreasure_num = TID_SPITTER_SPROUT
 
 properties:
 

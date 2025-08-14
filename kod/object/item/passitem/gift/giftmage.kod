@@ -43,7 +43,7 @@ messages:
    Constructor()
    {
       plContents = [ &LightDiscipleRobe, &DiscipleRobe, &Wizardhat, 
-                     &ApprenticeWand, &Circlet, &IvyCirclet, &OrcShield ];
+                     &ApprenticeWand, &Circlet, &IvyCirclet, &OrcShield, &ThornCirclet ];
 
       plItematt = [ IA_TRANSCENDANT, IA_DURABLE, IA_INDESTRUCTIBLE, IA_XP_KILL_BONUS ];
 

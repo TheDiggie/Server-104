@@ -37,37 +37,14 @@ properties:
    piRoom_num = RID_DESERTSHORE4
 
 messages:
-
-   Constructed()
-   {
-      plMonsters = [ [&XeoAcid, 10],
-                     [&XeoAir, 10],
-                     [&XeoEarth, 10],
-                     [&XeoFire, 10],
-                     [&XeoHoly, 10],
-                     [&XeoIll, 10],
-                     [&XeoUnholy, 10],
-                     [&XeoWater, 10],
-                     [&EarthElemental, 10],
-                     [&FireElemental, 10]
-                      ];
-      
-      plGenerators = [ [25, 50],  [25, 75],  [25, 100], 
-                       [42, 50],  [42, 75],  [42, 100],
-                       [60, 50],  [60, 75],  [60, 100],
-                       [87, 50],  [87, 75],  [87, 100],
-                       [102, 50], [102, 75], [102, 100], 
-                       [130, 50], [130, 75], [130, 100],
-                       [160, 50], [160, 75], [160, 100],
-                       [195, 50], [195, 75], [195, 100] ];
-
-      propagate;
-   }
  
    CreateStandardObjects()
    {
       Send(self,@NewHold,#what=Create(&BoatCaptain),
          #new_row=61,#new_col=24);
+
+      Send(self,@NewHold,#what=Create(&Zimmucas),
+         #new_row=55,#new_col=26);
 
       propagate;
    }

@@ -1,0 +1,171 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Appraise is UtilitySpell
+
+constants:
+
+   TRANCE_TIME = 20000
+
+   include blakston.khd
+
+resources:
+   
+   Appraise_name_rsc = "appraise"
+   Appraise_icon_rsc = iappraise.bgf
+   Appraise_desc_rsc = \
+      "Appraise a item to asign it your desired price to be sold at the citizen's market. "
+      "Cast again on a item to remove any appraisal. "
+
+   Appraise_casting = "Say the value you wish to assign the item."
+
+   Appraise_cast  = "~g~BYou appraise the %s for %i."
+   Appraise_fails = "You can not appraise that."
+   Appraise_invalid_cost = "Price must be between 1-130 million."
+   Appraise_fails_notnumbers = "You may only say the price you want to appraise the item for."
+   Appraise_Removed = "You remove the appraisal from the %s."
+
+classvars:
+
+   vrName = Appraise_name_rsc
+   vrIcon = Appraise_icon_rsc
+   vrDesc = Appraise_desc_rsc
+
+   viSpell_num = SID_APPRAISE
+   viSchool = SS_KRAANAN
+
+   viSpell_level = 1
+   viMana = 0
+   viSpellExertion = 0
+   viCast_time = 0
+
+   viChance_To_Increase = 25
+   viMeditate_ratio = 10
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+
+      return;
+   }
+
+   CanPayCosts(who=$,lTargets=$)
+   {
+      local oWeapon, oTarget;
+
+      if lTargets = $
+      {
+         return FALSE;
+      }
+
+      oTarget = First(lTargets);
+
+      // Check that target is an item
+      if NOT IsClass(oTarget,&PassiveItem)
+      OR IsClass(oTarget,&NumberItem)
+      OR (IsClass(oTarget,&SpellItem) AND NOT IsClass(oTarget,&EnchantmentScroll) AND NOT IsClass(oTarget,&IndestructibleScroll))
+      OR IsClass(oTarget,&TradeBond)
+      {
+         Send(who,@MsgSendUser,#message_rsc=Appraise_fails,
+               #parm1=Send(oTarget,@GetCapDef),#parm2=Send(oTarget,@GetName));
+
+        return FALSE;
+      }
+
+      if Send(oTarget,@HasAttribute,#ItemAtt=IA_APPRAISE)
+      {
+         Send(oTarget,@ClearAppraisal);
+         Send(Send(SYS,@FindItemAttByNum,#num=IA_APPRAISE),@RemoveFromitem,#oItem=oTarget);
+
+         Send(who,@MsgSendUser,#message_rsc=Appraise_Removed,#parm1=Send(oTarget,@GetName));
+
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+   BeginCastingTrance(who=$,lTargets=$,iSpellpower=$)
+   {
+      local oTrance;
+
+      // Get rid of the regular casting trance, we need a special
+      // one put on below.
+      Send(who,@BreakTrance,#event=EVENT_STEER);
+
+      oTrance = Send(SYS,@FindSpellByNum,#num=SID_TRANCE);
+
+      Send(who,@MsgSendUser,#message_rsc=Appraise_casting);
+
+      Send(oTrance,@BeginCastingTrance,#what=self,#who=who,
+            #lTargets=lTargets,#time=TRANCE_TIME);
+
+      propagate;
+   }
+
+   SomethingSaidDuringTrance(who=$,string=$,lTargets=$)
+   {
+      local i, bFound, oSpell, iNum, sSpell, oTarget, oItemAtt, iAmount;
+
+      oTarget = First(lTargets);
+
+      Send(who,@BreakTrance,#event=EVENT_STEER);
+
+      if NOT StringConsistsOf(string,"1234567890")
+      {
+         Send(who,@MsgSendUser,#message_rsc=Appraise_fails_notnumbers);
+
+         return;
+      }
+
+      iAmount = StringToNumber(string);
+
+      if iAmount <= 0 OR iAmount = $ OR iAmount > 130000000 
+      {
+         Send(who,@MsgSendUser,#message_rsc=Appraise_invalid_cost);
+
+         return;
+      }
+
+      oItemAtt = Send(SYS,@FindItemAttByNum,#num=IA_APPRAISE);
+      Send(oItemAtt,@AddToItem,#oItem=oTarget);
+      Send(oTarget,@SetAppraisalPrice,#Price=iAmount,#Appraiser=who);
+
+      Send(who,@MsgSendUser,#message_rsc=Appraise_cast,
+            #parm1=Send(oTarget,@GetName),#parm2=iAmount);
+
+      Debug("ITEM APPRAISED", who,Send(who,@gettruename),otarget,Send(otarget,@Getname),"price",iAmount);
+
+      return;
+   }
+
+   TranceBlocksSay()
+   {
+      return TRUE;
+   }
+
+   GetNumSpellTargets()
+   {
+      // Tell client how many targets this spell needs
+      return 1;
+   }
+
+   IsTargetInRange(who=$,target=$)
+   {
+      return who = Send(target,@GetOwner)
+         OR Send(who,@GetOwner) = Send(target,@GetOwner);
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

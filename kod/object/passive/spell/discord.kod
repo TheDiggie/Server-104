@@ -162,6 +162,7 @@ messages:
          {
             if (NOT IsClass(who,&Battler)
                OR NOT IsClass(oCaster,&Battler)
+               OR (IsClass(oCaster,&Player) AND Send(oCaster,@IsOfflineOrCannotInteract))
                OR Send(who,@AllowBattlerAttack,#victim=oCaster,#stroke_obj=self,
                         #oRoomOverride=oRoom))
             {
@@ -189,11 +190,12 @@ messages:
             // Check whether we can attack the caster.
             if (NOT IsClass(who,&Battler)
                OR NOT IsClass(oCaster,&Battler)
+               OR (IsClass(oCaster,&Player) AND Send(oCaster,@IsOfflineOrCannotInteract))
                OR Send(who,@AllowBattlerAttack,#victim=oCaster,#stroke_obj=self,
                         #oRoomOverride=oRoom))
             {
                // Remove at the source.
-               Send(Send(oSpell,@GetSource,#state=state),@RemoveRadiusEnchantment,
+               Send(Nth(state,2),@RemoveRadiusEnchantment,
                      #what=oSpell,#state=state,#recheck=TRUE);
                bRemovedSomething = TRUE;
             }

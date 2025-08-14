@@ -161,28 +161,28 @@ messages:
 
    ActivateScenario()
    {
-      if pbScenarioActivated
-      {
-         Debug("Tried to activate Necromancer/Hunter Scenario more than once!");
+      //if pbScenarioActivated
+      //{
+      //   Debug("Tried to activate Necromancer/Hunter Scenario more than once!");
 
-         return;
-      }
+      //   return;
+      //}
 
-      pbScenarioActivated = TRUE;
-      if ptTriggerAmuletGeneration <> $
-      {
-         DeleteTimer(ptTriggerAmuletGeneration);
-         ptTriggerAmuletGeneration = $;
-      }
-      if ptTriggerSwordGeneration <> $
-      {
-         DeleteTimer(ptTriggerSwordGeneration);
-         ptTriggerSwordGeneration = $;
-      }
-      //piNumAmuletsGenerated = 0;
-      //piNumSwordsGenerated = 0;
-      Send(self,@TriggerAmuletGeneration);
-      Send(self,@TriggerSwordGeneration);
+      //pbScenarioActivated = TRUE;
+      //if ptTriggerAmuletGeneration <> $
+      //{
+      //   DeleteTimer(ptTriggerAmuletGeneration);
+      //   ptTriggerAmuletGeneration = $;
+      //}
+      //if ptTriggerSwordGeneration <> $
+      //{
+      //   DeleteTimer(ptTriggerSwordGeneration);
+      //   ptTriggerSwordGeneration = $;
+      //}
+      ////piNumAmuletsGenerated = 0;
+      ////piNumSwordsGenerated = 0;
+      //Send(self,@TriggerAmuletGeneration);
+      //Send(self,@TriggerSwordGeneration);
 
       return;
    }
@@ -270,41 +270,41 @@ messages:
    "meter (to prevent random walk) and handles triggering the artifact "
    "generation at somewhat random times."
    {
-      local iPeriod;
-
-      // General principle: # of artifacts generated rises from 0 to
-      // piSteadyStateNumOfArtifacts in about piRechargeTime days, then
-      // rises from piSteadyStateNumOfArtifacts to piCriticalMassOfArtifacts
-      // in the next piSteadyStateTime days.
-      if piNumAmuletsGenerated < (piAmuletPercentOfArtifacts
-         * (piNumAmuletsGenerated+piNumSwordsGenerated) / 100)
-      {
-         // We're off-balance, better hurry up!
-         Debug("Had to bump up Amulet generation to balance numbers.");
-         iPeriod = 1000;
-      }
-      else
-      {
-         if piNumAmuletsGenerated
-            < (piSteadyStateNumOfArtifacts * piAmuletPercentOfArtifacts/100)
-         {
-            iPeriod = ((MS_PER_DAY / (piSteadyStateNumOfArtifacts
-                        * piAmuletPercentOfArtifacts/100)) * piRechargeTime);
-         }
-         else
-         {
-            iPeriod = ((MS_PER_DAY /
-                     ((piCriticalMassOfArtifacts - piSteadyStateNumOfArtifacts)
-                     * piAmuletPercentOfArtifacts/100)) * piSteadyStateTime);
-         }
-      }
-      ptTriggerAmuletGeneration = $;
-      ptTriggerAmuletGeneration = CreateTimer(self,@TriggerAmuletGeneration,iPeriod);
-
-      if ptGenerateAmulet = $
-      {
-         ptGenerateAmulet = CreateTimer(self,@GenerateAmulet,Random(0,iPeriod/5));
-      }
+      //local iPeriod;
+//
+      //// General principle: # of artifacts generated rises from 0 to
+      //// piSteadyStateNumOfArtifacts in about piRechargeTime days, then
+      //// rises from piSteadyStateNumOfArtifacts to piCriticalMassOfArtifacts
+      //// in the next piSteadyStateTime days.
+      //if piNumAmuletsGenerated < (piAmuletPercentOfArtifacts
+      //   * (piNumAmuletsGenerated+piNumSwordsGenerated) / 100)
+      //{
+      //   // We're off-balance, better hurry up!
+      //   Debug("Had to bump up Amulet generation to balance numbers.");
+      //   iPeriod = 1000;
+      //}
+      //else
+      //{
+      //   if piNumAmuletsGenerated
+      //      < (piSteadyStateNumOfArtifacts * piAmuletPercentOfArtifacts/100)
+      //   {
+      //      iPeriod = ((MS_PER_DAY / (piSteadyStateNumOfArtifacts
+      //                  * piAmuletPercentOfArtifacts/100)) * piRechargeTime);
+      //   }
+      //   else
+      //   {
+      //      iPeriod = ((MS_PER_DAY /
+      //               ((piCriticalMassOfArtifacts - piSteadyStateNumOfArtifacts)
+      //               * piAmuletPercentOfArtifacts/100)) * piSteadyStateTime);
+      //   }
+      //}
+      //ptTriggerAmuletGeneration = $;
+      //ptTriggerAmuletGeneration = CreateTimer(self,@TriggerAmuletGeneration,iPeriod);
+//
+      //if ptGenerateAmulet = $
+      //{
+      //   ptGenerateAmulet = CreateTimer(self,@GenerateAmulet,Random(0,iPeriod/5));
+      //}
 
       return;
    }
@@ -312,49 +312,54 @@ messages:
    GenerateAmulet()
    "Actually does the artifact generation."
    {
-      local oAmulet;
+      // Amulets can be purchased now. No need to put back into population.
+      //local oAmulet;
 
-      ptGenerateAmulet = $;
-      oAmulet = Create(&NecromancerAmulet);
-      Send(self,@PlaceAmulet,#what=oAmulet);
+      //ptGenerateAmulet = $;
+      //oAmulet = Create(&NecromancerAmulet);
+      //Send(self,@PlaceAmulet,#what=oAmulet);
 
       return;
    }
 
    PlaceAmulet(what=$)
    {
-      local iLocation;
+      // Amulets can be purchased now. No need to put back into population, just delete on player drop.
+      //local iLocation;
 
-      if what = $
-      {
-         return;
-      }
+      //if what = $
+      //{
+      //   return;
+      //}
 
-      if plAmuletLocations = $
-      {
-         Debug("Nowhere to place the amulet!");
-         Send(what,@Delete);
+      //if plAmuletLocations = $
+      //{
+      //   Debug("Nowhere to place the amulet!");
+      //   Send(what,@Delete);
 
-         return;
-      }
+      //   return;
+      //}
 
-      iLocation = Random(1,Length(plAmuletLocations));
+      //iLocation = Random(1,Length(plAmuletLocations));
 
-      Send(Send(SYS,@FindRoomByNum,#num=Nth(Nth(plAmuletLocations,iLocation),1)),
-            @NewHold,#what=what,#new_row=Nth(Nth(plAmuletLocations,iLocation),2),
-                                 #new_col=Nth(Nth(plAmuletLocations,iLocation),3),
-                                 #fine_row=Nth(Nth(plAmuletLocations,iLocation),4),
-                                 #fine_col=Nth(Nth(plAmuletLocations,iLocation),5));
+      //Send(Send(SYS,@FindRoomByNum,#num=Nth(Nth(plAmuletLocations,iLocation),1)),
+      //      @NewHold,#what=what,#new_row=Nth(Nth(plAmuletLocations,iLocation),2),
+      //                           #new_col=Nth(Nth(plAmuletLocations,iLocation),3),
+      //                           #fine_row=Nth(Nth(plAmuletLocations,iLocation),4),
+      //                           #fine_col=Nth(Nth(plAmuletLocations,iLocation),5));
 
-      if Send(what,@GetOwner) = $
-      {
-         Debug("Tried to place an amulet, but owner is still $.");
-         Send(what,@Delete);
-      }
-      else
-      {
-         Debug("Placed an amulet in ",Send(Send(what,@GetOwner),@GetName));
-      }
+      //if Send(what,@GetOwner) = $
+      //{
+      //   Debug("Tried to place an amulet, but owner is still $.");
+      //   Send(what,@Delete);
+      //}
+      //else
+      //{
+      //   Debug("Placed an amulet in ",Send(Send(what,@GetOwner),@GetName));
+      //}
+
+        Send(what,@Delete);
+        Debug("Amulet of Three dropped by player, deleting.");
 
       return;
    }
@@ -364,40 +369,40 @@ messages:
    "meter (to prevent random walk) and handles triggering the artifact "
    "generation at somewhat random times."
    {
-      local iPeriod;
-
-      // General principle: # of artifacts generated rises from 0 to
-      // piSteadyStateNumOfArtifacts in about piRechargeTime days, then
-      // rises from piSteadyStateNumOfArtifacts to piCriticalMassOfArtifacts
-      // in the next piSteadyStateTime days.
-      if piNumSwordsGenerated < ((100-piAmuletPercentOfArtifacts)
-         * (piNumAmuletsGenerated+piNumSwordsGenerated) / 100)
-      {
-         // We're off-balance, better hurry up!
-         Debug("Had to bump up Sword generation to balance numbers.");
-         iPeriod = 1000;
-      }
-      else
-      {
-         if piNumSwordsGenerated
-            < (piSteadyStateNumOfArtifacts * (100 - piAmuletPercentOfArtifacts)/100)
-         {
-            iPeriod = ((MS_PER_DAY / (piSteadyStateNumOfArtifacts
-               * (100 - piAmuletPercentOfArtifacts)/100)) * piRechargeTime);
-         }
-         else
-         {
-            iPeriod = ((MS_PER_DAY /
-                  ((piCriticalMassOfArtifacts - piSteadyStateNumOfArtifacts)
-                  * (100 - piAmuletPercentOfArtifacts)/100)) * piSteadyStateTime);
-         }
-      }
-      ptTriggerSwordGeneration = $;
-      ptTriggerSwordGeneration = CreateTimer(self,@TriggerSwordGeneration,iPeriod);
-      if ptGenerateSword = $
-      {
-         ptGenerateSword = CreateTimer(self,@GenerateSword,Random(0,iPeriod/5));
-      }
+      //local iPeriod;
+//
+      //// General principle: # of artifacts generated rises from 0 to
+      //// piSteadyStateNumOfArtifacts in about piRechargeTime days, then
+      //// rises from piSteadyStateNumOfArtifacts to piCriticalMassOfArtifacts
+      //// in the next piSteadyStateTime days.
+      //if piNumSwordsGenerated < ((100-piAmuletPercentOfArtifacts)
+      //   * (piNumAmuletsGenerated+piNumSwordsGenerated) / 100)
+      //{
+      //   // We're off-balance, better hurry up!
+      //   Debug("Had to bump up Sword generation to balance numbers.");
+      //   iPeriod = 1000;
+      //}
+      //else
+      //{
+      //   if piNumSwordsGenerated
+      //      < (piSteadyStateNumOfArtifacts * (100 - piAmuletPercentOfArtifacts)/100)
+      //   {
+      //      iPeriod = ((MS_PER_DAY / (piSteadyStateNumOfArtifacts
+      //         * (100 - piAmuletPercentOfArtifacts)/100)) * piRechargeTime);
+      //   }
+      //   else
+      //   {
+      //      iPeriod = ((MS_PER_DAY /
+      //            ((piCriticalMassOfArtifacts - piSteadyStateNumOfArtifacts)
+      //            * (100 - piAmuletPercentOfArtifacts)/100)) * piSteadyStateTime);
+      //   }
+      //}
+      //ptTriggerSwordGeneration = $;
+      //ptTriggerSwordGeneration = CreateTimer(self,@TriggerSwordGeneration,iPeriod);
+      //if ptGenerateSword = $
+      //{
+      //   ptGenerateSword = CreateTimer(self,@GenerateSword,Random(0,iPeriod/5));
+      //}
 
       return;
    }
@@ -405,49 +410,54 @@ messages:
    GenerateSword()
    "Actually does the artifact generation."
    {
-      local oSword;
+      // HunterSwords can be purchased now. No need to put back into population.
+      //local oSword;
 
-      ptGenerateSword = $;
-      oSword = Create(&HunterSword);
-      Send(self,@PlaceSword,#what=oSword);
+      //ptGenerateSword = $;
+      //oSword = Create(&HunterSword);
+      //Send(self,@PlaceSword,#what=oSword);
 
       return;
    }
 
    PlaceSword(what=$)
    {
-      local iLocation;
+      // HunterSwords can be purchased now. No need to put back into population. Delete on player death.
+      //local iLocation;
 
-      if what = $
-      {
-         return;
-      }
+      //if what = $
+      //{
+      //   return;
+      //}
 
-      if plSwordLocations = $
-      {
-         Debug("Nowhere to place the sword!");
-         Send(what,@Delete);
+      //if plSwordLocations = $
+      //{
+      //   Debug("Nowhere to place the sword!");
+      //   Send(what,@Delete);
 
-         return;
-      }
+      //   return;
+      //}
 
-      iLocation = Random(1,Length(plSwordLocations));
+      //iLocation = Random(1,Length(plSwordLocations));
 
-      Send(Send(SYS,@FindRoomByNum,#num=Nth(Nth(plSwordLocations,iLocation),1)),
-            @NewHold,#what=what,#new_row=Nth(Nth(plSwordLocations,iLocation),2),
-                                 #new_col=Nth(Nth(plSwordLocations,iLocation),3),
-                                 #fine_row=Nth(Nth(plSwordLocations,iLocation),4),
-                                 #fine_col=Nth(Nth(plSwordLocations,iLocation),5));
+      //Send(Send(SYS,@FindRoomByNum,#num=Nth(Nth(plSwordLocations,iLocation),1)),
+      //      @NewHold,#what=what,#new_row=Nth(Nth(plSwordLocations,iLocation),2),
+      //                           #new_col=Nth(Nth(plSwordLocations,iLocation),3),
+      //                           #fine_row=Nth(Nth(plSwordLocations,iLocation),4),
+      //                           #fine_col=Nth(Nth(plSwordLocations,iLocation),5));
 
-      if Send(what,@GetOwner) = $
-      {
-         Debug("Tried to place a sword, but owner is still $.");
-         Send(what,@Delete);
-      }
-      else
-      {
-         Debug("Placed a sword in ",Send(Send(what,@GetOwner),@GetName));
-      }
+      //if Send(what,@GetOwner) = $
+      //{
+      //   Debug("Tried to place a sword, but owner is still $.");
+      //   Send(what,@Delete);
+      //}
+      //else
+      //{
+      //   Debug("Placed a sword in ",Send(Send(what,@GetOwner),@GetName));
+      //}
+
+        Send(what,@Delete);
+        Debug("Hunter Sword dropped by player, deleting.");
 
       return;
    }

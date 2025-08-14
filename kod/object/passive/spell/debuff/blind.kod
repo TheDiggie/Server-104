@@ -32,6 +32,8 @@ resources:
    blind_off = "Your eyes begin to function again."
 
    blind_sound = qblind.ogg
+   
+   blind_proj_rsc = blindring.bgf
 
 classvars:
 
@@ -54,6 +56,7 @@ classvars:
    viSpellExertion = 3
 
    vrSucceed_wav = blind_sound
+   vrProjectile_icon = blind_proj_rsc
 
 properties:
 
@@ -90,13 +93,19 @@ messages:
 
    CastSpell(who=$,lTargets=$,iSpellPower=0)
    {
-      local oTarget;
+      local i, oOwner, oTarget;
 
       oTarget = First(lTargets);
+      oOwner = Send(who,@GetOwner);
 
       // Spell effects
       Send(self,@DoSpell,#what=who,#oTarget=oTarget,
             #iDuration=Send(self,@GetDuration,#iSpellPower=iSpellPower));
+
+      if oOwner <> $
+      {
+         Send(oOwner,@SomethingShot,#who=who,#target=oTarget,#projectile=self);
+      }
       
       propagate;
    }
@@ -195,5 +204,30 @@ messages:
       return;
    }
 
+   SendLookAnimation()
+   {
+      AddPacket(1,ANIMATE_NONE, 2,2);
+
+      return;
+   }
+
+   SendProjectileAnimation()
+   {
+      // 40ms between animations, between frames 1-2
+      AddPacket(1,ANIMATE_CYCLE, 4,80, 2,1, 2,6);   
+
+      return;
+   }
+
+   GetProjectileIcon()
+   {
+      return vrProjectile_Icon;
+   }
+
+   GetProjectileSpeed()
+   {
+      return 10;
+   }
+   
 end
 ////////////////////////////////////////////////////////////////////////////////

@@ -32,8 +32,6 @@ properties:
 
    prMapChanges = FALSE
    prMonsters = FALSE
-   prQuake = FALSE
-   prFireRing = FALSE
 
    ptFarnohl = $
 
@@ -70,14 +68,6 @@ messages:
       Send(self,@NewHold,#what=Create(&Pillar),#new_row=7,#new_col=7,#fine_col=8);
       Send(self,@NewHold,#what=Create(&Pillar),#new_row=4,#new_col=7,#fine_col=8);
       Send(self,@NewHold,#what=Create(&Pillar),#new_row=1,#new_col=7,#fine_col=8);
-
-      return;
-   }
-
-   Enter(who=$)
-   {
-      Send(self,@NewHold,#what=who,#new_row=22,#new_col=5,
-            #new_angle=ROTATE_NONE);
 
       return;
    }

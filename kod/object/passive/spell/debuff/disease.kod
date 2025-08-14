@@ -32,6 +32,11 @@ properties:
 
       oTarget = First(lTargets);
 
+      if oTarget = $
+      {
+         return;
+      }
+
       Send(who,@MsgSendUser,#message_rsc=vrSuccess);
 
       if IsClass(oTarget,&Player)

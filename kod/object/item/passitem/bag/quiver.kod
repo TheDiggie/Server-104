@@ -17,10 +17,11 @@ constants:
 resources:
 
    Quiver_name_rsc = "quiver"
-   Quiver_icon_rsc = baghold.bgf
+   Quiver_icon_rsc = playerquiver.bgf
 
    Quiver_desc_rsc = "A sturdy quiver made out of dense lumber from the Ko'catan island. "
-                     "This case can be used to hold a variety of arrows."
+                     "This case can be used to hold a variety of arrows. This quiver will "
+                     "reduce the weight and bulk of arrows by 50%. "
 
 classvars:
 
@@ -28,7 +29,7 @@ classvars:
    vrIcon = Quiver_icon_rsc
    vrDesc = Quiver_desc_rsc
 
-   viValue_average = 500
+   viValue_average = 12000
    viBulk_hold_max = 12000
    viWeight_hold_max = $
 
@@ -36,6 +37,7 @@ properties:
 
    plWhiteList = $
    plBlackList = $
+   piWeightReduction = 2
 
 messages:
 

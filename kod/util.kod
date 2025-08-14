@@ -204,6 +204,14 @@ messages:
          return what;
       }
 
+      if IsClass(what,&Bag)
+      {  
+         if NOT IsClass(Send(what,@GetOwner),&Player)
+         {
+            return;
+         }
+      }
+
       return Send(self,@UtilGetRoomRecurse,#what=Send(what,@GetOwner));
    }
 

@@ -1,0 +1,68 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Potatoes is Food
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Potatoes_name_rsc = "potatoes"
+   Potatoes_icon_rsc = potatoes.bgf
+   Potatoes_desc_rsc = \
+   "A couple of delicious potatoes. "
+
+   Potatoes_name_plural_rsc = "potatoes"
+
+   Potatoes_disp_name = "potato plant"
+   Potatoes_disp_icon = Potatoplant.bgf
+   Potatoes_disp_desc = \
+     "This is the upper section of a Green acers potato plant. "
+
+   Potatoes_got_one = "You reach down and uproot some potatoes. "
+
+classvars:
+
+   vrName = Potatoes_name_rsc
+   vrIcon = Potatoes_icon_rsc
+   vrDesc = Potatoes_desc_rsc
+
+   vrDisp_name = Potatoes_disp_name
+   vrDisp_icon = Potatoes_disp_icon
+   vrDisp_desc = Potatoes_disp_desc
+
+   vrName_plural = Potatoes_name_plural_rsc
+
+   viIndefinite = ARTICLE_AN
+
+   viBulk = 2
+   viWeight = 2
+   viValue_average = 5
+
+properties:
+
+   viNutrition = 3
+   viFilling = 10
+   piNumber = 2
+
+messages:
+
+   NewHoldMessage(who=$,disp=$)
+   "Called whenever a number item is created from a dispenser."
+   {
+      Send(who,@MsgSendUser,#message_rsc=Potatoes_got_one);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

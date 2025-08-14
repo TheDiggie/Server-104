@@ -1,0 +1,70 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+ItemAttAppraise is ItemAttribute
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   ItemAttAppraise_desc = "\n\nThis item is appraised for %i shillings by %q."
+   ItemAttAppraise_desc2 = "\n\nThis item is appraised."
+
+classvars:
+
+   viItem_Att_Num = IA_APPRAISE
+   vrDesc = ItemAttAppraise_desc
+   vrDesc2 = ItemAttAppraise_desc2
+
+   viDifficulty = 3
+
+properties:
+
+   piValue_modifier = 0
+   piValue_power_modifier = 0
+
+messages:
+
+   AppendDesc(oItem=$)
+   {
+      local iAppraisal_Price, oAppraiser;
+
+      iAppraisal_Price = Send(oItem,@GetAppraisalPrice);
+      oAppraiser       = Send(oItem,@GetAppraiser);
+      Debug(Send(oItem,@GetAppraisalPrice));
+      Debug(Send(oItem,@GetAppraiser));
+      Debug(Send(oAppraiser,@GetName));
+      if oAppraiser <> $
+      {
+         AddPacket(4,vrDesc,4,iAppraisal_Price,6,Send(oAppraiser,@GetName));
+      }
+      else 
+      {
+         AddPacket(4,vrDesc2);
+      }
+
+      return;
+   }
+
+   InitiallyIdentified()
+   {
+      return TRUE;
+   }
+
+   AddToTreasureTable()
+   {
+      /// do nothing
+      return FALSE;
+   }
+   
+end
+////////////////////////////////////////////////////////////////////////////////

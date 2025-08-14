@@ -69,6 +69,7 @@ classvars:
    viOffensive = FALSE
    viResistanceType = 0
 
+   vbCanCancelEnchantment = FALSE
 properties:
 
 messages:
@@ -136,6 +137,10 @@ messages:
          if who = oTarget AND
             Send(SETTINGS_OBJECT,@CanRecastSelfEnchantment)
          {
+            if(vbCanCancelEnchantment) {
+               Send(oTarget,@RemoveEnchantment,#what=self,#report=TRUE);
+               return false;
+            }
             propagate;
          }
 
@@ -201,7 +206,7 @@ messages:
       {
                Send(oTarget,@StartEnchantment,#what=self,
             #state=Send(self,@GetStateValue,#iSpellpower=iSpellpower,#who=who,
-            #target=oTarget),#time=$,
+            #target=oTarget),#time=SPELL_INDEFINITE_DURATION,
             #lastcall=Send(self,@GetLastCall),#addicon=Send(self,@GetAddicon),
             #who=who,#ltype=lType,#bItemCast=bItemCast,#iSpellpower=iSpellpower);
       }

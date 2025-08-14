@@ -597,6 +597,15 @@ messages:
       // QST_ID_MURDER_JONAS_3
       Create(&JonasMurderThreeQuest);
 
+      Create(&FamsRatsQuest);
+      Create(&AvarKillQuest);
+
+      Create(&CorNothKeyQuest);
+      Create(&BarloqueKeyQuest);
+      Create(&TosKeyQuest);
+      Create(&ThroneRoomKeyQuest);
+      Create(&CastleVictoriaKeyQuest);
+
       // Now we fix up the faction service quests, since they need to have as
       // many scheduled as members. This worked well enough for low numbers of
       // factioned players, however with large numbers the amount of quests
@@ -863,7 +872,8 @@ messages:
 
    AddQuestNodeTemplate(NPC_modifier = $, questnode_type = $, cargolist = $,
                         monsterlist = $, prizelist = $, penaltylist = $,
-                        timelimit = $, quest_node_index = $, bDuplicate = FALSE)
+                        timelimit = $, quest_node_index = $, bDuplicate = FALSE,
+                        amount_needed = $)
    "Adds a new questnode template to plQuestNodeTemplates.  Returns index "
    "number of new questnode template if successful, 0 otherwise.  bDuplicate "
    "indicates more than one QuestTemplate will be sending the same quest node."
@@ -884,6 +894,7 @@ messages:
       {
          NPC_modifier = piDefaultNPCModifier;
       }
+
       if NPC_modifier < QN_NPCMOD_NONE
          OR NPC_modifier > QN_NPCMOD_DIFFERENT
       {
@@ -895,6 +906,7 @@ messages:
       {
          questnode_type = piDefaultQuestNodeType;
       }
+
       if questnode_type < QN_TYPE_MESSAGE
          OR questnode_type > QN_TYPE_MONSTER_ITEMCLASS
       {
@@ -956,7 +968,7 @@ messages:
       lQNTemplate = [ quest_node_index, plDefaultNPCList, NPC_modifier, \
                       questnode_type, cargolist, monsterlist, prizelist, \
                       penaltylist, CreateString(),CreateString(), \
-                      CreateString(), timelimit ];
+                      CreateString(), timelimit, amount_needed ];
 
       // Quest nodes no longer need to be in order.
       plQuestNodeTemplates = Cons(lQNTemplate, plQuestNodeTemplates);
@@ -970,10 +982,15 @@ messages:
       return quest_node_index;
    }
 
-   GetQuestNodeNPCModifier( index = $)
+   GetQuestNodeNPCModifier(index = $)
    "Return the NPC modifier from a quest node template."
    {
       return Nth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_NPC_MODIFIER);
+   }
+
+   GetAmountToKill(index = 0)
+   {
+      return Nth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_AMOUNT_NEEDED);
    }
 
    GetQuestNodeType(index = 0)
@@ -1247,11 +1264,13 @@ messages:
       {
          return 0;
       }
+
       if new_type < QN_TYPE_MESSAGE
          OR new_type > QN_TYPE_MONSTER_ITEMCLASS
       {
          return 0;
       }
+      
       if new_type = $
       {
          new_type = piDefaultQuestNodeType;
@@ -2198,7 +2217,7 @@ messages:
                            4,sQuesters ]);
          if piDebug
          {
-            Debug("Quest ",iQTIndex,": ",iAvailable," available; ",iUnassigned,
+            Debug("Quest ",iQTIndex,": ",iAvailable," available ",iUnassigned,
                   " unassigned and ",iAssigned," assigned.");
          }
          if piDebug > 1

@@ -63,8 +63,12 @@ messages:
       plExits = $;
       plExits = Cons([ 45, 27, RID_BAR_NORTH, 4, 49, ROTATE_NONE ],plExits);
       plExits = Cons([ 45, 26, RID_BAR_NORTH, 4, 49, ROTATE_NONE ],plExits);
+
       plExits = Cons([ 38, 5,  RID_GUILDH9, 9, 23, ROTATE_NONE ],plExits);
-      plExits = Cons([ 27, 55,  RID_BAR_VAULT, 3, 11, ROTATE_NONE ],plExits);
+
+      plExits = Cons([ 32, 55,  RID_BAR_VAULT, 5, 11, ROTATE_NONE ],plExits);
+      plExits = Cons([ 32, 56,  RID_BAR_VAULT, 5, 12, ROTATE_NONE ],plExits);
+      plExits = Cons([ 37, 56 , RID_BAR_MARKET, 6, 1, ANGLE_EAST  ],plExits);
 
       plExits = Cons([ 31,4 , ROOM_LOCKED_DOOR ],plExits);
       plExits = Cons([ 39,13, ROOM_LOCKED_DOOR ],plExits);

@@ -97,7 +97,7 @@ messages:
    {
       plRowNums = [G,FFF,EEE,D,C,B,A];
       plColNums = [GG,FF,EE,DD,CC,BB,AA];
-      poSnitch = create(&LadyPheonix);
+      poSnitch = create(&ladypheonix);
       Send(self,@NewHold,#what=poSnitch,#new_row=9,#new_col=3,#fine_col=16);
       poShrine = create(&shrine,#shrine_num=SHRINE_FOREST);
       Send(self,@newhold,#what=poShrine,#new_row=9,#new_col=16,#fine_col=16);

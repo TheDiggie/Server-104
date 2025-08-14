@@ -37,23 +37,12 @@ properties:
 
    prRoom = room_desertshore2
    piRoom_num = RID_DESERTSHORE2
+   piChange_Spawns = TRUE
 
 messages:
  
    Constructed()
    {
-      plMonsters = [ [&XeoAcid, 10],
-                     [&XeoAir, 10],
-                     [&XeoEarth, 10],
-                     [&XeoFire, 10],
-                     [&XeoHoly, 10],
-                     [&XeoIll, 10],
-                     [&XeoUnholy, 10],
-                     [&XeoWater, 10],
-                     [&EarthElemental, 10],
-                     [&FireElemental, 10]
-                      ];
-      
       plGenerators = [ [25, 25],  [25, 50],  [25, 75],  [25, 100], 
                        [42, 25],  [42, 50],  [42, 75],  [42, 100],
                        [60, 25],  [60, 50],  [60, 75],  [60, 100],
@@ -69,7 +58,7 @@ messages:
    CreateStandardExits()
    {
       plEdge_Exits = $;
-      plEdge_Exits = Cons([ LEAVE_NORTH, RID_DESERTSHORE3, 60, 102, ROTATE_NONE ],plEdge_Exits);
+      plEdge_Exits = Cons([ LEAVE_NORTH, RID_DESERTSHORE4, 60, 102, ROTATE_NONE ],plEdge_Exits);
       plEdge_Exits = Cons([ LEAVE_SOUTH, RID_DESERTSHORE1, 60, 102, ROTATE_NONE ],plEdge_Exits);
       plEdge_Exits = Cons([ LEAVE_EAST, RID_DESERTDUNES2, 60, 102, ROTATE_NONE ],plEdge_Exits);
 

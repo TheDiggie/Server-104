@@ -6,8 +6,7 @@
 
 DEPEND = ..\marnrm.bof
 
-BOFS =  marion.bof \
-	marhall.bof marhlshp.bof
+BOFS =  marion.bof marhall.bof marhlshp.bof planthouse.bof
 
 !include $(KODDIR)\kod.mak
 

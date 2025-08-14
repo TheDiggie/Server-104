@@ -1,0 +1,48 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CutTomato is Food
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   CutTomato_name_rsc = "cut tomato"
+   CutTomato_icon_rsc = cuttomato.bgf
+   CutTomato_desc_rsc = \
+      "A tomato sliced in two. "
+
+   CutTomato_name_plural_rsc = "cut tomatoes"
+
+classvars:
+
+   vrName = CutTomato_name_rsc
+   vrIcon = CutTomato_icon_rsc
+   vrDesc = CutTomato_desc_rsc
+
+   vrName_plural = CutTomato_name_plural_rsc
+
+   viBulk = 1
+   viWeight = 2
+
+   viValue_average = 5
+
+properties:
+
+   viFilling = 2
+   viNutrition = 1
+   piNumber = 2
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,69 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Oats is Food
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Oats_name_rsc = "oats"
+   Oats_icon_rsc = Oats.bgf
+   Oats_desc_rsc = \
+      "A small piled of oats "
+
+   Oats_name_plural_rsc = "oats"
+
+   Oats_disp_name = "common oats"
+   Oats_disp_icon = commonoats.bgf
+   Oats_disp_desc = \
+     "Tall oat plants can be harvested for oats. "
+
+   Oats_got_one = "You harvest some oats."
+
+classvars:
+
+   vrName = Oats_name_rsc
+   vrIcon = Oats_icon_rsc
+   vrDesc = Oats_desc_rsc
+
+   vrDisp_name = Oats_disp_name
+   vrDisp_icon = Oats_disp_icon
+   vrDisp_desc = Oats_disp_desc
+
+   vrName_plural = Oats_name_plural_rsc
+
+   viIndefinite = ARTICLE_AN
+
+   viBulk = 1
+   viWeight = 2
+
+   viValue_average = 5
+
+properties:
+
+   viFilling = 5
+   viNutrition = 2
+   piNumber = 2
+
+messages:
+
+   NewHoldMessage(who=$,disp=$)
+   "Called whenever a number item is created from a dispenser."
+   {
+      Send(who,@MsgSendUser,#message_rsc=Oats_got_one);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -122,6 +122,7 @@ resources:
       "You have a funny feeling that attacking is pointless."
 
    Lm_nothing_for_sale = "I'm afraid I have nothing to sell right now."
+   Lm_nothing_for_sale2 = "I'm afraid there is nothing for sale on the market right now."
 
    Lm_first_damage_level = "~B~r%s%s is slightly wounded."
    Lm_second_damage_level = "~B~r%s%s is clearly injured."
@@ -259,6 +260,14 @@ resources:
    monster_faction_frogmen = "Frogmen"
    monster_faction_heretic = "Cult of the Three"
    monster_faction_undead = "Minions of Death"
+
+   Announce_Death = "~B~r%s has slain the %s at %s!!"
+
+   user_pickup_past_limit2 = "You can't carry more than 130 mil of a item."
+
+   pm_not_appraised = "I can not list items on the market that have not yet been appraised!"
+   pm_sold_item = "~g~BYou sold a %s on the citizen's market for %i, you have been given a trades bond for the value."
+   To_much_value = "Sorry but I can only offer you 130 million shillings at a time, please hand over less trade bonds at a time. "
    
 classvars:
 
@@ -350,6 +359,7 @@ classvars:
    vrUnwanted_token = LS_unwanted_token
    vrTeach_quest_needed = monster_teach_quest_needed
    vrNothing_for_sale = Lm_nothing_for_sale
+   vrNothing_for_sale2 = Lm_nothing_for_sale2
    vrMrcnt_too_costly = Lm_mrcnt_too_costly
    vrMonster_healing = Lm_monster_healing
    vrMinion_trouble = minion_trouble
@@ -365,6 +375,8 @@ classvars:
    vrLm_bnkr_player_full            = Lm_bnkr_player_full
    vrLm_bnkr_player_all_full        = Lm_bnkr_player_all_full
    vrLm_mrcnt_cant_give             = Lm_mrcnt_cant_give
+   vrTo_much_value                  = To_much_value
+   vrAnnounce = Announce_Death
 
    // Obsolete, but still included here for safety's sake.
    vrSound_hit = $
@@ -522,6 +534,7 @@ properties:
    poInvasionLeader = $
    pbAttackMode = TRUE
    poEventObject = $
+   pbAnnounce = FALSE
 
 messages:
 
@@ -1065,9 +1078,16 @@ messages:
          Send(self,@AttackTimer);
       }
       else
-      {
-         ptBehavior = CreateTimer(self,@AttackTimer,Send(self,@GetAttackTime));
-         Debug(self);
+      {  
+         if Send(self,@GetAttackTime) = $
+         {
+            ptBehavior = CreateTimer(self,@AttackTimer,2000);
+         }
+         else
+         {
+            ptBehavior = CreateTimer(self,@AttackTimer,Send(self,@GetAttackTime));
+         }
+      
       }
 
 
@@ -3091,6 +3111,26 @@ messages:
                return FALSE;
             }
 
+            if viOccupation = MOB_ROLE_PMARKET
+            {  
+               if isClass(i,&TradeBond)
+               {
+                  return TRUE;
+               }
+
+               foreach i in item_list
+               {
+                  if NOT Send(i,@HasAttribute,#ItemAtt=IA_APPRAISE)
+                  {
+                     Send(self,@SayToOne,#target=what,#message_rsc=pm_not_appraised);
+
+                     return FALSE;
+                  }
+               }
+
+               return TRUE;
+            }
+
             iValueOffered = iValueOffered + Send(i,@GetValue);
          }
 
@@ -3953,6 +3993,13 @@ messages:
                }
             }
          }
+
+         if pbAnnounce
+         {
+            Send(SYS,@SystemBroadcast,#type=SAY_MESSAGE,#string=vrAnnounce,
+            #parm1=Send(what,@GetName),#parm2=Send(self,@GetName),#parm3=Send(poOwner,@GetName));
+         }
+
          // Delete here so we don't accidentally "kill" then delete system
          //  template monsters.
          Send(self,@Delete);
@@ -4037,10 +4084,48 @@ messages:
    Offer(what = $,item_list = $, funds = $)
    "Offer the player money in exchange for their goods - MOB_BUYER"
    {
-      local i, iValue_offered, iAdd, x, y;
+      local i, iValue_offered, iAdd, x, y, bFound;
 
       // The Faction Pricing bonus was selling items to NPCs at higher prices
       // than the new price.  This has been taken out.
+
+      bFound = FALSE;
+
+      if viOccupation = MOB_ROLE_PMARKET
+      {
+         iValue_offered = 0;
+
+         foreach i in item_list
+         {
+            if isClass(i,&TradeBond)
+            {
+               Debug("BOND TURNED IN",i,Send(i,@GetValue),what,Send(what,@GetTrueName),"price",Send(i,@GetValue));
+               bFound = TRUE;
+               iValue_offered = (iValue_offered + Send(i,@GetValue));
+            }
+         }
+         
+         if iValue_offered < 0
+         {
+            Post(self,@SayToOne,#target=what,#message_rsc=vrTo_much_value);
+            Send(what,@OfferCanceled);
+            Send(self,@OfferCanceled);
+
+            return;
+         }
+
+         if bFound
+         {
+            plOffer_items = [ Create(poCurrency,#number=iValue_offered) ];
+            Send(what,@CounterOffer,#item_list=plOffer_items);
+         }
+         else
+         {
+            Send(what,@CounterOffer,#item_list=$);
+         }
+         
+         return;
+      }
 
       if (viAttributes & MOB_BUYER
          OR viAttributes & MOB_RECEIVE)
@@ -4048,7 +4133,10 @@ messages:
          iValue_offered = 0;
          foreach i in item_list
          {
-            x = Send(i,@GetValue) * (100 - 10*viMerchant_markup) / 100;
+            x = Send(i,@GetValue);
+            y = x / 10 * viMerchant_markup;
+            x = x - y;
+
             iAdd = Bound(x,1,$);
 
             iValue_offered = iValue_offered + iAdd;
@@ -4138,7 +4226,7 @@ messages:
 
       funds = poCurrency;
 
-      if not Send(self,@MobIsVaultman)
+      if not Send(self,@MobIsVaultman) OR NOT viOccupation = MOB_ROLE_PMARKET
       {
          return;
       }
@@ -4342,15 +4430,7 @@ messages:
               #message_rsc=vaultman_nowithdraw_cash);
 
          return;
-      }         
-
-      //if Send(what, @GetBulkMax) <> $ AND
-      //   (iBulk + Send(what,@GetBulkHold)) > Send(what,@GetBulkMax)
-      //{
-      //   Send(self,@SayToOne,#target=what,#message_rsc=vaultman_no_room);
-      //
-      //   return;
-      //}   
+      }            
       
       // The next line added to handle player specified amounts
       lNumbers = number_list;
@@ -4581,7 +4661,7 @@ messages:
 
    BankWithdraw(who = $, amount = 0, funds = $)
    {
-      local iPlayerAmt, iBankAmt, oMoney, oBank;
+      local iPlayerAmt, iBankAmt, oMoney, oBank, oHelditem, iHeldAmount;
 
       if NOT Send(self,@MobIsBanker)
       {
@@ -4597,6 +4677,24 @@ messages:
       {
          Debug("BAD: Banker has no bankID",vrname,self);
 
+         return;
+      }
+
+      oHelditem = Send(who,@FindHolding,#class=poCurrency);
+
+      if oHelditem = $
+      {
+         oHelditem = 0;
+         iHeldAmount = 0;
+      }
+      else
+      {
+         iHeldAmount = Send(oHelditem,@GetNumber);
+      }
+
+      if ((amount/2) + (iHeldAmount/2)) > 65000000
+      {
+         Send(who,@MsgSendUser,#message_rsc=user_pickup_past_limit2);
          return;
       }
 
@@ -4684,7 +4782,7 @@ messages:
    "This is used for both teachers and sellers"
    {
       local i, j, bFound, oBuy, oMoney, iPrice, iPriceOne, lNumbers,
-            iAmount, oItemAtt, iCan_hold, oSplit; 
+            iAmount, oItemAtt, iCan_hold, oSplit, oBond; 
 
       funds = poCurrency;
 
@@ -4726,7 +4824,14 @@ messages:
          oMoney = Send(what,@GetMoneyObject,#type=funds);
 
          // Get the price for that amount
-         iPriceOne = Send(self,@GetPrice,#what=i,#who=what);
+         if viOccupation = MOB_ROLE_PMARKET AND what = Send(i,@GetAppraiser)
+         {
+            iPriceOne = 0;
+         }
+         else
+         {
+            iPriceOne = Send(self,@GetPrice,#what=i,#who=what);
+         } 
 
          // Init iPrice to the cost of one item.
          iPrice = iPriceOne;
@@ -4777,13 +4882,17 @@ messages:
          }
 
          // Does player have enough money to buy it?
-         if oMoney = $ OR Send(oMoney,@GetValue) < iPrice
+         if iPrice = 0
+         {
+            //idk im skipping the code below
+         }
+         else if oMoney = $ OR Send(oMoney,@GetValue) < iPrice
          {
             Post(poOwner,@SomeoneSaid,#what=self,#string=vrMrcnt_too_costly,
                   #type=SAY_RESOURCE,#parm1=Send(i,@GetDef),
                   #parm2=Send(i,@GetName));
 
-            continue;
+            return FALSE;
          }
 
          // Make sure the item is really for sale from this mob.
@@ -4857,7 +4966,12 @@ messages:
 
                // Add item to buyer's inventory
                Send(what,@NewHold,#what=oBuy);
-               Send(oMoney,@SubtractNumber,#number=iPrice);
+               
+               if iPrice > 0
+               {
+                  Send(oMoney,@SubtractNumber,#number=iPrice);
+               }
+
                Send(self,@RemoveFromConditionalList,
                      #obj=Send(self,@GetObjectOnConditionalList,
                      #class=GetClass(i)));
@@ -4874,6 +4988,14 @@ messages:
             }
             else
             {
+               if viOccupation = MOB_ROLE_PMARKET
+               {
+                  Post(poOwner,@SomeoneSaid,#what=self,#string=vrLm_mrcnt_cant_give,
+                        #type=SAY_RESOURCE,#parm1=Send(oBuy,@GetDef),
+                        #parm2=Send(oBuy,@GetName));
+                  return FALSE;
+               } 
+
                // Check if this is a number item we're buying too much of.
                if IsClass(oBuy,&NumberItem)
                   AND Send(what,@GetNumberCanHold,#what=oBuy) > 0
@@ -4920,6 +5042,27 @@ messages:
                   Send(oBuy,@Delete);
                }
             }
+
+            if viOccupation = MOB_ROLE_PMARKET 
+            {
+               if what <> Send(i,@GetAppraiser)
+               {
+                  oBond=Create(&TradeBond,#SaleValue=Send(i,@GetAppraisalPrice));
+                  Debug("BOND CREATED",oBond,Send(oBond,@GetName),Send(i,@GetAppraiser),Send(Send(i,@GetAppraiser),@GetTrueName),what,Send(what,@GetTrueName),"price",Send(i,@GetAppraisalPrice));
+                  Debug("ITEM SOLD ON MARKET",Send(i,@GetAppraiser),Send(Send(i,@GetAppraiser),@GetTrueName),i,Send(i,@Getname),what,Send(what,@GetTrueName),"price",Send(i,@GetAppraisalPrice));
+
+                  Send(Send(i,@GetAppraiser),@NewHold,#what=oBond);
+                  Send(self,@SayToOne,#target=Send(i,@GetAppraiser),#message_rsc=pm_sold_item,
+                        #parm1=Send(i,@Getname),#parm2=Send(i,@GetAppraisalPrice));
+
+                  Send(i,@ClearAppraisal);
+                  Send(Send(SYS,@FindItemAttByNum,#num=IA_APPRAISE),@RemoveFromitem,#oItem=i);
+               }
+               else
+               {
+                  Debug("ITEM REMOVED BY OWNER",i,Send(i,@GetName),what,Send(what,@GetTrueName),"price",Send(i,@GetAppraisalPrice));
+               }
+            }
          }
          else
          {
@@ -4933,7 +5076,11 @@ messages:
             {
                Send(what,@AddSpell,#num=Send(i,@GetSpellNum));
             }
-            Send(oMoney,@SubtractNumber,#number=iPrice);
+            
+            if iPrice > 0
+            {
+               Send(oMoney,@SubtractNumber,#number=iPrice);
+            }
          }
       }
 
@@ -5539,8 +5686,16 @@ messages:
 
    GetAttackTime()
    {
-      return Send(self,@Fuzzy,#num=MOB_ATTACK_TIMER_WAIT)
-             + 3500-70*(3*viDifficulty+viSpeed);
+      local itime;
+
+      iTime = Send(self,@Fuzzy,#num=MOB_ATTACK_TIMER_WAIT) + 3500-70*(3*viDifficulty+viSpeed);
+      
+      if iTime < 0
+      {
+         iTime = Random(1000,2000);
+      }
+      
+      return iTime;
    }
 
    GetMoveTime()
@@ -6150,9 +6305,17 @@ messages:
       }
 
       if lForSale=$ 
-      {
-         Send(poOwner,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
-               #string=vrNothing_for_sale);
+      {  
+         if viOccupation = MOB_ROLE_PMARKET
+         {
+            Send(poOwner,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
+                  #string=vrNothing_for_sale2);
+         }
+         else
+         {
+            Send(poOwner,@SomeoneSaid,#what=self,#type=SAY_RESOURCE,
+                  #string=vrNothing_for_sale);
+         }
       }  
 
       return lForSale;
@@ -6177,10 +6340,24 @@ messages:
 
       if IsClass(what,&Item) 
       {
-         x = Send(what,@GetInitValue) * (100 + 20*viMerchant_markup) / 100;
-         y = Send(Send(SYS,@GetParliament),@GetFactionPriceBonus,#who=who,
-                  #buying=TRUE);
-         return Bound(x*y/100, 1, $);
+         if viOccupation = MOB_ROLE_PMARKET
+         {
+            if Send(what,@GetAppraiser) = who
+            {
+               return 0;
+            }
+            else
+            {
+               return Send(what,@GetAppraisalPrice);
+            }
+         }
+         else
+         {
+            x = Send(what,@GetInitValue) * (100 + 20*viMerchant_markup) / 100;
+            y = Send(Send(SYS,@GetParliament),@GetFactionPriceBonus,#who=who,
+                     #buying=TRUE);
+            return Bound(x*y/100, 1, $);
+         }
       }
 
       if IsClass(what,&Spell) OR IsClass(what,&Skill)
@@ -7578,5 +7755,12 @@ messages:
       return;
    }
 
+   SetAnnounce()
+   {
+      pbAnnounce = TRUE;
+
+      return;
+   }
+   
 end
 ////////////////////////////////////////////////////////////////////////////////

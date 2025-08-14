@@ -113,12 +113,18 @@ messages:
       Send(who,@StartRescueTimer,#time=iDelay);
       Send(who,@MsgSendUser,#message_rsc=Rescue_Start);
 
+
       propagate;
    }
 
    DoRescue(who = $)
    {
       local i, each_obj, oCurrentRoom, oTargetRoom, oGuild, iCurrentRegion;
+
+      if IsClass(who,&Player) AND NOT IsClass(who,&DM)
+      {
+         Send(who,@WipeUnboundEnergy);
+      }
 
       Send(who,@MsgSendUser,#message_rsc=Rescue_Success);
 

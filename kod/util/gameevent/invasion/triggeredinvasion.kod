@@ -100,7 +100,7 @@ messages:
                             &GrayMushroom, &CyanMushroom, &YellowMushroom,   &GreenMushroom,
                             &ShamanBlood, &YrxlSap ];
 
-      plEventBoss = [ &GrandpaTrent, &Lich, &SpiderQueen, &AvarChieftain, &Yeti, &OrcPitBoss, &XeoNeru, &GiantRatKing, &Ghost ];
+      plEventBoss = [ &GrandpaTrent, &Lich, &SpiderQueen, &AvarChieftain, &Yeti, &OrcPitBoss, &XeoNeru, &GiantRatKing, &Ghost, &CaptainKnight ];
 
       plEventRooms = [ RID_E2,    RID_F2,   RID_F3,       RID_D5, RID_D4,
                        RID_CAVE2, RID_F8,   RID_G9,       RID_H7,      
@@ -165,7 +165,7 @@ messages:
       }
       else if piActiveRoom = RID_DUNGEON
       {
-         plSpawnRects = [ [[16,5],[26,24  ]] ];
+         plSpawnRects = [ [[16,5],[26,24]] ];
       }
 
       propagate;
@@ -343,7 +343,6 @@ messages:
       while (i > 0)
       {
          oMonster = Create(First(Nth(plEventMonsters,iWave)));
-         // Flag used to identify harbinger army mobs.
          Send(oMonster,@SetMonsterFlag,#flag=MFLAG_INVADER_MOB | MFLAG_DONT_DISPOSE,
                #value=TRUE);
          lSpawnPoint = Send(self,@MakeSpawnPoint);
@@ -361,8 +360,6 @@ messages:
    {
       local oRoom, oReward, iAmount, lRewards, ItemAtt;
 
-      // When each event monster is killed, add common reagents to the Leader's treasure drop.
-      // Scale this with the number of participants in the room. This is also capped by piMaxParticipants.
       if Send(dead_monster,@CheckMonsterFlag,#flag=MFLAG_INVADER_MOB)
       {
          if piPhase = 1
@@ -635,6 +632,13 @@ messages:
                              [&Skeleton, 15], [&TuskedSkeleton, 10] ];
                              
          piRewardAmount = 5;
+      }
+      else if isClass(poLeader,&CaptainKnight)
+      {
+         plEventMonsters = [ [&HeadlessSkeleton, 15],   [&Skeleton, 15], 
+                             [&HalfKnight, 15], [&KnightA, 10] ];
+                             
+         piRewardAmount = 8;
       }
       
       return;

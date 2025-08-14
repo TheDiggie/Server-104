@@ -15,7 +15,7 @@ constants:
 
 resources:
 
-   vault_loadout_not_safe = "You must be in a safe area to cast vault loadout."
+   vault_loadout_not_safe = "You must be in a safe area to cast vault load out."
 
    vault_loadout_no_contents = "You don't have anything in your vault!"
    vault_loadout_items_not_found = "Your vault did not contain any %s."
@@ -28,7 +28,7 @@ resources:
    vault_loadout_cast = "You activate your link with your vault storage."
    vault_loadout_not_set = "You currently have no inventory preferences set."
 
-   vault_loadout_name_rsc = "vault loadout"
+   vault_loadout_name_rsc = "vault load out"
    vault_loadout_icon_rsc = imend.bgf
    vault_loadout_desc_rsc = \
       "Attempts to translocate gear and reagents from your mainland vault "
@@ -49,6 +49,7 @@ classvars:
    viMana = 0
    viSpellExertion = 0
    viChance_To_Increase = 5
+   viMeditate_ratio = 10
 
 properties:
 

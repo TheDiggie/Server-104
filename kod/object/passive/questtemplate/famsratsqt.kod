@@ -1,0 +1,203 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+/////////////////////////////////////////////////////////////////////////////////
+FamsRatsQuest is QuestTemplate
+// Quest nodes 219, 220, 221, 222
+// QNT_ID_FAMS_RATS_ONE, QNT_ID_FAMS_RATS_TWO,
+// QNT_ID_FAMS_RATS_THREE, QNT_ID_FAMS_RATS_FOUR
+
+// QuestTemplate is
+// [ quest template index
+//   quest template object
+//   number of players,
+//   type of quest,
+//   eligible player restrictions,
+//   quest nodes,
+//   max number active,
+//   currently active quests,
+//   percent chance of scheduling (on timer firing)
+//   special restrictions ]
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   // Quest description.
+   FamsRatsQuest_icon_rsc = rat.bgf
+   FamsRatsQuest_name_rsc = "Rats in the cellar quest"
+
+   // This description is used if there is an error preventing the others
+   // from being displayed.
+   FamsRatsQuest_desc_rsc = \
+      "Paddock is having trouble with rats in the cellar. "
+
+   FamsRatsQuest_kill_rsc = \
+      "Paddock is having problems with rats in the cellar. Go "
+      "slay %i %s. Complete this task and report back to him."
+
+   FamsRatsQuest_return_rsc = \
+      "Return to Paddock and let him know the task has been "
+      "completed."
+
+   FamsRatsQuest_completed = \
+      "You have completed Rats in the cellar quest.  Paddock will thrilled! "
+
+   // Quest resources.
+   FamsRatsQuest_assign_2 = \
+      "Problems? Yea I got a few right now. Bunch of rodents running around in "
+      "the cellar as of late. I'd be in your debt if you dealt with them for me. "
+      "Go see if you can clear out those 20 small rats in the cellar. "
+   FamsRatsQuest_failure_2 = \
+      "Subject: Rats in the cellar.\n"
+      "Dam rats. Some better adventurer will handle them. "
+   FamsRatsQuest_assign_3 = \
+      "Got the little bastards? Good, but I've seen bigger ones around as well. "
+      "Go kill 15 rat soldiers in the cellars for me."
+   FamsRatsQuest_failure_3 = \
+      "Subject: Rats in the cellar.\n"
+      "Dam rats. Some better adventurer will handle them. "
+   FamsRatsQuest_assign_4 = \
+      "Still alive aye! So those rats gota be coming from some where. See if you can find there "
+      "leader and take him out. that'll put a stop to them. "
+   FamsRatsQuest_success_4 = \
+      "Finally.  Good job getting rid of those rodents!"
+   FamsRatsQuest_failure_4 = \
+      "Subject: Rats in the cellar.\n"
+      "Dam rats. Some better adventurer will handle them. "
+
+classvars:
+
+   vrIcon = FamsRatsQuest_icon_rsc
+   vrName = FamsRatsQuest_name_rsc
+   vrDesc = FamsRatsQuest_desc_rsc
+
+   vrKill = FamsRatsQuest_kill_rsc
+   vrReturn = FamsRatsQuest_return_rsc
+   vrCompleted = FamsRatsQuest_completed
+
+   // The QST_ID constant for this quest.
+   viQuestID = QST_ID_FAMS_RATS
+
+properties:
+
+   piNumPlayers = 1
+   piPlayerRestrict = Q_PLAYER_NOTTRIED_RECENTLY
+   plSpecialRestrict = $
+   piMaxPlayers = 30
+   piSchedulePct = 100
+   //piTimeLimit = 2 * 3600 // 2 hours.
+   piTimeLimit = 60
+
+messages:
+
+   Constructor()
+   {
+      // Quest node list to send to QuestEngine.
+      plQuestNodes = [QNT_ID_FAMS_RATS_ONE, QNT_ID_FAMS_RATS_TWO,
+                      QNT_ID_FAMS_RATS_THREE, QNT_ID_FAMS_RATS_FOUR];
+
+      propagate;
+   }
+
+   SendQuestNodeTemplates()
+   {
+      local lNPCs, oQE, oLib;
+
+      oQE = Send(SYS,@GetQuestEngine);
+      oLib = Send(SYS,@GetLibrary);
+
+      if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_SHOWUP,
+               #quest_node_index=QNT_ID_FAMS_RATS_ONE)
+      {
+         Send(oQE,@SetQuestNodeNPCList,#index=QNT_ID_FAMS_RATS_ONE,
+               #new_NPC_list=Send(oLib,@GetOccupationList,
+                                 #cNPC_class=&TosInnKeeper));
+      }
+      else
+      {
+         Debug("Error building QN: QNT_ID_FAMS_RATS_ONE");
+      }
+
+      if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MONSTER,
+               #NPC_modifier=QN_NPCMOD_SAME,#monsterlist=[&SmallRat],
+               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_FAMS_RATS_TWO,#amount_needed=20)
+      {
+         Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_FAMS_RATS_TWO,
+               #new_hint=FamsRatsQuest_assign_2);
+         Send(oQE,@SetQuestNodeFailureHint,#index=QNT_ID_FAMS_RATS_TWO,
+               #new_hint=FamsRatsQuest_failure_2);
+      }
+      else
+      {
+         Debug("Error building QN: QNT_ID_FAMS_RATS_TWO");
+      }
+
+      if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MONSTER,
+               #NPC_modifier=QN_NPCMOD_SAME,#monsterlist=[&GiantRatSoldier],
+               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_FAMS_RATS_THREE,#amount_needed=15)
+      {
+         Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_FAMS_RATS_THREE,
+               #new_hint=FamsRatsQuest_assign_3);
+         Send(oQE,@SetQuestNodeFailureHint,#index=QNT_ID_FAMS_RATS_THREE,
+               #new_hint=FamsRatsQuest_failure_3);
+      }
+      else
+      {
+         Debug("Error building QN: QNT_ID_FAMS_RATS_THREE");
+      }
+
+      if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MONSTER,
+               #NPC_modifier=QN_NPCMOD_SAME,#monsterlist=[&GiantRatKing],
+               #prizelist=[ [ [ QN_PRIZETYPE_ITEMCLASS, &InkyCap, 200 ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &EntrootBerry, 200 ],
+                              [ QN_PRIZETYPE_ITEMCLASS, &OrcTooth, 200 ]] ],
+               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_FAMS_RATS_FOUR,#amount_needed=1)
+      {
+         Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_FAMS_RATS_FOUR,
+               #new_hint=FamsRatsQuest_assign_4);
+         Send(oQE,@SetQuestNodeSuccessHint,#index=QNT_ID_FAMS_RATS_FOUR,
+               #new_hint=FamsRatsQuest_success_4);
+         Send(oQE,@SetQuestNodeFailureHint,#index=QNT_ID_FAMS_RATS_FOUR,
+               #new_hint=FamsRatsQuest_failure_4);
+      }
+      else
+      {
+         Debug("Error building QN: QNT_ID_FAMS_RATS_FOUR");
+      }
+
+      return;
+   }
+
+   MainDesc(who=$,index=$,oQuestNode=$)
+   {
+      local oMob, oQE, iAmount;
+
+      oQE = Send(SYS,@GetQuestEngine);
+
+      oMob = Send(oQuestNode,@GetQuestMonster);
+
+      iAmount = Send(oQE,@GetAmountToKill,#index=index);
+
+      if oMob = $
+      {
+         AddPacket(4,vrReturn);
+      }
+      else
+      {
+         AddPacket(4,vrKill,4,iAmount,4,Send(oMob,@GetName));
+      }
+
+      return;
+   }
+
+end
+/////////////////////////////////////////////////////////////////////////////////

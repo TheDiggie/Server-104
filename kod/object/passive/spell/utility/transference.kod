@@ -52,6 +52,8 @@ classvars:
 
 properties:
 
+   plEachTarget = $
+
 messages:
 
    ResetReagents()
@@ -111,7 +113,7 @@ messages:
    
    CastSpell(who = $, lTargets = $)
    {
-      local i, oTarget, oGuild, oGuildHall, oBox, bSuccess;
+      local i, oTarget, oGuild, oGuildHall, oBox, bSuccess, lEachTarget;
 
       if (lTargets = $)
       {
@@ -125,6 +127,19 @@ messages:
          return;
       }
 
+      if IsClass(oTarget,&Bag)
+      {
+         lTargets = send(oTarget,@GetBagContents);
+         foreach i in lTargets
+         {
+            plEachTarget = Cons(i,plEachTarget);
+            Send(self,@CastSpell,#who=who,#lTargets=plEachTarget);
+            plEachTarget = $;
+         }
+
+         return;
+      }
+
       if NOT IsClass(oTarget,&NumberItem)
       {
          Send(who,@MsgSendUser,#message_rsc=Transference_cant,
@@ -134,7 +149,7 @@ messages:
       }
 
       if NOT Send(oTarget,@CanBeStoredInVault)
-         OR IsClass(oTarget,&Shillings)
+         OR IsClass(oTarget,&Money)
       {
          Send(who,@MsgSendUser,#message_rsc=Transference_cant,
                #parm1=Send(oTarget,@GetDef),#parm2=Send(oTarget,@GetName));
@@ -144,9 +159,12 @@ messages:
 
       if NOT Send(who,@IsHolding,#what=oTarget)
       {
-         Send(who,@MsgSendUser,#message_rsc=Transference_not_holding);
+         if NOT Send(who,@IsHolding,#what=Send(oTarget,@GetOwner))
+         {
+            Send(who,@MsgSendUser,#message_rsc=Transference_not_holding);
 
-         return;
+            return;
+         }
       }
 
 	  // Get the player's guild

@@ -22,15 +22,156 @@ classvars:
 
 properties:
 
-   piMonster_count_max = 30
+   piMonster_count_max = 40
    piInit_count_min = 5
-   piInit_count_max = 10
+   piInit_count_max = 15
+
+   piElemental_Effects = TRUE
+   piChange_Spawns = FALSE
 
 messages:
 
    GetRegion()
    {
       return RID_DESERT;
+   }
+
+   TryCreateMonster()
+   {
+      Send(self,@DoElementalEffects);
+
+      propagate;
+   }
+
+   NewHold(what=$)
+   {
+      if IsClass(what,&Player)
+      {
+         Send(self,@DoElementalEffects);
+      }
+      
+      propagate;
+   }
+
+   DoElementalEffects()
+   {
+      local iHour, oHeat, oFreezing;
+
+      if NOT piElemental_Effects
+      {
+         return;
+      }
+      
+      iHour = Send(SYS,@GetHour);
+
+      if iHour >= 8 AND iHour <= 17
+      {
+         oHeat = Send(SYS,@FindSpellByNum,#num=SID_HEAT);
+
+         if Send(self,@IsEnchanted,#what=oHeat)
+         {
+            return;
+         }
+
+         if piChange_Spawns
+         {
+            plMonsters = [ [&XeoAcid, 10],
+                           [&XeoAir, 10],
+                           [&XeoEarth, 10],
+                           [&XeoFire, 10],
+                           [&XeoHoly, 10],
+                           [&XeoIll, 10],
+                           [&XeoWater, 10],
+                           [&EarthElemental, 10],
+                           [&FireElemental, 10],
+                           [&FireElementalChampion, 10]
+                            ];
+         }
+
+         Send(oHeat,@CastSpell,#who=self,#spellpower=99);
+      }
+      else if iHour >= 6 AND iHour <= 7
+      {  
+         Send(self,@RemoveFreezing);
+      }
+      else if iHour >= 18 AND iHour <= 19
+      {
+         Send(self,@RemoveHeat);
+      }
+      else
+      {
+         oFreezing = Send(SYS,@FindSpellByNum,#num=SID_FREEZING);
+
+         if Send(self,@IsEnchanted,#what=oFreezing)
+         {
+            return;
+         }
+
+         if piChange_Spawns
+         {
+            plMonsters = [ [&XeoAcid, 10],
+                           [&XeoAir, 10],
+                           [&XeoEarth, 10],
+                           [&IceDragon, 10],
+                           [&XeoUnholy, 10],
+                           [&XeoIll, 10],
+                           [&XeoWater, 10],
+                           [&EarthElemental, 10],
+                           [&IceElemental, 10],
+                           [&IceElementalChampion, 10]
+                            ];
+         }
+
+         Send(oFreezing,@CastSpell,#who=self,#spellpower=99);
+      }
+
+      return;
+   }
+
+   AllowBattlerAttack(victim=$)
+   {
+      if IsClass(victim,&Player)
+      {
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   RemoveFreezing()
+   {
+      local i, oSpell, lEnchantments;
+
+      lEnchantments = Send(self,@GetEnchantmentList);
+
+      foreach i in lEnchantments
+      {
+         oSpell = Nth(i,2);
+         if isClass(oSpell,&Freezing)
+         {
+            Send(self,@RemoveEnchantment,#what=oSpell);
+         }
+      }
+   
+      return;
+   }
+
+   RemoveHeat()
+   {
+      local i, oSpell, lEnchantments;
+
+      lEnchantments = Send(self,@GetEnchantmentList);
+
+      foreach i in lEnchantments
+      {
+         oSpell = Nth(i,2);
+         if isClass(oSpell,&Heat)
+         {
+            Send(self,@RemoveEnchantment,#what=oSpell);
+         }
+      }
+
+      return;
    }
 
 end

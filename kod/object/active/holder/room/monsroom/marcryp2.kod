@@ -210,20 +210,20 @@ messages:
       }
 
       return;
-    }
+   }
 
-    CloseSecondaryDoorDown()
-    {
-       Send(self,@SetSector,#sector=SECTOR_DOOR_CRYPT3A,
-            #animation=ANIMATE_CEILING_LIFT,#height=1045,#speed=150);
+   CloseSecondaryDoorDown()
+   {
+      Send(self,@SetSector,#sector=SECTOR_DOOR_CRYPT3A,
+           #animation=ANIMATE_CEILING_LIFT,#height=1045,#speed=150);
 
-       return;
-    }
+      return;
+   }
 
    CanHavePlayerPortal()
    {
       // Don't allow portals into this room, bypassing puzzle
-      return false;
+      return FALSE;
    }
 
 end

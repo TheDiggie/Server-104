@@ -9,6 +9,6 @@ BOFS = anon.bof bless.bof cloak.bof deflect.bof denial.bof detevil.bof \
        detgood.bof dethlink.bof detinvis.bof dmdetinvis.bof eagleyes.bof \
        eavesdrp.bof focus.bof freeact.bof gaze.bof gort.bof haste.bof \
        invis.bof karahol.bof mshield.bof nightv.bof resist.bof respois.bof \
-       shadform.bof strength.bof touchatk.bof
+       shadform.bof strength.bof touchatk.bof manashield.bof
 
 !include $(KODDIR)\kod.mak

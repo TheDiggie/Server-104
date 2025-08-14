@@ -17,6 +17,10 @@ constants:
 resources:
 
    room_DeathRealm_Castle1 = castle1.roo
+   Complete_Death_Realm = \ 
+       "You must complete the Death Realm challenge before Qor will allow you the privilege of leaving with your life."
+   Beat_DR_Final = \
+        "Qor is impressed and allows you to leave the Death Realm."   
 
 classvars:
 
@@ -71,7 +75,7 @@ messages:
       plExits = Cons([ 9, 32, RID_DCASTLE1, 7, 32, ROTATE_NONE ],plExits);
       plExits = Cons([ 8, 32, RID_DCASTLE1, 10, 32, ROTATE_NONE ],plExits);
 
-      plExits = Cons([ 4, 33, ROOM_LOCKED_DOOR ],plExits);
+      plExits = Cons([ 4, 33, ROOM_LOCKED_DOOR, Complete_Death_Realm ],plExits);
 
       propagate;
    }
@@ -222,29 +226,27 @@ messages:
       return FALSE;
    }
 
-   EnterLockedTown(who=$)
+   SomethingTryGo(what=$,row=$,col=$)
    {
-      local iRow, iCol;
+      local i, each_obj;
 
-      iRow = send(who,@GetRow);
-      iCol = send(who,@GetCol);
-      
-      if ( iRow = 4
-           AND (iCol = 33))
+      if (IsClass(what,&User)
+         AND (row = 4 AND col = 33))
       {
-         return TRUE;
+          if send(what,@HasBeatDR)
+		    OR IsClass(what,&DM)
+		  {		 
+			 Send(what,@MsgSendUser,#message_rsc=Beat_DR_Final);
+             Send(SYS,@UtilGoNearSquare,#what=what,
+                    #where=Send(SYS,@FindRoomByNum,#num=RID_DCASTLE2),
+                    #new_row=25,#new_col=2,#fine_row=35, #fine_col=35, #new_angle=ANGLE_NORTH);
+			 
+			 return TRUE;
+		  }
       }
-
-      return FALSE;
-   }
-
-   Enter(who=$)
-   {
-      Send(self,@NewHold,#what=who,#new_row=15,#new_col=17,
-            #new_angle=ROTATE_NONE);
-
-      return;
-   }
+   		  
+ 	   propagate;
+    }
 
 end
 ////////////////////////////////////////////////////////////////////////////////

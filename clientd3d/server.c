@@ -1786,7 +1786,7 @@ Bool HandleLoginOk(char *ptr, long len)
       return False;
 
    Extract(&ptr, &admin, SIZE_ADMIN);
-   LoginOk(admin);
+   LoginOk(admin, 0); // Pass 0 as default session ID
    return True;
 }
 /********************************************************************/

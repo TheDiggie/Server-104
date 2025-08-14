@@ -152,7 +152,7 @@ messages:
       // QNT_ID_SCIMITAR_PUPIL_TWO
       if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MONSTER,
                #NPC_modifier=QN_NPCMOD_SAME,#monsterlist=[&CaveOrc],
-               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_SCIMITAR_PUPIL_TWO)
+               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_SCIMITAR_PUPIL_TWO,#amount_needed=1)
       {
          Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_SCIMITAR_PUPIL_TWO,
                #new_hint=scimitarlearn_assign_2);
@@ -167,7 +167,7 @@ messages:
       // QNT_ID_SCIMITAR_PUPIL_THREE
       if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MONSTER,
                #NPC_modifier=QN_NPCMOD_SAME,#monsterlist=[&Yeti],
-               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_SCIMITAR_PUPIL_THREE)
+               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_SCIMITAR_PUPIL_THREE,#amount_needed=1)
       {
          Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_SCIMITAR_PUPIL_THREE,
                #new_hint=scimitarlearn_assign_3);
@@ -183,7 +183,7 @@ messages:
       // QNT_ID_SCIMITAR_PUPIL_FOUR
       if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MONSTER,
                #NPC_modifier=QN_NPCMOD_SAME,#monsterlist=[&Yeti],
-               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_SCIMITAR_PUPIL_FOUR)
+               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_SCIMITAR_PUPIL_FOUR,#amount_needed=1)
       {
          Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_SCIMITAR_PUPIL_FOUR,
                #new_hint=scimitarlearn_assign_4);
@@ -202,9 +202,12 @@ messages:
 
    MainDesc(who=$,index=$,oQuestNode=$)
    {
-      local oMob;
+      local oMob, oQE;
+
+      oQE = Send(SYS,@GetQuestEngine);
 
       oMob = Send(oQuestNode,@GetQuestMonster);
+
       if oMob = $
       {
          AddPacket(4,vrReturn);

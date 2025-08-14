@@ -34,6 +34,7 @@ classvars:
 
    viSpell_num = SID_CRAFTSHORTSWORD
    viSpell_level = 3
+   viMeditate_ratio = 60
    viSpellExertion = 5
 
    vrGear = &ShortSword

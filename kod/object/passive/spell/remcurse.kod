@@ -119,9 +119,8 @@ messages:
 
    GetPotionClass()
    {
-      RETURN &RemoveCursePotion;
+      return &RemoveCursePotion;
    }
-
 
 end
 ////////////////////////////////////////////////////////////////////////////////

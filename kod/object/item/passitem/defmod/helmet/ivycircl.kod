@@ -71,7 +71,8 @@ messages:
    GetResistanceModifiers()
    {
       return [ [-ATCK_SPELL_FIRE,-10],
-               [-ATCK_SPELL_UNHOLY,-20]
+               [-ATCK_SPELL_UNHOLY,-15],
+               [-ATCK_SPELL_HOLY,15]
              ];
    }
 
@@ -103,7 +104,8 @@ messages:
 
          if oFound = FALSE
          {
-            Send(poOwner, @MsgSendUser, #message_rsc = ivy_not_shal);
+            Send(poOwner,@MsgSendUser,#message_rsc=ivy_not_shal);
+            
             return FALSE;
          }
 		}
@@ -116,11 +118,6 @@ messages:
       if Send(oSpell,@GetSchool) = SS_SHALILLE
       {
          return 15;
-      }
-
-      if Send(oSpell,@GetSchool) = SS_QOR
-      {
-         return -15;
       }
 
       return 0;

@@ -40,6 +40,7 @@ constants:
 //   QNT_SUCCESS_HINT  = 10
 //   QNT_FAILURE_HINT  = 11
 //   QNT_TIME_LIMIT    = 12
+//   QNT_AMOUNT_NEEDED = 13
 
 resources:
 
@@ -127,6 +128,9 @@ properties:
    // When a prize activates another quest, this temporarily points there
    poQuestActivated = $
 
+   piAmount_Needed = $
+   piAmount_Killed = 0
+
 messages:
 
    Init(index = 1, owning_quest = $, waiting_for_players = FALSE,
@@ -134,7 +138,7 @@ messages:
    "Initializes a new questnode instance from template #index, Chooses dest "
    "NPC. Returns template_index if successful, FALSE if unsuccessful."
    {
-      local iNPCMod, oQuestEngine;
+      local iNPCMod, oQuestEngine, iAmount_needed;
 
       oQuestEngine = Send(SYS,@GetQuestEngine);
       // Validate that questnode template exists
@@ -164,7 +168,15 @@ messages:
          // Record which quest this questnode is a part of.
          poQuest = owning_quest;
       }
-   
+
+      iAmount_needed = Send(oQuestEngine,@GetAmountToKill,#index=index);
+
+      if iAmount_needed <> $
+      {
+         piAmount_Needed = iAmount_needed;
+         piAmount_Killed = 0;
+      }
+
       // Setup dest NPC
       iNPCMod = Send(oQuestEngine,@GetQuestNodeNPCModifier,#index=index);
 
@@ -1679,10 +1691,20 @@ messages:
 
             if iType = QN_TYPE_MONSTER
             {
-               piStatus = QN_STATUS_IN_PROGRESS;
-               Send(poMonster,@Delete);
-               poMonster = $;
-               return TRUE;
+               piAmount_Killed = piAmount_Killed + 1;
+               
+               if piAmount_Killed < piAmount_Needed
+               {
+                  return FALSE;
+               }
+
+               if piAmount_Killed = piAmount_Needed
+               {
+                  piStatus = QN_STATUS_IN_PROGRESS;
+                  Send(poMonster,@Delete);
+                  poMonster = $;
+                  return TRUE;
+               }
             }
 
             if iType <> QN_TYPE_MONSTER_ITEMCLASS
@@ -1858,11 +1880,22 @@ messages:
       {
          Send(poMonster,@Delete);
       }
+
       poMonster = $;
       poQuestActivated = $;
       piStatus = QN_STATUS_UNINITIALIZED;
 
       propagate;
+   }
+
+   GetAmountNeeded()
+   {
+      return piAmount_Needed;
+   }
+
+   GetAmountKilled()
+   {
+      return piAmount_Killed;
    }
 
 end

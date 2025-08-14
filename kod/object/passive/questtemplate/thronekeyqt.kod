@@ -1,0 +1,199 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+/////////////////////////////////////////////////////////////////////////////////
+ThroneRoomKeyQuest is QuestTemplate
+// Quest nodes 239, 240, 241, 242
+// QNT_ID_THRONEROOM_KEY_ONE, QNT_ID_THRONEROOM_KEY_TWO,
+// QNT_ID_THRONEROOM_KEY_THREE, QNT_ID_THRONEROOM_KEY_FOUR
+
+// QuestTemplate is
+// [ quest template index
+//   quest template object
+//   number of players,
+//   type of quest,
+//   eligible player restrictions,
+//   quest nodes,
+//   max number active,
+//   currently active quests,
+//   percent chance of scheduling (on timer firing)
+//   special restrictions ]
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   // Quest description.
+   ThroneRoomKeyQuest_icon_rsc = key6.bgf
+   ThroneRoomKeyQuest_name_rsc = "Key to Castle Victoria's throne room quest"
+
+   // This description is used if there is an error preventing the others
+   // from being displayed.
+   ThroneRoomKeyQuest_desc_rsc = \
+      "Kailor wants you to hunt certain monsters. "
+
+   ThroneRoomKeyQuest_kill_rsc = \
+      "Kailor wants you to slay %i %s. "
+      "Complete this task and report back to him."
+
+   ThroneRoomKeyQuest_return_rsc = \
+      "Return to Kailor and let him know the task has been "
+      "completed."
+
+   ThroneRoomKeyQuest_completed = \
+      "You have completed Key to Castle Victoria's throne room quest.  Kailor will thrilled! "
+
+   ThroneRoom_Key = "help"
+
+   // Quest resources.
+   ThroneRoomKeyQuest_assign_2 = \
+      "Help? Yea I could use some help. A certain someone, or something rather, "
+      "is running wild around here. Go kill Vozun for me."
+   ThroneRoomKeyQuest_failure_2 = \
+      "Subject: Key to Castle Victoria's throne room quest.\n"
+      "Damn him. Some better adventurer will handle them. "
+   ThroneRoomKeyQuest_assign_3 = \
+      "Got him? Great, he has a brother, find him as well. Go kill Croco for me."
+   ThroneRoomKeyQuest_failure_3 = \
+      "Subject: Key to Castle Victoria's throne room quest.\n"
+      "Damn him. Some better adventurer will handle them. "
+   ThroneRoomKeyQuest_assign_4 = \
+      "Good, your quite the warrior! Find Dulahan and slay him!"
+   ThroneRoomKeyQuest_success_4 = \
+      "Finally.  Good job getting rid of them!"
+   ThroneRoomKeyQuest_failure_4 = \
+      "Subject: Key to Castle Victoria's throne room quest.\n"
+      "Damn him. Some better adventurer will handle them. "
+
+classvars:
+
+   vrIcon = ThroneRoomKeyQuest_icon_rsc
+   vrName = ThroneRoomKeyQuest_name_rsc
+   vrDesc = ThroneRoomKeyQuest_desc_rsc
+
+   vrKill = ThroneRoomKeyQuest_kill_rsc
+   vrReturn = ThroneRoomKeyQuest_return_rsc
+   vrCompleted = ThroneRoomKeyQuest_completed
+
+   // The QST_ID constant for this quest.
+   viQuestID = QST_ID_THRONEROOM_KEY
+
+properties:
+
+   piNumPlayers = 1
+   piPlayerRestrict = Q_PLAYER_NOTTRIED_RECENTLY
+   plSpecialRestrict = $
+   piMaxPlayers = 30
+   piSchedulePct = 100
+   piTimeLimit = 10 * 3600 // 10 hours.
+
+messages:
+
+   Constructor()
+   {
+      // Quest node list to send to QuestEngine.
+      plQuestNodes = [QNT_ID_THRONEROOM_KEY_ONE, QNT_ID_THRONEROOM_KEY_TWO,
+                      QNT_ID_THRONEROOM_KEY_THREE, QNT_ID_THRONEROOM_KEY_FOUR];
+
+      propagate;
+   }
+
+   SendQuestNodeTemplates()
+   {
+      local lNPCs, oQE, oLib;
+
+      oQE = Send(SYS,@GetQuestEngine);
+      oLib = Send(SYS,@GetLibrary);
+
+      if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MESSAGE,
+               #cargolist=[ThroneRoom_Key],#quest_node_index=QNT_ID_THRONEROOM_KEY_ONE)
+      {
+         Send(oQE,@SetQuestNodeNPCList,#index=QNT_ID_THRONEROOM_KEY_ONE,
+               #new_NPC_list=Send(oLib,@GetOccupationList,
+                                 #cNPC_class=&Kailor));
+      }
+      else
+      {
+         Debug("Error building QN: QNT_ID_THRONEROOM_KEY_ONE");
+      }
+
+      if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MONSTER,
+               #NPC_modifier=QN_NPCMOD_SAME,#monsterlist=[&Vozun],
+               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_THRONEROOM_KEY_TWO,#amount_needed=1)
+      {
+         Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_THRONEROOM_KEY_TWO,
+               #new_hint=ThroneRoomKeyQuest_assign_2);
+         Send(oQE,@SetQuestNodeFailureHint,#index=QNT_ID_THRONEROOM_KEY_TWO,
+               #new_hint=ThroneRoomKeyQuest_failure_2);
+      }
+      else
+      {
+         Debug("Error building QN: QNT_ID_THRONEROOM_KEY_TWO");
+      }
+
+      if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MONSTER,
+               #NPC_modifier=QN_NPCMOD_SAME,#monsterlist=[&Croco],
+               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_THRONEROOM_KEY_THREE,#amount_needed=1)
+      {
+         Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_THRONEROOM_KEY_THREE,
+               #new_hint=ThroneRoomKeyQuest_assign_3);
+         Send(oQE,@SetQuestNodeFailureHint,#index=QNT_ID_THRONEROOM_KEY_THREE,
+               #new_hint=ThroneRoomKeyQuest_failure_3);
+      }
+      else
+      {
+         Debug("Error building QN: QNT_ID_THRONEROOM_KEY_THREE");
+      }
+
+      if Send(oQE,@AddQuestNodeTemplate,#questnode_type=QN_TYPE_MONSTER,
+               #NPC_modifier=QN_NPCMOD_SAME,#monsterlist=[&Dulahan],
+               #prizelist=[ [ [ QN_PRIZETYPE_ITEMCLASS, &Throne2Key ]] ],
+               #timelimit=piTimeLimit,#quest_node_index=QNT_ID_THRONEROOM_KEY_FOUR,#amount_needed=1)
+      {
+         Send(oQE,@SetQuestNodeAssignHint,#index=QNT_ID_THRONEROOM_KEY_FOUR,
+               #new_hint=ThroneRoomKeyQuest_assign_4);
+         Send(oQE,@SetQuestNodeSuccessHint,#index=QNT_ID_THRONEROOM_KEY_FOUR,
+               #new_hint=ThroneRoomKeyQuest_success_4);
+         Send(oQE,@SetQuestNodeFailureHint,#index=QNT_ID_THRONEROOM_KEY_FOUR,
+               #new_hint=ThroneRoomKeyQuest_failure_4);
+      }
+      else
+      {
+         Debug("Error building QN: QNT_ID_THRONEROOM_KEY_FOUR");
+      }
+
+      return;
+   }
+
+   MainDesc(who=$,index=$,oQuestNode=$)
+   {
+      local oMob, oQE, iAmount;
+
+      oQE = Send(SYS,@GetQuestEngine);
+
+      oMob = Send(oQuestNode,@GetQuestMonster);
+
+      iAmount = Send(oQE,@GetAmountToKill,#index=index);
+
+      if oMob = $
+      {
+         AddPacket(4,vrReturn);
+      }
+      else
+      {
+         AddPacket(4,vrKill,4,iAmount,4,Send(oMob,@GetName));
+      }
+
+      return;
+   }
+
+end
+/////////////////////////////////////////////////////////////////////////////////

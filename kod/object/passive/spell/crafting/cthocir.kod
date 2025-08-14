@@ -1,0 +1,56 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CraftThornCirclet is Crafting
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   CraftThornCirclet_name_rsc = "craft thorn circlet"
+   CraftThornCirclet_icon_rsc = icrafttcirclet.bgf
+   CraftThornCirclet_desc_rsc = \
+      "Craft a thorn circlet at a spinning wheel. "
+      "Requires 20 silk threads, 10 rainbow ferns, 10 dark angel feathers. "
+
+   CraftThornCirclet_sound = kraanan.ogg
+
+classvars:
+
+   vrName = CraftThornCirclet_name_rsc
+   vrIcon = CraftThornCirclet_icon_rsc
+   vrDesc = CraftThornCirclet_desc_rsc
+
+   viSpell_num = SID_CRAFTTHORNCIRCLET
+   viSpell_level = 4
+   viMeditate_ratio = 80
+   viSpellExertion = 5
+
+   vrGear = &ThornCirclet
+   viBench  = &SpinningWheel
+
+properties:
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&SilkThread,20],plReagents);
+      plReagents = Cons([&RainbowFern,10],plReagents);
+      plReagents = Cons([&DarkAngelFeather,10],plReagents);
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

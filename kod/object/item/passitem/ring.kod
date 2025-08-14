@@ -72,10 +72,9 @@ messages:
       {
          vrName = vrRealName;
          vrDesc = vrRealDesc;
-         return TRUE;
       }
       
-      return FALSE;
+      propagate;
    }
 
    GetTrueName()

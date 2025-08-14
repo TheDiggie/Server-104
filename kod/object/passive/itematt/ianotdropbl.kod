@@ -1,0 +1,68 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+ItemAttNotDroppable is ItemAttribute
+
+constants:
+
+   include blakston.khd
+   include protocol.khd
+
+resources:
+
+   itematt_NotDroppable_desc = "\n\nThis item is not droppable or tradable."
+
+classvars:
+
+   viItem_Att_Num = IA_NOTDROPPABLE
+   vrDesc = itematt_NotDroppable_desc
+
+   viDifficulty = 5
+
+properties:
+
+messages:
+
+   AddEffects(oItem=$)
+   {
+      Send(oItem,@SetNotDroppable);
+
+      return;
+   }
+
+   AppendDesc()
+   {
+      AddPacket(4,vrDesc);
+
+      return;
+   }
+
+   InitiallyIdentified()
+   {
+      return TRUE;
+   }
+
+   AddToTreasureTable()
+   {
+      return;
+   }
+
+   CanBeSpoofed()
+   {
+      return FALSE;
+   }
+
+   IsMagicalEffect()
+   {
+      return TRUE;
+   }
+   
+end
+////////////////////////////////////////////////////////////////////////////////

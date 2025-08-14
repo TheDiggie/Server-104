@@ -84,6 +84,11 @@ messages:
          iDuration = Send(self,@GetDuration,#iSpellPower=iSpellPower);
       }
 
+      if oTarget = $
+      {
+         return;
+      }
+
       if IsClass(oTarget,&User)
       {
          iIntellectChange = Send(oTarget,@AddIntellect,#points=-iIntellectChange);

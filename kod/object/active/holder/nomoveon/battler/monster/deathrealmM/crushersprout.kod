@@ -58,8 +58,6 @@ properties:
 
    piAnimation = ANIM_IDLE
 
-   poCurrency = &Shillings
-
 messages:
 
    Constructed()

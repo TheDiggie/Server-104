@@ -43,6 +43,7 @@ classvars:
       | MOB_NOMOVE | MOB_SELLER
       
    viMerchant_markup = MERCHANT_FLAT
+   viOccupation = MOB_ROLE_MERCHANT
 
    vrUnwanted_keep = Amerantha_unwanted_keep
    vrUnwanted_pay = Amerantha_unwanted_pay
@@ -58,7 +59,6 @@ messages:
    {
       plFor_sale = [
          [
-            Create(&CorNothKey),
             Create(&Maul),
             Create(&OfferingShalille),
             Create(&Herbs),

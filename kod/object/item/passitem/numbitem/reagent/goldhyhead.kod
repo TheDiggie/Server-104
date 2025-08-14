@@ -14,11 +14,11 @@ constants:
 
 resources:
 
-   GoldHydraHead_name_rsc = "gold hydra head"
+   GoldHydraHead_name_rsc = "golden hydra head"
    GoldHydraHead_icon_rsc = goldhyhead.bgf
    GoldHydraHead_desc_rsc = \
-      "Head of a slain gold hydra. "
-   GoldHydraHead_name_plural_rsc = "gold hydra heads"
+      "Head of a slain golden hydra. "
+   GoldHydraHead_name_plural_rsc = "golden hydra heads"
 
 classvars:
 
@@ -28,7 +28,7 @@ classvars:
 
    vrName_plural = GoldHydraHead_name_plural_rsc
 
-   viValue_average = 100
+   viValue_average = 920
    viWeight = 5
    viBulk = 5
 

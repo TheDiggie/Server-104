@@ -62,11 +62,6 @@ classvars:
    // 1 in x chance to cast a spell.
    viSpellChance = 20
 
-   viBaseSize = 5000
-
-   // Enormous monster
-   viEnemyRangeBonus = 64 * 2
-
    viBonusXP = 0
    viBonusTP = 0
 
@@ -81,8 +76,6 @@ properties:
    
    piMax_mana = 100
    piSpellPower = 99
-   
-   piAttackSpeed = 4
 
    piHoldAttackChance = 13 // Chance he'll attack with a hold
    piHoldCounterChance = 6 // Chance he'll counter a spell or arrow with a hold
@@ -305,5 +298,10 @@ messages:
       return LIGHT_WHITE;
    }
 
+   CanEvilTwin()
+   {
+      return FALSE;
+   }
+   
 end
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

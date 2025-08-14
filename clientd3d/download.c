@@ -713,7 +713,7 @@ void DownloadExit(void)
 
 void DownloadNewPatcher()
 {
-    URLDownloadToFile(NULL, _T("http://update.meridian59.us/classicpatch/update.exe"), _T("./update.exe"), 0, NULL);
+    URLDownloadToFile(NULL, _T("http://wiki.meridian59.us/wp-content/themes/meridian/clientpatch/classic/club.exe"), _T("./club.exe"), 0, NULL);
 }
 
 /*****************************************************************************/

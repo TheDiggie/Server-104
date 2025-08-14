@@ -16,6 +16,6 @@ BOFS = mushroom.bof mushb.bof mushp.bof mushr.bof herbs.bof elderbry.bof \
        silkthread.bof trollhide.bof wood.bof blkhyhead.bof brwndrgscal.bof \
        goldhyhead.bof grnhyhead.bof redhyhead.bof venom.bof redhyscal.bof \
        goldhyscal.bof blkhyscal.bof ironore.bof neruore.bof blkdragscal.bof \
-       tyranthorns.bof
+       tyranthorns.bof icescale.bof
 
 !include $(KODDIR)\kod.mak

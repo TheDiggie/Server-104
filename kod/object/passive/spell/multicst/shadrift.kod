@@ -77,9 +77,10 @@ classvars:
 
 properties:
 
-   pbAccessible = FALSE
-   pbEnabled = FALSE
+   pbAccessible = TRUE
+   pbEnabled = TRUE
    viMultiCast_Spellpower = 1500 // 5 minutes for 3 @ 20//, 70 secs for 7 @ 99//
+
 messages:      
 
 
@@ -183,7 +184,6 @@ messages:
          {
             Send(oCaster,@MsgSendUser,#message_rsc=DeathsDoor_succeeded2);
          }
-
       }
 
       return;

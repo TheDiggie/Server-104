@@ -302,6 +302,11 @@ messages:
    {
       local oSplit;
 
+      if number >  piNumber
+      {
+         number = piNumber;
+      }
+
       if number >= 1 and number <= piNumber
       {
          oSplit = Create(GetClass(self),#number=number);

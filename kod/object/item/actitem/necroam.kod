@@ -171,7 +171,7 @@ properties:
    ptHungerTimer = $
    ptHoldingDamage = $
    piHoldingDamageInterval = 10 * 1000     // ten seconds
-   piHpWorthyThreshold = 49
+   piHpWorthyThreshold = 50
    piKarmaWorthyThreshold = 1
 
    pbIllusioned = TRUE
@@ -269,6 +269,8 @@ messages:
          AND IsClass(what,&User)
       {
          Post(self,@HoldingDamageTrigger);
+		 // Post these so that they happen after 'what' actually becomes our owner.
+		 Post(self,@AdjustStats);
       }
 
       if what <> $
@@ -292,6 +294,21 @@ messages:
             Send(what,@MsgSendUser,#message_rsc = ao3_no_spiritw);
          }
       }
+	  // Remember, poOwner is still our old owner until we
+      // propagate all the way to object.
+      if poOwner <> $ // AND pbIn_Use
+         AND IsClass(poOwner,&User)
+      {
+         if ptHungerTimer <> $
+         {
+            DeleteTimer(ptHungerTimer);
+            ptHungerTimer = $;
+         }
+         pbIn_use = FALSE;
+
+         // Restore to original values - 1.
+         Send(self,@RestoreStats,#who=poOwner);
+      }
 
       propagate;
    }
@@ -305,7 +322,7 @@ messages:
       }
       
       if (Send(poOwner,@GetKarma) < piKarmaWorthyThreshold)
-         AND (Send(poOwner,@GetBaseMaxHealth) > piHpWorthyThreshold)
+         AND (Send(poOwner,@GetBaseMaxHealth) >= piHpWorthyThreshold)
       {
          if pbIn_Use
          {
@@ -386,43 +403,18 @@ messages:
             return FALSE;
          }
 
-         if pbWarned = FALSE
-         {
-            Send(what,@MsgSendUser,#message_rsc=necamulet_warning);
-            pbWarned = TRUE;
+         //if pbWarned = FALSE
+         //{
+         //   Send(what,@MsgSendUser,#message_rsc=necamulet_warning);
+         //   pbWarned = TRUE;
 
-            return FALSE;
-         }
+         //  return FALSE;
+         //}
 
         return TRUE;
       }
 
       return FALSE;
-   }
-
-   NewUsed(what = $)
-   "Affect permanent stat changes here."
-   {
-      pbIn_use = TRUE;
-      pbIllusioned = TRUE;
-      plStatmods = [ 0, 0, 0, 0, 0, 0 ];
-
-      if Send(poOwner,@GetKarma) < piKarmaWorthyThreshold
-         AND Send(poOwner,@GetBaseMaxHealth) > piHpWorthyThreshold
-      {
-         Send(poOwner,@MsgSendUser,#message_rsc=necamulet_used_rsc);
-      }
-      else
-      {
-         Send(poOwner, @MsgSendUser, #message_rsc = necamulet_used_unworthy);
-      }
-
-      Send(self,@AdjustStats);
-      Send(self,@AdjustColor);
-      ptHungerTimer = CreateTimer(self,@HungerTrigger,
-                           Send(Send(SYS,@GetNecromancerBalance),@GetHungerInterval));
-
-      propagate;
    }
 
    AdjustStats()
@@ -456,6 +448,7 @@ messages:
          iLichFactor = 15 - (5 * Send(Send(poOwner,@GetGuild),@GetRentDue));
          iLichFactor = Bound(iLichFactor,-10,15);
       }
+
       iModifier = (2 * iHungerFactor + iKarmaFactor) / 3 + iLichFactor;
 
       if plStatmods = $
@@ -464,6 +457,7 @@ messages:
       }
 
       iStatMod = (110 * iModifier / 1000);
+
       if (iStatMod -  Nth(plStatmods,2)) <> 0
       {
          iStatMod = Send(poOwner,@AddIntellect,#points=(iStatMod - Nth(plStatmods,2)))
@@ -472,6 +466,7 @@ messages:
       }
 
       iStatMod = (110 * iModifier / 1000);
+
       if (iStatMod - Nth(plStatmods,6)) <> 0
       {
          iStatMod = Send(poOwner,@AddMysticism,#points=(iStatMod - Nth(plStatmods,6)))
@@ -480,6 +475,7 @@ messages:
       }
 
       iStatMod = (-35 * iModifier / 1000) - 2;
+
       if (iStatMod -  Nth(plStatmods,1)) <> 0
       {
          iStatMod = Send(poOwner,@AddMight,#points=(iStatMod - Nth(plStatmods,1)))
@@ -488,6 +484,7 @@ messages:
       }
 
       iStatMod = (-35 * iModifier / 1000) - 2;
+
       if (iStatMod - Nth(plStatmods,4)) <> 0
       {
          iStatMod = Send(poOwner,@AddAim,#points=(iStatMod - Nth(plStatmods,4)))
@@ -496,6 +493,7 @@ messages:
       }
 
       iStatMod = (59 * iModifier / 1000) - 2;
+
       if (iStatMod - Nth(plStatmods,5)) <> 0
       {
          iStatMod = Send(poOwner,@AddStamina,#points=(iStatMod - Nth(plStatmods,5)))
@@ -504,6 +502,7 @@ messages:
       }
 
       iStatMod = (59 * iModifier / 1000) - 2;
+
       if (iStatMod - Nth(plStatmods,3)) <> 0
       {
          iStatMod = Send(poOwner,@AddAgility,#points=(iStatMod - Nth(plStatmods,3)))
@@ -699,7 +698,7 @@ messages:
 
       // Check that owner still satisfies amulet restrictions.
       if NOT ((Send(poOwner,@GetKarma) < piKarmaWorthyThreshold)
-            AND (Send(poOwner,@GetBaseMaxHealth) > piHpWorthyThreshold))
+            AND (Send(poOwner,@GetBaseMaxHealth) >= piHpWorthyThreshold))
          AND ptHoldingDamage = $
       {
          Send(self,@HoldingDamageTrigger);
@@ -814,6 +813,7 @@ messages:
       }
 
       oPlayerOwner = Send(poOwner,@GetOwner);
+
       if oPlayerOwner = $
       {
          return;
@@ -884,6 +884,7 @@ messages:
          }
 
          oGuild = Send(poOwner,@GetGuild);
+
          if oGuild <> $
             AND IsClass(oGuild,&NecromancerGuild)
          {
@@ -905,6 +906,7 @@ messages:
 
       // Satsify hunger.
       piFineHunger = piFineHunger - amount;
+      
       while piFineHunger < 0
       {
          piHunger = piHunger - 1;
@@ -956,17 +958,12 @@ messages:
    ReqLeaveOwner()
    "Don't allow new owner while we're in use."
    {
-      // if not IsClass(poOwner,&user) or Send(poOwner,@PlayerIsImmortal) {propagate;}
-      if NOT IsClass(poOwner,&User)
-      {
-         propagate;
-      }
-
-      if pbIn_use
+      if poOwner <> $
+         AND IsClass(poOwner,&User)
       {
          Post(self,@TortureOwner);
 
-         return FALSE;
+         return False;
       }
 
       propagate;
@@ -1001,13 +998,8 @@ messages:
                #damage=Random(viDamage_min,viDamage_max),#report=FALSE) = $
       {
          // We killed someone off... heh heh heh.
-         if pbIn_Use
-            AND Send(self,@DropOnDeath)
+         if Send(self,@DropOnDeath)
          {
-            // Unusing it kills the owner, we don't want to do that yet.
-            //Send(poOwner,@UnuseItem,#what=self);
-            
-            // Amulet goes back into circulation.
             Post(Send(SYS,@GetNecromancerBalance),@PlaceAmulet,#what=self);
          }
 
@@ -1017,38 +1009,6 @@ messages:
       }
 
       return;
-   }
-
-   NewUnused(what = $, Recalibrate = FALSE)
-   "When something that can break the curse unuses the item."
-   {
-      local oGuild;
-
-      if ptHungerTimer <> $
-      {
-         DeleteTimer(ptHungerTimer);
-         ptHungerTimer = $;
-      }
-
-      Send(self,@ReplaceIllusions,#notify=FALSE);
-      Send(self,@RestoreStats,#who=what);
-
-      // The player has to die to take this off - the death code handles
-      // sending info to the guild.
-      //if NOT Recalibrate
-      //{
-      //   oGuild = Send(what,@GetGuild);
-      //   if oGuild <> $
-      //      AND IsClass(oGuild,&NecromancerGuild)
-      //   {
-      //      Send(oGuild,@MemberKilled,#victim=what,#killer=what);
-      //   }
-      //}
-
-      pbIn_use = FALSE;
-      pbIllusioned = FALSE;
-
-      propagate;
    }
 
    SendAnimation()
@@ -1086,13 +1046,7 @@ messages:
 
    ReqUseSomething(what = $)
    {
-      if IsClass(what,&Necklace)
-	  {
-	     propagate;
-	  }
-	  
-      if IsClass(what,&Necklace)
-         OR IsClass(what,&NecromancerAmulet)
+      if IsClass(what,&NecromancerAmulet)
       {
          if Send(poOwner,@TryUnuseItem,#what=self)
          {
@@ -1318,20 +1272,6 @@ messages:
       Send(oMaster,@Killed,#what=self);
 
       return;
-   }
-
-   UserLogoff()
-   {
-      if NOT pbIn_Use
-      {
-         Send(poOwner,@MsgSendUser,#message_rsc=necamulet_drops);
-         Send(Send(poOwner,@GetOwner),@NewHold,#what=self,
-               #new_row=Send(poOwner,@GetRow),#new_col=Send(poOwner,@GetCol),
-               #fine_row=Send(poOwner,@GetFineRow),
-               #fine_col=Send(poOwner,@GetFineCol));
-      }
-
-      propagate;
    }
 
    DestroyDisposable()

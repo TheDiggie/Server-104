@@ -87,8 +87,16 @@ resources:
    item_weight    = "%i weight and %i bulk\n"
    item_bulk      = "%i bulk\n"
 
-   item_cast_spell = "\n\nEmblazoned with mystic symbols, this %s grants its wielder the unyielding force of %s on its user."
+   mining_bonus      = "%i bonus Mining Yield\n"
+   logging_bonus     = "%i bonus Logging Yield\n"
+   gathering_bonus   = "%i bonus Gathering Yield\n"
+   skinning_bonus    = "%i bonus Skinning Yield\n"
 
+   item_cast_spell = "\n\nEmblazoned with mystic symbols, this %s grants its wielder the unyielding force of %s on its user."
+   spell_too_soon_since_attacking_2 = "~r~BYou have taken part in battle to recently to activate your item enchantments! "
+
+   item_no_drop = "This item cannot be dropped or traded."
+   
 classvars:
 
    vrItem_broken = item_broken_battle
@@ -162,6 +170,7 @@ properties:
    piSpecial = $
 
    piIndestructible = FALSE
+   pbIs_Droppable = TRUE
 
    viMiningBonus     = 0
    viGatheringBonus  = 0
@@ -172,8 +181,10 @@ properties:
    viAlmost = FALSE
    viVery   = FALSE
 
-   poCrafter      = $
-   poSpell        = $
+   poCrafter         = $
+   poSpell           = $
+   piAppraisal_Price = 0
+   poAppraiser       = $
 
 messages:
 
@@ -251,7 +262,7 @@ messages:
 
       if Send(self,@GetRange) <> 0
       {
-         AddPacket(4,system_rsc_template_17, 4,special_properties_header,
+         AddPacket(4,system_rsc_template_21, 4,special_properties_header,
                    4,item_stats_range, 4,Send(self,@GetRange)/FINENESS);
          bFoundProperties = TRUE;
       }
@@ -266,7 +277,7 @@ messages:
          else
          {
             // bFoundProperties FALSE, add headers.
-            AddPacket(4,system_rsc_template_16, 4,special_properties_header,
+            AddPacket(4,system_rsc_template_20, 4,special_properties_header,
                       4,item_stats_offense, 4,Send(self,@GetHitBonus));
             bFoundProperties = TRUE;
          }
@@ -286,7 +297,7 @@ messages:
          }
          else
          {
-            AddPacket(4,system_rsc_template_15, 4,special_properties_header,
+            AddPacket(4,system_rsc_template_19, 4,special_properties_header,
                       4,item_stats_armor, 4,Send(self,@GetDamageReduction));
             bFoundProperties = TRUE;
          }
@@ -304,7 +315,7 @@ messages:
          }
          else
          {
-            AddPacket(4,system_rsc_template_14,4,special_properties_header,
+            AddPacket(4,system_rsc_template_18,4,special_properties_header,
                       4,item_stats_defense, 4,Send(self,@GetDefenseBonus));
             bFoundProperties = TRUE;
          }
@@ -322,7 +333,7 @@ messages:
          }
          else
          {
-            AddPacket(4,system_rsc_template_13, 4,special_properties_header,
+            AddPacket(4,system_rsc_template_17, 4,special_properties_header,
                       4,item_stats_melee, 4,Send(self,@GetMeleeDamageBonus));
             bFoundProperties = TRUE;
          }
@@ -337,7 +348,7 @@ messages:
       {
          if NOT bFoundProperties
          {
-            AddPacket(4,system_rsc_template_12, 4,special_properties_header);
+            AddPacket(4,system_rsc_template_16, 4,special_properties_header);
             bFoundProperties = TRUE;
          }
          if Send(self,@GetMaxDamage) <> iMinDamage
@@ -362,7 +373,7 @@ messages:
       {
          if NOT bFoundProperties
          {
-            AddPacket(4,system_rsc_template_11, 4,special_properties_header);
+            AddPacket(4,system_rsc_template_15, 4,special_properties_header);
             bFoundProperties = TRUE;
          }
          if Send(self,@GetMaxDamageWithOwnerStats)
@@ -387,7 +398,7 @@ messages:
       {
          if NOT bFoundProperties
          {
-            AddPacket(4,system_rsc_template_10, 4,special_properties_header);
+            AddPacket(4,system_rsc_template_14, 4,special_properties_header);
             bFoundProperties = TRUE;
          }
          if Send(self,@GetMaxSpecialDamage) <> Send(self,@GetMinSpecialDamage)
@@ -413,7 +424,7 @@ messages:
       {
          if NOT bFoundProperties
          {
-            AddPacket(4,system_rsc_template_9, 4,special_properties_header);
+            AddPacket(4,system_rsc_template_13, 4,special_properties_header);
             bFoundProperties = TRUE;
          }
          if Send(self,@GetMaxSpecialDamageWithOwnerStats)
@@ -442,7 +453,7 @@ messages:
          }
          else
          {
-            AddPacket(4,system_rsc_template_8, 4,special_properties_header,
+            AddPacket(4,system_rsc_template_12, 4,special_properties_header,
                       4,item_stats_dmg_bonus, 4,Send(self,@GetDamageBonus));
             bFoundProperties = TRUE;
          }
@@ -492,7 +503,7 @@ messages:
          {
             if NOT bFoundProperties
             {
-               AddPacket(4,system_rsc_template_7, 4,special_properties_header);
+               AddPacket(4,system_rsc_template_11, 4,special_properties_header);
                bFoundProperties = TRUE;
             }
             AddPacket(4,item_stats_gen_sp, 4,iFarenPower);
@@ -501,7 +512,7 @@ messages:
          {
             if NOT bFoundProperties
             {
-               AddPacket(4,system_rsc_template_7, 4,special_properties_header);
+               AddPacket(4,system_rsc_template_11, 4,special_properties_header);
                bFoundProperties = TRUE;
             }
 
@@ -583,7 +594,7 @@ messages:
       {
          if NOT bFoundProperties
          {
-            AddPacket(4,system_rsc_template_6, 4,special_properties_header);
+            AddPacket(4,system_rsc_template_10, 4,special_properties_header);
             bFoundProperties = TRUE;
          }
 
@@ -609,7 +620,7 @@ messages:
       {
          if NOT bFoundProperties
          {
-            AddPacket(4,system_rsc_template_6, 4,special_properties_header);
+            AddPacket(4,system_rsc_template_10, 4,special_properties_header);
             bFoundProperties = TRUE;
          }
 
@@ -643,7 +654,7 @@ messages:
          iLen = Length(Send(SYS,@GetSpellTypeList));
          if NOT bFoundProperties
          {
-            AddPacket(4,system_rsc_template_4, 4,special_properties_header);
+            AddPacket(4,system_rsc_template_8, 4,special_properties_header);
             bFoundProperties = TRUE;
          }
 
@@ -686,13 +697,85 @@ messages:
             if NOT bFoundProperties
                AND Send(oItemAtt,@GetInfoDesc) <> system_blank_resource
             {
-               AddPacket(4,system_rsc_template_3, 4,special_properties_header);
+               AddPacket(4,system_rsc_template_7, 4,special_properties_header);
                bFoundProperties = TRUE;
             }
 
             // Each item attribute can add a description, or possibly
             // a blank resource if it isn't identified.
             Send(oItemAtt,@AppendDescInfo,#oItem=self,#compound=First(i));
+         }
+      }
+      else if bFoundProperties
+      {
+         AddPacket(4,system_blank_resource);
+      }
+
+      if viMiningBonus <> 0
+      {
+         if bFoundProperties = FALSE
+         {
+            AddPacket(4,system_rsc_template_6, 4,special_properties_header);
+            AddPacket(4,mining_bonus,4,viMiningBonus);
+            bFoundProperties = TRUE;
+         }
+         else
+         {
+            AddPacket(4,mining_bonus,4,viMiningBonus);
+         }
+      }
+      else if bFoundProperties
+      {
+         AddPacket(4,system_blank_resource);
+      }
+
+      if viLoggingBonus <> 0
+      {
+         if bFoundProperties = FALSE
+         {
+            AddPacket(4,system_rsc_template_5, 4,special_properties_header);
+            AddPacket(4,logging_bonus,4,viLoggingBonus);
+            bFoundProperties = TRUE;
+         }
+         else
+         {
+            AddPacket(4,logging_bonus,4,viLoggingBonus);
+         }
+      }
+      else if bFoundProperties
+      {
+         AddPacket(4,system_blank_resource);
+      }
+
+      if viGatheringBonus <> 0
+      {
+         if bFoundProperties = FALSE
+         {
+            AddPacket(4,system_rsc_template_4, 4,special_properties_header);
+            AddPacket(4,gathering_bonus,4,viGatheringBonus);
+            bFoundProperties = TRUE;
+         }
+         else
+         {
+            AddPacket(4,gathering_bonus,4,viGatheringBonus);
+         }
+      }
+      else if bFoundProperties
+      {
+         AddPacket(4,system_blank_resource);
+      }
+      
+      if viSkinningBonus <> 0
+      {
+         if bFoundProperties = FALSE
+         {
+            AddPacket(4,system_rsc_template_3, 4,special_properties_header);
+            AddPacket(4,skinning_bonus,4,viSkinningBonus);
+            bFoundProperties = TRUE;
+         }
+         else
+         {
+            AddPacket(4,skinning_bonus,4,viSkinningBonus);
          }
       }
       else if bFoundProperties
@@ -713,7 +796,7 @@ messages:
             AddPacket(4,item_weight,4,viWeight,4,viBulk);
          }
       }
-      
+
       return;
    }
 
@@ -892,7 +975,7 @@ messages:
          }
       }
 
-      if poSpell <> $
+      if poSpell <> $ AND NOT IsClass(self,&Prism)
       {
          oSpell = Send(SYS,@FindSpellByNum,#Num=poSpell);
          AddPacket(4,item_cast_spell, 4,Send(self,@GetName), 4,Send(oSpell,@GetName));
@@ -1125,24 +1208,33 @@ messages:
       pbIn_use = TRUE;
 
       Send(self,@DoPlayerArt);
-      If IsClass(poOwner,&Player)
+
+      if IsClass(poOwner,&Player)
       {
          Post(poOwner,@RefreshPlayerVisualGear);
       }
       
-      if(iSpecial <> $)
+      if iSpecial <> $
       {
          oRoom = Send(poOwner, @GetOwner);
          Send(poOwner,@SetPlayerFlag,#flag=iSpecial,#value=TRUE);
       }
 
-      if poSpell <> $
-      {
-         oSpell = Send(SYS,@FindSpellByNum,#Num=poSpell);
-
-         if NOT Send(what,@IsEnchanted,#what=oSpell)
+      if poSpell <> $ AND IsClass(poOwner,&Player)
+      {  
+         if Send(poOwner,@GetLastPlayerAttackTime) - GetTime()  > -480
+            or Send(poOwner,@GetLastAttackedByPlayerTime) - GetTime() > -480
          {
-	            Send(oSpell,@CastSpell,#who=what,#iSpellPower=99,#bItemCast=TRUE,#SpecialItem=TRUE);
+            Send(poOwner,@MsgSendUser,#message_rsc=spell_too_soon_since_attacking_2);
+         }
+         else
+         {
+            oSpell = Send(SYS,@FindSpellByNum,#Num=poSpell);
+
+            if NOT Send(what,@IsEnchanted,#what=oSpell)
+            {
+	               Send(oSpell,@CastSpell,#who=what,#iSpellPower=99,#bItemCast=TRUE,#SpecialItem=TRUE);
+            }
          }
       }
 
@@ -1229,7 +1321,18 @@ messages:
 
    ReqNewOwner(what=$)
    {      
-      return ((poOwner = $) OR Send(poOwner,@ReqLeaveHold,#what=self));
+      if pbIs_Droppable = FALSE
+	   AND NOT (isClass(poOwner,&DM)
+	             OR isClass(what,&DM) 
+				 OR isClass(poOwner,&Room) 
+				 OR isClass(what,&Assassin))
+	   {	 
+		 Send(poOwner,@MsgSendUser,#message_rsc=item_no_drop);
+		
+		 return FALSE;
+	   }
+	   
+      return ((poOwner = $) OR Send(poOwner,@ReqLeaveHold,#what=self)); 
    }
 
    ReqLeaveOwner()
@@ -1723,6 +1826,7 @@ messages:
          iNum = Send(self,@GetNumFromCompound,#compound=First(i));
          oItemAtt = Send(SYS,@FindItemAttByNum,#num=iNum);
          if NOT Send(oItemAtt,@ItemDropOnDeath)
+		  OR pbIs_Droppable = FALSE
          {
             return FALSE;
          }
@@ -1753,6 +1857,11 @@ messages:
    CanBeStoredInVault()
    "Black daggers and tokens, especially, cannot be stored in vaults."
    {
+      if pbIs_Droppable = FALSE
+	  {
+	     return FALSE;
+	  }
+	  
       return TRUE;
    }
 
@@ -2848,11 +2957,23 @@ messages:
 
       return;
    }
-
+   
    IsIndestructible()
    {
       return piIndestructible;
    }
+
+   SetNotDroppable()
+   {
+      pbIs_Droppable = FALSE;
+	  
+	  return;
+   }
+
+   IsDroppable()
+   {
+      return pbIs_Droppable;
+   }	
 
    SetCrafter(Crafter=$)
    {
@@ -2883,6 +3004,32 @@ messages:
       piItem_flags = piOriginalColor;
 
       pbColored = FALSE;
+
+      return;
+   }
+
+   SetAppraisalPrice(Price=$,Appraiser=$)
+   {
+      piAppraisal_Price = Price;
+      poAppraiser       = Appraiser;
+
+      return;
+   }
+
+   GetAppraisalPrice()
+   {
+      return piAppraisal_Price;
+   }
+
+   GetAppraiser()
+   {
+      return poAppraiser;
+   }
+
+   ClearAppraisal()
+   {
+      piAppraisal_Price = 0;
+      poAppraiser       = $;
 
       return;
    }

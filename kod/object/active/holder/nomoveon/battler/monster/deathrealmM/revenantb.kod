@@ -49,7 +49,7 @@ classvars:
    vrIcon = revenantb_icon_rsc
    vrDesc = revenantb_desc_rsc
 
-   viTreasure_type = TID_REVENANT_B
+   viTreasure_type = TID_CRUSHER_SPROUT
 
    viAttack_type = ATCK_WEAP_SLASH
 
@@ -76,10 +76,13 @@ messages:
 
       //Extra revenant penalty.. each time it hits, it drains away vigor
       //The 20// drain might be too high, but well see. *cackle*
-      if Random(0,9) = 0
+      if IsClass(what,&Player)
       {
-         Send(what,@MsgSendUser,#message_rsc=Revb_draining_effect);
-         Send(what,@AddExertion,#amount=Send(what,@GetVigor)*10000/10);
+         if Random(0,9) = 0
+         {
+            Send(what,@MsgSendUser,#message_rsc=Revb_draining_effect);
+            Send(what,@AddExertion,#amount=Send(what,@GetVigor)*10000/10);
+         }
       }
 
       return;

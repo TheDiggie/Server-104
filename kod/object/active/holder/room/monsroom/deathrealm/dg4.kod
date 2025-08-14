@@ -53,21 +53,41 @@ messages:
       propagate;
    }
 
-   EnterLockedTown(who=$)
+   SomethingTryGo(what=$,row=$,col=$)
    {
-      local iRow, iCol;
+      local i, each_obj;
 
-      iRow = send(who,@GetRow);
-      iCol = send(who,@GetCol);
-      
-      if ( iRow = 55
-           AND (iCol = 24
-                 OR iCol = 25))
+      if (IsClass(what,&User)
+         AND (row = 55 AND col = 24) OR (row = 55 AND col = 25))
       {
-         return TRUE;
-      }
+         if send(what,@HasBeatDR)
+		      OR IsClass(what,&DM)
+		   {
+			   Send(what,@MsgSendUser,#message_rsc=Beat_DR);
+            Send(SYS,@UtilGoNearSquare,#what=what,
+               #where=Send(SYS,@FindRoomByNum,#num=RID_DCORNOTH),
+               #new_row=2,#new_col=57,#new_angle=ANGLE_SOUTH);
+			 
+			   return TRUE;
+		   }
+      	  
+   		  foreach i in Send(what,@GetHolderPassive)
+         {
+            each_obj = Send(what,@HolderExtractObject,#data=i);
 
-      return FALSE;
+            if IsClass(each_obj,&CorNothKey)
+            {
+               Send(what,@MsgSendUser,#message_rsc=Key_Open);
+               Send(SYS,@UtilGoNearSquare,#what=what,
+                   #where=Send(SYS,@FindRoomByNum,#num=RID_DCORNOTH),
+                   #new_row=2,#new_col=57,#new_angle=ANGLE_SOUTH);
+
+               return TRUE;
+            }
+         }
+		}
+
+ 		propagate;
    }
 
 end

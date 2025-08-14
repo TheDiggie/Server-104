@@ -40,16 +40,22 @@ resources:
       "onto the ground."
 
 classvars:
+
    vrKocName = cow_koc_name_rsc
    vrName = cow_name_rsc
    vrIcon = cow_icon_rsc
    vrDesc = cow_desc_rsc
 
+   vrDead_icon = cow_dead_icon_rsc
+   vrDead_name = cow_dead_name_rsc
+
    viMove_delay_min = 2000
    viMove_delay_max = 10000
    viAttributes = MOB_NOFIGHT
+   viTreasure_type = TID_COW
    viSpeed = 8
-   viLevel = 200
+   viLevel = 50
+   viDifficulty = 5
    viCashmin = 0
    viCashmax = 0
 

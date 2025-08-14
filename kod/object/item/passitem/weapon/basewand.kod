@@ -32,7 +32,7 @@ classvars:
    vrDesc = basewand_desc_rsc
 
    viWeaponQuality = WEAPON_QUALITY_LOW
-   viProficiency_needed = SKID_KICK
+   viProficiency_needed = SKID_PROFICIENCY_MACE
    viWeaponType = WEAPON_TYPE_SLASH
 
    viValue_average = 1000
@@ -143,41 +143,6 @@ messages:
    GetSchool()
    {
       return piSchool;
-   }
-
-   GetHitBonus()
-   {
-      return 0;
-   }
-
-   GetBaseDamage()
-   {
-      return 0;
-   }
-
-   GetMinDamage()
-   {
-      return viDamage_min;
-   }
-
-   GetMaxDamage()
-   {
-      return viDamage_max;
-   }
-
-   GetMinDamageWithOwnerStats()
-   {
-      return 0;
-   }
-
-   GetMaxDamageWithOwnerStats()
-   {
-      return 0;
-   }
-
-   GetDamage()
-   {
-      return 0;
    }
 
 end

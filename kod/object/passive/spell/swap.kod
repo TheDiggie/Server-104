@@ -5,7 +5,7 @@
 // the LICENSE file that accompanies it.
 //
 // Meridian is a registered trademark.
-
+// Changed by Diggie to be less of a troll spell.
 
 ////////////////////////////////////////////////////////////////////////////////
 Swap is Spell
@@ -87,6 +87,13 @@ messages:
          Send(who,@MsgSendUser,#message_rsc=spell_bad_target,
               #parm1=vrName,#parm2=Send(target,@GetDef),
               #parm3=Send(target,@GetName));
+
+         return FALSE;
+      }
+
+      if IsClass(Send(who,@GetOwner),&GuildHall)
+      {
+         Send(who,@MsgSendUser,#message_rsc=spell_bad_location,#parm1=vrName);
 
          return FALSE;
       }

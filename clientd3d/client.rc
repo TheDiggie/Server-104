@@ -19,7 +19,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// German resources
+// Deutsch resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
 LANGUAGE LANG_GERMAN, SUBLANG_NEUTRAL
@@ -48,7 +48,6 @@ BEGIN
     END
     POPUP "&Optionen"
     BEGIN
-        //MENUITEM "&Groﬂes Sichtfenster",        3057
         MENUITEM "&Musik",                      3034
         MENUITEM "&Sounds",                     3033
         MENUITEM SEPARATOR
@@ -512,23 +511,23 @@ BEGIN
     LISTBOX         1076,144,127,28,12,LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | LBS_WANTKEYBOARDINPUT | NOT WS_VISIBLE | WS_TABSTOP
 END
 
-1017 DIALOGEX 0, 0, 243, 379
+1017 DIALOGEX 0, 0, 337, 387
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Gegenst‰nde kaufen:"
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
-    LISTBOX         1073,5,20,24,334,LBS_OWNERDRAWFIXED | LBS_HASSTRINGS
-    LISTBOX         1002,33,20,123,334,LBS_MULTIPLESEL | LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | WS_VSCROLL | WS_TABSTOP
-    LISTBOX         1076,161,20,24,331,LBS_OWNERDRAWFIXED | LBS_HASSTRINGS
-    EDITTEXT        1075,40,360,74,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
-    DEFPUSHBUTTON   "Kaufen",1,193,318,44,14,WS_GROUP
-    PUSHBUTTON      "Abbrechen",2,193,337,44,14,WS_GROUP
-    LTEXT           "Einzel- preis:",-1,9,2,24,16
-    LTEXT           "Gegenst‰nde kaufen:",-1,74,8,45,8
-    LTEXT           "Gesamtkosten:",-1,191,20,48,8
-    CTEXT           "0",1074,199,33,30,8
-    LTEXT           "Kaufen von:",-1,5,361,32,8
-    LTEXT           "Menge:",-1,160,9,27,8
+   CONTROL "", 1073, LISTBOX, LBS_NOTIFY | LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | WS_CHILD | WS_VISIBLE | WS_BORDER, 5, 19, 62, 318 
+   CONTROL "", 1002, LISTBOX, LBS_NOTIFY | LBS_MULTIPLESEL | LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_VSCROLL | WS_TABSTOP, 71, 19, 123, 319 
+   CONTROL "", 1076, LISTBOX, LBS_NOTIFY | LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | WS_CHILD | WS_VISIBLE | WS_BORDER, 201, 19, 70, 318 
+   CONTROL "", 1075, EDIT, ES_LEFT | ES_AUTOHSCROLL | ES_READONLY | WS_CHILD | WS_VISIBLE | WS_BORDER, 40, 360, 74, 14 
+   CONTROL "Kaufen", 1, BUTTON, BS_DEFPUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_GROUP | WS_TABSTOP, 287, 334, 44, 14 
+   CONTROL "Abbrechen", 2, BUTTON, BS_PUSHBUTTON | WS_CHILD | WS_VISIBLE | WS_GROUP | WS_TABSTOP, 287, 349, 44, 14 
+   CONTROL "Einzel- preis:", -1, STATIC, SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 10, 4, 46, 13 
+   CONTROL "Gegenst‰nde kaufen:", -1, STATIC, SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 72, 5, 45, 8 
+   CONTROL "Gesamtkosten:", -1, STATIC, SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 284, 8, 48, 8 
+   CONTROL "0", 1074, STATIC, SS_CENTER | WS_CHILD | WS_VISIBLE | WS_GROUP, 288, 26, 42, 8 
+   CONTROL "Kaufen von:", -1, STATIC, SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 5, 361, 32, 8 
+   CONTROL "Menge:", -1, STATIC, SS_LEFT | WS_CHILD | WS_VISIBLE | WS_GROUP, 207, 7, 27, 8
 END
 
 1016 DIALOGEX 0, 0, 76, 25
@@ -568,9 +567,21 @@ END
 #ifdef APSTUDIO_INVOKED
 GUIDELINES DESIGNINFO
 BEGIN
+    1166, DIALOG
+    BEGIN
+    END
+
     181, DIALOG
     BEGIN
         RIGHTMARGIN, 248
+    END
+
+    166, DIALOG
+    BEGIN
+    END
+
+    159, DIALOG
+    BEGIN
     END
 
     155, DIALOG
@@ -578,9 +589,45 @@ BEGIN
         BOTTOMMARGIN, 201
     END
 
+    148, DIALOG
+    BEGIN
+    END
+
+    126, DIALOG
+    BEGIN
+    END
+
+    123, DIALOG
+    BEGIN
+    END
+
+    122, DIALOG
+    BEGIN
+    END
+
+    120, DIALOG
+    BEGIN
+    END
+
+    119, DIALOG
+    BEGIN
+    END
+
     118, DIALOG
     BEGIN
         BOTTOMMARGIN, 189
+    END
+
+    117, DIALOG
+    BEGIN
+    END
+
+    1165, DIALOG
+    BEGIN
+    END
+
+    1164, DIALOG
+    BEGIN
     END
 
     116, DIALOG
@@ -619,7 +666,7 @@ BEGIN
 
     1017, DIALOG
     BEGIN
-        BOTTOMMARGIN, 159
+        BOTTOMMARGIN, 374
     END
 
     1016, DIALOG
@@ -632,6 +679,17 @@ BEGIN
     END
 END
 #endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+1017 AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -823,12 +881,12 @@ BEGIN
     164                     "http://meridian59.us/"
 END
 
-#endif    // German resources
+#endif    // Deutsch resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// English (United States) resources
+// Englisch (USA) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
@@ -856,7 +914,6 @@ BEGIN
     END
     POPUP "&Options"
     BEGIN
-        //MENUITEM "Large &graphics area",        ID_OPTIONS_AREA
         MENUITEM "&Music",                      ID_OPTIONS_MUSIC
         MENUITEM "&Sounds",                     ID_OPTIONS_SOUND
         MENUITEM SEPARATOR
@@ -937,9 +994,9 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_VISIBLE | WS_CAPTIO
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
     LTEXT           "Select one or more items:",IDC_STATIC,4,4,84,8
-    LISTBOX         IDC_ITEMLIST,4,19,123,355,LBS_MULTIPLESEL | LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | LBS_WANTKEYBOARDINPUT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Quantity",IDC_STATIC1,132,4,29,8
-    LISTBOX         IDC_QUANLIST,133,19,28,355,LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | LBS_WANTKEYBOARDINPUT
+    LISTBOX         IDC_ITEMLIST,4,19,115,355,LBS_MULTIPLESEL | LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | LBS_WANTKEYBOARDINPUT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Quantity",IDC_STATIC1,126,4,29,8
+    LISTBOX         IDC_QUANLIST,120,19,42,355,LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | LBS_WANTKEYBOARDINPUT
     LTEXT           "&Find item:",IDC_STATIC,169,114,33,8,NOT WS_VISIBLE | WS_DISABLED
     EDITTEXT        IDC_ITEMFIND,169,127,38,16,ES_AUTOHSCROLL | NOT WS_VISIBLE
     DEFPUSHBUTTON   "OK",IDOK,167,21,44,14,WS_GROUP
@@ -1045,7 +1102,6 @@ BEGIN
     PUSHBUTTON      "&Search...",IDC_FIND,311,276,49,14
     DEFPUSHBUTTON   "OK",IDOK,131,300,50,12,WS_GROUP
     PUSHBUTTON      "Cancel",IDCANCEL,193,300,50,12,WS_GROUP
-
 END
 
 IDD_COLOR DIALOG 0, 0, 201, 92
@@ -1096,34 +1152,34 @@ BEGIN
     LTEXT           "Select Set items to respond to offer.",IDC_MESSAGE,10,346,217,10
 END
 
-IDD_AMOUNT DIALOGEX 0, 0, 76, 25
+IDD_AMOUNT DIALOGEX 0, 0, 84, 25
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_TOOLWINDOW
-CAPTION "Amount"
+CAPTION " "
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    EDITTEXT        IDC_AMOUNTBOX,6,6,41,13,ES_NUMBER
+    EDITTEXT        IDC_AMOUNTBOX,6,6,55,13,ES_NUMBER
     CONTROL         "Spin1",IDC_SPIN1,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS | UDS_NOTHOUSANDS,40,5,8,14
-    DEFPUSHBUTTON   "OK",IDOK,51,5,21,14,WS_GROUP
+    DEFPUSHBUTTON   "OK",IDOK,62,5,21,14,WS_GROUP
 END
 
-IDD_BUY DIALOGEX 0, 0, 243, 379
+IDD_BUY DIALOGEX 0, 0, 300, 379
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Buy items"
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
-    LISTBOX         IDC_COSTLIST,5,20,24,334,LBS_OWNERDRAWFIXED | LBS_HASSTRINGS
-    LISTBOX         IDC_QUANLIST,161,20,24,331,LBS_OWNERDRAWFIXED | LBS_HASSTRINGS
+    LISTBOX         IDC_COSTLIST,5,20,55,334,LBS_OWNERDRAWFIXED | LBS_HASSTRINGS
+    LISTBOX         IDC_QUANLIST,190,20,55,331,LBS_OWNERDRAWFIXED | LBS_HASSTRINGS
     EDITTEXT        IDC_SELLER,40,360,74,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
-    DEFPUSHBUTTON   "Buy",IDOK,193,323,44,14,WS_GROUP
-    PUSHBUTTON      "Cancel",IDCANCEL,193,343,44,14,WS_GROUP
-    LTEXT           "Cost each",IDC_STATIC,9,2,24,16
-    LTEXT           "&Items:",IDC_STATIC,74,8,21,8
-    LTEXT           "Total cost:",IDC_STATIC,196,20,36,8
-    CTEXT           "0",IDC_COST,199,33,30,8
+    DEFPUSHBUTTON   "Buy",IDOK,250,323,44,14,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,250,343,44,14,WS_GROUP
+    LTEXT           "Price:",IDC_STATIC,25,8,20,8
+    LTEXT           "&Items:",IDC_STATIC,115,8,21,8
+    LTEXT           "Total cost:",IDC_STATIC,256,20,36,8
+    CTEXT           "0",IDC_COST,245,33,55,8
     LTEXT           "Buy from:",IDC_STATIC,5,361,32,8
-    LTEXT           "Quantity",IDC_STATIC,160,9,27,8
-    LISTBOX         IDC_ITEMLIST,33,20,123,333,LBS_MULTIPLESEL | LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Quantity:",IDC_STATIC,205,9,27,8
+    LISTBOX         IDC_ITEMLIST,63,20,123,333,LBS_MULTIPLESEL | LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | WS_VSCROLL | WS_TABSTOP
 END
 
 IDD_LOGIN DIALOGEX 0, 0, 251, 175
@@ -1424,6 +1480,10 @@ BEGIN
         BOTTOMMARGIN, 200
     END
 
+    IDD_AMOUNT, DIALOG
+    BEGIN
+    END
+
     IDD_BUY, DIALOG
     BEGIN
         BOTTOMMARGIN, 374
@@ -1509,6 +1569,10 @@ BEGIN
         BOTTOMMARGIN, 60
     END
 
+    IDD_ABOUT, DIALOG
+    BEGIN
+    END
+
     IDD_GUEST, DIALOG
     BEGIN
         LEFTMARGIN, 7
@@ -1552,6 +1616,17 @@ END
 #endif    // APSTUDIO_INVOKED
 
 
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_AMOUNT AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1592,11 +1667,17 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 IDI_ICON                ICON                    "bitmap\\ICON1.ICO"
+
 IDI_CLOCK               ICON                    "bitmap\\CLOCK.ICO"
+
 IDI_FORM                ICON                    "bitmap\\FORM.ICO"
+
 IDI_PHONE               ICON                    "bitmap\\phone.ico"
+
 IDI_OFFER               ICON                    "bitmap\\offer.ico"
+
 IDB_BLUEWHO             ICON                    "bitmap\\blue.ico"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1604,17 +1685,29 @@ IDB_BLUEWHO             ICON                    "bitmap\\blue.ico"
 //
 
 IDB_BACKGROUND          BITMAP                  "bitmap\\bkgnd.bmp"
+
 IDB_ANNOTATE            BITMAP                  "bitmap\\annotate.bmp"
+
 IDB_MAPBKGND            BITMAP                  "bitmap\\mapbkgnd.bmp"
+
 IDB_IMAGELIST           BITMAP                  "bitmap\\imglist.bmp"
+
 IDB_VIEWTREAT_TOPLEFT   BITMAP                  "bitmap\\viewtreat_ul.bmp"
+
 IDB_VIEWTREAT_TOPRIGHT  BITMAP                  "bitmap\\viewtreat_ur.bmp"
+
 IDB_VIEWTREAT_BOTTOMLEFT BITMAP                  "bitmap\\viewtreat_ll.bmp"
+
 IDB_VIEWTREAT_BOTTOMRIGHT BITMAP                  "bitmap\\viewtreat_lr.bmp"
+
 IDB_VIEWTREAT_TOPLEFT_HILIGHT BITMAP                  "bitmap\\viewtreat_ul_hilight.bmp"
+
 IDB_VIEWTREAT_TOPRIGHT_HILIGHT BITMAP                  "bitmap\\viewtreat_ur_hilight.bmp"
+
 IDB_VIEWTREAT_BOTTOMLEFT_HILIGHT BITMAP                  "bitmap\\viewtreat_ll_hilight.bmp"
+
 IDB_VIEWTREAT_BOTTOMRIGHT_HILIGHT BITMAP                  "bitmap\\viewtreat_lr_hilight.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1622,10 +1715,15 @@ IDB_VIEWTREAT_BOTTOMRIGHT_HILIGHT BITMAP                  "bitmap\\viewtreat_lr_
 //
 
 IDC_TARGETCURSOR        CURSOR                  "bitmap\\TARGET.CUR"
+
 IDC_DROPCURSOR          CURSOR                  "bitmap\\drop.cur"
+
 IDC_GETCURSOR           CURSOR                  "bitmap\\get.cur"
+
 IDC_CROSSCURSOR         CURSOR                  "bitmap\\crosscur.cur"
+
 IDC_INSIDECURSOR        CURSOR                  "bitmap\\incur.cur"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1633,6 +1731,7 @@ IDC_INSIDECURSOR        CURSOR                  "bitmap\\incur.cur"
 //
 
 IDA_DOWNLOAD            AVI                     "bitmap\\download.avi"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1824,7 +1923,7 @@ BEGIN
     IDS_LAGBOXSUBNAME       "A measurement of your network delay."
 END
 
-#endif    // English (United States) resources
+#endif    // Englisch (USA) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

@@ -1,0 +1,58 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DMaskGift is Gift
+
+constants:
+
+   include blakston.khd
+   include protocol.khd
+
+resources:
+
+   DMaskGift_name_rsc = "death realm mask box"
+   DMaskGift_icon_rsc = lootboxes.bgf
+   DMaskGift_desc_rsc = \
+      "This is a gift from the gods, it contains a random mask!\n\n"
+      "MASK  ONLY HAVE 10% CHANCE TO HAVE A ENCHANTMENT.\n\n"
+      "Items have a 30% chance to be colored.\n\n"
+      "This box has a chance to contain the following items : \n"
+      "stone troll mask, dusk rat mask, rice hat mask, wolf mask, soldier mask, "
+      "manager mask, worker mask, front man mask, plague doctor mask, pumpkin mask, "
+      "horned skull mask, verdant veil of the wilds, war helm, steel helm, legion helm.\n\n"
+      "These items have a chance to be enchanted with :\n bond, bonus xp."
+
+classvars:
+
+   vrName = DMaskGift_name_rsc
+   vrIcon = DMaskGift_icon_rsc
+   vrDesc = DMaskGift_desc_rsc
+   
+   viValue_average = 5000
+
+properties:
+
+messages:
+
+   Constructor()
+   {
+      plContents = [ &StoneTrollMask, &WolfMask,         &DuskRatMask,                    
+                     &TriangleMask,   &SquareMask,       &FrontMask,
+                     &CircleMask,     &PlagueMask,       &RiceMask,
+                     &PumpkinMask,    &HornedSkullMask,  &ForestMask,
+                     &LegionHelm,     &SteelHelm,        &WarHelm ];
+
+      plItematt = [ IA_TRANSCENDANT, IA_XP_KILL_BONUS ];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -19,8 +19,6 @@ resources:
    Resource_cannot_hit = \
       "Your weapon is not suitable for harvesting this. "
 
-   Gathered_rsc = "~B~gYou gather %i %s."
-
 classvars:
 
    viAttributes = 0
@@ -92,10 +90,20 @@ messages:
       return viTool;
    }
 
-   AssessDamage(what=$)
+   AssessDamage(what=$,aspell=0)
    "This is called when something causes damage to us."
    {
       local i, oResource, iAmount, cSkillAbility, iBonus;
+
+      if NOT IsClass(what,&User)
+      {
+         propagate;
+      }
+
+      if aspell > 0
+      {
+         propagate;
+      }
 
       cSkillAbility = Send(what,@GetSkillAbility,#skill_num=viSkill);
 
@@ -136,20 +144,15 @@ messages:
 
             if IsClass(oResource,&NumberItem)
             {
-               iAmount = Send(oResource,@GetNumber);
-
-               Send(what,@NewHold,#what=oResource);
-               Send(what,@MsgSendUser,#message_rsc=Gathered_rsc,#parm1=iAmount,#parm2=Send(oResource,@GetName));
+               Send(self,@NewHold,#what=oResource);
             }
             else
             {
                for (i = 0; i < iAmount; ++i)
                {
-                  Send(what,@NewHold,#what=oResource);
+                  Send(self,@NewHold,#what=oResource);
                   oResource = Create(vcResource);
                }
-
-               Send(what,@MsgSendUser,#message_rsc=Gathered_rsc,#parm1=iAmount,#parm2=Send(oResource,@GetName));
             } 
          }
       }
@@ -162,5 +165,17 @@ messages:
       return FALSE;
    }
    
+   CreateTreasure()
+   {
+      local i, lTreasureItems;
+
+      foreach i in plPassive
+      {
+         lTreasureItems = Cons(i,lTreasureItems);
+      }
+      
+      propagate;
+   }
+
 end
 ////////////////////////////////////////////////////////////////////////////////

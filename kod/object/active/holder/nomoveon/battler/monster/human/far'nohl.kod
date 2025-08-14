@@ -112,23 +112,7 @@ messages:
                #fine_row=piFine_row,#fine_col=piFine_col);
       }
 
-
-      oKey = Create(&BasementKey,#corpse=corpse);
-      Send(poOwner,@NewHold,#what=oKey,
-            #new_row=piRow,#new_col=piCol,
-            #fine_row=piFine_row,#fine_col=piFine_col);
-
       plUsing = $;
-
-      propagate;
-   }
-
-   Killed(what=$)
-   {
-      if IsClass(what,&player)
-      {
-         send(what,@BeatDR,#won=TRUE);
-      }
 
       propagate;
    }
@@ -138,6 +122,16 @@ messages:
       return;
    }
 
+   Killed(what=$)
+   {
+      if IsClass(what,&player)
+      {
+         send(what,@BeatDR,#won=TRUE);
+      }
+      
+      propagate;
+   }
+   
    SetHair()
    {
       return;

@@ -40,9 +40,9 @@ messages:
    {
       plExits = $;
 
-      plExits = Cons([ 3, 44, ROOM_LOCKED_DOOR, Needs_Key],plExits);
-      plExits = Cons([ 4, 44, ROOM_LOCKED_DOOR, Needs_Key],plExits);
-      plExits = Cons([ 5, 44, ROOM_LOCKED_DOOR, Needs_Key],plExits);                                                                             
+      plExits = Cons([ 3, 44, ROOM_LOCKED_DOOR, Needs_key],plExits);
+      plExits = Cons([ 4, 44, ROOM_LOCKED_DOOR, Needs_key],plExits);
+      plExits = Cons([ 5, 44, ROOM_LOCKED_DOOR, Needs_key],plExits);                                                                             
 
       plEdge_exits = $;
       plEdge_Exits = Cons([ LEAVE_WEST, RID_DI9, 2, 27, ANGLE_SOUTH_WEST ], plEdge_exits); 
@@ -51,24 +51,41 @@ messages:
 
    }
 
-   EnterLockedTown(who=$)
+   SomethingTryGo(what=$,row=$,col=$)
    {
-      local iRow, iCol;
+      local i, each_obj;
 
-      iRow = send(who,@GetRow);
-      iCol = send(who,@GetCol);
-      
-      if ( iRow = 3
-           AND (iCol = 44))
-           OR ( iRow = 4
-           AND (iCol = 44))
-           OR ( iRow = 5
-           AND (iCol = 44))
+      if (IsClass(what,&User)
+         AND (row = 3 AND col = 44) OR (row = 4 AND col = 44) OR (row = 5 AND col = 44))
       {
-         return TRUE;
-      }
+         if send(what,@HasBeatDR)
+		      OR IsClass(what,&DM)
+		   {
+		      Send(what,@MsgSendUser,#message_rsc=Beat_DR);
+            Send(SYS,@UtilGoNearSquare,#what=what,
+               #where=Send(SYS,@FindRoomByNum,#num=RID_DCASTLE1),
+               #new_row=16,#new_col=18,#fine_row=25, #fine_col=25, #new_angle=ANGLE_NORTH);
+			 
+			    return TRUE;
+		   }
+      	  
+   		foreach i in Send(what,@GetHolderPassive)
+         {
+            each_obj = Send(what,@HolderExtractObject,#data=i);
 
-      return FALSE;
+            if IsClass(each_obj,&CastleKey)
+            {
+               Send(what,@MsgSendUser,#message_rsc=Key_Open);
+               Send(SYS,@UtilGoNearSquare,#what=what,
+                   #where=Send(SYS,@FindRoomByNum,#num=RID_DCASTLE1),
+                   #new_row=16,#new_col=18,#fine_row=25, #fine_col=25, #new_angle=ANGLE_NORTH);
+
+               return TRUE;
+            }
+         }
+		}
+
+ 		propagate;
    }
 
 end

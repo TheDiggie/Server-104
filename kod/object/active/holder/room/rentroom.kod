@@ -114,15 +114,15 @@ resources:
       "I can now offer you a few items made from stone since I have this "
       "brown heartstone."
    RentableRoom_heartstone_Green = \
-      "I can offer you a personal chest if you collect all nine heartstones."
+      "I can offer you a personal chest if you collect all eight heartstones."
    RentableRoom_heartstone_Dark_Green = \
-      "I can offer you a personal chest if you collect all nine heartstones."
+      "I can offer you a personal chest if you collect all eight heartstones."
    RentableRoom_heartstone_Purple = \
-      "I can offer you a personal chest if you collect all nine heartstones."
+      "I can offer you a personal chest if you collect all eight heartstones."
    RentableRoom_heartstone_Black = \
-      "I can offer you a personal chest if you collect all nine heartstones."
+      "I can offer you a personal chest if you collect all eight heartstones."
    RentableRoom_heartstone_White = \
-      "I can offer you a personal chest if you collect all nine heartstones."
+      "I can offer you a personal chest if you collect all eight heartstones."
    RentableRoom_heartstone_all = \
       "I am also impressed that you have all the heartstones.  I can make "
       "some rare objects that require them all."

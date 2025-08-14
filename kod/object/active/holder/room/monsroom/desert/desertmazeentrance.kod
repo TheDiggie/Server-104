@@ -40,10 +40,6 @@ messages:
 
    Constructed()
    {
-      plMonsters = [ [&XeoHoly, 50],
-                     [&XeoUnholy, 50]
-                      ];
-      
       plGenerators = [ [25, 25],  [25, 50],  [25, 75],  [25, 100], 
                        [42, 25],  [42, 50],  [42, 75],  [42, 100],
                        [60, 25],  [60, 50],  [60, 75],  [60, 100],
@@ -56,8 +52,35 @@ messages:
       propagate;
    }
  
+   TryCreateMonster()
+   {
+      local iHour;
+      
+      iHour = Send(SYS,@GetHour);
+
+      if iHour >= 1 AND iHour <= 7
+      {
+         plMonsters = [ [&XeoUnholy, 100] ];
+      }
+      else if iHour >= 8 AND iHour <= 20
+      {
+         plMonsters = [ [&XeoHoly, 100] ];
+      }
+      else if iHour >= 20 AND iHour <= 24
+      {
+         plMonsters = [ [&XeoUnholy, 100] ];
+      }
+
+      propagate;
+   }
+
    CreateStandardExits()
    {
+      plExits = $;
+
+      plExits = Cons([ 100, 99, RID_MAZEFOYER, 1, 44, SET_ANGLE_WEST ],plExits);
+      plExits = Cons([ 100, 100, RID_MAZEFOYER, 1, 44, SET_ANGLE_WEST ],plExits);
+
       plEdge_Exits = $;
       plEdge_Exits = Cons([ LEAVE_NORTH, RID_DESERTDUNES8, 60, 102, ROTATE_NONE ],plEdge_Exits);
       plEdge_Exits = Cons([ LEAVE_SOUTH, RID_DESERTDUNES5, 60, 102, ROTATE_NONE ],plEdge_Exits);

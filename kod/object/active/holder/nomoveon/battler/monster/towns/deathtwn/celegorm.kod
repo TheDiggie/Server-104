@@ -1,0 +1,77 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Celegorm is DeathTown
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   Celegorm_name_rsc = "Celegorm"
+   Celegorm_icon_rsc = celegorm.bgf
+   Celegorm_desc_rsc = \
+      "Strange man with a aura of strength."
+
+   Celegorm_entry_welcome = "Greetings.  May you live to see my years."
+
+   Celegorm_unwanted_keep = \
+      "~k%s%s tells you, \"Perhaps I may find some use for that.~n~k\""
+   Celegorm_unwanted_pay = \
+      "~k%s%s tells you, \"How convenient.~n~k\""
+   Celegorm_unwanted_give = \
+      "~k%s%s tells you, \"Most material goods are of little consequence "
+      "to an old duke like me.~n~k\""
+
+classvars:
+
+   viDefinite = ARTICLE_NONE
+   viIndefinite = ARTICLE_NONE
+   vrName = Celegorm_name_rsc
+   vrIcon = Celegorm_icon_rsc
+   vrDesc = Celegorm_desc_rsc
+   viAttributes = \
+      MOB_RANDOM | MOB_LISTEN | MOB_RECEIVE | MOB_NOFIGHT \
+      | MOB_NOMOVE | MOB_SELLER
+      
+   viMerchant_markup = MERCHANT_FLAT
+   viOccupation = MOB_ROLE_MERCHANT
+
+   vrUnwanted_keep = Celegorm_unwanted_keep
+   vrUnwanted_pay = Celegorm_unwanted_pay
+   vrUnwanted_give = Celegorm_unwanted_give
+
+properties:
+
+   poCurrency = &Souls
+   
+messages:
+
+   SetForSale()
+   {
+      plFor_sale = [
+         [
+            Create(&DWeaponsGift),
+            Create(&DeathRegsGift),
+            Create(&DMaskGift)
+         ],
+      $,$,$];
+
+      return;
+   }
+
+   CanAcceptOffer()
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -23,6 +23,8 @@ resources:
 
 classvars:
 
+   viPermanent_flags = ROOM_NO_COMBAT | ROOM_SAFELOGOFF
+
    viTeleport_row = 13
    viTeleport_col = 2
 
@@ -33,9 +35,6 @@ properties:
 
    prMapChanges = FALSE
    prMonsters = FALSE
-   prHeat = FALSE
-   prQuake = FALSE
-   prFireRing = FALSE
 
    poPortalDR = $
 
@@ -50,16 +49,11 @@ messages:
       return;
    }
 
-   Enter(who=$)
-   {
-      Send(self,@NewHold,#what=who,#new_row=24,#new_col=2,
-            #new_angle=ROTATE_NONE);
-
-      return;
-   }
-
    CreateStandardObjects()
    {
+      Send(self,@NewHold,#what=Create(&Celegorm),
+            #new_row=3,#new_col=8,#new_angle=ANGLE_SOUTH);
+
       poPortalDR = Create(&DeathRealmExit,#desc=portal_dre);
       Send(self,@NewHold,#what=poPortalDR,#new_row=1,#new_col=12,
             #fine_row=48,#fine_col=32,#new_angle=ANGLE_SOUTH);

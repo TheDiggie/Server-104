@@ -36,6 +36,7 @@ properties:
    piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
 
    prRoom = room_desertdunes
+   piChange_Spawns = TRUE
 
 messages:
  

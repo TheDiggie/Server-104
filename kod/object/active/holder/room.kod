@@ -821,11 +821,6 @@ messages:
               #new_col=Send(self,@GetTeleportCol),
               #new_angle=Send(self,@GetTeleportAngle));
 
-         if IsClass(what,&Player) AND NOT IsClass(what,&DM)
-         {
-            Send(what,@WipeUnboundEnergy);
-         }
-
          return TRUE;
       }
 

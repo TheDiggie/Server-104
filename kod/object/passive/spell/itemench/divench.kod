@@ -54,7 +54,7 @@ resources:
       "wielder.  Available spells are ~bdement~n, ~benfeeble~n, ~bvertigo~n, "
       "~bforget~n, ~bevil twin~n, ~bmark of dishonor~n and ~binvisibility\n"
       "\"~btwister~n\": spins target around\n"
-      "\"~bvamper~n\": casts vampiric drain on target"
+      "\"~bvamper~n\": casts vampiric drain on target\n"
       "\"~bpoison~n\": casts poison on target"
    divench_cant_enchant = "You can't add an attribute to %s%s."
    divench_no_message = \

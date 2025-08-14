@@ -24,7 +24,7 @@ resources:
    icenova_desc_rsc = \
       "Call upon the magic of Faren and propel forth a blast of ice, "
       "chilling and blistering the skin of those around you.  "
-      "Requires four red mushrooms, four blue mushrooms and two purple mushrooms to cast."
+      "Requires four ice dragon scales, four blue mushrooms and two purple mushrooms to cast."
 
    icenova_first_rsc = \
       "You channel the power of Faren and unleash a flurry of ice shards!"
@@ -87,7 +87,7 @@ messages:
    ResetReagents()
    {
       plReagents = $;
-      plReagents = Cons([&RedMushroom,4],plReagents);
+      plReagents = Cons([&IceDragonScale,4],plReagents);
       plReagents = Cons([&BlueMushroom,4],plReagents);
       plReagents = Cons([&PurpleMushroom,2],plReagents);
 

@@ -174,7 +174,7 @@ messages:
    Constructed()
    {
       // Keep the scenario deactivated for now.
-      Send(Send(SYS,@GetNecromancerBalance),@ActivateScenario);
+      //Send(Send(SYS,@GetNecromancerBalance),@ActivateScenario);
 
       pimax_Hit_Points = pimax_hit_Points * 2;
       piHit_Points = pimax_hit_points * 100;

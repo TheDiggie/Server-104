@@ -64,6 +64,7 @@ messages:
             Create(&DeathRealmArmorGift),
             Create(&MaskGift),
             Create(&InstrumentGift),
+            Create(&ClothesGift),
             Create(&EnchantmentScroll),
             Create(&EnchantmentScrollFaren),
             Create(&EnchantmentScrollQor),

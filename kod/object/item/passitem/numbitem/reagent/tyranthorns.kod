@@ -28,7 +28,7 @@ classvars:
 
    vrName_plural = TyrantHorns_name_plural_rsc
 
-   viValue_average = 1000
+   viValue_average = 995
    viWeight = 5
    viBulk = 5
    

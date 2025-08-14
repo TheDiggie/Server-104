@@ -38,8 +38,8 @@ classvars:
    viSkill_num = SKID_GATHERING
    viSchool = SS_CRAFTING
    viSkill_Level = 1
-   viChance_to_Increase = 25  
-   viMeditate_ratio = 0
+   viMeditate_ratio = 20
+   viChance_to_Increase = 15
 
 
    viSkillExertion = 20

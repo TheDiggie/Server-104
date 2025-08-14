@@ -24,7 +24,9 @@ resources:
    createweapon_name_rsc = "create weapon"
    createweapon_icon_rsc = icremace.bgf
    createweapon_desc_rsc = \
-      "Materializes a weapon. Requires nothing but a violent will."
+      "Materializes a weapon. Requires nothing but a violent will. You may say the name of the weapon you want to create. "
+      "The choices are mace, short sword, hammer, axe, long sword, scimitar, mystic sword, and practice bow. "
+      "Choosing a weapon will remove you chance to improve, you will need to complete the conentration to imp. "
 
    createweapon_spell_intro = \
       "Kraanan Lv. 1: Creates a variety of weapons for use in "

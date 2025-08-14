@@ -1,0 +1,99 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+/////////////////////////////////////////////////////////////////////////////////
+BarloqueMarket is BarloqueRoom
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   room_name_BarloqueMarket = "The citizen's market of Barloque"
+   room_BarloqueMarket = barlmarket.roo
+   BarloqueMarket_music = corloth.ogg
+
+   Market_Appraise_sign_name = "Appraising items"
+   Market_Appraise_sign_desc = "You may only list items for sale that are appraised. "
+      "You have a spell called 'Appraise' cast it on a item and say how much you want to sell it for "
+      "to appraise it for you desired price. Then you will be able to list the item on the market. "
+
+   Market_Items_sign_name    = "Selling items"
+   Market_Items_sign_desc    = "Once your item is put on the market citizens will be able to "
+      "purchase it from Veydran Goldleaf. Once the item is purchased you will be given a trade bond "
+      "worth the cost of the item. Offer it to Veydran Goldleaf and he will give you the shillings."
+      " If you want to remove a item from the market you are able to take any item you place on the "
+      "market for no cost."
+   
+   Market_Reagents_sign_name = "Selling reagents"
+   Market_Reagents_sign_desc = "Reagents can be sold by placing them in a reagent bag and then listing the reagent bag. "
+      "You will have to appraise the reagent bag for the total cost you want for everything in the bag. Other than that it "
+      "behaves the same as selling any other item. "
+
+classvars:
+
+   viTeleport_row = 17
+   viTeleport_col = 18
+
+   viTerrain_Type = TERRAIN_CITY | TERRAIN_SHOP
+
+   vrName = room_name_BarloqueMarket
+
+properties:
+
+   viPermanent_flags = ROOM_NO_COMBAT
+   prRoom = room_BarloqueMarket
+   piRoom_num = RID_BAR_MARKET
+
+   piBaseLight = LIGHT_MAX
+
+   prMusic = Barvault_music
+   poShrine = $
+
+messages:
+
+   CreateStandardObjects()
+   {
+      Send(self,@NewHold,#what=Create(&Veydran),
+         #new_row=36,#new_col=22,#fine_row=62,#fine_col=40,#new_angle=ANGLE_NORTH);
+
+      Send(self,@NewHold,#what=Create(&Sign,#desc=Market_Items_sign_desc,#name=Market_Items_sign_name),
+            #new_row=35,#new_col=25,#fine_row=28,#fine_col=5);
+      Send(self,@NewHold,#what=Create(&Sign,#desc=Market_Reagents_sign_desc,#name=Market_Reagents_sign_name),
+            #new_row=35,#new_col=20,#fine_row=43,#fine_col=20);
+      Send(self,@NewHold,#what=Create(&Sign,#desc=Market_Appraise_sign_desc,#name=Market_Appraise_sign_name),
+            #new_row=26,#new_col=19,#fine_row=13,#fine_col=38);
+
+      Send(self,@NewHold,#what=Create(&Firepit),#new_row=39,#new_col=21,#fine_row=56,#fine_col=44);
+      Send(self,@NewHold,#what=Create(&Firepit),#new_row=39,#new_col=22,#fine_row=56,#fine_col=44);
+      Send(self,@NewHold,#what=Create(&Firepit),#new_row=39,#new_col=23,#fine_row=56,#fine_col=44);
+
+      Send(self,@NewHold,#what=Create(&Skull),#new_row=9,#new_col=18,#fine_row=46,#fine_col=44);
+      Send(self,@NewHold,#what=Create(&Skull),#new_row=1,#new_col=9,#fine_row=46,#fine_col=44);
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_SKULL10),#new_row=1,#new_col=14,#fine_row=46,#fine_col=44);
+
+      poShrine = Create(&Shrine,#shrine_num=SHRINE_MARKET);
+      Send(self,@NewHold,#what=poShrine,#new_row=28,#new_col=26,#fine_row=8,#fine_col=44);
+
+      propagate;
+   }
+
+   CreateStandardExits()
+   {
+      plExits = $;
+      plExits = Cons([ 6, 1, RID_BAR_PORT, 36, 55, ANGLE_NORTH_WEST ],plExits);
+      plExits = Cons([ 5, 1, RID_BAR_PORT, 36, 55, ANGLE_NORTH_WEST ],plExits);
+
+      propagate;
+   }
+
+
+end
+////////////////////////////////////////////////////////////////////////////////

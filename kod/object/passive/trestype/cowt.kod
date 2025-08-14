@@ -1,0 +1,40 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+CowTreasure is TreasureType
+
+constants:
+
+   include blakston.khd
+
+classvars:
+
+   viTreasure_num = TID_COW
+
+properties:
+
+   /// Reagents, both rare and Qor-related.
+
+   piDiff_seed = 7
+   piItem_att_chance = 1
+
+messages:
+
+   Constructed()
+   {
+      plTreasure = [ [ &Herbs, 20 ],
+                     [ &ElderBerry, 30],
+                     [ &RawSteak, 50]];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

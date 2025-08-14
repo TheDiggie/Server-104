@@ -61,8 +61,8 @@ resources:
    color_brown_dec    = "brown dye."
    color_brown        = "brown"
 
-   color_dbrown_dec    = "down brown dye."
-   color_dbrown        = "down brown"
+   color_dbrown_dec    = "dark brown dye."
+   color_dbrown        = "dark brown"
 
    color_yellow_dec   = "yellow dye."
    color_yellow       = "yellow"
@@ -306,7 +306,6 @@ messages:
       OR IsClass(apply_on,&Circlet)
       OR IsClass(apply_on,&IvyCirclet)
       OR IsClass(apply_on,&Wizardhat)
-      OR IsClass(apply_on,&HunterSword)
       OR IsClass(apply_on,&GoldShield)
       {
          Send(what,@MsgSendUser,#message_rsc=cant_dye);
@@ -319,6 +318,7 @@ messages:
       OR IsClass(apply_on,&Armor)
       OR IsClass(apply_on,&Shield)
       OR IsClass(apply_on,&Helmet)
+      OR IsClass(apply_on,&Pants)
       {
          return TRUE;
       }

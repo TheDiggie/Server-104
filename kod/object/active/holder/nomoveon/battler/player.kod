@@ -845,7 +845,7 @@ classvars:
    viBody_space = 1
 
    viQuiver_space = 1
-   viNeck_space = 1
+   viNeck_space = 2
    viHead_space = 1
    viLeg_space = 1
 
@@ -1152,6 +1152,8 @@ properties:
    viOriginalVault = $
 
    poWonDR = FALSE
+
+   voMeditating = $
 
 messages:
 
@@ -2994,6 +2996,7 @@ messages:
       Send(self,@AddSpell,#num=SID_VAULT_LOADOUT,#initial=TRUE);
       Send(self,@AddSpell,#num=SID_LOADOUT,#initial=TRUE);
       Send(self,@AddSpell,#num=SID_SET,#initial=TRUE);
+      Send(self,@AddSpell,#num=SID_APPRAISE,#initial=TRUE);
 
       return;
    }
@@ -3642,7 +3645,7 @@ messages:
    ReactivateAllEnchantments()
    "Called when a player logs on."
    {
-      local i, tTimer, iTime, state;
+      local i, tTimer, iTime, state, oSpell;
 
       foreach i in plEnchantments
       {
@@ -3669,20 +3672,31 @@ messages:
             {
                // Give them a short timer, and log this for debugging purposes.
                // We include timers since we're not supposed to have one here.
-               Debug("Trying to make an invalid timer ",iTime," for ",
+               if iTime = $
+               {
+               }
+               else if Send(Nth(i,2),@IsHarmful)
+               {  
+                  Debug("Trying to make an invalid timer ",iTime," for ",
                      Send(Nth(i,2),@GetTrueName)," on player ",
                      self,Send(self,@GetTrueName));
-               if Send(Nth(i,2),@IsHarmful)
-               {
+
                   iTime = 5000;
                }
                else
                {
+                  Debug("Trying to make an invalid timer ",iTime," for ",
+                     Send(Nth(i,2),@GetTrueName)," on player ",
+                     self,Send(self,@GetTrueName));
                   iTime = 20000;
                }
+
             }
 
-            if Send(Nth(i,2),@IsPeriodic,#state=state,#who=self)
+            if iTime = $
+            {
+            }
+            else if Send(Nth(i,2),@IsPeriodic,#state=state,#who=self)
             {
                SetFirst(i,CreateTimer(self,@PeriodicEnchantmentTimer,iTime));
             }
@@ -4102,11 +4116,6 @@ messages:
          {
             bToken = TRUE;
          }
-		 
-		 if IsClass(i, &NecromancerAmulet)
-		 {
-		    iSpace += 1;
-		 }
       }
 
       if iSpace < Send(what,@GetItemUseAmount)
@@ -5737,7 +5746,7 @@ messages:
       precision=FALSE)
    {
       local i, j, iResistance, oSoldierShield, gainchance, color_rsc,
-            iDuration, oSpell, oGort,iLimit, origdamage, oWeapon, shrunken;
+            iDuration, oSpell, oGort,iLimit, origdamage, oWeapon, shrunken, manaShield, manaDamage, playerMP;
 
       if NOT precision
       {
@@ -5892,7 +5901,25 @@ messages:
          }
       }
 
-      Send(self,@LoseHealth,#amount=damage,#precision=TRUE);
+      manaShield = Send(SYS,@FindSpellByNum,#Num=SID_MANA_SHIELD);
+      if Send(self,@IsEnchanted,#what=manaShield)
+         {
+            manaDamage = damage / 100; // LoseMana is without precision -> dmg/100
+            playerMP = Send(self,@GetMana);
+
+            if playerMP > manaDamage {
+               Send(self,@LoseMana,#amount=(manaDamage * 150 / 100),#precision=TRUE); 
+            }  else { //If the player does not have enough mana to cover the hit, first substract mana, followed by health
+               manaDamage = playerMP;
+               Send(self,@LoseMana,#amount=manaDamage,#precision=TRUE); 
+               Send(self,@RemoveEnchantment,#what=manaShield);
+
+               Send(self,@LoseHealth,#amount=damage - (manaDamage * 100),#precision=TRUE); //Player would loose the remainder of damage from health
+            }
+         }
+      else {
+         Send(self,@LoseHealth,#amount=damage,#precision=TRUE);
+      }
 
       if piHealth <= 0
       {
@@ -9471,6 +9498,11 @@ messages:
    "Handles resource display and toughers."
    {
       local iXPNeeded;
+
+      if piXP_total = 20000000
+      {
+         piXP_total = 1226435;
+      }
 
       // Add to total.
       piXP_total = Bound(piXP_total + iAmount,0,MAX_XP);
@@ -14874,6 +14906,11 @@ messages:
          return FALSE;
       }
 
+      if IsClass(what,&Bag)
+      {
+         return TRUE;
+      }
+
       found = FALSE;
       what_owner = Send(what,@GetOwner);
       while what_owner <> $
@@ -15640,6 +15677,25 @@ messages:
       }
 
       propagate;
+   }
+
+   IsOfflineOrCannotInteract()
+   {
+      return (NOT pbLogged_on)
+         OR (piFlags & PFLAG_PHASED)
+         OR (piFlags & PFLAG_SPECTATOR);
+   }
+   
+   SetMeditating(iNum=$)
+   {
+      voMeditating = iNum;
+
+      return;
+   }
+   
+   GetMeditating()
+   {
+      return voMeditating;
    }
 
 end

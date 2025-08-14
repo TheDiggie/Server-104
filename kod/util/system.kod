@@ -513,6 +513,8 @@ properties:
 
    plAttackTypes = $
    plSpellTypes = $
+   
+   poPlayerMarket = $
 
 messages:
 
@@ -661,6 +663,7 @@ messages:
       Send(self,@RecreateRentableRoomMaintenance);
       Send(self,@RecreateSurvivalRoomMaintenance);
       Send(self,@RecreateWarEvent);
+      Send(self,@SetupPlayerMarket);
 
       // These don't need to be done here.
       // RecreateAllRooms calls CreateAllRoomsIfNew. Calling it again here
@@ -2336,6 +2339,9 @@ messages:
       Send(self,@CreateOneRoomIfNew,#num=RID_MAR_ELDER_HUT,#class=&MarionElderHut);
       Send(self,@CreateOneRoomIfNew,#num=RID_MAR_HALL,#class=&MarHall);
       Send(self,@CreateOneRoomIfNew,#num=RID_MAR_HEALER_SHOP,#class=&MarionHealerShop);
+      Send(self,@CreateOneRoomIfNew,#num=RID_MARION_PLAN,#class=&MarionPlantation);
+      Send(self,@CreateOneRoomIfNew,#num=RID_PLANTHOUSE,#class=&PlantationHouse);
+      Send(self,@CreateOneRoomIfNew,#num=RID_MARION_PLAN_WORKER1,#class=&MarionPlantationWorker1);
 
       // Cor Noth stuff
       Send(self,@CreateOneRoomIfNew,#num=RID_CORNOTH,#class=&CorNoth);
@@ -2394,6 +2400,7 @@ messages:
       Send(self,@CreateOneRoomIfNew,#num=RID_BAR_JAIL,#class=&BarloqueJail);
       Send(self,@CreateOneRoomIfNew,#num=RID_BAR_SMITHY,#class=&BarloqueSmithy);
       Send(self,@CreateOneRoomIfNew,#num=RID_BAR_VAULT,#class=&BarVault);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BAR_MARKET,#class=&BarloqueMarket);
 
       // Kocatan
       Send(self,@CreateOneRoomIfNew,#num=RID_KOCATAN,#class=&Kocatan);
@@ -2546,6 +2553,7 @@ messages:
       Send(self,@CreateOneRoomIfNew,#num=RID_GUILDH14,#class=&GuildHall14);
       Send(self,@CreateOneRoomIfNew,#num=RID_GUILDH15,#class=&GuildHall15);
       Send(self,@CreateOneRoomIfNew,#num=RID_GUILDH16,#class=&GuildHall16);
+      Send(self,@CreateOneRoomIfNew,#num=RID_GUILDH17,#class=&GuildHall17);
 
       Send(self,@CreateOneRoomIfNew,#num=RID_TEMPLE_KRAANAN,#class=&TempleKraanan);
       Send(self,@CreateOneRoomIfNew,#num=RID_TEMPLE_QOR,#class=&TempleQor);
@@ -2618,6 +2626,7 @@ messages:
       Send(self,@CreateOneRoomIfNew,#num=RID_RATCAVE2,#class=&RatCave2);
       Send(self,@CreateOneRoomIfNew,#num=RID_RATCAVE3,#class=&RatCave3);
       
+      //Desert
       Send(self,@CreateOneRoomIfNew,#num=RID_DESERTPATH1,#class=&DesertPath1);
       Send(self,@CreateOneRoomIfNew,#num=RID_DESERTCLIFFACCESS,#class=&DesertCliffAccess);
       Send(self,@CreateOneRoomIfNew,#num=RID_DESERTCLIFFNOACCESS1,#class=&DesertCliffNoAccess1);
@@ -2645,6 +2654,10 @@ messages:
       Send(self,@CreateOneRoomIfNew,#num=RID_DESERTBRIDGE,#class=&DesertBridge);
       Send(self,@CreateOneRoomIfNew,#num=RID_DESERTOASIS,#class=&DesertOasis);
       Send(self,@CreateOneRoomIfNew,#num=RID_DESERTMAZEENTRANCE,#class=&DesertMazeEntrance);
+
+      //Maze
+      Send(self,@CreateOneRoomIfNew,#num=RID_MAZEFOYER,#class=&MazeFoyer);
+      Send(self,@CreateOneRoomIfNew,#num=RID_MAZEFOYER2,#class=&MazeFoyer2);
 
       //Death Realm
       Send(self,@CreateOneRoomIfNew,#num=RID_DH4,#class=&DeathRealmH4);
@@ -3304,6 +3317,7 @@ messages:
       Send(self,@CreateOneSpellIfNew,#num=SID_MINOR_HEAL,#class=&MinorHeal);
       Send(self,@CreateOneSpellIfNew,#num=SID_NIGHT_VISION,#class=&NightVision);
       Send(self,@CreateOneSpellIfNew,#num=SID_FIREBALL,#class=&Fireball);
+      Send(self,@CreateOneSpellIfNew,#num=SID_ICESHARD,#class=&Iceshard);
       Send(self,@CreateOneSpellIfNew,#num=SID_DMRESCUE,#class=&DMRescue);
       Send(self,@CreateOneSpellIfNew,#num=SID_DELIVERANCE_TOUCH,#class=&DeliveranceTouch);
       Send(self,@CreateOneSpellIfNew,#num=SID_SPECTATE,#class=&Spectate);
@@ -3317,6 +3331,8 @@ messages:
       Send(self,@CreateOneSpellIfNew,#num=SID_DM_ITEMATT,#class=&DivineEnchantment);
       Send(self,@CreateOneSpellIfNew,#num=SID_SLITHERBOLT,#class=&Slitherbolt);
       Send(self,@CreateOneSpellIfNew,#num=SID_INDEST,#class=&Indestructible);
+	   Send(self,@CreateOneSpellIfNew,#num=SID_NODROP,#class=&NotDroppable);
+	   Send(self,@CreateOneSpellIfNew,#num=SID_ADDPETOITEM,#class=&AddPEtoItem);
 
       Send(self,@CreateOneSpellIfNew,#num=SID_CURSE_WEAPON,#class=&CurseWeapon);
       Send(self,@CreateOneSpellIfNew,#num=SID_PARDON,#class=&Pardon);
@@ -3345,6 +3361,7 @@ messages:
 
       Send(self,@CreateOneSpellIfNew,#num=SID_BLINK,#class=&Blink);
       Send(self,@CreateOneSpellIfNew,#num=SID_HEAT,#class=&Heat);
+      Send(self,@CreateOneSpellIfNew,#num=SID_FREEZING,#class=&Freezing);
       Send(self,@CreateOneSpellIfNew,#num=SID_PAGE,#class=&Page);
 
       Send(self,@CreateOneSpellIfNew,#num=SID_UNHOLY_RESOLVE,#class=&ResistGood);
@@ -3394,6 +3411,7 @@ messages:
       Send(self,@CreateOneSpellIfNew,#num=SID_NODEBURST,#class=&Nodeburst);
       Send(self,@CreateOneSpellIfNew,#num=SID_PURIFY,#class=&Purify);
       Send(self,@CreateOneSpellIfNew,#num=SID_ARMOR_OF_GORT,#class=&ArmorOfGort);
+      Send(self,@CreateOneSpellIfNew,#num=SID_MANA_SHIELD,#class=&ManaShield);
       Send(self,@CreateOneSpellIfNew,#num=SID_SAND_STORM,#class=&Sandstorm);
 
       Send(self,@CreateOneSpellIfNew,#num=SID_SHADOW_FORM,#class=&Shadowform);
@@ -3438,6 +3456,7 @@ messages:
       Send(self,@CreateOneSpellIfNew,#num=SID_DISPEL_ILLUSION,#class=&DispelIllusion);
       Send(self,@CreateOneSpellIfNew,#num=SID_TRUTH,#class=&Truth);
       Send(self,@CreateOneSpellIfNew,#num=SID_MORPH,#class=&Morph);
+      Send(self,@CreateOneSpellIfNew,#num=SID_MONSTER_MORPH,#class=&TransmogrifyMonster);
       Send(self,@CreateOneSpellIfNew,#num=SID_DENIAL,#class=&Denial);
       Send(self,@CreateOneSpellIfNew,#num=SID_ILLUSIONARY_WOUNDS,#class=&IllusionaryWounds);
       Send(self,@CreateOneSpellIfNew,#num=SID_PORTAL_OF_LIFE,#class=&PortalofLife);
@@ -3523,6 +3542,7 @@ messages:
       Send(self,@CreateOneSpellIfNew,#num=SID_CONVEYANCE,#class=&Conveyance);
 	   Send(self,@CreateOneSpellIfNew,#num=SID_TRANSFERENCE,#class=&Transference);
       Send(self,@CreateOneSpellIfNew,#num=SID_PHASE,#class=&Phase);
+      Send(self,@CreateOneSpellIfNew,#num=SID_APPRAISE,#class=&Appraise);
 	  
       Send(self,@CreateOneSpellIfNew,#num=SID_VAULT_LOADOUT,#class=&VaultLoadout);
 
@@ -3535,6 +3555,7 @@ messages:
       Send(self,@CreateOneSpellIfNew,#num=SID_CRAFTHAMMER,#class=&CraftHammer);
       Send(self,@CreateOneSpellIfNew,#num=SID_CRAFTCHAINARMOR,#class=&CraftChain);
       Send(self,@CreateOneSpellIfNew,#num=SID_CRAFTIVYCIRCLET,#class=&CraftIvyCirclet);
+      Send(self,@CreateOneSpellIfNew,#num=SID_CRAFTTHORNCIRCLET,#class=&CraftThornCirclet);
       Send(self,@CreateOneSpellIfNew,#num=SID_CRAFTLEATHERARMOR,#class=&CraftLeather);
       Send(self,@CreateOneSpellIfNew,#num=SID_CRAFTNERUDITESWORD,#class=&CraftNeruditeSword);
       Send(self,@CreateOneSpellIfNew,#num=SID_CRAFTSHORTSWORD,#class=&CraftShortSword);
@@ -3571,6 +3592,7 @@ messages:
       Send(self,@CreateOneSpellIfNew,#num=SID_CRAFTKNIGHTSHELMET,#class=&CraftKnightsHelmet);
       Send(self,@CreateOneSpellIfNew,#num=SID_CRAFTLIGHTMAGICROBES,#class=&CraftLightMagicRobes);
       Send(self,@CreateOneSpellIfNew,#num=SID_CRAFTWIZARDHAT,#class=&CraftWizardHat);
+      Send(self,@CreateOneSpellIfNew,#num=SID_ANNOUNCEMOB,#class=&AnnounceMob);
 
       return;
    }
@@ -3612,6 +3634,7 @@ messages:
       Send(self,@CreateOneItemAttIfNew,#num=IA_XP_KILL_BONUS,#class=&ItemAttXPKillBonus);
       Send(self,@CreateOneItemAttIfNew,#num=WA_PUNISHER,#class=&WeapAttPunisher);
       Send(self,@CreateOneItemAttIfNew,#num=IA_TRANSCENDANT,#class=&ItemAttTranscendant);
+      Send(self,@CreateOneItemAttIfNew,#num=IA_APPRAISE,#class=&ItemAttAppraise);
       Send(self,@CreateOneItemAttIfNew,#num=IA_SELL_INFO,#class=&ItemAttSellInfo);
       Send(self,@CreateOneItemAttIfNew,#num=IA_NEW_DESCRIPTION,#class=&ItemAttNewDescription);
       Send(self,@CreateOneItemAttIfNew,#num=IA_APPEND_DESCRIPTION,#class=&ItemAttAppendDescription);
@@ -3629,6 +3652,7 @@ messages:
       Send(self,@CreateOneItemAttIfNew,#num=IA_MADE,#class=&ItemAttMade);
       Send(self,@CreateOneItemAttIfNew,#num=IA_CRAFTED,#class=&ItemAttCrafted);
       Send(self,@CreateOneItemAttIfNew,#num=IA_INDESTRUCTIBLE,#class=&ItemAttIndestructible);
+	  Send(self,@CreateOneItemAttIfNew,#num=IA_NOTDROPPABLE,#class=&ItemAttNotDroppable);
 
       // Keep these last, it's called the most often
       Send(self,@CreateOneItemAttIfNew,#num=IA_PKPOINTER,#class=&ItemAttPKPointer);
@@ -4107,6 +4131,7 @@ messages:
       Create(&WormQueenTreasure);
 
       Create(&DarkAngelTreasure);
+      Create(&CowTreasure);
 
       Create(&ThrasherTreasure);
 
@@ -5593,6 +5618,7 @@ messages:
       plMonsterTemplates = cons(create(&NeruElemental),plMonsterTemplates);
       plMonsterTemplates = cons(create(&NeruElementalChampion),plMonsterTemplates);
       plMonsterTemplates = cons(create(&EarthDragon),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&IceDragon),plMonsterTemplates);
 
       plMonsterTemplates = cons(create(&Mimic),plMonsterTemplates);
       plMonsterTemplates = cons(create(&BlackDragon),plMonsterTemplates);
@@ -5716,7 +5742,6 @@ messages:
       plItemTemplates = cons(create(&SanctuaryKey),plItemTemplates);
       plItemTemplates = cons(create(&Key),plItemTemplates);
       plItemTemplates = cons(create(&BarloqueKey),plItemTemplates);
-      plItemTemplates = cons(create(&BasementKey),plItemTemplates);
       plItemTemplates = cons(create(&CastleKey),plItemTemplates);
       plItemTemplates = cons(create(&CorNothKey),plItemTemplates);
       plItemTemplates = cons(create(&SewerKey),plItemTemplates);
@@ -5816,6 +5841,10 @@ messages:
       plItemTemplates = cons(create(&TrollMask),plItemTemplates);
       plItemTemplates = cons(create(&StoneTrollMask),plItemTemplates);
       plItemTemplates = cons(create(&KriipaMask),plItemTemplates);
+      plItemTemplates = cons(create(&PumpkinMask),plItemTemplates);
+      plItemTemplates = cons(create(&PlagueMask),plItemTemplates);
+      plItemTemplates = cons(create(&HornedSkullMask),plItemTemplates);
+      plItemTemplates = cons(create(&ForestMask),plItemTemplates);
 
       plItemTemplates = cons(create(&FarenCharm),plItemTemplates);
       plItemTemplates = cons(create(&RiijaCharm),plItemTemplates);
@@ -5832,9 +5861,13 @@ messages:
       plItemTemplates = cons(create(&ShieldGift),plItemTemplates);
       plItemTemplates = cons(create(&MageGift),plItemTemplates);
       plItemTemplates = cons(create(&DeathRealmWeaponGift),plItemTemplates);
+      plItemTemplates = cons(create(&DWeaponsGift),plItemTemplates);
       plItemTemplates = cons(create(&DeathRealmArmorGift),plItemTemplates);
       plItemTemplates = cons(create(&MaskGift),plItemTemplates);
+      plItemTemplates = cons(create(&DMaskGift),plItemTemplates);
       plItemTemplates = cons(create(&InstrumentGift),plItemTemplates);
+      plItemTemplates = cons(create(&ClothesGift),plItemTemplates);
+      plItemTemplates = cons(create(&DeathRegsGift),plItemTemplates);
 
       // Scrolls
       plItemTemplates = cons(create(&DarknessScroll),plItemTemplates);
@@ -5978,6 +6011,7 @@ messages:
       plItemTemplates = cons(create(&Sapphire),plItemTemplates);
       plItemTemplates = cons(create(&Emerald),plItemTemplates);
       plItemTemplates = cons(create(&BlueDragonScale),plItemTemplates);
+      plItemTemplates = cons(create(&IceDragonScale),plItemTemplates);
       plItemTemplates = cons(create(&DarkAngelFeather),plItemTemplates);
       plItemTemplates = cons(create(&Fairywing),plItemTemplates);
       plItemTemplates = cons(create(&OrcTooth),plItemTemplates);
@@ -5992,6 +6026,8 @@ messages:
       plItemTemplates = cons(create(&EntrootBerry),plItemTemplates);
       plItemTemplates = cons(create(&Elderberry),plItemTemplates);
       plItemTemplates = cons(create(&Herbs),plItemTemplates);
+
+      //Death Realm Reagents
       plItemTemplates = cons(create(&BlackHydraHead),plItemTemplates);
       plItemTemplates = cons(create(&BrownDragonScale),plItemTemplates);
       plItemTemplates = cons(create(&GoldHydraHead),plItemTemplates);
@@ -6004,6 +6040,22 @@ messages:
       plItemTemplates = cons(create(&RedHydraScale),plItemTemplates);
       plItemTemplates = cons(create(&BlackDragonScale),plItemTemplates);
       plItemTemplates = cons(create(&TyrantHorns),plItemTemplates);
+
+      //Crafting Reagents
+      plItemTemplates = cons(create(&DenseWood),plItemTemplates);
+      plItemTemplates = cons(create(&DenseLumber),plItemTemplates);
+      plItemTemplates = cons(create(&TrollHide),plItemTemplates);
+      plItemTemplates = cons(create(&Leather),plItemTemplates);
+      plItemTemplates = cons(create(&Wood),plItemTemplates);
+      plItemTemplates = cons(create(&Lumber),plItemTemplates);
+      plItemTemplates = cons(create(&NeruditeIngot),plItemTemplates);
+      plItemTemplates = cons(create(&IronIngot),plItemTemplates);
+      plItemTemplates = cons(create(&RawSilk),plItemTemplates);
+      plItemTemplates = cons(create(&SilkThread),plItemTemplates);
+      plItemTemplates = cons(create(&KriipaHide),plItemTemplates);
+      plItemTemplates = cons(create(&KriipaLeather),plItemTemplates);
+      plItemTemplates = cons(create(&IronOre),plItemTemplates);
+      plItemTemplates = cons(create(&NeruditeOre),plItemTemplates);
 
       // Edibles
       plItemTemplates = cons(create(&KocatanMug),plItemTemplates);
@@ -6040,12 +6092,31 @@ messages:
       plItemTemplates = cons(create(&Gingermen),plItemTemplates);
       plItemTemplates = cons(create(&CougarBrew),plItemTemplates);
 
+      //Cooking foods
+      plItemTemplates = cons(create(&RawSteak),plItemTemplates);
+      plItemTemplates = cons(create(&Tomato),plItemTemplates);
+      plItemTemplates = cons(create(&CutTomato),plItemTemplates);
+      plItemTemplates = cons(create(&Banana),plItemTemplates);
+      plItemTemplates = cons(create(&Cucumber),plItemTemplates);
+      plItemTemplates = cons(create(&Eggs),plItemTemplates);
+      plItemTemplates = cons(create(&Onion),plItemTemplates);
+      plItemTemplates = cons(create(&Oats),plItemTemplates);
+      plItemTemplates = cons(create(&Broccoli),plItemTemplates);
+      plItemTemplates = cons(create(&EarCorn),plItemTemplates);
+      plItemTemplates = cons(create(&Watermelon),plItemTemplates);
+      plItemTemplates = cons(create(&Carrot),plItemTemplates);
+      plItemTemplates = cons(create(&Potatoes),plItemTemplates);
+      plItemTemplates = cons(create(&WatermelonSlice),plItemTemplates);
+      plItemTemplates = cons(create(&Flour),plItemTemplates);
+      plItemTemplates = cons(create(&RawChicken),plItemTemplates);
+
       // Head
       plItemTemplates = cons(create(&Helm),plItemTemplates);
       plItemTemplates = cons(create(&SimpleHelm),plItemTemplates);
       plItemTemplates = cons(create(&QormasHelm),plItemTemplates);
       plItemTemplates = cons(create(&IvyCirclet),plItemTemplates);
       plItemTemplates = cons(create(&Circlet),plItemTemplates);
+      plItemTemplates = cons(create(&ThornCirclet),plItemTemplates);
 	   plItemTemplates = cons(create(&DaemonHelm),plItemTemplates);
       plItemTemplates = cons(create(&KnightsHelm),plItemTemplates);
       plItemTemplates = cons(create(&LegionHelm),plItemTemplates);
@@ -6140,21 +6211,6 @@ messages:
       plItemTemplates = cons(create(&PilgrimHat),plItemTemplates);
       plItemTemplates = cons(create(&IndianHat),plItemTemplates);
 
-      //Crafting Reagents
-      plItemTemplates = cons(create(&DenseWood),plItemTemplates);
-      plItemTemplates = cons(create(&DenseLumber),plItemTemplates);
-      plItemTemplates = cons(create(&TrollHide),plItemTemplates);
-      plItemTemplates = cons(create(&Leather),plItemTemplates);
-      plItemTemplates = cons(create(&Wood),plItemTemplates);
-      plItemTemplates = cons(create(&Lumber),plItemTemplates);
-      plItemTemplates = cons(create(&NeruditeIngot),plItemTemplates);
-      plItemTemplates = cons(create(&IronIngot),plItemTemplates);
-      plItemTemplates = cons(create(&RawSilk),plItemTemplates);
-      plItemTemplates = cons(create(&SilkThread),plItemTemplates);
-      plItemTemplates = cons(create(&KriipaHide),plItemTemplates);
-      plItemTemplates = cons(create(&KriipaLeather),plItemTemplates);
-      plItemTemplates = cons(create(&IronOre),plItemTemplates);
-      plItemTemplates = cons(create(&NeruditeOre),plItemTemplates);
       
       //Crafting tools
       plItemTemplates = cons(create(&DrawKnife),plItemTemplates);
@@ -6166,6 +6222,8 @@ messages:
       plItemTemplates = cons(create(&XPScroll),plItemTemplates);
       plItemTemplates = cons(create(&UBScroll),plItemTemplates);
       plItemTemplates = cons(create(&TPScroll),plItemTemplates);
+      plItemTemplates = cons(create(&tradebond),plItemTemplates);
+      plItemTemplates = cons(create(&TpTranferScroll),plItemTemplates);
       
       //Dye Stuff
       plItemTemplates = cons(create(&DyeBottle),plItemTemplates);
@@ -6842,65 +6900,14 @@ messages:
 
    ResetNaughtyWords()
    {
-      plNaughtyWords = ["fuck", "shit", "asshole", "cocksuck", "cunt", "penis",
-                        "vagina", "faggot", "nigger"
-                       ];
+      plNaughtyWords = ["fuck", "shit", "asshole", "cocksuck", "cunt", "faggot", "nigger", "bitch" ];
 
       return;
    }
 
    ResetRetiredNames()
    {
-      plRetiredNames = [ "Zaphod", "Zandramas" ]; 
-
-      plRetiredNames = cons("Zjiria",plRetiredNames);
-      plRetiredNames = cons("Q",plRetiredNames);
-      plRetiredNames = cons("Lady Jane",plRetiredNames);
-      plRetiredNames = cons("Regifan Du Bukise",plRetiredNames);
-      plRetiredNames = cons("Rhinosharkus",plRetiredNames);
-      plRetiredNames = cons("Tonto",plRetiredNames);
-      plRetiredNames = cons("Zangus Dixon",plRetiredNames);
-      plRetiredNames = cons("Mosiah",plRetiredNames);
-      plRetiredNames = cons("Mocker",plRetiredNames);
-      plRetiredNames = cons("Satin",plRetiredNames);
-      plRetiredNames = cons("Greenwich",plRetiredNames);
-      plRetiredNames = cons("Xian",plRetiredNames);
-      plRetiredNames = cons("Gort",plRetiredNames);
-      plRetiredNames = cons("Aphasia",plRetiredNames);
-      plRetiredNames = cons("Tendar",plRetiredNames);
-      plRetiredNames = cons("Vertigo",plRetiredNames);
-      plRetiredNames = cons("Omar",plRetiredNames);
-      plRetiredNames = cons("Bromm",plRetiredNames);
-      plRetiredNames = cons("Cat",plRetiredNames);
-      plRetiredNames = cons("Henry V",plRetiredNames);
-      plRetiredNames = cons("King Richard",plRetiredNames);
-      plRetiredNames = cons("Altir",plRetiredNames);
-      plRetiredNames = cons("Zardos",plRetiredNames);
-      plRetiredNames = cons("Zendar",plRetiredNames);
-      plRetiredNames = cons("Zwei",plRetiredNames);
-      plRetiredNames = cons("Zarea",plRetiredNames);
-      plRetiredNames = cons("Gandalf",plRetiredNames);
-      plRetiredNames = cons("Zathras",plRetiredNames);
-      plRetiredNames = cons("Detson",plRetiredNames);
-      plRetiredNames = cons("Geist",plRetiredNames);
-      plRetiredNames = cons("Gemini",plRetiredNames);
-      plRetiredNames = cons("Kyrra",plRetiredNames);
-      plRetiredNames = cons("Kana",plRetiredNames);
-      plRetiredNames = cons("ReQuiem",plRetiredNames);
-      plRetiredNames = cons("Izual",plRetiredNames);
-      plRetiredNames = cons("Prego",plRetiredNames);
-      plRetiredNames = cons("Thumper",plRetiredNames);
-      plRetiredNames = cons("Da Man",plRetiredNames);
-      plRetiredNames = cons("Alix",plRetiredNames);
-      plRetiredNames = cons("Psychochild",plRetiredNames);
-      plRetiredNames = cons("Aythya",plRetiredNames);
-      plRetiredNames = cons("Sif",plRetiredNames);
-      plRetiredNames = cons("Jinx",plRetiredNames);
-      plRetiredNames = cons("Sher Kahn",plRetiredNames);
-      plRetiredNames = cons("Bael",plRetiredNames);
-      plRetiredNames = cons("Kimo",plRetiredNames);
-      plRetiredNames = cons("Sol",plRetiredNames);
-      plRetiredNames = cons("Corliss",plRetiredNames);
+      plRetiredNames = ["Zaphod", "Zandramas", "Zjiria", "Q", "Mocker", "Psychochild" ]; 
 
       return;
    }
@@ -8634,6 +8641,21 @@ messages:
       }
 
       return;
+   }
+
+   SetupPlayerMarket()
+   {
+      if poPlayerMarket = $
+      {
+         poPlayerMarket = Create(&PlayerMarket);
+      }
+      
+      return;
+   }
+
+   GetPlayerMarket()
+   {
+      return poPlayerMarket;
    }
 
 end

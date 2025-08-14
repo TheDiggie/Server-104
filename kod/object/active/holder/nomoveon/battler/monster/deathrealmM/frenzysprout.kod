@@ -53,8 +53,6 @@ classvars:
 properties:
 
    piAnimation = ANIM_NONE
-
-   poCurrency = &Shillings
    
 messages:
 

@@ -81,6 +81,18 @@ messages:
       return First(state) % 100;
    }
 
+   CanPayCosts(who = $)
+   {
+      if IsClass(Send(who,@GetOwner),&GuildHall)
+      {
+         Send(who,@MsgSendUser,#message_rsc=spell_bad_location,#parm1=vrName);
+
+         return FALSE;
+      }
+
+      propagate;
+   }
+
    CastSpell(who = $, iSpellPower = 0)
    "Initiation point for the spell."
    {

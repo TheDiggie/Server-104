@@ -88,7 +88,9 @@ properties:
    piSwitched = 0
 
    ptDoor = $
-   ptNecroDoor = $
+   ptNecroDoor1 = $
+   ptNecroDoor2 = $
+   ptNecroDoor3 = $
 
    pbDoorDownActive = TRUE
 
@@ -114,10 +116,22 @@ messages:
          ptDoor = $;
       }
 
-      if ptNecroDoor <> $
+      if ptNecroDoor1 <> $
       {
-         DeleteTimer(ptNecroDoor);
-         ptNecroDoor = $;
+         DeleteTimer(ptNecroDoor1);
+         ptNecroDoor1 = $;
+      }
+
+      if ptNecroDoor2 <> $
+      {
+         DeleteTimer(ptNecroDoor2);
+         ptNecroDoor2 = $;
+      }
+
+      if ptNecroDoor3 <> $
+      {
+         DeleteTimer(ptNecroDoor3);
+         ptNecroDoor3 = $;
       }
 
       propagate;
@@ -261,15 +275,15 @@ messages:
 
       // Password for the Necro door.
       if StringEqual(string,MarionCrypt1_venyacyr)
-         AND ptNecroDoor = $
+         AND ptNecroDoor1 = $
          //AND Check for location?
       {
          Send(self,@OpenNecroCeiling);
-         Send(self,@OpenNecroFloor);
+         ptNecroDoor1 = CreateTimer(self,@OpenNecroFloor,3000);
 
          Send(self,@SomethingWaveRoom,#wave_rsc=MarionCrypt1_door1_rsc);
 
-         ptNecroDoor = CreateTimer(self,@NecroDoorTimer,NECRO_DOOR_CLOSE_DELAY);
+         ptNecroDoor2 = CreateTimer(self,@NecroDoorTimer,NECRO_DOOR_CLOSE_DELAY);
       }
 
       propagate;
@@ -295,6 +309,7 @@ messages:
 
    OpenNecroFloor()
    {
+      Send(self,@SomethingWaveRoom,#wave_rsc=MarionCrypt1_door1_rsc);
       Send(self,@SetSector,#sector=SECTOR_NECRO1,#animation=ANIMATE_FLOOR_LIFT,
             #height=424,#speed=8);
       Send(self,@SetSector,#sector=SECTOR_NECRO2,#animation=ANIMATE_FLOOR_LIFT,
@@ -305,7 +320,7 @@ messages:
 
    NecroDoorTimer()
    {
-      ptNecroDoor = $;
+      ptNecroDoor2 = $;
       Send(self,@CloseNecroDoor);
 
       return;
@@ -313,14 +328,8 @@ messages:
 
    CloseNecroDoor()
    {
-      if ptNecroDoor <> $
-      {
-         DeleteTimer(ptNecroDoor);
-         ptNecroDoor = $;
-      }
-
       Send(self,@CloseNecroCeiling);
-      Send(self,@CloseNecroFloor);
+      ptNecroDoor3 = CreateTimer(self,@CloseNecroFloor,3000);
 
       Send(self,@SomethingWaveRoom,#wave_rsc=MarionCrypt1_door1_rsc);
 
@@ -339,6 +348,7 @@ messages:
 
    CloseNecroFloor()
    {
+      Send(self,@SomethingWaveRoom,#wave_rsc=MarionCrypt1_door1_rsc);
       Send(self,@SetSector,#sector=SECTOR_NECRO1,#animation=ANIMATE_FLOOR_LIFT,
             #height=458,#speed=16);
       Send(self,@SetSector,#sector=SECTOR_NECRO2,#animation=ANIMATE_FLOOR_LIFT,
@@ -415,8 +425,6 @@ messages:
    {
       ptDoor = $;
 
-      Send(self,@CloseFinalDoor,#speed=128);
-
       Send(poLever1,@SetSwitched,#switched=FALSE);
       Send(poLever2,@SetSwitched,#switched=FALSE);
 
@@ -427,11 +435,9 @@ messages:
    {
       ptDoor = $;
 
-      if Send(self,@CountInFinal,#count=COUNT_PLAYERS) = 0
+      if send(self,@CountInFinal,#count=COUNT_MONSTERS) = 0
       {
          Send(self,@ResetFinal);
-
-         return;
       }
       
       ptDoor = CreateTimer(self,@FightTimer,FIGHT_TIME);
@@ -450,8 +456,13 @@ messages:
       Send(poLever1,@SetSwitched,#switched=FALSE);
       Send(poLever2,@SetSwitched,#switched=FALSE);
 
-      Send(self,@CloseDoorDown);
-      Send(self,@CloseFinalDoor,#speed=32);
+
+      if Send(self,@CountInFinal,#count=COUNT_PLAYERS) = 0
+      {
+         Send(self,@CloseDoorDown);
+         Send(self,@CloseFinalDoor,#speed=32);
+      }
+
 
       Send(self,@ResetMonstersInFinal);
 
@@ -510,7 +521,7 @@ messages:
       {
          each_obj = First(i);
          if count = COUNT_MONSTERS
-               AND IsClass(each_obj,&Monster)
+               AND (IsClass(each_obj,&Monster) AND NOT IsClass(each_obj,&Reflection))
             OR count = COUNT_PLAYERS
                AND IsClass(each_obj,&User)
          {
@@ -586,9 +597,9 @@ messages:
    CloseDoorDown()
    {
       Send(self,@SetSector,#sector=SECTOR_EXIT1,#animation=ANIMATE_CEILING_LIFT,
-            #height=200,#speed=16);
+            #height=200,#speed=32);
       Send(self,@SetSector,#sector=SECTOR_EXIT2,#animation=ANIMATE_CEILING_LIFT,
-            #height=88,#speed=16);
+            #height=88,#speed=32);
 
       return;
    }

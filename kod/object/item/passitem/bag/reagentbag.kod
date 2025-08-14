@@ -22,7 +22,8 @@ resources:
    ReagentBag_icon_rsc = baghold.bgf
 
    ReagentBag_desc_rsc = "This lumpy reagent bag is magical in nature, and able to "
-   "hold large amounts of objects that themselves have inherent power."
+                         "hold large amounts of objects that themselves have inherent power. "
+                         "This box will reduce the weight and bulk of reagents by 75%. "
 
 classvars:
 

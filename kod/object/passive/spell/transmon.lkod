@@ -1,0 +1,7 @@
+transmon_name_rsc = pt "transmogrificar monstro"
+transmon_desc_rsc = pt "Distorce uma criatura em outro monstro. Requer musgo de teia e samambaia arco-íris."
+transmon_cast_rsc = pt "%s%s se deforma e se torna %s%s!"
+transmon_bad_target = pt "Você só pode transmogrificar um monstro vivo."
+
+
+

@@ -30,7 +30,8 @@ resources:
       "This place shouldn't be reachable from your realm, it's not safe here. Luckily I was "
       "able to redirect your spirit here. This temple is the only safe place from the monsters "
       "that roam this realm. There's no doubt the former king Far'Nohl is responsible for this. You'll "
-      "need to find out if he has a way to get you back to the mortal realm. I wish you luck.''"
+      "need to find out if he has a way to get you back to the mortal realm. Go and ask the towns people"
+      " for '~g~BHelp'~B~r.''"
 
    DeathRealm_cant_enter = \
       "This portal leads to a unforgiving realm. Those to weak to fight mortals have no business there. "
@@ -102,8 +103,6 @@ messages:
 
       Send(what,@MsgSendUser,#message_rsc=DeathRealm_entrance_enter);
       propagate;
-
-      return;
    }
 
    PortalDisappear()

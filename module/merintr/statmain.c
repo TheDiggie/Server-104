@@ -18,6 +18,8 @@
 #include "client.h"
 #include "merintr.h"
 
+#define STAT_HP 1
+#define STAT_MP 2 
 #define STAT_VIGOR 3         // Position in main stat group of vigor stat
 #define STAT_XP    4         // Position of XP bar in main stat group
 
@@ -132,6 +134,10 @@ void StatsMainChange(Statistic *s)
    int old_vigor;
 
    SendMessage(s->hControl, GRPH_RANGESET, s->numeric.min, s->numeric.max);
+   
+   if (s->num == STAT_HP || s->num == STAT_MP)
+	   SendMessage(s->hControl, GRPH_RANGESET, s->numeric.min, s->numeric.current_max);
+   
    SendMessage(s->hControl, GRPH_POSSET, 0, s->numeric.value);
    if (s->num == STAT_XP)
       SendMessage(s->hControl, GRPH_LIMITSET, 0, 0);

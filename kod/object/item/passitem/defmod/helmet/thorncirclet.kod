@@ -1,0 +1,116 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+ThornCirclet is Helmet
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   ThornCirclet_name_rsc = "thorn circlet"
+   ThornCirclet_icon_rsc = thocircl.bgf
+   ThornCirclet_desc_rsc = \
+      "Thorny vines of poison ivy are wrapped around a splintered wreath.  "
+      "This looks like it would be unpleasant against your brow."
+
+   ThornCirclet_cant = \
+      "The thorn circlet stubbornly resists your attempts to place it on your brow. Only followers of Qor may use this. "
+
+   ThornCirclet_overlay_rsc = thocirclov.bgf
+
+classvars:
+
+   vrName = ThornCirclet_name_rsc
+   vrIcon = ThornCirclet_icon_rsc
+   vrDesc = ThornCirclet_desc_rsc
+
+   viHits_init_min = 255
+   viHits_init_max = 450
+
+   viValue_average = 8000
+   viWeight = 10
+   viBulk = 20
+
+   viUse_type = ITEM_USE_HEAD
+   viUse_amount = 1
+
+   viGround_group = 1
+   viInventory_group = 2
+
+   // This is the default value for piDefense_bonus
+   viDefense_base = 10
+
+   viLayer = 2
+
+properties:
+
+   piMana_change = 0
+   piHealth_change = 0
+
+messages:
+
+   GetOverlay(animation = $)
+   {
+      // Uses different file for the overlay.
+      return ThornCirclet_overlay_rsc;
+   }
+
+   GetResistanceModifiers()
+   {
+      return [ [-ATCK_SPELL_FIRE,-10],
+               [-ATCK_SPELL_HOLY,-15],
+               [-ATCK_SPELL_UNHOLY,15]
+             ];
+   }
+
+   ReqUse()
+   {
+      local i, oSpell, oFound;
+
+      oFound = FALSE;
+
+      if poOwner <> $
+      {
+         foreach i in Send(poOwner,@GetSpellList)
+         {
+            oSpell = Send(SYS,@FindSpellByNum,
+                           #num=Send(poOwner,@DecodeSpellNum,#compound=i));
+            if Send(oSpell,@GetSchool) = SS_QOR
+            {
+               oFound = TRUE;
+
+               break;
+            }
+         }
+
+         if oFound = FALSE
+         {
+            Send(poOwner,@MsgSendUser,#message_rsc=ThornCirclet_cant);
+            return FALSE;
+         }
+		}
+
+      propagate;
+   }
+
+   GetBaseSpellModifier(oSpell=$)
+   {
+      if Send(oSpell,@GetSchool) = SS_QOR
+      {
+         return 15;
+      }
+
+      return 0;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -113,6 +113,17 @@ messages:
          return;
       }
 
+      // Limit reflections.
+      if (Send(self,@CountPlayerReflections,#who=who)
+         >= Send(SETTINGS_OBJECT,@GetPlayerReflectionLimit))
+         AND NOT (IsClass(who,&DM)
+            AND Send(who,@PlayerIsImmortal))
+      {
+         Send(who,@MsgSendUser,#message_rsc=summonreflection_limit_rsc);
+         
+		 return FALSE;
+      }
+
       oReflection = Create(&Reflection,#iSpellpower=iSpellpower,#oMaster=who);
       Send(oReflection,@SetOriginal,#who=who);
 

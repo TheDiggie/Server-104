@@ -1,0 +1,112 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+//////////////////////////S///////////////////////////////////////////////////////
+ManaShield is PersonalEnchantment
+
+constants:
+
+   include blakston.khd
+
+resources:
+   include manashield.lkod
+
+   ManaShield_name_rsc = "mana shield"
+   ManaShield_icon_rsc = imanashld.bgf
+   ManaShield_desc_rsc = \
+      "Surrounds the caster with a powerful field which mitigates "
+      "damage as long as you have mana.  "
+      "Requires five blue dragon scales to cast, five kriipa claws and five vials of solagh."
+   ManaShield_enchantment_rsc = \
+      "\n\nYour mana shield enchantment reduces damage as long as you have mana"
+    
+   ManaShield_already_enchanted_rsc = "You already have a mana shield."
+
+   ManaShield_on_rsc = \
+      "Your skin tingles as the mana shield forms around you."
+   ManaShield_off_rsc = "Your mana shield dissipates."
+   ManaShield_success_rsc = \
+      "%s%s's skin tingles as the mana shield forms."
+
+   ManaShield_spell_intro = \
+      "Kraanan Level 5: Magical armor that protects the caster."
+
+classvars:
+
+   vrName = ManaShield_name_rsc
+   vrIcon = ManaShield_icon_rsc
+   vrDesc = ManaShield_desc_rsc
+
+   vrAlreadyEnchanted = ManaShield_already_enchanted_rsc
+   vrEnchantment_On = ManaShield_On_rsc
+   vrEnchantment_Off = ManaShield_Off_rsc
+   vrSuccess = ManaShield_Success_rsc
+
+   viSpell_num = SID_MANA_SHIELD
+
+   vrSpell_intro = ManaShield_spell_intro
+
+   viMana = 20
+
+   viSpell_level = 5
+   viSchool = SS_FAREN
+
+   viChance_To_Increase = 20
+   viMeditate_ratio = 50
+   viFlash = FLASH_GOOD_SELF
+   vbCanCastonOthers = FALSE
+   viDefensive = TRUE
+   vbCanCancelEnchantment = TRUE
+   viManaDrain = 1
+
+properties:
+
+   // The effectiveness of purge on the target spell as a percentage.
+   // 100 will cause purge to remove its entire spellpower, 0 will
+   // prevent purge from removing this spell.
+   viPurgeFactor = 0
+
+messages:
+
+   ResetReagents()
+   {
+      plReagents = $;
+      plReagents = Cons([&KriipaClaw,5],plReagents);
+      plReagents = Cons([&BlueDragonScale,5],plReagents);
+      plReagents = Cons([&Solagh,5],plReagents);
+      return;
+   }
+
+   GetDuration(iSpellPower=0)
+   {
+      local iDuration;
+
+      iDuration = iSpellPower/8 + 1;
+      // Convert to milliseconds
+      iDuration = iDuration * 60 * 1000;
+
+      return iDuration;
+   }
+
+   GetStateValue(who=$,iSpellPower=0,Target=$)
+   {
+      Send(Target,@AddDefenseModifier,#what=self);
+
+      return iSpellPower;
+   }
+
+   EndEnchantment(who=$,report=TRUE,state=0)
+   {
+      Send(who,@RemoveDefenseModifier,#what=self);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

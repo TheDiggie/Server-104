@@ -8,7 +8,7 @@
 
 
 /////////////////////////////////////////////////////////////////////////////////
-TosInnCellar is TosRoom
+TosInnCellar is MonsterRoom
 
 constants:
 
@@ -29,7 +29,6 @@ classvars:
    viTerrain_type = TERRAIN_CITY
 
 properties:
-   viPermanent_flags = ROOM_NO_COMBAT
 
    prRoom = room_TosInnCellar
    piRoom_num = RID_TOS_INN_CELLAR
@@ -41,6 +40,16 @@ properties:
    piBaseLight = LIGHT_NICE
 
 messages:
+
+   Constructed()
+   {
+      plMonsters = [ [&SmallRat, 100] ];
+
+      plGenerators = [ [9, 9  ], [9, 7], [6, 7],
+                       [4, 3], [4, 6], [4, 9]];
+
+      propagate;
+   }
 
    CreateStandardExits()
    {

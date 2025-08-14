@@ -522,6 +522,9 @@
    RID_MAR_ELDER_HUT = 203
    RID_MAR_HALL = 204
    RID_MAR_HEALER_SHOP = 205
+   RID_MARION_PLAN = 206
+   RID_PLANTHOUSE = 207
+   RID_MARION_PLAN_WORKER1 = 208
 
    // Raza, 300-349
    RID_RAZA = 300
@@ -746,6 +749,7 @@
    RID_GUILDH14 = 714
    RID_GUILDH15 = 715
    RID_GUILDH16 = 716
+   RID_GUILDH17 = 717
 
    RID_INNERSAN = 749
 
@@ -841,6 +845,11 @@
    RID_DESERTSHORE4 = 1524
    RID_DESERTOASIS = 1525
    RID_DESERTMAZEENTRANCE = 1526
+
+   //Maze Rooms
+   RID_MAZE             = 1600
+   RID_MAZEFOYER        = 1601
+   RID_MAZEFOYER2       = 1602
 
    // Settlement and Island 2000-2499
    // Needs to be seperate so it counts as a different 'zone'
@@ -981,21 +990,22 @@
    RID_TOSAREN2 = 73
 
    // Barloque
-   RID_BARLN = 101
-   RID_BARLS = 102
-   RID_BARLBAR1 = 103
-   RID_BARAPOTH = 104
-   RID_BARHALL = 105
-   RID_BARINN = 106
-   RID_BARLPORT = 107
-   RID_BARLSEW = 108
-   RID_BARMERCH = 109
-   RID_BARLSEW2 = 111
-   RID_BARLSEW3 = 112
-   RID_BARSMITH = 113
-   RID_BARVAULT = 114
-   RID_BARCOURT = 115
-   RID_BARJAIL =  116
+   RID_BARLN      = 101
+   RID_BARLS      = 102
+   RID_BARLBAR1   = 103
+   RID_BARAPOTH   = 104
+   RID_BARHALL    = 105
+   RID_BARINN     = 106
+   RID_BARLPORT   = 107
+   RID_BARLSEW    = 108
+   RID_BARMERCH   = 109
+   RID_BARLSEW2   = 111
+   RID_BARLSEW3   = 112
+   RID_BARSMITH   = 113
+   RID_BARVAULT   = 114
+   RID_BARCOURT   = 115
+   RID_BARJAIL    = 116
+   RID_BAR_MARKET = 117
 
    // Cor Noth
    RID_CORGROC = 151
@@ -1700,6 +1710,7 @@
    MOB_ROLE_SCHOLAR        = 0x16
    MOB_ROLE_WIZARD         = 0x17
    MOB_ROLE_BARD           = 0x18
+   MOB_ROLE_PMARKET        = 0x19
 
    // Monster behaviors, or "states"
    STATE_LIMBO       = 0x00001
@@ -1945,12 +1956,12 @@
    TID_FOLLOWER_OF_QOR = 120
    TID_FRENZY_SPROUT = 121
    TID_HELL_WASP = 122
-   TID_REVENANT_B = 123
 
    TID_TROLL_CORPSE = 124
    TID_KRIIPA_CORPSE = 125
 
    TID_BLACK_DRAGON = 126
+   TID_COW  = 127
    
    // English articles
 
@@ -2029,6 +2040,8 @@
    IA_XP_KILL_BONUS        = 22
    IA_CRAFTED              = 23
    IA_INDESTRUCTIBLE       = 24
+   IA_NOTDROPPABLE         = 25
+   IA_APPRAISE             = 26
 
    // Weapon Attributes.  These are attributes only applied to weapons.
    WA_TRAINING             = 51
@@ -2306,7 +2319,8 @@
    SID_DM_ITEMATT = 92
    SID_HOLY_BLAZE = 93
    SID_MARTYRS_GRACE = 94
-
+   SID_MANA_SHIELD = 95
+   SID_ANNOUNCEMOB = 96
    SID_REFLECTION = 99
    SID_SPIRITUAL_HAMMER = 100
    SID_APPARITION = 101
@@ -2399,9 +2413,15 @@
    SID_UNHOLY_TOUCH = 188
    SID_TRANSFERENCE = 189
    SID_SPIRITUAL_SWORD = 190
-   
    SID_VAULT_LOADOUT = 200
-
+   SID_FREEZING = 201
+   SID_ICESHARD = 202
+   SID_ICEWALL             = 241
+   SID_INDEST              = 242
+   SID_NODROP              = 253
+   SID_ADDPETOITEM         = 254
+   SID_APPRAISE            = 255
+   SID_MONSTER_MORPH       = 300
    
    //Crafting
    SID_CRAFTMACE           = 210
@@ -2445,9 +2465,10 @@
    SID_CRAFTKNIGHTSHELMET  = 250
    SID_CRAFTWIZARDHAT      = 251
    SID_CRAFTLIGHTMAGICROBES = 252
+   SID_CRAFTTHORNCIRCLET   = 256
+
+
    
-   SID_ICEWALL = 241
-   SID_INDEST  = 242
 
    // Depreciated spell IDs
    SID_LIGHTNING = 1                   // use SID_LIGHTNING_BOLT
@@ -3244,6 +3265,7 @@
    SHRINE_ISLAND     = 3
    SHRINE_BRAX       = 4
    SHRINE_FOREST     = 5
+   SHRINE_MARKET     = 6
 
    // Server types
 
@@ -3284,6 +3306,7 @@
    QNT_SUCCESS_HINT  = 10
    QNT_FAILURE_HINT  = 11
    QNT_TIME_LIMIT    = 12
+   QNT_AMOUNT_NEEDED = 13
 
    // Quest Template IDs
    QST_ID_NONE                   = 0
@@ -3362,6 +3385,13 @@
    QST_ID_PRINCESS_SOLDIER       = 73
    QST_ID_REBEL_SOLDIER          = 74
    QST_ID_ABSTAIN_PVP            = 75
+   QST_ID_FAMS_RATS              = 76
+   QST_ID_AVAR_KILL              = 77
+   QST_ID_CORNOTH_KEY            = 78
+   QST_ID_BARLOQUE_KEY           = 79
+   QST_ID_TOS_KEY                = 80
+   QST_ID_THRONEROOM_KEY         = 81
+   QST_ID_CASTLEVICTORIA_KEY     = 82
 
    // Quest Node Template IDs. Each quest has multple Quest Nodes.
    QNT_ID_DUKE_JOIN_ONE          = 1
@@ -3648,6 +3678,41 @@
 
    QNT_ID_ABSTAIN_PVP_ONE        = 217
    QNT_ID_ABSTAIN_PVP_TWO        = 218
+
+   QNT_ID_FAMS_RATS_ONE          = 219
+   QNT_ID_FAMS_RATS_TWO          = 220
+   QNT_ID_FAMS_RATS_THREE        = 221
+   QNT_ID_FAMS_RATS_FOUR         = 222
+   
+   QNT_ID_AVAR_KILL_ONE          = 223
+   QNT_ID_AVAR_KILL_TWO          = 224
+   QNT_ID_AVAR_KILL_THREE        = 225
+   QNT_ID_AVAR_KILL_FOUR         = 226
+
+   QNT_ID_CORNOTH_KEY_ONE        = 227
+   QNT_ID_CORNOTH_KEY_TWO        = 228
+   QNT_ID_CORNOTH_KEY_THREE      = 229
+   QNT_ID_CORNOTH_KEY_FOUR       = 230
+
+   QNT_ID_BARLOQUE_KEY_ONE        = 231
+   QNT_ID_BARLOQUE_KEY_TWO        = 232
+   QNT_ID_BARLOQUE_KEY_THREE      = 233
+   QNT_ID_BARLOQUE_KEY_FOUR       = 234
+
+   QNT_ID_TOS_KEY_ONE             = 235
+   QNT_ID_TOS_KEY_TWO             = 236
+   QNT_ID_TOS_KEY_THREE           = 237
+   QNT_ID_TOS_KEY_FOUR            = 238
+      
+   QNT_ID_THRONEROOM_KEY_ONE      = 239
+   QNT_ID_THRONEROOM_KEY_TWO      = 240
+   QNT_ID_THRONEROOM_KEY_THREE    = 241
+   QNT_ID_THRONEROOM_KEY_FOUR     = 242
+
+   QNT_ID_CASTLEVICTORIA_KEY_ONE  = 243
+   QNT_ID_CASTLEVICTORIA_KEY_TWO  = 244
+   QNT_ID_CASTLEVICTORIA_KEY_THREE = 245
+   QNT_ID_CASTLEVICTORIA_KEY_FOUR  = 246
 
    // Quest misc constants
 

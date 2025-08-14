@@ -18,10 +18,8 @@ resources:
 
    CorNothKey_name_rsc = "old Cor Noth key"
    CorNothKey_icon_rsc = key4.bgf
-   CorNothKey_desc_rsc = "This is a old golden key to the city."
-
-   CorNothKey_teleport      = "You unlock the door and walk threw."
-   CorNothKey_no_use        = "You don't see anything to use the key on."
+   CorNothKey_desc_rsc = \
+     "This is a old golden key to the city.\n It cannot be dropped or traded."
 
 classvars:
 
@@ -39,44 +37,38 @@ classvars:
 
 properties:
 
-
 messages:
 
-   ReqNewApply()
+   ReqNewApply(what=$)
+   {
+      Send(what,@MsgSendUser,#message_rsc=Key_no_use);
+   
+      return FALSE;
+   }
+
+   ReqNewOwner()
+   {
+      return FALSE;
+   }
+   
+   CanSwap()
+   {
+      return FALSE;
+   }
+
+   CanShatter()
+   {
+      return FALSE;
+   }
+
+   CanBeStoredInVault()   
    {
       return TRUE;
    }
 
-   NewApplied(what = $,apply_on = $)
+   DropOnDeath()
    {
-      local oRoom, oTown;
-      
-      oRoom = Send(SYS,@FindRoomByNum,#num=RID_DG4);
-      oTown = Send(SYS,@FindRoomByNum,#num=RID_DCORNOTH);
-      if Send(what,@GetOwner) = oRoom
-         AND Send(oRoom,@EnterLockedTown,#who=what)
-      {
-         Send(what,@MsgSendUser,#message_rsc=CorNothKey_teleport);
-         Send(Send(SYS,@FindRoomByNum,#num=RID_DCORNOTH),@Enter,#who=what);
-      }
-      else
-      {
-         oRoom = Send(SYS,@FindRoomByNum,#num=RID_DG5);
-         oTown = Send(SYS,@FindRoomByNum,#num=RID_DCORNOTH);
-         if Send(what,@GetOwner) = oRoom
-            AND Send(oRoom,@EnterLockedTown,#who=what)
-         {
-            Send(what,@MsgSendUser,#message_rsc=CorNothKey_teleport);
-            Send(Send(SYS,@FindRoomByNum,#num=RID_DCORNOTH),@Enterb,#who=what);
-         }
-         else
-         {
-             Send(what,@MsgSendUser,#message_rsc=CorNothKey_no_use);
-         }
-
-      }
-
-      return;
+      return FALSE;
    }
 
 end

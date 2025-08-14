@@ -46,7 +46,9 @@ messages:
 
    ReqNewApply(what = $,apply_on = $)
    {
-      if piSpellEnchantment = $
+      local ovSpell;
+ 
+	  if piSpellEnchantment = $
       {
          if Send(apply_on,@GetItemEnchantment) = $
          {
@@ -57,6 +59,21 @@ messages:
 
       if piSpellEnchantment = $
       {  
+         if (send(apply_on,@GetItemEnchantment)<>$)
+         {
+             ovSpell = send(apply_on,@GetItemEnchantment);
+             ovSpell = Send(SYS,@FindSpellByNum,#Num=ovSpell);
+		 
+            if (send(poOwner,@IsEnchanted,#what=ovSpell))
+            {
+                 send (poOwner,@RemoveEnchantment,#what=ovSpell);
+		
+                 return TRUE;
+            }		  
+			 
+             return TRUE; 
+        }
+		 
          return TRUE;
       }
 

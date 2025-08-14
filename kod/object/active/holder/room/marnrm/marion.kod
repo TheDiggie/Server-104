@@ -248,6 +248,10 @@ messages:
 
       plExits = Cons([ 80, 15, RID_MAR_CRYPT1, 11, 17, ROTATE_NONE ],plExits);
 
+      plEdge_Exits = $;
+
+      plEdge_Exits = Cons([ LEAVE_WEST, RID_MARION_PLAN, 55, 93, ROTATE_NONE ],plEdge_Exits);
+
       propagate;
    }
 

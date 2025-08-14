@@ -82,12 +82,42 @@ messages:
       return;
    }
 
+   CanPayCosts(who = $)
+   {
+      if IsClass(Send(who,@GetOwner),&GuildHall)
+      {
+         Send(who,@MsgSendUser,#message_rsc=spell_bad_location,#parm1=vrName);
+
+         return FALSE;
+      }
+
+      propagate;
+   }
+
    CastSpell( who = $, iSpellPower = 0 )
    "Initiation point for the spell."
    {
-      local oRoom, iPeriod;
+      local i, oSpell, oRoom, lEnchantments, iPeriod;
 
-      oRoom = Send(who,@GetOwner);
+      if isClass(who,&Room)
+      {
+         oRoom = who;
+      }
+      else
+      {
+         oRoom = Send(who,@GetOwner);
+      }
+
+      lEnchantments = Send(oRoom,@GetEnchantmentList);
+
+      foreach i in lEnchantments
+      {
+         oSpell = Nth(i,2);
+         if isClass(oSpell,&Freezing)
+         {
+            Send(oRoom,@RemoveEnchantment,#what=oSpell);
+         }
+      }
 
       Send(oRoom,@SomeoneSaid,#type=SAY_MESSAGE,#string=heat_on,#what=self);
 

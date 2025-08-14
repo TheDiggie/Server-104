@@ -41,6 +41,16 @@ properties:
 
 messages:
 
+   Killed()
+   {
+      if NOT IsClass(poOwner,&DeathRealm)
+      {
+         poCurrency = &Shillings;
+      }
+
+      propagate;
+   }
+
    IsDeathRealmMonster()
    {
        return TRUE;

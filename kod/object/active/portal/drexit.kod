@@ -44,10 +44,24 @@ messages:
    TeleportSomething(what=$)
    "Called when something walks on top of us."
    {
+      local i, each_obj;
+
+		foreach i in Send(what,@GetHolderPassive)
+      {
+         each_obj = Send(what,@HolderExtractObject,#data=i);
+         if IsClass(each_obj,&CorNothKey) 
+            OR IsClass(each_obj,&TosKey) 
+            OR IsClass(each_obj,&BarloqueKey) 
+            OR IsClass(each_obj,&Throne2Key) 
+            OR IsClass(each_obj,&CastleKey) 
+         {
+            Send(each_obj,@Delete);
+		   }
+		}
 
       Send(what,@MsgSendUser,#message_rsc=DeathRealm_exit_enter);
       Post(what,@AdminGoToSafety);
-
+      
       return;
    }
 

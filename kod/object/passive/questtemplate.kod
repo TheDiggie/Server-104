@@ -53,8 +53,10 @@ resources:
       "\n\nYou can complete this quest again in %r%r%r%r%r%r%r."
    questtemplate_outoftime_rsc = "\n\nYou are almost out of time!"
    questtemplate_infinite_rsc = "\n\nThis quest has no time limit."
+   Need_to_Kill = "\n\nYou need to slay %i more %s to complete the quest. "
 
    questtemplate_master_time_rsc = "%r%r"
+   questtemplate_master_time2_rsc = "%r%r%r"
 
    // General quest resources, used by multiple quests.
    letter_trigger = "need a courier"
@@ -224,7 +226,7 @@ messages:
    "handles the time remaining resource."
    {
       local iDeadline, iQNIndex, iTimeLeft, oQuestNode, lHistory,
-            iQuestHeader;
+            iQuestHeader, iType;
 
       if who = $
       {
@@ -238,7 +240,23 @@ messages:
       // Find out which quest node the player is on.
       oQuestNode = Send(who,@GetActiveQuestNode,#index=viQuestID);
 
-      AddPacket(4,questtemplate_master_time_rsc);
+      if oQuestNode <> $
+      {
+         iType = Send(Send(SYS,@GetQuestEngine),@GetQuestNodeType,#index=send(oQuestNode,@GetQuestNodeTemplateIndex));
+      
+         if iType = QN_TYPE_MONSTER
+         {
+            AddPacket(4,questtemplate_master_time2_rsc);
+         }
+         else
+         {
+            AddPacket(4,questtemplate_master_time_rsc);
+         }
+      }
+      else
+      {
+         AddPacket(4,questtemplate_master_time_rsc);
+      }
 
       if oQuestNode = $
       {
@@ -272,6 +290,11 @@ messages:
          else
          {
             iQuestHeader = TIME_RSC_HEADER_INFINITE;
+         }
+
+         if iType = QN_TYPE_MONSTER
+         {
+            Send(self,@AddKillsNeeded,#oQuestNode=oQuestNode);
          }
       }
 
@@ -339,6 +362,31 @@ messages:
       }
 
       AddPacket(4,questtemplate_time_header);
+
+      return;
+   }
+
+   AddKillsNeeded(oQuestNode=$)
+   {
+      local iType, iKilled, iNeeded;
+
+      iType = Send(Send(SYS,@GetQuestEngine),@GetQuestNodeType,
+                         #index=send(oQuestNode,@GetQuestNodeTemplateIndex));
+      iKilled = send(oQuestNode,@GetAmountKilled);
+      iNeeded = send(oQuestNode,@GetAmountNeeded);
+      
+      if iType = QN_TYPE_MONSTER  
+      {
+         if iKilled >= iNeeded
+         {
+            AddPacket(4,system_blank_resource);
+            return;
+         }
+         else
+         {
+            AddPacket(4,Need_to_Kill,4,iNeeded-iKilled,4,Send(Send(oQuestNode,@GetQuestMonster),@Getname));
+         }
+      }
 
       return;
    }

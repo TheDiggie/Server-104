@@ -59,6 +59,19 @@ properties:
 
 messages:
 
+   GetBaseSpellModifier(oSpell=$)
+   {
+      if Send(oSpell,@GetSchool) = SS_KRAANAN
+      {
+         return 15;
+      }
+      else 
+      {
+         return -15;
+      }
+
+      return 0;
+   }
 
 end
 ////////////////////////////////////////////////////////////////////////////////

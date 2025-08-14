@@ -71,15 +71,15 @@ messages:
 
       if new_row = iRow and new_col = iCol
       {
-	 if not Send(SYS,@UtilGoNearSquare,#what=what,
-		     #where=Send(SYS,@FindRoomByNum,#num=piDest_room),
-		     #new_row=piDest_row,#new_col=piDest_col,#max_distance=0,
-		     #do_move=False,#new_angle=piDest_angle,
-		     #fine_row=piDest_fine_row,#fine_col=piDest_fine_col)
-	 {
+	      if not Send(SYS,@UtilGoNearSquare,#what=what,
+	      	   #where=Send(SYS,@FindRoomByNum,#num=piDest_room),
+	      	   #new_row=piDest_row,#new_col=piDest_col,#max_distance=0,
+	      	   #do_move=False,#new_angle=piDest_angle,
+	      	   #fine_row=piDest_fine_row,#fine_col=piDest_fine_col)
+	      {
             Send(what,@MsgSendUser,#message_rsc=SpiderTree_move_req_no);
-	    return False;
-	 }
+	         return False;
+	      }
       }
 
       return True;
@@ -94,23 +94,23 @@ messages:
 
       if new_row = iRow and new_col = iCol
       {
-	 if what = self
-	 {
-	    return;
-	 }
+	      if what = self
+	      {
+	         return;
+	      }
 
-	 if not Send(SYS,@UtilGoNearSquare,#what=what,
-		     #where=Send(SYS,@FindRoomByNum,#num=piDest_room),
-		     #new_row=piDest_row,#new_col=piDest_col,#max_distance=3,
-		     #new_angle=piDest_angle,		     
-		     #fine_row=piDest_fine_row,#fine_col=piDest_fine_col)
-	 {
-            debug("SpiderTree",self,"unable to move",what);
-	 }
+	      if not Send(SYS,@UtilGoNearSquare,#what=what,
+	      	     #where=Send(SYS,@FindRoomByNum,#num=piDest_room),
+	      	     #new_row=piDest_row,#new_col=piDest_col,#max_distance=3,
+	      	     #new_angle=piDest_angle,		     
+	      	     #fine_row=piDest_fine_row,#fine_col=piDest_fine_col)
+	      {
+                 debug("SpiderTree",self,"unable to move",what);
+	      }
          else
-           {
-             send(what,@msgsenduser,#message_rsc=spidertree_enter);
-           }
+         {
+           send(what,@msgsenduser,#message_rsc=spidertree_enter);
+         }
       }
 
       return;

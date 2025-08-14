@@ -58,6 +58,7 @@ BOFS = animate.bof \
        walspell.bof \
        crafting.bof \
        refine.bof \
-       creaspsw.bof
+       creaspsw.bof \
+       transmon.bof
 
 !include $(KODDIR)\kod.mak

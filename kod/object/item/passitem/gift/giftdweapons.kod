@@ -1,0 +1,56 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DWeaponsGift is Gift
+
+constants:
+
+   include blakston.khd
+   include protocol.khd
+
+resources:
+
+   DWeaponsGift_name_rsc = "death realm weapons box"
+   DWeaponsGift_icon_rsc = lootboxes.bgf
+   DWeaponsGift_desc_rsc = \
+      "This is a gift from the gods, it contains a strong weapon from the Death Realm!\n\n"
+      "Items have a 30% chance to be colored.\n\n"
+      "This box has a chance to contain the following items : \n"
+      "master wand, berserker axe, sword of light, maul, nerudite axe, twin blade, "
+      "holy bow, qor bow. \n\n"
+      "These items have a chance to be enchanted with :\n bond, indestructible, bonus xp, "
+      "blind, hold, purge, poison, Colhorr's."
+
+classvars:
+
+   vrName = DWeaponsGift_name_rsc
+   vrIcon = DWeaponsGift_icon_rsc
+   vrDesc = DWeaponsGift_desc_rsc
+   
+   viValue_average = 18000
+
+properties:
+
+messages:
+
+   Constructor()
+   {
+      plContents = [ &TwinBlade, &NeruditeAxe, &Maul, 
+                     &LightSword, &BerserkerAxe, &MasterWand,
+                     &HolyBow, &QorBow ];
+
+      plItematt = [ IA_TRANSCENDANT, IA_INDESTRUCTIBLE, IA_XP_KILL_BONUS,
+                    WA_BLINDER, WA_PARALYZER, WA_PURGER, WA_POISON, WA_EXPERT ];
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

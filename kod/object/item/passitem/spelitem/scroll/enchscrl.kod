@@ -20,11 +20,9 @@ resources:
    EnchantmentScroll_icon_rsc = scr10.bgf
    EnchantmentScroll_desc_rsc = \
       "This scroll can empower an item with a personal enchatment. It will maintain that spell on is bearer. "
-      "This scroll contains the power of "
+      "This scroll contains the power of %s."
 
-   Unsold = "a random spell."
-
-   period = "."
+   Unsold = "a random spell"
 
    cant_enchant = "~r~BYou can not enchant that!"
    enchanted_item = "~g~BYou have enchanted the %s with the spell %s!"
@@ -35,7 +33,6 @@ classvars:
    vrLabelName = EnchantmentScroll_label_name_rsc
    vrIcon = EnchantmentScroll_icon_rsc
    viColor = XLAT_TO_BLUE
-   vrperiod = period
    viValue_average = 5000
 
 properties:
@@ -78,18 +75,33 @@ messages:
       return;
    }
 
-   ShowDesc()
+   DoBaseDesc()
    {
-      if piSpellEnchantment = $
+      local oSpell;
+
+      if poOwner = $
       {
-         Send(self,@Randomize);
+         AddPacket(4,vrDesc,4,Unsold);
+      }
+      else
+      {
+         if piSpellEnchantment = $
+         {
+            Send(self,@Randomize);
+         }
+
+         oSpell = Send(SYS,@FindSpellByNum,#num=piSpellEnchantment);
+
+         AddPacket(4,vrDesc,4,Send(oSpell,@GetName));
       }
 
-      propagate;
+      return;
    }
 
    ReqNewApply(what = $,apply_on = $)
    {
+      local ovSpell;
+      
       if NOT IsClass(apply_on,&AttackModifier)
       AND NOT IsClass(apply_on,&DefenseModifier)
       AND NOT IsClass(apply_on,&Weapon)
@@ -97,7 +109,6 @@ messages:
       AND NOT IsClass(apply_on,&Necklace)
       AND NOT IsClass(apply_on,&Ring)
       OR IsClass(apply_on,&SoldierShield)
-      OR IsClass(apply_on,&FaceMask)
       {
          Send(what,@MsgSendUser,#message_rsc=cant_enchant);
          return FALSE;
@@ -115,6 +126,21 @@ messages:
       {
          return;
       }
+	  
+       if (send(apply_on,@GetItemEnchantment)<>$)
+       {
+         ovSpell = send(apply_on,@GetItemEnchantment);
+         ovSpell = Send(SYS,@FindSpellByNum,#Num=ovSpell);
+		 
+         if (send(poOwner,@IsEnchanted,#what=ovSpell))
+		 {
+             send (poOwner,@RemoveEnchantment,#what=ovSpell);
+		
+             propagate;
+        }
+		  
+         propagate; 
+        }
 
       return TRUE;
    }
@@ -132,30 +158,6 @@ messages:
       Send(poOwner,@SomethingChanged,#what=apply_on);
 
       Send(self,@Delete);
-
-      return;
-   }
-
-   AppendDesc()
-   {
-      local oSpell;
-
-      if piSpellEnchantment = $
-      {
-         return;
-      }
-
-      if poOwner = $
-      {
-         AddPacket(4,Unsold);
-      }
-      else
-      {
-         oSpell = Send(SYS,@FindSpellByNum,#num=piSpellEnchantment);
-
-         AddPacket(4,Send(oSpell,@GetName));
-         AddPacket(4,vrperiod);
-      }
 
       return;
    }

@@ -16,7 +16,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// German resources
+// Deutsch resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
 LANGUAGE LANG_GERMAN, SUBLANG_NEUTRAL
@@ -27,55 +27,56 @@ LANGUAGE LANG_GERMAN, SUBLANG_NEUTRAL
 // Dialog
 //
 
-144 DIALOGEX 0, 0, 316, 291
+144 DIALOGEX 0, 0, 350, 346
 STYLE DS_SETFONT | DS_3DLOOK | WS_CHILD
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
-    LTEXT           "Ändere die Werte Deines Charakters.",-1,37,6,150,8
-    LTEXT           "Stärke",-1,18,26,24,8
+    LTEXT           "Ändere die Werte Deines Charakters.",IDC_STATIC,37,6,150,8
+    LTEXT           "Stärke",IDC_STATIC,18,26,24,8
     CONTROL         "",1021,"BlakGraph",WS_TABSTOP | 0xb,42,24,102,14
-    LTEXT           "Klugheit",-1,14,44,26,8
+    LTEXT           "Klugheit",IDC_STATIC,14,44,26,8
     CONTROL         "",1022,"BlakGraph",WS_TABSTOP | 0xb,42,43,102,14
-    LTEXT           "Konstitution",-1,2,64,40,8
+    LTEXT           "Konstitution",IDC_STATIC,2,64,40,8
     CONTROL         "",1023,"BlakGraph",WS_TABSTOP | 0xb,42,62,102,14
-    LTEXT           "Gewandheit",-1,2,83,40,8
+    LTEXT           "Gewandheit",IDC_STATIC,2,83,40,8
     CONTROL         "",1024,"BlakGraph",WS_TABSTOP | 0xb,42,81,102,14
-    LTEXT           "Magie",-1,20,101,20,8
+    LTEXT           "Magie",IDC_STATIC,20,101,20,8
     CONTROL         "",1025,"BlakGraph",WS_TABSTOP | 0xb,42,100,102,14
-    LTEXT           "Genauigkeit",-1,2,122,40,8
+    LTEXT           "Genauigkeit",IDC_STATIC,2,122,40,8
     CONTROL         "",1026,"BlakGraph",WS_TABSTOP | 0xb,42,120,102,14
-    LTEXT           "Eigenschaftspunkte übrig:",-1,42,136,110,8
+    LTEXT           "Eigenschaftspunkte übrig:",IDC_STATIC,42,136,110,8
     CONTROL         "",1027,"BlakGraph",0x8,43,147,98,11
-    LTEXT           "Deine Stärke bestimmt den Schaden, den Du",-1,149,23,147,8
-    LTEXT           "Kluge Charaktere können schneller ihre Fähigkeiten",-1,149,42,160,8
-    LTEXT           "ausbauen und neue erlernen.",-1,149,50,162,8
-    LTEXT           "Eine hohe Konstitution wirkt sich positiv auf",-1,149,61,155,8
-    LTEXT           "anrichtest und Deine Tragkraft.",-1,149,31,131,8
-    LTEXT           "Krieger benötigen eine hohe Gewandheit um ihre",-1,149,80,160,8
-    LTEXT           "Eine hohe Magie wirkt sich positiv auf die",-1,149,99,161,8
-    LTEXT           "Beeinflußt die Trefferwarscheinlichkeit",-1,149,119,151,8
-    LTEXT           "die Lebenskraft und Ausdauer aus.",-1,149,69,150,8
-    LTEXT           "Waffen wirkungsvoll einzusetzen.",-1,149,88,162,8
-    LTEXT           "Zauberkraft und die Zaubersprüche aus.",-1,149,107,158,8
-    LTEXT           "von Zaubersprüchen und Waffen.",-1,149,127,140,8
-    GROUPBOX        "Schulen",-1,16,186,286,100
-    CONTROL         "",1028,"BlakGraph",WS_TABSTOP | 0xb,57,202,79,14
-    CONTROL         "",1029,"BlakGraph",WS_TABSTOP | 0xb,57,223,79,14
-    CONTROL         "",1030,"BlakGraph",WS_TABSTOP | 0xb,57,242,79,14
-    CONTROL         "",1031,"BlakGraph",WS_TABSTOP | 0xb,208,202,79,14
-    CONTROL         "",1032,"BlakGraph",WS_TABSTOP | 0xb,208,223,79,14
-    CONTROL         "",1033,"BlakGraph",WS_TABSTOP | 0xb,208,242,79,14
-    CONTROL         "",1034,"BlakGraph",WS_TABSTOP | 0xb,208,263,79,14
-    CONTROL         "",1035,"BlakGraph",WS_TABSTOP | 0xb,231,256,56,14
-    LTEXT           "Shal'ill",-1,21,205,24,8
-    LTEXT           "Qor",-1,21,224,12,8
-    LTEXT           "Kraanan",-1,21,245,28,8
-    LTEXT           "Faren",-1,154,205,19,8
-    LTEXT           "Riija",-1,154,224,14,8
-    LTEXT           "Jala",-1,154,245,42,8
-    LTEXT           "Waffenfertigkeiten",-1,140,265,70,8
-    LTEXT           "HINWEIS: Um die Intelligenz zu reduzieren musst Du",-1,80,164,224,8
-    LTEXT           "möglicherweise unten aufgeführte Schullevel reduzieren.",-1,78,174,224,8
+    LTEXT           "Deine Stärke bestimmt den Schaden, den Du",IDC_STATIC,149,23,147,8
+    LTEXT           "Kluge Charaktere können schneller ihre Fähigkeiten",IDC_STATIC,149,42,160,8
+    LTEXT           "ausbauen und neue erlernen.",IDC_STATIC,183,50,162,8
+    LTEXT           "Eine hohe Konstitution wirkt sich positiv auf",IDC_STATIC,149,61,155,8
+    LTEXT           "anrichtest und Deine Tragkraft.",IDC_STATIC,149,31,131,8
+    LTEXT           "Krieger benötigen eine hohe Gewandheit um ihre",IDC_STATIC,149,80,160,8
+    LTEXT           "Eine hohe Magie wirkt sich positiv auf die",IDC_STATIC,149,99,161,8
+    LTEXT           "Beeinflußt die Trefferwarscheinlichkeit",IDC_STATIC,149,119,151,8
+    LTEXT           "die Lebenskraft und Ausdauer aus.",IDC_STATIC,149,69,150,8
+    LTEXT           "Waffen wirkungsvoll einzusetzen.",IDC_STATIC,183,88,162,8
+    LTEXT           "Zauberkraft und die Zaubersprüche aus.",IDC_STATIC,149,107,158,8
+    LTEXT           "von Zaubersprüchen und Waffen.",IDC_STATIC,149,127,140,8
+    GROUPBOX        "Schulen",IDC_STATIC,15,196,286,123
+    CONTROL         "",1028,"BlakGraph",WS_TABSTOP | 0xb,85,212,79,14
+    CONTROL         "",1029,"BlakGraph",WS_TABSTOP | 0xb,85,233,79,14
+    CONTROL         "",1030,"BlakGraph",WS_TABSTOP | 0xb,85,252,79,14
+    CONTROL         "",1031,"BlakGraph",WS_TABSTOP | 0xb,208,212,79,14
+    CONTROL         "",1032,"BlakGraph",WS_TABSTOP | 0xb,208,233,79,14
+    CONTROL         "",1033,"BlakGraph",WS_TABSTOP | 0xb,208,252,79,14
+    CONTROL         "",1034,"BlakGraph",WS_TABSTOP | 0xb,85,271,79,14
+    CONTROL         "",1035,"BlakGraph",WS_TABSTOP | 0xb,208,272,80,14
+    LTEXT           "Shal'ill",IDC_STATIC,21,215,24,8
+    LTEXT           "Qor",IDC_STATIC,21,234,12,8
+    LTEXT           "Kraanan",IDC_STATIC,21,255,28,8
+    LTEXT           "Faren",IDC_STATIC,171,215,19,8
+    LTEXT           "Riija",IDC_STATIC,171,234,14,8
+    LTEXT           "Jala",IDC_STATIC,171,255,29,8
+    LTEXT           "Waffenfertigkeiten",IDC_STATIC,21,273,61,8
+    LTEXT           "HINWEIS: Um die Intelligenz zu reduzieren musst Du",IDC_STATIC,82,173,224,8
+    LTEXT           "möglicherweise unten aufgeführte Schullevel reduzieren.",IDC_STATIC,77,184,224,8
+    LTEXT           "Handwerk",IDC_STATIC,170,273,38,8
 END
 
 
@@ -90,9 +91,9 @@ BEGIN
     144, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 311
+        RIGHTMARGIN, 345
         TOPMARGIN, 7
-        BOTTOMMARGIN, 275
+        BOTTOMMARGIN, 330
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -126,6 +127,7 @@ END
 
 #endif    // APSTUDIO_INVOKED
 
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // AFX_DIALOG_LAYOUT
@@ -136,6 +138,7 @@ BEGIN
     0
 END
 
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
@@ -143,26 +146,25 @@ END
 
 STRINGTABLE
 BEGIN
-    5   "Du hast noch einige Punkte zu vergeben. Bist Du sicher das Du diese verwerfen möchtest?"
-    7   "Bist Du sicher, dass Du die Änderungen der Werte übernehmen willst?\n\nBitte beachte: Wenn du einen Wert reduziert hast, wirst du 2 Prozent pro reduziertem Punkt verlieren! Solltest du also deine Magie um 10 verringert haben, wirst du 20 Prozent in Zaubersprüchen verlieren, die von Magie abhängig sind. Identisch ist es bei der Konstitution, hier verlierst du natürlich deine HP und Prozente in Kraanan."
-    8   "Bist du WIRKLICH, WIRKLICH sicher das Du die Änder- ungen der Werte so übernehmen willst?\n\nDie Server Administratoren werden die Änderungen die Du machst nicht rückgängig machen. LETZTE CHANCE\n\nIch meine es ernst! Sende keine Nachricht an die Admini- stratoren wenn du Deinen Character zerstört hast, das ist Deine Sache."
+    5                       "Du hast noch einige Punkte zu vergeben. Bist Du sicher das Du diese verwerfen möchtest?"
+    7                       "Bist Du sicher, dass Du die Änderungen der Werte übernehmen willst?\n\nBitte beachte: Wenn du einen Wert reduziert hast, wirst du 2 Prozent pro reduziertem Punkt verlieren! Solltest du also deine Magie um 10 verringert haben, wirst du 20 Prozent in Zaubersprüchen verlieren, die von Magie abhängig sind. Identisch ist es bei der Konstitution, hier verlierst du natürlich deine HP und Prozente in Kraanan."
+    8                       "Bist du WIRKLICH, WIRKLICH sicher das Du die Änder- ungen der Werte so übernehmen willst?\n\nDie Server Administratoren werden die Änderungen die Du machst nicht rückgängig machen. LETZTE CHANCE\n\nIch meine es ernst! Sende keine Nachricht an die Admini- stratoren wenn du Deinen Character zerstört hast, das ist Deine Sache."
 END
 
 STRINGTABLE
 BEGIN
-    17   "Zauber"
-    18   "Fertigkeiten"
-    20   "Werte"
-    21   "Passe Deinen Character an"
+    17                      "Zauber"
+    18                      "Fertigkeiten"
+    20                      "Werte"
+    21                      "Passe Deinen Character an"
 END
 
-
-#endif    // German resources
+#endif    // Deutsch resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// English (United States) resources
+// Englisch (USA) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
@@ -205,9 +207,9 @@ BEGIN
     LTEXT           "magical energy. Used for Faren, Shal'ille, and Qor.",IDC_STATIC,149,107,158,8
     LTEXT           "high skill with ranged weapons.",IDC_STATIC,149,127,99,8
     GROUPBOX        "Schools",IDC_STATIC,16,186,286,100
-    CONTROL         "",IDC_CHAR_GRAPH7,"BlakGraph",WS_TABSTOP  | 0xb,57,202,79,14
-    CONTROL         "",IDC_CHAR_GRAPH8,"BlakGraph",WS_TABSTOP  | 0xb,57,223,79,14
-    CONTROL         "",IDC_CHAR_GRAPH9,"BlakGraph",WS_TABSTOP  | 0xb,57,242,79,14
+    CONTROL         "",IDC_CHAR_GRAPH7,"BlakGraph",WS_TABSTOP | 0xb,57,202,79,14
+    CONTROL         "",IDC_CHAR_GRAPH8,"BlakGraph",WS_TABSTOP | 0xb,57,223,79,14
+    CONTROL         "",IDC_CHAR_GRAPH9,"BlakGraph",WS_TABSTOP | 0xb,57,242,79,14
     CONTROL         "",IDC_CHAR_GRAPH13,"BlakGraph",WS_TABSTOP | 0xb,57,263,79,14
     CONTROL         "",IDC_CHAR_GRAPH10,"BlakGraph",WS_TABSTOP | 0xb,208,202,79,14
     CONTROL         "",IDC_CHAR_GRAPH11,"BlakGraph",WS_TABSTOP | 0xb,208,223,79,14
@@ -293,7 +295,7 @@ BEGIN
     IDS_DIALOGTITLE         "Adjust your character"
 END
 
-#endif    // English (United States) resources
+#endif    // Englisch (USA) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

@@ -29,6 +29,7 @@ resources:
    Dazzle_off = "Your vision begins to clear."
 
    Dazzle_sound = sDazzle.ogg
+   dazzle_proj_rsc = dazzlestar.bgf
 
 classvars:
 
@@ -51,6 +52,7 @@ classvars:
    viSpellExertion = 3
 
    vrSucceed_wav = Dazzle_sound
+   vrProjectile_icon = dazzle_proj_rsc
 
 properties:
 
@@ -79,14 +81,21 @@ messages:
 
    CastSpell(who=$,lTargets=$,iSpellPower=0)
    {
-      local oTarget, iDuration;
+      local i, oOwner, oTarget, iDuration;
 
       oTarget = First(lTargets);
+      oOwner = Send(who,@GetOwner);
+
       iDuration = Send(self,@GetDuration,#iSpellPower=iSpellPower,
                         #caster=who,#target=oTarget);
 
       Send(self,@DoSpell,#what=who,#oTarget=oTarget,#iDuration=iDuration);
-
+      
+      if oOwner <> $
+      {
+         Send(oOwner,@SomethingShot,#who=who,#target=oTarget,#projectile=self);
+      }
+      
       propagate;
    }
 
@@ -210,6 +219,31 @@ messages:
       Send(mob,@SetBehaviorFlag,#flag=AI_NOFIGHT,#value=TRUE);
 
       return;
+   }
+
+   SendLookAnimation()
+   {
+      AddPacket(1,ANIMATE_NONE, 2,2);
+
+      return;
+   }
+
+   SendProjectileAnimation()
+   {
+      // 40ms between animations, between frames 1-2
+      AddPacket(1,ANIMATE_CYCLE, 4,80, 2,1, 2,6);   
+
+      return;
+   }
+
+   GetProjectileIcon()
+   {
+      return vrProjectile_Icon;
+   }
+   
+   GetProjectileSpeed()
+   {
+      return 10;
    }
 
 end

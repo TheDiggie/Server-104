@@ -109,6 +109,11 @@ messages:
          return FALSE;
       }
 
+      if IsClass(who,&Player) AND NOT IsClass(who,&DM)
+      {
+         Send(who,@WipeUnboundEnergy);
+      }
+      
       propagate;
    }
 

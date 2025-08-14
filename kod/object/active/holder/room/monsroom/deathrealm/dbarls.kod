@@ -87,13 +87,6 @@ messages:
       propagate;
    }
 
-   Enter(who=$)
-   {
-      Send(self,@NewHold,#what=who,#new_row=46,#new_col=30,
-            #new_angle=ANGLE_NORTH);
-
-      return;
-   }
 
 end
 ////////////////////////////////////////////////////////////////////////////////

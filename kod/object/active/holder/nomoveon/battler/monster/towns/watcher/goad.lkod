@@ -171,5 +171,3 @@ Goad_wont_fight = pt \
    "morrer... lentamente."
 Goad_already_have_spell = pt \
    "Você já conhece o feitiço %s. Você está desperdiçando meu tempo."
-Goad_not_ready = pt \
-   "Você não está pronto para aprender a criar isso."

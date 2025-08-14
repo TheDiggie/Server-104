@@ -134,7 +134,8 @@ messages:
             SID_POISON_FOG,
             SID_PROFANE_RESONANCE,
             SID_DEATH_RIFT,
-            SID_UNHOLY_TOUCH
+            SID_UNHOLY_TOUCH,
+            SID_CRAFTTHORNCIRCLET
          ],
       $];
 

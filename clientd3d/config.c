@@ -127,7 +127,7 @@ static char INIQuickStart[]   = "QuickStart";
 
 static int   DefaultRedialDelay   = 60;
 static char  DefaultHostname[]    = "cheater";
-static char  DefaultDomainFormat[] = "3.141.65.36"; // MUST have a %d in it somewhere.
+static char  DefaultDomainFormat[] = "meridian%d.meridian59.us"; // MUST have a %d in it somewhere.
 static char  DefaultSockPortFormat[] = "5959";
 static int   DefaultServerNum     = 104;
 static int   DefaultTimeout       = 1440; // 1 day in minutes (60*24)
