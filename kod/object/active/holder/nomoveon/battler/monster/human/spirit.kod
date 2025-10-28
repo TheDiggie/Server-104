@@ -65,7 +65,7 @@ messages:
    {
       local oEquipmentItem, iRandomNumber, iBonusModifier;
 
-      iRandomNumber = Random(1,100);
+      iRandomNumber = Random(1,85);
       if iRandomNumber <= 35
       {
          oEquipmentItem = Create(&Longsword);

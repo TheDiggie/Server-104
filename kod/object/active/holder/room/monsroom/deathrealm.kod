@@ -94,7 +94,7 @@ messages:
 
       if prMonsters = TRUE
       {
-         plMonsters = [ [&Spirit, 10],
+         plMonsters = [ [&Spirit, 9],
                         [&DeathMiteScout, 5],
                         [&DeathMiteTank, 5],
                         [&DeathMiteMage, 5],
@@ -115,7 +115,8 @@ messages:
                         [&GreySeeker, 4],
                         [&Revenantb, 4],
                         [&Chimera, 4],
-                        [&Cyclops, 4]
+                        [&Cyclops, 4],
+                        [&NecromancerEffigy, 1]
                       ];
       }
 

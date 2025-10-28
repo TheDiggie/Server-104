@@ -60,9 +60,9 @@ messages:
 
       plExits = Cons([ 23, 4, RID_CASTLE1, 7, 18, ROTATE_NONE ],plExits);
       plExits = Cons([ 23, 5, RID_CASTLE1, 7, 19, ROTATE_NONE ],plExits);
-      plExits = Cons([ 1, 4, RID_THRONE2, 22, 5, ROTATE_NONE ],plExits);
-      plExits = Cons([ 1, 5, RID_THRONE2, 22, 5, ROTATE_NONE ],plExits);
-      plExits = Cons([ 1, 6, RID_THRONE2, 22, 5, ROTATE_NONE ],plExits);
+      plExits = Cons([ 1, 4, RID_THRONE2, 22, 8, ROTATE_NONE ],plExits);
+      plExits = Cons([ 1, 5, RID_THRONE2, 22, 8, ROTATE_NONE ],plExits);
+      plExits = Cons([ 1, 6, RID_THRONE2, 22, 8, ROTATE_NONE ],plExits);
 
       propagate;
    }
