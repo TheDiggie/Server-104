@@ -49,20 +49,44 @@ classvars:
    vrSound_aware = Vajra_sound_aware
    vrSound_death = Vajra_sound_death
 
+
 properties:
 
    piAnimation = ANIM_NONE
+   ptRegen = $
 
 messages:
 
    Constructed()
    {
+      piHit_points = 200000;
+      piMax_hit_points = 2000;
+
       plResistances = [ [-ATCK_SPELL_ACID, -5 ],
                         [ATCK_WEAP_SLASH, -5 ] ];
 
       plSpellBook = [ [SID_BLIND,5,40] ];
-      
+     
       propagate;
+   }
+
+   NewOwner()
+   {
+      ptRegen = CreateTimer(self,@RegenHealth,15000);
+     
+      propagate;
+   }
+
+   RegenHealth()
+   {
+      if piHit_points < (piMax_hit_points*100)
+      {
+         piHit_points = piHit_points + (Send(poOwner,@CountMonsters)*200);
+      }
+
+      ptRegen = CreateTimer(self,@RegenHealth,15000);
+
+      return;
    }
 
    MonsterAttack(what = $)
@@ -100,6 +124,13 @@ messages:
 
       // if no body animation
       propagate;
+   }
+
+   Delete()
+   {
+      DeleteTimer(ptRegen);
+
+      return;
    }
 
 end

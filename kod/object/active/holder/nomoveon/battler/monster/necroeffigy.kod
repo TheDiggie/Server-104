@@ -1,0 +1,124 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+NecromancerEffigy is Monster
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   NecromancerEffigy_name_rsc = "necromancer effigy"
+   NecromancerEffigy_icon_rsc = necroeffigy.bgf
+   NecromancerEffigy_desc_rsc = \
+      "A twisted, corrupted tree that pulses with dark energy. "
+      "Its branches writhe with malevolent intent, and the air around it "
+      "crackles with the power of Qor's dark magic. This ancient being "
+      "has been corrupted by evil forces and now serves as a conduit "
+      "for dark spells and debuffs."
+
+   NecromancerEffigy_sound_hit = tr_atkh.ogg
+   NecromancerEffigy_sound_miss = tr_atkm.ogg
+   NecromancerEffigy_sound_death = tr_dth.ogg
+   NecromancerEffigy_sound_aware = tr_awr.ogg
+
+classvars:
+
+   vrName = NecromancerEffigy_name_rsc
+   vrIcon = NecromancerEffigy_icon_rsc
+   vrDesc = NecromancerEffigy_desc_rsc
+
+   viTreasure_type = $
+   viAttack_type = ATCK_WEAP_WHIP
+   viSpeed = SPEED_NONE
+   viAttributes = MOB_NOMOVE
+   viDefault_behavior = AI_NOMOVE | AI_FIGHT_SWITCHALOT | AI_FIGHT_HYPERAGGRESSIVE
+   viDifficulty = 8
+   viVisionDistance = 200
+   
+   viLevel = 80
+   viKarma = -100
+   viCashmin = 400
+   viCashmax = 800
+   viSpellChance = 95  // Higher chance to cast spells
+   
+
+   vrSound_hit = NecromancerEffigy_sound_hit
+   vrSound_miss = NecromancerEffigy_sound_miss
+   vrSound_aware = NecromancerEffigy_sound_aware
+   vrSound_death = NecromancerEffigy_sound_death
+   
+properties:
+
+   piAnimation = ANIM_NONE
+
+   ptCastSpell = $
+   
+   plSpells = $
+
+messages:
+
+   Constructor()
+   {
+      ptCastSpell = CreateTimer(self,@CastSpell,Random(8000,15000));
+      plSpells = Cons(SID_BLIND,plSpells);
+      plSpells = Cons(SID_HOLD,plSpells);
+      plSpells = Cons(SID_ENFEEBLE,plSpells);
+      plSpells = Cons(SID_VAMPIRIC_DRAIN,plSpells);
+
+      propagate;
+   }
+
+   CastSpell()
+   {
+      local oRoom, i, lNearby, lPlayers, oSpell, oTarget, lTarget;
+
+      ptCastSpell = CreateTimer(self,@CastSpell,Random(8000,15000));
+
+      oRoom = Send(SYS,@UtilGetRoomRecurse,#what=self);
+
+      if oRoom = $
+      {
+         return $;
+      }
+
+      lPlayers = $;
+      lNearby = Send(oRoom,@GetHolderActive);
+
+      foreach i in lNearby
+      {
+         if IsClass(First(i),&Player)
+         {
+            lPlayers = Cons(First(i),lPlayers);
+         }
+      }
+
+      oSpell = Nth(plSpells,Random(1,Length(plSpells)));
+
+      oSpell = Send(SYS,@FindSpellByNum,#num=oSpell);
+
+      oTarget = Nth(lPlayers,Random(1,Length(lPlayers)));
+
+      lTarget = Cons(oTarget,lTarget);
+
+      if lTarget = $
+      {
+         return;
+      }
+
+      Send(oSpell,@CastSpell,#who=self,#lTargets=lTarget,
+              #iSpellPower=75);
+
+      return;
+   }
+
+end
+/////////////////////////////////////////////////////////////////////////////////

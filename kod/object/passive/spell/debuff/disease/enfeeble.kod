@@ -79,6 +79,11 @@ messages:
    {
       local iMightChange;
 
+      if Send(oTarget,@IsEnchanted,#what=self)
+      {
+         return FALSE;
+      }
+
       if iDuration = $
       {
          iDuration = Send(self,@GetDuration,#iSpellPower=iSpellPower);

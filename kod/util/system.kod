@@ -5608,6 +5608,7 @@ messages:
       plMonsterTemplates = cons(create(&DuskRat),plMonsterTemplates);
       plMonsterTemplates = cons(create(&Thrasher),plMonsterTemplates);
       plMonsterTemplates = cons(create(&EvilEnt),plMonsterTemplates);
+      plMonsterTemplates = cons(create(&NecromancerEffigy),plMonsterTemplates);
       
       plMonsterTemplates = cons(create(&EarthElemental),plMonsterTemplates);
       plMonsterTemplates = cons(create(&EarthElementalChampion),plMonsterTemplates);
