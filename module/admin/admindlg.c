@@ -61,6 +61,7 @@ void AdminDlgConvertString(char *s, int len_s);
 static Bool AdminGetString(HWND hParent, char *buf);
 static BOOL CALLBACK AdminMoveDialogProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 static BOOL CALLBACK AdminStringDialogProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
+static BOOL CALLBACK AdminGameEventDialogProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 /****************************************************************************/
 BOOL CALLBACK AdminDialogProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -376,6 +377,10 @@ void AdminDlgCommand(HWND hDlg, int cmd_id, HWND hwndCtl, UINT codeNotify)
       SendMessage(hAdminDlg, BK_SENDCMD, 0, (LPARAM) command);
       break;
 
+   case IDC_GAMEEVENT_BTN:
+      DialogBox(hInst, MAKEINTRESOURCE(IDD_GAMEEVENT), hDlg, AdminGameEventDialogProc);
+      break;
+
    case IDOK:
       Edit_GetText(hInput, command, MAX_ADMIN);
       
@@ -633,6 +638,78 @@ BOOL CALLBACK AdminStringDialogProc(HWND hDlg, UINT message, WPARAM wParam, LPAR
 	 EndDialog(hDlg, IDCANCEL);
 	 return TRUE;
       }
+   }
+   return FALSE;
+}
+
+/****************************************************************************/
+/*
+ * AdminGameEventDialogProc:  Dialog procedure for game event control.
+ */
+BOOL CALLBACK AdminGameEventDialogProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+{
+   static HWND hEventList, hActiveEvents;
+   int index;
+   char event_name[64];
+   char cmd[256];
+
+   switch (message)
+   {
+   case WM_INITDIALOG:
+      hEventList = GetDlgItem(hDlg, IDC_EVENT_LIST);
+      hActiveEvents = GetDlgItem(hDlg, IDC_ACTIVE_EVENTS);
+
+      // Populate available events list
+      ListBox_AddString(hEventList, "ChaosNight");
+      ListBox_AddString(hEventList, "WarEvent");
+      ListBox_AddString(hEventList, "NodeAttack");
+      ListBox_AddString(hEventList, "EasterEggHunt");
+      ListBox_AddString(hEventList, "EasterInvasion");
+      ListBox_AddString(hEventList, "RatInvasion");
+      ListBox_AddString(hEventList, "OrcInvasion");
+      ListBox_AddString(hEventList, "SpiderInvasion");
+      ListBox_AddString(hEventList, "SkeletonInvasion");
+      ListBox_AddString(hEventList, "Qormas");
+      ListBox_AddString(hEventList, "TriggeredInvasion");
+
+      CenterWindow(hDlg, GetParent(hDlg));
+      return TRUE;
+
+   case WM_COMMAND:
+      switch (GET_WM_COMMAND_ID(wParam, lParam))
+      {
+      case IDC_START_EVENT:
+         index = ListBox_GetCurSel(hEventList);
+         if (index != LB_ERR)
+         {
+            ListBox_GetText(hEventList, index, event_name);
+            sprintf(cmd, "send object 0 starteevent event_type class %s", event_name);
+            SendMessage(hAdminDlg, BK_SENDCMD, 0, (LPARAM) cmd);
+         }
+         break;
+
+      case IDC_STOP_EVENT:
+         index = ListBox_GetCurSel(hEventList);
+         if (index != LB_ERR)
+         {
+            ListBox_GetText(hEventList, index, event_name);
+            sprintf(cmd, "send object 0 endevent event_type class %s", event_name);
+            SendMessage(hAdminDlg, BK_SENDCMD, 0, (LPARAM) cmd);
+         }
+         break;
+
+      case IDC_REFRESH_EVENTS:
+         // Send command to check active events
+         sprintf(cmd, "send object 0 geteventinfo");
+         SendMessage(hAdminDlg, BK_SENDCMD, 0, (LPARAM) cmd);
+         break;
+
+      case IDOK:
+      case IDCANCEL:
+         EndDialog(hDlg, IDOK);
+         return TRUE;
+      }
+      break;
    }
    return FALSE;
 }

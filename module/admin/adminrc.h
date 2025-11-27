@@ -6,6 +6,7 @@
 #define IDD_ADMINMOVE                   102
 #define IDD_ADMINVALUE                  103
 #define IDD_ADMINSTRING                 104
+#define IDD_GAMEEVENT                   105
 #define IDC_ADMINTEXT                   1001
 #define IDC_COMBO                       1002
 #define IDC_USERS                       1003
@@ -55,15 +56,21 @@
 #define IDC_TELEPORT                    1047
 #define IDC_TABLE                       1048
 #define IDC_INVALIDATE                  1058
+#define IDC_GAMEEVENT_BTN               1059
+#define IDC_EVENT_LIST                  1060
+#define IDC_START_EVENT                 1061
+#define IDC_STOP_EVENT                  1062
+#define IDC_REFRESH_EVENTS              1063
+#define IDC_ACTIVE_EVENTS               1064
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
-// 
+//
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        105
+#define _APS_NEXT_RESOURCE_VALUE        106
 #define _APS_NEXT_COMMAND_VALUE         40001
-#define _APS_NEXT_CONTROL_VALUE         1059
+#define _APS_NEXT_CONTROL_VALUE         1065
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
