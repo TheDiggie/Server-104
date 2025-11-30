@@ -200,8 +200,8 @@ messages:
       plExits = $;
       
       //Enable for hunter hall
-      plExits = Cons([ 2, 25, RID_GUILDH18, 52, 30, ROTATE_NONE ],plExits);
-      plExits = Cons([ 2, 26, RID_GUILDH18, 52, 30, ROTATE_NONE ],plExits);
+      //plExits = Cons([ 2, 25, RID_GUILDH18, 52, 30, ROTATE_NONE ],plExits);
+      //plExits = Cons([ 2, 26, RID_GUILDH18, 52, 30, ROTATE_NONE ],plExits);
 
       propagate;
    }
