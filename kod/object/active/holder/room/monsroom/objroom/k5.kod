@@ -26,8 +26,8 @@ classvars:
 
    vrName = room_name_OutdoorsK5
 
-   viTeleport_row = 33
-   viTeleport_col = 32
+   viTeleport_row = 35
+   viTeleport_col = 28
 
    viTerrain_type = TERRAIN_BADLANDS
 
@@ -56,9 +56,12 @@ properties:
 
    piMonster_count_max = 34   // Includes brambles.
 
+   // Spellpower we spawn bramble walls at. Not bound to 99.
+   piBrambleSpellpower = 140
+
    plDeadBrambles = $      // A list of coordinate lists for brambles to create.
-   piBrambleDamage = 20    // Maximum damage the brambles do.
-   piBrambleHits = 100     // Number of hit points the brambles have.
+   //piBrambleDamage = 20    // Maximum damage the brambles do.
+   //piBrambleHits = 100     // Number of hit points the brambles have.
    poShrine = $
 
 messages:
@@ -66,10 +69,6 @@ messages:
    Constructed()
    {
       plMonsters = [ [&GroundwormQueen, 100] ];
-
-      plGenerators = [ [10, 15], [19, 12], [23, 23], [4, 24], [8, 50],
-                     [11, 30], [25, 37], [37, 28], [36, 43], [41, 48], 
-                     [49, 34], [45, 22], [14, 41], [19, 30], [28, 49], [39, 37] ];
 
       poShrine = Create(&shrine,#shrine_num=SHRINE_BRAMBLE);
       Send(self,@NewHold,#what=poShrine,#new_row=43,#new_col=32,#fine_col=32);
@@ -102,6 +101,15 @@ messages:
       plDeadBrambles = Cons([3,45],plDeadBrambles);
 
       propagate;
+   }
+
+   SetMonsterGenPoints()
+   {
+      plGenerators = [ [10, 15], [19, 12], [23, 23], [4, 24], [8, 50],
+                       [11, 30], [25, 37], [37, 28], [36, 43], [41, 48], 
+                       [49, 34], [45, 22], [14, 41], [19, 30], [28, 49], [39, 37] ];
+
+      return;
    }
 
    CreateObjectGeneration()
@@ -139,14 +147,11 @@ messages:
 
       if lLocation = $
       {
-         if Length(plDeadBrambles) > 0
-         {
-            lLoc = Nth(plDeadBrambles,Random(1,Length(plDeadBrambles)));
-         }
-         else
+         if Length(plDeadBrambles) = 0
          {
             return;
          }
+         lLoc = Nth(plDeadBrambles,Random(1,Length(plDeadBrambles)));
       }
       else
       {
@@ -156,10 +161,9 @@ messages:
       plDeadBrambles = DelListElem(plDeadBrambles,lLoc);
       // No duration when creating the Bramble means it doesn't
       // go away, it isn't DestroyDisposable'd.
-      oBramble = Create(&Brambles,#MaxDamage=piBrambleDamage,
-                        #HitPoints=piBrambleHits); 
-      Send(self,@NewHold,#what=oBramble,#New_row=nth(lLoc,1),
-            #New_col=nth(lLoc,2));
+      oBramble = Create(&Brambles);
+      Send(self,@NewHold,#what=oBramble,#New_row=First(lLoc),
+            #New_col=Nth(lLoc,2));
 
       return;
    }
@@ -180,7 +184,7 @@ messages:
       {
          Send(SYS,@UtilGoNearSquare,#what=what,
                #where=Send(SYS,@FindRoomByNum,#num=RID_BADLAND1),
-               #new_row=3,#new_col=80,#new_angle=send(what,@GetAngle));
+               #new_row=3,#new_col=80,#new_angle=Send(what,@GetAngle));
 
          return;
       }
@@ -188,11 +192,25 @@ messages:
       propagate;
    }
 
+   CreateStandardExits()
+   {
+      plEdge_exits = $;
+      plEdge_Exits = Cons([ LEAVE_EAST, RID_J3_2, 6, 2, ROTATE_NONE ], plEdge_exits);
+
+      plExits = $;
+      
+      //Enable for hunter hall
+      plExits = Cons([ 2, 25, RID_GUILDH18, 52, 30, ROTATE_NONE ],plExits);
+      plExits = Cons([ 2, 26, RID_GUILDH18, 52, 30, ROTATE_NONE ],plExits);
+
+      propagate;
+   }
+
    NewHold(what=$)
    {
-      if isClass(what,&Item)
+      if IsClass(what,&Item)
       {
-         Post(self,@PostShrineCheckItem,#what=what);  
+         Post(self,@PostShrineCheckItem,#what=what);
          // Have to post this to handle numberitems and SYS can't handle posts.
       }
 
@@ -201,7 +219,7 @@ messages:
 
    PostShrineCheckItem(what=$)
    {
-      Send(SYS,@ShrineCheckItem,#ShrineObj=poShrine,#what=what,#Radius=1);
+      Send(SYS,@ShrineCheckItem,#ShrineObj=poShrine,#what=what,#Radius=2);
 
       return;
    }

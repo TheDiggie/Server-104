@@ -1,0 +1,120 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+JixaBlacksmith is JixaTown
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include jixasmithm.lkod
+
+   JixaBlacksmith_name_rsc = "Tylo Barsis"
+   JixaBlacksmith_icon_rsc = jixasmith.bgf
+   JixaBlacksmith_desc_rsc = \
+      "He is quiet and anti-social and can barely make it a few minutes in "
+      "conversation before his hampering stammer kicks in.  Aside from being a "
+      "little slow due to sleep deprivation he is generally quite perceptive.  "
+      "He notices little details and can draw good conclusions from them. "
+
+   JixaBla_entry_welcome = "H-h-hi, %s%s."
+
+   JixaBla_island_items = "I don't deal with nerudite garbage."
+
+classvars:
+
+   vrName = JixaBlacksmith_name_rsc
+   vrIcon = JixaBlacksmith_icon_rsc
+   vrDesc = JixaBlacksmith_desc_rsc
+   viAttributes = \
+      MOB_NOFIGHT | MOB_SELLER | MOB_RANDOM | MOB_NOMOVE \
+      | MOB_LISTEN | MOB_RECEIVE | MOB_TEACHER | MOB_COND_SELLER
+   viOccupation = MOB_ROLE_BLACKSMITH
+   viMerchant_markup = MERCHANT_BARGAIN
+
+messages:
+
+   AffectMood(what=$,why=$)
+   {
+      if why = MOODMOD_DAWN
+      {
+         Send(self,@SetMood,#new_mood=piMood-2);
+
+         return;
+      }
+
+      if why = MOODMOD_DUSK
+      {
+         Send(self,@SetMood,#new_mood=piMood+2);
+
+         return;
+      }
+
+      if why = MOODMOD_SELL_ITEM
+      {
+         Send(self,@SetMood,#new_mood=piMood+3);
+      }
+
+      return;
+   }
+
+
+   ObjectDesired(what=$)
+   {
+      if Send(what,@CanBeGiventoNPC)
+         AND (Send(Self,@IsObjectWeapon,#what=what)
+            OR Send(Self,@IsObjectWearable,#what=what))
+      {
+         if IsClass(what,&NeruditeSword)
+            OR IsClass(what,&NeruditeArmor)
+            OR IsClass(what,&NeruditeBow)
+         {
+            Send(poOwner,@SomeoneSaid,#what=self,
+                  #string=JixaBla_island_items,#type=SAY_RESOURCE);
+
+            return FALSE;
+         }
+
+         return TRUE;
+      }
+
+      return FALSE;
+   }
+
+   SetForSale()
+   {
+      plFor_sale = [
+         [ 
+            Create(&GoldShield),
+            Create(&LeatherArmor)
+         ],
+         $,$,$];
+
+      return;
+   }
+
+   UserEntered(who=$)
+   {
+      if Send(who,@CheckPlayerFlag,#flag=PFLAG_OUTLAW)
+      {
+         Send(self,@SetMood,#new_mood=piMood+2);
+      }
+
+      Post(who,@SomeoneSaid,#what=self,#string=JixaBla_entry_welcome,
+           #type=SAY_RESOURCE,#parm1=Send(who,@GetDef),
+           #parm2=Send(who,@GetName));
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,144 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+//////////////////////////////////////////////////////////////////////////////
+SurvivalWatcher is Watcher
+
+constants:
+
+   include blakston.khd
+   
+   COMMENCE_DELAY_MIN = 5000
+   COMMENCE_DELAY_MAX = 10000
+
+resources:
+
+   include surwatch.lkod
+
+   SurvivalWatcher_name_rsc = "Osvann Vaendefdall"
+   SurvivalWatcher_icon_rsc = watchersurvival.bgf
+   SurvivalWatcher_desc_rsc = \
+      "An eccentric man, Osvann Vaendefdall seems to enjoy living out in the "
+      "forest far away from the cities.  His occupation as the caretaker of "
+      "the Training Grounds carried more import in times past, when it was the "
+      "premier location for producing battle-ready soldiers.  In these times "
+      "of relative peace, Osvann mainly uses the arena to study his passion - "
+      "how monsters fight and how that knowledge can be used to improve human "
+      "fighting styles."
+
+   SurvivalWatcher_join  = "join"
+   SurvivalWatcher_leave = "leave"
+
+   SurvivalWatcher_need_participants = "Have we no warrior to join the pit?"
+
+   SurvivalWatcher_fight_in_progress = \
+      "A fight is currently in session, players may only join in combat "
+      "after a boss wave has been completed."
+   SurvivalWatcher_invalid_fight = "The match has ended!"
+
+classvars:
+
+   vrName = SurvivalWatcher_name_rsc
+   vrIcon = SurvivalWatcher_icon_rsc
+   vrDesc = SurvivalWatcher_desc_rsc
+
+   vrMonsterFightInProgress = SurvivalWatcher_fight_in_progress
+   vrInvalidFight = SurvivalWatcher_invalid_fight
+
+   viDefinite = ARTICLE_NONE
+   viIndefinite = ARTICLE_NONE
+
+   viAttributes = MOB_NOMOVE | MOB_FULL_TALK | MOB_LISTEN | MOB_NOFIGHT
+   viOccupation = MOB_ROLE_WATCHER
+
+   // Lower random speech output
+   viRandom_delay = 150000
+
+properties:
+
+   pbCrashProtection = FALSE
+   pbMonsterArena = TRUE
+
+messages:
+
+   SomeoneSaid(what=$, type=$, string=$)
+   "This watcher has different say commands."
+   {
+      if (NOT IsClass(what,&Player))
+      {
+         propagate;
+      }
+
+      // Let 'challenge' work the same as 'join' here
+      if StringEqual(string,SurvivalWatcher_join)
+         OR StringEqual(string,watcher_challenge_command)
+      {
+         Post(self,@TrigJoin,#what=what);
+         return FALSE;
+      }
+
+      // Let 'renege' work the same as 'leave' here
+      if StringEqual(string,SurvivalWatcher_leave)
+         OR StringEqual(string,watcher_renege_command)
+      {
+         Post(self,@TrigRenege,#what=what);
+         return FALSE;
+      }
+
+      if IsClass(what,&DM)
+      {
+         // DM Commands
+         // TBD
+      }
+
+      propagate;
+   }
+
+   TrigJoin(what=$)
+   {
+      local iDelay;
+
+      if Send(self,@IsCombatant,#who=what)
+      {
+         // already in the match
+         Send(self,@SayToOne,#target=what,#message_rsc=vrAlreadyCombatant);
+
+         return;
+      }
+
+      Send(self,@Challenge,#who=what);
+
+      return;
+   }
+
+   MaxCombatantCheck()
+   {
+      return 100;
+   }
+
+   CommenceTimer()
+   {
+      Send(poOwner,@RaiseGates);
+
+      propagate;
+   }
+
+   GetNeedChampionRsc()
+   "Monster arena doesn't look for a champ"
+   {
+      return SurvivalWatcher_need_participants;
+   }
+
+   IsExpansionNPC()
+   {
+      return TRUE;
+   }
+
+end
+//////////////////////////////////////////////////////////////////////////////

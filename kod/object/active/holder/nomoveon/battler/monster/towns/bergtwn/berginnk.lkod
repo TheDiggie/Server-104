@@ -1,0 +1,12 @@
+BergInnkeep_name_rsc = de "Bastiane d'Ile"
+BergInnkeep_desc_rsc = de \
+   "Der Wirt macht den Eindruck, als würde er nicht in seine eigene "
+   "Kneipe passen. Seine feine Kleidung scheint schon Älter zu sein "
+   "und wurde wohl für ihn in jüngeren und schlankeren Jahren "
+   "maßgeschneidert. Der Gestank von Bier und Schnaps überkommt Dich "
+   "als Du näher trittst während er mit zittrigen Händen und glasigem "
+   "Blick einen Krug auswäscht."
+Berg_entry_welcome = de \
+   "He-hey, %s%s! K-k-ommt herrein spaziert, gnihihihi! Trinkt! Triiiiinkt, "
+   "sage ich euch! S-setzt euch und erza¨hlt <hicks> mir eure G-gesch- ichten,"
+   "he-hee-heee!"
