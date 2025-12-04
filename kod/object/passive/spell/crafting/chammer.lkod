@@ -2,3 +2,9 @@ CraftHammer_name_rsc = pt "fabricar martelo"
 CraftHammer_desc_rsc = pt \
       "Fabricar um martelo em uma bigorna com um martelo de ferreiro. "
       "Requer 20 lingotes de ferro e 5 tábuas."
+
+// GERMAN
+CraftHammer_name_rsc = de "Hammer herstellen"
+CraftHammer_desc_rsc = de \
+      "Stelle einen Hammer an einem Amboss mit einem Schmiedehammer her. "
+      "Erfordert 20 Eisenbarren und 5 Bretter."

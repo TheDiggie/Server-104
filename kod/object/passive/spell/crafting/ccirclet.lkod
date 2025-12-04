@@ -2,3 +2,10 @@ CraftCirclet_name_rsc = pt "fabricar diadema"
 CraftCirclet_desc_rsc = pt \
       "Fabricar um diadema em uma bigorna com um martelo de ferreiro. "
       "Requer 10 rubis e 20 lingotes de ferro."
+
+// GERMAN
+CraftCirclet_name_rsc = de "Diadem herstellen"
+CraftCirclet_desc_rsc = de \
+      "Stelle ein Diadem an einem Amboss mit einem Schmiedehammer her. "
+      "Erfordert 10 Rubine und 20 Eisenbarren."
+

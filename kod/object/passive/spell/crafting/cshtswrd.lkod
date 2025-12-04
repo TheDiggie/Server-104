@@ -2,3 +2,9 @@ CraftShortSword_name_rsc = pt "fabricar espada curta"
 CraftShortSword_desc_rsc = pt \
       "Fabricar uma espada curta em uma bigorna com um martelo de ferreiro. "
       "Requer 10 lingotes de ferro e 5 tábuas."
+
+// GERMAN
+CraftShortSword_name_rsc = de "Kurzschwert herstellen"
+CraftShortSword_desc_rsc = de \
+      "Stelle ein Kurzschwert an einem Amboss mit einem Schmiedehammer her. "
+      "Erfordert 10 Eisenbarren und 5 Bretter."

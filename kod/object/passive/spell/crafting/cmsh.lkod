@@ -2,3 +2,9 @@ CraftMahicSpiritHelm_name_rsc = pt "fabricar elmo espiritual mágico"
 CraftMahicSpiritHelm_desc_rsc = pt \
       "Fabricar um elmo espiritual mágico em uma bigorna com um martelo de ferreiro. " 
       "Requer 30 lingotes de ferro, 20 couro, 20 escamas de dragão negro e uma pedra de coração negro."
+
+CraftMahicSpiritHelm_name_rsc = de "Magischer Geisterhelm herstellen"
+CraftMahicSpiritHelm_desc_rsc = de \
+      "Stelle einen Magischen Geisterhelm an einem Amboss mit einem Schmiedehammer her."
+      "Erfordert 30 Eisenbarren, 20 Leder, 20 Schwarzdrachenschuppen und einen Schwarzherzstein."
+      

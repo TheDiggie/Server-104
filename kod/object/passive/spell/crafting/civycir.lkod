@@ -2,3 +2,8 @@ CraftIvyCirclet_name_rsc = pt "fabricar diadema de hera"
 CraftIvyCirclet_desc_rsc = pt \
       "Fabricar um diadema de hera em uma roda de fiar. " 
       "Requer 20 fios de seda e 10 samambaias arco-íris."
+      
+CraftIvyCirclet_name_rsc = de "Efeu-Diadem herstellen"
+CraftIvyCirclet_desc_rsc = de \
+      "Stelle ein Efeu-Diadem an einem Spinnrad her."
+      "Erfordert 20 Seidengarn und 10 Regenbogenfarn."

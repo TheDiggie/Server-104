@@ -2,3 +2,9 @@ CraftDaemonHelm_name_rsc = pt "fabricar elmo de demônio"
 CraftDaemonHelm_desc_rsc = pt \
       "Fabricar um elmo de demônio em uma bigorna com um martelo de ferreiro. " 
       "Requer 15 lingotes de ferro e 20 couro."
+
+CraftDaemonHelm_name_rsc = de "Dï¿½monenhelm herstellen"
+CraftDaemonHelm_desc_rsc = de \
+      "Stelle einen Dï¿½monenhelm an einem Amboss mit einem Schmiedehammer her." 
+      "Erfordert 15 Eisenbarren und 20 Leder."
+      

@@ -2,3 +2,9 @@ CraftLeatherArmor_name_rsc = pt "fabricar armadura de couro"
 CraftLeatherArmor_desc_rsc = pt \
       "Fabricar uma armadura de couro a partir de couro. "
       "Requer 20 couro e 5 fios de seda."
+
+CraftLeatherArmor_name_rsc = de "Lederr�stung herstellen"
+CraftLeatherArmor_desc_rsc = de \
+      "Stelle eine Lederr�stung aus Leder her."
+      "Erfordert 20 Leder und 5 Seidengarn."
+      

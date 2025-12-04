@@ -2,3 +2,9 @@ CraftKnightShield_name_rsc = pt "fabricar escudo de cavaleiro"
 CraftKnightShield_desc_rsc = pt \
       "Fabricar um escudo de cavaleiro em uma bigorna com um martelo de ferreiro. "
       "Requer 20 lingotes de ferro, 5 tábuas e 5 couro."
+
+// GERMAN
+CraftKnightShield_name_rsc = de "Ritterschild herstellen"
+CraftKnightShield_desc_rsc = de \
+      "Stelle einen Ritterschild an einem Amboss mit einem Schmiedehammer her. "
+      "Erfordert 20 Eisenbarren, 5 Bretter und 5 Leder."

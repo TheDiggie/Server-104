@@ -2,3 +2,9 @@ CraftScimitar_name_rsc = pt "fabricar cimitarra"
 CraftScimitar_desc_rsc = pt \
       "Fabricar uma cimitarra em uma bigorna com um martelo de ferreiro. "
       "Requer 30 lingotes de ferro, 5 tábuas e 5 couro."
+
+CraftScimitar_name_rsc = de "Sï¿½bel herstellen"
+CraftScimitar_desc_rsc = de \
+      "Stelle einen Sï¿½bel an einem Amboss mit einem Schmiedehammer her."
+      "Erfordert 30 Eisenbarren, 5 Bretter und 5 Leder."
+      
