@@ -1,0 +1,129 @@
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Wendigo is Monster
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include wendigo.lkod
+
+   wendigo_koc_name_rsc = "joaleoc"
+   wendigo_name_rsc = "wendigo"
+   wendigo_icon_rsc = wendigo.bgf
+   wendigo_desc_rsc = \
+      "A beast of endless hunger, the wendigo is born of greed and excess.  "
+      "The origin are unknown, some say it comes as a spirit posessing a man. "
+      "Those that have died of starvation in the harsh grip of the forest left "
+      "unburied, rise again as these unholy monstrosities."
+   wendigo_dead_icon_rsc = wendigoX.bgf
+   wendigo_dead_name_rsc = "dead wendigo"
+
+   wendigo_sound_attack = wendigo_attack.ogg
+   wendigo_sound_death = wendigo_death.ogg
+   wendigo_sound_aware = wendigo_aware.ogg
+
+classvars:
+
+   vrKocName = wendigo_koc_name_rsc
+   vrName = wendigo_name_rsc
+   vrIcon = wendigo_icon_rsc
+   vrDesc = wendigo_desc_rsc
+   vrDead_icon = wendigo_dead_icon_rsc
+   vrDead_name = wendigo_dead_name_rsc
+
+   // Standard frames for resting, moving, attacking and getting hit.
+   viRest_frame = 1
+   viLook_start_frame = 2
+   viLook_end_frame = 12
+   viLook_duration = 100      // Duration per frame.
+   viMove_start_frame = 2
+   viMove_end_frame = 12
+   viMove_duration = 100      // Duration per frame.
+   viAttack_start_frame = 13
+   viAttack_end_frame = 19
+   viAttack_duration = 100    // Duration per frame.
+   viHit_start_frame = 13
+   viHit_end_frame = 16
+   viHit_duration = 500       // Maximum total duration of animation.
+
+   // Extra frames for casting spells, special attacks or firing shots.
+   viSpecial_start_frame = 20
+   viSpecial_end_frame = 26
+   viSpecial_duration = 100   // Duration per frame.
+
+   viTreasure_type = TID_WIMPY_MEDIUM
+   viSpeed = SPEED_FAST
+   viAttack_type = ATCK_WEAP_SLASH
+   viDefault_behavior = AI_FIGHT_AGGRESSIVE
+   vbIsUndead = TRUE
+   viLevel = 120
+   viDifficulty = 9
+   viVisionDistance = 100
+   viMeleeRange = 96
+   viKarma = -85
+   viCashmin = -9000
+   viCashmax = 4000
+   vrSound_hit = wendigo_sound_attack
+   vrSound_miss = wendigo_sound_attack
+   vrSound_aware = wendigo_sound_aware
+   vrSound_death = wendigo_sound_death
+
+   viBleedChance = 50
+   viBleedStrength = 1500
+   viBleedDuration = 15000
+
+   vbCanSiphon = FALSE
+
+properties:
+
+   piAnimation = ANIM_NONE
+   piReputationGroup = REP_UNDEAD
+
+messages:
+
+   Constructed()
+   {
+      plResistances = [ [ATCK_WEAP_PIERCE, 30 ],
+                        [ATCK_WEAP_THRUST, 30 ],
+                        [ATCK_WEAP_SLASH, 15 ],
+                        [ATCK_WEAP_NONMAGIC, 80 ],
+                        [ATCK_WEAP_BLUDGEON, -20 ],
+                        [-ATCK_SPELL_UNHOLY, 50 ],
+                        [-ATCK_SPELL_SHOCK, -20 ],
+                        [-ATCK_SPELL_FIRE, 20 ],
+                        [-ATCK_SPELL_COLD, 20 ],
+                        [-ATCK_SPELL_HOLY, -15 ]
+                      ];
+
+      plReputationEnemies = [REP_FARNOHL];
+
+      propagate;
+   }
+
+   DoMeleeAnimation(what = $)
+   {
+      piAnimation = ANIM_ATTACK;
+
+      Send(poOwner,@SomethingChanged,#what=self);
+
+      piAnimation = ANIM_NONE;
+
+      return;
+   }
+
+   IsExpansionMonster()
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

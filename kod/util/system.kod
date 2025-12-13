@@ -5762,6 +5762,13 @@ messages:
       plMonsterTemplates = Cons(Create(&BanditCaptain,#template=TRUE),plMonsterTemplates);
       plMonsterTemplates = Cons(Create(&Beetle,#template=TRUE),plMonsterTemplates);
       plMonsterTemplates = Cons(Create(&Bullant,#template=TRUE),plMonsterTemplates);
+      plMonsterTemplates = Cons(Create(&Wendigo,#template=TRUE),plMonsterTemplates);
+      plMonsterTemplates = Cons(Create(&Spinebeast,#template=TRUE),plMonsterTemplates);
+      plMonsterTemplates = Cons(Create(&BigSlime,#template=TRUE),plMonsterTemplates);
+      plMonsterTemplates = Cons(Create(&BigSlimeSplit,#template=TRUE),plMonsterTemplates);
+      plMonsterTemplates = Cons(Create(&GiantEye,#template=TRUE),plMonsterTemplates);
+      plMonsterTemplates = Cons(Create(&Nyrphling,#template=TRUE),plMonsterTemplates);
+      plMonsterTemplates = Cons(Create(&Ranuculus,#template=TRUE),plMonsterTemplates);
 
       return;
    }

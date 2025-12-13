@@ -1,0 +1,143 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Nyrphling is Monster
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include nyrphling.lkod
+
+   nyrphling_koc_name_rsc = "imixshkir"
+   nyrphling_name_rsc = "nyrphling"
+   nyrphling_icon_rsc = nyrphling.bgf
+   nyrphling_desc_rsc = \
+      "Despite their diminutive frame, nyrphlings have no shortage of ways "
+      "to torment their adversaries.  With their razor-sharp claws, venomous fangs "
+      "and deadly stingers, these fiery creatures make for fearsome opponents - "
+      "especially when encountered in groups.  If taken on individually, however, "
+      "an experienced adventurer may dispatch them before they are able to do much harm."
+
+   nyrphling_dead_icon_rsc = nyrphlingX.bgf
+   nyrphling_dead_name_rsc = "dead nyrphling"
+
+   nyrphling_sound_hit = gwrm3awr.ogg
+   nyrphling_sound_miss = gwrm1awr.ogg
+   nyrphling_sound_death = scp_awr.ogg
+   nyrphling_sound_aware = scp_awr.ogg
+
+classvars:
+
+   vrKocName = nyrphling_koc_name_rsc
+   vrName = nyrphling_name_rsc
+   vrIcon = nyrphling_icon_rsc
+   vrDesc = nyrphling_desc_rsc
+   vrDead_icon = nyrphling_dead_icon_rsc
+   vrDead_name = nyrphling_dead_name_rsc
+
+   // Animation frames and frame durations.
+   viRest_frame = 1
+   viLook_start_frame = 2
+   viLook_end_frame = 12
+   viLook_duration = 100      // Duration per frame.
+   viMove_start_frame = 2
+   viMove_end_frame = 12
+   viMove_duration = 100      // Duration per frame.
+   viAttack_start_frame = 21
+   viAttack_end_frame = 27
+   viAttack_duration = 100    // Duration per frame.
+   viCast_start_frame = 13
+   viCast_end_frame = 20
+   viCast_duration = 100      // Duration per frame.
+   viSpecial_start_frame = 28
+   viSpecial_end_frame = 33
+   viSpecial_duration = 100   // Duration per frame.
+   viHit_start_frame = 21
+   viHit_end_frame = 23
+   viHit_duration = 500       // Maximum total duration of animation.
+
+   // This monster does all kinds of nefarious stuff...
+   viPoisonChance = 50
+   viPoisonStrength = 350
+   viPoisonDuration = 30000
+   viPoisonHealth = 100
+   viBleedChance = 15
+   viBleedStrength = 500
+   viBleedDuration = 20000
+   viFatigueChance = 50
+   viFatigueStrength = 250
+   viFatigueDuration = 60000
+   viBurnChance = 5
+   viBurnStrength = 2000
+   viBurnDuration = 4000
+
+   viTreasure_type = TID_WIMPY_MEDIUM
+   viSpeed = SPEED_FAST
+
+   viLevel = 75
+   viDifficulty = 3
+   viBonusHealth = -40
+   viVisionDistance = 10
+   viMeleeRange = 96
+   viKarma = -60
+   viDefault_behavior = AI_FIGHT_AGGRESSIVE | AI_FIGHT_SINGLEMINDED | AI_FIGHT_HYPERAGGRESSIVE
+   viWimpy = 20
+   viCashmin = 275
+   viCashmax = 650
+   vrSound_hit = nyrphling_sound_hit
+   vrSound_miss = nyrphling_sound_miss
+   vrSound_aware = nyrphling_sound_aware
+   vrSound_death = nyrphling_sound_death
+
+   viBonusSwing = 20
+   viMeleeAnimationTime = 700
+
+   viSocial = 80
+
+   vbCanSiphon = FALSE
+
+properties:
+
+   piAnimation = ANIM_NONE
+
+messages:
+
+   Constructed()
+   {
+      plResistances = [ [-ATCK_SPELL_FIRE, 60 ],
+                        [ATCK_WEAP_SLASH, -20 ] ];
+
+      propagate;
+   }
+
+   DoMeleeAnimation()
+   "Handles melee attack animation."
+   {
+      piAnimation = ANIM_ATTACK;
+
+      return;
+   }
+
+   // Nyrphlings attack quite quickly, making up for their low health pool.
+   GetAttackTime()
+   {
+      return MOB_ATTACK_TIMER_WAIT + Random(400,600);
+   }
+
+   IsExpansionMonster()
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

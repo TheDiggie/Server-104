@@ -1,0 +1,153 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Spinebeast is Monster
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include spinebeast.lkod
+
+   spinebeast_koc_name_rsc = "kimakao"
+   spinebeast_name_rsc = "spinebeast"
+   spinebeast_icon_rsc = spinebeast.bgf
+   spinebeast_desc_rsc = \
+    "The heavily armored spinebeast tends to be a peaceful creature, "
+    "yet it is known for fiercely defending its young against anything it "
+    "may perceive as a threat.  Travellers are advised to keep their distance "
+    "as the spinebeast's spines and deadly horn can cause gruesome injuries."
+   spinebeast_dead_icon_rsc = spinebeastX.bgf
+   spinebeast_dead_name_rsc = "dead spinebeast"
+
+   spinebeast_sound_hit = yti_atkh.ogg
+   spinebeast_sound_miss = yti_atkm.ogg
+   spinebeast_sound_death = yti_dth.ogg
+   spinebeast_sound_aware = yti_awr.ogg
+
+classvars:
+
+   vrKocName = spinebeast_koc_name_rsc
+   vrName = spinebeast_name_rsc
+   vrIcon = spinebeast_icon_rsc
+   vrDesc = spinebeast_desc_rsc
+   vrDead_icon = spinebeast_dead_icon_rsc
+   vrDead_name = spinebeast_dead_name_rsc
+
+   // Animation frames and frame durations.
+   viRest_frame = 1
+   viLook_start_frame = 2
+   viLook_end_frame = 12
+   viLook_duration = 100      // Duration per frame.
+   viMove_start_frame = 2
+   viMove_end_frame = 12
+   viMove_duration = 100      // Duration per frame.
+   viAttack_start_frame = 13
+   viAttack_end_frame = 19
+   viAttack_duration = 100    // Duration per frame.
+   viCast_start_frame = 20
+   viCast_end_frame = 26
+   viCast_duration = 100      // Duration per frame.
+   viHit_start_frame = 13
+   viHit_end_frame = 15
+   viHit_duration = 500       // Maximum total duration of animation.
+
+   viTreasure_type = TID_WIMPY_MEDIUM
+   viSpeed = SPEED_FAST
+   viAttack_type = ATCK_WEAP_THRUST
+   viDefault_behavior = AI_FIGHT_KARMA_AGGRESSIVE | AI_FIGHT_HYPERAGGRESSIVE
+   viLevel = 120
+   viDifficulty = 7
+   viVisionDistance = 20
+   viMeleeRange = 128
+   viKarma = 80
+   viCashmin = 300
+   viCashmax = 700
+   vrSound_hit = spinebeast_sound_hit
+   vrSound_miss = spinebeast_sound_miss
+   vrSound_aware = spinebeast_sound_aware
+   vrSound_death = spinebeast_sound_death
+
+   viBleedChance = 20
+   viBleedStrength = 3000
+   viBleedDuration = 7000
+
+   vbCanSiphon = FALSE
+
+properties:
+
+   piAnimation = ANIM_NONE
+
+messages:
+
+   Constructed()
+   {
+      plResistances = [ [-ATCK_SPELL_COLD, 90],
+                        [-ATCK_SPELL_SHOCK, 90],
+                        [-ATCK_SPELL_ACID, 10 ],
+                        [-ATCK_SPELL_FIRE, 10 ],
+                        [ATCK_WEAP_SLASH, 55 ],
+                        [ATCK_WEAP_NERUDITE, 25 ],
+                        [ATCK_WEAP_PIERCE, 70 ],
+                        [ATCK_WEAP_THRUST, 70 ],
+                        [ATCK_WEAP_BLUDGEON, 30 ]];
+
+      plReputationEnemies = [REP_UNDEAD];
+
+      propagate;
+   }
+
+   DoMeleeAnimation(what = $)
+   {
+      piAnimation = ANIM_ATTACK;
+
+      Send(poOwner,@SomethingChanged,#what=self);
+
+      piAnimation = ANIM_NONE;
+
+      return;
+   }
+
+   // Spinebeasts are quite fast on their feet, but that shouldn't translate to
+   // equally fast attacks...
+   GetAttackTime()
+   {
+      return MOB_ATTACK_TIMER_WAIT + Random(500,1000);
+   }
+
+   IsAlliedClass(what=$)
+   {
+      if IsClass(what,&Spinebeast)
+      {
+         return TRUE;
+      }
+
+      propagate;
+   }
+
+   IsEnemy(what=$)
+   {
+      if IsClass(what,&Nyrphling)
+      {
+         return TRUE;
+      }
+
+      propagate;
+   }
+
+   IsExpansionMonster()
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

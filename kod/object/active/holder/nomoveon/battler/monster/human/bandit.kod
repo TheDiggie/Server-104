@@ -186,18 +186,6 @@ messages:
 
       iColor_green = Send(SYS,@EncodeTwoColorXLAT,
                   #color1=XLAT_TO_GREEN,#color2=XLAT_TO_SKIN1);
-      
-      // hardcoded for red shirt and green pants
-      if Send(target,@GetCurrentShirtColor) >= iColor_red1
-         AND Send(target,@GetCurrentShirtColor) <= iColor_red2
-      {
-
-         if Send(target,@GetCurrentPantsColor) = iColor_dgreen
-            OR Send(target,@GetCurrentPantsColor) = iColor_green
-         {
-            return TRUE;
-         }
-      }
 
       return FALSE;
    }
