@@ -1,0 +1,106 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+JixaInnkeeper is JixaTown
+
+constants:
+
+   include blakston.khd
+   
+resources:
+
+   include jixainnk.lkod
+
+   JixaInnkeep_name_rsc = "Jorgan Yesjor"
+   JixaInnkeep_icon_rsc = jixainnk.bgf
+   JixaInnkeep_desc_rsc = \
+      "A man with a warm, jovial air about him, he loves to listen to people "
+      "at length before talking their ear off.  He can carry on conversation "
+      "for hours often by his passion of the theatre.  Jorgan is always "
+      "cheerful,  even with a hangover, he considers everything a fun event "
+      "and doesn't hold grudges. He works hard and plays hard."
+
+   Jixa_entry_welcome = "HAIL, %s%s."
+
+classvars:
+
+   vrName = JixaInnkeep_name_rsc
+   vrIcon = JixaInnkeep_icon_rsc
+   vrDesc = JixaInnkeep_desc_rsc
+   viAttributes = \
+      MOB_NOFIGHT | MOB_SELLER | MOB_RANDOM | MOB_NOMOVE \
+      | MOB_LISTEN | MOB_RECEIVE | MOB_TEACHER | MOB_COND_SELLER
+   viOccupation = MOB_ROLE_INNKEEPER
+   viMerchant_markup = MERCHANT_DISCOUNT
+
+properties:
+
+messages:
+   
+   SetForSale()
+   {
+      plFor_sale = [ 
+         [
+            Create(&LoadoutScroll,#labelled=TRUE),
+            Create(&SetScroll,#labelled=TRUE),
+            Create(&Pear,#number=3),
+            Create(&WineGoblet)
+         ],
+         $,$,$];
+
+      return;
+   }
+
+   CanAddSkill(who=$,num=0)
+   {
+      if NOT Send(self,@HasDoneLearnQuest,#who=who)
+      {
+         return FALSE;
+      }
+
+      propagate;
+   }
+
+   UserEntered(who=$)
+   {
+      Post(who,@SomeoneSaid,#what=self,#string=Jixa_entry_welcome,
+            #type=SAY_RESOURCE,
+            #parm1=Send(who,@GetDef),#parm2=Send(who,@GetName));
+
+      if Send(who,@GetHomeRoom) = RID_JAS_INN
+      {
+         Send(self,@SetMood,#new_mood=piMood-2);
+      }
+
+      if Send(who,@GetHomeRoom) = RID_COR_INN
+      {
+         Send(self,@SetMood,#new_mood=piMood+2);
+      }
+
+      if Send(who,@GetFaction) = FACTION_DUKE
+      {
+         Send(self,@SetMood,#new_mood=piMood+2);
+      }
+
+      if Send(who,@GetFaction) = FACTION_PRINCESS
+      {
+         Send(self,@SetMood,#new_mood=piMood-3);
+      }
+
+      if Send(who,@GetFaction) = FACTION_REBEL
+      {
+         Send(self,@SetMood,#new_mood=piMood-10);
+      }
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

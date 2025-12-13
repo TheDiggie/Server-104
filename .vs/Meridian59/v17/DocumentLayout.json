@@ -34,8 +34,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -46,8 +50,7 @@
               "RelativeToolTip": "clientd3d\\config.c",
               "ViewState": "AgIAAFoAAAAAAAAAAAAqwHMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-08-01T00:42:15.611Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-01T00:42:15.611Z"
             },
             {
               "$type": "Document",
@@ -57,7 +60,7 @@
               "RelativeDocumentMoniker": "clientd3d\\login.c",
               "ToolTip": "C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\login.c",
               "RelativeToolTip": "clientd3d\\login.c",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAtwEEAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAtwEEAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-07-08T02:26:11.754Z",
               "EditorCaption": ""
@@ -72,8 +75,7 @@
               "RelativeToolTip": "clientd3d\\buy.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-01-27T03:06:46.458Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-27T03:06:46.458Z"
             },
             {
               "$type": "Document",
@@ -85,8 +87,7 @@
               "RelativeToolTip": "clientd3d\\server.c",
               "ViewState": "AgIAABwAAAAAAAAAAAAYwDYAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-01-27T03:06:48.094Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-27T03:06:48.094Z"
             },
             {
               "$type": "Document",
@@ -98,8 +99,7 @@
               "RelativeToolTip": "clientd3d\\buy.c",
               "ViewState": "AgIAADgAAAAAAAAAAAAtwEwAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-01-27T03:03:14.776Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-27T03:03:14.776Z"
             },
             {
               "$type": "Document",
@@ -111,8 +111,7 @@
               "RelativeToolTip": "clientd3d\\client.rc",
               "ViewState": "AgIAAC0EAAAAAAAAAAAwwFcEAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
-              "WhenOpened": "2025-01-27T02:45:37.519Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-27T02:45:37.519Z"
             }
           ]
         }

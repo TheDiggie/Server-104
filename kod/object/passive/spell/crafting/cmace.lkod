@@ -2,3 +2,9 @@ CraftMace_name_rsc = pt "fabricar maça"
 CraftMace_desc_rsc = pt \
       "Fabricar uma maça em uma bigorna com um martelo de ferreiro. "
       "Requer 10 lingotes de ferro e 2 tábuas."
+
+// GERMAN
+CraftMace_name_rsc = de "Streitkolben herstellen"
+CraftMace_desc_rsc = de \
+      "Stelle einen Streitkolben an einem Amboss mit einem Schmiedehammer her. "
+      "Erfordert 10 Eisenbarren und 2 Bretter."

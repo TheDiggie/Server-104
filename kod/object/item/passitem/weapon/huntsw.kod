@@ -679,6 +679,8 @@ messages:
          Post(Send(SYS,@GetNecromancerBalance),@PlaceSword,#what=self);
       }
 
+      Send(self,@RestoreStats,#who=poOwner);
+
       return;
    }
 

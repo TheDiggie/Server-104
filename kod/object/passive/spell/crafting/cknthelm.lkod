@@ -2,3 +2,9 @@ CraftKnightsHelmet_name_rsc = pt "capacete de cavaleiro"
 CraftKnightsHelmet_desc_rsc = pt \
       "Fabricar um capacete de cavaleiro em uma bigorna com um martelo de ferreiro. "
       "Requer 25 lingotes de ferro e 5 couro."
+
+// GERMAN
+CraftKnightsHelmet_name_rsc = de "Ritterhelm herstellen"
+CraftKnightsHelmet_desc_rsc = de \
+      "Stelle einen Ritterhelm an einem Amboss mit einem Schmiedehammer her. "
+      "Erfordert 25 Eisenbarren und 5 Leder."

@@ -2,3 +2,9 @@ CraftPickAxe_name_rsc = pt "fabricar picareta"
 CraftPickAxe_desc_rsc = pt \
       "Fabricar uma picareta em uma bigorna com um martelo de ferreiro. "
       "Requer 20 lingotes de ferro e 5 tábuas."
+
+// GERMAN
+CraftPickAxe_name_rsc = de "Spitzhacke herstellen"
+CraftPickAxe_desc_rsc = de \
+      "Stelle eine Spitzhacke an einem Amboss mit einem Schmiedehammer her. "
+      "Erfordert 20 Eisenbarren und 5 Bretter."

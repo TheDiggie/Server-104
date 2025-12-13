@@ -3,3 +3,10 @@ CraftLightMagicRobes_desc_rsc = pt \
       "Fabricar vestes leves de discípulo de uma escola escolhida em um tear. " 
       "Ao fabricar, diga o nome da escola que deseja capacitar na veste. " 
       "Requer 200 fios de seda."
+
+CraftLightMagicRobes_name_rsc = de "Leichte Magierrobe herstellen"
+CraftLightMagicRobes_desc_rsc = de \
+      "Stelle eine leichte Schülerrobe einer gewählten Schule an einem Webstuhl her." 
+      "Sage beim Herstellen den Namen der Schule, die du auf der Robe haben möchtest."
+      "Erfordert 200 Seidengarn."
+      

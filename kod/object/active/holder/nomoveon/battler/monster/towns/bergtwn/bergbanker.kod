@@ -1,0 +1,94 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+BergBanker is BergTown
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include bergbanker.lkod
+
+   BergBanker_name_rsc = "Michael d'Adue"
+   BergBanker_icon_rsc = bergbankerm.bgf
+   BergBanker_desc_rsc = \
+      "A young man with pale skin and a slightly rounded figure stands before "
+      "you.  His friendly smile almost makes you overlook his weak handshake, "
+      "though it never quite reaches his eyes.  He keeps his customers' money "
+      "securely behind heavy iron bars, and you get the sense he wants to know "
+      "that every last one of their coins is in his grasp."
+
+   BergBanker_entry_welcome = \
+      "Welcome to the Bank of Berg.  Step up and let me know how many "
+      "coins you'd like to deposit today."
+
+classvars:
+
+   vrName = BergBanker_name_rsc
+   vrDesc = BergBanker_desc_rsc
+   vrIcon = BergBanker_icon_rsc
+   viAttributes = \
+      MOB_NOFIGHT | MOB_SELLER | MOB_RANDOM | MOB_LISTEN \
+      | MOB_NOMOVE | MOB_RECEIVE | MOB_BANKER
+   viOccupation = MOB_ROLE_BANKER
+   viBank = BID_TOS
+
+properties:
+
+messages:
+
+   Constructor()
+   {
+      plWantedItems=[&Money];
+
+      propagate;
+   }
+
+   GetBankNum()
+   {
+      return viBank;
+   }
+
+   UserEntered(who=$)
+   {
+      if Send(who,@CheckPlayerFlag,#flag=PFLAG_OUTLAW)
+      {
+         Send(self,@SetMood,#new_mood=piMood+3);
+      }
+      else if Send(who,@CheckPlayerFlag,#flag=PFLAG_MURDERER)
+      {
+         Send(self,@SetMood,#new_mood=piMood+3);
+      }
+      else
+      {
+         Send(self,@SetMood,#new_mood=piMood-3);
+      }
+
+      if Send(who,@GetHomeRoom) = RID_BERG_INN
+      {
+         Send(self,@SetMood,#new_mood=piMood+2);
+      }
+
+      if Send(who,@GetFaction) = FACTION_NEUTRAL
+      {
+         Send(self,@SetMood,#new_mood=piMood+3);
+      }
+
+      Post(who,@SomeoneSaid,#what=self,#string=BergBanker_entry_welcome,
+            #type=SAY_RESOURCE,
+            #parm1=Send(who,@GetDef),#parm2=Send(who,@GetName));
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

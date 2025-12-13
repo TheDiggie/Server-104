@@ -2,3 +2,9 @@ CraftNeruditeSword_name_rsc = pt "fabricar espada nerudita"
 CraftNeruditeSword_desc_rsc = pt \
       "Fabricar uma espada nerudita em uma bigorna Ko'catan com um martelo de ferreiro. "
       "Requer 15 lingotes de nerudita, 5 tábuas densas e 5 couro de kriipa."
+
+// GERMAN
+CraftNeruditeSword_name_rsc = de "Nerudit-Schwert herstellen"
+CraftNeruditeSword_desc_rsc = de \
+      "Stelle ein Nerudit-Schwert an einem Ko'catan-Amboss mit einem Schmiedehammer her. "
+      "Erfordert 15 Neruditbarren, 5 dichtes Holz und 5 Kriipa-Leder."

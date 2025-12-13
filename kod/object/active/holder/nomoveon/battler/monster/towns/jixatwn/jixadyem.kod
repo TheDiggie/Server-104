@@ -1,0 +1,115 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+JixaDyeM is JixaTown
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include jixadyem.lkod
+
+   jixadye_name_rsc = "Rosaline Marinus"
+   jixadye_icon_rsc = jixadyem.bgf
+   jixadye_desc_rsc = \
+      "Rosaline spent her early days in her father's smithy, helping him out "
+      "where she could and, being a quick learner, picking up the craft along "
+      "the way.  Possessing a curious mind, Rosaline dedicated most of her spare "
+      "time to the study of the living creatures around her and, in doing so, "
+      "developed a particular fascination with beetles and their multi-colored shells.  "
+      "Using her observations as an inspiration, she soon began investigating new "
+      "methods to create uniquely colored alloys that her father could use in his "
+      "work. When he fell victim to a mysterious illness and died several years later, "
+      "the responsibility of carrying on with the family's business fell on her "
+      "shoulders.  Never one to complain, she picked up where her father had left "
+      "off and has since made a name for herself and her extraordinary abilities."
+
+   JixaDye_entry_welcome = "Welcome to the most colorful place in the land of Meridian!"
+   
+   JixaDye_gotwanted_red = \ 
+      "Would you have a look at this beautiful shade of crimson!  Love, rage, blood, murder...  "
+      "No other color carries such passion!"
+   JixaDye_gotwanted_blue = \ 
+      "Ahhh!  A blue as deep as the ocean!  It is beyond me why some associate this color "
+      "with sadness.  When I gaze at the ocean, all my sorrows are but washed away... "
+   JixaDye_gotwanted_green = \ 
+      "Green is my favorite color! It carries the spirit of our world and of Jala herself."
+   JixaDye_gotwanted_black = \ 
+      "Pitch black... As the saying goes: Those who wear black live colorful lives."
+   JixaDye_gotwanted_white = \ 
+      "A white fused emberheart will allow us to access the entire color spectrum. "
+      "You never know what you'll get with this one."
+   JixaDye_gotwanted_purple = \ 
+      "Purple!  ...such a fascinating color!  Only a step away from beyond our sight."
+   JixaDye_gotwanted_dgreen = \ 
+      "What a lovely deep shade of green... I'm sure Jala would be ecstatic!"
+   JixaDye_gotwanted_sky = \ 
+      "Amazing! A sky emberstone! I never grow tired of the color of the endless skies."
+   JixaDye_gotwanted_brown = \ 
+      "Brown...  Modest. Solid.  Steady.  Dependable as the ground itself.  What a shame "
+      "that color doesn't get the credit it deserves."
+
+classvars:
+
+   vrName = jixadye_name_rsc
+   vrIcon = jixadye_icon_rsc
+   vrDesc = jixadye_desc_rsc
+   viMerchant_markup = MERCHANT_NORMAL
+   viAttributes = \
+      MOB_NOFIGHT | MOB_SELLER | MOB_RANDOM \
+      | MOB_LISTEN | MOB_NOMOVE | MOB_RECEIVE  
+   viOccupation = MOB_ROLE_MERCHANT
+   viGender = GENDER_FEMALE
+
+properties:
+
+messages:
+
+   SetForSale()
+   {
+      plFor_sale = [
+         [  
+            // NPCs in this region worship Jala and love wearing dark green
+            // These colors are also unique to these items.
+            Create(&LightRobe,#color=XLAT_TO_GRAY),
+            Create(&LightRobe,#color=XLAT_TO_SKIN4),
+            Create(&LightRobe,#color=XLAT_TO_BLUE),
+            Create(&LightRobe,#color=XLAT_TO_DGREEN),
+
+            Create(&Skirt,#color=XLAT_TO_BLACK),
+            Create(&Skirt,#color=XLAT_TO_PURPLE),
+            Create(&Skirt,#color=XLAT_TO_SKY),
+
+            Create(&Tanktop,#color=XLAT_TO_DGREEN),
+            Create(&Tanktop,#color=XLAT_TO_BLUE)
+         ],
+         $,$,$];
+
+      return;
+   }
+
+   UserEntered(who=$)
+   {
+      if Send(who,@CheckPlayerFlag,#flag=PFLAG_OUTLAW)
+      {
+         Send(self,@SetMood,#new_mood=piMood-2);
+      }
+
+      Post(who,@SomeoneSaid,#what=self,#string=JixaDye_entry_welcome,
+            #type=SAY_RESOURCE);
+
+      propagate;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////
+

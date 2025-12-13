@@ -1,0 +1,40 @@
+bergvaultman_name_rsc = de "Liam Magnus"
+bergvaultman_desc_rsc = de \
+   "Mit hochgezogenen Augenbrauen aber freudiger Miene, betrachtet Dich der "
+   "ältere, hagere Lagerverwalter. Gehüllt in eine samtfeine Langtunika, mit "
+   "edler Borte und Zackensaum, einen Gürtel mit goldener Kordel tragend an "
+   "dessen Ende eine verzierte Brosche hängt, hält er einen Stab mit einem "
+   "ebenso güldenen Krokokopf und blauem, herabhängendem Schweif. Auch wenn "
+   "er nicht wirkt als würde er Kisten schleppen, so kümmert er sich offenbar "
+   "um die Verwaltung der Güter."
+bergvaultman_entry_welcome = de \
+   "Oh, wie schön euch zu sehen. Mögt Ihr vielleicht eure wertvollen Gegenstände, "
+   "zu einem äußerst fairen Preis natürlich, bei mir einlagern? Ich verspreche, "
+   "gut darauf aufzupassen!"
+bergvaultman_nogold = de \
+   "Du kannst meine Dienste nicht nutzen und %s%s einlagern."
+bergvaultman_nocursed = de "Ich kann %s%s von dir nicht einlagern."
+bergvaultman_fullvault = de \
+   "Das passt alles nicht in deine Kiste!  Vielleicht hast du Sachen geringerer "
+   "Menge."
+bergvaultman_thanks_amount = de \
+   "Das kostet %i Schilling.  Ich danke dir für dein Vertrauen, als Verwalter "
+   "deiner Sachen."
+bergvaultman_dont_have = de \
+   "Hmmm, ich kann scheinbar %s%s in deinen Sachen nicht finden."
+bergvaultman_no_room = de \
+   "Du kannst das nicht alles tragen!  Vielleicht solltest du ein paar deiner "
+   "Dinge ablegen."
+bergvaultman_deposit_thanks = de \
+   "Ich danke dir für das Vertrauen als dein Verwalter."
+bergvaultman_thanks = de "Ich danke dir für dein Vertrauen."
+bergvaultman_nowithdraw_cash = de \
+   "Du kannst derzeit nichts entnehmen, dafür hast du nicht genug Geld."
+bergvaultman_nodeposit_cash = de \
+   "All diese Sachen zu verstauen würde %i Schilling kosten - welche du nicht "
+   "hast, wie ich sehen kann."
+bergvaultman_cant_part = de \
+   "Oh man, ich will nicht verantwortlich sein für %s wenn sie verschwinden. "
+   "Ich kan sie leider nicht für dich verstauen."
+bergvaultman_noaccount = de "Ich habe nichts von dir im Speicher."
+bergvaultman_not_enough = de "Du hast nicht so viele %s in deinem Speicher!"

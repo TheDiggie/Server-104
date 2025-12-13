@@ -1,0 +1,34 @@
+room_name_SurvivalArena = de "Die heiligen Übungsplätze"
+
+SurvivalArena_no_offer = de \
+   "Osvann Vaendefdall says, \"Zuschauer und Teilnehmer dürfen während "
+   "der Kämpfe keine Gegenstände austauschen.\""
+SurvivalArena_cant_go = de \
+   "Osvann Vaendefdall says, \"Ihr könnt nicht gehen! Ihr seid einer der "
+   "Kämpfer!\""
+
+SurvivalArena_sign_name = de "Nutzung der heiligen Übungsplätze"
+SurvivalArena_sign_text = de \
+   "Nenne das Event, an dem du teilnehmen willst.\n\n"
+   "SURVIVAL:\n"
+   "Sage 'beitreten' oder 'verlassen' um die Arena zu betreten oder zu verlassen."
+   "Kämpfer müssen alle Gegner einer Welle besiegen, um zur nächsten Welle zu "
+   "gelangen.  Die Schwierigkeit der Gegner erhöht sich mit jeder überwundenen "
+   "Welle.\n\n"
+   "KLASSISCHER SURVIVAL: Verwende die folgenden gesagten Befehle...\n"
+   "Sage 'starte solo Survival'\n"
+   "Sage 'starte öffentliche Survival'\n"
+   "Sage 'öffentlichem Survival beitreten'\n"
+   "Sage 'starte Gilden Survival'\n"
+   "Sage 'Gilden Survival beitreten'\n"
+   "Traditionell: In traditionellen Kämpfen gibt es nur zwei Teilnehmer.\n\n"
+   "Kampf bis zum letzten Mann: Der letzte Gladiator im Ring erntet den Ruhm Kraanans..\n\n"
+   "Gilde gegen Gilde: Zwei Gilden können sich gegenseitig herausfordern..\n\n"
+   "Königlicher Kampf: Eine Mischung aus Kampf bis zum letzten Mann und Gilde gegen Gilde."
+SurvivalArena_locked_house = de \
+   "Die Tür zu Osvann Vaendefdalls Haus ist verschlossen."
+
+SurvivalArena_start_tournament = de \
+   "Die Banner entfalten sich und die Signalhörner ertönen um das Zeichen "
+   "zu geben, dass das Royale Turnier gestartet wurde!"
+SurvivalArena_end_tournament = de "Das Royale Turnier wurde beendet."

@@ -1,0 +1,142 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+DValley1 is MonsterRoom
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include dvalley1.lkod
+
+   room_dvalley1 = dvalley1.roo
+   room_name_dvalley1 = "Into the Valley of Death"
+   dvalley1_music = dvalley.ogg
+
+classvars:
+
+   vrName = room_name_dvalley1
+   viTerrain_type = TERRAIN_ROAD | TERRAIN_HILLS
+
+   viTeleport_row = 15
+   viTeleport_col = 14
+
+   viWeatherZone = WEATHER_ZONE_DVALLEY
+
+   vbIsExpansionRoom = TRUE
+
+properties:
+
+   prRoom = room_dvalley1
+   piRoom_num = RID_DVALLEY_1
+   prMusic = dvalley1_music
+   piBaseLight = LIGHT_NICE
+   piOutside_factor = 8
+   piDirectional_percent = DIRECTIONAL_PERCENT_OUTDOORS
+
+   piGen_percent = 70
+   piInit_count_min = 1
+   piInit_count_max = 2
+   piMonster_count_max = 3
+   
+   pbSnowGroundTexture = FALSE
+   pbWeatherEffects = FALSE
+
+messages:
+
+   Constructed()
+   {
+      plMonsters = [ [&Minotaur, 100] ];
+
+      // Use Random Spawn
+      // plGenerators = [ [17, 12], [12, 7], [7, 19] ];
+
+      propagate;
+   }
+
+   CreateStandardExits()
+   {
+      plEdge_Exits = $;
+
+      plEdge_Exits = Cons([ LEAVE_WEST, RID_BERG_7, 25, 51, ROTATE_NONE ], plEdge_exits);  
+      plEdge_Exits = Cons([ LEAVE_EAST, RID_DVALLEY_2, 10, 2, ROTATE_NONE ], plEdge_exits);
+
+      propagate;
+   }
+   
+
+   CreateStandardObjects()
+   {
+      Send(self,@NewHold,#what=Create(&Skull),
+           #new_row=14,#new_col=6,#fine_row=40,#fine_col=0,#angle=ANGLE_EAST);      
+      Send(self,@NewHold,#what=Create(&Skull),
+           #new_row=8,#new_col=14,#fine_row=48,#fine_col=32,#angle=ANGLE_EAST);      
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_HALFSKULL),
+           #new_row=16,#new_col=13,#fine_row=48,#fine_col=0,#angle=ANGLE_EAST);
+      Send(self,@NewHold,#what=Create(&Skull),
+           #new_row=5,#new_col=12,#fine_row=48,#fine_col=16,#angle=ANGLE_EAST);
+
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_HALFSKULL),
+           #new_row=8,#new_col=22,#fine_row=32,#fine_col=32,#angle=ANGLE_EAST);
+      Send(self,@NewHold,#what=Create(&OrnamentalObject,#type=OO_HALFSKULL),
+           #new_row=9,#new_col=18,#fine_row=48,#fine_col=0,#angle=ANGLE_EAST);
+
+      Send(self,@NewHold,#what=Create(&SmokeColumn),
+            #new_row=7,#new_col=14,#fine_row=60,#fine_col=56);
+
+      propagate;
+   }
+   
+   FirstUserEntered()
+   {
+      Post(self,@DoHeat);
+
+      propagate;
+   }
+   
+   TryCreateMonster()
+   {
+      Send(self,@DoHeat);
+
+      propagate;
+   }
+
+   DoHeat()
+   {
+      local oHeat;
+
+      if NOT Send(SYS,@IsPKAllowed)
+      {
+         return;
+      }
+
+      // Don't cast it if no users present.
+      if NOT pbUser_in_room
+      {
+         return;
+      }
+
+      oHeat = Send(SYS,@FindSpellByNum,#num=SID_HEAT);
+
+      if Send(self,@IsEnchanted,#what=oHeat)
+      {
+         return;
+      }
+
+      // global effects of the enchantment
+      Send(oHeat,@CastSpell,#who=self, #lTargets=[self], 
+             #iSpellPower=99, #report=FALSE);
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

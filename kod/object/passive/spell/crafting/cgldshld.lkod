@@ -2,3 +2,9 @@ CraftGuildShield_name_rsc = pt "fabricar escudo de heráldica"
 CraftGuildShield_desc_rsc = pt \
       "Fabricar um escudo de heráldica em uma bigorna com um martelo de ferreiro. "
       "Requer 35 lingotes de ferro, 15 tábuas e 10 couro."
+
+// GERMAN
+CraftGuildShield_name_rsc = de "Gildenschild herstellen"
+CraftGuildShield_desc_rsc = de \
+      "Stelle einen Gildenschild an einem Amboss mit einem Schmiedehammer her. "
+      "Erfordert 35 Eisenbarren, 15 Bretter und 10 Leder."

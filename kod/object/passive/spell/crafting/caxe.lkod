@@ -1,4 +1,9 @@
 CraftAxe_name_rsc = pt "fabricar machado"
 CraftAxe_desc_rsc = pt \
-      "Fabricar um machado em uma bigorna com um martelo de ferreiro. " 
+      "Fabricar um machado em uma bigorna com um martelo de ferreiro. "
       "Requer 10 lingotes de ferro e 5 tábuas."
+
+CraftAxe_name_rsc = de "Axt herstellen"
+CraftAxe_desc_rsc = de \
+      "Stelle eine Axt an einem Amboss mit einem Schmiedehammer her. "
+      "Erfordert 10 Eisenbarren und 5 Bretter."

@@ -2,3 +2,10 @@ CraftBrawlingGloves_name_rsc = pt "fabricar luvas de luta"
 CraftBrawlingGloves_desc_rsc = pt \
       "Fabricar luvas de luta em uma bigorna com um martelo de ferreiro. "
       "Requer 10 lingotes de ferro e 20 couro."
+
+// GERMAN
+CraftBrawlingGloves_name_rsc = de "Kampfhandschuhe herstellen"
+CraftBrawlingGloves_desc_rsc = de \
+      "Stelle Kampfhandschuhe an einem Amboss mit einem Schmiedehammer her. "
+      "Erfordert 10 Eisenbarren und 20 Leder."
+      

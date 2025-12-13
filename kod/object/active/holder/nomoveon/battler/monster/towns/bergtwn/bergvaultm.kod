@@ -1,0 +1,150 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+BergVaultman is BergTown
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include bergvaultm.lkod
+
+   bergvaultman_name_rsc = "Liam Magnus"
+   bergvaultman_icon_rsc = berggrocer.bgf
+   bergvaultman_desc_rsc =  \
+      "With raised eyebrows and a welcoming smile, the older, lean warehouse "
+      "manager regards you.  Dressed in a fine velvety tunic with noble trim "
+      "and a serrated hem, he wears a belt with a gold drawstring and an "
+      "ornate brooch.  His staff, topped with a gilded crocodile head and a "
+      "blue tail, marks him as a careful steward of Berg's goods."
+
+   bergvaultman_entry_welcome = "Well met, traveler."
+
+   bergvaultman_nogold = "You lack the funds to store %s%s with me."
+   bergvaultman_nocursed = "I cannot accept %s%s from you."
+   bergvaultman_fullvault = \
+      "Your vault cannot hold all of that.  Try offering items in smaller quantities."
+   bergvaultman_thanks_amount = \
+      "That will be %i shillings.  Thank you for trusting me to safeguard your gear."
+   bergvaultman_dont_have = \
+      "I cannot find %s%s in your vault."
+   bergvaultman_no_room = \
+      "You cannot carry all of that.  Try withdrawing items one at a time."
+   bergvaultman_deposit_thanks = \
+      "Thank you for trusting me to safeguard your gear."
+   bergvaultman_thanks = \
+      "Here is your gear.  Thank you for your patronage."
+   bergvaultman_nowithdraw_cash = \
+      "You do not have enough to pay the withdrawal fee."
+   bergvaultman_nodeposit_cash = \
+      "Storing these items would cost %i shillings, which you do not possess."
+   bergvaultman_cant_part = \
+      "I'm sorry, but I cannot be responsible for your %s.  I cannot store it."
+   bergvaultman_noaccount = \
+      "I do not appear to be storing any of your gear."
+   bergvaultman_not_enough = \
+      "You do not have that many %s stored here."
+
+classvars:
+
+   vrName = bergvaultman_name_rsc
+   vrIcon = bergvaultman_icon_rsc
+   vrDesc = bergvaultman_desc_rsc
+   viMerchant_markup = MERCHANT_EXPENSIVE
+
+   viAttributes = \
+      MOB_NOFIGHT | MOB_SELLER | MOB_RANDOM | MOB_LISTEN \
+      | MOB_NOMOVE | MOB_RECEIVE | MOB_VAULTMAN
+   viOccupation = MOB_ROLE_VAULTMAN
+
+   viVault = VID_BARLOQUE
+
+   vrVaultman_nogold = bergvaultman_nogold
+   vrVaultman_nocursed = bergvaultman_nocursed
+   vrVaultman_fullvault = bergvaultman_fullvault
+   vrVaultman_thanks_amount = bergvaultman_thanks_amount
+   vrVaultman_dont_have = bergvaultman_dont_have
+   vrVaultman_no_room = bergvaultman_no_room
+   vrVaultman_deposit_thanks = bergvaultman_deposit_thanks
+   vrVaultman_thanks = bergvaultman_thanks
+   vrVaultman_nowithdraw_cash = bergvaultman_nowithdraw_cash
+   vrVaultman_nodeposit_cash = bergvaultman_nodeposit_cash
+   vrVaultman_cant_part = bergvaultman_cant_part
+   vrVaultman_noaccount = bergvaultman_noaccount
+   vrVaultman_not_enough = bergvaultman_not_enough
+
+properties:
+
+messages:
+
+   AffectMood(why=$,what=$)
+   {
+
+      if why = MOODMOD_DAWN
+      {
+         Send(self,@SetMood,#new_mood=piMood+3);
+
+         return;
+      }
+
+      if why = MOODMOD_DUSK
+      {
+         Send(self,@SetMood,#new_mood=piMood-3);
+
+         return;
+      }
+
+      return;
+   }
+
+   UserEntered(who=$)
+   {
+      if Send(who,@GetAction) = UA_HAPPY
+      {
+         Send(self,@SetMood,#new_mood=piMood+1);
+      }
+
+      if Send(who,@GetAction) = UA_SAD
+      {
+         Send(self,@SetMood,#new_mood=piMood-1);
+      }
+
+      if Send(who,@CheckPlayerFlag,#flag=PFLAG_MURDERER)
+      {
+         Send(self,@SetMood,#new_mood=piMood-2);
+
+         // Don't welcome these guys.
+         propagate;
+      }
+
+      if Send(who,@CheckPlayerFlag,#flag=PFLAG_OUTLAW)
+      {
+         Send(self,@SetMood,#new_mood=piMood-1);
+
+         // Don't welcome these guys.
+         propagate;
+      }
+
+      Send(who,@SomeoneSaid,#what=self,
+            #string=bergvaultman_entry_welcome,
+            #type=SAY_RESOURCE);
+
+      propagate;
+   }
+
+   GetVaultNum()
+   {
+      return viVault;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

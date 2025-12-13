@@ -16,7 +16,7 @@ constants:
 
 resources:
 
-   room_Newroom = full_kocatan.roo
+   room_Newroom = tos.roo
    room_name_Newroom ="New room"
    Newroom_music = main.ogg
 

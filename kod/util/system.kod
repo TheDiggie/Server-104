@@ -2554,6 +2554,8 @@ messages:
       Send(self,@CreateOneRoomIfNew,#num=RID_GUILDH15,#class=&GuildHall15);
       Send(self,@CreateOneRoomIfNew,#num=RID_GUILDH16,#class=&GuildHall16);
       Send(self,@CreateOneRoomIfNew,#num=RID_GUILDH17,#class=&GuildHall17);
+      Send(self,@CreateOneRoomIfNew,#num=RID_GUILDH19,#class=&GuildHall19);
+      Send(self,@CreateOneRoomIfNew,#num=RID_GUILDH20,#class=&GuildHall20);
 
       Send(self,@CreateOneRoomIfNew,#num=RID_TEMPLE_KRAANAN,#class=&TempleKraanan);
       Send(self,@CreateOneRoomIfNew,#num=RID_TEMPLE_QOR,#class=&TempleQor);
@@ -2722,6 +2724,74 @@ messages:
       Send(self,@CreateOneRoomIfNew,#num=RID_DCASTLE4,#class=&DeathRealmCastle4);
       Send(self,@CreateOneRoomIfNew,#num=RID_DTHRONE1,#class=&DeathRealmThrone1);
       Send(self,@CreateOneRoomIfNew,#num=RID_DTHRONE2,#class=&DeathRealmThrone2);
+
+   // Berg City
+      Send(self,@CreateOneRoomIfNew,#num=RID_BERG_CITY,#class=&BergCity);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BERG_VAULT,#class=&BergVault);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BERG_SMITH,#class=&BergSmith);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BERG_HALL,#class=&BergHall);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BERG_STORE,#class=&BergStore);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BERG_INN,#class=&BergInn);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BERG_BANK,#class=&BergBank);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BERG_AUC,#class=&BergAuc);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BERG_LEADER,#class=&BergLeader);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BERG_LEADER_HALL,#class=&BergLeaderHall);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BERG_JAIL,#class=&BergJail);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BERG_DEVROOM,#class=&BergDevRoom);
+
+   // Berg Outskirts
+      Send(self,@CreateOneRoomIfNew,#num=RID_BERG_MG,#class=&BergMG);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BERG_1,#class=&Berg1);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BERG_2,#class=&Berg2);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BERG_3,#class=&Berg3);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BERG_3_CAVE,#class=&Berg3Cave);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BERG_4,#class=&Berg4);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BERG_5,#class=&Berg5);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BERG_6,#class=&Berg6);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BERG_7,#class=&Berg7);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BERG_8,#class=&Berg8);
+      Send(self,@CreateOneRoomIfNew,#num=RID_SURVIVAL_ARENA,#class=&SurvivalArena);
+      Send(self,@CreateOneRoomIfNew,#num=RID_GOLEM_DUNGEON,#class=&GolemDungeon);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BERG_GRAVE,#class=&BergGrave);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BERG_JALA,#class=&BergJala);
+
+      // Death Valley
+      Send(self,@CreateOneRoomIfNew,#num=RID_DVALLEY_1,#class=&DValley1);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DVALLEY_2,#class=&DValley2);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DVALLEY_3,#class=&DValley3);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DVALLEY_4,#class=&DValley4);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DVALLEY_5,#class=&DValley5);
+      Send(self,@CreateOneRoomIfNew,#num=RID_DVALLEY_5B,#class=&DValley5B);
+
+      Send(self,@CreateOneRoomIfNew,#num=RID_DVALLEY_TEMPLE,#class=&DValleyTemple);
+      
+
+      // Connect Queensway
+      Send(self,@CreateOneRoomIfNew,#num=RID_J3_1,#class=&OutdoorsJ3_1);
+      Send(self,@CreateOneRoomIfNew,#num=RID_J3_2,#class=&OutdoorsJ3_2);
+
+      // Jixa City
+      Send(self,@CreateOneRoomIfNew,#num=RID_JIXA,#class=&JixaCity);
+      Send(self,@CreateOneRoomIfNew,#num=RID_JIXA_INN,#class=&JixaInn);
+      Send(self,@CreateOneRoomIfNew,#num=RID_JIXA_DYE,#class=&JixaDye);
+      Send(self,@CreateOneRoomIfNew,#num=RID_JIXA_HALL,#class=&JixaHall);
+      Send(self,@CreateOneRoomIfNew,#num=RID_JIXA_SMITH,#class=&JixaSmith);
+
+      // Jixa Monsroom
+      Send(self,@CreateOneRoomIfNew,#num=RID_JIXA_1,#class=&Jixa1);
+      Send(self,@CreateOneRoomIfNew,#num=RID_JIXA_2,#class=&Jixa2);
+      Send(self,@CreateOneRoomIfNew,#num=RID_JIXA_3,#class=&Jixa3);
+      Send(self,@CreateOneRoomIfNew,#num=RID_JIXA_4,#class=&Jixa4);
+
+      // TosEast Area Monsroom
+      Send(self,@CreateOneRoomIfNew,#num=RID_TOSEAST_MG,#class=&MGToseast);
+      Send(self,@CreateOneRoomIfNew,#num=RID_EMGTOSWAMP,#class=&Emgtoswamp);
+      Send(self,@CreateOneRoomIfNew,#num=RID_SWAMPTOJIXA,#class=&Swamptojixa);
+      Send(self,@CreateOneRoomIfNew,#num=RID_SWAMP1,#class=&Swamp1);
+      Send(self,@CreateOneRoomIfNew,#num=RID_SWAMP2,#class=&Swamp2);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BERG_MINE,#class=&BergMine);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BANDIT_CAMP,#class=&BanditCamp);
+      Send(self,@CreateOneRoomIfNew,#num=RID_BANDIT_CAVE,#class=&BanditCave);
 
       if poRentableRoomMaintenance <> $  // After a clean build, for example.
       {
@@ -5686,6 +5756,12 @@ messages:
       plMonsterTemplates = cons(create(&Farnohl),plMonsterTemplates);
       plMonsterTemplates = cons(create(&Spirit),plMonsterTemplates);
       plMonsterTemplates = cons(create(&WaspHive),plMonsterTemplates);
+
+      plMonsterTemplates = Cons(Create(&Bandit,#template=TRUE),plMonsterTemplates);
+      plMonsterTemplates = Cons(Create(&BanditSniper,#template=TRUE),plMonsterTemplates);
+      plMonsterTemplates = Cons(Create(&BanditCaptain,#template=TRUE),plMonsterTemplates);
+      plMonsterTemplates = Cons(Create(&Beetle,#template=TRUE),plMonsterTemplates);
+      plMonsterTemplates = Cons(Create(&Bullant,#template=TRUE),plMonsterTemplates);
 
       return;
    }

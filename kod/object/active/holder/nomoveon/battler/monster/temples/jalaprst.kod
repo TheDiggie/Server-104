@@ -1,0 +1,69 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+JalaPriestess is Temples
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include jalaprst.lkod
+
+   jalapriestess_name_rsc = "Priestess Themala"
+   jalapriestess_icon_rsc = jalaprst.bgf
+   jalapriestess_desc_rsc = \
+      "With long, wavy blonde hair framing her gentle face, the priestess of "
+      "song greets you with a thoughtful gaze and a warm smile.  Clad in robes "
+      "of fine silk dyed in the vibrant colors of her order, Themala’s elegant "
+      "appearance belies the dedication and effort behind her role.  "
+      "Born to noble parents and trained in music, art, and courtly ways from "
+      "childhood, Themala chose to earn her place through courage and "
+      "perseverance.  She joined the city guard at fifteen, aspiring to become "
+      "a royal bard in King Aaron's court.  Her gift for inspiring allies "
+      "with stirring songs soon reached the king, who recognized her talent "
+      "and appointed her priestess, that she might teach others the secrets "
+      "of the lute."
+
+   jalapriestess_already_have_spell = "You already know the %s spell."
+
+   jalapriestess_teach_quest_needed = \
+      "Ah, fellow seeker of melody and story!  Every bard's journey is "
+      "unique.  When your spirit is ready to learn, my guidance will "
+      "await you.  Until then, may inspiration guide your steps!"
+
+   jalapriestess_forget_potion_sale = \
+      "I offer %s%s, a potent draught. Drink it, and all rogue skills "
+      "will fade from memory."
+
+classvars:
+
+   vrName = jalapriestess_name_rsc
+   vrIcon = jalapriestess_icon_rsc
+   vrDesc = jalapriestess_desc_rsc
+   viKarma = 0
+   viAttributes = \
+      MOB_NOFIGHT | MOB_LISTEN | MOB_RANDOM | \
+      MOB_RECEIVE | MOB_TEACHER | MOB_COND_SELLER
+   viOccupation = MOB_ROLE_PRIESTESS
+
+   // TODO: Add a simple bard-related quest here
+   viQuestID = 0
+
+messages:
+
+   IsExpansionNPC()
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////
