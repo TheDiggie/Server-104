@@ -1,0 +1,137 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+BullAnt is Monster
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   include bullant.lkod
+
+   BullAnt_koc_name_rsc = "koyokinich"
+   BullAnt_name_rsc = "bull ant"
+   BullAnt_icon_rsc = bullant.bgf
+   BullAnt_desc_rsc = \
+      "These creatures are known to construct burrows consisting of many "
+      "tunnels.  Despite their small bodies, they possess a frightening "
+      "amount of strength."
+
+   BullAnt_dead_icon_rsc = bullantX.bgf
+   BullAnt_dead_name_rsc = "dead bull ant"
+
+   BullAnt_sound_hit = ant_atkh.ogg
+   BullAnt_sound_miss = ant_atkm.ogg
+   BullAnt_sound_death = ant_dth.ogg
+   BullAnt_sound_aware = ant_awr.ogg
+
+classvars:
+
+   vrName = BullAnt_name_rsc
+   vrIcon = BullAnt_icon_rsc
+   vrDesc = BullAnt_desc_rsc
+
+   viIndefinite = ARTICLE_A
+   vrKocName = BullAnt_koc_name_rsc
+
+   vrDead_icon = BullAnt_dead_icon_rsc
+   vrDead_name = BullAnt_dead_name_rsc
+
+   // Animation frames and frame durations.
+   viRest_frame = 1
+   viLook_start_frame = 1
+   viLook_end_frame = 3
+   viLook_duration = 150      // Duration per frame.
+   viMove_start_frame = 1
+   viMove_end_frame = 3
+   viMove_duration = 150      // Duration per frame.
+   viAttack_start_frame = 1
+   viAttack_end_frame = 6
+   viAttack_duration = 150    // Duration per frame.
+   viHit_start_frame = 2
+   viHit_end_frame = 3
+   viHit_duration = 500       // Maximum total duration of animation.
+
+   viSpeed = SPEED_SLOW
+   viAttack_type = ATCK_WEAP_BITE
+   viLevel = 60
+   viDifficulty = 5
+   viVisionDistance = 16
+   viKarma = -25
+   viCashmin = 225
+   viCashmax = 500
+   viDefault_behavior = AI_FIGHT_AGGRESSIVE
+   viAttributes = MOB_SPASM
+
+   viTreasure_type = TID_WIMPY_MEDIUM
+
+   vrSound_hit = BullAnt_sound_hit
+   vrSound_miss = BullAnt_sound_miss
+   vrSound_aware = BullAnt_sound_aware
+   vrSound_death = BullAnt_sound_death
+
+   vbCanBleed = FALSE
+   vbCanSiphon = FALSE
+
+   viBleedChance = 15
+   viBleedStrength = 1000
+   viBleedDuration = 8000
+
+properties:
+
+   piAnimation = ANIM_NONE
+
+messages:
+
+   Constructed()
+   {
+      plResistances = [ [-ATCK_WEAP_ALL, -20],
+                        [ATCK_WEAP_NERUDITE, -10 ] ];
+
+      propagate;
+   }
+
+   DoSpasm()
+   {
+      local roll;
+
+      roll = Random(1,10);
+
+      if roll = 1
+      {
+         Send(self,@DoLegSpasm);
+      }
+      else if roll <= 5
+      {
+         Send(poOwner,@SomethingTurned,#what=self,
+               #new_angle=Random(0,MAX_ANGLE-1));
+      }
+
+      propagate;
+   }
+
+   DoLegSpasm()
+   {
+      piAnimation = ANIM_ATTACK;
+      Send(poOwner,@SomethingChanged,#what=self);
+      piAnimation = ANIM_NONE;
+
+      return;
+   }
+
+   IsExpansionMonster()
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

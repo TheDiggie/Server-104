@@ -82,11 +82,11 @@ messages:
 
    Constructed()
    {
-      //plMonsters = [ [&Beetle, 100] ];
+      plMonsters = [ [&Beetle, 100] ];
 
       // Use Random Spawn
-      // plGenerators = [ [4, 5], [10, 7], [15, 6], [21, 7], [23, 19],
-      //                [29, 17], [25, 27], [11, 24], [3, 17] ];
+      plGenerators = [ [4, 5], [10, 7], [15, 6], [21, 7], [23, 19],
+                      [29, 17], [25, 27], [11, 24], [3, 17] ];
 
       propagate;
    }

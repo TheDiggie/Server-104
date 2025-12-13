@@ -5757,6 +5757,12 @@ messages:
       plMonsterTemplates = cons(create(&Spirit),plMonsterTemplates);
       plMonsterTemplates = cons(create(&WaspHive),plMonsterTemplates);
 
+      plMonsterTemplates = Cons(Create(&Bandit,#template=TRUE),plMonsterTemplates);
+      plMonsterTemplates = Cons(Create(&BanditSniper,#template=TRUE),plMonsterTemplates);
+      plMonsterTemplates = Cons(Create(&BanditCaptain,#template=TRUE),plMonsterTemplates);
+      plMonsterTemplates = Cons(Create(&Beetle,#template=TRUE),plMonsterTemplates);
+      plMonsterTemplates = Cons(Create(&Bullant,#template=TRUE),plMonsterTemplates);
+
       return;
    }
 

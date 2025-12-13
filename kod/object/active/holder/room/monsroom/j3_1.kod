@@ -75,7 +75,7 @@ messages:
 
    Constructed()
    {
-     //plMonsters = [ [&Beetle,100] ];
+     plMonsters = [ [&Beetle,100] ];
      plGenerators = [ [18, 14], [19, 18] ];
 
      propagate;

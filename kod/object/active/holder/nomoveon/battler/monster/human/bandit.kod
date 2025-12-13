@@ -1,0 +1,246 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+Bandit is Human
+
+constants:
+
+   include blakston.khd
+
+   EQUIPMENT_DROP_PERCENT = 20
+   MOVE_TO_ITEM_CHANCE = 20
+   MAX_LOOT_RANGE = 50
+   CONVEYANCE_TIMER = 6000 * 4 //send items to their chest
+
+resources:
+
+   include bandit.lkod
+
+   Bandit_name_rsc = "bandit"
+   Bandit_desc_rsc = \
+     "Lawless rogues that are known for their theft and burglary prey upon "
+     "hapless travelers and soldiers alike."
+   Bandit_dead_name_rsc = "dead bandit"
+   Bandit_loot_rsc = "~IThe bandit snatches the %s!"
+   Bandit_join_rsc = \
+      "Jorgan sent you here?  What are we waiting for, lets go..."
+
+   Bandit_sound_aware = DgSwish1.ogg
+
+classvars:
+
+   vrName = Bandit_name_rsc
+   vrDesc = Bandit_desc_rsc
+   vrDead_name = Bandit_dead_name_rsc
+   vrMercenaryJoin = Bandit_join_rsc
+
+   viTreasure_type = TID_EMPTY
+
+   viSpeed = SPEED_FASTER
+   viAttack_type = WEAPON_TYPE_SLASH
+   viAttributes = 0
+   viDefault_behavior = AI_FIGHT_AGGRESSIVE | AI_FIGHT_SWITCHALOT
+
+   viColorTranslate1 = XLAT_TO_RED     // Shirt
+   viColorTranslate2 = XLAT_TO_DGREEN   // Pants
+
+   viVisionDistance = 15
+
+   viCashMin = 200
+   viCashMax = 600
+
+   viWimpy = 20
+   viSocial = 70
+
+properties:
+
+   vrSound_aware = Bandit_sound_aware
+
+   viLevel = 100
+   viDifficulty = 6
+   viKarma = 0
+
+   ptLootDelay = $
+   ptConveyanceTimer = $
+   pbCaughtDisguise = FALSE
+
+messages:
+
+   SetClothes()
+   {
+      Send(self,@SetDefaultClothes,#shirt_color=viColorTranslate1);
+      Send(self,@SetTroopLegs,#translation=viColorTranslate2);
+
+      return;
+   }
+
+   SetEquipment()
+   {
+      local oArmor, oWeapon, oShield, oHelm, iRandomNumber;
+
+      // Armor
+      iRandomNumber = Random(1, 100);
+      if iRandomNumber <= 70
+      {
+         oArmor = Create(&LeatherArmor);
+      }
+
+      // Weapon
+      iRandomNumber = Random(1, 100);
+      if iRandomNumber <= 25
+      {
+         oWeapon = Create(&LongSword);
+      }
+      else if iRandomNumber <= 50
+      {
+         oWeapon = Create(&Mace);
+      }
+      else if iRandomNumber <= 75
+      {
+         oWeapon = Create(&Maul);
+      }
+      else
+      {
+         oWeapon = Create(&ShortSword);
+      }
+
+      // Shield
+      iRandomNumber = Random(1, 100);
+      if iRandomNumber <= 10
+      {
+         oShield = Create(&GoldShield);
+      }
+
+      // Helm
+      iRandomNumber = Random(1, 100);
+      if iRandomNumber <= 10
+      {
+         oHelm = Create(&ThornCirclet);
+      }
+      else if iRandomNumber <= 25
+      {
+         oHelm = Create(&WarHelm);
+      }
+
+      Send(self,@AddEquipmentObject,#what=oArmor);
+      Send(self,@AddEquipmentObject,#what=oWeapon);
+      Send(self,@AddEquipmentObject,#what=oShield);
+      Send(self,@AddEquipmentObject,#what=oHelm);
+
+      return;
+   }
+
+   // Override from monster superclass
+   // We drop some of our carried items when we die.
+   CreateTreasure(who = $, corpse = $)
+   {
+      local oUsedItem, oItemAtt;
+
+      oItemAtt = Send(SYS,@FindItemAttByNum,#num=IA_CORPSEPOINTER);
+
+      foreach oUsedItem in plUsing
+      {
+         // Only a percentage chance to drop each item.  Too much stuff otherwise.
+         // Don't drop the shield!  It's a quest/special item!
+         if (Random(1,100) <= EQUIPMENT_DROP_PERCENT)
+         {
+            if (oItemAtt <> $) AND Send(oItemAtt,@ReqAddToItem,#oItem=oUsedItem)
+            {
+               Send(oItemAtt,@AddToItem,#oItem=oUsedItem,#state1=corpse);
+            }
+
+            Send(poOwner,@NewHold,#what=oUsedItem,
+                  #new_row=piRow,#new_col=piCol,
+                  #fine_row=piFine_row,#fine_col=piFine_col);
+         }
+         else
+         {
+            Send(oUsedItem,@Delete);
+         }
+      }
+
+      plUsing = $;
+
+      propagate;
+   }
+
+   IsMatchingColors(target=$)
+   {
+      local iColor_red1, iColor_red2, iColor_green, iColor_dgreen;
+
+      iColor_red1 = Send(SYS,@EncodeTwoColorXLAT,
+                  #color1=XLAT_TO_RED,#color2=XLAT_TO_SKIN1);
+
+      iColor_red2 = Send(SYS,@EncodeTwoColorXLAT,
+                  #color1=XLAT_TO_RED,#color2=XLAT_TO_SKIN4);
+
+      iColor_dgreen = Send(SYS,@EncodeTwoColorXLAT,
+                  #color1=XLAT_TO_DGREEN,#color2=XLAT_TO_SKIN1);
+
+      iColor_green = Send(SYS,@EncodeTwoColorXLAT,
+                  #color1=XLAT_TO_GREEN,#color2=XLAT_TO_SKIN1);
+      
+      // hardcoded for red shirt and green pants
+      if Send(target,@GetCurrentShirtColor) >= iColor_red1
+         AND Send(target,@GetCurrentShirtColor) <= iColor_red2
+      {
+
+         if Send(target,@GetCurrentPantsColor) = iColor_dgreen
+            OR Send(target,@GetCurrentPantsColor) = iColor_green
+         {
+            return TRUE;
+         }
+      }
+
+      return FALSE;
+   }
+
+   IsAlly(target = $)
+   {
+      if IsClass(target,&Player)
+         AND Send(self,@IsMatchingColors,#target=target)
+         AND NOT pbCaughtDisguise
+      {
+         return TRUE;
+      }
+      else if IsClass(target,&Bandit)
+      {
+         return TRUE;
+      }
+
+      propagate;
+   }
+
+   SomethingAttacked(what = $,victim = $,use_weapon = $)
+   {
+      if IsClass(victim,&Bandit)
+         AND IsClass(what,&Player)
+         AND Send(self,@IsAlly,#target=what)
+      {
+         pbCaughtDisguise = TRUE;
+      }
+
+      propagate;
+   }
+
+   LastUserLeft()
+   {
+      pbCaughtDisguise = FALSE;
+
+      propagate;
+   }
+
+   IsExpansionMonster()
+   {
+      return TRUE;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////
