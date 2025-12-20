@@ -75,11 +75,11 @@ messages:
 
    Constructed()
    {
-      //plMonsters = [ [&Spinebeast, 60], [&Nyrphling, 30], [&SpinebeastSmall, 10] ];
+      plMonsters = [ [&Spinebeast, 60], [&Nyrphling, 30], [&SpinebeastSmall, 10] ];
 
       // Use Random Spawn
-      // plGenerators = [ [41, 10], [22, 10], [19, 20], [35, 3], [26, 10],
-      //                [7, 17], [22, 4], [30, 13], [5, 32] ];
+      plGenerators = [ [41, 10], [22, 10], [19, 20], [35, 3], [26, 10],
+                      [7, 17], [22, 4], [30, 13], [5, 32] ];
 
       propagate;
    }
