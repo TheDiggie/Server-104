@@ -21,7 +21,7 @@ resources:
    
    GreenDust_icon_rsc = colordust.bgf
    GreenDust_desc_rsc = "This is a pile green pigment dust. \n\nCan be mixed with following : "
-   "\n\nOrange pigment dust to make orange pigment dust"
+   "\n\nOrange pigment dust to make yellow pigment dust"
    "\nPurple pigment dust to make blue pigment dust"
    "\nBlack pigment dust to make dark green pigment dust"
    "\nWhite pigment dust to make light green pigment dust"

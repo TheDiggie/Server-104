@@ -271,7 +271,8 @@ messages:
    {
       return [ [ ATCK_WEAP_ALL, -10],
                [-ATCK_SPELL_FIRE,-10],
-               [-ATCK_SPELL_SHOCK,15]
+               [-ATCK_SPELL_COLD,10],
+               [-ATCK_SPELL_SHOCK,10]
              ];
    }
 
