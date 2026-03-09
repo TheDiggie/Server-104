@@ -26,6 +26,7 @@ resources:
 
    transmon_cast_rsc = "%s%s warps and reforms into %s%s!"
    transmon_bad_target = "You can only transmogrify a living monster."
+   transmon_bad_target_boss = "This creature is to strong to transmogrify."
 
    transmon_sound = rmorph.ogg
 
@@ -85,6 +86,12 @@ messages:
          return FALSE;
       }
 
+      if NOT Send(oTarget,@CanMorphTo)
+      {
+         Send(who,@MsgSendUser,#message_rsc=transmon_bad_target_boss);
+         return FALSE;
+      }
+      
       propagate;
    }
 

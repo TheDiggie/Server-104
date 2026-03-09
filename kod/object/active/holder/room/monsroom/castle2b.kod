@@ -91,7 +91,7 @@ messages:
       plExits = Cons([ 42,72, ROOM_LOCKED_DOOR ],plExits);
 
       plEdge_exits = $;
-      plEdge_Exits = Cons([ LEAVE_WEST, RID_J3, 39, 23, ROTATE_NONE ], plEdge_exits);
+      plEdge_Exits = Cons([ LEAVE_WEST, RID_J3, 37, 3, SET_ANGLE_EAST ], plEdge_exits);
       plEdge_Exits = Cons([ LEAVE_SOUTH, RID_J3_1, 2, 6, ROTATE_NONE ], plEdge_exits);
 
       propagate;
