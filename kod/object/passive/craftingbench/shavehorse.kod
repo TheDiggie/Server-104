@@ -7,6 +7,8 @@ constants:
 
 resources:
 
+   include shavehorse.lkod
+
    ShaveHorse_name_rsc = "shave horse"
    ShaveHorse_icon_rsc = shavehorse.bgf
    ShaveHorse_desc_rsc = "A wooden shave horse for shaping wood for bows."

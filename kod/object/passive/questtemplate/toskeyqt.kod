@@ -31,6 +31,8 @@ constants:
 
 resources:
 
+   include toskeyqt.lkod
+
    // Quest description.
    TosKeyQuest_icon_rsc = key7.bgf
    TosKeyQuest_name_rsc = "Key to tos quest"

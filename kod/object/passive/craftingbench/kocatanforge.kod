@@ -7,6 +7,8 @@ constants:
 
 resources:
 
+   include kocatanforge.lkod
+
    KocatanForge_name_rsc = "Kocatan smelting forge"
    KocatanForge_icon_rsc = Forge.bgf
    KocatanForge_desc_rsc = "This Kocatan forge is used to smelt nerudite."

@@ -1,0 +1,29 @@
+CastleVictoriaKeyQuest_name_rsc = de "Schlüssel zu Schloss Victoria Quest"
+CastleVictoriaKeyQuest_desc_rsc = de \
+   "Ceres von Qor möchte, dass du die wandernden Geister jagst. "
+CastleVictoriaKeyQuest_kill_rsc = de \
+   "Ceres von Qor möchte, dass du %i %s tötest. "
+   "Erfülle diese Aufgabe und berichte ihm."
+CastleVictoriaKeyQuest_return_rsc = de \
+   "Kehre zu Ceres von Qor zurück und lass ihn wissen, dass die Aufgabe "
+   "abgeschlossen wurde."
+CastleVictoriaKeyQuest_completed = de \
+   "Du hast die Schlüssel zu Schloss Victoria Raum Quest abgeschlossen. Kehre zu Ceres von Qor zurück. "
+CastleVictoria_Key = de "hilfe"
+CastleVictoriaKeyQuest_assign_2 = de \
+   "Hilfe?..Einige Seelen sind entkommen...Geister...bringe sie zurück an ihren Platz..."
+CastleVictoriaKeyQuest_failure_2 = de \
+   "Betreff: Schlüssel zu Schloss Victoria Quest.\n"
+   "Verdammte Geister. Ein besserer Abenteurer wird sich um sie kümmern. "
+CastleVictoriaKeyQuest_assign_3 = de \
+   "MEHR!...MEHR!.."
+CastleVictoriaKeyQuest_failure_3 = de \
+   "Betreff: Schlüssel zu Schloss Victoria Quest.\n"
+   "Verdammte Geister. Ein besserer Abenteurer wird sich um sie kümmern. "
+CastleVictoriaKeyQuest_assign_4 = de \
+   "MEHR!...MEHR!..MEHR!...MEHR!..MEHR!...MEHR!.."
+CastleVictoriaKeyQuest_success_4 = de \
+   "Gute Ernte...die Geister sind wieder verdammt..."
+CastleVictoriaKeyQuest_failure_4 = de \
+   "Betreff: Schlüssel zu Schloss Victoria Quest.\n"
+   "Verdammte Geister. Ein besserer Abenteurer wird sich um sie kümmern. "

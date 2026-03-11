@@ -1,0 +1,34 @@
+BarloqueKeyQuest_name_rsc = de "Schlüssel nach Barloque Quest"
+BarloqueKeyQuest_desc_rsc = de \
+   "Joline ist wütend auf Beelzebub und seine Art. "
+BarloqueKeyQuest_kill_rsc = de \
+   "Joline ist wütend auf Beelzebub. Gehe und töte %i %s. "
+   "Erfülle diese Aufgabe und berichte ihr."
+BarloqueKeyQuest_return_rsc = de \
+   "Kehre zu Joline zurück und lass sie wissen, dass die Aufgabe "
+   "abgeschlossen wurde."
+BarloqueKeyQuest_completed = de \
+   "Du hast die Schlüssel nach Barloque Quest abgeschlossen. Joline wird begeistert sein! "
+Barloque_Key = de "hilfe"
+BarloqueKeyQuest_assign_2 = de \
+   "Hilfe? HILFE! Du bist derjenige, der meine Familie getötet hat! "
+   "Warum sind sie überhaupt um Marion herumgegangen! Es muss Beelzebub gewesen sein! "
+   "Seine Kolonie muss meine Babys erschreckt haben. Gehe und töte 5 Todesmitenspäher für mich."
+BarloqueKeyQuest_failure_2 = de \
+   "Betreff: Schlüssel nach Barloque Quest.\n"
+   "Verdammte Insekten. Ein besserer Abenteurer wird sich um sie kümmern. "
+BarloqueKeyQuest_assign_3 = de \
+   "Hast du einige der Späher erwischt? Gut, jetzt schalte die Soldaten aus. "
+   "Gehe und töte 5 Todesmitensoldaten für mich."
+BarloqueKeyQuest_failure_3 = de \
+   "Betreff: Schlüssel nach Barloque Quest.\n"
+   "Verdammte Insekten. Ein besserer Abenteurer wird sich um sie kümmern. "
+BarloqueKeyQuest_assign_4 = de \
+   "Gut, es gibt da draußen einige magische, etwas schwieriger zu handhaben, "
+   "aber ich bin sicher, du schaffst das. "
+   "Gehe und töte 5 Todesmitenmagier für mich."
+BarloqueKeyQuest_success_4 = de \
+   "Endlich. Gute Arbeit, diese Insekten loszuwerden!"
+BarloqueKeyQuest_failure_4 = de \
+   "Betreff: Schlüssel nach Barloque Quest.\n"
+   "Verdammte Insekten. Ein besserer Abenteurer wird sich um sie kümmern. "

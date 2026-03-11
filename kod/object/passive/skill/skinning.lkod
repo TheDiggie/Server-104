@@ -1,3 +1,9 @@
 Skinning_name_rsc = pt "Esfolamento"
 Skinning_desc_rsc = pt "Esta habilidade permite que você colete peles de monstros abatidos. Requer uma faca de esfolação."
 Skinning_skill_intro = pt "Artesanato Lv. 1: Esta habilidade permite que você colete peles de monstros abatidos."
+
+Skinning_name_rsc = de "Häuten"
+Skinning_desc_rsc = de "Diese Fertigkeit ermöglicht es dir, Häute von getöteten Monstern zu sammeln. Benötigt ein Häutungsmesser."
+Skinning_skill_intro = de "Handwerk Stufe 1: Diese Fertigkeit ermöglicht es dir, Häute von getöteten Monstern zu sammeln."
+
+

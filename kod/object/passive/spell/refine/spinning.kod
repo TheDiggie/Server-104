@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include spinning.lkod
+
    Spinning_name_rsc = "spinning"
    Spinning_icon_rsc = ispinning.bgf
    Spinning_desc_rsc = \

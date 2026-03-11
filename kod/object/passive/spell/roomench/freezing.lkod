@@ -1,0 +1,16 @@
+freezing_name_rsc = de "Einfrieren"
+freezing_desc_rsc = de \
+   "Erfüllt den Raum mit Farens Erdmagie und lässt alle Rüstungen gefrieren. "
+   "Verursacht Erfrierungen."
+freezing_already_enchanted = de "Hier wurde bereits Einfrieren gezaubert."
+freezing_on = de \
+   "Farens Magie erfüllt den Raum und lässt alle Rüstungen gefrieren, "
+   "was Erfrierungen verursacht."
+freezing_off = de "Das Rüstungs einfrierendes Feld verschwindet."
+freezing_new_entrant = de \
+   "Farens Kraft erfüllt den Raum mit Kälte, die alle Rüstungen gefrieren "
+   "lässt."
+freezing_kills_you = de "Dein Körper gefriert zu festem Eis."
+freezing_kills_him = de "%s%s gefriert."
+freezing_hurts_you = de \
+   "Du schreist vor Schmerzen, als deine Rüstung an deiner Haut festfriert."

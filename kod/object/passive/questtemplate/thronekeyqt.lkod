@@ -1,0 +1,30 @@
+ThroneRoomKeyQuest_name_rsc = de "Schlüssel zum Thronsaal von Schloss Victoria Quest"
+ThroneRoomKeyQuest_desc_rsc = de \
+   "Kailor möchte, dass du bestimmte Monster jagst. "
+ThroneRoomKeyQuest_kill_rsc = de \
+   "Kailor möchte, dass du %i %s tötest. "
+   "Erfülle diese Aufgabe und berichte ihm."
+ThroneRoomKeyQuest_return_rsc = de \
+   "Kehre zu Kailor zurück und lass ihn wissen, dass die Aufgabe "
+   "abgeschlossen wurde."
+ThroneRoomKeyQuest_completed = de \
+   "Du hast die Schlüssel zum Thronsaal von Schloss Victoria Quest abgeschlossen. Kailor wird begeistert sein! "
+ThroneRoom_Key = de "hilfe"
+ThroneRoomKeyQuest_assign_2 = de \
+   "Hilfe? Ja, ich könnte etwas Hilfe gebrauchen. Jemand, oder etwas vielmehr, "
+   "treibt hier sein Unwesen. Gehe und töte Vozun für mich."
+ThroneRoomKeyQuest_failure_2 = de \
+   "Betreff: Schlüssel zum Thronsaal von Schloss Victoria Quest.\n"
+   "Verdammt. Ein besserer Abenteurer wird sich darum kümmern. "
+ThroneRoomKeyQuest_assign_3 = de \
+   "Hast du ihn erwischt? Großartig, er hat einen Bruder, finde ihn auch. Gehe und töte Croco für mich."
+ThroneRoomKeyQuest_failure_3 = de \
+   "Betreff: Schlüssel zum Thronsaal von Schloss Victoria Quest.\n"
+   "Verdammt. Ein besserer Abenteurer wird sich darum kümmern. "
+ThroneRoomKeyQuest_assign_4 = de \
+   "Gut, du bist ein wahrer Krieger! Finde Dulahan und erschlage ihn!"
+ThroneRoomKeyQuest_success_4 = de \
+   "Endlich. Gute Arbeit, sie loszuwerden!"
+ThroneRoomKeyQuest_failure_4 = de \
+   "Betreff: Schlüssel zum Thronsaal von Schloss Victoria Quest.\n"
+   "Verdammt. Ein besserer Abenteurer wird sich darum kümmern. "

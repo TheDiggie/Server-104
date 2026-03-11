@@ -1,0 +1,31 @@
+AvarKillQuest_name_rsc = de "Hilfe im Krieg Quest"
+AvarKillQuest_desc_rsc = de \
+   "Der Krieg geht noch immer weiter, die Menschen von Ko'catan könnten deine Hilfe gebrauchen. "
+AvarKillQuest_kill_rsc = de \
+   "Cital ko'Manca braucht Unterstützung im Krieg. Gehe "
+   "und töte %i %s. Erfülle diese Aufgabe und berichte ihm."
+AvarKillQuest_return_rsc = de \
+   "Kehre zu Cital ko'Manca zurück und lass ihn wissen, dass die Aufgabe "
+   "abgeschlossen wurde."
+AvarKillQuest_completed = de \
+   "Du hast die Hilfe im Krieg Quest abgeschlossen. Informiere Cital ko'Manca über deinen Abschluss! "
+AvarKillQuest_assign_2 = de \
+   "Ein starker Krieger bist du? Der Krieg hat uns hart getroffen. Wenn du bereit bist, eine helfende Hand zu reichen, "
+   "werden die Menschen dankbar sein. "
+AvarKillQuest_failure_2 = de \
+   "Betreff: Hilfe im Krieg Quest.\n"
+   "Verdammte Avare. Wir können es uns nicht leisten, diesen Krieg zu verlieren. "
+AvarKillQuest_assign_3 = de \
+   "Diese Krieger sind nur das Fußvolk. Wir müssen ihre magischen Kräfte ins Visier nehmen. "
+   "Gehe und töte 15 Avarschamanen im Dschungel."
+AvarKillQuest_failure_3 = de \
+   "Betreff: Hilfe im Krieg Quest.\n"
+   "Verdammte Avare. Wir können es uns nicht leisten, diesen Krieg zu verlieren. "
+AvarKillQuest_assign_4 = de \
+   "Ein wahrer Krieger des Blutes! Du bist stark! Das Letzte, was wir tun müssen, ist ihr Kommando auszuschalten. "
+   "Gehe und töte 10 Avarhäuptlinge im Dschungel."
+AvarKillQuest_success_4 = de \
+   "Gute Arbeit, Krieger. Deine Bemühungen werden in den Büchern festgehalten. "
+AvarKillQuest_failure_4 = de \
+   "Betreff: Hilfe im Krieg Quest.\n"
+   "Verdammte Avare. Wir können es uns nicht leisten, diesen Krieg zu verlieren. "

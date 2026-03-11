@@ -19,38 +19,40 @@ constants:
 
 resources:
 
-   Freezing_name_rsc = "freezing"
-   Freezing_icon_rsc = iicenova.bgf
-   Freezing_desc_rsc = \
+   include freezing.lkod
+
+   freezing_name_rsc = "freezing"
+   freezing_icon_rsc = iicenova.bgf
+   freezing_desc_rsc = \
       "Fills the room with the earth magic of Faren, freezing "
       "all armor causing frostbite. "
    
-   Freezing_already_enchanted = "This place already has a freezing enchantment."
+   freezing_already_enchanted = "This place already has a freezing enchantment."
 
-   Freezing_on = \
+   freezing_on = \
       "Fills the room with the earth magic of Faren, freezing "
       "all armor causing frostbite. "
-   Freezing_off = "The armor-freezing field dissipates."
-   Freezing_new_entrant = \
+   freezing_off = "The armor-freezing field dissipates."
+   freezing_new_entrant = \
       "Faren earth magic fills the room freezing all armor causing frostbite."
-   Freezing_kills_you = "Your body freezes into solid ice."
-   Freezing_kills_him = "%s%s freezes solid."
+   freezing_kills_you = "Your body freezes into solid ice."
+   freezing_kills_him = "%s%s freezes solid."
 
-   Freezing_hurts_you = \
+   freezing_hurts_you = \
       "You offer a yelp of pain as your armor freezes to your skin."
 
-   Freezing_sound = fheat.ogg
+   freezing_sound = fheat.ogg
 
 classvars:
 
-   vrName = Freezing_name_rsc
-   vrIcon = Freezing_icon_rsc
-   vrDesc = Freezing_desc_rsc
+   vrName = freezing_name_rsc
+   vrIcon = freezing_icon_rsc
+   vrDesc = freezing_desc_rsc
 
-   vrAlreadyEnchanted = Freezing_already_enchanted
-   vrRoomEnchKilled = Freezing_kills_you
-   vrRoomEnchKiller = Freezing_kills_him
-   vrRoomEnchHit = Freezing_hurts_you
+   vrAlreadyEnchanted = freezing_already_enchanted
+   vrRoomEnchKilled = freezing_kills_you
+   vrRoomEnchKiller = freezing_kills_him
+   vrRoomEnchHit = freezing_hurts_you
 
    viAttack_spell = ATCK_SPELL_COLD
    viSpell_num = SID_FREEZING
@@ -61,7 +63,7 @@ classvars:
    viHarmful = TRUE
    viNoNewbieOffense = TRUE
 
-   vrSucceed_wav = Freezing_sound
+   vrSucceed_wav = freezing_sound
    viChance_To_Increase = 35
    viMeditate_ratio = 30
 
@@ -115,7 +117,7 @@ messages:
          }
       }
 
-      Send(oRoom,@SomeoneSaid,#type=SAY_MESSAGE,#string=Freezing_on,#what=self);
+      Send(oRoom,@SomeoneSaid,#type=SAY_MESSAGE,#string=freezing_on,#what=self);
 
       // ranges from 7 to 17 seconds
       iPeriod = (170-iSpellPower)/10;
@@ -169,7 +171,7 @@ messages:
    StartEnchantmentNewOccupant(who = $,state = $)
    "Called on new occupants of the enchanted room."
    {
-      Send(who,@MsgSendUser,#message_rsc=Freezing_new_entrant);
+      Send(who,@MsgSendUser,#message_rsc=freezing_new_entrant);
       Send(self,@StartEnchantment,#who=who,#state=state);
 
       return;
@@ -207,7 +209,7 @@ messages:
    EndSpell(where = $, state = $)
    "Called when spell expires."
    {
-      Send(where,@SomeoneSaid,#type=SAY_MESSAGE,#string=Freezing_off,#what=self);
+      Send(where,@SomeoneSaid,#type=SAY_MESSAGE,#string=freezing_off,#what=self);
 
       return;
    }

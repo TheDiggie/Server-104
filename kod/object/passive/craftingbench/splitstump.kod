@@ -7,6 +7,8 @@ constants:
 
 resources:
 
+   include splitstump.lkod
+
    SplittingStump_name_rsc = "splitting stump"
    SplittingStump_icon_rsc = splitstump.bgf
    SplittingStump_desc_rsc = "This splitting stump is used to split wood into lumber."

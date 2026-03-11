@@ -1,0 +1,6 @@
+Smelting_name_rsc = pt "fundir"
+Smelting_desc_rsc = pt "Transformar min�rio em lingotes utiliz�veis."
+
+// GERMAN
+Smelting_name_rsc = de "Schmelzen"
+Smelting_desc_rsc = de "Verwandle Erz in verwendbare Barren."

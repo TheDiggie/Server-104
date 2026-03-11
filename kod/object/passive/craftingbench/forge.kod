@@ -7,6 +7,8 @@ constants:
 
 resources:
 
+   include forge.lkod
+
    Forge_name_rsc = "smelting forge"
    Forge_icon_rsc = forge.bgf
    Forge_desc_rsc = "This forge is used to smelt metals."

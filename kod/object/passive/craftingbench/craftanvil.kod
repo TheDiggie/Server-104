@@ -7,6 +7,8 @@ constants:
 
 resources:
 
+   include craftanvil.lkod
+
    CraftingAnvil_name_rsc = "blacksmith's anvil"
    CraftingAnvil_icon_rsc = craftanvil.bgf
    CraftingAnvil_desc_rsc = "A solid anvil used for crafting metal based gear."

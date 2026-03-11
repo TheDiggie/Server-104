@@ -31,6 +31,8 @@ constants:
 
 resources:
 
+   include cornothkeyqt.lkod
+
    // Quest description.
    CorNothKeyQuest_icon_rsc = key4.bgf
    CorNothKeyQuest_name_rsc = "Key to Cor Noth quest"

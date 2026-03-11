@@ -1,0 +1,34 @@
+CorNothKeyQuest_name_rsc = de "Schlüssel zu Cor Noth Quest"
+CorNothKeyQuest_desc_rsc = de \
+   "Amerantha ist wütend auf Joline und ihre Art. "
+CorNothKeyQuest_kill_rsc = de \
+   "Amerantha ist wütend auf Joline. Gehe und töte %i %s. "
+   "Erfülle diese Aufgabe und berichte ihr."
+CorNothKeyQuest_return_rsc = de \
+   "Kehre zu Amerantha zurück und lass sie wissen, dass die Aufgabe "
+   "abgeschlossen wurde."
+CorNothKeyQuest_completed = de \
+   "Du hast die Schlüssel zu Cor Noth Quest abgeschlossen. Amerantha wird begeistert sein! "
+Cornoth_Key = de "hilfe"
+CorNothKeyQuest_assign_2 = de \
+   "Hilfe? Ja, ich könnte etwas Hilfe gebrauchen. Joline lässt ihre übergroßen Nachkommen "
+   "überall herumlaufen. Ich kann sie nicht mehr sehen. Gehe und "
+   "reduziere ihre Anzahl und ich gebe dir einen Schlüssel zu Cor Noth. Gehe und töte 5 rote Hydras für mich."
+CorNothKeyQuest_failure_2 = de \
+   "Betreff: Schlüssel zu Cor Noth Quest.\n"
+   "Verdammte Reptilien. Ein besserer Abenteurer wird sich um sie kümmern. "
+CorNothKeyQuest_assign_3 = de \
+   "Hast du einige der roten erwischt? Gut, ich habe auch grüne gesehen. "
+   "Gehe und töte 5 grüne Hydras für mich."
+CorNothKeyQuest_failure_3 = de \
+   "Betreff: Schlüssel zu Cor Noth Quest.\n"
+   "Verdammte Reptilien. Ein besserer Abenteurer wird sich um sie kümmern. "
+CorNothKeyQuest_assign_4 = de \
+   "Gut, es gibt da draußen einige dunklere, etwas schwieriger zu sehen, aber ich habe "
+   "schon ein paar von ihnen in der Stadt erwischt. "
+   "Gehe und tüte 5 schwarze Hydras für mich."
+CorNothKeyQuest_success_4 = de \
+   "Endlich. Gute Arbeit, diese Reptilien loszuwerden!"
+CorNothKeyQuest_failure_4 = de \
+   "Betreff: Schlüssel zu Cor Noth Quest.\n"
+   "Verdammte Reptilien. Ein besserer Abenteurer wird sich um sie kümmern. "

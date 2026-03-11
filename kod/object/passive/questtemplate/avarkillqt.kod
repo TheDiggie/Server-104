@@ -31,6 +31,8 @@ constants:
 
 resources:
 
+   include avarkillqt.lkod
+
    // Quest description.
    AvarKillQuest_icon_rsc = avwar.bgf
    AvarKillQuest_name_rsc = "Aid in the War quest"

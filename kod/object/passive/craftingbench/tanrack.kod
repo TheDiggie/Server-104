@@ -7,6 +7,8 @@ constants:
 
 resources:
 
+   include tanrack.lkod
+
    TanningRack_name_rsc = "tanning rack"
    TanningRack_icon_rsc = tanrack.bgf
    TanningRack_desc_rsc = "A wooden rack for tanning hides into leather."

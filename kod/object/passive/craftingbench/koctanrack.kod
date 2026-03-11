@@ -7,6 +7,8 @@ constants:
 
 resources:
 
+   include koctanrack.lkod
+
    KocatanTanningRack_name_rsc = "Ko'catan tanning rack"
    KocatanTanningRack_icon_rsc = tanrack.bgf
    KocatanTanningRack_desc_rsc = "A wooden rack for tanning kriipa hides into leather."

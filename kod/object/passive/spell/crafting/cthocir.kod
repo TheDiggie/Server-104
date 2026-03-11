@@ -15,7 +15,7 @@ constants:
    include blakston.khd
 
 resources:
-
+ include cthocir.lkod
    CraftThornCirclet_name_rsc = "craft thorn circlet"
    CraftThornCirclet_icon_rsc = icrafttcirclet.bgf
    CraftThornCirclet_desc_rsc = \

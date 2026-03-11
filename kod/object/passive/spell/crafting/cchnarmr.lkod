@@ -3,7 +3,7 @@ CraftChainArmor_desc_rsc = pt \
       "Fabricar armadura de corrente em uma bigorna com um martelo de ferreiro. "
       "Requer 10 lingotes de ferro e 15 couro."
       
-CraftChainArmor_name_rsc = de "Kettenr�stung herstellen"
+CraftChainArmor_name_rsc = de "Kettenrüstung herstellen"
 CraftChainArmor_desc_rsc = de \
-      "Stelle eine Kettenr�stung an einem Amboss mit einem Schmiedehammer her."
+      "Stelle eine Kettenrüstung an einem Amboss mit einem Schmiedehammer her."
       "Erfordert 10 Eisenbarren und 15 Leder."

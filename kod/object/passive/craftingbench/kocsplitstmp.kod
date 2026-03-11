@@ -7,6 +7,8 @@ constants:
 
 resources:
 
+   include kocsplitstmp.lkod
+
    KocatanSplittingStump_name_rsc = "Ko'catan splitting stump"
    KocatanSplittingStump_icon_rsc = splitstump.bgf
    KocatanSplittingStump_desc_rsc = "This splitting stump is used to split dense wood into lumber."

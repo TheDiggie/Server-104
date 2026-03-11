@@ -1,0 +1,6 @@
+Tanning_name_rsc = pt "curtir"
+Tanning_desc_rsc = pt "Transformar couros em couro utiliz�vel."
+
+// GERMAN
+Tanning_name_rsc = de "Gerben"
+Tanning_desc_rsc = de "Verwandle Häute in verwendbares Leder."

@@ -31,6 +31,8 @@ constants:
 
 resources:
 
+   include famsratsqt.lkod
+
    // Quest description.
    FamsRatsQuest_icon_rsc = rat.bgf
    FamsRatsQuest_name_rsc = "Rats in the cellar quest"

@@ -1,0 +1,29 @@
+TosKeyQuest_name_rsc = de "Schlüssel zu Tos Quest"
+TosKeyQuest_desc_rsc = de \
+   "Beelzebub will, dass ich einige Schlangen töte, denke ich. "
+TosKeyQuest_kill_rsc = de \
+   "Beelzebub erwähnte etwas. Gehe und töte %i %s. "
+   "Erfülle diese Aufgabe und berichte ihm."
+TosKeyQuest_return_rsc = de \
+   "Kehre zu Beelzebub zurück und lass ihn wissen, dass die Aufgabe "
+   "abgeschlossen wurde."
+TosKeyQuest_completed = de \
+   "Du hast die Schlüssel zu Tos Quest abgeschlossen. Kehre zu Beelzebub zurück. "
+Tos_Key = de "hilfe"
+TosKeyQuest_assign_2 = de \
+   "Hilfe?....ja.....Schlangen....gehe.....Schlüssel...Tos....."
+TosKeyQuest_failure_2 = de \
+   "Betreff: Schlüssel zu Tos Quest.\n"
+   "..."
+TosKeyQuest_assign_3 = de \
+   "...gut....ja....gold....Hydras....gehe...."
+TosKeyQuest_failure_3 = de \
+   "Betreff: Schlüssel zu Tos Quest.\n"
+   "..."
+TosKeyQuest_assign_4 = de \
+   "...gut....jaaa....Tyrannen.....gehe....."
+TosKeyQuest_success_4 = de \
+   "...guuut...."
+TosKeyQuest_failure_4 = de \
+   "Betreff: Schlüssel zu Tos Quest.\n"
+   "..."

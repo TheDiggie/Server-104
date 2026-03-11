@@ -1,3 +1,7 @@
 Gathering_name_rsc = pt "coleta"
-Gathering_desc_rsc = pt "Essa habilidade permite que voc� colete plantas �teis para suas fibras. Requer uma foice."
-Gathering_skill_intro = pt "Fabrica��o Nv. 1: Essa habilidade permite que voc� colete plantas �teis para suas fibras."
+Gathering_desc_rsc = pt "Essa habilidade permite que você colete plantas úteis para suas fibras. Requer uma foice."
+Gathering_skill_intro = pt "Fabricação Nv. 1: Essa habilidade permite que você colete plantas úteis para suas fibras."
+
+Gathering_name_rsc = de "sammeln"
+Gathering_desc_rsc = de "Diese Fertigkeit ermöglicht es dir, Pflanzen zu sammeln, die für deine Fasern nützlich sind. Du benötigst eine Sense."
+Gathering_skill_intro = de "Handwerk Stufe 1: Mit dieser Fertigkeit kannst du nützliche Pflanzen für deine Fasern sammeln."

@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include hewing.lkod
+
    Hewing_name_rsc = "hewing"
    Hewing_icon_rsc = ihewing.bgf
    Hewing_desc_rsc = \

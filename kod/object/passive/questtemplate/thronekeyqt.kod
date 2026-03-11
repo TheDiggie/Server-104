@@ -31,6 +31,8 @@ constants:
 
 resources:
 
+   include thronekeyqt.lkod
+
    // Quest description.
    ThroneRoomKeyQuest_icon_rsc = key6.bgf
    ThroneRoomKeyQuest_name_rsc = "Key to Castle Victoria's throne room quest"

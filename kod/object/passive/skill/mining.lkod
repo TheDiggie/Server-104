@@ -1,3 +1,7 @@
 Mining_name_rsc = pt "mineração"
 Mining_desc_rsc = pt "Essa habilidade permite que você quebre rochas pesadas e recupere minerais preciosos. Uma proficiência maior nessa habilidade evitará danos a esses minerais preciosos. Requer um picareta e um espírito de aventura."
 Mining_skill_intro = pt "Fabricação Nv. 1: Essa habilidade permite que você quebre rochas pesadas e recupere minerais preciosos."
+
+Mining_name_rsc = de "Bergbau"
+Mining_desc_rsc = de "Diese Fertigkeit ermöglicht es dir, schwere Gesteine zu zerkleinern und wertvolle Mineralien zu gewinnen. Höhere Fertigkeitsstufen verhindern Beschädigungen dieser wertvollen Mineralien. Benötigt eine Spitzhacke und Abenteuerlust."
+Mining_skill_intro = de "Handwerk Stufe 1: Diese Fertigkeit ermöglicht es dir, schwere Gesteine zu zerkleinern und wertvolle Mineralien zu gewinnen."

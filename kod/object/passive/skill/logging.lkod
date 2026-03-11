@@ -1,3 +1,7 @@
 Logging_name_rsc = pt "derrubada de árvores"
 Logging_desc_rsc = pt "Essa habilidade permite que você derrube árvores maduras e colete madeira. Requer um machado de corte de madeira."
 Logging_skill_intro = pt "Fabricação Nv. 1: Essa habilidade permite que você derrube árvores maduras e recupere minerais preciosos."
+
+Logging_name_rsc = de "Baum Fällen"
+Logging_desc_rsc = de "Diese Fertigkeit ermöglicht es dir, ausgewachsene Bäume zu fällen und Holz zu sammeln. Benötigt eine Holzfälleraxt."
+Logging_skill_intro = de "Handwerk Stufe 1: Diese Fertigkeit ermöglicht es dir, ausgewachsene Bäume zu fällen und wertvolle Mineralien zu gewinnen."

@@ -3,8 +3,8 @@ CraftScaleArmor_desc_rsc = pt \
       "Fabricar uma armadura de escamas em uma bigorna. " 
       "Requer 30 lingotes de ferro, 15 couro e 10 fios de seda."
 
-CraftScaleArmor_name_rsc = de "Schuppenr�stung herstellen"
+CraftScaleArmor_name_rsc = de "Schuppenrüstung herstellen"
 CraftScaleArmor_desc_rsc = de \
-      "Stelle eine Schuppenr�stung an einem Amboss her."
+      "Stelle eine Schuppenrüstung an einem Amboss her."
       "Erfordert 30 Eisenbarren, 15 Leder und 10 Seidengarn."
       

@@ -7,6 +7,8 @@ constants:
 
 resources:
 
+   include kocatananvil.lkod
+
    KocatanAnvil_name_rsc = "Ko'catan anvil"
    KocatanAnvil_icon_rsc = craftanvil.bgf
    KocatanAnvil_desc_rsc = "A solid anvil used for crafting nerudite based gear."

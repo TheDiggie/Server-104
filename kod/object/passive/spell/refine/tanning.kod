@@ -16,6 +16,8 @@ constants:
 
 resources:
 
+   include tanning.lkod
+
    Tanning_name_rsc = "tanning"
    Tanning_icon_rsc = itanning.bgf
    Tanning_desc_rsc = \

@@ -1,0 +1,32 @@
+FamsRatsQuest_name_rsc = de "Ratten im Keller Quest"
+FamsRatsQuest_desc_rsc = de \
+   "Paddock hat Probleme mit Ratten im Keller. "
+FamsRatsQuest_kill_rsc = de \
+   "Paddock hat Probleme mit Ratten im Keller. Gehe "
+   "und töte %i %s. Erfülle diese Aufgabe und berichte ihm."
+FamsRatsQuest_return_rsc = de \
+   "Kehre zu Paddock zurück und lass ihn wissen, dass die Aufgabe "
+   "abgeschlossen wurde."
+FamsRatsQuest_completed = de \
+   "Du hast die Ratten im Keller Quest abgeschlossen. Paddock wird begeistert sein! "
+FamsRatsQuest_assign_2 = de \
+   "Probleme? Ja, ich habe im Moment ein paar. Ein Haufen Nagetiere läuft in "
+   "letzter Zeit im Keller herum. Ich würe dir sehr verbunden, wenn du dich um sie kümmern würdest. "
+   "Gehe und sieh nach, ob du diese 20 kleinen Ratten im Keller beseitigen kannst. "
+FamsRatsQuest_failure_2 = de \
+   "Betreff: Ratten im Keller.\n"
+   "Verdammte Ratten. Ein besserer Abenteurer wird sich um sie kümmern. "
+FamsRatsQuest_assign_3 = de \
+   "Hast du die kleinen Biester erwischt? Gut, aber ich habe auch größere gesehen. "
+   "Gehe und töte 15 Rattensoldaten in den Kellern für mich."
+FamsRatsQuest_failure_3 = de \
+   "Betreff: Ratten im Keller.\n"
+   "Verdammte Ratten. Ein besserer Abenteurer wird sich um sie kümmern. "
+FamsRatsQuest_assign_4 = de \
+   "Noch am Leben, was! Also diese Ratten müssen irgendwo herkommen. Sieh nach, ob du ihren "
+   "Anführer finden und ausschalten kannst. Das wird sie aufhalten. "
+FamsRatsQuest_success_4 = de \
+   "Endlich. Gute Arbeit, diese Nagetiere loszuwerden!"
+FamsRatsQuest_failure_4 = de \
+   "Betreff: Ratten im Keller.\n"
+   "Verdammte Ratten. Ein besserer Abenteurer wird sich um sie kümmern. "
