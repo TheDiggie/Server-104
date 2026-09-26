@@ -6218,12 +6218,12 @@ messages:
          string = psPlayerDescription;
       }
 
-      if StringContain(psPlayerDescription,"¶")
+      if StringContain(psPlayerDescription,"ï¿½")
       {
          iCount = 0;
-         while StringContain(psPlayerDescription,"¶")
+         while StringContain(psPlayerDescription,"ï¿½")
          {
-            StringSubstitute(psPlayerDescription,"¶","");
+            StringSubstitute(psPlayerDescription,"ï¿½","");
             if ++iCount > 10
             {
                // At this point, it's malicious.
@@ -8629,7 +8629,12 @@ messages:
             rSay_format = user_emote_str;
          }
 
-         if Send(what,@CheckPlayerFlag,#flag=PFLAG_MORPHED)
+         // CheckPlayerFlag only exists on Player, but `what` is any speaker -- a
+         // monster, an object, or a room.  Unguarded this logged "can't find a
+         // handler for MESSAGE CheckPlayerFlag" on every non-player line spoken.
+         if what <> $
+            AND IsClass(what,&Player)
+            AND Send(what,@CheckPlayerFlag,#flag=PFLAG_MORPHED)
             AND (rSay_format = user_said_str
                  OR rSay_format = user_yelled_str
                  OR rSay_format = user_emote_str)

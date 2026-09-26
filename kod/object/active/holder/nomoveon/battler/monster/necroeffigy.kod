@@ -66,7 +66,7 @@ properties:
 
 messages:
 
-   Constructor()
+   Constructed()
    {
       ptCastSpell = CreateTimer(self,@CastSpell,Random(8000,15000));
       plSpells = Cons(SID_BLIND,plSpells);
@@ -82,6 +82,16 @@ messages:
       local oRoom, i, lNearby, lPlayers, oSpell, oTarget, lTarget;
 
       ptCastSpell = CreateTimer(self,@CastSpell,Random(8000,15000));
+
+      // plSpells is built in Constructed, which doesn't re-run on savegame reload;
+      // rebuild it if empty so we never do Nth(plSpells,Random(1,0)) below.
+      if plSpells = $
+      {
+         plSpells = Cons(SID_BLIND,plSpells);
+         plSpells = Cons(SID_HOLD,plSpells);
+         plSpells = Cons(SID_ENFEEBLE,plSpells);
+         plSpells = Cons(SID_VAMPIRIC_DRAIN,plSpells);
+      }
 
       oRoom = Send(SYS,@UtilGetRoomRecurse,#what=self);
 
@@ -101,6 +111,11 @@ messages:
          }
       }
 
+      if lPlayers = $
+      {
+         return;
+      }
+
       oSpell = Nth(plSpells,Random(1,Length(plSpells)));
 
       oSpell = Send(SYS,@FindSpellByNum,#num=oSpell);
@@ -108,11 +123,6 @@ messages:
       oTarget = Nth(lPlayers,Random(1,Length(lPlayers)));
 
       lTarget = Cons(oTarget,lTarget);
-
-      if lTarget = $
-      {
-         return;
-      }
 
       Send(oSpell,@CastSpell,#who=self,#lTargets=lTarget,
               #iSpellPower=75);

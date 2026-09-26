@@ -133,6 +133,7 @@ messages:
       local i, iDuration, oList;
 
       if Send(SETTINGS_OBJECT,@DisplaySpellData)
+         AND oTarget <> $
       {
          oList = Send(oTarget,@GetEnchantmentList);
 
@@ -144,15 +145,19 @@ messages:
             }
          }
 
-         Send(what,@MsgSendUser,#message_rsc=debuff_display_duration,
-               #parm1=Send(self,@GetName),#parm2=(iDuration/1000));
-
-         if oTarget <> $
-            AND oTarget <> what
-            AND IsClass(oTarget,&Player)
+         // iDuration is only set if this enchantment was found on the target;
+         // guard so we never divide NIL/1000 when it wasn't (e.g. already expired).
+         if iDuration <> $
          {
-            Send(oTarget,@MsgSendUser,#message_rsc=debuff_display_duration,
-               #parm1=Send(self,@GetName),#parm2=(iDuration/1000));
+            Send(what,@MsgSendUser,#message_rsc=debuff_display_duration,
+                  #parm1=Send(self,@GetName),#parm2=(iDuration/1000));
+
+            if oTarget <> what
+               AND IsClass(oTarget,&Player)
+            {
+               Send(oTarget,@MsgSendUser,#message_rsc=debuff_display_duration,
+                  #parm1=Send(self,@GetName),#parm2=(iDuration/1000));
+            }
          }
       }
 

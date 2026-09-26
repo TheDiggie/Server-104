@@ -997,7 +997,15 @@ messages:
    "Retrieves a questnode type by index number."
    "Returns type if successful, $ otherwise."
    {
-      return Nth(Send(self,@GetQuestNodeTemplate,#index=index),QNT_TYPE);
+      local lQNT;
+
+      lQNT = Send(self,@GetQuestNodeTemplate,#index=index);
+      if lQNT = $
+      {
+         return $;
+      }
+
+      return Nth(lQNT,QNT_TYPE);
    }
 
    GetQuestNodeAssignHint(index = 0)
@@ -1020,7 +1028,10 @@ messages:
    {
       local lQNT;
 
-      if index < 1
+      // index can arrive as $ (nil); guard it BEFORE "index < 1" so the comparison
+      // (and the GetListNode below) never runs on a non-int.
+      if index = $
+         OR index < 1
       {
          return $;
       }

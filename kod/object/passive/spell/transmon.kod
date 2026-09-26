@@ -91,6 +91,12 @@ messages:
          Send(who,@MsgSendUser,#message_rsc=transmon_bad_target_boss);
          return FALSE;
       }
+
+      if Send(oTarget,@IsLeader)
+      {
+         Send(who,@MsgSendUser,#message_rsc=transmon_bad_target_boss);
+         return FALSE;
+      }
       
       propagate;
    }

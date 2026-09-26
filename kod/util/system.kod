@@ -388,6 +388,7 @@ properties:
    poLore = $
    poAssassin_game = $
    poQuestEngine = $
+   poDMFeed = $
    poNecromancerBalance = $
    poTokenGame = $
    poTerritoryGame = $
@@ -4406,10 +4407,12 @@ messages:
       {
          iZone = Send(i,@GetWeatherZone);
 
-         // this is expensive, only continue if the weather has changed
-         if (iZone <> 0)
+         // this is expensive, only continue if the weather has changed.
+         // ($ <> 0 is true, so guard nil explicitly before using iZone as an Nth index)
+         if (iZone <> $
+            AND iZone <> 0)
          {
-            if (Nth(plWeatherConditions,iZone) 
+            if (Nth(plWeatherConditions,iZone)
                <> Nth(lLastWeatherConditions,iZone))
             {
                if (Nth(plWeatherConditions,iZone) <> WEATHER_PATTERN_CLEAR)
@@ -4692,7 +4695,7 @@ messages:
       }
 
       if NOT StringConsistsOf(sName, 
-          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_ '!@$^&*()+=:[]{};/?|<>ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ")
+          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_ '!@$^&*()+=:[]{};/?|<>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")
       {
          Debug("Got char name with illegal characters for user ", oUser);
 
@@ -5187,6 +5190,19 @@ messages:
    {
       return poQuestEngine;
    }
+
+   GetDMFeed()
+   "The world-event feed (kod/util/dmfeed.kod).  Created on demand so an old "
+   "savegame that predates the class still works after a reload."
+   {
+      if poDMFeed = $
+      {
+         poDMFeed = Create(&DMFeed);
+      }
+
+      return poDMFeed;
+   }
+
 
    AllPlayersClearQuestHistory(index = $,allBelow = FALSE,allAbove = FALSE)
    {

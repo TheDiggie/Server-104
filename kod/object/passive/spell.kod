@@ -1507,7 +1507,8 @@ messages:
          foreach oTarget in lTargets
          {
             // Most spells have no flash.  Damage spells of course flash red.
-            if IsClass(oTarget,&User)
+            if oTarget <> $
+               AND IsClass(oTarget,&User)
             {
                if viFlash = FLASH_GOOD
                {
@@ -1558,7 +1559,8 @@ messages:
          oTarget = First(lTargets);
 
          // If the spell was cast on a monster, let the monster keep track of that for loot.
-         if IsClass(oTarget,&Monster)
+         if oTarget <> $
+            AND IsClass(oTarget,&Monster)
             AND NOT bItemCast
             AND who <> $
             AND IsClass(who,&Player)

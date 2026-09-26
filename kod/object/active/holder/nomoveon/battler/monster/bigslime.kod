@@ -139,7 +139,7 @@ messages:
 
       oSlime = Create(&BigSlimeSplit);
       Send(oSlime,@SetMaster,#what=self);
-      Send(SYS,@UtilGoRandomNear,#what=oSlime,#where=poOwner,
+      Send(SYS,@UtilGoNearSquare,#what=oSlime,#where=poOwner,
             #new_row=piRow,#new_col=piCol,
             #fine_row=piFine_row,#fine_col=piFine_col);
 

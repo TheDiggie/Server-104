@@ -205,7 +205,7 @@ messages:
                AND IsClass(poTarget,&Player)
             {
                Post(oBunny,@TargetSwitch,#what=poTarget,#iHatred=100);
-               Post(oBunny,@EnterStateEngage,#target=poTarget,#actnow=True);
+               Post(oBunny,@EnterStateChase,#target=poTarget,#actnow=True);
             }
 
             // Do an attack animation.

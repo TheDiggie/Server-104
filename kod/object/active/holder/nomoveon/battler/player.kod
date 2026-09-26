@@ -4468,7 +4468,10 @@ messages:
          }
       }
 
-      if IsClass(victim,&Resource) AND IsClass(stroke_obj,&Spell)
+      if victim <> $
+         AND IsClass(victim,&Resource)
+         AND stroke_obj <> $
+         AND IsClass(stroke_obj,&Spell)
       {
          Send(self,@MsgSendUser,#message_rsc=cant_cast_resources);
 

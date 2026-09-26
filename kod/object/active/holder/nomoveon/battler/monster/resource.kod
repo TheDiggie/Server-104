@@ -137,10 +137,10 @@ messages:
          iAmount = Random(cSkillAbility / 12,cSkillAbility / 8);
          iAmount = Bound(iAmount,1,$);
          iAmount = iAmount+iBonus;
-         oResource = Create(vcResource,#number=iAmount);
 
          if what <> $ AND IsClass(what,&player) AND Random(1, (150 - cSkillAbility)) <= cSkillAbility
          {
+            oResource = Create(vcResource,#number=iAmount);
 
             if IsClass(oResource,&NumberItem)
             {

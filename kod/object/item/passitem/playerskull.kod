@@ -21,7 +21,9 @@ resources:
    playerskull_desc_rsc = "This is the skull of %q, who was slain by %q."
    playerskull_player_desc_rsc = \
       "A human skull."
-   
+
+   playerskull_unknown_rsc = "someone"
+
 classvars:
 
    vrDesc = playerskull_desc_rsc
@@ -48,9 +50,26 @@ messages:
 
    Constructor(victim = $,killer = $,oRoom = $)
    {
+      // victim/killer can be $ (e.g. an environmental death with no killer); fall
+      // back to a placeholder so GetTrueName isn't sent to a non-object and ShowDesc
+      // never packs a NIL name.
+      if victim <> $
+      {
+         prPlayer_name = Send(victim,@GetTrueName);
+      }
+      else
+      {
+         prPlayer_name = playerskull_unknown_rsc;
+      }
 
-      prPlayer_name = Send(victim,@GetTrueName);
-      prKiller_Name = Send(killer,@GetTrueName);
+      if killer <> $
+      {
+         prKiller_Name = Send(killer,@GetTrueName);
+      }
+      else
+      {
+         prKiller_Name = playerskull_unknown_rsc;
+      }
 
       propagate;
    }

@@ -1,0 +1,59 @@
+Castle compound -- 3200 x 2400 editor units (the plan's row 0 is at the top)
+48 sectors, 721 walls (95 angled), 308 impassable edges, door wall ids [1, 2]
+
+great hall             floor h 128  ceiling h 352  floor  2104  ceil 2016  walls 2103  light 200  -- rect x 960-2256 y 160-736
+dais step 1            floor h 144  ceiling h 352  floor  2123  ceil 2016  walls 2103  light 200  -- rect x 1440-1776 y 240-256
+dais step 2            floor h 160  ceiling h 352  floor  2123  ceil 2016  walls 2103  light 200  -- rect x 1440-1776 y 224-240
+dais                   floor h 176  ceiling h 352  floor  4410  ceil 2016  walls 2103  light 200  -- rect x 1440-1776 y 160-224
+throne alcove          floor h 176  ceiling h 280  floor  4410  ceil 1602  walls 2012  light 180  -- rect x 1520-1696 y 48-160
+west balcony           floor h 200  ceiling h 352  floor  1602  ceil 2016  walls 2103  light 190  -- rect x 960-1088 y 160-624
+west balcony stair 6   floor h 188  ceiling h 352  floor  3101  ceil 2016  walls 2103  light 190  -- rect x 960-1088 y 624-640
+west balcony stair 5   floor h 176  ceiling h 352  floor  3101  ceil 2016  walls 2103  light 190  -- rect x 960-1088 y 640-656
+west balcony stair 4   floor h 164  ceiling h 352  floor  3101  ceil 2016  walls 2103  light 190  -- rect x 960-1088 y 656-672
+west balcony stair 3   floor h 152  ceiling h 352  floor  3101  ceil 2016  walls 2103  light 190  -- rect x 960-1088 y 672-688
+west balcony stair 2   floor h 140  ceiling h 352  floor  3101  ceil 2016  walls 2103  light 190  -- rect x 960-1088 y 688-704
+west balcony stair 1   floor h 128  ceiling h 352  floor  3101  ceil 2016  walls 2103  light 190  -- rect x 960-1088 y 704-720
+east balcony           floor h 200  ceiling h 352  floor  1602  ceil 2016  walls 2103  light 190  -- rect x 2128-2256 y 160-624
+east balcony stair 6   floor h 188  ceiling h 352  floor  3101  ceil 2016  walls 2103  light 190  -- rect x 2128-2256 y 624-640
+east balcony stair 5   floor h 176  ceiling h 352  floor  3101  ceil 2016  walls 2103  light 190  -- rect x 2128-2256 y 640-656
+east balcony stair 4   floor h 164  ceiling h 352  floor  3101  ceil 2016  walls 2103  light 190  -- rect x 2128-2256 y 656-672
+east balcony stair 3   floor h 152  ceiling h 352  floor  3101  ceil 2016  walls 2103  light 190  -- rect x 2128-2256 y 672-688
+east balcony stair 2   floor h 140  ceiling h 352  floor  3101  ceil 2016  walls 2103  light 190  -- rect x 2128-2256 y 688-704
+east balcony stair 1   floor h 128  ceiling h 352  floor  3101  ceil 2016  walls 2103  light 190  -- rect x 2128-2256 y 704-720
+grand doorway          floor h 128  ceiling h 240  floor  4601  ceil 2011  walls 2011  light 170  -- rect x 1520-1696 y 736-880
+courtyard              floor h 128  ceiling sky    floor  2303  ceil    0  walls 2011  light 210  -- rect x 1120-2096 y 880-1616
+pool                   floor h 104  ceiling sky    floor  8895  ceil    0  walls 2011  light 210  flags 0xaa  -- circle at (1600, 1232) radius 176
+chapel                 floor h 128  ceiling h 320  floor  4408  ceil 4503  walls 3401  light 170  -- octagon at (560, 1232) radius 416
+apse step              floor h 140  ceiling h 320  floor  4408  ceil 4503  walls 3401  light 180  -- circle at (272, 1232) radius 128
+altar                  floor h 152  ceiling h 320  floor  4410  ceil 4503  walls 3401  light 190  -- circle at (240, 1232) radius 80
+pews                   floor h 148  ceiling h 320  floor  1602  ceil 4503  walls 3401  light 170  -- rect x 512-848 y 992-1024
+chapel passage         floor h 128  ceiling h 208  floor  4601  ceil 2011  walls 2011  light 160  -- rect x 976-1120 y 1184-1296
+chapel windows         floor h 176  ceiling h 232  floor  4601  ceil 2011  walls 2011  light 170  -- rect x 992-1120 y 1024-1056
+tower passage          floor h 128  ceiling h 208  floor  4601  ceil 2011  walls 2011  light 160  -- rect x 2096-2400 y 1248-1312
+spiral step 1          floor h 128  ceiling h 264  floor  2126  ceil 1703  walls 3404  light 150  -- wedge of circle at (2720, 1232) radius 352
+spiral step 2          floor h 144  ceiling h 280  floor  2126  ceil 1703  walls 3404  light 150  -- wedge of circle at (2720, 1232) radius 352
+spiral step 3          floor h 160  ceiling h 296  floor  2126  ceil 1703  walls 3404  light 150  -- wedge of circle at (2720, 1232) radius 352
+spiral step 4          floor h 176  ceiling h 312  floor  2126  ceil 1703  walls 3404  light 150  -- wedge of circle at (2720, 1232) radius 352
+spiral step 5          floor h 192  ceiling h 328  floor  2126  ceil 1703  walls 3404  light 150  -- wedge of circle at (2720, 1232) radius 352
+spiral step 6          floor h 208  ceiling h 344  floor  2126  ceil 1703  walls 3404  light 150  -- wedge of circle at (2720, 1232) radius 352
+spiral step 7          floor h 224  ceiling h 360  floor  2126  ceil 1703  walls 3404  light 150  -- wedge of circle at (2720, 1232) radius 352
+spiral step 8          floor h 240  ceiling h 376  floor  2126  ceil 1703  walls 3404  light 150  -- wedge of circle at (2720, 1232) radius 352
+spiral step 9          floor h 256  ceiling h 392  floor  2126  ceil 1703  walls 3404  light 150  -- wedge of circle at (2720, 1232) radius 352
+spiral step 10         floor h 272  ceiling h 408  floor  2126  ceil 1703  walls 3404  light 150  -- wedge of circle at (2720, 1232) radius 352
+spiral step 11         floor h 288  ceiling h 424  floor  2126  ceil 1703  walls 3404  light 150  -- wedge of circle at (2720, 1232) radius 352
+spiral step 12         floor h 304  ceiling h 440  floor  2126  ceil 1703  walls 3404  light 150  -- wedge of circle at (2720, 1232) radius 352
+spiral step 13         floor h 320  ceiling h 456  floor  2126  ceil 1703  walls 3404  light 150  -- wedge of circle at (2720, 1232) radius 352
+spiral step 14         floor h 336  ceiling h 472  floor  2126  ceil 1703  walls 3404  light 150  -- wedge of circle at (2720, 1232) radius 352
+spiral step 15         floor h 352  ceiling h 488  floor  2126  ceil 1703  walls 3404  light 150  -- wedge of circle at (2720, 1232) radius 352
+spiral step 16         floor h 368  ceiling h 504  floor  2126  ceil 1703  walls 3404  light 150  -- wedge of circle at (2720, 1232) radius 352
+crypt stair 1          floor h 112  ceiling h 240  floor  3101  ceil 2003  walls 2031  light 120  -- rect x 1536-1680 y 1616-1632
+crypt stair 2          floor h  96  ceiling h 224  floor  3101  ceil 2003  walls 2031  light 112  -- rect x 1536-1680 y 1632-1648
+crypt stair 3          floor h  80  ceiling h 208  floor  3101  ceil 2003  walls 2031  light 104  -- rect x 1536-1680 y 1648-1664
+crypt stair 4          floor h  64  ceiling h 192  floor  3101  ceil 2003  walls 2031  light  96  -- rect x 1536-1680 y 1664-1680
+crypt stair 5          floor h  48  ceiling h 176  floor  3101  ceil 2003  walls 2031  light  88  -- rect x 1536-1680 y 1680-1696
+crypt stair 6          floor h  32  ceiling h 160  floor  3101  ceil 2003  walls 2031  light  80  -- rect x 1536-1680 y 1696-1712
+crypt stair 7          floor h  16  ceiling h 144  floor  3101  ceil 2003  walls 2031  light  72  -- rect x 1536-1680 y 1712-1728
+crypt stair 8          floor h   0  ceiling h 128  floor  3101  ceil 2003  walls 2031  light  64  -- rect x 1536-1680 y 1728-1744
+crypt                  floor h   0  ceiling h 112  floor  2011  ceil 2003  walls 2031  light  60  -- rect x 1056-2160 y 1744-2352
+tombs                  floor h  40  ceiling h 112  floor  1701  ceil 2003  walls 2031  light  60  -- rect x 1184-1264 y 1856-2016
+torch light            floor h   0  ceiling h 112  floor  2011  ceil 2003  walls 2031  light 150  flags 0x200  -- rect x 1072-1104 y 1792-1824

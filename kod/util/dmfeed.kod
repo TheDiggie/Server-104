@@ -1,0 +1,331 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+// DMFeed:  a bounded, in-memory event log that lets an outside operator (the
+// "AI dungeon master" driving the maintenance port) SEE what is happening in
+// the world -- chat, logins, deaths -- instead of only being able to poll.
+//
+// Why a Blakod object and not a log file:  the server stdio-buffers channel/*.txt
+// and only flushes every few KB, so a file-based feed can lag by many minutes.
+// Draining an object over the maintenance port has no such lag.
+//
+// Two engine limits shape this class:
+//   * a maintenance REPLY value is printed to at most 1024 bytes (adminfn.c),
+//     so Drain() packs events up to DMFEED_DRAIN_BYTES and leaves the rest.
+//   * literal strings in Blakod are DEBUG STRINGS resolved against the class
+//     currently interpreting, so a caller must NEVER hand us a literal -- event
+//     kinds arrive as ints (DMFEED_* in blakston.khd) and are named in here.
+//
+// The feed is OFF by default and is a cheap early-out when off, so it costs
+// nothing until somebody asks for it.
+////////////////////////////////////////////////////////////////////////////////
+DMFeed is UtilityFunctions
+
+constants:
+
+   include blakston.khd
+
+   DMFEED_MAX_EVENTS = 200      // ring cap if nobody is draining
+   DMFEED_DRAIN_BYTES = 900     // headroom under the 1024-byte reply cap
+
+properties:
+
+   plEvents = $                 // newest-first list of STRINGs
+   piCount = 0
+   pbEnabled = FALSE
+   piDropped = 0                // events lost to the ring cap since last drain
+
+messages:
+
+   SetEnabled(bEnabled = FALSE)
+   "Turn the feed on or off.  Turning it off discards anything pending."
+   {
+      pbEnabled = bEnabled;
+
+      if NOT pbEnabled
+      {
+         plEvents = $;
+         piCount = 0;
+         piDropped = 0;
+      }
+
+      return pbEnabled;
+   }
+
+   IsEnabled()
+   {
+      return pbEnabled;
+   }
+
+   GetCount()
+   "Number of events waiting to be drained."
+   {
+      return piCount;
+   }
+
+   GetDropped()
+   "How many events the ring cap discarded since the last drain."
+   {
+      return piDropped;
+   }
+
+   Clear()
+   {
+      plEvents = $;
+      piCount = 0;
+      piDropped = 0;
+
+      return;
+   }
+
+   AppendKind(iKind = 0)
+   "Writes the name of an event kind onto the temp string.  Kept in THIS class "
+   "because literal strings resolve against the interpreting class."
+   {
+      if iKind = DMFEED_SAY    { AppendTempString("SAY");    return; }
+      if iKind = DMFEED_LOGIN  { AppendTempString("LOGIN");  return; }
+      if iKind = DMFEED_LOGOFF { AppendTempString("LOGOFF"); return; }
+      if iKind = DMFEED_DEATH  { AppendTempString("DEATH");  return; }
+
+      AppendTempString("EVENT");
+
+      return;
+   }
+
+   ActorName(oThing = $)
+   "Returns a readable name as a real STRING copy.  It has to be a copy: GetName "
+   "implementations may build their result in the temp string, and the caller may "
+   "hand us back a temp string that AppendTempString then refuses to append."
+   {
+      local sName;
+
+      sName = CreateString();
+
+      if oThing = $
+      {
+         return sName;
+      }
+
+      // Users have an anonymous/disguised GetName; the DM wants the real one.
+      if IsClass(oThing,&User)
+      {
+         SetString(sName,Send(oThing,@GetTrueName));
+      }
+      else
+      {
+         SetString(sName,Send(oThing,@GetName));
+      }
+
+      return sName;
+   }
+
+   Note(iKind = 0,oWho = $,oTarget = $,sText = $)
+   "Record one event.  A no-op when the feed is off, so hook sites stay cheap. "
+   "Never let a feed problem disturb gameplay -- everything here is guarded."
+   {
+      local sEvent, sSafe, sCallerTemp, sWho, sTarget, sRoom, oRoom;
+
+      if NOT pbEnabled
+      {
+         return;
+      }
+
+      // ---------------------------------------------------------------------
+      // The temp string belongs to the CALLER.  UserSay's `string` IS the temp
+      // string and is packed into the outgoing packet after we return, so
+      // building our event in it replaced players' chat with this event text.
+      // Snapshot it now, restore it at the end, and Note becomes safe to call
+      // from anywhere.
+      // ---------------------------------------------------------------------
+      sCallerTemp = CreateString();
+      SetString(sCallerTemp,GetTempString());
+
+      // SetString accepts a STRING *or* a TEMP_STRING source, so this captures the
+      // caller's text either way.  Do NOT gate this on IsString(): that is TRUE only
+      // for TAG_STRING, so it silently dropped every line of chat.
+      if sText <> $
+      {
+         sSafe = CreateString();
+         SetString(sSafe,sText);
+      }
+
+      // Resolve every name BEFORE building, because these call out into game code
+      // that may use the temp string itself.
+      if oWho <> $
+      {
+         sWho = Send(self,@ActorName,#oThing=oWho);
+         oRoom = Send(oWho,@GetOwner);
+      }
+
+      if oTarget <> $
+      {
+         sTarget = Send(self,@ActorName,#oThing=oTarget);
+      }
+
+      if oRoom <> $
+      {
+         sRoom = CreateString();
+         SetString(sRoom,Send(oRoom,@GetName));
+      }
+
+      // From here down nothing calls out, so the temp string is ours alone.
+      ClearTempString();
+
+      Send(self,@AppendKind,#iKind=iKind);
+
+      if sWho <> $
+      {
+         AppendTempString(" ");
+         AppendTempString(sWho);
+      }
+
+      if sTarget <> $
+      {
+         AppendTempString(" > ");
+         AppendTempString(sTarget);
+      }
+
+      if sRoom <> $
+      {
+         AppendTempString(" @");
+         AppendTempString(sRoom);
+      }
+
+      // Chat is capped at MAX_CHAT_LEN (550), so a worst-case event is ~610 bytes
+      // and still fits DMFEED_DRAIN_BYTES on its own.  No clipping needed -- which
+      // is just as well, since the compiler exposes no substring builtin.
+      if sSafe <> $
+      {
+         AppendTempString(": ");
+         AppendTempString(sSafe);
+      }
+
+      sEvent = CreateString();
+      SetString(sEvent,GetTempString());
+
+      plEvents = Cons(sEvent,plEvents);
+      piCount = piCount + 1;
+
+      if piCount > DMFEED_MAX_EVENTS
+      {
+         Send(self,@TrimTo,#iKeep=DMFEED_MAX_EVENTS);
+      }
+
+      // Hand the temp string back exactly as we found it.  Without this the caller
+      // reads our event text where its own message should be.
+      ClearTempString();
+      AppendTempString(sCallerTemp);
+
+      return;
+   }
+
+   TrimTo(iKeep = 0)
+   "Drop the oldest events so only the newest iKeep remain."
+   {
+      local i, lKept, lNew, iSeen;
+
+      lKept = $;
+      iSeen = 0;
+
+      // plEvents is newest-first, so the first iKeep entries are the ones to keep.
+      foreach i in plEvents
+      {
+         iSeen = iSeen + 1;
+
+         if iSeen <= iKeep
+         {
+            lKept = Cons(i,lKept);
+         }
+      }
+
+      // lKept came out oldest-first; flip it back to newest-first.
+      lNew = $;
+
+      foreach i in lKept
+      {
+         lNew = Cons(i,lNew);
+      }
+
+      piDropped = piDropped + (piCount - iKeep);
+      plEvents = lNew;
+      piCount = iKeep;
+
+      return;
+   }
+
+   Drain()
+   "Return pending events, oldest first, as ONE string joined by ' ;; ', and "
+   "remove exactly what was returned.  Packs up to DMFEED_DRAIN_BYTES so the "
+   "reply survives the maintenance printer's 1024-byte limit; anything that "
+   "doesn't fit stays queued for the next call.  Returns $ when idle."
+   {
+      local i, lOldest, lLeft, sOut, iBytes, iTaken, bFull;
+
+      if plEvents = $
+      {
+         return $;
+      }
+
+      // Reverse to chronological order so the reader sees events as they happened.
+      lOldest = $;
+
+      foreach i in plEvents
+      {
+         lOldest = Cons(i,lOldest);
+      }
+
+      ClearTempString();
+
+      iBytes = 0;
+      iTaken = 0;
+      bFull = FALSE;
+      lLeft = $;
+
+      foreach i in lOldest
+      {
+         if bFull
+         {
+            // Everything past the cut stays queued, still newest-first.
+            lLeft = Cons(i,lLeft);
+         }
+         else
+         {
+            if iTaken > 0 AND (iBytes + StringLength(i) + 4) > DMFEED_DRAIN_BYTES
+            {
+               bFull = TRUE;
+               lLeft = Cons(i,lLeft);
+            }
+            else
+            {
+               if iTaken > 0
+               {
+                  AppendTempString(" ;; ");
+                  iBytes = iBytes + 4;
+               }
+
+               AppendTempString(i);
+               iBytes = iBytes + StringLength(i);
+               iTaken = iTaken + 1;
+            }
+         }
+      }
+
+      sOut = CreateString();
+      SetString(sOut,GetTempString());
+
+      plEvents = lLeft;
+      piCount = piCount - iTaken;
+      piDropped = 0;
+
+      return sOut;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

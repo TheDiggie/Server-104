@@ -458,6 +458,7 @@
 
    // Tos 50-99
    RID_TOS = 50
+
    RID_TOS_SMITHY = 51
    RID_TOS_INN = 52
    RID_TOS_APOTH = 53
@@ -4030,7 +4031,15 @@
    MAX_GUILD_RANK_LEN = 20
    MAX_URL_LEN = 200
    MAX_CHAT_LEN = 550
-   
+
+   // DMFeed event kinds (kod/util/dmfeed.kod).  These travel as INTs because a
+   // literal string is a debug string resolved against the class interpreting it,
+   // so passing one between classes would print the wrong text.
+   DMFEED_SAY = 1
+   DMFEED_LOGIN = 2
+   DMFEED_LOGOFF = 3
+   DMFEED_DEATH = 4
+
    //Statistics Constants, must match enum sql_recordtype in database.h
    STAT_TOTALMONEY = 1
    STAT_MONEYCREATED = 2

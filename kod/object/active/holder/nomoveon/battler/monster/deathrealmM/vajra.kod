@@ -128,7 +128,10 @@ messages:
 
    Delete()
    {
-      DeleteTimer(ptRegen);
+      if ptRegen <> $
+      {
+         DeleteTimer(ptRegen);
+      }
 
       return;
    }

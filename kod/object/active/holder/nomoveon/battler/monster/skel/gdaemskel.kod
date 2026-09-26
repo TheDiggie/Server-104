@@ -64,8 +64,8 @@ classvars:
    viCashmin = 2000
    viCashmax = 4000
    vrSound_miss = GiantDaemonSkeleton_sound_miss
-   vrSound_aware = GiantDaemonSkeleton_sound_death
-   vrSound_death = GiantDaemonSkeleton_sound_aware
+   vrSound_aware = GiantDaemonSkeleton_sound_aware
+   vrSound_death = GiantDaemonSkeleton_sound_death
 
    vrHeadIcon = GiantDaemonSkeleton_head
 
@@ -121,7 +121,7 @@ messages:
          }
          else
          {
-            Send(oSpell,@DoSpell,#who=self,#lTargets=[what],
+            Send(oSpell,@DoSpell,#what=self,#oTarget=what,
                   #iSpellPower=75);
          }
       }

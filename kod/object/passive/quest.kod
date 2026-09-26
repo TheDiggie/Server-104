@@ -989,8 +989,17 @@ messages:
          return;
       }
 
+      // An orphaned quest -- node deleted, or never assigned -- still gets ticked.
+      // Unguarded this sent GetDeadline to nil every minute and then did nil-int
+      // arithmetic on the result, three errors per tick, forever.
+      if poQuestNode = $
+      {
+         return;
+      }
+
       iDeadline = Send(poQuestNode,@GetDeadline);
-      if (iDeadline = 0)
+      if (iDeadline = $
+         OR iDeadline = 0)
       {
          // Infinite time quest, can't expire.
          return;

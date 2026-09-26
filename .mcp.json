@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "blakserv-dm": {
+      "command": "python",
+      "args": ["claude-testbench/mcp_blakserv.py"]
+    }
+  }
+}

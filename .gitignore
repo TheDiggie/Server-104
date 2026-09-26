@@ -4,9 +4,9 @@
 *.bof
 *.rsc
 kodbase.txt
-run/server/*
-run/localclient/*
-!run/localclient/*.dll
+# Everything the server writes or is installed into: savegames, logs,
+# loadkod, room copies, the local client. None of it is source.
+run/
 bbgun.exe
 clientpatch.exe
 palcomp.exe

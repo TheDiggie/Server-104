@@ -650,6 +650,13 @@ messages:
       local iRow, iCol, iWhatRow, iWhatCol, iRow_diff, iCol_diff, iHeight_diff,
       iResult;
 
+      // Same guard as SquaredFineDistanceTo: a nil / not-in-room <what> has no
+      // row/col/height, so bail before the arithmetic sends run on non-objects.
+      if NOT Send(self,@IsInSameRoom,#what=what)
+      {
+         return $;
+      }
+
       // Scale to fine.
       iRow = piRow * FINENESS + piFine_row;
       iCol = piCol * FINENESS + piFine_col;

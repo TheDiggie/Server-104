@@ -45,7 +45,7 @@ classvars:
    vrDead_icon = Death_Mite_Mage_dead_icon_rsc
    vrDead_name = Death_Mite_Mage_dead_name_rsc
 
-   viTreasure_type = TID_OBSIDIAN_REAVER
+   viTreasure_type = TID_DEATH_MITE_MAGE
 
    vrSound_hit = Death_Mite_Mage_sound_hit
    vrSound_miss = Death_Mite_Mage_sound_miss

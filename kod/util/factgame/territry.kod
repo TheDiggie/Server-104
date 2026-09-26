@@ -539,11 +539,16 @@ messages:
       foreach iRID in plFlagRIDs
       {
          oRoom = Send(SYS,@FindRoomByNum,#num=iRID);
-         oFlagpole = Send(oRoom,@FindHoldingActive,#class=&FlagPole);
-         if oFlagpole <> $
+         // FindRoomByNum returns $ for a flag RID whose room isn't loaded; skip it
+         // instead of sending FindHoldingActive to a non-object.
+         if oRoom <> $
          {
-            iFaction = Send(oFlagpole,@GetFaction) + 1;
-            SetNth(lFlagCounts, iFaction, (Nth(lFlagCounts, iFaction)+1));
+            oFlagpole = Send(oRoom,@FindHoldingActive,#class=&FlagPole);
+            if oFlagpole <> $
+            {
+               iFaction = Send(oFlagpole,@GetFaction) + 1;
+               SetNth(lFlagCounts, iFaction, (Nth(lFlagCounts, iFaction)+1));
+            }
          }
       }
 

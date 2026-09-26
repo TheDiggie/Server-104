@@ -1,0 +1,31 @@
+The Barloque Library -- 1312 x 1056 editor units (the plan's row 0 is at the top)
+25 sectors, 265 walls (0 angled), 533 impassable edges, door wall ids []
+
+reading hall           floor h 128  ceiling h 320  floor  3101  ceil 2005  walls 2001  light  72  -- rect x 256-1024 y 288-800
+carpet aisle           floor h 128  ceiling h 320  floor  1018  ceil 2005  walls 2001  light  72  -- rect x 576-704 y 384-800
+gallery                floor h 176  ceiling h 320  floor  4610  ceil 2005  walls 2001  light  72  -- rect x 256-1024 y 160-288
+gallery carpet         floor h 176  ceiling h 320  floor  1018  ceil 2005  walls 2001  light  72  -- rect x 576-704 y 160-288
+gallery stair 3        floor h 176  ceiling h 320  floor  1018  ceil 2005  walls 2001  light  72  -- rect x 576-704 y 288-320
+gallery stair 2        floor h 160  ceiling h 320  floor  1018  ceil 2005  walls 2001  light  72  -- rect x 576-704 y 320-352
+gallery stair 1        floor h 144  ceiling h 320  floor  1018  ceil 2005  walls 2001  light  72  -- rect x 576-704 y 352-384
+gallery rail           floor h 200  ceiling h 320  floor  4610  ceil 2005  walls 2001  light  72  -- rect x 256-560 y 272-288
+librarian's desk       floor h 216  ceiling h 320  floor  4601  ceil 2005  walls 2001  light  72  -- rect x 544-736 y 192-224
+gallery banner (fleur-de-lis) floor h 208  ceiling sky    floor     0  ceil    0  walls 2001  light  72  -- rect x 320-416 y 128-160
+gallery banner (phoenix) floor h 208  ceiling sky    floor     0  ceil    0  walls 2001  light  72  -- rect x 592-688 y 128-160
+gallery banner (lion)  floor h 208  ceiling sky    floor     0  ceil    0  walls 2001  light  72  -- rect x 864-960 y 128-160
+bookshelves            floor h 256  ceiling h 320  floor  4610  ceil 2005  walls 2001  light  72  -- rect x 256-272 y 288-384
+reading tables         floor h 168  ceiling h 320  floor  4601  ceil 2005  walls 2001  light  72  -- rect x 304-352 y 416-480
+ceiling beam           floor h 128  ceiling h 304  floor  3101  ceil 4610  walls 2001  light  72  -- rows y 416-448, 544-576, 672-704
+foyer                  floor h 128  ceiling h 256  floor  4601  ceil 4610  walls 2021  light  72  -- rect x 512-768 y 816-1008
+hall doorway           floor h 128  ceiling h 224  floor  1018  ceil 4610  walls 2021  light  72  -- rect x 576-704 y 800-816
+front door             floor h 128  ceiling sky    floor     0  ceil    0  walls 2021  light  72  -- rect x 608-672 y 1008-1040
+foyer banner (griffin) floor h 160  ceiling sky    floor     0  ceil    0  walls 2021  light  72  -- rect x 480-512 y 864-960
+foyer banner (horse)   floor h 160  ceiling sky    floor     0  ceil    0  walls 2021  light  72  -- rect x 768-800 y 864-960
+scriptorium            floor h 128  ceiling h 240  floor  1018  ceil 4607  walls 3102  light  64  -- rect x 32-224 y 416-672
+scriptorium doorway    floor h 128  ceiling h 224  floor  3101  ceil 4607  walls 3102  light  64  -- rect x 224-256 y 512-576
+writing desks          floor h 164  ceiling h 240  floor  4601  ceil 4607  walls 3102  light  64  -- rect x 64-112 y 448-496
+candle light           floor h 128  ceiling h 240  floor  1018  ceil 4607  walls 3102  light 110  flags 0x200  -- rect x 112-144 y 528-560
+scriptorium banner (rose) floor h 144  ceiling sky    floor     0  ceil    0  walls 3102  light  64  -- rect x 0-32 y 496-592
+archive                floor h 176  ceiling h 368  floor  4610  ceil 4608  walls 2031  light  56  -- rect x 1056-1248 y 96-416
+archive doorway        floor h 176  ceiling h 256  floor  4610  ceil 4608  walls 2031  light  60  -- rect x 1024-1056 y 192-256
+archive stacks         floor h 304  ceiling h 368  floor  4610  ceil 4608  walls 2031  light  56  -- rect x 1104-1136 y 144-336

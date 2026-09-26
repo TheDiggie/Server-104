@@ -1,0 +1,8 @@
+The Overgrown Glade (kd5) -- Ko'catan jungle -- room box 3136 x 3136 (49 x 49 squares)
+441 walls (223 jungle wall, 183 bush line, 23 canopy edge, 12 pond edge), 99% angled, length median 102 max 363
+sectors: Ko'catan jungle ground 500 under canopy 9068 at 756, open sky at 810; pond at 488 (1802, flags 0xb5)
+floor reaches the north edge at [(1696, 1984)]
+floor reaches the west edge at [(1040, 1216)]
+texture joins seamless 11/1345 -> 842/1345; seal 1.000000; 0 crossing walls
+
+glades: central clearing at (1500, 1650) radius 380, open sky, pond, east glade at (2650, 900) radius 250, open sky, south hollow at (1300, 450) radius 220, under canopy, vine hollow at (450, 2850) radius 210, under canopy, sunlit hollow at (350, 400) radius 190, open sky

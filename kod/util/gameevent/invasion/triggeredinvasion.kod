@@ -17,7 +17,7 @@ constants:
 resources:
 
    TriggeredInvasion_start_msg = \
-      "~B~k[Event]~n ~B~r A %s has appeared at %s, summoning its empowered minons."
+      "~B~k[Event]~n ~B~r A %s has appeared at %s, summoning its empowered minions."
 
    TriggeredInvasion_end_msg = \
       "~B~k[Event]~n ~B~r The army of the %s has been defeated! "

@@ -1343,7 +1343,8 @@ messages:
          iType = -iType;
       }
 
-      if IsClass(what,&User)
+      if what <> $
+         AND IsClass(what,&User)
          AND damage <> $
          AND damage >= (Send(what,@GetMaxHealth)*33)
       {
@@ -1435,10 +1436,11 @@ messages:
          }
       }
 
-      if IsClass(what,&User)
+      if what <> $
+         AND IsClass(what,&User)
       {
          if IsClass(self,&User)
-            AND NOT Send(self,@CheckPlayerFlag,#flag=PFLAG_MORPHED) 
+            AND NOT Send(self,@CheckPlayerFlag,#flag=PFLAG_MORPHED)
          {
             rColor = battler_plain_text;
          }
