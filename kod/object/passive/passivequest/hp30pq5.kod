@@ -1,0 +1,71 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp30pq5 is PassiveQuest
+
+// The fifth quest for 30 hp players is to:
+//   Use the conveyance spell
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp30pq5_icon_rsc = iconveyance.bgf
+   hp30pq5_name_rsc = "Use your Conveyance spell"
+   hp30pq5_desc_rsc = \
+      "Rolan De'nair has asked you to use your Conveyance spell to practice "
+      "depositing stackable items at a distance. Make sure you have a few shillings on you, "
+      "then cast conveyance and target a stackable item in your inventory. Stackable "
+      "items have numbers on their icons. They are often reagents, such as mushrooms or herbs, "
+      "but they can also be treasure like emeralds or sapphires."
+
+   hp30pq5_new_quest_msg = \
+      "Rolan De'nair has asked you to ~o~Buse your Conveyance spell~n to practice "
+      "depositing stackable items at a distance. Make sure you have a few shillings on you, "
+      "then ~o~Bcast conveyance and target a stackable item in your inventory.~n Stackable "
+      "items have numbers on their icons. They are often reagents, such as mushrooms or herbs, "
+      "but they can also be treasure like emeralds or sapphires."
+
+   hp30pq5_complete_msg = \
+      "~kRolan De'nair tells you, \"We received your item deposit, and you can withdraw it in person at any time. If you're looking for "
+      "knowledge of the land, you can't beat the university city, Cor Noth. You look like you could use some fight training. Follow the "
+      "road east out of Jasper and then north as it curves through the woods. I heard "
+      "there's been some bad weather, so you might have to trek off the beaten path, "
+      "but when you hit King's Way, you're almost there. Head straight north along "
+      "King's Way and you'll find Cor Noth! Once you're there, look for Rook, the swordsman.\""
+
+classvars:
+
+   vrIcon = hp30pq5_icon_rsc
+   vrName = hp30pq5_name_rsc
+   vrDesc = hp30pq5_desc_rsc
+
+   vrNewThisQuestMsg = hp30pq5_new_quest_msg
+   vrCompletedMsg = hp30pq5_complete_msg
+
+   vbReinform = TRUE
+
+   vbCastSpell = TRUE
+   vcSpellType = &Conveyance
+
+   viExperienceReward = 350
+
+   viChain = HP30_NEWBIE_CHAIN
+   cNextQuestClass = &hp30pq6
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

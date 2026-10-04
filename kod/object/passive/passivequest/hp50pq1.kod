@@ -1,0 +1,73 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp50pq1 is PassiveQuest
+
+// The first quest for 50 hp players is to:
+//   Announce oneself to the Princess
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp50pq1_icon_rsc = princess.bgf
+   hp50pq1_name_rsc = "Present oneself to Kateriina"
+   hp50pq1_desc_rsc = \
+      "Now that you are considered intriguing by the Royal Court, you should pay a visit to "
+      "Bourgeois Castle east of Barloque. You do not have to join Princess Kateriina's faction, "
+      "but it would be good to make your name known to Meridian royalty. Once you are before her, "
+      "give your greetings."
+
+   hp50pq1_new_quest_msg = \
+      "Now that you are considered intriguing by the Royal Court, you should ~o~Bpay a visit to "
+      "Bourgeois Castle~n east of Barloque. You do not have to join Princess Kateriina's faction, "
+      "but it would be good to make your name known to Meridian royalty. Once you are before her, "
+      "give your ~o~Bgreetings."
+
+   hp50pq1_trigger = \
+      "greeting"
+
+   hp50pq1_complete_msg = \
+      "~kPrincess Kateriina says, \"There has been talk of thee as of late. It is "
+      "good to see that the gossip is not idle. Thou art indeed showing promise. Under my tutelage, "
+      "the schools of Shal'ille, Jala, Faren, and Sorcery shall be easier to learn and more powerful to employ. "
+      "I shall also teach you how to regenerate mana faster and defend yourself from attack. If you wish "
+      "to enter my service, say 'join.'\""
+
+classvars:
+
+   vrIcon = hp50pq1_icon_rsc
+   vrName = hp50pq1_name_rsc
+   vrDesc = hp50pq1_desc_rsc
+
+   vrNewThisQuestMsg = hp50pq1_new_quest_msg
+   vrCompletedMsg = hp50pq1_complete_msg
+
+   vbReinform = TRUE
+
+   vbSaySomething = TRUE
+   vsSayTrigger = hp50pq1_trigger
+   vcSayTargetClass = &PrincessLiege
+
+   viTrainingPointsReward = 500
+
+   viChain = HP50_JOIN_FACTION_CHAIN
+
+   cNextQuestClass = &hp50pq2
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

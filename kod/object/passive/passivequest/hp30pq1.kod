@@ -1,0 +1,84 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp30pq1 is PassiveQuest
+
+// The first quest for 30 hp players is to:
+//   Visit the Shal'ille Temple and learn about corpse summoning
+//
+// This chain by itself will give new players 30k shillings, 600 TP, and take them to 44 hp or so
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   // Quest description.
+   hp30pq1_icon_rsc = shalprst.bgf
+   hp30pq1_name_rsc = "Find Priestess Xiana"
+   hp30pq1_desc_rsc = \
+      "The Elder of Raza suggested you first seek out the Temple of Shal'ille, "
+      "the goddess of good and light. There, Priestess Xiana may be able to direct "
+      "you further. The Temple can be found directly north of the Marion, "
+      "the town you arrived in. Both Marion and the Temple of Shal'ille are safe "
+      "from all forms of combat. Once you have found Priestess Xiana, ask her "
+      "for help."
+
+   hp30pq1_new_quest_msg = \
+      "The Elder of Raza suggested you first ~o~Bseek out the Temple of Shal'ille,~n "
+      "the goddess of good and light. There, Priestess Xiana may be able to direct "
+      "you further. ~o~BThe Temple can be found directly north of the Marion,~n "
+      "the town you arrived in. Both Marion and the Temple of Shal'ille are safe "
+      "from all forms of combat. ~o~BOnce you have found Priestess Xiana, ask her "
+      "for help.~n"
+
+   vrhp30pq1_say_trigger = \
+      "help"
+
+   hp30pq1_complete_msg = \
+      "~kPriestess Xiana says, \"~bIt is wise that you have sought me out. "
+      "Many new adventurers fall prey to the dangers of this land, but Shal'ille "
+      "is always watching out for you. If you die, return here as quickly as possible "
+      "and say 'summon'. I will then retrieve your corpse for you, so that you "
+      "may safely retrieve your items. If you do not have me summon your corpse, "
+      "it will remain where you died, and perhaps become looted by scavengers and thieves. "
+      "To retrieve your items from your corpse, get close to it and right click on it "
+      "or look at it to open it like a container or chest."
+      "I suggest you seek out the town of Jasper, where you can safeguard your money "
+      "in the Royal Bank. If you encounter trouble along the way, use the 'phase' "
+      "spell to temporarily protect yourself and ask for help from others.~k\""
+
+classvars:
+
+   vrIcon = hp30pq1_icon_rsc
+   vrName = hp30pq1_name_rsc
+   vrDesc = hp30pq1_desc_rsc
+
+   vrNewThisQuestMsg = hp30pq1_new_quest_msg
+   vrCompletedMsg = hp30pq1_complete_msg
+
+   vbReinform = TRUE
+
+   vbSaySomething = TRUE
+   vsSayTrigger = vrhp30pq1_say_trigger
+   vcSayTargetClass = &ShalillePriestess
+
+   viExperienceReward = 150
+
+   viChain = HP30_NEWBIE_CHAIN
+   cNextQuestClass = &hp30pq1a
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

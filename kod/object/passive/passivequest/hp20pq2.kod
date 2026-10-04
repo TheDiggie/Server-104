@@ -1,0 +1,75 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp20pq2 is PassiveQuest
+
+// The second quest for 20 hp players is to:
+//   Slay the shadow mummy
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   // Quest description.
+   hp20pq2_icon_rsc = mummy.bgf
+   hp20pq2_name_rsc = "Slay the Shadow Mummy"
+   hp20pq2_desc_rsc = \
+      "The elder of Raza has requested you enter the Mausoleum on the north end "
+      "of town and slay the shadow mummy that has brought a curse to the "
+      "honored dead resting within. "
+      "To that end, you can find weapons and armor at the blacksmith, and you can "
+      "purchase spell reagents at the apothecary, both located on the west side of Raza. "
+      "When you find them, type 'buy' to see what they have for sale. "
+      "You can also sell items they're interested in by typing 'offer' while facing them."
+
+   hp20pq2_new_quest_msg = \
+      "The elder of Raza has requested you ~o~Benter the Mausoleum on the north end "
+      "of town~n and ~o~Bslay the shadow mummy~n that has brought a curse to the "
+      "honored dead resting within. "
+      "To that end, you can find weapons and armor at the blacksmith, and you can "
+      "purchase spell reagents at the apothecary, both located on the west side of Raza. "
+      "When you find them, type 'buy' to see what they have for sale. "
+      "You can also sell items they're interested in by typing 'offer' while facing them."
+
+   hp20pq2_elder_request_msg = \
+      "~kThe shadow mummy lies dead at your feet! The curse has been lifted for now, "
+      "and the citizens of Raza can handle it from here."
+
+classvars:
+
+   vrIcon = hp20pq2_icon_rsc
+   vrName = hp20pq2_name_rsc
+   vrDesc = hp20pq2_desc_rsc
+
+   vrNewThisQuestMsg = hp20pq2_new_quest_msg
+   vrCompletedMsg = hp20pq2_elder_request_msg
+
+   vbReinform = TRUE
+
+   vbKillMonster = TRUE
+   vcKillMonsterClass = &BlackMummy
+   cNextQuestClass = &hp20pq3
+
+   // Open Meridian region-locks this chain to the sealed newbie Raza. On this
+   // server Raza is an open mainland town, so the chain is not region-locked.
+
+   viChain = HP20_RAZA_CHAIN
+
+properties:
+
+   piDrawfx = DRAWFX_BLACK
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

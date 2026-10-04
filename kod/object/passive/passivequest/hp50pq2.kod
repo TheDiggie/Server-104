@@ -1,0 +1,73 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp50pq2 is PassiveQuest
+
+// The second quest for 50 hp players is to:
+//   Entreat the Duke
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp50pq2_icon_rsc = dukeneph.bgf
+   hp50pq2_name_rsc = "Entreat Duke Akardius"
+   hp50pq2_desc_rsc = \
+      "Princess Kateriina has given you allowance to join her faction of holy mage practitioners, but "
+      "she is not the only leader vying for power in the land. Perhaps Duke Akardius of Tos, who "
+      "operates a merchant empire out of Blackstone Keep at the north end of Tos, may make "
+      "you a better offer? When you visit him, ask him about the benefits of working for him."
+
+   hp50pq2_new_quest_msg = \
+      "Princess Kateriina has given you allowance to join her faction of holy mage practitioners, but "
+      "she is not the only leader vying for power in the land. Perhaps ~o~BDuke Akardius of Tos,~n who "
+      "operates a merchant empire out of ~o~BBlackstone Keep at the north end of Tos,~n may make "
+      "you a better offer? When you visit him, ask him about the ~o~Bbenefits~n of working for him."
+
+   hp50pq2_trigger = \
+      "benefit"
+
+   hp50pq2_complete_msg = \
+      "~kDuke Akardius says, \"Fie on that naive Princess. My faction is about power at any cost. "
+      "Under me, you shall learn faster and cast stronger in the schools of Qor, Riija, Kraanan, "
+      "and Witchery. Join my unholy tricksters and battle-mages and let us take this land for our own. "
+      "If you say 'join' and enter my faction, I will also use my influence to lower prices at merchants. "
+      "Furthermore, if you are ever blacklisted as a murderer, you will still be able to do business "
+      "as long as you work for me.\""
+
+classvars:
+
+   vrIcon = hp50pq2_icon_rsc
+   vrName = hp50pq2_name_rsc
+   vrDesc = hp50pq2_desc_rsc
+
+   vrNewThisQuestMsg = hp50pq2_new_quest_msg
+   vrCompletedMsg = hp50pq2_complete_msg
+
+   vbReinform = TRUE
+
+   vbSaySomething = TRUE
+   vsSayTrigger = hp50pq2_trigger
+   vcSayTargetClass = &DukeLiege
+
+   viTrainingPointsReward = 500
+
+   viChain = HP50_JOIN_FACTION_CHAIN
+   cNextQuestClass = &hp50pq3
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

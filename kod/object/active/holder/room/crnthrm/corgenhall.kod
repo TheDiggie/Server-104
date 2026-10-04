@@ -576,6 +576,7 @@ messages:
          //{
             Send(what,@SetHomeRoom,#RID=iHomeRoom,#lock=TRUE);
             Send(self,@RoomChangeMessage,#iHomeRoom=iHomeRoom,#who=what);
+            Send(what,@ChoseAHometown);
          //}
       }
 

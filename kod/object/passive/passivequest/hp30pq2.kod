@@ -1,0 +1,75 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp30pq2 is PassiveQuest
+
+// The second quest for 30 hp players is to:
+//   Find Jasper and learn about banks
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp30pq2_icon_rsc = treepine.bgf
+   hp30pq2_name_rsc = "Find the town of Jasper"
+   hp30pq2_desc_rsc = \
+      "Priestess Xiana has suggested you find the town of Jasper, where adventurers "
+      "may use the Royal Bank to safeguard their hard-earned shillings. Jasper lies "
+      "far south of Marion, through forests filled with threats appropriate for "
+      "fledgling explorers. To reach it, leave Marion heading south, and do not deviate "
+      "to areas east or west, for powerful monsters such as trolls and mollusk creatures "
+      "lie off the beaten path and will easily slay you. If you get lost, your 'recall' "
+      "spell will return you to Marion. You may also battle monsters along the way to "
+      "get stronger. Creatures such as giant rats, centipedes, and living trees are "
+      "good targets."
+
+   hp30pq2_new_quest_msg = \
+      "Priestess Xiana has suggested you ~o~Bfind the town of Jasper,~n where adventurers "
+      "may use the Royal Bank to safeguard their hard-earned shillings. Jasper lies "
+      "~o~Bfar south of Marion,~n through forests filled with threats appropriate for "
+      "fledgling explorers. To reach it, ~o~Bleave Marion heading south, and do not deviate "
+      "to areas east or west,~n for powerful monsters such as trolls and mollusk creatures "
+      "lie off the beaten path and will easily slay you. If you get lost, your 'recall' "
+      "spell will return you to Marion. You may also battle monsters along the way to "
+      "get stronger. Creatures such as giant rats, centipedes, and living trees are "
+      "good targets."
+
+   hp30pq2_complete_msg = \
+      "~kThe journey was long and fraught with peril, but you've finally found the town of Jasper! "
+      "Now where in this maze-like place is that Royal Bank?"
+
+classvars:
+
+   vrIcon = hp30pq2_icon_rsc
+   vrName = hp30pq2_name_rsc
+   vrDesc = hp30pq2_desc_rsc
+
+   vrNewThisQuestMsg = hp30pq2_new_quest_msg
+   vrCompletedMsg = hp30pq2_complete_msg
+
+   vbReinform = TRUE
+
+   vbEnterRoom = TRUE
+   vcEnterRoomClass = &JasperWest
+
+   viExperienceReward = 1000
+
+   viChain = HP30_NEWBIE_CHAIN
+   cNextQuestClass = &hp30pq3
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

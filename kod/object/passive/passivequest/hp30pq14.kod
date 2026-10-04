@@ -1,0 +1,67 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp30pq14 is PassiveQuest
+
+// The fourteenth quest for 30 hp players is to:
+//   Return to Cor Noth and find the Hall of Genealogy
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp30pq14_icon_rsc = book1.bgf
+   hp30pq14_name_rsc = "Find the Hall of Genealogy"
+   hp30pq14_desc_rsc = \
+      "Paddock has asked you to visit Cor Noth's Hall of Genealogy and research "
+      "whether there is something in the history of Tos that is causing its undead "
+      "to rise. Cor Noth is the central city of the mainland, northwest of Tos, "
+      "southwest of Barloque, east of Marion, and northeast of Jasper."
+
+   hp30pq14_new_quest_msg = \
+      "Paddock has asked you to ~o~Bvisit Cor Noth's Hall of Genealogy~n and research "
+      "whether there is something in the history of Tos that is causing its undead "
+      "to rise. Cor Noth is the central city of the mainland, northwest of Tos, "
+      "southwest of Barloque, east of Marion, and northeast of Jasper."
+
+   hp30pq14_complete_msg = \
+      "~kThe number of books in this enormous edifice is overwhelming! How could you possibly "
+      "find anything useful in these thousands of tomes? The only mention of undead in any of these books is in reference to a place called Castle Victoria. "
+      "It seems Paddock's request is "
+      "an impossible one for now, but you may still learn something useful here."
+
+classvars:
+
+   vrIcon = hp30pq14_icon_rsc
+   vrName = hp30pq14_name_rsc
+   vrDesc = hp30pq14_desc_rsc
+
+   vrNewThisQuestMsg = hp30pq14_new_quest_msg
+   vrCompletedMsg = hp30pq14_complete_msg
+
+   vbReinform = TRUE
+
+
+   vbEnterRoom = True
+   // The Hall of Genealogy is its own room here (CornothUniversity in Open Meridian).
+   vcEnterRoomClass = &CorNothGenHall
+
+   viChain = HP30_NEWBIE_CHAIN
+   cNextQuestClass = &hp30pq15
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

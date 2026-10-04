@@ -1,0 +1,65 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp90pq5 is PassiveQuest
+
+// The fifth quest for 90 hp players is to:
+//   Ask Wulfgang Zax'ak about a trade treaty
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp90pq5_icon_rsc = kcmerch.bgf
+   hp90pq5_name_rsc = "Find Wulfgang's Trading Post"
+   hp90pq5_desc_rsc = \
+      "Somewhere in the Ko'catani jungle lies the Trading Post of Wulfgang zax'Ak. "
+      "Find him and ask him, on behalf of Duke Akardius, about a trade treaty."
+
+   hp90pq5_new_quest_msg = \
+      "Somewhere in the Ko'catani jungle lies the Trading Post of Wulfgang zax'Ak. "
+      "Find him and ask him, on behalf of Duke Akardius, about a ~o~Btrade treaty."
+
+   hp90pq5_trigger = \
+      "treaty"
+
+   hp90pq5_complete_msg = \
+      "~kWulfgang zax'Ak says, \"Believe it or not, I'm actually aware the mainland exists. "
+      "I am of the opinion that a trading alliance would be of net benefit to both our peoples. "
+      "I'll work out the details with the Duke, but here is your commission.\""
+
+classvars:
+
+   vrIcon = hp90pq5_icon_rsc
+   vrName = hp90pq5_name_rsc
+   vrDesc = hp90pq5_desc_rsc
+
+   vrNewThisQuestMsg = hp90pq5_new_quest_msg
+   vrCompletedMsg = hp90pq5_complete_msg
+
+   vbReinform = FALSE
+
+   vbSaySomething = TRUE
+   vsSayTrigger = hp90pq5_trigger
+   vcSayTargetClass = &kocatanTradeMaster
+
+   viMoneyReward = 100000
+
+   viChain = HP90_INVESTIGATE_ISLAND_CHAIN
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

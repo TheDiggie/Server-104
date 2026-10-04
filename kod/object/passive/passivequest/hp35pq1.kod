@@ -1,0 +1,65 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp35pq1 is PassiveQuest
+
+// The first quest for 35 hp players is to:
+//   Talk to Ran'erhoth
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp35pq1_icon_rsc = mrelder.bgf
+   hp35pq1_name_rsc = "Talk to Ran er'Hoth"
+   hp35pq1_desc_rsc = \
+      "Ran er'Hoth, the elder in the southwest corner of Marion, has beckoned you over "
+      "to him with urgency. Ask him if you can help him."
+
+   hp35pq1_new_quest_msg = \
+      "Ran er'Hoth, the elder in the southwest corner of Marion, has beckoned you over "
+      "to him with urgency. Ask him if you can ~o~Bhelp~n him."
+
+   hp35pq1_trigger = \
+      "help"
+
+   hp35pq1_complete_msg = \
+      "~kRan er'Hoth says, \"Now listen here, adventurer! The crypt right behind my hut "
+      "has gone from a nuisance to an outright danger. Would you please go in there and "
+      "see if you can figure out what is causing the dead to rise? My cousin Rodric d'Stane "
+      "says you are highly recommended for the job of mummy slaying!\""
+
+classvars:
+
+   vrIcon = hp35pq1_icon_rsc
+   vrName = hp35pq1_name_rsc
+   vrDesc = hp35pq1_desc_rsc
+
+   vrNewThisQuestMsg = hp35pq1_new_quest_msg
+   vrCompletedMsg = hp35pq1_complete_msg
+
+   vbReinform = FALSE
+
+   vbSaySomething = TRUE
+   vsSayTrigger = hp35pq1_trigger
+   vcSayTargetClass = &MarionElder
+
+   viChain = HP35_INVESTIGATE_MARION_CRYPT_CHAIN
+   cNextQuestClass = &hp35pq2
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

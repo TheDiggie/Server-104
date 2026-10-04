@@ -1,0 +1,64 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp35pq2 is PassiveQuest
+
+// The second quest for 35 hp players is to:
+//   Reach marion crypt 2
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp35pq2_icon_rsc = mummy.bgf
+   hp35pq2_name_rsc = "Investigate the Marion Crypt"
+   hp35pq2_desc_rsc = \
+      "Ran er'Hoth has requested you investigate the Crypt in the southwest corner of Marion "
+      "on the behalf of the town's citizens. The people of Raza are descended from Marion folk, "
+      "so you should recognize the layout of their burial site. However, these mummies are much "
+      "stronger than the ones you fought before. What could possibly be the source of the mummies' restlessness?"
+
+   hp35pq2_new_quest_msg = \
+      "Ran er'Hoth has requested you investigate the Crypt in the southwest corner of Marion "
+      "on the behalf of the town's citizens. The people of Raza are descended from Marion folk, "
+      "so you should recognize the layout of their burial site. However, these mummies are much "
+      "stronger than the ones you fought before. What could possibly be the source of the mummies' restlessness?"
+
+   hp35pq2_complete_msg = \
+      "~kThe moment you step into the second level of the Marion Crypt, you are certain "
+      "something is very wrong here. Do the citizens of Marion know what their ancestors "
+      "built down here?"
+
+classvars:
+
+   vrIcon = hp35pq2_icon_rsc
+   vrName = hp35pq2_name_rsc
+   vrDesc = hp35pq2_desc_rsc
+
+   vrNewThisQuestMsg = hp35pq2_new_quest_msg
+   vrCompletedMsg = hp35pq2_complete_msg
+
+   vbReinform = FALSE
+
+   vbEnterRoom = TRUE
+   vcEnterRoomClass = &MarionCrypt2
+
+   viChain = HP35_INVESTIGATE_MARION_CRYPT_CHAIN
+   cNextQuestClass = &hp35pq3
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

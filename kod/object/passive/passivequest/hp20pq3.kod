@@ -1,0 +1,78 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp20pq3 is PassiveQuest
+
+// The third quest for 20 hp players is to:
+//   Return to the elder
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   // Quest description.
+   hp20pq3_icon_rsc = mrelder.bgf
+   hp20pq3_name_rsc = "Return to the Elder"
+   hp20pq3_desc_rsc = \
+      "The Elder of Raza awaits news of the shadow mummy's defeat. Find him in the "
+      "southeast corner of Raza in a small hut. To enter and exit buildings, "
+      "approach doors and press space bar. To view quests, check your quest tab. "
+      "Once you have found him, say the shadow mummy has been defeated."
+
+   hp20pq3_new_quest_msg = \
+      "~o~BThe Elder of Raza~n awaits news of the shadow mummy's defeat. Find him ~o~Bin the "
+      "southeast corner of Raza in a small hut.~n To enter and exit buildings, "
+      "approach doors and press space bar. To view quests, check your quest tab. "
+      "You can right click on your quests to read more detailed information. "
+      "Once you have found him, ~o~Bsay~n the shadow mummy has been ~o~Bdefeated."
+
+   vrhp20pq3_say_trigger = \
+      "defeat"
+
+   hp20pq3_elder_reward_msg = \
+      "~kRodric d'Stane says, \"Thank you for your assistance. You have truly helped us in our time of need. "
+      "I shall share with you some of the wisdom of my years. Perhaps my meager experience will help you "
+      "face the dangers of Meridian proper. Go now, and find the portal to the cities. It is in our "
+      "museum in the northeast corner of town. Once you are there, I recommend you seek out Priestess Xiana "
+      "at the Temple of Shal'ille. She can guide you further.\""
+
+classvars:
+
+   vrIcon = hp20pq3_icon_rsc
+   vrName = hp20pq3_name_rsc
+   vrDesc = hp20pq3_desc_rsc
+
+   vrNewThisQuestMsg = hp20pq3_new_quest_msg
+   vrCompletedMsg = hp20pq3_elder_reward_msg
+
+   vbReinform = TRUE
+
+   vbSaySomething = TRUE
+   vsSayTrigger = vrhp20pq3_say_trigger
+   vcSayTargetClass = &RazaElder   // Rodric d'Stane; HazarElder in Open Meridian
+
+   viExperienceReward = 1000
+
+   cNextQuestClass = &hp20pq4
+
+   // Open Meridian region-locks this chain to the sealed newbie Raza. On this
+   // server Raza is an open mainland town, so the chain is not region-locked.
+
+   viChain = HP20_RAZA_CHAIN
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

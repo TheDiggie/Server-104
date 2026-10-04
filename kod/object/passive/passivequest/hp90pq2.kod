@@ -1,0 +1,68 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp90pq2 is PassiveQuest
+
+// The second quest for 90 hp players is to:
+//   Enter the Orc Caves
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp90pq2_icon_rsc = OrcCave.bgf
+   hp90pq2_name_rsc = "Find a way into the Orc Caves"
+   hp90pq2_desc_rsc = \
+      "To the west of Tos, in the Twisted Woods, there is a cave. In that cave, "
+      "ancient mages sealed off the Orc Caves with an illusionary wall. "
+      "To proceed, you must find a way to dispel illusions. Other adventurers "
+      "may help, or you might purchase a scroll of dispel illusion. It is also possible "
+      "for you to learn the spell yourself if you study the ways of Kraanan."
+
+   hp90pq2_new_quest_msg = \
+      "To the west of Tos, in the Twisted Woods, there is a cave. In that cave, "
+      "ancient mages sealed off the Orc Caves with an illusionary wall. "
+      "To proceed, you must find a way to dispel illusions. Other adventurers "
+      "may help, or you might purchase a scroll of dispel illusion. It is also possible "
+      "for you to learn the spell yourself if you study the ways of Kraanan."
+
+   hp90pq2_complete_msg = \
+      "~kThe darkness is cloying, and the smell of orcs is pungent in the air. "
+      "You have indeed entered the den of the orcs, and no man knows how deep these "
+      "warrens go. How could Konima's legion possibly have survived down here?"
+
+classvars:
+
+   vrIcon = hp90pq2_icon_rsc
+   vrName = hp90pq2_name_rsc
+   vrDesc = hp90pq2_desc_rsc
+
+   vrNewThisQuestMsg = hp90pq2_new_quest_msg
+   vrCompletedMsg = hp90pq2_complete_msg
+
+   vbReinform = FALSE
+
+   vbEnterRoom = TRUE
+   vcEnterRoomClass = &Orccave1
+
+   viExperienceReward = 500
+
+   viChain = HP90_INVESTIGATE_ISLAND_CHAIN
+   cNextQuestClass = &hp90pq3
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,467 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+PassiveQuest is PassiveObject
+
+// A passive quest is a lightweight, per-player quest object that lives in
+// the user's plPassiveQuests list and shows up in the quest tab. It has no
+// quest engine node behind it; instead the game pings the user (and the user
+// pings every attached passive quest) whenever something quest-worthy happens:
+// entering a room, killing a monster, saying something to an NPC, casting a
+// spell, depositing with a banker/vaultman, buying an item, equipping an item,
+// choosing a hometown or using a portal. Each quest subclass turns on the
+// condition(s) it cares about via classvars and the base class handles the
+// rest, including the reward and chaining to the next quest in the series.
+//
+// Quests are handed out by GameQuestMaintenance (util/gamequestmaint.kod).
+//
+// Ported from Open Meridian (GarAdminTools/Meridian59, Patch31).
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   new_passive_quest_msg = \
+      "~BYou have a new quest! Check your quest tab for details!"
+   current_passive_quest_msg = \
+      "~BTo review your current quests, don't forget to check your quest tab."
+
+   default_new_passive_quest_msg = \
+      "~BYou have a new quest! Check your quest tab to the right!"
+   default_completed_passive_quest_msg = \
+      "~BYou have completed a quest!"
+
+classvars:
+
+   vrNewPassiveQuestMsg = new_passive_quest_msg
+   vrNewThisQuestMsg = default_new_passive_quest_msg
+
+   vrCompletedMsg = default_completed_passive_quest_msg
+   cNextQuestClass = $
+
+   // Do we remind the player in great detail (often when they log on)?
+   // Useful for newbies.
+   vbReinform = FALSE
+
+   vbChooseHometown = FALSE
+
+   // Multiple choice. For example, choose ao3 or soth.
+   vbEquipItemOne = FALSE
+   vcEquipItemOneClass = $
+   vbEquipItemTwo = FALSE
+   vcEquipItemTwoClass = $
+   vbEquipItemThree = FALSE
+   vcEquipItemThreeClass = $
+
+   vbBondAllManaNodes = FALSE
+
+   vbReachHP = FALSE
+   viReachThisHP = 999
+
+   vbSaySomething = FALSE
+   vsSayTrigger = $
+   vcSayTargetClass = $
+
+   vbEnterRoom = FALSE
+   vcEnterRoomClass = $
+
+   vbKillMonster = FALSE
+   vcKillMonsterClass = $
+
+   vbUsePortal = FALSE
+   vcPortalClass = $
+
+   vbDepositMoney = FALSE
+   vbDepositMinimum = 0
+   vcDepositWith = $
+
+   vbDepositItem = FALSE
+   vcDepositClass = $
+   vcDepositItemWith = $
+
+   vbBuyItem = FALSE
+   vcBuyFromClass = $
+   vcBuyItemClass = $
+
+   vbCastSpell = FALSE
+   vcSpellType = $
+
+   viExperienceReward = 0
+   viTrainingPointsReward = 0
+   viMoneyReward = 0
+
+   // Determine which icon to display in the description,
+   // and whether there is an animation. If no animation,
+   // the viIcon_Animation_start group is displayed.
+   viAnimationSpeed = 0
+   viIcon_Animation_start = 1
+   viIcon_Animation_end = 0
+
+   viChain = 0
+
+properties:
+
+   poQuester = $
+
+messages:
+
+   Constructor(quester=$)
+   {
+      poQuester = quester;
+
+      if poQuester = $
+         OR NOT IsClass(poQuester,&Player)
+      {
+         Post(self,@Delete);
+      }
+
+      Post(self,@InformUserAndAttach);
+
+      propagate;
+   }
+
+   InformUserAndAttach()
+   {
+      if Send(poQuester,@AttachPassiveQuest,#what=self)
+      {
+         Send(poQuester,@MsgSendUser,#message_rsc=vrNewPassiveQuestMsg);
+         Send(poQuester,@MsgSendUser,#message_rsc=vrNewThisQuestMsg);
+
+         Send(poQuester,@RecordOngoingPassiveQuestChain,#chain_num=viChain);
+
+         // If it's a state, like having a minimum HP, autocomplete.
+         Send(self,@CheckAllStateBasedConditions);
+      }
+      else
+      {
+         Send(self,@Delete);
+      }
+
+      return;
+   }
+
+   CheckAllStateBasedConditions()
+   {
+      Send(self,@CheckBaseMaxHealth);
+      Send(self,@BondedWithManaNode);
+
+      if vbEquipItemOne
+         OR vbEquipItemTwo
+         OR vbEquipItemThree
+      {
+         if Send(poQuester,@IsUsingA,#class=vcEquipItemOneClass)
+            OR Send(poQuester,@IsUsingA,#class=vcEquipItemTwoClass)
+            OR Send(poQuester,@IsUsingA,#class=vcEquipItemThreeClass)
+         {
+            Send(self,@Completed);
+         }
+      }
+
+      if vbChooseHometown
+         AND NOT Send(poQuester,@CanChangeHomeroom)
+      {
+         Send(self,@Completed);
+      }
+
+      return;
+   }
+
+   BondedWithManaNode()
+   {
+      if vbBondAllManaNodes
+      {
+         if Send(poQuester,@NumManaNodes) = 12
+         {
+            Send(self,@Completed);
+         }
+      }
+
+      return;
+   }
+
+   CheckBaseMaxHealth()
+   {
+      if vbReachHP
+      {
+         if Send(poQuester,@GetBaseMaxHealth) >= viReachThisHP
+         {
+            Send(self,@Completed);
+         }
+      }
+
+      return;
+   }
+
+   EquippedAnItem(oItem=$)
+   {
+      if vbEquipItemOne
+         AND oItem <> $
+         AND IsClass(oItem,vcEquipItemOneClass)
+      {
+         Send(self,@Completed);
+
+         return;
+      }
+
+      if vbEquipItemTwo
+         AND oItem <> $
+         AND IsClass(oItem,vcEquipItemTwoClass)
+      {
+         Send(self,@Completed);
+
+         return;
+      }
+
+      if vbEquipItemThree
+         AND oItem <> $
+         AND IsClass(oItem,vcEquipItemThreeClass)
+      {
+         Send(self,@Completed);
+
+         return;
+      }
+
+      return;
+   }
+
+   ChoseAHometown()
+   {
+      if vbChooseHometown
+      {
+         Send(self,@Completed);
+      }
+
+      return;
+   }
+
+   MadeMoneyDeposit(with=$, amount=0)
+   {
+      if vbDepositMoney
+         AND with <> $
+         AND IsClass(with,vcDepositWith)
+         AND amount >= vbDepositMinimum
+      {
+         Send(self,@Completed);
+      }
+
+      return;
+   }
+
+   MadeItemDeposit(with=$, lItems=$)
+   {
+      local i;
+
+      if vbDepositItem
+         AND with <> $
+         AND IsClass(with,vcDepositItemWith)
+      {
+         if vcDepositClass = $
+         {
+            Send(self,@Completed);
+
+            return;
+         }
+
+         foreach i in lItems
+         {
+            if IsClass(i,vcDepositClass)
+            {
+               Send(self,@Completed);
+
+               return;
+            }
+         }
+      }
+
+      return;
+   }
+
+   BoughtAnItem(bought_from=$, what=$)
+   {
+      if vbBuyItem
+         AND bought_from <> $
+         AND IsClass(bought_from,vcBuyFromClass)
+      {
+         if vcBuyItemClass = $
+         {
+            Send(self,@Completed);
+
+            return;
+         }
+
+         if what <> $
+            AND IsClass(what,vcBuyItemClass)
+         {
+            Send(self,@Completed);
+
+            return;
+         }
+      }
+
+      return;
+   }
+
+   CastASpell(oSpell=$)
+   {
+      if vbCastSpell
+         AND oSpell <> $
+         AND IsClass(oSpell,vcSpellType)
+      {
+         Send(self,@Completed);
+      }
+
+      return;
+   }
+
+   UserSaidToMe(what=$, type=$, string=$)
+   {
+      if vbSaySomething
+         AND what <> $
+         AND IsClass(what,&Monster)
+         AND IsClass(what,vcSayTargetClass)
+         AND type = SAY_NORMAL
+         AND StringContain(string,vsSayTrigger)
+      {
+         Send(self,@Completed);
+      }
+
+      return;
+   }
+
+   UsedPortal(what=$)
+   {
+      if what <> $
+         AND vbUsePortal
+         AND IsClass(what,vcPortalClass)
+      {
+         Send(self,@Completed);
+      }
+
+      return;
+   }
+
+   EnteredRoom(what=$)
+   {
+      if what <> $
+         AND vbEnterRoom
+         AND IsClass(what,vcEnterRoomClass)
+      {
+         Send(self,@Completed);
+      }
+
+      return;
+   }
+
+   KilledSomething(what=$)
+   {
+      if what <> $
+         AND vbKillMonster
+         AND IsClass(what,vcKillMonsterClass)
+      {
+         // Post this because monster kills produce a ton of loot and XP spam.
+         Post(self,@Completed);
+      }
+
+      return;
+   }
+
+   Delete()
+   {
+      if poQuester <> $
+      {
+         Send(poQuester,@DetachPassiveQuest,#what=self);
+      }
+      poQuester = $;
+
+      propagate;
+   }
+
+   Completed()
+   {
+      if poQuester <> $
+      {
+         Send(poQuester,@MsgSendUser,#message_rsc=vrCompletedMsg);
+
+         if viExperienceReward > 0
+         {
+            Send(poQuester,@AddXP,#iAmount=viExperienceReward);
+         }
+
+         if viTrainingPointsReward > 0
+         {
+            Send(poQuester,@AddTrainingPoints,#points=viTrainingPointsReward,#bCap=FALSE);
+         }
+
+         if viMoneyReward > 0
+         {
+            Send(poQuester,@NewHold,#what=Create(&Shillings,#number=viMoneyReward));
+         }
+
+         Send(self,@AssignNextQuest,#who=poQuester);
+         Send(self,@Delete);
+      }
+
+      return;
+   }
+
+   Reinform()
+   {
+      if vbReinform
+      {
+         Send(poQuester,@MsgSendUser,#message_rsc=current_passive_quest_msg);
+         Send(poQuester,@MsgSendUser,#message_rsc=vrNewThisQuestMsg);
+      }
+
+      return;
+   }
+
+   AssignNextQuest(who=$)
+   {
+      if cNextQuestClass <> $
+      {
+         Create(cNextQuestClass,#quester=who);
+      }
+      else
+      {
+         // Remove the last one from view if this chain is over.
+         Post(who,@ToCliStats,#group=5);
+
+         // Record it.
+         Send(who,@RecordCompletedPassiveQuestChain,#chain_num=viChain);
+      }
+
+      return;
+   }
+
+   SendLookAnimation()
+   "Send animation for quest icon--default is to show the first group."
+   {
+      if viAnimationSpeed <> 0
+      {
+         AddPacket(1,ANIMATE_CYCLE, 4,viAnimationSpeed,
+                   2,viIcon_Animation_start, 2,viIcon_Animation_end);
+      }
+      else
+      {
+         AddPacket(1,ANIMATE_NONE, 2,viIcon_Animation_start);
+      }
+
+      return;
+   }
+
+   GetChain()
+   {
+      return viChain;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

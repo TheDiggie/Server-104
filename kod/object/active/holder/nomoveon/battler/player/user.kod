@@ -206,6 +206,8 @@ resources:
    user_no_active_quests_header = "No Active Quests"
    user_completed_quests_header = "Completed Quests: "
    user_no_completed_quests_header = "No Completed Quests"
+   user_passive_quests_header = "Passive Quests: "
+   user_no_passive_quests_header = "No Passive Quests"
 
    user_got_offer = "You have a trade offer from %s%s."
    user_cant_offer = "You can't offer to %s%s."
@@ -528,6 +530,9 @@ properties:
 
    plQuestHistory = $
    plActiveQuests = $
+   plPassiveQuests = $
+   plCompletedPassiveQuestChains = $
+   plOngoingPassiveQuestChains = $
 
    piLogoffPenaltyCount = 0
 
@@ -599,7 +604,15 @@ messages:
 
    Delete()
    {
+      local i;
+
       Send(SYS,@SystemUserDelete,#what=self);
+
+      foreach i in plPassiveQuests
+      {
+         // Passive quests ping back their own removal upon deletion.
+         Send(i,@Delete);
+      }
 
       propagate;
    }
@@ -934,6 +947,9 @@ messages:
                   sGuild, Send(self,@GetBaseMaxHealth), piMax_mana, Send(self,@GetRawMight), 
                   Send(self,@GetRawIntellect), Send(self,@GetRawMysticism), Send(self,@GetRawStamina), Send(self,@GetRawAgility), 
                   Send(self,@GetRawAim));
+
+      // Ok, we're logged in and good to go. Let's check our passive quest status.
+      Send(Send(SYS,@GetGameQuestMaintenance),@EvaluatePlayer,#who=self);
 
       return;
    }
@@ -3666,7 +3682,24 @@ messages:
          iCount = 1;
          // Need to know how many completed quests in quest history.
          iQLength = Send(self,@GetCompletedQuestLength);
-         AddPacket(1,BP_STAT_GROUP, 1,group, 1,Length(plActiveQuests) + iQLength + 2);
+         AddPacket(1,BP_STAT_GROUP, 1,group, 1,Length(plPassiveQuests)
+                                               + Length(plActiveQuests) + iQLength + 3);
+
+         // Send passive quests.
+         if plPassiveQuests <> $
+         {
+            // Send the "Passive Quests" header.
+            AddPacket(1,0, 4,user_passive_quests_header,
+                      1,STAT_LIST, 4,0, 4,0, 4,0);
+            // Followed by all the passive quests.
+            iCount = Send(self,@SendPassiveQuestData,#iCount=iCount);
+         }
+         else
+         {
+            // Send the "No Passive Quests" header.
+            AddPacket(1,0, 4,user_no_passive_quests_header,
+                      1,STAT_LIST, 4,0, 4,0, 4,0);
+         }
 
          // Send active quests.
          if plActiveQuests <> $
@@ -3738,6 +3771,27 @@ messages:
          }
       }
 
+      return iCount;
+   }
+
+   SendPassiveQuestData(iCount=1)
+   "Returns the current index count."
+   {
+      local i, rQuestName;
+
+      foreach i in plPassiveQuests
+      {
+         rQuestName = Send(i,@GetName);
+
+         // List index, quest name, statistic type, quest object, value, icon.
+         // The client treats a zero value as a non-clickable header, so send
+         // a non-zero value to make the quest look-able.
+         AddPacket(1,iCount, 4,rQuestName, 1,STAT_LIST,
+                   4,i, 4,1, 4,Send(i,@GetIcon));
+         ++iCount;
+      }
+
+      // Need to return the current count.
       return iCount;
    }
 
@@ -9626,6 +9680,211 @@ messages:
    "Allows the user to change their homeroom (sets it positive)."
    {
       piHomeRoom = Abs(piHomeRoom);
+
+      return;
+   }
+
+   //// Passive quests (see object/passive/passivequest.kod)
+
+   AttachPassiveQuest(what=$)
+   "Returns TRUE if the quest was added to plPassiveQuests. Refuses "
+   "duplicates of a quest class and quests from a chain already completed."
+   {
+      local i;
+
+      if what = $
+         OR NOT IsClass(what,&PassiveQuest)
+      {
+         return FALSE;
+      }
+
+      foreach i in plPassiveQuests
+      {
+         if IsClass(i,GetClass(what))
+         {
+            return FALSE;
+         }
+      }
+
+      if plCompletedPassiveQuestChains <> $
+         AND FindListElem(plCompletedPassiveQuestChains,Send(what,@GetChain)) <> 0
+      {
+         return FALSE;
+      }
+
+      plPassiveQuests = Cons(what,plPassiveQuests);
+      Send(self,@ToCliStats,#group=5);
+
+      return TRUE;
+   }
+
+   DetachPassiveQuest(what=$)
+   {
+      if plPassiveQuests <> $
+         AND FindListElem(plPassiveQuests,what)
+      {
+         plPassiveQuests = DelListElem(plPassiveQuests,what);
+      }
+
+      return;
+   }
+
+   GetPassiveQuests()
+   {
+      return plPassiveQuests;
+   }
+
+   RecordOngoingPassiveQuestChain(chain_num=HP20_RAZA_CHAIN)
+   {
+      if plOngoingPassiveQuestChains = $
+         OR FindListElem(plOngoingPassiveQuestChains,chain_num) = 0
+      {
+         plOngoingPassiveQuestChains = Cons(chain_num,plOngoingPassiveQuestChains);
+      }
+
+      return;
+   }
+
+   RecordCompletedPassiveQuestChain(chain_num=HP20_RAZA_CHAIN)
+   {
+      if plCompletedPassiveQuestChains = $
+         OR FindListElem(plCompletedPassiveQuestChains,chain_num) = 0
+      {
+         plCompletedPassiveQuestChains = Cons(chain_num,plCompletedPassiveQuestChains);
+      }
+
+      return;
+   }
+
+   HasCompletedQuestChain(chain_num=HP20_RAZA_CHAIN)
+   {
+      local i;
+
+      foreach i in plCompletedPassiveQuestChains
+      {
+         if i = chain_num
+         {
+            return TRUE;
+         }
+      }
+
+      return FALSE;
+   }
+
+   HasQuestChain(chain_num=HP20_RAZA_CHAIN)
+   "TRUE if the chain is active, was ever started, or was completed."
+   {
+      local i;
+
+      foreach i in plPassiveQuests
+      {
+         if Send(i,@GetChain) = chain_num
+         {
+            return TRUE;
+         }
+      }
+
+      foreach i in plOngoingPassiveQuestChains
+      {
+         if i = chain_num
+         {
+            return TRUE;
+         }
+      }
+
+      foreach i in plCompletedPassiveQuestChains
+      {
+         if i = chain_num
+         {
+            return TRUE;
+         }
+      }
+
+      return FALSE;
+   }
+
+   // The game pings the user with these; the user forwards to each quest.
+
+   PassiveQuestUserSaidToMe(what=$,type=$,string=$)
+   {
+      local i;
+
+      foreach i in plPassiveQuests
+      {
+         Send(i,@UserSaidToMe,#what=what,#type=type,#string=string);
+      }
+
+      return;
+   }
+
+   MadeMoneyDeposit(with=$, amount=0)
+   {
+      local i;
+
+      foreach i in plPassiveQuests
+      {
+         Send(i,@MadeMoneyDeposit,#with=with,#amount=amount);
+      }
+
+      return;
+   }
+
+   MadeItemDeposit(with=$, lItems=$)
+   {
+      local i;
+
+      foreach i in plPassiveQuests
+      {
+         Send(i,@MadeItemDeposit,#with=with,#lItems=lItems);
+      }
+
+      return;
+   }
+
+   CastASpell(oSpell=$)
+   {
+      local i;
+
+      foreach i in plPassiveQuests
+      {
+         Send(i,@CastASpell,#oSpell=oSpell);
+      }
+
+      return;
+   }
+
+   BoughtAnItem(bought_from=$, what=$)
+   {
+      local i;
+
+      foreach i in plPassiveQuests
+      {
+         Send(i,@BoughtAnItem,#bought_from=bought_from,#what=what);
+      }
+
+      return;
+   }
+
+   ChoseAHometown()
+   {
+      local i;
+
+      foreach i in plPassiveQuests
+      {
+         Send(i,@ChoseAHometown);
+      }
+
+      return;
+   }
+
+   EquippedAnItem(oItem=$)
+   {
+      local i;
+
+      foreach i in plPassiveQuests
+      {
+         Send(i,@EquippedAnItem,#oItem=oItem);
+      }
 
       return;
    }

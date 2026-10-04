@@ -1779,7 +1779,7 @@ messages:
 
    NewOwner(what = $)
    {
-      local iBasePhaseTime, iMaxHealth;
+      local i, iBasePhaseTime, iMaxHealth;
 
       Send(self,@ResetGainFlags);
 
@@ -1818,6 +1818,11 @@ messages:
             Send(self,@MsgSendUser,#message_rsc=phase_fatigue_cleared);
             Send(self,@RefreshPhaseTimeToBase);
          }
+      }
+
+      foreach i in Send(self,@GetPassiveQuests)
+      {
+         Send(i,@EnteredRoom,#what=what);
       }
 
       // Stop any rescue attempts if the user changes rooms.
@@ -6167,6 +6172,11 @@ messages:
             Send(self,@JoinBuilderGroup);
          }
 
+         foreach i in Send(self,@GetPassiveQuests)
+         {
+            Send(i,@KilledSomething,#what=what);
+         }
+
          Send(poOwner,@SomethingKilled,#what=self,#victim=what);
       }
 
@@ -7304,6 +7314,9 @@ messages:
       Send(self,@PlayerIsIntriguing);
       Send(self,@GainMaxhealth,#amount=amount);
 
+      // New HP may qualify us for (or complete) a passive quest.
+      Post(Send(SYS,@GetGameQuestMaintenance),@EvaluatePlayer,#who=self,#vbTriggered=TRUE);
+
       return;
    }
 
@@ -7569,6 +7582,19 @@ messages:
       }
 
       Send(self,@NewMana);
+
+      return;
+   }
+
+   UsedPortal(what=$)
+   "Portals that count toward passive quests call this on the traveler."
+   {
+      local i;
+
+      foreach i in Send(self,@GetPassiveQuests)
+      {
+         Send(i,@UsedPortal,#what=what);
+      }
 
       return;
    }

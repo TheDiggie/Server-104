@@ -1,0 +1,62 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp90pq3 is PassiveQuest
+
+// The third quest for 90 hp players is to:
+//   Find Konima's descendants
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp90pq3_icon_rsc = sword.bgf
+   hp90pq3_name_rsc = "Find Konima's descendants"
+   hp90pq3_desc_rsc = \
+      "Somewhere in the limitless Orc Caves, the descendants of the famed hero Konima "
+      "live on. Find them, but be wary, for none know what evils may lurk in the depths."
+
+   hp90pq3_new_quest_msg = \
+      "Somewhere in the limitless Orc Caves, the descendants of the famed hero Konima "
+      "live on. Find them, but be wary, for none know what evils may lurk in the depths."
+
+   hp90pq3_complete_msg = \
+      "~kYou emerge into the light to find a beautiful city towering all around you. "
+      "The trek through the orc caves was a vicious and deadly affair, but it seems "
+      "you've found the descendants of Konima - and they are prospering."
+
+classvars:
+
+   vrIcon = hp90pq3_icon_rsc
+   vrName = hp90pq3_name_rsc
+   vrDesc = hp90pq3_desc_rsc
+
+   vrNewThisQuestMsg = hp90pq3_new_quest_msg
+   vrCompletedMsg = hp90pq3_complete_msg
+
+   vbReinform = FALSE
+
+   vbEnterRoom = TRUE
+   vcEnterRoomClass = &Kocatan
+
+   viExperienceReward = 5000
+
+   viChain = HP90_INVESTIGATE_ISLAND_CHAIN
+   cNextQuestClass = &hp90pq4
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

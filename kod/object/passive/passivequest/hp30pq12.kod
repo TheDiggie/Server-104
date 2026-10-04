@@ -1,0 +1,62 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp30pq12 is PassiveQuest
+
+// The twelfth quest for 30 hp players is to:
+//   Find Tos
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp30pq12_icon_rsc = mug.bgf
+   hp30pq12_name_rsc = "Enter Familiars"
+   hp30pq12_desc_rsc = \
+      "Enter the greatest bar in the land, Familiars, and ask the bartender about the zombie problem."
+
+   hp30pq12_new_quest_msg = \
+      "Enter the greatest bar in the land, Familiars, and ~o~Bask the bartender about the zombie problem."
+
+   hp30pq12trigger = \
+      "zombie"
+
+   hp30pq12_complete_msg = \
+      "~kPaddock says, \"Ah, yes, quite the racket at night. Zombies rise in the Tos Graveyard "
+      "to the west during the dark hours. We could certainly do with some sword-born salvation over there. "
+      "There might even be a little bit of money in it for you, since the undead won't be scaring away customers anymore.\""
+
+classvars:
+
+   vrIcon = hp30pq12_icon_rsc
+   vrName = hp30pq12_name_rsc
+   vrDesc = hp30pq12_desc_rsc
+
+   vrNewThisQuestMsg = hp30pq12_new_quest_msg
+   vrCompletedMsg = hp30pq12_complete_msg
+
+   vbReinform = TRUE
+
+   vbSaySomething = TRUE
+   vsSayTrigger = hp30pq12trigger
+   vcSayTargetClass = &TosInnKeeper
+
+   viChain = HP30_NEWBIE_CHAIN
+   cNextQuestClass = &hp30pq13
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

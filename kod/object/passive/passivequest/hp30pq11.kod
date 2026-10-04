@@ -1,0 +1,68 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp30pq11 is PassiveQuest
+
+// The eleventh quest for 30 hp players is to:
+//   Find Tos
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp30pq11_icon_rsc = fountain.bgf
+   hp30pq11_name_rsc = "Find Tos"
+   hp30pq11_desc_rsc = \
+      "Tos is the oldest city of Meridian, and overrun with thieves and scoundrels. "
+      "Good thing you've got Fehr'loi Qan's fine weaponry to protect you. Per his request, "
+      "you should find Tos and help with its zombie problem. To reach it from Barloque, "
+      "head out the south gate, find the Flatlands, and travel southeast through the Border of the Badlands. "
+      "In this barren area you must run quickly, for trolls and groundworms are dangerous indeed. "
+      "Once you've made it through, you will find the Main Gate to the City of Tos to the east."
+
+   hp30pq11_new_quest_msg = \
+      "Tos is the oldest city of Meridian, and overrun with thieves and scoundrels. "
+      "Good thing you've got Fehr'loi Qan's fine weaponry to protect you. Per his request, "
+      "you should ~o~Bfind Tos~n and help with its zombie problem. ~o~BTo reach it from Barloque, "
+      "head out the south gate, find the Flatlands, and travel southeast through the border of the Badlands.~n "
+      "In that barren area you must run quickly, for trolls and groundworms are dangerous indeed. "
+      "Once you've made it through, you will find the Main Gate to the City of Tos to the east."
+
+   hp30pq11_complete_msg = \
+      "~kTos is a worn-down and barren place, but good music and cheer seem to be coming from a bar across the square."
+
+classvars:
+
+   vrIcon = hp30pq11_icon_rsc
+   vrName = hp30pq11_name_rsc
+   vrDesc = hp30pq11_desc_rsc
+
+   vrNewThisQuestMsg = hp30pq11_new_quest_msg
+   vrCompletedMsg = hp30pq11_complete_msg
+
+   vbReinform = TRUE
+
+   vbEnterRoom = TRUE
+   vcEnterRoomClass = &Tos
+
+   viExperienceReward = 3000
+
+   viChain = HP30_NEWBIE_CHAIN
+   cNextQuestClass = &hp30pq12
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

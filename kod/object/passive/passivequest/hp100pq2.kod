@@ -1,0 +1,67 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp100pq2 is PassiveQuest
+
+// The first quest for 100 hp players is to:
+//   Choose SoTH or Ao3
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp100pq2_icon_rsc = darkbeas.bgf
+   hp100pq2_name_rsc = "Investigate the City of Brax"
+   hp100pq2_desc_rsc = \
+      "The undead horrors of Brax hold secrets of an evil beyond time. "
+      "It may be a never-ending quest to understand and resist the threat, "
+      "but learn everything you can about Brax and how its Queen "
+      "doomed it to sink under the earth. In the end, you may be forced "
+      "to make a choice: fight, or serve."
+
+   hp100pq2_new_quest_msg = \
+      "The undead horrors of Brax hold secrets of an evil beyond time. "
+      "It may be a never-ending quest to understand and resist the threat, "
+      "but learn everything you can about Brax and how its Queen "
+      "doomed it to sink under the earth. In the end, you may be forced "
+      "to make a choice: fight, or serve."
+
+   hp100pq2_complete_msg = \
+      "~kYou have made your choice in the eternal struggle."
+
+classvars:
+
+   vrIcon = hp100pq2_icon_rsc
+   vrName = hp100pq2_name_rsc
+   vrDesc = hp100pq2_desc_rsc
+
+   vrNewThisQuestMsg = hp100pq2_new_quest_msg
+   vrCompletedMsg = hp100pq2_complete_msg
+
+   vbReinform = FALSE
+
+   vbEquipItemOne = TRUE
+   vcEquipItemOneClass = &HunterSword
+   vbEquipItemTwo = TRUE
+   vcEquipItemTwoClass = &NecromancerAmulet
+
+   viTrainingPointsReward = 2000
+
+   viChain = HP100_INVESTIGATE_BRAX_CHAIN
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

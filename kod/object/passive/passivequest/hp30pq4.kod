@@ -1,0 +1,66 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp30pq4 is PassiveQuest
+
+// The fourth quest for 30 hp players is to:
+//   Make a deposit at the Jasper vaults
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp30pq4_icon_rsc = cngrocer.bgf
+   hp30pq4_name_rsc = "Find the Jasper Vaults"
+   hp30pq4_desc_rsc = \
+      "Yevitan has told you about a Vault business where you can store your gear. "
+      "He said it is across the street from his Royal Bank. Find Rolan De'nair "
+      "and make a deposit of gear."
+
+   hp30pq4_new_quest_msg = \
+      "Yevitan has told you about ~o~Ba Vault business where you can store your gear.~n "
+      "He said it is ~o~Bacross the street from his Royal Bank.~n Find Rolan De'nair "
+      "and ~o~Bmake a deposit of gear.~n"
+
+   hp30pq4_complete_msg = \
+      "~kRolan De'nair says, \"Always nice to see a new face. Say, have you used "
+      "the spell Conveyance yet? For a small monetary fee, we run magical portals "
+      "here that will take stackable items from almost anywhere. Try it now. Watch "
+      "the magic at work!\""
+
+classvars:
+
+   vrIcon = hp30pq4_icon_rsc
+   vrName = hp30pq4_name_rsc
+   vrDesc = hp30pq4_desc_rsc
+
+   vrNewThisQuestMsg = hp30pq4_new_quest_msg
+   vrCompletedMsg = hp30pq4_complete_msg
+
+   vbReinform = TRUE
+
+   vbDepositItem = TRUE
+   vcDepositClass = $
+   vcDepositItemWith = &JasperVaultman
+
+   viExperienceReward = 250
+
+   viChain = HP30_NEWBIE_CHAIN
+   cNextQuestClass = &hp30pq5
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

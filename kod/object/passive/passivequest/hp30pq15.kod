@@ -1,0 +1,63 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp30pq15 is PassiveQuest
+
+// The fifteenth quest for 30 hp players is to:
+//   Choose a hometown
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp30pq15_icon_rsc = book1.bgf
+   hp30pq15_name_rsc = "Choose a Hometown"
+   hp30pq15_desc_rsc = \
+      "Find and read the histories of the cities inside the Hall of Genealogy. Of the five "
+      "major cities, choose a hometown, and truly become a citizen of this land. The town "
+      "you choose will reflect itself in you, and it will become the destination of "
+      "your 'recall' spell."
+
+   hp30pq15_new_quest_msg = \
+      "Find and ~o~Bread the histories of the cities inside the Hall of Genealogy.~n Of the five "
+      "major cities, ~o~Bchoose a hometown,~n and truly become a citizen of this land. The town "
+      "you choose will reflect itself in you, ~o~Band it will become the destination of "
+      "your 'recall' spell.~n"
+
+   hp30pq15_complete_msg = \
+      "~kCongratulations. You have traveled far and wide across these lands and can now call yourself "
+      "a true citizen of Meridian."
+
+classvars:
+
+   vrIcon = hp30pq15_icon_rsc
+   vrName = hp30pq15_name_rsc
+   vrDesc = hp30pq15_desc_rsc
+
+   vrNewThisQuestMsg = hp30pq15_new_quest_msg
+   vrCompletedMsg = hp30pq15_complete_msg
+
+   vbReinform = TRUE
+
+   vbChooseHometown = TRUE
+
+   viExperienceReward = 5000
+
+   viChain = HP30_NEWBIE_CHAIN
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

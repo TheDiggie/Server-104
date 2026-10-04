@@ -1,0 +1,69 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp30pq6 is PassiveQuest
+
+// The sixth quest for 30 hp players is to:
+//   Find Cor Noth
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp30pq6_icon_rsc = book1.bgf
+   hp30pq6_name_rsc = "Find Cor Noth"
+   hp30pq6_desc_rsc = \
+      "Cor Noth is a university town that offers great knowledge to all those "
+      "willing to learn. To find it, head east out of Jasper and follow the road "
+      "past the Lake of Jala's Song. Curve north, and venture off the beaten path "
+      "until you find King's Way. The monsters in the woods are weak and easily fought, "
+      "but beware the frogmen closer to Cor Noth. Once you see the famous Clock Tower "
+      "and the ivory walls of academia, you will know you are close."
+
+   hp30pq6_new_quest_msg = \
+      "Cor Noth is a university town that offers great knowledge to all those "
+      "willing to learn. To find it, ~o~Bhead east out of Jasper and follow the road~n "
+      "past the Lake of Jala's Song. ~o~BCurve north~n, and venture off the beaten path "
+      "~o~Buntil you find King's Way.~n The monsters in the woods are weak and easily fought, "
+      "but beware the frogmen closer to Cor Noth. Keep heading north; once you see the famous Clock Tower "
+      "and the ivory walls of academia, you will know you are close."
+
+   hp30pq6_complete_msg = \
+      "~kThe university city of Cor Noth sprawls open before you. The famed Clock Tower dominates "
+      "the view. But where does one actually go to learn and study?"
+
+classvars:
+
+   vrIcon = hp30pq6_icon_rsc
+   vrName = hp30pq6_name_rsc
+   vrDesc = hp30pq6_desc_rsc
+
+   vrNewThisQuestMsg = hp30pq6_new_quest_msg
+   vrCompletedMsg = hp30pq6_complete_msg
+
+   vbReinform = TRUE
+
+   vbEnterRoom = TRUE
+   vcEnterRoomClass = &CorNoth
+
+   viExperienceReward = 1500
+
+   viChain = HP30_NEWBIE_CHAIN
+   cNextQuestClass = &hp30pq7
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

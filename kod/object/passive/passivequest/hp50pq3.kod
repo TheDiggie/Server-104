@@ -1,0 +1,69 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp50pq3 is PassiveQuest
+
+// The second quest for 50 hp players is to:
+//   Entreat the Duke
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp50pq3_icon_rsc = wngenera.bgf
+   hp50pq3_name_rsc = "Meet with the Rebel"
+   hp50pq3_desc_rsc = \
+      "The two official powers struggling for control of Meridian also face a third opponent, the "
+      "exiled former general Jonas. Meet with him in the town of Jasper, and ask him about his "
+      "fight for freedom."
+
+   hp50pq3_new_quest_msg = \
+      "The two official powers struggling for control of Meridian also face a third opponent, the "
+      "exiled former general ~o~BJonas.~n Meet with him ~o~Bin the town of Jasper,~n and ask him about his "
+      "fight for ~o~Bfreedom."
+
+   hp50pq3_trigger = \
+      "freedom"
+
+   hp50pq3_complete_msg = \
+      "~kJonas says, \"I have no pretty talk for you. My rebels and I fight to free "
+      "this land from tyranny of royalty and money. The fighting will be hand-to-hand, "
+      "and vicious. I will train you to hit harder and more precisely with the arms of "
+      "both Weaponcraft and Banditry. I will also teach you field dressings for faster healing. "
+      "Side with us. Join the fighting elite!\""
+
+classvars:
+
+   vrIcon = hp50pq3_icon_rsc
+   vrName = hp50pq3_name_rsc
+   vrDesc = hp50pq3_desc_rsc
+
+   vrNewThisQuestMsg = hp50pq3_new_quest_msg
+   vrCompletedMsg = hp50pq3_complete_msg
+
+   vbReinform = TRUE
+
+   vbSaySomething = TRUE
+   vsSayTrigger = hp50pq3_trigger
+   vcSayTargetClass = &RebelLiege
+
+   viTrainingPointsReward = 500
+
+   viChain = HP50_JOIN_FACTION_CHAIN
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

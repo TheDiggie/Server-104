@@ -1,0 +1,77 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp20pq1 is PassiveQuest
+
+// The first quest for 20 hp players is to:
+//   Explore Raza and find the Elder
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   // Quest description.
+   hp20pq1_icon_rsc = mrelder.bgf
+   hp20pq1_name_rsc = "Find Raza's Elder"
+   hp20pq1_desc_rsc = \
+      "Now that you have reached the outer lands of Meridian, the Elder of this "
+      "small border town has requested to meet with you. Find him in the "
+      "southeast corner of Raza in a small hut. To enter and exit buildings, "
+      "approach doors and press space bar. Once you have found him, "
+      "say you are responding to his request about a meeting."
+
+   hp20pq1_new_quest_msg = \
+      "Now that you have reached the outer lands of Meridian, ~o~Bthe Elder~n of this "
+      "small border town ~o~Bhas requested to meet with you.~n Find him ~o~Bin the "
+      "southeast corner of Raza in a small hut.~n To enter and exit buildings, "
+      "approach doors and press space bar. To view quests, check your quest tab. "
+      "You can right click on your quests to read more detailed information. "
+      "Once you have found him, ~o~Bsay~n you are responding to his request for a ~o~Bmeeting."
+
+   vrhp20pq1_say_trigger = \
+      "meet"
+
+   hp20pq1_elder_request_msg = \
+      "~kRodric d'Stane says, \"Ah, so you are the new soul to these lands. Perhaps you can help us. "
+      "We are gravely in need of adventurers who can "
+      "clear out the mausoleum on the north side of town. Please assist us by slaying the "
+      "evil shadow mummy that has corrupted our dead!\""
+
+classvars:
+
+   vrIcon = hp20pq1_icon_rsc
+   vrName = hp20pq1_name_rsc
+   vrDesc = hp20pq1_desc_rsc
+
+   vrNewThisQuestMsg = hp20pq1_new_quest_msg
+   vrCompletedMsg = hp20pq1_elder_request_msg
+
+   vbReinform = TRUE
+
+   vbSaySomething = TRUE
+   vsSayTrigger = vrhp20pq1_say_trigger
+   vcSayTargetClass = &RazaElder   // Rodric d'Stane; HazarElder in Open Meridian
+
+   cNextQuestClass = &hp20pq2
+
+   // Open Meridian region-locks this chain to the sealed newbie Raza. On this
+   // server Raza is an open mainland town, so the chain is not region-locked.
+
+   viChain = HP20_RAZA_CHAIN
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

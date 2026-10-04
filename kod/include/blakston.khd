@@ -3946,6 +3946,19 @@
    QN_NPCMOD_DIFFERENT     = 0x3      // Use a different NPC than current source NPC (for back & forth)
    QN_NPCMOD_PASSED        = 0x4      // NPC will be passed in by another questnode
 
+   // Passive quest chains (see object/passive/passivequest.kod and
+   // util/gamequestmaint.kod). Chain numbers are recorded on the user as
+   // ongoing/completed so a chain is never handed out twice.
+   HP20_RAZA_CHAIN = 0
+   HP30_NEWBIE_CHAIN = 1
+   HP35_INVESTIGATE_MARION_CRYPT_CHAIN = 2
+   HP40_INVESTIGATE_CASTLE_VICTORIA_CHAIN = 3
+   HP50_JOIN_FACTION_CHAIN = 5
+   HP60_MANA_NODES_CHAIN = 8
+   HP80_SOLDIER_SHIELD_CHAIN = 10
+   HP90_INVESTIGATE_ISLAND_CHAIN = 20
+   HP100_INVESTIGATE_BRAX_CHAIN = 30
+
    // Necromancer/Hunter hunger constants:
 
    // Each level = about 1 - 1 1/2 session (about 3-4 hours of play)

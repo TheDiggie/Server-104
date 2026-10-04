@@ -1,0 +1,64 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp40pq2 is PassiveQuest
+
+// The second quest for 40 hp players is to:
+//   Find Castle Victoria
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp40pq2_icon_rsc = book1.bgf
+   hp40pq2_name_rsc = "Find Castle Victoria"
+   hp40pq2_desc_rsc = \
+      "Paddock has asked you to find the seat of the old kingdom. It lies directly south from Tos, "
+      "through the Cragged Mountains. The journey will be very dangerous, and you should run past "
+      "any trolls or black spiders you encounter if you are too weak to fight them. You will have to trek through Ukgoth, the Holy Land "
+      "of Trolls, and find Castle Victoria in the northwest corner of that area. This journey is not for the "
+      "faint of heart. Feel free to practice against enemies your strength before you proceed."
+
+   hp40pq2_new_quest_msg = \
+      "Paddock has asked you to find the seat of the old kingdom. It lies ~o~Bdirectly south from Tos, "
+      "through the Cragged Mountains.~n The journey will be very dangerous, and you should run past "
+      "any trolls or black spiders you encounter if you are too weak to fight them. You will have to ~o~Btrek through Ukgoth, the Holy Land "
+      "of Trolls, and find Castle Victoria in the northwest corner of that area.~n This journey is not for the "
+      "faint of heart. Feel free to practice against enemies your strength before you proceed."
+
+   hp40pq2_complete_msg = \
+      "~kThis place reeks of undead. Immediately, you know that Paddock's suspicions were correct. Defend yourself!"
+
+classvars:
+
+   vrIcon = hp40pq2_icon_rsc
+   vrName = hp40pq2_name_rsc
+   vrDesc = hp40pq2_desc_rsc
+
+   vrNewThisQuestMsg = hp40pq2_new_quest_msg
+   vrCompletedMsg = hp40pq2_complete_msg
+
+   vbReinform = TRUE
+
+   vbEnterRoom = TRUE
+   vcEnterRoomClass = &CASTLE1
+
+   viChain = HP40_INVESTIGATE_CASTLE_VICTORIA_CHAIN
+   cNextQuestClass = &hp40pq3
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

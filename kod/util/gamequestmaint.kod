@@ -1,0 +1,169 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+GameQuestMaintenance is UtilityFunctions
+
+// This utility tracks and applies appropriate passive quests for characters
+// from a starting 20 hp to fully built, leading them through the world and
+// teaching them as they go.
+//
+// EvaluatePlayer is called on logon, on every base max health gain, and by
+// a few rooms/NPCs (vbTriggered=TRUE) when something happened that may start
+// a new chain. It reminds the player of their current quests, checks any
+// state-based completions and hands out whichever chains the player now
+// qualifies for and has never had.
+//
+// Ported from Open Meridian (GarAdminTools/Meridian59, Patch31). Only the
+// hp20 through hp100 chains are present here.
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+classvars:
+
+properties:
+
+messages:
+
+   Constructor()
+   {
+      Send(self,@Recreate);
+
+      return;
+   }
+
+   Recreate()
+   {
+      return;
+   }
+
+   EvaluatePlayer(who=$, vbTriggered=FALSE)
+   {
+      local i, iPlayerHP, oRoom, lPassiveQuests;
+
+      // if vbTriggered is TRUE, we're evaluating a player
+      //    because something wanted to add a new quest chain
+
+      if who = $
+         OR NOT IsClass(who,&Player)
+         OR Send(who,@GetOwner) = $
+      {
+         return $;
+      }
+
+      lPassiveQuests = Send(who,@GetPassiveQuests);
+
+      // Don't reinform if this is a triggered check.
+      if lPassiveQuests <> $
+         AND NOT vbTriggered
+      {
+         foreach i in lPassiveQuests
+         {
+            Send(i,@Reinform);
+         }
+      }
+
+      // See if we've completed any state based quests.
+      foreach i in lPassiveQuests
+      {
+         Send(i,@CheckAllStateBasedConditions);
+      }
+
+      // Where is the player at in the process of building their character?
+      // Take some metrics and determine where best to start them in the
+      // quest chains.
+
+      iPlayerHP = Send(who,@GetBaseMaxHealth);
+      oRoom = Send(who,@GetOwner);
+
+      // Open Meridian keys the newbie chains off the sealed Raza region
+      // (RID_NEWB_BASE). Raza is an open mainland town on this server, so
+      // key off the Raza room class instead.
+      if iPlayerHP = 20
+      {
+         // We're completely new. Are we in Raza?
+         if IsClass(oRoom,&RazaRoom)
+            AND NOT Send(who,@HasQuestChain,#chain_num=HP20_RAZA_CHAIN)
+         {
+            Create(&hp20pq1,#quester=who);
+         }
+      }
+
+      // Newbies next find themselves here.
+      // Initiate first recorded quest chain.
+      // We don't do this for built players, since they won't need this.
+      if iPlayerHP < 50
+         AND NOT IsClass(oRoom,&RazaRoom)
+         AND NOT Send(who,@HasQuestChain,#chain_num=HP30_NEWBIE_CHAIN)
+      {
+         Create(&hp30pq1,#quester=who);
+      }
+
+      if iPlayerHP >= 35
+         AND IsClass(oRoom,&Marion)
+         AND NOT Send(who,@HasQuestChain,#chain_num=HP35_INVESTIGATE_MARION_CRYPT_CHAIN)
+      {
+         Create(&hp35pq1,#quester=who);
+      }
+
+      if iPlayerHP >= 40
+         AND iPlayerHP < 100
+         AND NOT Send(who,@HasQuestChain,#chain_num=HP40_INVESTIGATE_CASTLE_VICTORIA_CHAIN)
+      {
+         Create(&hp40pq1,#quester=who);
+      }
+
+      // It's faction time. Generally at 50 hp.
+      if Send(who,@CheckPlayerFlag,#flag=PFLAG_PKILL_ENABLE)
+         AND (Send(who,@PlayerIsHPIntrigue)
+              OR Send(who,@PlayerIsAdept))
+         AND NOT Send(who,@HasQuestChain,#chain_num=HP50_JOIN_FACTION_CHAIN)
+         AND Send(who,@GetFaction) = FACTION_NEUTRAL
+         AND iPlayerHP <= 80
+      {
+         Create(&hp50pq1,#quester=who);
+      }
+
+      if iPlayerHP >= 60
+         AND NOT Send(who,@HasQuestChain,#chain_num=HP60_MANA_NODES_CHAIN)
+      {
+         Create(&hp60pq1,#quester=who);
+      }
+
+      if iPlayerHP > 80
+         AND iPlayerHP <= 90
+         AND NOT Send(who,@HasQuestChain,#chain_num=HP80_SOLDIER_SHIELD_CHAIN)
+         AND Send(who,@GetFaction) <> FACTION_NEUTRAL
+      {
+         Create(&hp80pq1,#quester=who);
+      }
+
+      if iPlayerHP >= 90
+         AND iPlayerHP <= 120
+         AND NOT Send(who,@HasQuestChain,#chain_num=HP90_INVESTIGATE_ISLAND_CHAIN)
+      {
+         Create(&hp90pq1,#quester=who);
+      }
+
+      if iPlayerHP >= 100
+         AND iPlayerHP <= 130
+         AND NOT Send(who,@HasQuestChain,#chain_num=HP100_INVESTIGATE_BRAX_CHAIN)
+      {
+         Create(&hp100pq1,#quester=who);
+      }
+
+      return;
+   }
+
+end
+////////////////////////////////////////////////////////////////////////////////

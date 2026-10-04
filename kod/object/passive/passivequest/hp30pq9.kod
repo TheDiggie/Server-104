@@ -1,0 +1,64 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp30pq9 is PassiveQuest
+
+// The ninth quest for 30 hp players is to:
+//   Find Barloque's blacksmith
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp30pq9_icon_rsc = coin.bgf
+   hp30pq9_name_rsc = "Find Barloque"
+   hp30pq9_desc_rsc = \
+      "Rook has directed you to purchase weapons and armor from the finest blacksmith "
+      "in the land, Fehr'loi Qan, but first you must find the Royal City of Barloque. "
+      "From Cor Noth, leave out the north gate, then head east, following the river. "
+      "Ants and slimes are good enemies along the way, but be wary of spiders."
+
+   hp30pq9_new_quest_msg = \
+      "Rook has directed you to purchase weapons and armor from the finest blacksmith "
+      "in the land, Fehr'loi Qan, but first you must ~o~Bfind the Royal City of Barloque.~n "
+      "From Cor Noth, ~o~Bleave out the north gate, then head east, following the river.~n "
+      "Ants and slimes are good enemies along the way, but be wary of spiders."
+
+   hp30pq9_complete_msg = \
+      "~kThe Royal City of Barloque is enormous! How are you ever going to find Fehr'loi Qan here?"
+
+classvars:
+
+   vrIcon = hp30pq9_icon_rsc
+   vrName = hp30pq9_name_rsc
+   vrDesc = hp30pq9_desc_rsc
+
+   vrNewThisQuestMsg = hp30pq9_new_quest_msg
+   vrCompletedMsg = hp30pq9_complete_msg
+
+   vbReinform = TRUE
+
+   vbEnterRoom = TRUE
+   vcEnterRoomClass = &BarloqueSouth
+
+   viExperienceReward = 2000
+
+   viChain = HP30_NEWBIE_CHAIN
+   cNextQuestClass = &hp30pq10
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

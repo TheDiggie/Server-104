@@ -1,0 +1,86 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp30pq1a is PassiveQuest
+
+// The first quest for 30 hp players is to:
+//   Visit the Shal'ille Temple and learn about corpse summoning
+//
+// This chain by itself will give new players 30k shillings, 600 TP, and take them to 44 hp or so
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   // Quest description.
+   hp30pq1a_icon_rsc = iphase.bgf
+   hp30pq1a_name_rsc = "Practice Phasing"
+   hp30pq1a_desc_rsc = \
+      "Priestess Xiana has suggested you practice using the spell 'phase' "
+      "to protect yourself from harm. All adventurers know how to phase out, "
+      "so find an area where combat is possible and cast phase by "
+      "typing 'cast phase', or by typing 'alias' and putting 'cast phase' on a hotkey, "
+      "or by double clicking the phase spell in your spell tab. "
+      "You can see an extended description of phase by right clicking on it in your spell tab "
+      "or by right clicking the icon under your character's portrait once you've cast it. "
+      "Phase exactly simulates logging off; all your enchantments and regenerations will be "
+      "frozen, and you will have a few minutes to phase back in before you are given "
+      "skill and item penalties and returned to a safe place. Players and monsters cannot "
+      "attack you while you are phased. Although there are penalties for staying phased out "
+      "too long, they are much lighter than the pain of dying outright."
+
+   hp30pq1a_new_quest_msg = \
+      "Priestess Xiana has suggested you practice using the spell 'phase' "
+      "to protect yourself from harm. All adventurers know how to phase out, "
+      "so ~o~Bfind an area where combat is possible and cast phase~n by "
+      "typing 'cast phase', or by typing 'alias' and putting 'cast phase' on a hotkey, "
+      "or by double clicking the phase spell in your spell tab. ~o~BCast phase a second time to return to reality.~n "
+      "You can see an extended description of phase by right clicking on it in your spell tab "
+      "or by right clicking the icon under your character's portrait once you've cast it. "
+      "Phase exactly simulates logging off; all your enchantments and regenerations will be "
+      "frozen, and you will have a few minutes to phase back in before you are given "
+      "skill and item penalties and returned to a safe place. Players and monsters cannot "
+      "attack you while you are phased. Although there are penalties for staying phased out "
+      "too long, they are much lighter than the pain of dying outright."
+
+   hp30pq1a_complete_msg = \
+      "~o~BNow that you have mastered phasing, it would be wise to assign it to a hotkey.~n "
+      "~kMonsters and players may not give you much time to react. Use phase to "
+      "protect yourself on your way to Jasper. As a final note, as long as you are "
+      "under 50 health, you cannot be attacked by other players and phase will not "
+      "assess you any penalties for staying phased out too long."
+
+classvars:
+
+   vrIcon = hp30pq1a_icon_rsc
+   vrName = hp30pq1a_name_rsc
+   vrDesc = hp30pq1a_desc_rsc
+
+   vrNewThisQuestMsg = hp30pq1a_new_quest_msg
+   vrCompletedMsg = hp30pq1a_complete_msg
+
+   vbReinform = TRUE
+
+   vbCastSpell = TRUE
+   vcSpellType = &Phase
+
+   viExperienceReward = 150
+
+   viChain = HP30_NEWBIE_CHAIN
+   cNextQuestClass = &hp30pq2
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

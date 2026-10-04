@@ -1,0 +1,68 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp30pq8 is PassiveQuest
+
+// The eighth quest for 30 hp players is to:
+//   Cast the spell Meditate
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp30pq8_icon_rsc = imeditate.bgf
+   hp30pq8_name_rsc = "Cast your Meditate spell"
+   hp30pq8_desc_rsc = \
+      "You've learned much from your training session under the famed swordsman Rook. "
+      "To use that knowledge, cast the spell Meditate and say the name of a spell "
+      "or skill you would like to improve. You may purchase skills from trainers "
+      "like Rook and practice them immediately."
+
+   hp30pq8_new_quest_msg = \
+      "You've learned much from your training session under the famed swordsman Rook. "
+      "To use that knowledge, ~o~Bcast the spell Meditate and say the name of a spell "
+      "or skill~n you would like to improve. You may purchase skills from trainers "
+      "like Rook and practice them immediately."
+
+   hp30pq8_complete_msg = \
+      "~kRook tells you, \"That is how it is done, adventurer. Fight and toughen yourself. "
+      "Train every day. Become strong, and one day you may even qualify for service under "
+      "the Princess herself. To that end, I suggest you buy the finest weapons and armor "
+      "from her Royal City of Barloque. The best blacksmith in the land, Fehr'loi Qan, lives "
+      "there, and his equipment is always superb.\""
+
+classvars:
+
+   vrIcon = hp30pq8_icon_rsc
+   vrName = hp30pq8_name_rsc
+   vrDesc = hp30pq8_desc_rsc
+
+   vrNewThisQuestMsg = hp30pq8_new_quest_msg
+   vrCompletedMsg = hp30pq8_complete_msg
+
+   vbReinform = TRUE
+
+   vbCastSpell = TRUE
+   vcSpellType = &Meditate
+
+   viExperienceReward = 400
+
+   viChain = HP30_NEWBIE_CHAIN
+   cNextQuestClass = &hp30pq9
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

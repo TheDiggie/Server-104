@@ -180,6 +180,7 @@ messages:
          pbIn_use = TRUE;
          plStatmods = [ 0, 0, 0, 0, 0, 0 ];
          Send(what,@MsgSendUser,#message_rsc=HunterSword_used_rsc);
+         Post(what,@EquippedAnItem,#oItem=self);
 
          // Post these so that they happen after 'what' actually becomes our owner.
          Post(self,@AdjustStats);

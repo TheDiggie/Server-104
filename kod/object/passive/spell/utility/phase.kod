@@ -208,6 +208,7 @@ messages:
       if Send(who,@CheckPlayerFlag,#flag=PFLAG_PHASED)
       {
          Send(who,@RemoveEnchantment,#what=self);
+         Send(who,@CastASpell,#oSpell=self);
       }
       else
       {

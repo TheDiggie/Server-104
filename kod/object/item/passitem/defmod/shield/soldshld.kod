@@ -420,6 +420,7 @@ messages:
                                #faction=viFaction),
                     #dest_list=[what],
                     #nest_list=[4,vrWelcomeMessage]);
+               Post(what,@EquippedAnItem,#oItem=self);
             }
          }
          else

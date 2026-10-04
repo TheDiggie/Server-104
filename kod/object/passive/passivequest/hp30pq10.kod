@@ -1,0 +1,68 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp30pq10 is PassiveQuest
+
+// The tenth quest for 30 hp players is to:
+//   Buy a piece of gear from Fehr'loi Qan
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp30pq10_icon_rsc = sword.bgf
+   hp30pq10_name_rsc = "Find Fehr'loi Qan"
+   hp30pq10_desc_rsc = \
+      "Barloque is a great and shining jewel featuring many high-class businesses. "
+      "There is a jeweler, a Vault, a guild registrar, a reagent shop, two major inns, the "
+      "office of the Justicar, and even a jail. The blacksmith operates somewhere within this "
+      "enormous city, and it is your quest to find him and buy a piece of equipment from him."
+
+   hp30pq10_new_quest_msg = \
+      "Barloque is a great and shining jewel featuring many high-class businesses. "
+      "There is a jeweler, a Vault, a guild registrar, a reagent shop, two major inns, the "
+      "office of the Justicar, and even a jail. ~o~BThe blacksmith operates somewhere within this "
+      "enormous city,~n and it is your quest to ~o~Bfind him and buy a piece of equipment from him."
+
+   hp30pq10_complete_msg = \
+      "~kFehr'loi Qan says, \"Nothin' but the best here, mind it. They pay me good money for it. "
+      "That's why I moved up from Tos. Not the undead. Nope. The graveyard didn't bother me one bit, "
+      "and I'll fight any man who says otherwise. By the way, if you're ever down in Tos, would you "
+      "mind killing a zombie or two so I can sleep better at night?\""
+
+classvars:
+
+   vrIcon = hp30pq10_icon_rsc
+   vrName = hp30pq10_name_rsc
+   vrDesc = hp30pq10_desc_rsc
+
+   vrNewThisQuestMsg = hp30pq10_new_quest_msg
+   vrCompletedMsg = hp30pq10_complete_msg
+
+   vbReinform = TRUE
+
+   vbBuyItem = TRUE
+   vcBuyFromClass = &BarloqueBlacksmith
+   vcBuyItemClass = $
+
+   viExperienceReward = 400
+
+   viChain = HP30_NEWBIE_CHAIN
+   cNextQuestClass = &hp30pq11
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

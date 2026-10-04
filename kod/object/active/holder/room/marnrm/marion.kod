@@ -113,6 +113,12 @@ messages:
          propagate;
       }
 
+      if IsClass(what,&Player)
+      {
+         // Entering Marion may start the Marion crypt passive quest chain.
+         Post(Send(SYS,@GetGameQuestMaintenance),@EvaluatePlayer,#who=what,#vbTriggered=TRUE);
+      }
+
       who = Send(what,@GetOwner);
       if who = $
       {

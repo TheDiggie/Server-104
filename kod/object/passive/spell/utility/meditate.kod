@@ -280,6 +280,7 @@ messages:
          }
 
          Send(who,@AddTrainingPoints,#points=(-iGain*iRatio));
+         Send(who,@CastASpell,#oSpell=self);
 
          if iGain*iRatio > Random(0,99)
          AND NOT StringEqual(string,Meditate_name_rsc)

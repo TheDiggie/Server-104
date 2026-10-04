@@ -1,0 +1,62 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp90pq4 is PassiveQuest
+
+// The fourth quest for 90 hp players is to:
+//   Ask about a trade treaty
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp90pq4_icon_rsc = book1.bgf
+   hp90pq4_name_rsc = "Ask about a trade treaty"
+   hp90pq4_desc_rsc = \
+      "Ask the citizens of this astounding city about a trade treaty."
+
+   hp90pq4_new_quest_msg = \
+      "Ask the citizens of this astounding city about a trade treaty."
+
+   hp90pq4_trigger = \
+      "treaty"
+
+   hp90pq4_complete_msg = \
+      "~kIn reply, you are told, \"You'll have to find Wulfgang zax'Ak. He's "
+      "the one most equipped to trade. Unfortunately, his Trading Post lies deep in the jungle. "
+      "I don't know specific directions.\""
+
+classvars:
+
+   vrIcon = hp90pq4_icon_rsc
+   vrName = hp90pq4_name_rsc
+   vrDesc = hp90pq4_desc_rsc
+
+   vrNewThisQuestMsg = hp90pq4_new_quest_msg
+   vrCompletedMsg = hp90pq4_complete_msg
+
+   vbReinform = FALSE
+
+   vbSaySomething = TRUE
+   vsSayTrigger = hp90pq4_trigger
+   vcSayTargetClass = &KocatanTown
+
+   viChain = HP90_INVESTIGATE_ISLAND_CHAIN
+   cNextQuestClass = &hp90pq5
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

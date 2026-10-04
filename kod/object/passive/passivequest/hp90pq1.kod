@@ -1,0 +1,72 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp90pq1 is PassiveQuest
+
+// The first quest for 90 hp players is to:
+//   Visit Duke Akardius
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp90pq1_icon_rsc = dukeneph.bgf
+   hp90pq1_name_rsc = "Respond to Duke Akardius"
+   hp90pq1_desc_rsc = \
+      "The Duke of Tos has requested you visit Blackstone Keep. His message did not elaborate. "
+      "When you enter his throne room, ask him about his request."
+
+   hp90pq1_new_quest_msg = \
+      "~o~BThe Duke of Tos has requested you visit Blackstone Keep.~n His message did not elaborate. "
+      "When you enter his throne room, ask him about his ~o~Brequest.~n"
+
+   hp90pq_1trigger = \
+      "request"
+
+   hp90pq1_complete_msg = \
+      "~kDuke Akardius tells you, \"Ah yes. I have been watching you rise to prominence in this land, "
+      "and I believe, as somewhat of a newcomer, you may be ideal for a delicate mission I have in mind. "
+      "It has recently come to my attention that one of our hallowed myths may be incorrect. "
+      "The great warrior, Konima, led an expedition into the caves near here to end the Orc Wars "
+      "once and for all. His entire company vanished. He was believed dead, but now I am hearing rumors "
+      "that his people live on somehow. I bid you enter the Orc Caves in the Twisted Woods and "
+      "find the descendants of our great hero. If possible, set up a trade alliance, such that I "
+      "may increase my power and influence here in Meridian. To get you started, here is some "
+      "money to fund your expedition.\""
+
+classvars:
+
+   vrIcon = hp90pq1_icon_rsc
+   vrName = hp90pq1_name_rsc
+   vrDesc = hp90pq1_desc_rsc
+
+   vrNewThisQuestMsg = hp90pq1_new_quest_msg
+   vrCompletedMsg = hp90pq1_complete_msg
+
+   vbReinform = FALSE
+
+   vbSaySomething = TRUE
+   vsSayTrigger = hp90pq_1trigger
+   vcSayTargetClass = &DukeLiege
+
+   viMoneyReward = 50000
+
+   viChain = HP90_INVESTIGATE_ISLAND_CHAIN
+   cNextQuestClass = &hp90pq2
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

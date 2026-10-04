@@ -1,0 +1,68 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp30pq3 is PassiveQuest
+
+// The third quest for 30 hp players is to:
+//   Make a deposit at Jasper Bank
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp30pq3_icon_rsc = jsbanker.bgf
+   hp30pq3_name_rsc = "Find the Royal Bank"
+   hp30pq3_desc_rsc = \
+      "Somewhere within the run-down town of Jasper lies the Royal Bank, "
+      "run by Yevitan, a mysterious man of few words. Find the Royal Bank "
+      "among the abandoned buildings and deposit some shillings."
+
+   hp30pq3_new_quest_msg = \
+      "Somewhere within the run-down town of Jasper lies the Royal Bank, "
+      "run by Yevitan, a mysterious man of few words. ~o~BFind the Royal Bank~n "
+      "among the abandoned buildings ~o~Band deposit some shillings.~n"
+
+   hp30pq3_complete_msg = \
+      "~kYevitan says, \"Not bad for a fledgling adventurer. I do hope you plan "
+      "to deposit more than this sum as you grow in strength. Fortunately for you, "
+      "we're running a new-account special. For doing business with us, "
+      "here's a ten thousand shilling bonus. Be sure to visit our sister branch "
+      "in the city of Tos if you find yourself in that area. As for your gear, "
+      "you'll have to find the vaults across the street to deposit items.\""
+
+classvars:
+
+   vrIcon = hp30pq3_icon_rsc
+   vrName = hp30pq3_name_rsc
+   vrDesc = hp30pq3_desc_rsc
+
+   vrNewThisQuestMsg = hp30pq3_new_quest_msg
+   vrCompletedMsg = hp30pq3_complete_msg
+
+   vbReinform = TRUE
+
+   vbDepositMoney = TRUE
+   vbDepositMinimum = 1
+   vcDepositWith = &JasperBanker
+
+   viMoneyReward = 10000
+
+   viChain = HP30_NEWBIE_CHAIN
+   cNextQuestClass = &hp30pq4
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

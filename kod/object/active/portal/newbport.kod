@@ -86,6 +86,8 @@ messages:
             }
          }
 
+         Send(what,@UsedPortal,#what=self);
+
          Send(what,@SetRandomHomeroom);
 
          // Allow an admin to set the portal to go somewhere else if needed.

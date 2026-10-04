@@ -389,6 +389,7 @@ properties:
    poAssassin_game = $
    poQuestEngine = $
    poDMFeed = $
+   poGameQuestMaintenance = $
    poNecromancerBalance = $
    poTokenGame = $
    poTerritoryGame = $
@@ -550,6 +551,7 @@ messages:
 
       Send(self,@RecreateAssassinGame);
       Send(self,@RecreateQuestEngine);
+      Send(self,@RecreateGameQuestMaintenance);
       Send(self,@RecreateNodeAttack);
       Send(self,@RecreateRentableRoomMaintenance);
       Send(self,@RecreateSurvivalRoomMaintenance);
@@ -711,6 +713,7 @@ messages:
       piRecreate_State = RECREATE_PHASE_TWO;
 
       Send(self,@RecreateQuestEngine);
+      Send(self,@RecreateGameQuestMaintenance);
       Send(self,@RecreateAllItemAttributes);
       Send(self,@RecreateAllGuildCommands);
       Send(self,@RecreateAllTreasureTypes);
@@ -5201,6 +5204,25 @@ messages:
       }
 
       return poDMFeed;
+   }
+
+   RecreateGameQuestMaintenance()
+   {
+      if poGameQuestMaintenance <> $
+      {
+         Send(poGameQuestMaintenance,@Recreate);
+      }
+      else
+      {
+         poGameQuestMaintenance = Create(&GameQuestMaintenance);
+      }
+
+      return TRUE;
+   }
+
+   GetGameQuestMaintenance()
+   {
+      return poGameQuestMaintenance;
    }
 
 

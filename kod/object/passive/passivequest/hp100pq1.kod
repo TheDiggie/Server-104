@@ -1,0 +1,63 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp100pq1 is PassiveQuest
+
+// The first quest for 100 hp players is to:
+//   Enter Brax
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp100pq1_icon_rsc = darkbeas.bgf
+   hp100pq1_name_rsc = "Find the Ancient City of Brax"
+   hp100pq1_desc_rsc = \
+      "Deep in the mountains lies an ancient city that was buried under the earth due to some sort of catastrophe. "
+      "At an ancient place, its origin forgotten, find entrance to the underground city. Within lurks something "
+      "timeless and evil that must be stopped if the undead threat in Meridian is to be curtailed."
+
+   hp100pq1_new_quest_msg = \
+      "Deep in the mountains lies an ancient city that was buried under the earth due to some sort of catastrophe. "
+      "At an ancient place, its origin forgotten, find entrance to the underground city. Within lurks something "
+      "timeless and evil that must be stopped if the undead threat in Meridian is to be curtailed."
+
+   hp100pq1_complete_msg = \
+      "~kThis is it. This place holds the source of the undead threat plaguing the land. Waves of evil radiate through "
+      "the very air. Remain wary as you proceed further."
+
+classvars:
+
+   vrIcon = hp100pq1_icon_rsc
+   vrName = hp100pq1_name_rsc
+   vrDesc = hp100pq1_desc_rsc
+
+   vrNewThisQuestMsg = hp100pq1_new_quest_msg
+   vrCompletedMsg = hp100pq1_complete_msg
+
+   vbReinform = FALSE
+
+   vbEnterRoom = TRUE
+   vcEnterRoomClass = &Necropolis1
+
+   viExperienceReward = 500
+
+   viChain = HP100_INVESTIGATE_BRAX_CHAIN
+   cNextQuestClass = &hp100pq2
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

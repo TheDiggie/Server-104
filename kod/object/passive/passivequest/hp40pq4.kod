@@ -1,0 +1,68 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp40pq4 is PassiveQuest
+
+// The fourth quest for 40 hp players is to:
+//   Slay Far'Nohl
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp40pq4_icon_rsc = ghost.bgf
+   hp40pq4_name_rsc = "Slay the Ghost of Far'Nohl"
+   hp40pq4_desc_rsc = \
+      "You've improved your toughness and skills to an advanced degree. It is time to take on the toughest fight "
+      "of your adventure so far: end the curse at Castle Victoria by entering the Throne Room and slaying the "
+      "ghost of the mad king. The ghost can cast fireballs, so bring fire resistance. Against undead, holy "
+      "magics are also extremely important. Without a properly enchanted weapon, your task may be impossible. "
+      "Mages of Shal'ille can consecrate your weapon, and Kraanan battle-mages can offer a blessing that "
+      "still works, but is less effective. Good luck."
+
+   hp40pq4_new_quest_msg = \
+      "You've improved your toughness and skills to an advanced degree. It is time to take on the toughest fight "
+      "of your adventure so far: end the curse at Castle Victoria by entering the Throne Room and slaying the "
+      "ghost of the mad king. The ghost can cast fireballs, so bring fire resistance. Against undead, holy "
+      "magics are also extremely important. Without a properly enchanted weapon, your task may be impossible. "
+      "Mages of Shal'ille can consecrate your weapon, and Kraanan battle-mages can offer a blessing that "
+      "still works, but is less effective. Good luck."
+
+   hp40pq4_complete_msg = \
+      "~kThe curse has not been lifted. Is it possible that Castle Victoria's undead infestation is "
+      "still just a symptom of an even greater evil? Darkness calls from deeper in the mountains..."
+
+classvars:
+
+   vrIcon = hp40pq4_icon_rsc
+   vrName = hp40pq4_name_rsc
+   vrDesc = hp40pq4_desc_rsc
+
+   vrNewThisQuestMsg = hp40pq4_new_quest_msg
+   vrCompletedMsg = hp40pq4_complete_msg
+
+   vbReinform = FALSE
+
+   vbKillMonster = TRUE
+   vcKillMonsterClass = &Ghost
+
+   viTrainingPointsReward = 1000
+
+   viChain = HP40_INVESTIGATE_CASTLE_VICTORIA_CHAIN
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

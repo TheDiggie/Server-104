@@ -1,0 +1,66 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp60pq1 is PassiveQuest
+
+// The first quest for 60 hp players is to:
+//   Find mana nodes
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp60pq1_icon_rsc = node.bgf
+   hp60pq1_name_rsc = "Hunt for the Mana Nodes"
+   hp60pq1_desc_rsc = \
+      "This world is rife with mana that has concentrated into nodes of power. "
+      "Creating a link with a node will increase your maximum mana. "
+      "Explore the lands of Meridian in search of as many nodes as you can find. "
+      "If you wish to know which ones you have already found, locate Esseldi "
+      "in the Druid Hills southwest of Marion and ask him about your mana nodes. "
+      "He can tell you which ones you have formed a link with."
+
+   hp60pq1_new_quest_msg = \
+      "This world is rife with mana that has concentrated into nodes of power. "
+      "Creating a link with a node will increase your maximum mana. "
+      "Explore the lands of Meridian in search of as many nodes as you can find. "
+      "If you wish to know which ones you have already found, locate Esseldi "
+      "in the Druid Hills southwest of Marion and ask him about your mana nodes. "
+      "He can tell you which ones you have formed a link with."
+
+   hp60pq1_complete_msg = \
+      "~kYou've found all the mana nodes! Your spirit swells with power."
+
+classvars:
+
+   vrIcon = hp60pq1_icon_rsc
+   vrName = hp60pq1_name_rsc
+   vrDesc = hp60pq1_desc_rsc
+
+   vrNewThisQuestMsg = hp60pq1_new_quest_msg
+   vrCompletedMsg = hp60pq1_complete_msg
+
+   vbReinform = FALSE
+
+   vbBondAllManaNodes = TRUE
+
+   viTrainingPointsReward = 3000
+
+   viChain = HP60_MANA_NODES_CHAIN
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

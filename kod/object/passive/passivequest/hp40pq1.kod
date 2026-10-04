@@ -1,0 +1,69 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp40pq1 is PassiveQuest
+
+// The first quest for 40 hp players is to:
+//   Ask Paddock about Castle Victoria
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp40pq1_icon_rsc = tsinnk.bgf
+   hp40pq1_name_rsc = "Ask about Castle Victoria"
+   hp40pq1_desc_rsc = \
+      "Rumors are circulating about the source of the rising undead in Tos. Valiant warriors "
+      "beat back the zombies and skeletons at night, but they can only hold for so long. "
+      "The whispers hold a name: Castle Victoria. Find Paddock, the innkeeper in Tos, "
+      "and ask him about it. Perhaps he knows how it may relate to Tos and its history."
+
+   hp40pq1_new_quest_msg = \
+      "Rumors are circulating about the source of the rising undead in Tos. Valiant warriors "
+      "beat back the zombies and skeletons at night, but they can only hold for so long. "
+      "The whispers hold a name: Castle Victoria. Find Paddock, the innkeeper in Tos, "
+      "and ask him about it. Perhaps he knows how it may relate to Tos and its history."
+
+   hp40pq1_trigger = \
+      "ictoria"
+
+   hp40pq1_complete_msg = \
+      "~kPaddock says, \"Castle Victoria was the old seat of the kingdom. Far'Nohl, the King "
+      "in that era, is said to have gone mad after delving too deeply into dark magics. "
+      "Hmm... yes. That ~Iwould~I be an important place to check. If there are undead walking "
+      "the halls of Castle Victoria, we'll know for sure.\""
+
+classvars:
+
+   vrIcon = hp40pq1_icon_rsc
+   vrName = hp40pq1_name_rsc
+   vrDesc = hp40pq1_desc_rsc
+
+   vrNewThisQuestMsg = hp40pq1_new_quest_msg
+   vrCompletedMsg = hp40pq1_complete_msg
+
+   vbReinform = TRUE
+
+   vbSaySomething = TRUE
+   vsSayTrigger = hp40pq1_trigger
+   vcSayTargetClass = &TosInnKeeper
+
+   viChain = HP40_INVESTIGATE_CASTLE_VICTORIA_CHAIN
+   cNextQuestClass = &hp40pq2
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

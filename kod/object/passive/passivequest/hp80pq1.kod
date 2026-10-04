@@ -1,0 +1,59 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp80pq1 is PassiveQuest
+
+// The first quest for 80 hp players is to:
+//   Choose a soldier shield
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp80pq1_icon_rsc = gshE.bgf
+   hp80pq1_name_rsc = "Rise in the Ranks"
+   hp80pq1_desc_rsc = \
+      "You are becoming more than just a common grunt for your faction. "
+      "Your liege has seen your promise. Go and ask about becoming a soldier."
+
+   hp80pq1_new_quest_msg = \
+      "You are becoming more than just a common grunt for your faction. "
+      "Your liege has seen your promise. Go and ask about becoming a ~o~Bsoldier."
+
+   hp80pq1_complete_msg = \
+      "~kBe sure to mind your new responsibilities - and your new enemies."
+
+classvars:
+
+   vrIcon = hp80pq1_icon_rsc
+   vrName = hp80pq1_name_rsc
+   vrDesc = hp80pq1_desc_rsc
+
+   vrNewThisQuestMsg = hp80pq1_new_quest_msg
+   vrCompletedMsg = hp80pq1_complete_msg
+
+   vbReinform = FALSE
+
+   vbEquipItemOne = TRUE
+   vcEquipItemOneClass = &SoldierShield
+
+   viTrainingPointsReward = 500
+
+   viChain = HP80_SOLDIER_SHIELD_CHAIN
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

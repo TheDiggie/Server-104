@@ -313,6 +313,18 @@ messages:
       propagate;
    }
 
+   NewUsed(what=$, iSpecial = $)
+   {
+      if poOwner <> $
+         AND IsClass(poOwner,&Player)
+      {
+         // Let any passive quest know the amulet is now being worn.
+         Post(poOwner,@EquippedAnItem,#oItem=self);
+      }
+
+      propagate;
+   }
+
    HoldingDamageTrigger()
    {
       ptHoldingDamage = $;

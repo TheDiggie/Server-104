@@ -1,0 +1,67 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp40pq3 is PassiveQuest
+
+// The third quest for 40 hp players is to:
+//   Build their HP and skills
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp40pq3_icon_rsc = sword.bgf
+   hp40pq3_name_rsc = "Improve Yourself"
+   hp40pq3_desc_rsc = \
+      "Castle Victoria has a serious haunting. Upstairs, there are zombies and battered skeletons "
+      "for you to fight and build your skills fighting undead. The main hall is overrun by stronger skeletons, "
+      "which can be fought up to 70 health, and the Throne Room has tusked skeletons, which can be fought up to 100 health. "
+      "Somewhere in this castle lies Far'Nohl himself, kept in this realm by the darkest of magics, and you should "
+      "avoid him at all costs until you are far stronger. When you reach 100 health, either by fighting in Castle Victoria "
+      "or elsewhere, only then will putting the Ghost of Far'Nohl to rest become a reasonable goal."
+
+   hp40pq3_new_quest_msg = \
+      "Castle Victoria has a serious haunting. Upstairs, there are zombies and battered skeletons "
+      "for you to fight and build your skills fighting undead. The main hall is overrun by stronger skeletons, "
+      "which can be fought up to 70 health, and the Throne Room has tusked skeletons, which can be fought up to 100 health. "
+      "Somewhere in this castle lies Far'Nohl himself, kept in this realm by the darkest of magics, and you should "
+      "avoid him at all costs until you are far stronger. When you reach 100 health, either by fighting in Castle Victoria "
+      "or elsewhere, only then will putting the Ghost of Far'Nohl to rest become a reasonable goal."
+
+   hp40pq3_complete_msg = \
+      "~kYour mind and your body are both far stronger than when you arrived here. Perhaps it is time to slay the Ghost of Far'Nohl "
+      "in Castle Victoria and hopefully put the undead problem in this land to rest."
+
+classvars:
+
+   vrIcon = hp40pq3_icon_rsc
+   vrName = hp40pq3_name_rsc
+   vrDesc = hp40pq3_desc_rsc
+
+   vrNewThisQuestMsg = hp40pq3_new_quest_msg
+   vrCompletedMsg = hp40pq3_complete_msg
+
+   vbReinform = FALSE
+
+   vbReachHP = TRUE
+   viReachThisHP = 100
+
+   viChain = HP40_INVESTIGATE_CASTLE_VICTORIA_CHAIN
+   cNextQuestClass = &hp40pq4
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

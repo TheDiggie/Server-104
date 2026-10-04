@@ -1,0 +1,66 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp35pq3 is PassiveQuest
+
+// The third quest for 35 hp players is to:
+//   Clear the statues
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp35pq3_icon_rsc = sword.bgf
+   hp35pq3_name_rsc = "Clear the Statues in Marion Crypt"
+   hp35pq3_desc_rsc = \
+      "The second level of the Marion Crypt seems dominated by very old and very strong living statues "
+      "imbued with the spirits of Marionite ancestors. Were they animated long ago to guard the tombs, "
+      "or to keep some deeper evil locked away? In either case, the undead situation is growing worse. "
+      "You must train and improve your skills until you can clear all the statues and handle the skeletons "
+      "as well."
+
+   hp35pq3_new_quest_msg = \
+      "The second level of the Marion Crypt seems dominated by very old and very strong living statues "
+      "imbued with the spirits of Marionite ancestors. Were they animated long ago to guard the tombs, "
+      "or to keep some deeper evil locked away? In either case, the undead situation is growing worse. "
+      "You must train and improve your skills until you can clear all the statues and handle the skeletons "
+      "as well."
+
+   hp35pq3_complete_msg = \
+      "~k~B~oThe sheer evil all around you is clear warning that this place is extremely dangerous!!"
+
+classvars:
+
+   vrIcon = hp35pq3_icon_rsc
+   vrName = hp35pq3_name_rsc
+   vrDesc = hp35pq3_desc_rsc
+
+   vrNewThisQuestMsg = hp35pq3_new_quest_msg
+   vrCompletedMsg = hp35pq3_complete_msg
+
+   vbReinform = FALSE
+
+   vbEnterRoom = TRUE
+   vcEnterRoomClass = &MarionCrypt3a
+
+   viChain = HP35_INVESTIGATE_MARION_CRYPT_CHAIN
+   // Open Meridian chains into hpMaxMinus20pq1 (the Thrashers chain) here;
+   // that series is not ported, so this chain ends with this quest.
+   cNextQuestClass = $
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

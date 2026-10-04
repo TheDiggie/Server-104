@@ -1,0 +1,64 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp30pq13 is PassiveQuest
+
+// The thirteenth quest for 30 hp players is to:
+//   Find Tos
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp30pq13_icon_rsc = zombie.bgf
+   hp30pq13_name_rsc = "Cleanse the Graveyard"
+   hp30pq13_desc_rsc = \
+      "During the night, the undead rise up in the Tos Graveyard on the west side of the city. "
+      "Beware the powerful skeletons. If you can manage to defeat a zombie, Paddock will "
+      "reward you handsomely."
+
+   hp30pq13_new_quest_msg = \
+      "During the night, the undead rise up in the Tos Graveyard on the west side of the city. "
+      "Beware the powerful skeletons. If you can manage to ~o~Bdefeat a zombie,~n Paddock will "
+      "reward you handsomely."
+
+   hp30pq13_complete_msg = \
+      "~kPaddock tells you, \"Nice work if I do say so myself. Here's a little something for that dirty job. "
+      "This might be a longshot, but would you travel to Cor Noth and see if there's anything in Tos' "
+      "history that might be causing our undead to rise?\""
+
+classvars:
+
+   vrIcon = hp30pq13_icon_rsc
+   vrName = hp30pq13_name_rsc
+   vrDesc = hp30pq13_desc_rsc
+
+   vrNewThisQuestMsg = hp30pq13_new_quest_msg
+   vrCompletedMsg = hp30pq13_complete_msg
+
+   vbReinform = TRUE
+
+   vbKillMonster = TRUE
+   vcKillMonsterClass = &Zombie
+
+   viMoneyReward = 20000
+
+   viChain = HP30_NEWBIE_CHAIN
+   cNextQuestClass = &hp30pq14
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,60 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp20pq4 is PassiveQuest
+
+// The fourth quest for 20 hp players is to:
+//   Venture out into the world
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   // Quest description.
+   hp20pq4_icon_rsc = portal.bgf
+   hp20pq4_name_rsc = "Venture into Meridian proper"
+   hp20pq4_desc_rsc = \
+      "Now that you have saved the town of Raza, you are ready to face the lands of Meridian proper. "
+      "Find the portal in the Museum of Raza. It shall take you on an adventure from which there "
+      "is no return. The museum can be found in the northeast corner of town."
+
+   hp20pq4_new_quest_msg = \
+      "Now that you have saved the town of Raza, you are ready to face the lands of Meridian proper. "
+      "~o~BFind the portal in the Museum of Raza.~n It shall take you on an adventure from which there "
+      "is no return. The museum can be found ~o~Bin the northeast corner of town."
+
+   hp20pq4_complete_msg = \
+      "~kYou step into the portal, never to return."
+
+classvars:
+
+   vrIcon = hp20pq4_icon_rsc
+   vrName = hp20pq4_name_rsc
+   vrDesc = hp20pq4_desc_rsc
+
+   vrNewThisQuestMsg = hp20pq4_new_quest_msg
+   vrCompletedMsg = hp20pq4_complete_msg
+
+   vbReinform = TRUE
+
+   vbUsePortal = TRUE
+   vcPortalClass = &Newbportal
+
+   viChain = HP20_RAZA_CHAIN
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,68 @@
+// Meridian 59, Copyright 1994-2012 Andrew Kirmse and Chris Kirmse.
+// All rights reserved.
+//
+// This software is distributed under a license that is described in
+// the LICENSE file that accompanies it.
+//
+// Meridian is a registered trademark.
+
+
+////////////////////////////////////////////////////////////////////////////////
+hp30pq7 is PassiveQuest
+
+// The seventh quest for 30 hp players is to:
+//   Find the Hall of Genealogy
+//
+
+constants:
+
+   include blakston.khd
+
+resources:
+
+   hp30pq7_icon_rsc = sword.bgf
+   hp30pq7_name_rsc = "Find Rook in Cor Noth"
+   hp30pq7_desc_rsc = \
+      "Cor Noth includes a variety of residents, including a renowned swordsman, "
+      "a skilled seamstress, a veteran innkeeper, and a merchant from a distant land. "
+      "Find Rook, the master of weapons who lives in this city. He will instruct you "
+      "further. When you find him, ask for help."
+
+   hp30pq7_new_quest_msg = \
+      "Cor Noth includes a variety of residents, including a renowned swordsman, "
+      "a skilled seamstress, a veteran innkeeper, and a merchant from a distant land. "
+      "~o~BFind Rook,~n the master of weapons who lives in this city. He will instruct you "
+      "further. When you find him, ~o~Bask for help.~n"
+
+   vrhp30pq7_trigger = \
+      "help"
+
+   hp30pq7_complete_msg = \
+      "~kRook says, \"Hut! Hop to, adventurer. I'll make a soldier out of you yet. Let's spar!\""
+
+classvars:
+
+   vrIcon = hp30pq7_icon_rsc
+   vrName = hp30pq7_name_rsc
+   vrDesc = hp30pq7_desc_rsc
+
+   vrNewThisQuestMsg = hp30pq7_new_quest_msg
+   vrCompletedMsg = hp30pq7_complete_msg
+
+   vbReinform = TRUE
+
+   vbSaySomething = TRUE
+   vsSayTrigger = vrhp30pq7_trigger
+   vcSayTargetClass = &CorNothSergeant
+
+   viTrainingPointsReward = 600
+
+   viChain = HP30_NEWBIE_CHAIN
+   cNextQuestClass = &hp30pq8
+
+properties:
+
+messages:
+
+end
+////////////////////////////////////////////////////////////////////////////////
