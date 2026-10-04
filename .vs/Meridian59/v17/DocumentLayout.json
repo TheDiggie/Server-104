@@ -34,12 +34,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -60,7 +56,7 @@
               "RelativeDocumentMoniker": "clientd3d\\login.c",
               "ToolTip": "C:\\Users\\ashto\\OneDrive\\Documents\\GitHub\\NewServer\\clientd3d\\login.c",
               "RelativeToolTip": "clientd3d\\login.c",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAtwEEAAAAGAAAAAAAAAA==",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAAEEAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-07-08T02:26:11.754Z",
               "EditorCaption": ""
