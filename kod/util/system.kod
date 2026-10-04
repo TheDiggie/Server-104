@@ -5221,7 +5221,15 @@ messages:
    }
 
    GetGameQuestMaintenance()
+   "Created on demand, as GetDMFeed is: a savegame that predates the class "
+   "has no object until a recreate pass, and until then every "
+   "EvaluatePlayer went to $ and no new character got a quest."
    {
+      if poGameQuestMaintenance = $
+      {
+         poGameQuestMaintenance = Create(&GameQuestMaintenance);
+      }
+
       return poGameQuestMaintenance;
    }
 
