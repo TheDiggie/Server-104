@@ -86,17 +86,16 @@ messages:
       iPlayerHP = Send(who,@GetBaseMaxHealth);
       oRoom = Send(who,@GetOwner);
 
-      // Open Meridian keys the newbie chains off the sealed Raza region
-      // (RID_NEWB_BASE). Raza is an open mainland town on this server, so
-      // key off the Raza room class instead.
+      // Every new character starts the Raza chain, wherever they stand:
+      // Ashton, "make every player get the first quest (hp20pq1) when
+      // they make their characters". Open Meridian keyed this off the
+      // sealed newbie Raza region (RID_NEWB_BASE); Raza is an open
+      // mainland town here, so there is no region to key off and a
+      // 20-hp character without the chain is, by definition, new.
       if iPlayerHP = 20
+         AND NOT Send(who,@HasQuestChain,#chain_num=HP20_RAZA_CHAIN)
       {
-         // We're completely new. Are we in Raza?
-         if IsClass(oRoom,&RazaRoom)
-            AND NOT Send(who,@HasQuestChain,#chain_num=HP20_RAZA_CHAIN)
-         {
-            Create(&hp20pq1,#quester=who);
-         }
+         Create(&hp20pq1,#quester=who);
       }
 
       // Newbies next find themselves here.

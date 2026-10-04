@@ -63,7 +63,10 @@ classvars:
 
    viExperienceReward = 1000
 
-   cNextQuestClass = &hp20pq4
+   // The chain ends here. Open Meridian went on to hp20pq4, "use the
+   // Newbportal", but no room on this server creates one (Raza joins the
+   // mainland on foot), so that quest could never complete.
+   cNextQuestClass = $
 
    // Open Meridian region-locks this chain to the sealed newbie Raza. On this
    // server Raza is an open mainland town, so the chain is not region-locked.
