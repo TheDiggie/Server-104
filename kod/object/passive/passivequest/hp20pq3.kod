@@ -42,8 +42,8 @@ resources:
    hp20pq3_elder_reward_msg = \
       "~kRodric d'Stane says, \"Thank you for your assistance. You have truly helped us in our time of need. "
       "I shall share with you some of the wisdom of my years. Perhaps my meager experience will help you "
-      "face the dangers of Meridian proper. Go now, and find the portal to the cities. It is in our "
-      "museum in the northeast corner of town. Once you are there, I recommend you seek out Priestess Xiana "
+      "face the dangers of Meridian proper. Go now, and find the city of Marion. "
+      "Once you are there, I recommend you seek out Priestess Xiana "
       "at the Temple of Shal'ille. She can guide you further.\""
 
 classvars:

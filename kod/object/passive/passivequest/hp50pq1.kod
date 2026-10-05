@@ -40,7 +40,7 @@ resources:
    hp50pq1_complete_msg = \
       "~kPrincess Kateriina says, \"There has been talk of thee as of late. It is "
       "good to see that the gossip is not idle. Thou art indeed showing promise. Under my tutelage, "
-      "the schools of Shal'ille, Jala, Faren, and Sorcery shall be easier to learn and more powerful to employ. "
+      "the schools of Shal'ille, Jala, and Faren shall be easier to learn and more powerful to employ. "
       "I shall also teach you how to regenerate mana faster and defend yourself from attack. If you wish "
       "to enter my service, say 'join.'\""
 

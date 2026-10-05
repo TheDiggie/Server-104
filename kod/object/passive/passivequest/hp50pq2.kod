@@ -39,8 +39,8 @@ resources:
 
    hp50pq2_complete_msg = \
       "~kDuke Akardius says, \"Fie on that naive Princess. My faction is about power at any cost. "
-      "Under me, you shall learn faster and cast stronger in the schools of Qor, Riija, Kraanan, "
-      "and Witchery. Join my unholy tricksters and battle-mages and let us take this land for our own. "
+      "Under me, you shall learn faster and cast stronger in the schools of Qor, Riija, and Kraanan. "
+      "Join my unholy tricksters and battle-mages and let us take this land for our own. "
       "If you say 'join' and enter my faction, I will also use my influence to lower prices at merchants. "
       "Furthermore, if you are ever blacklisted as a murderer, you will still be able to do business "
       "as long as you work for me.\""
